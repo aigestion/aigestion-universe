@@ -4,17 +4,17 @@ Agent Registry - Sub-agent swarm for Daniela.
 Specialized agents (planner, coder, reviewer, researcher) register
 themselves and are dispatched by the Orchestrator.
 """
+
 from __future__ import annotations
 
 import asyncio
-import builtins
 import uuid
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class AgentRole(str, Enum):
+class AgentRole(StrEnum):
     PLANNER = "planner"
     CODER = "coder"
     REVIEWER = "reviewer"
@@ -67,9 +67,16 @@ class AgentRegistry:
         async with self._lock:
             self.agents.clear()
 
-    async def register(self, name: str, role: AgentRole, capabilities: builtins.list[str] | None = None) -> Agent:
+    async def register(
+        self, name: str, role: AgentRole, capabilities: list[str] | None = None
+    ) -> Agent:
         async with self._lock:
-            agent = Agent(id=str(uuid.uuid4()), name=name, role=role, capabilities=capabilities or [])
+            agent = Agent(
+                id=str(uuid.uuid4()),
+                name=name,
+                role=role,
+                capabilities=capabilities or [],
+            )
             self.agents[agent.id] = agent
             return agent
 
@@ -88,5 +95,5 @@ class AgentRegistry:
             if agent:
                 agent.busy = False
 
-    def list(self) -> builtins.list[dict[str, Any]]:
+    def list(self) -> list[dict[str, Any]]:
         return [a.as_dict() for a in self.agents.values()]

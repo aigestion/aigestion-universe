@@ -1,4 +1,5 @@
 """Unit tests for SecurityEngine."""
+
 import pytest
 
 from security import SecurityEngine
@@ -27,6 +28,7 @@ def test_challenge_response(sec):
     # Simulate the phone side: HMAC-SHA256(challenge, secret)
     import hashlib
     import hmac
+
     response = hmac.new(secret.encode(), challenge.encode(), hashlib.sha256).hexdigest()
     assert sec.verify_response(challenge, response, secret) is True
     assert sec.verify_response(challenge, "wrong", secret) is False

@@ -1,4 +1,5 @@
 """Unit tests for PersonaManager."""
+
 import pytest
 
 from persona import PersonaManager

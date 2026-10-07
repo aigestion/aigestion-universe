@@ -5,16 +5,24 @@ Routes LLM calls to any provider (OpenAI, Anthropic, Google, local)
 using the user's own API keys. Compatible with the MCP tool protocol.
 Never marks up token costs.
 """
+
 from __future__ import annotations
 
 import asyncio
 import uuid
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class Provider(str, Enum):
+class UnknownToolError(KeyError):
+    """Unknown tool name."""
+
+    def __init__(self, name: str) -> None:
+        super().__init__(f"unknown tool {name}")
+
+
+class Provider(StrEnum):
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
@@ -67,21 +75,39 @@ class ToolGateway:
         builtin = {
             "web_search": {"description": "Search the web", "input": {"query": "string"}},
             "read_file": {"description": "Read a file", "input": {"path": "string"}},
-            "write_file": {"description": "Write a file", "input": {"path": "string", "content": "string"}},
+            "write_file": {
+                "description": "Write a file",
+                "input": {"path": "string", "content": "string"},
+            },
             "run_shell": {"description": "Run a shell command", "input": {"cmd": "string"}},
             "memory_recall": {"description": "Recall memories", "input": {"query": "string"}},
         }
         self.tools.update(builtin)
 
-    async def register_tool(self, name: str, description: str, input_schema: dict[str, Any]) -> None:
+    async def register_tool(
+        self,
+        name: str,
+        description: str,
+        input_schema: dict[str, Any],
+    ) -> None:
         async with self._lock:
             self.tools[name] = {"description": description, "input": input_schema}
 
-    async def call(self, name: str, *, arguments: dict[str, Any] | None = None,
-                   provider: Provider = Provider.LOCAL) -> ToolResult:
+    async def call(
+        self,
+        name: str,
+        *,
+        arguments: dict[str, Any] | None = None,
+        provider: Provider = Provider.LOCAL,
+    ) -> ToolResult:
         if name not in self.tools:
-            raise KeyError(f"unknown tool {name}")
-        call = ToolCall(id=str(uuid.uuid4()), name=name, arguments=arguments or {}, provider=provider)
+            raise UnknownToolError(name)
+        call = ToolCall(
+            id=str(uuid.uuid4()),
+            name=name,
+            arguments=arguments or {},
+            provider=provider,
+        )
         output = await self._execute(call)
         return ToolResult(tool_call_id=call.id, output=output, tokens_used=0, cost_usd=0.0)
 
@@ -93,7 +119,7 @@ class ToolGateway:
         return {"tool": call.name, "arguments": call.arguments, "provider": call.provider.value}
 
     def list_tools(self) -> dict[str, Any]:
-        return {name: meta for name, meta in self.tools.items()}
+        return dict(self.tools)
 
     def providers(self) -> dict[str, bool]:
         return {p.value: self.has_key(p) for p in Provider}

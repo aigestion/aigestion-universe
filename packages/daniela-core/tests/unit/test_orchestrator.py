@@ -1,4 +1,5 @@
 """Unit tests for Orchestrator (swarm + Raft consensus)."""
+
 import pytest
 
 from orchestrator import Engine, Orchestrator, TaskStatus

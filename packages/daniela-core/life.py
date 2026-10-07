@@ -4,6 +4,7 @@ Digital Life - Daniela's autonomous daily existence (admin-only surface).
 Goals, mood, circadian rhythm, proactive suggestions. Only the admin
 can configure or enable these; the rest can only observe.
 """
+
 from __future__ import annotations
 
 import asyncio
@@ -11,15 +12,35 @@ import math
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class Mood(str, Enum):
+class Mood(StrEnum):
     CALM = "calm"
     FOCUSED = "focused"
     ENERGETIC = "energetic"
     REFLECTIVE = "reflective"
+
+
+class AdminRequiredError(PermissionError):
+    """DigitalLife admin gate."""
+
+    def __init__(self) -> None:
+        super().__init__("DigitalLife requires admin privileges to enable")
+
+
+class UnknownGoalError(KeyError):
+    """Unknown goal ID."""
+
+    def __init__(self, goal_id: str) -> None:
+        super().__init__(f"unknown goal {goal_id}")
+
+
+# Circadian energy thresholds for mood mapping.
+ENERGY_HIGH = 0.75
+ENERGY_MID = 0.5
+ENERGY_LOW = 0.25
 
 
 @dataclass
@@ -50,7 +71,7 @@ class DigitalLife:
 
     async def set_enabled(self, enabled: bool, *, admin: bool = False) -> bool:
         if enabled and not admin:
-            raise PermissionError("DigitalLife requires admin privileges to enable")
+            raise AdminRequiredError()
         self.enabled = enabled
         return self.enabled
 
@@ -64,7 +85,7 @@ class DigitalLife:
         async with self._lock:
             goal = self.goals.get(goal_id)
             if not goal:
-                raise KeyError(f"unknown goal {goal_id}")
+                raise UnknownGoalError(goal_id)
             goal.progress = min(1.0, goal.progress + step)
             if goal.progress >= 1.0:
                 goal.completed = True
@@ -76,11 +97,11 @@ class DigitalLife:
         hour = now.hour + now.minute / 60.0
         # sinusoidal energy curve peaking at 14:00
         energy = 0.5 + 0.5 * math.sin(((hour - 8) / 24) * 2 * math.pi)
-        if energy > 0.75:
+        if energy > ENERGY_HIGH:
             self.mood = Mood.ENERGETIC
-        elif energy > 0.5:
+        elif energy > ENERGY_MID:
             self.mood = Mood.FOCUSED
-        elif energy > 0.25:
+        elif energy > ENERGY_LOW:
             self.mood = Mood.REFLECTIVE
         else:
             self.mood = Mood.CALM
@@ -93,14 +114,26 @@ class DigitalLife:
         pending = [g for g in self.goals.values() if not g.completed]
         if pending:
             next_goal = min(pending, key=lambda g: g.progress)
-            suggestions.append({
-                "type": "goal",
-                "text": f"Continue '{next_goal.title}' ({next_goal.progress:.0%})",
-            })
+            suggestions.append(
+                {
+                    "type": "goal",
+                    "text": f"Continue '{next_goal.title}' ({next_goal.progress:.0%})",
+                }
+            )
         if self.mood == Mood.ENERGETIC:
-            suggestions.append({"type": "rhythm", "text": "High energy — good time for deep work."})
+            suggestions.append(
+                {
+                    "type": "rhythm",
+                    "text": "High energy — good time for deep work.",
+                }
+            )
         elif self.mood == Mood.CALM:
-            suggestions.append({"type": "rhythm", "text": "Calm hour — good time to review memories."})
+            suggestions.append(
+                {
+                    "type": "rhythm",
+                    "text": "Calm hour — good time to review memories.",
+                }
+            )
         return suggestions
 
     def as_dict(self) -> dict[str, Any]:

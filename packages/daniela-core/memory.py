@@ -6,17 +6,18 @@ Tiers:
   - Semantic:   facts, knowledge, concepts (what is true)
   - Procedural: skills, habits, how-to (how to do things)
 """
+
 from __future__ import annotations
 
 import asyncio
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class Tier(str, Enum):
+class Tier(StrEnum):
     EPISODIC = "episodic"
     SEMANTIC = "semantic"
     PROCEDURAL = "procedural"
@@ -147,6 +148,4 @@ class MemoryVault:
         )
 
     def stats(self) -> dict[str, Any]:
-        return {
-            tier.value: len(store) for tier, store in self._stores.items()
-        }
+        return {tier.value: len(store) for tier, store in self._stores.items()}

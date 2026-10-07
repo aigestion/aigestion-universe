@@ -1,4 +1,5 @@
 """Unit tests for Brain, AgentRegistry, VoiceEngine, ToolGateway."""
+
 import pytest
 
 from agents import AgentRegistry, AgentRole

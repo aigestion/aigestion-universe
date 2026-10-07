@@ -1,6 +1,8 @@
 """
 FastAPI application factory for Daniela Core.
 """
+
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -21,7 +23,7 @@ from voice import VoiceEngine
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # Startup
     app.state.brain = Brain()
     app.state.memory = MemoryVault()
@@ -54,6 +56,7 @@ async def lifespan(app: FastAPI):
     await app.state.orchestrator.shutdown()
     await app.state.memory.shutdown()
     await app.state.brain.shutdown()
+
 
 def create_app() -> FastAPI:
     app = FastAPI(

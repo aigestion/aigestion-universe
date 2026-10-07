@@ -1,14 +1,20 @@
 """Brain routes - cognitive processing."""
-from typing import Any
+
+from typing import TYPE_CHECKING, Any
 
 from fastapi import APIRouter, Request
 from pydantic import BaseModel
 
+if TYPE_CHECKING:
+    from brain import Brain
+
 router = APIRouter()
+
 
 class ProcessRequest(BaseModel):
     input: str
     context: dict[str, Any] = {}
+
 
 class ProcessResponse(BaseModel):
     perception: dict[str, Any]
@@ -18,15 +24,17 @@ class ProcessResponse(BaseModel):
     coherence: int
     empathy: float
 
+
 @router.post("/process", response_model=ProcessResponse)
-async def process(req: ProcessRequest, request: Request):
-    brain = request.app.state.brain
+async def process(req: ProcessRequest, request: Request) -> ProcessResponse:
+    brain: Brain = request.app.state.brain
     result = await brain.process(req.input, req.context)
     return ProcessResponse(**result)
 
+
 @router.get("/stats")
-async def stats(request: Request):
-    brain = request.app.state.brain
+async def stats(request: Request) -> dict[str, Any]:
+    brain: Brain = request.app.state.brain
     return {
         "coherence_level": brain.coherence_level,
         "empathy_base": brain.empathy_base,

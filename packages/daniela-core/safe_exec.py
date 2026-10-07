@@ -30,6 +30,7 @@ import os
 import shlex
 import subprocess
 from collections.abc import Sequence
+from typing import Any
 
 DEFAULT_TIMEOUT = 10
 
@@ -54,8 +55,9 @@ def _to_args(cmd: CmdArg) -> list[str]:
     return [_expand(p) for p in parts]
 
 
-def run_cmd(cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT, check: bool = False,
-            cwd: str | None = None):
+def run_cmd(
+    cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT, check: bool = False, cwd: str | None = None
+) -> subprocess.CompletedProcess[str]:
     """Ejecuta un comando sin shell. Devuelve CompletedProcess.
 
     Args:
@@ -70,8 +72,7 @@ def run_cmd(cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT, check: bool = False,
     """
     args = _to_args(cmd)
     if not args:
-        return subprocess.CompletedProcess(args=[], returncode=1,
-                                           stdout="", stderr="comando vacio")
+        return subprocess.CompletedProcess(args=[], returncode=1, stdout="", stderr="comando vacio")
     try:
         return subprocess.run(
             args,
@@ -84,15 +85,14 @@ def run_cmd(cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT, check: bool = False,
         )
     except FileNotFoundError:
         return subprocess.CompletedProcess(
-            args=args, returncode=127, stdout="",
-            stderr=f"comando no encontrado: {args[0]}")
+            args=args, returncode=127, stdout="", stderr=f"comando no encontrado: {args[0]}"
+        )
     except subprocess.TimeoutExpired:
         return subprocess.CompletedProcess(
-            args=args, returncode=124, stdout="",
-            stderr=f"timeout tras {timeout}s")
-    except Exception as e:                      # permisos, OSError, etc.
-        return subprocess.CompletedProcess(
-            args=args, returncode=1, stdout="", stderr=str(e))
+            args=args, returncode=124, stdout="", stderr=f"timeout tras {timeout}s"
+        )
+    except Exception as e:  # permisos, OSError, etc.
+        return subprocess.CompletedProcess(args=args, returncode=1, stdout="", stderr=str(e))
 
 
 def run_bg(cmd: CmdArg) -> subprocess.Popen:
@@ -107,7 +107,7 @@ def run_bg(cmd: CmdArg) -> subprocess.Popen:
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
-        start_new_session=True if os.name != "nt" else False
+        start_new_session=True if os.name != "nt" else False,
     )
 
 
@@ -121,9 +121,10 @@ def run_out(cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT) -> str:
     return run_cmd(cmd, timeout=timeout).stdout
 
 
-def run_json(cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT):
+def run_json(cmd: CmdArg, timeout: int = DEFAULT_TIMEOUT) -> Any:
     """Ejecuta y parsea la salida como JSON. Devuelve None si no es JSON."""
     import json
+
     out = run_out(cmd, timeout=timeout).strip()
     if not out:
         return None
@@ -143,5 +144,4 @@ if __name__ == "__main__":
     r = run_cmd("python --version")
     print(f"  returncode={r.returncode}  stdout={r.stdout.strip()}")
     print(f"  run_code -> {run_code('python --version')}")
-    print("  shlex respeta comillas:",
-          _to_args("termux-tts-speak 'hola mundo'"))
+    print("  shlex respeta comillas:", _to_args("termux-tts-speak 'hola mundo'"))

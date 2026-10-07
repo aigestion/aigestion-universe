@@ -4,6 +4,7 @@ Voice Engine - On-device TTS and STT for Daniela.
 Production uses on-device models (e.g. Piper TTS, Whisper.cpp).
 This module defines the interface plus a deterministic fallback.
 """
+
 from __future__ import annotations
 
 import hashlib

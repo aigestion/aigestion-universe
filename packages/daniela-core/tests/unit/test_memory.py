@@ -1,4 +1,5 @@
 """Unit tests for MemoryVault (three-tier memory)."""
+
 import pytest
 
 from memory import MemoryVault, Tier
@@ -48,6 +49,7 @@ async def test_consolidate_merges_duplicates(vault):
 
 async def test_decay_reduces_stale_importance(vault):
     from datetime import datetime, timedelta
+
     m = await vault.store(Tier.EPISODIC, "old weather", importance=1.0)
     m.created_at = datetime.utcnow() - timedelta(days=60)
     decayed = await vault.decay(half_life_days=30.0)

@@ -1,4 +1,5 @@
 """Unit tests for DigitalLife (admin-gated autonomous existence)."""
+
 from datetime import datetime
 
 import pytest

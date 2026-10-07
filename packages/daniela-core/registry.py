@@ -9,9 +9,11 @@ from typing import Any
 
 logger = logging.getLogger("aig.registry")
 
+
 @dataclass
 class ServiceInfo:
     """Service registration info."""
+
     name: str
     host: str
     port: int
@@ -22,6 +24,7 @@ class ServiceInfo:
     metadata: dict[str, Any] = field(default_factory=dict)
     registered_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
     last_heartbeat: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+
 
 class ServiceRegistry:
     """Central service registry for health checks and discovery."""
@@ -91,12 +94,14 @@ class ServiceRegistry:
                 "status": service.status,
                 "healthy": self.check_health(name),
                 "last_heartbeat": service.last_heartbeat,
-                "endpoints": service.endpoints
+                "endpoints": service.endpoints,
             }
         return status
 
+
 # Global registry
 _registry: ServiceRegistry | None = None
+
 
 def get_registry() -> ServiceRegistry:
     """Get global service registry instance."""
@@ -105,13 +110,14 @@ def get_registry() -> ServiceRegistry:
         _registry = ServiceRegistry()
     return _registry
 
+
 def register_service(
     name: str,
     host: str,
     port: int,
     category: str = "core",
     version: str = "1.0.0",
-    endpoints: list[str] | None = None
+    endpoints: list[str] | None = None,
 ) -> bool:
     """Register a service in the global registry."""
     service = ServiceInfo(
@@ -120,21 +126,25 @@ def register_service(
         port=port,
         category=category,
         version=version,
-        endpoints=endpoints or []
+        endpoints=endpoints or [],
     )
     return get_registry().register(service)
+
 
 def update_heartbeat(service_name: str) -> bool:
     """Update heartbeat for a service."""
     return get_registry().update_heartbeat(service_name)
 
+
 def get_service(name: str) -> ServiceInfo | None:
     """Get service info by name."""
     return get_registry().get_service(name)
 
+
 def get_all_services() -> dict[str, ServiceInfo]:
     """Get all registered services."""
     return get_registry().get_all_services()
+
 
 def get_service_status() -> dict[str, Any]:
     """Get status of all services."""

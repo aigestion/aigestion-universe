@@ -4,17 +4,25 @@ Orchestrator - Swarm intelligence, Raft consensus, cross-engine gateway.
 Coordinates the 19 federated engines: delegates tasks, reaches consensus
 via a simplified Raft protocol, and routes through the cross-engine gateway.
 """
+
 from __future__ import annotations
 
 import asyncio
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 
-class Engine(str, Enum):
+class UnknownTaskError(KeyError):
+    """Unknown task ID."""
+
+    def __init__(self, task_id: str) -> None:
+        super().__init__(f"unknown task {task_id}")
+
+
+class Engine(StrEnum):
     CORE = "core"
     DATA_SECURITY = "data_security"
     PERFORMANCE = "performance"
@@ -36,12 +44,16 @@ class Engine(str, Enum):
     AGENT_MOBILE = "agent_mobile"
 
 
-class TaskStatus(str, Enum):
+class TaskStatus(StrEnum):
     PENDING = "pending"
     DELEGATED = "delegated"
     RUNNING = "running"
     COMPLETED = "completed"
     FAILED = "failed"
+
+
+# A node above this load never gets a consensus vote.
+MAX_HEALTHY_LOAD = 0.95
 
 
 @dataclass
@@ -105,11 +117,12 @@ class Orchestrator:
         async with self._lock:
             task = self.tasks.get(task_id)
             if not task:
-                raise KeyError(f"unknown task {task_id}")
+                raise UnknownTaskError(task_id)
             task.status = TaskStatus.RUNNING
         # In production this is an HTTP/gRPC call to the engine endpoint.
         await asyncio.sleep(0)
         async with self._lock:
+            assert task.engine is not None  # delegate() always assigns
             task.result = {"engine": task.engine.value, "echo": task.description}
             task.status = TaskStatus.COMPLETED
             return task.result or {}
@@ -148,8 +161,8 @@ class Orchestrator:
         return Engine.CORE
 
     @staticmethod
-    def _vote(node: EngineNode, proposal: dict[str, Any]) -> bool:
-        return node.healthy and node.load < 0.95
+    def _vote(node: EngineNode, _proposal: dict[str, Any]) -> bool:
+        return node.healthy and node.load < MAX_HEALTHY_LOAD
 
     def stats(self) -> dict[str, Any]:
         return {

@@ -20,6 +20,7 @@ try:
     from nats.aio.client import Client as NATS
     from nats.js import JetStreamContext
     from nats.js.api import RetentionPolicy, StorageType, StreamConfig
+
     NATS_AVAILABLE = True
 except ImportError:
     NATS_AVAILABLE = False
@@ -28,9 +29,9 @@ except ImportError:
     NATS = None
 
 
-
 class EventType(Enum):
     """Standard event types."""
+
     COMMAND = "cmd"
     EVENT = "evt"
     QUERY = "qry"
@@ -40,6 +41,7 @@ class EventType(Enum):
 @dataclass
 class Event:
     """Standard event structure with metadata for tracing."""
+
     event_type: str
     aggregate_id: str
     aggregate_type: str
@@ -65,6 +67,7 @@ class Event:
 @dataclass
 class Command:
     """Command structure for CQRS."""
+
     command_type: str
     aggregate_id: str
     aggregate_type: str
@@ -80,6 +83,7 @@ class Command:
 @dataclass
 class Query:
     """Query structure for CQRS."""
+
     query_type: str
     aggregate_id: str | None = None
     aggregate_type: str | None = None
@@ -89,6 +93,13 @@ class Query:
 
     def subject(self, service: str) -> str:
         return f"qry.{service}.{self.query_type.lower()}"
+
+
+class NatsMissingError(RuntimeError):
+    """NATS client library not installed."""
+
+    def __init__(self) -> None:
+        super().__init__("NATS not available. Install: pip install nats-py")
 
 
 class NATSEventBus:
@@ -106,10 +117,10 @@ class NATSEventBus:
         self,
         nats_url: str = "nats://localhost:4222",
         service_name: str = "aig",
-        streams: list[dict] | None = None
+        streams: list[dict] | None = None,
     ):
         if not NATS_AVAILABLE:
-            raise RuntimeError("NATS not available. Install: pip install nats-py")
+            raise NatsMissingError()
 
         self.nats_url = nats_url
         self.service_name = service_name
@@ -136,7 +147,7 @@ class NATSEventBus:
             max_reconnect_attempts=-1,
             disconnected_cb=self._on_disconnect,
             reconnected_cb=self._on_reconnect,
-            error_cb=self._on_error
+            error_cb=self._on_error,
         )
         self.js = self.nc.jetstream()
         await self._create_streams()
@@ -146,43 +157,62 @@ class NATSEventBus:
     def _get_default_streams(self) -> list[dict]:
         """Default stream configuration for aig services."""
         services = [
-            "daniela", "hermes", "swarm", "orchestrator", "gateway",
-            "infra", "agent", "security", "perf",
-            "intel", "auto", "data", "secure", "devtools",
-            "ecosystem", "ux", "scale", "chaos", "brand"
+            "daniela",
+            "hermes",
+            "swarm",
+            "orchestrator",
+            "gateway",
+            "infra",
+            "agent",
+            "security",
+            "perf",
+            "intel",
+            "auto",
+            "data",
+            "secure",
+            "devtools",
+            "ecosystem",
+            "ux",
+            "scale",
+            "chaos",
+            "brand",
         ]
 
         streams = []
         for svc in services:
-            streams.append({
-                "name": f"EVT_{svc.upper()}",
-                "subjects": [f"evt.{svc}.>", f"cmd.{svc}.>", f"qry.{svc}.>"],
-                "retention": RetentionPolicy.LIMITS,
-                "max_msgs": 1_000_000,
-                "max_bytes": 1024 * 1024 * 1024,  # 1GB
-                "storage": StorageType.FILE,
-                "max_age": 604800,  # 7 days
-                "max_msg_size": 1024 * 1024,  # 1MB
-            })
+            streams.append(
+                {
+                    "name": f"EVT_{svc.upper()}",
+                    "subjects": [f"evt.{svc}.>", f"cmd.{svc}.>", f"qry.{svc}.>"],
+                    "retention": RetentionPolicy.LIMITS,
+                    "max_msgs": 1_000_000,
+                    "max_bytes": 1024 * 1024 * 1024,  # 1GB
+                    "storage": StorageType.FILE,
+                    "max_age": 604800,  # 7 days
+                    "max_msg_size": 1024 * 1024,  # 1MB
+                }
+            )
 
         # System streams
-        streams.extend([
-            {
-                "name": "EVT_SYSTEM",
-                "subjects": ["evt.system.>", "cmd.system.>", "qry.system.>"],
-                "retention": RetentionPolicy.LIMITS,
-                "max_msgs": 100000,
-                "max_bytes": 100 * 1024 * 1024,
-            },
-            {
-                "name": "EVT_AUDIT",
-                "subjects": ["evt.audit.>"],
-                "retention": RetentionPolicy.LIMITS,
-                "max_msgs": 1000000,
-                "max_bytes": 5 * 1024 * 1024 * 1024,  # 5GB
-                "max_age": 2592000,  # 30 days
-            },
-        ])
+        streams.extend(
+            [
+                {
+                    "name": "EVT_SYSTEM",
+                    "subjects": ["evt.system.>", "cmd.system.>", "qry.system.>"],
+                    "retention": RetentionPolicy.LIMITS,
+                    "max_msgs": 100000,
+                    "max_bytes": 100 * 1024 * 1024,
+                },
+                {
+                    "name": "EVT_AUDIT",
+                    "subjects": ["evt.audit.>"],
+                    "retention": RetentionPolicy.LIMITS,
+                    "max_msgs": 1000000,
+                    "max_bytes": 5 * 1024 * 1024 * 1024,  # 5GB
+                    "max_age": 2592000,  # 30 days
+                },
+            ]
+        )
 
         # Add custom streams
         streams.extend(self.custom_streams)
@@ -190,6 +220,7 @@ class NATSEventBus:
 
     async def _create_streams(self) -> None:
         """Create JetStream streams if they don't exist."""
+        assert self.js is not None, "not connected (call connect() first)"
         for stream_config in self._get_default_streams():
             name = stream_config.pop("name")
             try:
@@ -210,18 +241,16 @@ class NATSEventBus:
     async def _on_error(self, e: Exception) -> None:
         print(f"[EventBus] Error: {e}")
 
-    async def publish(self, subject: str, event: Event,
-                     headers: dict[str, str] | None = None) -> str:
+    async def publish(
+        self, subject: str, event: Event, headers: dict[str, str] | None = None
+    ) -> str:
         """Publish event to NATS JetStream."""
         if not self.connected:
             await self.connect()
 
-        ack = await self.js.publish(
-            subject,
-            event.to_json(),
-            headers=headers or {}
-        )
-        return ack.seq
+        assert self.js is not None, "not connected (call connect() first)"
+        ack = await self.js.publish(subject, event.to_json(), headers=headers or {})
+        return str(ack.seq)
 
     async def publish_event(self, event: Event) -> str:
         """Publish event with auto-generated subject."""
@@ -236,16 +265,18 @@ class NATSEventBus:
             aggregate_id=command.aggregate_id,
             aggregate_type=command.aggregate_type,
             payload={"command": command.command_type, "data": command.payload},
-            metadata={"command_id": command.command_id, **command.metadata}
+            metadata={"command_id": command.command_id, **command.metadata},
         )
         return await self.publish(subject, event)
 
-    async def request(self, subject: str, payload: dict[str, Any],
-                     timeout: float = 30.0) -> Event | None:
+    async def request(
+        self, subject: str, payload: dict[str, Any], timeout: float = 30.0
+    ) -> Event | None:
         """Request-reply pattern for CQRS."""
         if not self.connected:
             await self.connect()
 
+        assert self.nc is not None, "not connected (call connect() first)"
         try:
             response = await self.nc.request(subject, json.dumps(payload).encode(), timeout=timeout)
             return Event.from_json(response.data)
@@ -261,12 +292,13 @@ class NATSEventBus:
         durable: str | None = None,
         deliver_policy: str = "all",
         ack_wait: int = 30,
-        max_deliver: int = 3
+        max_deliver: int = 3,
     ) -> Any:
         """Subscribe to subject with consumer group support."""
         if not self.connected:
             await self.connect()
 
+        assert self.js is not None, "not connected (call connect() first)"
         sub = await self.js.subscribe(
             subject,
             cb=self._wrap_handler(handler),
@@ -276,13 +308,13 @@ class NATSEventBus:
                 "ack_wait": ack_wait,
                 "max_deliver": max_deliver,
                 "deliver_policy": deliver_policy,
-            }
+            },
         )
         self._subscriptions.append(sub)
         return sub
 
     def _wrap_handler(self, handler: Callable) -> Callable:
-        async def wrapper(msg):
+        async def wrapper(msg: Any) -> None:
             try:
                 event = Event.from_json(msg.data)
                 await handler(event)
@@ -290,36 +322,37 @@ class NATSEventBus:
             except Exception as e:
                 print(f"[EventBus] Handler error: {e}")
                 await msg.nak()
+
         return wrapper
 
     async def subscribe_commands(
-        self,
-        command_type: str,
-        handler: Callable[[Command], Any],
-        queue: str = "cmd_handlers"
+        self, command_type: str, handler: Callable[[Command], Any], queue: str = "cmd_handlers"
     ) -> Any:
         """Subscribe to commands for this service."""
         subject = f"cmd.{self.service_name}.{command_type.lower()}"
-        async def wrapped(event: Event):
+
+        async def wrapped(event: Event) -> None:
             cmd = Command(
                 command_type=event.event_type,
                 aggregate_id=event.aggregate_id,
                 aggregate_type=event.aggregate_type,
                 payload=event.payload.get("data", {}),
-                metadata=event.metadata
+                metadata=event.metadata,
             )
-            return await handler(cmd)
-        return await self.subscribe(subject, wrapped, queue=queue, durable=f"{queue}_{self.service_name}")
+            await handler(cmd)
+
+        return await self.subscribe(
+            subject, wrapped, queue=queue, durable=f"{queue}_{self.service_name}"
+        )
 
     async def subscribe_events(
-        self,
-        event_type: str,
-        handler: Callable[[Event], Any],
-        queue: str = "evt_handlers"
+        self, event_type: str, handler: Callable[[Event], Any], queue: str = "evt_handlers"
     ) -> Any:
         """Subscribe to events for this service."""
         subject = f"evt.{self.service_name}.{event_type.lower()}"
-        return await self.subscribe(subject, handler, queue=queue, durable=f"{queue}_{self.service_name}")
+        return await self.subscribe(
+            subject, handler, queue=queue, durable=f"{queue}_{self.service_name}"
+        )
 
     async def close(self) -> None:
         """Close all subscriptions and connection."""
@@ -339,8 +372,7 @@ _global_bus: NATSEventBus | None = None
 
 
 def get_event_bus(
-    nats_url: str = "nats://localhost:4222",
-    service_name: str = "aig"
+    nats_url: str = "nats://localhost:4222", service_name: str = "aig"
 ) -> NATSEventBus:
     """Get or create global event bus instance."""
     global _global_bus

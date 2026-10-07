@@ -1,4 +1,5 @@
 """API integration tests (FastAPI TestClient, full lifespan)."""
+
 import pytest
 from fastapi.testclient import TestClient
 

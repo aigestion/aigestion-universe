@@ -114,9 +114,12 @@ fixable = ["F", "I", "W", "E", "N", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL
 # S603: safe_exec deliberately avoids shell=True (its security property).
 # PLW0603: singleton pattern via module-level global (events, registry).
 # T201: legacy print-based logging preserved.
-"events.py" = ["T201", "PLW0603", "E501", "N814", "PERF401", "PLR0913", "SIM105", "TC003"]
+# S101: asserts narrow Optional for mypy AND document invariants
+# (delegate() always assigns engine; connect() sets js/nc). No -O in prod.
+"events.py" = ["T201", "PLW0603", "E501", "N814", "PERF401", "PLR0913", "SIM105", "TC003", "S101"]
 "registry.py" = ["PLR0913", "PLR2004", "PLW0603"]
 "safe_exec.py" = ["T201", "S603", "PLC0415", "PTH111", "SIM108", "SIM210", "TRY003"]
+"orchestrator.py" = ["S101"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -127,6 +130,13 @@ disallow_incomplete_defs = true
 check_untyped_defs = true
 no_implicit_optional = true
 strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "prometheus_fastapi_instrumentator.*",
+    "nats.*",
+]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

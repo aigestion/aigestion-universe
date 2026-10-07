@@ -6,12 +6,14 @@ Security Engine - Defense in depth for Daniela Core.
 - Merkle-style audit log (append-only, tamper-evident)
 - Input sanitization and secrets redaction
 """
+
 from __future__ import annotations
 
 import hashlib
 import hmac
 import json
 import os
+import re
 import secrets
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -67,10 +69,19 @@ class SecurityEngine:
         expected = hmac.new(secret.encode(), challenge.encode(), hashlib.sha256).hexdigest()
         return hmac.compare_digest(expected, response)
 
-    def audit(self, action: str, actor: str = "system", *, extra: dict[str, Any] | None = None) -> AuditEntry:
+    def audit(
+        self,
+        action: str,
+        actor: str = "system",
+        *,
+        extra: dict[str, Any] | None = None,
+    ) -> AuditEntry:
         self._seq += 1
         extra = extra or {}
-        payload = json.dumps({"seq": self._seq, "action": action, "actor": actor, "extra": extra}, sort_keys=True)
+        payload = json.dumps(
+            {"seq": self._seq, "action": action, "actor": actor, "extra": extra},
+            sort_keys=True,
+        )
         self._chain = hashlib.sha256((self._chain + payload).encode()).hexdigest()
         entry = AuditEntry(
             seq=self._seq,
@@ -85,8 +96,14 @@ class SecurityEngine:
 
     def audit_log(self) -> list[dict[str, Any]]:
         return [
-            {"seq": e.seq, "timestamp": e.timestamp, "action": e.action,
-             "actor": e.actor, "digest": e.digest, "extra": e.extra}
+            {
+                "seq": e.seq,
+                "timestamp": e.timestamp,
+                "action": e.action,
+                "actor": e.actor,
+                "digest": e.digest,
+                "extra": e.extra,
+            }
             for e in self._audit
         ]
 
@@ -101,16 +118,19 @@ class SecurityEngine:
         return chain == self._chain
 
     @staticmethod
-    def redact(text: str, secrets: list[str] | None = None) -> str:
-        """Redact known secret patterns and bearer tokens."""
-        import re
+    def redact(text: str, extra_secrets: list[str] | None = None) -> str:
+        """Redact known secret patterns, bearer tokens, and extra literals."""
         rules = [
-            (r"(?i)\b(api[_-]?key|token|secret|password|key)\b(\s*[:=]\s*)[^\s]+",
-             r"\1\2***REDACTED***"),
-            (r"Bearer\s+[A-Za-z0-9\-._~+/]+=*",
-             "Bearer ***REDACTED***"),
+            (
+                r"(?i)\b(api[_-]?key|token|secret|password|key)\b(\s*[:=]\s*)[^\s]+",
+                r"\1\2***REDACTED***",
+            ),
+            (r"Bearer\s+[A-Za-z0-9\-._~+/]+=*", "Bearer ***REDACTED***"),
         ]
         out = text
         for pattern, replacement in rules:
             out = re.sub(pattern, replacement, out)
+        for secret in extra_secrets or []:
+            if secret:
+                out = out.replace(secret, "***REDACTED***")
         return out

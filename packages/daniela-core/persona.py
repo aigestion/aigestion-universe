@@ -4,6 +4,7 @@ Persona Manager - Identity and personality for Daniela.
 Daniela can be renamed and her personality tuned: empathy, creativity,
 formality, humor. Coherent Level 4 is the default stability target.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -32,6 +33,20 @@ class Persona:
         }
 
 
+class EmptyNameError(ValueError):
+    """Persona name cannot be empty."""
+
+    def __init__(self) -> None:
+        super().__init__("name cannot be empty")
+
+
+class TraitRangeError(ValueError):
+    """Personality trait out of range."""
+
+    def __init__(self, attr: str) -> None:
+        super().__init__(f"{attr} must be between 0 and 1")
+
+
 class PersonaManager:
     """Manages Daniela's identity: rename, personality traits, greeting."""
 
@@ -48,17 +63,27 @@ class PersonaManager:
     async def rename(self, name: str) -> Persona:
         clean = name.strip().title()[:32]
         if not clean:
-            raise ValueError("name cannot be empty")
+            raise EmptyNameError()
         self.persona.name = clean
         return self.persona
 
-    async def tune(self, *, empathy: float | None = None, creativity: float | None = None,
-                   formality: float | None = None, humor: float | None = None) -> Persona:
-        for attr, value in (("empathy", empathy), ("creativity", creativity),
-                            ("formality", formality), ("humor", humor)):
+    async def tune(
+        self,
+        *,
+        empathy: float | None = None,
+        creativity: float | None = None,
+        formality: float | None = None,
+        humor: float | None = None,
+    ) -> Persona:
+        for attr, value in (
+            ("empathy", empathy),
+            ("creativity", creativity),
+            ("formality", formality),
+            ("humor", humor),
+        ):
             if value is not None:
                 if not 0.0 <= value <= 1.0:
-                    raise ValueError(f"{attr} must be between 0 and 1")
+                    raise TraitRangeError(attr)
                 setattr(self.persona, attr, value)
         return self.persona
 
