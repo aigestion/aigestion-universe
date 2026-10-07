@@ -49,6 +49,8 @@ jobs:
           cache: pnpm
       - name: Install
         run: pnpm install --frozen-lockfile
+      - name: Build libs (types for workspace deps)
+        run: pnpm --filter @aigestion/three-daniela --filter @aigestion/ui build
       - name: Typecheck
         run: pnpm -r typecheck
       - name: Lint

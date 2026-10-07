@@ -288,6 +288,7 @@ class NATSEventBus:
         self,
         subject: str,
         handler: Callable[[Event], Any],
+        *,
         queue: str | None = None,
         durable: str | None = None,
         deliver_policy: str = "all",

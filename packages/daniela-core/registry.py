@@ -115,6 +115,7 @@ def register_service(
     name: str,
     host: str,
     port: int,
+    *,
     category: str = "core",
     version: str = "1.0.0",
     endpoints: list[str] | None = None,
