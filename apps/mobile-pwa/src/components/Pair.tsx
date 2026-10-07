@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { QrCode, RefreshCw, CheckCircle2, Loader2 } from "lucide-react"
+import { RefreshCw, CheckCircle2, Loader2 } from "lucide-react"
 import QRCode from "qrcode.react"
 
 type Phase = "idle" | "waiting" | "paired" | "error"

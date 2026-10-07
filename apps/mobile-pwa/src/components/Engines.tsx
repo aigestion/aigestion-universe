@@ -12,7 +12,7 @@ const DEFAULTS: Engine[] = [
 ]
 
 export function Engines() {
-  const [engines, setEngines] = useState<Engine[]>(DEFAULTS)
+  const [engines] = useState<Engine[]>(DEFAULTS)
 
   useEffect(() => {
     // TODO: fetch /api/v1/orchestrator/engines

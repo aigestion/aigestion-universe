@@ -55,7 +55,7 @@ export function FeaturesBento() {
       {features.map((f) => (
         <div
           key={f.title}
-          className={glass rounded-2xl p-6 bg-gradient-to-b  border hover:neural-glow transition-all duration-300 }
+          className={`glass rounded-2xl p-6 bg-gradient-to-b ${accents[f.accent]} border hover:neural-glow transition-all duration-300 ${f.span}`}
         >
           <div className="text-3xl mb-4">{f.icon}</div>
           <h3 className="text-xl font-display font-medium text-white mb-2">{f.title}</h3>

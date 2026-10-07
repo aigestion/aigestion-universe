@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'aigestion.net | Orchestrate 19 AI engines. Zero cloud cost. Your infrastructure.',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'AIGESTION Team' }],
   creator: 'AIGESTION',
   publisher: 'AIGESTION',
-  robots: 'index, follow',
+  robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     siteName: 'aigestion.net',
   },
   twitter: { card: 'summary_large_image', title: 'aigestion.net', description: 'Orchestrate 19 AI engines. Zero cloud cost.' },
-  robots: { index: true, follow: true },
   verification: { google: 'google-site-verification-code' },
 }
 
@@ -35,7 +34,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={${geistSans.variable}  antialiased}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

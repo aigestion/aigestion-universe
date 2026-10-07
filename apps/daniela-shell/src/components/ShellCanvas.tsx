@@ -1,7 +1,7 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, AdaptiveDpr, AdaptiveEvents } from "@react-three/drei"
+import { OrbitControls, AdaptiveEvents } from "@react-three/drei"
 import { EffectComposer, Bloom } from "@react-three/postprocessing"
 import { NeuralParticles, CoreOrb, OrbitRings, Starfield } from "@aigestion/three-daniela"
 import { useShellStore } from "@/lib/store"
@@ -20,7 +20,6 @@ export function ShellCanvas() {
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       style={{ background: "#01050e" }}
     >
-      <AdaptiveDpr pixelCapacity={dpr} />
       <AdaptiveEvents />
 
       <Starfield count={2000} radius={120} opacity={0.6} />

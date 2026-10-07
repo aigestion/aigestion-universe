@@ -13,7 +13,7 @@ const tiers = [
     price: '29',
     cadence: '/user/mo',
     desc: 'Multi-device sync, cloud LLM routing, swarm orchestration.',
-    features: ['Unlimited tasks', 'Phone + PC + Server', 'BYOK cloud models', 'All 3 memory tiers', 'Priority consensus', 'God\'s Eye View'],
+    features: ['Unlimited tasks', 'Phone + PC + Server', 'BYOK cloud models', 'All 3 memory tiers', 'Priority consensus', "God's Eye View"],
     cta: 'Start Pro Trial',
     accent: true,
   },
@@ -45,11 +45,11 @@ export function Pricing() {
           {tiers.map((t) => (
             <div
               key={t.name}
-              className={glass rounded-3xl p-8 flex flex-col }
+              className={`glass rounded-3xl p-8 flex flex-col ${t.accent ? 'neural-glow border-cyan-400/40 md:-translate-y-4' : ''}`}
             >
               <div className="text-sm font-mono text-gray-500 uppercase tracking-wider mb-2">{t.name}</div>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-5xl font-display font-light"></span>
+                <span className="text-5xl font-display font-light">${t.price}</span>
                 <span className="text-sm text-gray-500">{t.cadence}</span>
               </div>
               <p className="text-sm text-gray-400 mb-6 leading-relaxed">{t.desc}</p>

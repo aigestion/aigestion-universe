@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 interface Stats { coherence: number; empathy: number; nodes: number; engines: number }
 
 export function Home() {
-  const [stats, setStats] = useState<Stats>({ coherence: 4, empathy: 0.96, nodes: 12480, engines: 19 })
+  const [stats] = useState<Stats>({ coherence: 4, empathy: 0.96, nodes: 12480, engines: 19 })
 
   useEffect(() => {
     // TODO: fetch from daniela-core /api/v1/brain/stats

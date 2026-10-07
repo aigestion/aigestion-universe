@@ -10,7 +10,7 @@ const DEFAULTS: Tier[] = [
 ]
 
 export function Memory() {
-  const [tiers, setTiers] = useState<Tier[]>(DEFAULTS)
+  const [tiers] = useState<Tier[]>(DEFAULTS)
 
   useEffect(() => {
     // TODO: fetch /api/v1/memory/stats

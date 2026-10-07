@@ -21,20 +21,22 @@
     "qrcode.react": "3.1.0",
     "lucide-react": "0.400.0",
     "clsx": "2.1.0",
-    "tailwind-merge": "2.3.0"
+    "tailwind-merge": "2.3.0",
+    "qrcode": "^1.5.0"
   },
   "devDependencies": {
     "@types/node": "22.0.0",
     "@types/react": "18.3.0",
     "@types/react-dom": "18.3.0",
     "@types/three": "0.166.0",
-    "typescript": "5.5.0",
+    "typescript": "^5.5.4",
     "tailwindcss": "3.4.0",
     "postcss": "8.4.0",
     "autoprefixer": "10.4.0",
     "eslint": "9.0.0",
     "eslint-config-next": "15.0.0",
     "prettier": "3.3.0",
-    "prettier-plugin-tailwindcss": "0.6.0"
+    "prettier-plugin-tailwindcss": "0.6.0",
+    "@types/qrcode": "^1.5.0"
   }
 }

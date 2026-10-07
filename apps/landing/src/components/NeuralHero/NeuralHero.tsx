@@ -82,7 +82,7 @@ export function NeuralHero() {
     scene.add(orb)
 
     // Rings
-    const rings = []
+    const rings: THREE.Mesh[] = []
     for (let i = 0; i < 3; i++) {
       const ringGeometry = new THREE.TorusGeometry(5 + i * 2, 0.05, 16, 100)
       const ringMaterial = new THREE.MeshBasicMaterial({
@@ -208,6 +208,6 @@ export function NeuralHero() {
           <p className="text-xs text-gray-500 mt-2">Scan → Install APK</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
