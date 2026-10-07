@@ -38,7 +38,7 @@ enum TaskStatus {
   DELEGATED = 1;
   RUNNING = 2;
   COMPLETED = 3;
-  FAILED = 4;
+  TASK_STATUS_FAILED = 4;
 }
 
 message DelegateRequest {

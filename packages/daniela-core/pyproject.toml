@@ -133,7 +133,7 @@ strict_equality = true
 
 [[tool.mypy.overrides]]
 module = [
-    "prometheus_fastapi_instrumentator.*",
+    "prometheus-fastapi-instrumentator>=0.7.0",
     "nats.*",
 ]
 ignore_missing_imports = true
