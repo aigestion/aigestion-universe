@@ -1,7 +1,7 @@
 """Unit tests for Orchestrator (swarm + Raft consensus)."""
 import pytest
 
-from daniela_core.orchestrator import Engine, Orchestrator, TaskStatus
+from orchestrator import Engine, Orchestrator, TaskStatus
 
 
 @pytest.fixture

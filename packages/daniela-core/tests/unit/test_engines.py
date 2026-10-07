@@ -1,10 +1,10 @@
 """Unit tests for Brain, AgentRegistry, VoiceEngine, ToolGateway."""
 import pytest
 
-from daniela_core.agents import AgentRegistry, AgentRole
-from daniela_core.brain import Brain
-from daniela_core.tools import Provider, ToolGateway
-from daniela_core.voice import VoiceEngine
+from agents import AgentRegistry, AgentRole
+from brain import Brain
+from tools import Provider, ToolGateway
+from voice import VoiceEngine
 
 
 async def test_brain_pipeline():

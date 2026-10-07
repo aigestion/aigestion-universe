@@ -1,7 +1,7 @@
 """Unit tests for PersonaManager."""
 import pytest
 
-from daniela_core.persona import PersonaManager
+from persona import PersonaManager
 
 
 @pytest.fixture

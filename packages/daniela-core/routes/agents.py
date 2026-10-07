@@ -2,7 +2,7 @@
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
-from daniela_core.agents import AgentRole
+from agents import AgentRole
 
 router = APIRouter()
 

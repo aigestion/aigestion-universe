@@ -3,7 +3,7 @@ from datetime import datetime
 
 import pytest
 
-from daniela_core.life import DigitalLife, Mood
+from life import DigitalLife, Mood
 
 
 @pytest.fixture

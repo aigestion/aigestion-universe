@@ -2,7 +2,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from daniela_core import create_app
+from api import create_app
 
 
 @pytest.fixture(scope="module")

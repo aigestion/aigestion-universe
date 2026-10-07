@@ -1,7 +1,7 @@
 """Unit tests for SecurityEngine."""
 import pytest
 
-from daniela_core.security import SecurityEngine
+from security import SecurityEngine
 
 
 @pytest.fixture

@@ -112,6 +112,13 @@ fixable = ["F", "I", "W", "E", "N", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004", "TRY003", "S105", "PLC0415"]
+# Legacy modules migrated as-is from aig/core (see MIGRATION_PLAN.md).
+# S603: safe_exec deliberately avoids shell=True (its security property).
+# PLW0603: singleton pattern via module-level global (events, registry).
+# T201: legacy print-based logging preserved.
+"events.py" = ["T201", "PLW0603", "E501", "N814", "PERF401", "PLR0913", "SIM105", "TC003"]
+"registry.py" = ["PLR0913", "PLR2004", "PLW0603"]
+"safe_exec.py" = ["T201", "S603", "PLC0415", "PTH111", "SIM108", "SIM210", "TRY003"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -131,5 +138,14 @@ python_classes = ["Test*"]
 python_functions = ["test_*"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+# Flat layout: top-level modules + routes/ package (no daniela_core/ wrapper).
+[tool.setuptools]
+py-modules = [
+    "api", "brain", "memory", "orchestrator", "persona", "life",
+    "security", "voice", "agents", "tools", "events", "registry",
+    "safe_exec",
+]
+packages = ["routes"]

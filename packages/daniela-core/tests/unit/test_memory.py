@@ -1,7 +1,7 @@
 """Unit tests for MemoryVault (three-tier memory)."""
 import pytest
 
-from daniela_core.memory import MemoryVault, Tier
+from memory import MemoryVault, Tier
 
 
 @pytest.fixture

@@ -66,7 +66,7 @@ cp .env.example .env          # fill in SECRET_KEY, etc.
 # Core backend
 cd packages/daniela-core
 uv sync --extra dev
-uvicorn daniela_core.api:create_app --factory --port 9200
+uvicorn api:create_app --factory --port 9200
 
 # Frontend (landing)
 cd apps/landing

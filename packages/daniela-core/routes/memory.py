@@ -3,7 +3,7 @@
 from fastapi import APIRouter, Request
 from pydantic import BaseModel
 
-from daniela_core.memory import Tier
+from memory import Tier
 
 router = APIRouter()
 

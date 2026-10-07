@@ -8,17 +8,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from prometheus_fastapi_instrumentator import Instrumentator
 
-from daniela_core.agents import AgentRegistry
-from daniela_core.brain import Brain
-from daniela_core.life import DigitalLife
-from daniela_core.memory import MemoryVault
-from daniela_core.orchestrator import Orchestrator
-from daniela_core.persona import PersonaManager
-from daniela_core.security import SecurityEngine
-from daniela_core.tools import ToolGateway
-from daniela_core.voice import VoiceEngine
-
-from .routes import admin, agents, brain, health, life, memory, orchestrator, persona, tools, voice
+from agents import AgentRegistry
+from brain import Brain
+from life import DigitalLife
+from memory import MemoryVault
+from orchestrator import Orchestrator
+from persona import PersonaManager
+from routes import admin, agents, brain, health, life, memory, orchestrator, persona, tools, voice
+from security import SecurityEngine
+from tools import ToolGateway
+from voice import VoiceEngine
 
 
 @asynccontextmanager

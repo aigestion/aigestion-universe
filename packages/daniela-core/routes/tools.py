@@ -4,7 +4,7 @@ from typing import Any
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
-from daniela_core.tools import Provider
+from tools import Provider
 
 router = APIRouter()
 
