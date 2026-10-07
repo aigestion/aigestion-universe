@@ -1,0 +1,47 @@
+syntax = "proto3";
+package daniela.v1;
+
+import "google/protobuf/struct.proto";
+
+service MemoryService {
+  rpc Store(StoreRequest) returns (StoreResponse);
+  rpc Recall(RecallRequest) returns (RecallResponse);
+  rpc Consolidate(ConsolidateRequest) returns (ConsolidateResponse);
+  rpc Decay(DecayRequest) returns (DecayResponse);
+  rpc Stats(StatsRequest) returns (StatsResponse);
+}
+
+enum Tier {
+  TIER_UNSPECIFIED = 0;
+  EPISODIC = 1;
+  SEMANTIC = 2;
+  PROCEDURAL = 3;
+}
+
+message StoreRequest {
+  Tier tier = 1;
+  string content = 2;
+  float importance = 3;
+  google.protobuf.Struct metadata = 4;
+  repeated float embedding = 5;
+}
+message StoreResponse { string id = 1; Tier tier = 2; string created_at = 3; }
+
+message RecallRequest { string query = 1; Tier tier = 2; int32 limit = 3; }
+message MemoryItem {
+  string id = 1;
+  Tier tier = 2;
+  string content = 3;
+  float importance = 4;
+  int32 access_count = 5;
+}
+message RecallResponse { int32 count = 1; repeated MemoryItem memories = 2; }
+
+message ConsolidateRequest {}
+message ConsolidateResponse { int32 merged = 1; int32 episodic_remaining = 2; }
+
+message DecayRequest { float half_life_days = 1; }
+message DecayResponse { int32 decayed = 1; }
+
+message StatsRequest {}
+message StatsResponse { map<string, int32> tiers = 1; }

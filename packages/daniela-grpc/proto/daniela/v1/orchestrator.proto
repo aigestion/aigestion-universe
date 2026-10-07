@@ -1,0 +1,73 @@
+syntax = "proto3";
+package daniela.v1;
+
+import "google/protobuf/struct.proto";
+
+service OrchestratorService {
+  rpc Delegate(DelegateRequest) returns (DelegateResponse);
+  rpc Execute(ExecuteRequest) returns (ExecuteResponse);
+  rpc Consensus(ConsensusRequest) returns (ConsensusResponse);
+  rpc ListEngines(ListEnginesRequest) returns (ListEnginesResponse);
+}
+
+enum Engine {
+  ENGINE_UNSPECIFIED = 0;
+  CORE = 1;
+  DATA_SECURITY = 2;
+  PERFORMANCE = 3;
+  EXPERIENCE = 4;
+  AUTOMATION = 5;
+  INTEL = 6;
+  AUTO = 7;
+  DATA = 8;
+  SECURE = 9;
+  DEVTOOLS = 10;
+  ECOSYSTEM = 11;
+  UX = 12;
+  SCALE = 13;
+  CHAOS = 14;
+  BRAND = 15;
+  GATEWAY = 16;
+  ORCHESTRATOR = 17;
+  INFRA_OPT = 18;
+  AGENT_MOBILE = 19;
+}
+
+enum TaskStatus {
+  PENDING = 0;
+  DELEGATED = 1;
+  RUNNING = 2;
+  COMPLETED = 3;
+  FAILED = 4;
+}
+
+message DelegateRequest {
+  string description = 1;
+  google.protobuf.Struct payload = 2;
+}
+message DelegateResponse {
+  string task_id = 1;
+  Engine engine = 2;
+  TaskStatus status = 3;
+}
+
+message ExecuteRequest { string task_id = 1; }
+message ExecuteResponse { google.protobuf.Struct result = 1; }
+
+message ConsensusRequest { google.protobuf.Struct proposal = 1; }
+message ConsensusResponse {
+  uint64 term = 1;
+  string leader = 2;
+  int32 votes = 3;
+  int32 quorum = 4;
+  bool accepted = 5;
+}
+
+message ListEnginesRequest {}
+message EngineNode {
+  Engine engine = 1;
+  string endpoint = 2;
+  bool healthy = 3;
+  float load = 4;
+}
+message ListEnginesResponse { repeated EngineNode engines = 1; }

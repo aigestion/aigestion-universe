@@ -1,0 +1,40 @@
+syntax = "proto3";
+package daniela.v1;
+
+import "google/protobuf/struct.proto";
+
+service BrainService {
+  rpc Process(ProcessRequest) returns (ProcessResponse);
+  rpc Stream(StreamRequest) returns (stream StreamChunk);
+  rpc GetStats(StatsRequest) returns (StatsResponse);
+}
+
+message ProcessRequest {
+  string input = 1;
+  google.protobuf.Struct context = 2;
+}
+
+message ProcessResponse {
+  Perception perception = 1;
+  Reasoning reasoning = 2;
+  Decision decision = 3;
+  Action action = 4;
+  int32 coherence = 5;
+  float empathy = 6;
+}
+
+message Perception { string input = 1; google.protobuf.Struct context = 2; }
+message Reasoning { string analysis = 1; bool empathy_applied = 2; }
+message Decision { string action = 1; float confidence = 2; }
+message Action { bool executed = 1; string result = 2; }
+
+message StreamRequest { string input = 1; }
+message StreamChunk { string delta = 1; bool done = 2; }
+
+message StatsRequest {}
+message StatsResponse {
+  int32 coherence_level = 1;
+  float empathy_base = 2;
+  int32 max_nodes = 3;
+  int32 nodes = 4;
+}

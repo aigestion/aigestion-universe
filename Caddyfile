@@ -1,0 +1,103 @@
+{
+    admin off
+    local_certs
+}
+
+# Global headers
+header {
+    Strict-Transport-Security max-age=31536000
+    X-Content-Type-Options nosniff
+    X-Frame-Options DENY
+    Referrer-Policy strict-origin-when-cross-origin
+    Permissions-Policy interest-cohort=()
+}
+
+# Landing page - aigestion.net
+aigestion.net {
+    encode zstd gzip
+    root * /var/www/landing
+    try_files {path} /index.html
+    file_server
+    
+    # Security headers for landing
+    header {
+        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' wss: https://api.aigestion.net;"
+    }
+}
+
+# Daniela Shell - shell.aigestion.net
+shell.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-shell:3000
+    
+    header {
+        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' wss: https://api.aigestion.net;"
+    }
+}
+
+# API - api.aigestion.net
+api.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-core:9200
+    
+    # Rate limiting
+    ratelimit {
+        zone api 10r/s
+        key {remote_host}
+    }
+}
+
+# Grafana - grafana.aigestion.net
+grafana.aigestion.net {
+    encode zstd gzip
+    reverse_proxy grafana:3000
+}
+
+# Embodiment - embodiment.aigestion.net
+embodiment.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-embodiment:8080
+}
+
+# Research - research.aigestion.net
+research.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-research:8081
+}
+
+# Simulation - sim.aigestion.net
+sim.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-simulation:8082
+}
+
+# Tools Gateway - tools.aigestion.net
+tools.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-tools-gateway:8083
+}
+
+# Sandbox - sandbox.aigestion.net (isolated execution)
+sandbox.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-sandbox:8090
+}
+
+# Mobile edge - mobile.aigestion.net (Termux API gateway)
+mobile.aigestion.net {
+    encode zstd gzip
+    reverse_proxy mobile-pwa-edge:9800
+}
+
+# Admin - admin.aigestion.net (restricted)
+admin.aigestion.net {
+    encode zstd gzip
+    reverse_proxy daniela-shell:3000
+    basicauth /* {env.ADMIN_HTPASSWD}
+}
+
+# WebSocket support for all subdomains
+@websockets {
+    header Connection *Upgrade*
+    header Upgrade websocket
+}

@@ -1,0 +1,28 @@
+{
+  "": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**", ".next/**", "*.wasm"],
+      "cache": true
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "lint": {},
+    "typecheck": {},
+    "deploy": {
+      "dependsOn": ["build", "test", "lint", "typecheck"]
+    },
+    "docker:build": {
+      "dependsOn": ["build"]
+    }
+  },
+  "globalEnv": ["NODE_ENV", "DATABASE_URL", "REDIS_URL", "SECRET_KEY"],
+  "globalDotEnv": [".env.local", ".env"]
+}

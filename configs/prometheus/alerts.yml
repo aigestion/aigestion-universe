@@ -1,0 +1,27 @@
+groups:
+  - name: daniela_alerts
+    interval: 30s
+    rules:
+      - alert: DanielaDown
+        expr: up{job="daniela-core"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Daniela Core is down"
+
+      - alert: HighMemory
+        expr: (process_resident_memory_bytes{job="daniela-core"} / 2e9) > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Daniela Core memory > 85%"
+
+      - alert: HighLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="daniela-core"}[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "P95 latency > 500ms"

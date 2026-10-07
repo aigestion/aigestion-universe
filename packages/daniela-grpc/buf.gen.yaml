@@ -1,0 +1,10 @@
+version: v1
+inputs:
+  - directory: proto
+outputs:
+  - directory: daniela_grpc
+    plugin: python
+    out: .
+  - directory: daniela_grpc
+    plugin: python-grpc
+    out: .

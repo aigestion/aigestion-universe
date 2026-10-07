@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniela Desktop</title>
+  <style>
+    :root { --bg:#01050e; --cyan:#00f0ff; --magenta:#e024c3; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      min-height:100vh; background:var(--bg); color:#e5e5e5;
+      font-family:'Geist',system-ui,sans-serif;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .hero { text-align:center; }
+    .badge { color:var(--cyan); font-family:monospace; font-size:12px; letter-spacing:2px; }
+    h1 { font-weight:300; font-size:48px; margin:16px 0; }
+    .grad { background:linear-gradient(135deg,var(--cyan),var(--magenta)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .status { color:#00ff66; font-family:monospace; font-size:11px; margin-top:24px; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="badge">DANIELA DESKTOP</div>
+    <h1>Neural <span class="grad">Core</span></h1>
+    <p style="color:#6b7280">Desktop client for Daniela OS</p>
+    <div class="status">● CORE ONLINE · port 9200</div>
+  </div>
+</body>
+</html>

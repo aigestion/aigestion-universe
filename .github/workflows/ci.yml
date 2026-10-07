@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Python (daniela-core)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/daniela-core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.4"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "uv"
+          cache-dependency-path: packages/daniela-core/uv.lock
+      - name: Install
+        run: uv sync --extra dev --frozen
+      - name: Ruff
+        run: uv run ruff check .
+      - name: Format check
+        run: uv run ruff format --check .
+      - name: Mypy
+        run: uv run mypy daniela_core
+      - name: Pytest
+        run: uv run pytest -q --tb=short
+
+  node:
+    name: Node (apps)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm -r typecheck
+      - name: Lint
+        run: pnpm -r lint
+      - name: Build (landing)
+        run: pnpm --filter @aigestion/landing build
+
+  proto:
+    name: Protobuf (daniela-grpc)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          version: latest
+      - run: buf lint
+        working-directory: packages/daniela-grpc
+      - run: buf generate --dry-run
+        working-directory: packages/daniela-grpc
+
+  compose:
+    name: Docker Compose config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose config --quiet

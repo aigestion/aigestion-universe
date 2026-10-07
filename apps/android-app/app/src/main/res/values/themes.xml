@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Aigestion" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/neural_bg</item>
+        <item name="android:navigationBarColor">@color/neural_bg</item>
+        <item name="android:windowBackground">@color/neural_bg</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="neural_bg">#01050E</color>
+    <color name="neural_panel">#0A0A1A</color>
+    <color name="neural_cyan">#00F0FF</color>
+    <color name="neural_magenta">#E024C3</color>
+    <color name="neural_green">#00FF66</color>
+    <color name="neural_amber">#FFB300</color>
+    <color name="neural_red">#FF2F6D</color>
+</resources>

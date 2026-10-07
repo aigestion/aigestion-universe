@@ -1,0 +1,10 @@
+daniela_motor:
+  ros__parameters:
+    max_linear: 1.0
+    max_angular: 2.0
+
+daniela_perception:
+  ros__parameters:
+    camera_width: 640
+    camera_height: 480
+    scan_rate: 10.0

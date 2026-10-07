@@ -1,0 +1,45 @@
+{
+  "name": "aigestion-universe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AIGESTION - Autonomous AI Service Management & Edge Orchestrator",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "build:prod": "turbo run build --filter=!docs",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,yaml,yml}\"",
+    "docker:build": "docker compose -f docker-compose.yml build",
+    "docker:up": "docker compose -f docker-compose.yml up -d",
+    "docker:down": "docker compose -f docker-compose.yml down",
+    "deploy:landing": "pnpm --filter=landing run deploy",
+    "deploy:shell": "pnpm --filter=daniela-shell run deploy",
+    "deploy:prod": "pnpm run build:prod && pnpm run deploy:landing && pnpm run deploy:shell",
+    "db:push": "pnpm --filter=daniela-core run db:push",
+    "db:studio": "pnpm --filter=daniela-core run db:studio",
+    "android:build": "pnpm --filter=android-app run build",
+    "desktop:build": "pnpm --filter=daniela-desktop run build",
+    "core:install": "cd packages/daniela-core && uv pip install -e .",
+    "core:test": "cd packages/daniela-core && uv run pytest -q"
+  },
+  "devDependencies": {
+    "turbo": "^2.1.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
