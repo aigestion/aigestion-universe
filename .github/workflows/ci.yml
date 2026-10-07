@@ -26,8 +26,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "uv"
-          cache-dependency-path: packages/daniela-core/uv.lock
       - name: Install
         run: uv sync --extra dev --frozen
       - name: Ruff
@@ -45,8 +43,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -56,7 +52,7 @@ jobs:
       - name: Typecheck
         run: pnpm -r typecheck
       - name: Lint
-        run: pnpm -r lint
+        run: pnpm -r --if-present lint
       - name: Build (landing)
         run: pnpm --filter @aigestion/landing build
 

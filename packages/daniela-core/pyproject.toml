@@ -67,8 +67,8 @@ ml = [
     "llama-cpp-python>=0.2.90",
 ]
 embodiment = [
-    "rclpy>=3.2.0",
-    "ros2-control>=1.4.0",
+    # NOTE: rclpy / ros2-control are ROS packages (apt: ros-humble-rclpy),
+    # not on PyPI — install separately. Listed here would break uv lock.
     "mujoco>=3.2.0",
     "mujoco-mjx>=3.2.0",
 ]
@@ -79,8 +79,6 @@ full = [
     "peft>=0.11.0",
     "bitsandbytes>=0.43.0",
     "llama-cpp-python>=0.2.90",
-    "rclpy>=3.2.0",
-    "ros2-control>=1.4.0",
     "mujoco>=3.2.0",
     "mujoco-mjx>=3.2.0",
 ]

@@ -8,7 +8,7 @@ service MemoryService {
   rpc Recall(RecallRequest) returns (RecallResponse);
   rpc Consolidate(ConsolidateRequest) returns (ConsolidateResponse);
   rpc Decay(DecayRequest) returns (DecayResponse);
-  rpc Stats(StatsRequest) returns (StatsResponse);
+  rpc Stats(MemoryStatsRequest) returns (MemoryStatsResponse);
 }
 
 enum Tier {
@@ -43,5 +43,5 @@ message ConsolidateResponse { int32 merged = 1; int32 episodic_remaining = 2; }
 message DecayRequest { float half_life_days = 1; }
 message DecayResponse { int32 decayed = 1; }
 
-message StatsRequest {}
-message StatsResponse { map<string, int32> tiers = 1; }
+message MemoryStatsRequest {}
+message MemoryStatsResponse { map<string, int32> tiers = 1; }

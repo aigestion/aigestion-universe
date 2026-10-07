@@ -6,7 +6,7 @@ import "google/protobuf/struct.proto";
 service BrainService {
   rpc Process(ProcessRequest) returns (ProcessResponse);
   rpc Stream(StreamRequest) returns (stream StreamChunk);
-  rpc GetStats(StatsRequest) returns (StatsResponse);
+  rpc GetStats(BrainStatsRequest) returns (BrainStatsResponse);
 }
 
 message ProcessRequest {
@@ -31,8 +31,8 @@ message Action { bool executed = 1; string result = 2; }
 message StreamRequest { string input = 1; }
 message StreamChunk { string delta = 1; bool done = 2; }
 
-message StatsRequest {}
-message StatsResponse {
+message BrainStatsRequest {}
+message BrainStatsResponse {
   int32 coherence_level = 1;
   float empathy_base = 2;
   int32 max_nodes = 3;

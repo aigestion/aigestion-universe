@@ -84,8 +84,8 @@ services:
   # === DANIELA SHELL (Frontend) ===
   daniela-shell:
     build:
-      context: ./apps/daniela-shell
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./apps/daniela-shell/Dockerfile
     container_name: daniela-shell
     environment:
       - NEXT_PUBLIC_API_URL=http://api.aigestion.net
@@ -104,8 +104,8 @@ services:
   # === LANDING PAGE ===
   landing:
     build:
-      context: ./apps/landing
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./apps/landing/Dockerfile
     container_name: aigestion-landing
     environment:
       - NODE_ENV=production
