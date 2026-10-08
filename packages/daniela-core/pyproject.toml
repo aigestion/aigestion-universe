@@ -90,24 +90,12 @@ Repository = "https://github.com/aigestion/aigestion-core"
 Documentation = "https://docs.aigestion.net"
 Issues = "https://github.com/aigestion/aigestion-core/issues"
 
-[tool.uv]
-dev-dependencies = [
-    "pytest>=8.2.0",
-    "pytest-asyncio>=0.23.0",
-    "pytest-cov>=5.0.0",
-    "pytest-mock>=3.13.0",
-    "httpx>=0.27.0",
-    "ruff>=0.5.0",
-    "mypy>=1.10.0",
-    "pre-commit>=3.7.0",
-]
-
 [tool.ruff]
 target-version = "py311"
 line-length = 100
-select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL", "PTH", "ERA", "RET", "SIM", "TCH", "TRY", "PERF", "FURB", "LOG", "ARG", "FIX", "FLY"]
-ignore = ["BLE001", "S110", "UP017"]
-fixable = ["F", "I", "W", "E", "N", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL", "PTH", "ERA", "RET", "SIM", "TCH", "TRY", "PERF", "FURB", "LOG", "ARG", "FIX", "FLY"]
+lint.select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL", "PTH", "ERA", "RET", "SIM", "TCH", "TRY", "PERF", "FURB", "LOG", "ARG", "FIX", "FLY"]
+lint.ignore = ["BLE001", "S110", "UP017"]
+lint.fixable = ["F", "I", "W", "E", "N", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL", "PTH", "ERA", "RET", "SIM", "TCH", "TRY", "PERF", "FURB", "LOG", "ARG", "FIX", "FLY"]
 # Bulk legacy code preserved under legacy/ (unintegrated, ungated).
 exclude = ["src/daniela_core/legacy/**", "tests/legacy/**"]
 
