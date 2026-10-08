@@ -104,8 +104,10 @@ packages/daniela-backend/src/daniela_backend/credentials/
 **/credentials.json
 **/secret.key
 **/*service_account*.json
+.env.*
+!.env.example
 
 # Artefactos locales >100MB (limite GitHub; se conservan solo en disco)
 packages/daniela-tenants/storage/archives/aig_backups/
 packages/daniela-tenants/storage/archives/worktree-backup-*.tar.gz
-packages/daniela-tenants/data/voice_pipeline/piper_voices/
+**/voice_pipeline/piper_voices/
