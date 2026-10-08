@@ -49,9 +49,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Compute lockfile hash
-        id: lockfile-hash
-        run: echo "hash=$(sha256sum pnpm-lock.yaml | cut -d' ' -f1)" >> $GITHUB_OUTPUT
       - uses: docker/build-push-action@v6
         with:
           context: .
@@ -60,10 +57,9 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAMESPACE }}/daniela-shell:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAMESPACE }}/daniela-shell:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          build-args: |
-            LOCKFILE_HASH=${{ steps.lockfile-hash.outputs.hash }}
+          # Disable GHA cache to avoid stale node_modules from deps stage
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
   build-landing:
     name: landing

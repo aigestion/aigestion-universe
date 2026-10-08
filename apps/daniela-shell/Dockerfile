@@ -2,9 +2,6 @@
 #   docker build -f apps/daniela-shell/Dockerfile .
 FROM node:24-alpine AS base
 
-# Build arg to invalidate cache when lockfile changes
-ARG LOCKFILE_HASH
-
 FROM base AS deps
 WORKDIR /app
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
