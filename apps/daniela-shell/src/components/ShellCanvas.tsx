@@ -1,6 +1,6 @@
 "use client"
 
-import { Canvas } from "@react-three/fiber/react-dom"
+import { Canvas } from "@react-three/fiber"
 import { OrbitControls, AdaptiveEvents } from "@react-three/drei"
 import { EffectComposer, Bloom } from "@react-three/postprocessing"
 import { NeuralParticles, CoreOrb, OrbitRings, Starfield } from "@aigestion/three-daniela"
