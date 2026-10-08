@@ -23,6 +23,12 @@ importers:
       eslint:
         specifier: ^9.0.0
         version: 9.0.0
+      eslint-plugin-react:
+        specifier: ^7.35.0
+        version: 7.37.5(eslint@9.0.0)
+      eslint-plugin-react-hooks:
+        specifier: ^5.0.0
+        version: 5.2.0(eslint@9.0.0)
       prettier:
         specifier: ^3.3.0
         version: 3.3.0
