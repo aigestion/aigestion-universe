@@ -57,8 +57,8 @@ importers:
         specifier: 8.16.0
         version: 8.16.0(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.166.0)
       '@react-three/postprocessing':
-        specifier: 2.16.0
-        version: 2.16.0(@react-three/fiber@8.16.0(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.166.0))(@types/three@0.166.0)(react@19.0.0)(three@0.166.0)
+        specifier: 2.16.2
+        version: 2.16.2(@react-three/fiber@8.16.0(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.166.0))(@types/three@0.166.0)(react@19.0.0)(three@0.166.0)
       '@tanstack/react-query':
         specifier: 5.0.0
         version: 5.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1513,8 +1513,8 @@ packages:
       react-native:
         optional: true
 
-  '@react-three/postprocessing@2.16.0':
-    resolution: {integrity: sha512-Cc+VIOxD2jVEgXrc66W6yQaAxTMg02ef2N1B5ldyLtTt22n75JxolYTullQqY4zTsyLEmORvaO85SRlZwg6Avw==}
+  '@react-three/postprocessing@2.16.2':
+    resolution: {integrity: sha512-2ya1gXLDpzyfbELobi3rPHNNZZCrCfyq20GMYJD1yD7ZyBFSpRG9YSPMBnOal6A89kXanPBw273h6/Dqev0n7g==}
     peerDependencies:
       '@react-three/fiber': '>=8.0'
       react: '>=18.0'
@@ -6377,7 +6377,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@react-three/postprocessing@2.16.0(@react-three/fiber@8.16.0(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.166.0))(@types/three@0.166.0)(react@19.0.0)(three@0.166.0)':
+  '@react-three/postprocessing@2.16.2(@react-three/fiber@8.16.0(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.166.0))(@types/three@0.166.0)(react@19.0.0)(three@0.166.0)':
     dependencies:
       '@react-three/fiber': 8.16.0(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(three@0.166.0)
       buffer: 6.0.3

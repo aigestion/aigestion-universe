@@ -18,7 +18,7 @@
     "react-dom": "19.0.0",
     "@react-three/fiber": "8.16.0",
     "@react-three/drei": "9.100.0",
-    "@react-three/postprocessing": "2.16.0",
+    "@react-three/postprocessing": "2.16.2",
     "three": "0.166.0",
     "three-plume": "0.1.0",
     "framer-motion": "11.0.0",
