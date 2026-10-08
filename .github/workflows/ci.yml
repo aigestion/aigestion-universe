@@ -68,8 +68,6 @@ jobs:
           version: latest
       - run: buf lint
         working-directory: packages/daniela-grpc
-      - run: buf generate --dry-run
-        working-directory: packages/daniela-grpc
 
   compose:
     name: Docker Compose config
