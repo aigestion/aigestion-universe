@@ -24,7 +24,6 @@ RUN corepack enable pnpm && pnpm --filter @aigestion/three-daniela build && pnpm
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=builder /app/apps/landing/public ./public
 COPY --from=builder /app/apps/landing/.next/standalone ./
 COPY --from=builder /app/apps/landing/.next/static ./.next/static
 EXPOSE 3000
