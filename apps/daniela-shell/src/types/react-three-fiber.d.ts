@@ -1,6 +1,5 @@
 import type * as React from "react"
 import type * as Three from "three"
-import type * as JSX from "react"
 
 declare module "@react-three/fiber" {
   export const Canvas: React.FC<{
@@ -44,16 +43,15 @@ declare module "@react-three/fiber" {
   
   export function createPortal(children: React.ReactNode, container: Three.Object3D): React.ReactPortal
   
-  export const a: React.ReactElement<any>
-  export const group: React.ReactElement<any>
-  export const mesh: React.ReactElement<any>
-  export const primitive: React.ReactElement<any>
+  export const a: React.ReactElement<unknown>
+  export const group: React.ReactElement<unknown>
+  export const mesh: React.ReactElement<unknown>
+  export const primitive: React.ReactElement<unknown>
 }
 
 declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
-      // Three.js lights
       ambientLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
         intensity?: number
         color?: Three.ColorRepresentation
