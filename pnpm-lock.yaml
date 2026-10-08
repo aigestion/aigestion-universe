@@ -11,6 +11,9 @@ importers:
 
   .:
     devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: ^15.0.0
+        version: 15.0.0
       '@types/node':
         specifier: ^22.0.0
         version: 22.0.0
