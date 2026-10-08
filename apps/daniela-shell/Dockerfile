@@ -16,8 +16,8 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Re-install to fix pnpm symlinks after COPY
-RUN corepack enable pnpm && pnpm install --frozen-lockfile --offline
+# Re-install to fix pnpm symlinks after COPY (no --offline to pick up lockfile changes)
+RUN corepack enable pnpm && pnpm install --frozen-lockfile
 RUN corepack enable pnpm && pnpm --filter @aigestion/three-daniela build && pnpm --filter @aigestion/ui build && pnpm --filter @aigestion/daniela-shell build
 
 FROM base AS runner
