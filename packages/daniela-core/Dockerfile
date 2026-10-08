@@ -12,12 +12,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /usr/local/bin/uv /usr/local/bin/uv
 
-# Copy project files (flat layout: modules at root)
+# Copy project files (src-layout)
 COPY pyproject.toml uv.lock* ./
-COPY *.py ./
-COPY routes/ ./routes/
+COPY src/ ./src/
 
-# Install dependencies
+# Install dependencies (editable install from src layout)
 RUN uv pip install --system -e . --no-cache
 
 # Expose port
@@ -27,5 +26,5 @@ EXPOSE 9200
 HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
     CMD curl -f http://localhost:9200/health || exit 1
 
-# Run (flat layout: top-level api module, cwd /app on sys.path)
-CMD ["uvicorn", "api:create_app", "--host", "0.0.0.0", "--port", "9200", "--workers", "2"]
+# Run (entrypoint is daniela_core.api:create_app via pyproject.toml [project.scripts])
+CMD ["uvicorn", "daniela_core.api:create_app", "--host", "0.0.0.0", "--port", "9200", "--workers", "2"]
