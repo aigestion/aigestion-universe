@@ -1,0 +1,91 @@
+version: '3.8'
+services:
+  litellm:
+    image: docker.litellm.ai/berriai/litellm:latest
+    container_name: litellm
+    ports:
+      - "127.0.0.1:4000:4000"
+      - "127.0.0.1:9091:9091"  # Prometheus metrics
+    env_file:
+      - .env
+    environment:
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      # 2026-10-04 (S1): las claves de LLM del config.yaml se expanden desde
+      # el entorno del contenedor; aqui se aseguran de pasar del .env host.
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - TOGETHER_API_KEY=${TOGETHER_API_KEY}
+      - DEEPINFRA_API_KEY=${DEEPINFRA_API_KEY}
+      - LITELLM_DB_PASSWORD=${LITELLM_DB_PASSWORD:-litellm_pass}
+      - DATABASE_URL=postgresql://litellm:${LITELLM_DB_PASSWORD:-litellm_pass}@litellm-postgres:5432/litellm
+      # 2026-10-01: el master key y los modelos usados viven en la BD para que
+      # sobrevivan cambios de config; sin esto /v1/models filtraba de mas.
+      - STORE_MODEL_IN_DB=True
+    volumes:
+      - ./config/litellm_config.yaml:/app/config.yaml
+      - litellm_data:/app/data
+    command: ["--config", "/app/config.yaml", "--port", "4000", "--detailed_debug"]
+    networks:
+      - aig-network
+    healthcheck:
+      # curl NO existe en la imagen y /health devuelve 401: se usa python
+      # contra /health/liveliness (200 sin auth).
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4000/health/liveliness', timeout=8)"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+    depends_on:
+      litellm-postgres:
+        condition: service_healthy
+
+  litellm-postgres:
+    image: postgres:16-alpine
+    container_name: litellm-postgres
+    environment:
+      - POSTGRES_USER=litellm
+      - POSTGRES_PASSWORD=${LITELLM_DB_PASSWORD:-litellm_pass}
+      - POSTGRES_DB=litellm
+    volumes:
+      - litellm_postgres_data:/var/lib/postgresql/data
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litellm -d litellm"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+volumes:
+  litellm_data:
+    name: aig_litellm_data
+  litellm_postgres_data:
+    name: aig_litellm_postgres_data
+
+networks:
+  aig-network:
+    external: true
+    name: aig-network

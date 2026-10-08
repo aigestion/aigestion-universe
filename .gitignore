@@ -85,3 +85,9 @@ apps/daniela-desktop/src-tauri/target/
 
 # TypeScript build info
 *.tsbuildinfo
+packages/daniela-core/src/daniela_core/legacy/data/brain/
+packages/daniela-core/src/daniela_core/legacy/backend/credentials/aig_service_account_432cbcf511e9.json
+packages/daniela-core/src/daniela_core/legacy/data/brain/
+packages/daniela-core/src/daniela_core/legacy/backend/credentials/aig_service_account_432cbcf511e9.json
+packages/daniela-core/src/daniela_core/legacy/
+packages/daniela-core/tests/legacy/

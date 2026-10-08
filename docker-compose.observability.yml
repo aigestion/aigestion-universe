@@ -1,0 +1,105 @@
+# docker-compose.observability.yml - Observability Stack
+# 
+# Deploys: Tempo (traces) + Loki (logs) + Grafana (dashboards) + OpenTelemetry Collector + Promtail
+#
+# Usage:
+#   docker compose -f docker-compose.observability.yml up -d
+#   docker compose -f docker-compose.observability.yml logs -f
+#
+# Requires: tempo.yaml, loki.yaml, promtail.yaml, otel-collector.yaml, grafana/provisioning/
+
+version: "3.8"
+
+services:
+  # Tempo - Distributed tracing backend
+  tempo:
+    image: grafana/tempo:2.5.0
+    container_name: tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ../observability/tempo.yaml:/etc/tempo.yaml:ro
+      - tempo_data:/var/tempo
+    ports:
+      - "3201:3200"   # Tempo HTTP (moved from 3200 -> 3201 for Hermes Dashboard)
+      - "9095:9095"   # Tempo gRPC
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "9411:9411"   # Zipkin
+    networks:
+      - aig-network
+    restart: unless-stopped
+
+  # Loki - Log aggregation
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: loki
+    command: [ "-config.file=/etc/loki.yaml" ]
+    volumes:
+      - ../observability/loki.yaml:/etc/loki.yaml:ro
+      - loki_data:/var/loki
+    ports:
+      - "3100:3100"
+    networks:
+      - aig-network
+    restart: unless-stopped
+
+  # Grafana - Visualization
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: grafana-obs
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-aig2026}
+      - GF_INSTALL_PLUGINS=grafana-tempo-datasource,grafana-loki-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ../../docker/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../../docker/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3001:3000"  # Different port from main grafana
+    networks:
+      - aig-network
+    restart: unless-stopped
+    depends_on:
+      - tempo
+      - loki
+
+  # Promtail - Log shipper
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: promtail
+    volumes:
+      - ../observability/promtail.yaml:/etc/promtail.yaml:ro
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    networks:
+      - aig-network
+    restart: unless-stopped
+
+  # OpenTelemetry Collector - Receives traces/logs/metrics
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.106.0
+    container_name: otel-collector
+    command: ["--config=/etc/otel-collector.yaml"]
+    volumes:
+      - ../observability/otel-collector.yaml:/etc/otel-collector.yaml:ro
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "8888:8888"   # Prometheus metrics
+    networks:
+      - aig-network
+    restart: unless-stopped
+    depends_on:
+      - tempo
+      - loki
+
+networks:
+  aig-network:
+    external: true
+    name: aig_aig-network
+
+volumes:
+  tempo_data:
+  loki_data:
+  grafana_data:

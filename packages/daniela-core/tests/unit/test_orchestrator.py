@@ -2,7 +2,7 @@
 
 import pytest
 
-from orchestrator import Engine, Orchestrator, TaskStatus
+from daniela_core.orchestrator import Engine, Orchestrator, TaskStatus
 
 
 @pytest.fixture

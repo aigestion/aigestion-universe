@@ -1,5 +1,5 @@
 [project]
-name = "daniela-core"
+name = "daniela_core"
 version = "0.1.0"
 description = "Daniela OS Core - Autonomous AI Service Management & Edge Orchestrator"
 readme = "README.md"
@@ -45,6 +45,7 @@ dependencies = [
     "tenacity>=8.2.0",
     "croniter>=2.0.0",
     "apscheduler>=3.10.0",
+    "prometheus-fastapi-instrumentator>=8.1.0",
 ]
 
 [project.optional-dependencies]
@@ -68,7 +69,7 @@ ml = [
 ]
 embodiment = [
     # NOTE: rclpy / ros2-control are ROS packages (apt: ros-humble-rclpy),
-    # not on PyPI — install separately. Listed here would break uv lock.
+    # not on PyPI - install separately. Listed here would break uv lock.
     "mujoco>=3.2.0",
     "mujoco-mjx>=3.2.0",
 ]
@@ -107,6 +108,8 @@ line-length = 100
 select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL", "PTH", "ERA", "RET", "SIM", "TCH", "TRY", "PERF", "FURB", "LOG", "ARG", "FIX", "FLY"]
 ignore = ["BLE001", "S110", "UP017"]
 fixable = ["F", "I", "W", "E", "N", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL", "PTH", "ERA", "RET", "SIM", "TCH", "TRY", "PERF", "FURB", "LOG", "ARG", "FIX", "FLY"]
+# Bulk legacy code preserved under legacy/ (unintegrated, ungated).
+exclude = ["src/daniela_core/legacy/**", "tests/legacy/**"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101", "PLR2004", "TRY003", "S105", "PLC0415"]
@@ -117,6 +120,7 @@ fixable = ["F", "I", "W", "E", "N", "UP", "B", "C4", "T20", "Q", "RUF", "S", "PL
 # S101: asserts narrow Optional for mypy AND document invariants
 # (delegate() always assigns engine; connect() sets js/nc). No -O in prod.
 "events.py" = ["T201", "PLW0603", "E501", "N814", "PERF401", "PLR0913", "SIM105", "TC003", "S101"]
+"src/daniela_core/agents/agents.py" = ["E501"]
 "registry.py" = ["PLR0913", "PLR2004", "PLW0603"]
 "safe_exec.py" = ["T201", "S603", "PLC0415", "PTH111", "SIM108", "SIM210", "TRY003"]
 "orchestrator.py" = ["S101"]
@@ -130,17 +134,19 @@ disallow_incomplete_defs = true
 check_untyped_defs = true
 no_implicit_optional = true
 strict_equality = true
+exclude = ["src/daniela_core/legacy/.*", "tests/legacy/.*"]
 
 [[tool.mypy.overrides]]
-module = [
-    "prometheus-fastapi-instrumentator>=0.7.0",
-    "nats.*",
-]
+module = "prometheus_fastapi_instrumentator.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "nats.*"
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
-testpaths = ["tests"]
+testpaths = ["tests/unit", "tests/integration"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
@@ -149,11 +155,9 @@ python_functions = ["test_*"]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
-# Flat layout: top-level modules + routes/ package (no daniela_core/ wrapper).
-[tool.setuptools]
-py-modules = [
-    "api", "brain", "memory", "orchestrator", "persona", "life",
-    "security", "voice", "agents", "tools", "events", "registry",
-    "safe_exec",
-]
-packages = ["routes"]
+# Src layout: package lives in src/daniela_core/.
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]

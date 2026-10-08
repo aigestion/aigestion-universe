@@ -1,0 +1,65 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - aig-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+  ml:
+    # 2026-10-04: `config/Dockerfile.ml` no existe en el repo (el compose
+    # apuntaba a config/docker/config/Dockerfile.ml). Desactivado hasta que
+    # el servicio ML tenga su Dockerfile.
+    # build:
+    #   context: ../..
+    #   dockerfile: ./config/Dockerfile.ml
+    image: aig-ml:latest
+    container_name: ml
+    ports:
+      - "9810:9810"
+    env_file:
+      - .env
+    environment:
+      - PORT=9810
+      - LITELLM_BASE_URL=http://aig-litellm:4000/v1
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+    depends_on:
+      - qdrant
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9810/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+
+networks:
+  aig-network:
+    external: true
+    name: aig-network
+
+volumes:
+  qdrant_data:
+    name: aig_qdrant_data
+

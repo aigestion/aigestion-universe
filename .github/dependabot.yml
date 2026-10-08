@@ -1,0 +1,136 @@
+# Dependabot — actualizaciones de dependencias y seguridad
+# ---------------------------------------------------------------------------
+# Anadido el 2026-09-20. El repo no tenia ningun escaneo automatico de
+# dependencias: con ~600 ficheros Python y decenas de dependencias de terceros,
+# una CVE en cualquiera de ellas no se detectaba hasta que rompia algo.
+#
+# Decisiones tomadas (y por que):
+#
+#   * Agrupacion de minor+patch: sin esto, 16 manifiestos generan decenas de PRs
+#     sueltos por semana y el equipo deja de mirarlos. Agrupados, es 1 PR legible.
+#   * Los MAJOR van sueltos: un salto de version mayor puede romper y merece
+#     revision individual. No se agrupan.
+#   * Limite de PRs abiertos: 0 en TODAS las entradas desde el 2026-09-22.
+#     Motivo medido: el 22 sep, tras consolidar el repo en una sola rama `main`,
+#     Dependabot recreo 14 ramas en segundos y abrio 15 PRs (los #129-#143),
+#     todas a las 08:55. Mientras haya un PR de versiones abierto, su rama
+#     existe: no se puede tener "una sola rama" y PRs automaticos de versiones
+#     a la vez. Con el limite a 0 Dependabot deja de abrir PRs de versiones.
+#
+#     ⚠️ Esto NO desactiva las alertas de seguridad: los avisos de CVE sobre
+#     dependencias vulnerables y los security updates se configuran en los
+#     ajustes del repositorio (Settings > Code security), no aqui. El escaneo
+#     que motivo anadir este fichero sigue activo.
+#
+#     Para volver a recibir PRs de versiones: subir el limite a 3 en las
+#     entradas que interesen. Los grupos de minor+patch ya estan definidos, asi
+#     que volveran a agruparse en 1 PR legible en vez de decenas.
+#   * Los directorios de `tencent-suite/` y `decentraland/` NO se incluyen:
+#     son dependencias upstream de terceros que no mantenemos. Actualizarlas
+#     no es responsabilidad de este repo.
+#
+# Docs: https://docs.github.com/code-security/dependabot/dependabot-version-updates
+
+version: 2
+updates:
+  # ── Python: manifiestos propios que mantenemos ────────────────────────────
+  # 2026-10-04: era `/config` (no lleva manifiesto pip); el manifiesto vivo del
+  # monorepo es el `pyproject.toml` de la raiz (uv).
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "07:00"
+      timezone: "Europe/Madrid"
+    open-pull-requests-limit: 0
+    versioning-strategy: "increase-if-necessary"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    groups:
+      python-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  # 2026-10-04: entrada `/aig-shared` ELIMINADA: el paquete se fusiono en
+  # `shared/` (sin manifiesto propio) y el manifiesto pip vivo del monorepo es
+  # el `pyproject.toml` de la raiz (la entrada `/` de arriba lo cubre).
+
+  # ── Motores internos ──────────────────────────────────────────────────────
+  - package-ecosystem: "pip"
+    directory: "/engine/cross_engine"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      engines-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "pip"
+    directory: "/engine/data_engine"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      engines-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "pip"
+    directory: "/engine/devtools_engine"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      engines-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "pip"
+    directory: "/engine/ecosystem_engine"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      engines-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "pip"
+    directory: "/engine/intel_engine"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      engines-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  # ── JavaScript / Node ─────────────────────────────────────────────────────
+  # 2026-09-22: `unified-dashboard/` se archivo en `archives/unified-dashboard/`
+  # (isla retirada, absorbida por Daniela OS). Se quita su entrada para que
+  # Dependabot no abra PRs sobre codigo que ya no se despliega.
+  # 2026-10-03: daniela-omnipresente/ se fusiono en daniela-os/
+  - package-ecosystem: "npm"
+    directory: "/daniela-os/daniela-jarvis"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0
+    groups:
+      npm-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  # 2026-09-23: entrada `github-actions` ELIMINADA junto con
+  # `.github/workflows/` (cero Actions por decision de costo). Si los
+  # workflows vuelven, restaurar el bloque (esta en el historial).
+
+  # ── Imagenes de Docker ────────────────────────────────────────────────────
+  # 2026-10-04: los Dockerfiles viven en config/docker/ (antes config/)
+  - package-ecosystem: "docker"
+    directory: "/config/docker"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 0

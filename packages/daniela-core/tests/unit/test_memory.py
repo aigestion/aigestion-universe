@@ -2,7 +2,7 @@
 
 import pytest
 
-from memory import MemoryVault, Tier
+from daniela_core.memory import MemoryVault, Tier
 
 
 @pytest.fixture

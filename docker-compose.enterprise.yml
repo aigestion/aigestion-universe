@@ -1,0 +1,40 @@
+# aig — Enterprise White-Label profile (idea #12)
+# ============================================================
+# Un tenant por stack: aislamiento por FICHEROS (cada tenant trae los
+# suyos bajo tenants/<slug>/, creados por scripts/deploy/tenant_bootstrap.py).
+# Sin tocar codigo del tenant: solo mounts + env.
+#
+# Uso:
+#   set TENANT_SLUG=mi-gestoria   (powershell: $env:TENANT_SLUG="mi-gestoria")
+#   docker compose -f docker-compose.yml -f docker-compose.enterprise.yml config  # valida
+#   docker compose -f docker-compose.yml -f docker-compose.enterprise.yml -p <slug> up -d --build
+#
+# Limites honestos (ver docs/WHITE-LABEL.md): static/ se comparte salvo
+# static/tenants/<slug>/; data/ va por tenant; las DBs de raiz van por
+# fichero pre-creado. Multi-tenant en UN stack requiere rutas de DB
+# configurables (trabajo futuro, sin cambios hoy).
+services:
+  daniela-os:
+    env_file:
+      - ./tenants/${TENANT_SLUG:?TENANT_SLUG requerido (slug del tenant)}.env
+    environment:
+      - TENANT_SLUG=${TENANT_SLUG:?TENANT_SLUG requerido}
+    volumes:
+      # Estado por tenant (ficheros pre-creados por el bootstrap;
+      # montar ficheros, nunca paths inexistentes).
+      - ./tenants/${TENANT_SLUG:?}/daniela_vault.db:/app/daniela_vault.db
+      - ./tenants/${TENANT_SLUG:?}/config.json:/app/config.json
+      - ./tenants/${TENANT_SLUG:?}/memory_rag.db:/app/memory_rag.db
+      - ./tenants/${TENANT_SLUG:?}/aig_auth.db:/app/aig_auth.db
+      - ./tenants/${TENANT_SLUG:?}/billing.db:/app/billing.db
+      - ./tenants/${TENANT_SLUG:?}/aig_whitelabel.db:/app/aig_whitelabel.db
+      - ./tenants/${TENANT_SLUG:?}/data:/app/data
+      - ./tenants/${TENANT_SLUG:?}/content_output:/app/content_output
+      # Marca del tenant (solo lectura).
+      - ./static/tenants/${TENANT_SLUG:?}:/app/static/tenants/${TENANT_SLUG:?}:ro
+
+# NOTA: redis se comparte entre tenants (cache/broker volatil, sin
+# datos sensibles en reposo). Aislarlo por tenant es quitar un bloque
+# `redis:` con volumen propio; v1 no lo necesita.
+
+

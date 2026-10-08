@@ -1,0 +1,41 @@
+# docker-compose.universes.yml
+# Template para universes individuales de Daniela OS
+# Uso: docker compose -f docker-compose.yml -f docker-compose.universes.yml up -d
+#
+# Cada universe se despliega como un servicio independiente con:
+# - Nombre de container aislado (uni-<slug>-<app>)
+# - Red dedicada por universe
+# - Volumes persistentes por universe
+# - Labels para identificacion
+
+# (sin `services:` propio: todo lo de abajo son ejemplos comentados; este
+# fichero solo aporta redes/labels al fusionarse con el compose base)
+# services:
+  # Example: Universe "gestoria" con Daniela OS Core
+  # daniela-gestoria:
+  #   build: .
+  #   container_name: uni-gestoria-daniela-core
+  #   ports:
+  #     - "5001:5000"
+  #   volumes:
+  #     - ./data/universes/gestoria/data:/app/data
+  #   environment:
+  #     - TENANT_SLUG=gestoria
+  #     - DANIELA_PIN=8374
+  #   labels:
+  #     - universe=gestoria
+  #     - marketplace=daniela-core
+  #     - managed-by=daniela-os
+  #   networks:
+  #     - uni-gestoria-net
+  #   restart: unless-stopped
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 512M
+  #         cpus: "0.5"
+
+networks:
+  aig-net:
+    external: true
+

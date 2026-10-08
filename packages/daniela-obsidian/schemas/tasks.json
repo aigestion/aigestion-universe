@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "plugin": "status",
+    "interval": 1800,
+    "last_run": 1787151171.4963553
+  },
+  {
+    "id": 2,
+    "plugin": "cleaner",
+    "interval": 86400,
+    "last_run": 1787151171.4963553
+  },
+  {
+    "id": 3,
+    "plugin": "briefing habla",
+    "interval": 43200,
+    "last_run": 0
+  },
+  {
+    "id": 4,
+    "plugin": "gdrive_reporter",
+    "interval": 86400,
+    "last_run": 0
+  }
+]

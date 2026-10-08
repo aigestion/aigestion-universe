@@ -2,7 +2,7 @@
 
 import pytest
 
-from persona import PersonaManager
+from daniela_core.persona import PersonaManager
 
 
 @pytest.fixture

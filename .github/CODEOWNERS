@@ -1,0 +1,60 @@
+# CODEOWNERS - Auto-assign reviewers per domain
+# Each PR will auto-request review from these owners
+
+# Core Architecture
+/core/ @aig-core-team
+/config/ @aig-core-team
+/scripts/core/ @aig-core-team
+/pyproject.toml @aig-core-team
+/AGENTS.md @aig-core-team
+
+# Daniela OS
+/daniela-os/ @aig-daniela-team
+/frontend/apps/daniela-os/ @aig-daniela-team
+
+# Hermes Gateway
+/ide/hermes/ @aig-hermes-team
+/docker/hermes-epic/ @aig-hermes-team
+
+# Swarm & Cross-Engine
+/engine/cross_engine/ @aig-swarm-team
+/engine/*/ @aig-swarm-team
+/scripts/core/ci_health_gate.py @aig-swarm-team
+
+# Android
+/daniela-os/android-app/ @aig-android-team
+/frontend/apps/android-app/ @aig-android-team
+/skills/connectors/android/ @aig-android-team
+
+# PWA / Edge / Termux
+/frontend/apps/android-app/mobile-app/ @aig-frontend-team
+
+# Observability
+/config/prometheus/ @aig-observability-team
+/config/docker/docker-compose.observability.yml @aig-observability-team
+/docker/grafana/ @aig-observability-team
+
+# Docker & Deployment
+/config/docker/ @aig-deploy-team
+/docker/ @aig-deploy-team
+
+# Security
+/scripts/core/auth_system.py @aig-security-team
+/scripts/core/billing_system.py @aig-security-team
+/core/auth/ @aig-security-team
+/.githooks/ @aig-security-team
+
+# Testing
+/tests/ @aig-test-team
+/conftest.py @aig-test-team
+
+# Documentation
+/docs/ @aig-docs-team
+/README.md @aig-docs-team
+/CONTRIBUTING.md @aig-docs-team
+
+# Configuration
+/.github/ @aig-core-team
+/lefthook.yml @aig-core-team
+/renovate.json @aig-core-team
+/.opencode/ @aig-core-team

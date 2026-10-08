@@ -1,0 +1,74 @@
+# Codex Configuration - aig Monorepo
+# Native multi-agent plugin for Codex
+
+[project]
+name = "aig"
+description = "Autonomous AI Service Management & Edge Orchestrator"
+root = "."
+
+[agents]
+# Map OpenCode agents to Codex native agents
+orchestrator = "aig-orchestrator"
+code_reviewer = "aig-code-reviewer"
+test_engineer = "aig-test-engineer"
+deploy_engineer = "aig-deploy-engineer"
+monitor = "aig-monitor"
+android_lead = "aig-android-lead"
+data_engineer = "aig-data-engineer"
+frontend_engineer = "aig-frontend-engineer"
+daniela_core = "daniela-core"
+hermes_gateway = "hermes-gateway"
+swarm_coordinator = "swarm-coordinator"
+phone_runtime = "phone-runtime"
+
+[skills]
+# Load from .opencode/skills/
+paths = [".opencode/skills"]
+auto_load = true
+
+[mcp]
+# MCP servers for Codex
+filesystem = { command = ["npx", "-y", "@modelcontextprotocol/server-filesystem", "."], enabled = true }
+memory = { command = ["npx", "-y", "@modelcontextprotocol/server-memory"], enabled = true }
+github = { command = ["npx", "-y", "@modelcontextprotocol/server-github"], enabled = true, env = { GITHUB_PERSONAL_ACCESS_TOKEN = "${GITHUB_TOKEN}" } }
+sqlite = { command = ["npx", "-y", "@modelcontextprotocol/server-sqlite", "data/daniela.db"], enabled = true }
+postgres = { command = ["npx", "-y", "@modelcontextprotocol/server-postgres"], enabled = true, env = { POSTGRES_URL = "${DATABASE_URL}" } }
+docker = { command = ["npx", "-y", "@modelcontextprotocol/server-docker"], enabled = true }
+prometheus = { command = ["npx", "-y", "@modelcontextprotocol/server-prometheus", "http://localhost:9090"], enabled = true }
+grafana = { command = ["npx", "-y", "@modelcontextprotocol/server-grafana", "http://localhost:3000"], enabled = true }
+redis = { command = ["npx", "-y", "@modelcontextprotocol/server-redis", "redis://localhost:6379"], enabled = true }
+
+[commands]
+# Map OpenCode commands to Codex native commands
+gate = "uv run pytest tests/ -q --tb=no -p no:cacheprovider --continue-on-collection-errors"
+aig_audit = "python scripts/utils/ratchet_ruff.py && uv run pytest tests/ -q --tb=no -p no:cacheprovider --continue-on-collection-errors"
+aig_deploy = "docker compose -f config/docker/docker-compose.prod.yml up -d"
+aig_android = "cd daniela-os/android-app && ./gradlew assembleDebug"
+sync = "ecc memory sync && ecc memory handoff --from $ARGS"
+
+[rules]
+# Project rules for Codex
+never_push = true
+never_commit_secrets = true
+zero_cost_mandate = true
+gate_before_commit = true
+python_version = "3.11"
+android_sdk = "34"
+kotlin_version = "1.9.22"
+gradle_version = "8.6"
+compose_version = "1.5.8"
+
+[naming]
+android = "platform"
+android_app = "app_only"
+pixel = "hardware"
+termux = "runtime"
+mobile_app = "pwa_tree"
+
+[ports]
+daniela_core = 9200
+hermes_api = 9300
+hermes_dashboard = 3200
+swarm = 8080
+orchestrator = 9900
+engines = "9820-9920"

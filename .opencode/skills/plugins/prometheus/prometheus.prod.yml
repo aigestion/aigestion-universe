@@ -1,0 +1,204 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+scrape_configs:
+  # ==================== CORE ENGINES (15s) ====================
+  - job_name: 'epic_pc'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['epic_pc:5020']
+        labels:
+          engine: 'epic_pc'
+          tier: 'core'
+
+  - job_name: 'daniela'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['daniela:9200']
+        labels:
+          engine: 'daniela'
+          tier: 'core'
+
+  - job_name: 'hermes'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['hermes:9300']
+        labels:
+          engine: 'hermes'
+          tier: 'core'
+
+  # ==================== OPTIMIZATION & FRONTEND (15s) ====================
+  - job_name: 'optimization'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['optimization:9400']
+        labels:
+          engine: 'optimization'
+          tier: 'optimization'
+
+  - job_name: 'frontend_v1'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['frontend_v1:9500']
+        labels:
+          engine: 'frontend_v1'
+          tier: 'frontend'
+
+  - job_name: 'frontend_v2'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['frontend_v2:9600']
+        labels:
+          engine: 'frontend_v2'
+          tier: 'frontend'
+
+  - job_name: 'infra_opt'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['infra_opt:9700']
+        labels:
+          engine: 'infra_opt'
+          tier: 'infrastructure'
+
+  # ==================== AI + SECURITY (15s) ====================
+  - job_name: 'agent_mobile'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['agent_mobile:9800']
+        labels:
+          engine: 'agent_mobile'
+          tier: 'ai'
+
+  - job_name: 'security'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['security:9999']
+        labels:
+          engine: 'security'
+          tier: 'security'
+
+  - job_name: 'perf'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['perf:9998']
+        labels:
+          engine: 'perf'
+          tier: 'monitoring'
+
+  - job_name: 'dashboard'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['dashboard:9997']
+        labels:
+          engine: 'dashboard'
+          tier: 'monitoring'
+
+  # ==================== INTELLIGENCE ENGINES (15s) ====================
+  - job_name: 'intel_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['intel_engine:9850']
+        labels:
+          engine: 'intel_engine'
+          tier: 'intelligence'
+
+  - job_name: 'auto_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['auto_engine:9860']
+        labels:
+          engine: 'auto_engine'
+          tier: 'intelligence'
+
+  - job_name: 'data_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['data_engine:9870']
+        labels:
+          engine: 'data_engine'
+          tier: 'intelligence'
+
+  - job_name: 'secure_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['secure_engine:9880']
+        labels:
+          engine: 'secure_engine'
+          tier: 'intelligence'
+
+  - job_name: 'devtools_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['devtools_engine:9890']
+        labels:
+          engine: 'devtools_engine'
+          tier: 'intelligence'
+
+  - job_name: 'ecosystem_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['ecosystem_engine:9840']
+        labels:
+          engine: 'ecosystem_engine'
+          tier: 'intelligence'
+
+  - job_name: 'ux_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['ux_engine:9830']
+        labels:
+          engine: 'ux_engine'
+          tier: 'intelligence'
+
+  - job_name: 'scale_engine'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['scale_engine:9820']
+        labels:
+          engine: 'scale_engine'
+          tier: 'intelligence'
+
+  # ==================== INFRASTRUCTURE (30s) ====================
+  - job_name: 'redis'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['redis:6379']
+        labels:
+          service: 'redis'
+          tier: 'infrastructure'
+
+  - job_name: 'gateway'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['gateway:8080']
+        labels:
+          service: 'gateway'
+          tier: 'infrastructure'
+
+  - job_name: 'orchestrator'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['orchestrator:9900']
+        labels:
+          service: 'orchestrator'
+          tier: 'infrastructure'
+
+  # ==================== MONITORING INFRASTRUCTURE (30s) ====================
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']

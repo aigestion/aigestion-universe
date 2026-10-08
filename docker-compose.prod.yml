@@ -1,0 +1,729 @@
+version: '3.8'
+
+services:
+  # ==================== INFRASTRUCTURE ====================
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  gateway:
+    build:
+      context: ../..
+      dockerfile: ./engine/cross_engine/Dockerfile
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    environment:
+      SERVICE_NAME: cross-engine-gateway
+      SERVICE_PORT: "8080"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/api/cross/status',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  orchestrator:
+    build:
+      context: ../..
+      dockerfile: ./engine/cross_engine/Dockerfile
+    container_name: orchestrator
+    ports:
+      - "9900:9900"
+    environment:
+      SERVICE_NAME: cross-engine-orchestrator
+      SERVICE_PORT: "9900"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+      gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9900/api/cross/status',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+      # 2026-10-04 (D4): nginx.conf hace `return 301 https://...` y el bloque
+      # HTTPS (listen 443 ssl) necesitalos. Sin exponer 443 el 301 llevaba a un
+      # puerto inalcanzable y sin los certificados el contenedor moria con
+      # "cannot load certificate" -> nginx prod NO arrancaba.
+      - "443:443"
+    volumes:
+      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # Certificados self-signed. NO se versionan (gitignore); deben existir en el
+      # host antes de `docker compose up`: security/ssl/{cert,key}.pem
+      - ../../security/ssl/cert.pem:/etc/nginx/ssl/cert.pem:ro
+      - ../../security/ssl/key.pem:/etc/nginx/ssl/key.pem:ro
+    # 2026-10-04: `security` y `gods-eye` salen de depends_on porque viven en
+    # `profiles` (sin codigo: sec-opt/ no existe, GEV es un repo hermano).
+    # `docker compose config` rechaza un depends_on a un servicio no habilitado
+    # ("depends on undefined service"), asi que aqui ya no pueden figurar.
+    depends_on:
+      - daniela
+      - hermes
+      - infra_opt
+      - agent_mobile
+      - perf
+      - intel_engine
+      - auto_engine
+      - data_engine
+      - secure_engine
+      - devtools_engine
+      - ecosystem_engine
+      - ux_engine
+      - scale_engine
+      - chaos_engine
+      - brand_studio
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/nginx-health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+
+  # ==================== CORE ENGINES ====================
+daniela:
+    image: docker-daniela:latest
+    container_name: daniela
+    ports:
+      - "9200:9200"
+    environment:
+      SERVICE_NAME: daniela
+      SERVICE_PORT: "9200"
+      REDIS_URL: redis://redis:6379/0
+      DANIELA_GEV_URL: http://gods-eye:4173
+      DANIELA_GEV_MODO: ${GEV_MODO:-preview}
+    # `gods-eye` sale del depends_on por lo mismo que en nginx (esta en profile).
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/api/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  hermes:
+    build:
+      context: ../..
+      dockerfile: ./ide/hermes/Dockerfile
+    container_name: hermes
+    ports:
+      - "9300:9300"    # Hermes API
+      - "3200:3200"    # Hermes Dashboard (Windows Desktop)
+    environment:
+      SERVICE_NAME: hermes
+      SERVICE_PORT: "9300"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9300/api/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  # ==================== FRONTEND ====================
+  infra_opt:
+    build:
+      context: ../..
+      dockerfile: ./engine/infra-opt/Dockerfile
+    container_name: infra-opt
+    ports:
+      - "9700:9700"
+    environment:
+      SERVICE_NAME: infra_opt
+      SERVICE_PORT: "9700"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9700/api/infra/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  # ==================== AI + SECURITY ====================
+  agent_mobile:
+    build:
+      context: ../..
+      dockerfile: ./agents/api/Dockerfile
+    container_name: agent-mobile
+    ports:
+      - "9800:9800"
+    # server.py exige WEB_PORT + GEMINI_API_KEY en entorno (RuntimeError si
+# faltan). WEB_PORT va explicito; GEMINI sale del .env de la raiz
+# (../../.env relativo a config/docker/; el ../.env antiguo se resolvia a
+# config/.env, que no existe, desde que el compose se movio aqui el 2026-10-04).
+    env_file:
+      - ../../.env
+    environment:
+      SERVICE_NAME: agent_mobile
+      SERVICE_PORT: "9800"
+      WEB_PORT: "9800"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9800/api/agent/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  security:
+    # 2026-10-04 (D7): NO existe `sec-opt/` en el repo (el servicio `security`
+    # :9999 no tiene implementacion). Con `profiles` el servicio queda
+    # documentado pero `docker compose up` no intenta construirlo, y asi el resto
+    # del stack levanta. Para arrancarlo:
+    #   docker compose --profile sec-opt-pendiente up security
+    # Pendiente de codigo: implementar sec-opt o retirar del health-gate
+    # (scripts/core/ci_health_gate.py:28).
+    profiles: ["sec-opt-pendiente"]
+    build:
+      context: ../..
+      dockerfile: ./sec-opt/Dockerfile
+    container_name: security
+    ports:
+      - "9999:9999"
+    environment:
+      SERVICE_NAME: security
+      SERVICE_PORT: "9999"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999/api/secure/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  perf:
+    build:
+      context: ../..
+      dockerfile: ./backend/perf-opt/Dockerfile
+    container_name: perf
+    ports:
+      - "9998:9998"
+    environment:
+      SERVICE_NAME: perf
+      SERVICE_PORT: "9998"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9998/api/perf/status"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  # ==================== VISOR COMPLETO ====================
+  gods-eye:
+    build:
+      context: ../vendor/gev
+      dockerfile: ./Dockerfile
+      args:
+        GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
+        CESIUM_ION_TOKEN: ${CESIUM_ION_TOKEN:-}
+    image: aig-gods-eye:latest
+    # 2026-10-04: el codigo de gods-eye (GEV) NO esta en este repo: vive en el
+    # proyecto hermano y `scripts/setup_gev_docker.py` lo copia dentro. Sin ese
+    # paso el build no puede resolver `vendor/gev`. Queda en profile para no
+    # tumbar el resto del stack.
+    profiles: ["gev-externo"]
+    container_name: gods-eye
+    environment:
+      - GEV_MODO=${GEV_MODO:-preview}
+      - GEV_BASE=/gods-eye/pro/
+      - PORT=4173
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+      - FIRMS_MAP_KEY=${FIRMS_MAP_KEY:-}
+      - AISSTREAM_API_KEY=${AISSTREAM_API_KEY:-}
+      - OPENSKY_CLIENT_ID=${OPENSKY_CLIENT_ID:-}
+      - OPENSKY_CLIENT_SECRET=${OPENSKY_CLIENT_SECRET:-}
+      - OPENSKY_USERNAME=${OPENSKY_USERNAME:-}
+      - OPENSKY_PASSWORD=${OPENSKY_PASSWORD:-}
+      - OPENSKY_AUTH_MODE=${OPENSKY_AUTH_MODE:-}
+      - TOMTOM_API_KEY=${TOMTOM_API_KEY:-}
+      - TFL_APP_KEY=${TFL_APP_KEY:-}
+      - LL2_API_TOKEN=${LL2_API_TOKEN:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_REALTIME_MODEL=${OPENAI_REALTIME_MODEL:-}
+      - OPENAI_REALTIME_VOICE=${OPENAI_REALTIME_VOICE:-}
+      - GEV_KEY_SETUP_EXTERNAL_KEYS=FIRMS_MAP_KEY,AISSTREAM_API_KEY,OPENSKY_CLIENT_ID,OPENSKY_CLIENT_SECRET,OPENSKY_USERNAME,OPENSKY_PASSWORD,TOMTOM_API_KEY,TFL_APP_KEY,LL2_API_TOKEN,OPENAI_API_KEY,GOOGLE_MAPS_API_KEY,CESIUM_ION_TOKEN
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:'+(process.env.PORT||4173)+'/gods-eye/pro/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 10s
+      retries: 8
+      start_period: 45s
+    restart: unless-stopped
+
+  # ==================== MONITORING ====================
+  prometheus:
+    build:
+      context: ../..
+      dockerfile: ./skills/plugins/prometheus/Dockerfile
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-aig2026}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ../grafana/provisioning:/etc/grafana/provisioning
+      - ../grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+
+  # ==================== INTELLIGENCE ENGINES ====================
+  intel_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/intel_engine/Dockerfile
+    container_name: intel-engine
+    ports:
+      - "9850:9850"
+    environment:
+      SERVICE_NAME: intel_engine
+      SERVICE_PORT: "9850"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9850/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  auto_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/auto_engine/Dockerfile
+    container_name: auto-engine
+    ports:
+      - "9860:9860"
+    environment:
+      SERVICE_NAME: auto_engine
+      SERVICE_PORT: "9860"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9860/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  data_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/data_engine/Dockerfile
+    container_name: data-engine
+    ports:
+      - "9870:9870"
+    environment:
+      SERVICE_NAME: data_engine
+      SERVICE_PORT: "9870"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9870/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1G
+
+  secure_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/secure_engine/Dockerfile
+    container_name: secure-engine
+    ports:
+      - "9880:9880"
+    environment:
+      SERVICE_NAME: secure_engine
+      SERVICE_PORT: "9880"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9880/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  devtools_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/devtools_engine/Dockerfile
+    container_name: devtools-engine
+    ports:
+      - "9890:9890"
+    environment:
+      SERVICE_NAME: devtools_engine
+      SERVICE_PORT: "9890"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9890/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  ecosystem_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/ecosystem_engine/Dockerfile
+    container_name: ecosystem-engine
+    ports:
+      - "9840:9840"
+    environment:
+      SERVICE_NAME: ecosystem_engine
+      SERVICE_PORT: "9840"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9840/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  ux_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/ux_engine/Dockerfile
+    container_name: ux-engine
+    ports:
+      - "9830:9830"
+    environment:
+      SERVICE_NAME: ux_engine
+      SERVICE_PORT: "9830"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9830/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  scale_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/scale_engine/Dockerfile
+    container_name: scale-engine
+    ports:
+      - "9820:9820"
+    environment:
+      SERVICE_NAME: scale_engine
+      SERVICE_PORT: "9820"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9820/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  chaos_engine:
+    build:
+      context: ../..
+      dockerfile: ./engine/chaos_engine/Dockerfile
+    container_name: chaos-engine
+    ports:
+      - "9910:9910"
+    environment:
+      SERVICE_NAME: chaos_engine
+      SERVICE_PORT: "9910"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9910/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  brand_studio:
+    build:
+      context: ../..
+      dockerfile: ./engine/brand_studio/Dockerfile
+    container_name: brand-studio
+    ports:
+      - "9920:9920"
+    environment:
+      SERVICE_NAME: brand_studio
+      SERVICE_PORT: "9920"
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9920/health',timeout=4).status==200 else 1)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - aig-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+networks:
+  aig-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  prometheus_data:
+  grafana_data:
+

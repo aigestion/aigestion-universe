@@ -1,0 +1,96 @@
+# docker-compose.core.yml — E-38: stack minimo (sin 10 UIs fantasma)
+# Uso:
+#   docker compose -f docker-compose.core.yml up -d --build
+#   curl http://localhost:5000/api/health
+#
+# El resto de engines (hermes/infra/agent/...) NO se levantan aqui.
+# Para apagar el ruido del compose gordo: docker compose stop
+#
+# OJO — ESTE STACK ESTA OBSOLETO, y no por las rutas:
+#   * `config/Dockerfile.daniela` hace `COPY daniela_os.py daniela_os_core.py
+#     model_router.py api_gateway.py adapters.py config.json`
+#     y esos seis ficheros YA NO EXISTEN en el repositorio: se movieron en la
+#     Fase 2. El build fallara en el primer COPY.
+#   * `scripts/deploy/docker-auto-start-core.sh` apunta a
+#     /mnt/c/.../AIG-MONOREPO/infra/docker, una ruta que tampoco existe.
+#
+# El stack vivo es `config/docker-compose.yml` (servicio `daniela`, puerto 9200,
+# imagen `aig-daniela`), y el visor completo va en su servicio `gods-eye`.
+# Se han corregido las rutas relativas para que al menos resuelva y el error, si
+# alguien lo intenta, sea el del Dockerfile y no el de un `context` mal puesto.
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: core-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: core-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+    # Tras el primer up: docker exec aig-core-ollama ollama pull nomic-embed-text
+    #                    docker exec aig-core-ollama ollama pull daniela-local:latest
+
+  daniela:
+    build:
+      context: ../..
+      # La ruta del Dockerfile es relativa al CONTEXTO, que ahora es la raiz del
+      # repositorio, asi que hay que nombrar tambien la carpeta `config/`.
+      # 2026-10-04 (P1 reestructura): `config/Dockerfile.daniela` no existia
+      # (los 6 ficheros que copiaba se movieron en Fase 2) y el arbol anidado
+      # se aplanó. Dockerfile unico:
+      dockerfile: ./daniela-os/Dockerfile
+    container_name: daniela
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      - PORT=5000
+      - REDIS_URL=redis://redis:6379
+      - OLLAMA_HOST=http://ollama:11434
+      - MEMORY_EMBED_PROVIDER=${MEMORY_EMBED_PROVIDER:-ollama}
+      - MEMORY_EMBED_MODEL=${MEMORY_EMBED_MODEL:-nomic-embed-text}
+    volumes:
+      - ../data:/app/data
+      - ../memory_rag.db:/app/memory_rag.db
+      - ../templates:/app/templates:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 20s
+      timeout: 10s
+      retries: 8
+      start_period: 45s
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: core-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ../nginx/nginx.core.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - daniela
+    restart: unless-stopped
+
+volumes:
+  ollama-data:
+

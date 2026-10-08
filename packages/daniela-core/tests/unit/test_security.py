@@ -2,7 +2,7 @@
 
 import pytest
 
-from security import SecurityEngine
+from daniela_core.security import SecurityEngine
 
 
 @pytest.fixture

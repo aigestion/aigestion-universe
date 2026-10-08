@@ -1,0 +1,298 @@
+# E-38: Slim stack — solo servicios core.
+# Uso: docker compose -f docker-compose.slim.yml up -d
+#
+# Daniela unificada: brain + optimization + dashboard + epic-pc proxy en :9200
+
+services:
+  daniela:
+    image: docker-daniela:latest
+    container_name: daniela
+    ports:
+      - "9200:9200"
+    environment:
+      - SERVICE_NAME=daniela
+      - PORT=9200
+      - REDIS_URL=redis://:aig_redis_2026@redis:6379
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/api/status"]
+      interval: 20s
+      timeout: 10s
+      retries: 8
+      start_period: 60s
+    restart: unless-stopped
+
+  hermes:
+    build:
+      context: ../..
+      dockerfile: ./ide/hermes/Dockerfile
+    container_name: hermes
+    ports:
+      - "9300:9300"    # Hermes API
+      - "3200:3200"    # Hermes Dashboard (Windows Desktop)
+    environment:
+      - SERVICE_NAME=hermes
+      - PORT=9300
+      - REDIS_URL=redis://:aig_redis_2026@redis:6379
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9300/api/status"]
+      interval: 20s
+      timeout: 10s
+      retries: 8
+      start_period: 60s
+    restart: unless-stopped
+
+  infra:
+    build:
+      context: ../..
+      dockerfile: ./engine/infra-opt/Dockerfile
+    container_name: infra
+    ports:
+      - "9700:9700"
+    environment:
+      - SERVICE_NAME=infra
+      - PORT=9700
+      - REDIS_URL=redis://:aig_redis_2026@redis:6379
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9700/api/infra/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  agent:
+    build:
+      context: ../..
+      dockerfile: ./agents/api/Dockerfile
+    container_name: agent
+    ports:
+      - "9800:9800"
+    environment:
+      - SERVICE_NAME=agent
+      - PORT=9800
+      - REDIS_URL=redis://:aig_redis_2026@redis:6379
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9800/api/agent/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  security:
+    # 2026-10-04 (D7): NO existe `sec-opt/` en el repo (el servicio `security`
+    # :9999 no tiene implementacion). Con `profiles` el servicio queda
+    # documentado pero `docker compose up` no intenta construirlo, y asi el resto
+    # del stack levanta. Para arrancarlo:
+    #   docker compose --profile sec-opt-pendiente up security
+    # Pendiente de codigo: implementar sec-opt o retirar del health-gate
+    # (scripts/core/ci_health_gate.py:28).
+    profiles: ["sec-opt-pendiente"]
+    build:
+      context: ../..
+      dockerfile: ./sec-opt/Dockerfile
+    container_name: security
+    ports:
+      - "9999:9999"
+    environment:
+      - SERVICE_NAME=security
+      - PORT=9999
+      - REDIS_URL=redis://:aig_redis_2026@redis:6379
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999/api/secure/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  perf:
+    build:
+      context: ../..
+      dockerfile: ./backend/perf-opt/Dockerfile
+    container_name: perf
+    ports:
+      - "9998:9998"
+    environment:
+      - SERVICE_NAME=perf
+      - PORT=9998
+      - REDIS_URL=redis://:aig_redis_2026@redis:6379
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9998/api/perf/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    command: redis-server --requirepass aig_redis_2026
+    ports:
+      - "127.0.0.1:6379:6379"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "aig_redis_2026", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  prometheus:
+    build:
+      context: ../..
+      dockerfile: ./skills/plugins/prometheus/Dockerfile
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-aig2026}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ../grafana/provisioning:/etc/grafana/provisioning
+      - ../grafana/dashboards:/var/lib/grafana/dashboards
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  nginx:
+    # 2026-10-04 (D2): no existe `nginx/Dockerfile` en el repo. prod ya usa la
+    # imagen oficial con la conf montada; slim se iguala a esa.
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.25"
+    depends_on:
+      - daniela
+      - hermes
+      - infra
+      - agent
+      - perf
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/nginx-health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+networks:
+  aig-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
+

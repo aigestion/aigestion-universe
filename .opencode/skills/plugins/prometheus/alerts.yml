@@ -1,0 +1,122 @@
+groups:
+  - name: engine_availability
+    rules:
+      - alert: EngineDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Engine {{ $labels.engine }} is down"
+          description: "{{ $labels.job }} on {{ $labels.instance }} has been unreachable for more than 1 minute."
+
+      - alert: EngineHighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[5m])) by (engine)
+            /
+            sum(rate(http_requests_total[5m])) by (engine)
+          ) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High 5xx error rate on {{ $labels.engine }}"
+          description: "Engine {{ $labels.engine }} has a 5xx error rate above 5% for 2 minutes (current: {{ $value | humanizePercentage }})."
+
+  - name: engine_performance
+    rules:
+      - alert: EngineHighLatency
+        expr: |
+          histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m])) > 2
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High p99 latency on {{ $labels.engine }}"
+          description: "Engine {{ $labels.engine }} p99 latency is above 2s for 3 minutes (current: {{ $value }}s)."
+
+      - alert: EngineHighMemory
+        expr: |
+          (
+            process_resident_memory_bytes
+            /
+            node_memory_MemTotal_bytes
+          ) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.engine }}"
+          description: "Engine {{ $labels.engine }} memory usage is above 80% (current: {{ $value | humanizePercentage }})."
+
+      - alert: EngineHighCPU
+        expr: |
+          rate(process_cpu_seconds_total[5m]) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage on {{ $labels.engine }}"
+          description: "Engine {{ $labels.engine }} CPU usage is above 90% for 5 minutes (current: {{ $value | humanizePercentage }})."
+
+  - name: infrastructure
+    rules:
+      - alert: RedisConnectionFailed
+        expr: redis_up == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Redis connection failed"
+          description: "Redis instance is unreachable. All engines dependent on Redis may be affected."
+
+      - alert: CircuitBreakerOpened
+        expr: circuit_breaker_state{state="open"} == 1
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Circuit breaker opened for {{ $labels.source }} -> {{ $labels.target }}"
+          description: "Circuit breaker between {{ $labels.source }} and {{ $labels.target }} has been triggered due to repeated failures."
+
+      - alert: HealthScoreLow
+        expr: engine_health_score < 50
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Low health score for {{ $labels.engine }}"
+          description: "Engine {{ $labels.engine }} health score is below 50% (current: {{ $value }})."
+
+  - name: node_health
+    rules:
+      - alert: NodeHighMemory
+        expr: |
+          (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node memory usage above 85%"
+          description: "Host memory usage is above 85% (current: {{ $value | humanizePercentage }})."
+
+      - alert: NodeHighCPU
+        expr: |
+          100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node CPU usage above 90%"
+          description: "Host CPU usage is above 90% for 5 minutes (current: {{ $value }}%)."
+
+      - alert: NodeHighDiskUsage
+        expr: |
+          (1 - node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) > 0.85
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node disk usage above 85%"
+          description: "Host disk usage on root filesystem is above 85% (current: {{ $value | humanizePercentage }})."
