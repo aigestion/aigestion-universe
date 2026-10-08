@@ -12,10 +12,10 @@
     "test:watch": "jest --watch",
     "deploy": "docker build -t aigestion/daniela-shell . && docker push aigestion/daniela-shell"
   },
-  "dependencies": {
+"dependencies": {
     "next": "15.0.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
+    "react": "18.3.0",
+    "react-dom": "18.3.0",
     "@react-three/fiber": "8.16.8",
     "@react-three/drei": "9.100.0",
     "@react-three/postprocessing": "2.16.2",
