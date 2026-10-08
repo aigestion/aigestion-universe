@@ -296,21 +296,6 @@ services:
       retries: 5
       start_period: 20s
 
-volumes:
-  daniela-data:
-  daniela-models:
-  postgres-data:
-  redis-data:
-  prometheus-data:
-  grafana-data:
-  loki-data:
-  tempo-data:
-  caddy_data:
-  caddy_config:
-
-secrets:
-  grafana_password:
-    file: ./secrets/grafana_password.txt
   # === ENGINES (19 Federated Engines) ===
   daniela-engines:
     build:
@@ -591,4 +576,19 @@ secrets:
       retries: 5
       start_period: 30s
 
+volumes:
+  daniela-data:
+  daniela-models:
+  postgres-data:
+  redis-data:
+  prometheus-data:
+  grafana-data:
+  loki-data:
+  tempo-data:
+  caddy_data:
+  caddy_config:
   minio-data:
+
+secrets:
+  grafana_password:
+    file: ./secrets/grafana_password.txt
