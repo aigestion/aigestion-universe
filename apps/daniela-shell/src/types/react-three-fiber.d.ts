@@ -1,5 +1,6 @@
 import type * as React from "react"
 import type * as Three from "three"
+import type * as JSX from "react"
 
 declare module "@react-three/fiber" {
   export const Canvas: React.FC<{
@@ -47,4 +48,58 @@ declare module "@react-three/fiber" {
   export const group: React.ReactElement<any>
   export const mesh: React.ReactElement<any>
   export const primitive: React.ReactElement<any>
+}
+
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      // Three.js lights
+      ambientLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intensity?: number
+        color?: Three.ColorRepresentation
+        [key: string]: unknown
+      }
+      pointLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intensity?: number
+        color?: Three.ColorRepresentation
+        position?: [number, number, number]
+        distance?: number
+        decay?: number
+        [key: string]: unknown
+      }
+      directionalLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intensity?: number
+        color?: Three.ColorRepresentation
+        position?: [number, number, number]
+        target?: Three.Object3D
+        [key: string]: unknown
+      }
+      spotLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intensity?: number
+        color?: Three.ColorRepresentation
+        position?: [number, number, number]
+        target?: Three.Object3D
+        angle?: number
+        penumbra?: number
+        decay?: number
+        distance?: number
+        [key: string]: unknown
+      }
+      hemisphereLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intensity?: number
+        color?: Three.ColorRepresentation
+        groundColor?: Three.ColorRepresentation
+        position?: [number, number, number]
+        [key: string]: unknown
+      }
+      rectAreaLight: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        intensity?: number
+        color?: Three.ColorRepresentation
+        position?: [number, number, number]
+        width?: number
+        height?: number
+        [key: string]: unknown
+      }
+    }
+  }
 }
