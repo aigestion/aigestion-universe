@@ -1,0 +1,32 @@
+# Contexto de build de la PWA (build context = esta misma carpeta).
+#
+# IMPORTANTE: sin este fichero, el `COPY . /usr/share/nginx/html/` del
+# Dockerfile subiría el código Python al servidor estático y cualquiera podría
+# descargarlo con el navegador (`/core/autonomy/daniela_os.py`, etc.).
+#
+# La unificación de 2026-09-29 dejó el árbol de cliente canónico dentro de
+# `mobile-app/` —`services/`, `bridges/`, `core/` y `api/`— y borró los
+# antiguos `phone_deploy/` y `pixel/` (estaban fusionados en esos cuatro). Lo
+# que no son estáticos de la PWA queda fuera del contexto: sólo se empaquetan
+# los recursos que la PWA sirve de verdad.
+
+# Código Python del cliente.
+services
+bridges
+core
+api
+main.py
+run.py
+__init__.py
+requirements.txt
+config.yaml
+docker-compose.android.yml
+
+# Fuentes que la PWA no sirve.
+src
+Dockerfile
+Dockerfile.edge
+.dockerignore
+README.md
+**/__pycache__
+**/*.pyc

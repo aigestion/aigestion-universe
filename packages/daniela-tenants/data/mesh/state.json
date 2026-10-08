@@ -1,0 +1,159 @@
+{
+ "node_id": "alexpc-nt",
+ "seq": 10,
+ "lww": {
+  "cfg": {
+   "v": {
+    "a": [
+     1,
+     2
+    ],
+    "b": "z"
+   },
+   "h": [
+    1789045458292,
+    0,
+    "alexpc-nt"
+   ]
+  },
+  "contexto": {
+   "v": "en_casa",
+   "h": [
+    1789045439306,
+    0,
+    "alexpc-nt"
+   ]
+  },
+  "nota/reunion": {
+   "v": "aprobar presupuesto",
+   "h": [
+    1789137784082,
+    0,
+    "alexpc-nt"
+   ]
+  }
+ },
+ "orset": {
+  "tags_nfc": {
+   "adds": {
+    "alexpc-nt:5": "cocina",
+    "alexpc-nt:7": "coche"
+   },
+   "rm": []
+  }
+ },
+ "pn": {
+  "pasos": {
+   "alexpc-nt": 425
+  }
+ },
+ "ops": [
+  {
+   "t": "lww",
+   "k": "cfg",
+   "v": {
+    "a": [
+     1,
+     2
+    ],
+    "b": "z"
+   },
+   "h": [
+    1789045458292,
+    0,
+    "alexpc-nt"
+   ],
+   "oid": "alexpc-nt:4",
+   "src": "alexpc-nt"
+  },
+  {
+   "t": "orset",
+   "k": "tags_nfc",
+   "op": "add",
+   "v": "cocina",
+   "tag": "alexpc-nt:5",
+   "oid": "alexpc-nt:6",
+   "src": "alexpc-nt"
+  },
+  {
+   "t": "orset",
+   "k": "tags_nfc",
+   "op": "add",
+   "v": "coche",
+   "tag": "alexpc-nt:7",
+   "oid": "alexpc-nt:8",
+   "src": "alexpc-nt"
+  },
+  {
+   "h": [
+    1789045439306,
+    0,
+    "alexpc-nt"
+   ],
+   "k": "contexto",
+   "oid": "alexpc-nt:1",
+   "src": "alexpc-nt",
+   "t": "lww",
+   "v": "en_casa"
+  },
+  {
+   "k": "pasos",
+   "oid": "alexpc-nt:2",
+   "op": "inc",
+   "src": "alexpc-nt",
+   "t": "pn",
+   "v": 120
+  },
+  {
+   "k": "pasos",
+   "oid": "alexpc-nt:3",
+   "op": "inc",
+   "src": "alexpc-nt",
+   "t": "pn",
+   "v": 5
+  },
+  {
+   "k": "pasos",
+   "oid": "alexpc-nt:5",
+   "op": "inc",
+   "src": "alexpc-nt",
+   "t": "pn",
+   "v": 300
+  },
+  {
+   "t": "lww",
+   "k": "nota/reunion",
+   "v": "aprobar presupuesto",
+   "h": [
+    1789137765756,
+    0,
+    "alexpc-nt"
+   ],
+   "oid": "alexpc-nt:9",
+   "src": "alexpc-nt"
+  },
+  {
+   "t": "lww",
+   "k": "nota/reunion",
+   "v": "aprobar presupuesto",
+   "h": [
+    1789137784082,
+    0,
+    "alexpc-nt"
+   ],
+   "oid": "alexpc-nt:10",
+   "src": "alexpc-nt"
+  }
+ ],
+ "seen": [
+  "alexpc-nt:9",
+  "alexpc-nt:3",
+  "alexpc-nt:1",
+  "alexpc-nt:6",
+  "alexpc-nt:5",
+  "alexpc-nt:4",
+  "alexpc-nt:2",
+  "alexpc-nt:10",
+  "alexpc-nt:8"
+ ]
+}

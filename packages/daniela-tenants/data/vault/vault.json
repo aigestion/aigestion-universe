@@ -1,0 +1,16 @@
+{
+ "version": 1,
+ "atadura": "cbe5cfdf7c2118a9",
+ "secretos": {
+  "GEMINI_API_KEY": {
+   "nonce": "fcv6hNSrhBEIWRufDXGabw==",
+   "cipher": "0c0wpplXalG1IPkE8V1VFUdEUKb6",
+   "mac": "Z+FVDGrU1Ezt/iK6hUy4SJ9vd16ZpJD1/qIk8oeK14A="
+  },
+  "DANIELA_PIN": {
+   "nonce": "SeAJsrUJm8o7IXRrUrC79w==",
+   "cipher": "cQLL2A==",
+   "mac": "pRvopUlzGfWftCxEJLnujETdD+Ly26qg9nirI9HXQ/k="
+  }
+ }
+}

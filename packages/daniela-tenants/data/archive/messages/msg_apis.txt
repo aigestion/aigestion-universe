@@ -1,0 +1,14 @@
+docs: inventario de APIs gratis y 8 epicas nuevas (E-27..E-34)
+
+Cruzando las 656 variables de .env.master contra los 1605 ficheros del
+proyecto: hay ~20 APIs con CLAVE REAL configurada que ningun fichero menciona
+(Anthropic, Cohere, ElevenLabs, HuggingFace, OpenRouter, Pinecone, Supabase,
+Google Maps, YouTube, Browserless, Make, Twilio, Discord, Ollama...). Solo
+Groq y Telegram se usan de verdad.
+
+Incluye: tabla de lo desperdiciado, APIs gratis que faltan (Open-Meteo,
+Nominatim, ntfy.sh, Piper, OpenWakeWord, FAISS, Tailscale, Argos...), 8
+epicas nuevas y un orden recomendado.
+
+E-30 (Tailscale) es P0: el tunel cloudflared del 8082 expone el movil a
+internet y Tailscale lo resuelve con red privada gratis.

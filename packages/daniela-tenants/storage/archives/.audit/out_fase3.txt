@@ -1,0 +1,104 @@
+===== H. com.google.ai.edge.gallery (4.6 GB) =====
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/model_allowlist.json
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M
+/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225
+-- ficheros >5 MB --
+2588147712	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm
+782717456	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712_mldrift_weight_cache.bin
+288964608	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225/tiny_garden.litertlm
+288964608	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218/mobile_actions.litertlm
+272687792	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225/tiny_garden.litertlm.xnnpack_cache_1778890677_288964608
+272687792	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218/mobile_actions.litertlm.xnnpack_cache_1775661562_288964608
+151669696	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm.vision_encoder_1778889714_2588147712_mldrift_weight_cache.bin
+91462280	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712.static_audio_encoder.xnnpack_cache
+12558848	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712_mldrift_program_cache.bin
+9443576	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712.audio_adapter.xnnpack_cache
+6808152	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm.vision_encoder_1778889714_2588147712_mldrift_program_cache.bin
+
+===== I. Documents/NexusAI (3.1 GB) =====
+1592884	/storage/emulated/0/Documents/NexusAI/gemma_soberano.bin
+1592884	/storage/emulated/0/Documents/NexusAI/gemma2-2b.bin
+-- ficheros >5 MB --
+1629509152	/storage/emulated/0/Documents/NexusAI/gemma_soberano.bin
+1629509152	/storage/emulated/0/Documents/NexusAI/gemma2-2b.bin
+
+===== J. Download/DanielaControl (295 MB) =====
+295464	/storage/emulated/0/Download/DanielaControl/OCR_Queue
+312	/storage/emulated/0/Download/DanielaControl/daniela_generated_art.png
+4	/storage/emulated/0/Download/DanielaControl/task_20260804_134047.txt
+4	/storage/emulated/0/Download/DanielaControl/nota_test.txt
+4	/storage/emulated/0/Download/DanielaControl/generate_prompt.txt
+4	/storage/emulated/0/Download/DanielaControl/colab_gpu_report.json
+4	/storage/emulated/0/Download/DanielaControl/VoiceNotes
+===== J2. Download/Daniela_Organizado =====
+24852	/storage/emulated/0/Download/Daniela_Organizado/Imagenes
+20536	/storage/emulated/0/Download/Daniela_Organizado/Media
+7688	/storage/emulated/0/Download/Daniela_Organizado/Documentos
+4104	/storage/emulated/0/Download/Daniela_Organizado/Instaladores
+===== J3. Download/Instaladores_APK =====
+total 21916
+-rwxrwx--- 1 u0_a291 media_rw 22413693 2026-09-01 14:50 HeliBoard_4.1-release.apk
+
+===== K. Android/media/com.whatsapp.w4b (580 MB) =====
+579933	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business
+
+===== L. TOP 40 FICHEROS MAS GRANDES DE /sdcard =====
+2588147712	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm
+1629509152	/storage/emulated/0/Documents/NexusAI/gemma_soberano.bin
+1629509152	/storage/emulated/0/Documents/NexusAI/gemma2-2b.bin
+782717456	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712_mldrift_weight_cache.bin
+491400032	/storage/emulated/0/Android/data/com.llmproxy/files/models/Qwen_Qwen2.5-0.5B-Instruct-GGUF/qwen2.5-0.5b-instruct-q4_k_m.gguf
+288964608	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225/tiny_garden.litertlm
+288964608	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218/mobile_actions.litertlm
+272687792	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225/tiny_garden.litertlm.xnnpack_cache_1778890677_288964608
+272687792	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218/mobile_actions.litertlm.xnnpack_cache_1775661562_288964608
+151669696	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm.vision_encoder_1778889714_2588147712_mldrift_weight_cache.bin
+136043985	/storage/emulated/0/Movies/output_epic_composition.mp4
+91462280	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712.static_audio_encoder.xnnpack_cache
+84836042	/storage/emulated/0/Movies/output_screencast_tech.mp4
+84542692	/storage/emulated/0/Movies/output_dynamic_9x16.mp4
+71379975	/storage/emulated/0/DCIM/Camera/PXL_20260730_154029393.mp4
+62608663	/storage/emulated/0/Movies/output_short_9x16.mp4
+53212808	/storage/emulated/0/DCIM/Camera/PXL_20260730_153913835.mp4
+47830053	/storage/emulated/0/DCIM/Camera/PXL_20260830_130147037.LS.mp4
+34330590	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/VID-20260903-WA0000.mp4
+32029400	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/VID-20260908-WA0009.mp4
+31143861	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/VID-20260903-WA0005.mp4
+30251332	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Audio/AUD-20260220-WA0000.mp3
+27386612	/storage/emulated/0/Movies/output_briefing_9x16.mp4
+27107328	/storage/emulated/0/Android/data/com.google.android.apps.maps/cache/diskcache/map_cache.db
+22413693	/storage/emulated/0/Download/Instaladores_APK/HeliBoard_4.1-release.apk
+20346875	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/VID-20260903-WA0001.mp4
+18066796	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/VID-20260831-WA0002.mp4
+17220263	/storage/emulated/0/Movies/output_multiscene.mp4
+15960812	/storage/emulated/0/Download/Daniela_Organizado/Media/vids_master_real.mp4
+14993397	/storage/emulated/0/Movies/daniela_loop.mp4
+14325149	/storage/emulated/0/Movies/output_zerocost.mp4
+13947905	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/Private/VID-20260708-WA0001.mp4
+13726036	/storage/emulated/0/Movies/daniela_animated.mp4
+12558848	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712_mldrift_program_cache.bin
+10582972	/storage/emulated/0/Movies/output_sovereign_viral.mp4
+9862739	/storage/emulated/0/DCIM/Camera/PXL_20260728_190149965.MP.jpg
+9774494	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/Sent/VID-20260903-WA0002.mp4
+9465830	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Databases/msgstore.db.crypt14
+9450155	/storage/emulated/0/Android/media/com.whatsapp.w4b/WhatsApp Business/Media/WhatsApp Business Video/VID-20260720-WA0017.mp4
+9443576	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712.audio_adapter.xnnpack_cache
+
+===== M. MODELOS LLM / IA EN EL TELEFONO (conflicto potencial) =====
+2588147712	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm
+1629509152	/storage/emulated/0/Documents/NexusAI/gemma_soberano.bin
+1629509152	/storage/emulated/0/Documents/NexusAI/gemma2-2b.bin
+782717456	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712_mldrift_weight_cache.bin
+491400032	/storage/emulated/0/Android/data/com.llmproxy/files/models/Qwen_Qwen2.5-0.5B-Instruct-GGUF/qwen2.5-0.5b-instruct-q4_k_m.gguf
+288964608	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225/tiny_garden.litertlm
+288964608	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218/mobile_actions.litertlm
+151669696	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm.vision_encoder_1778889714_2588147712_mldrift_weight_cache.bin
+12558848	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm_1778889714_2588147712_mldrift_program_cache.bin
+6808152	/storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/Gemma_4_E2B_it/6e5c4f1e395deb959c494953478fa5cec4b8008f/gemma-4-E2B-it.litertlm.vision_encoder_1778889714_2588147712_mldrift_program_cache.bin
+FIN-FASE3

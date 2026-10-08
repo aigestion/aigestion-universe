@@ -1,0 +1,710 @@
+{
+  "status": {
+    "total_ideas": 23,
+    "by_category": {
+      "auto_code": 3,
+      "auto_fix": 4,
+      "auto_test": 3,
+      "auto_doc": 4,
+      "auto_deploy": 2,
+      "auto_evolve": 4,
+      "auto_learn": 3
+    },
+    "by_priority": {
+      "critical": 4,
+      "high": 11,
+      "medium": 5,
+      "low": 3
+    },
+    "by_effort": {
+      "S": 4,
+      "M": 11,
+      "L": 7,
+      "XL": 1
+    },
+    "free_tier_total": "$0/month",
+    "categories": 7
+  },
+  "categories": {
+    "auto_code": {
+      "name": "Auto-Code",
+      "icon": "code",
+      "description": "Daniela escribe codigo nuevo autonomamente",
+      "color": "#00ffff"
+    },
+    "auto_fix": {
+      "name": "Auto-Fix",
+      "icon": "wrench",
+      "description": "Repara bugs sin intervencion humana",
+      "color": "#ff4444"
+    },
+    "auto_test": {
+      "name": "Auto-Test",
+      "icon": "flask",
+      "description": "Crea y mantiene tests automaticamente",
+      "color": "#00ff88"
+    },
+    "auto_doc": {
+      "name": "Auto-Doc",
+      "icon": "book",
+      "description": "Documenta el codebase continuamente",
+      "color": "#ffaa00"
+    },
+    "auto_deploy": {
+      "name": "Auto-Deploy",
+      "icon": "rocket",
+      "description": "Despliega y monitorea sin humanos",
+      "color": "#aa00ff"
+    },
+    "auto_evolve": {
+      "name": "Auto-Evolve",
+      "icon": "dna",
+      "description": "Evoluciona la arquitectura del codigo",
+      "color": "#ff0055"
+    },
+    "auto_learn": {
+      "name": "Auto-Learn",
+      "icon": "brain",
+      "description": "Aprende de errores y patrones",
+      "color": "#0099ff"
+    }
+  },
+  "ideas": [
+    {
+      "id": "AP-01",
+      "title": "Voice-to-Code: hablas, Daniela programa",
+      "category": "auto_code",
+      "priority": "critical",
+      "effort": "L",
+      "description": "El usuario habla una feature en lenguaje natural ('haz que el agente correo filtre spam automaticamente'). Daniela usa Gemini 3.6 Flash (gratis, 15 RPM) para interpretar la instruccion, genera el codigo Python completo, lo guarda, crea tests, y abre un PR via Jules. Todo en menos de 60 segundos. La voz se captura via Web Speech API en el dashboard (gratis, Chrome nativo).",
+      "key_features": [
+        "Web Speech API (Chrome nativo, gratis) captura voz del usuario",
+        "Gemini 3.6 Flash interpreta instruccion -> plan de implementacion",
+        "Genera codigo Python completo con tipos, docstrings, error handling",
+        "Crea archivo o modifica existente segun el plan",
+        "Auto-genera tests para el nuevo codigo",
+        "Despacha a Jules para PR con descripcion auto-generada",
+        "Feedback loop: si Jules falla, Daniela corrige y reintenta",
+        "Historial de features creadas por voz en el dashboard"
+      ],
+      "free_tier": "Gemini 3.6 Flash (15 RPM, 1500 RPD) + Web Speech API (Chrome nativo) + Jules (15 tasks/dia)",
+      "impact": "Programar hablando. Cero barrera tecnica. Una feature nueva en 60 segundos. Cambia radicalmente la velocidad de desarrollo.",
+      "triggers": "Usuario habla en el dashboard o envia mensaje de texto con 'haz que...'",
+      "tech_stack": [
+        "Web Speech API",
+        "Gemini 3.6 Flash",
+        "Jules API",
+        "Python AST"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-02",
+      "title": "Feature Factory: de issue a PR mergeado sin humanos",
+      "category": "auto_code",
+      "priority": "critical",
+      "effort": "XL",
+      "description": "Pipeline completo: un GitHub Issue con un template structurado se convierte automaticamente en codigo funcional, tests, documentacion y PR. Daniela lee el issue, analiza el codebase existente con Gemini 3.1 Pro (2M context, ve TODO el proyecto), identifica donde insertar el nuevo codigo, lo genera, lo teste, lo documenta, y abre PR. Si los tests pasan y la verificacion de SIL lo aprueba, auto-merge.",
+      "key_features": [
+        "GitHub Issues webhook -> trigger automatico",
+        "Gemini 3.1 Pro analiza codebase completo (2M context) para contexto",
+        "Identifica archivos a modificar y patrones a seguir",
+        "Genera codigo siguiendo el estilo del proyecto existente",
+        "Auto-genera tests unitarios para la nueva feature",
+        "Auto-genera documentacion (docstrings + README update)",
+        "Abre PR con descripcion estructurada (what, why, how, tests)",
+        "SIL verification: re-analiza para asegurar que no introduce debt",
+        "Auto-merge si: tests pass + SIL no new findings + no conflicts",
+        "Max 3 features/dia (dentro de Jules free 15/dia)"
+      ],
+      "free_tier": "GitHub Issues (gratis) + Gemini 3.1 Pro (100 RPD free) + Jules (15 tasks/dia) + GitHub Actions (2000 min/mes free)",
+      "impact": "De idea a produccion sin tocar el teclado. El usuario solo redacta issues. Daniela hace el resto.",
+      "triggers": "Nuevo GitHub Issue creado con label 'auto-implement'",
+      "tech_stack": [
+        "GitHub Webhooks",
+        "Gemini 3.1 Pro",
+        "Jules API",
+        "GitHub Actions",
+        "Python AST"
+      ],
+      "dependencies": [
+        "AP-08",
+        "AP-12"
+      ]
+    },
+    {
+      "id": "AP-03",
+      "title": "Code Template Engine: patrones reutilizables auto-generados",
+      "category": "auto_code",
+      "priority": "high",
+      "effort": "M",
+      "description": "Daniela analiza su codebase, identifica patrones recurrentes (agentes, APIs, pipelines, factories) y extrae templates parametrizables. Cuando necesita crear algo nuevo, primero busca en sus templates. Si no encuentra match, genera un nuevo template tras 3 implementaciones similares. Los templates viven en JSON/YAML y se instancian con parametros.",
+      "key_features": [
+        "AST analysis: detecta patrones estructurales repetidos",
+        "Template extraction: codigo parametrizable en JSON",
+        "Template matching: nueva feature -> busca template compatible",
+        "Template instantiation: parametros -> codigo completo",
+        "Template evolution: si el codigo generado necesita fixes, el template se actualiza",
+        "Template library: crece con cada feature nueva",
+        "Template versioning: cambios trackeados en git"
+      ],
+      "free_tier": "Python AST (stdlib) + Gemini Flash para pattern naming + JSON files",
+      "impact": "Cada vez que Daniela programa algo similar, es mas rapida. Los templates acumulan conocimiento de diseno.",
+      "triggers": "Nueva feature solicitada o pattern detectado tras 3+ repeticiones",
+      "tech_stack": [
+        "Python ast",
+        "Jinja2 templates",
+        "JSON",
+        "Gemini 3.6 Flash"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-04",
+      "title": "Runtime Self-Healing: crash -> patch -> restart en 5 segundos",
+      "category": "auto_fix",
+      "priority": "critical",
+      "effort": "L",
+      "description": "Cuando una excepcion no controlada ocurre en runtime, Daniela la captura, analiza el stack trace con Gemini Flash (gratis, rapido), genera un patch, lo aplica, y reinicia el modulo afectado. Todo en menos de 5 segundos. El usuario no nota que hubo un crash. Si el patch no funciona tras 3 intentos, escala a humano con reporte detallado.",
+      "key_features": [
+        "Global exception handler con traceback completo",
+        "Gemini Flash analiza traceback -> identifica root cause",
+        "Genera patch minimal (solo las lineas que cambian)",
+        "Aplica patch via AST manipulation (no texto crudo)",
+        "Hot-reload del modulo afectado (importlib.reload)",
+        "Retry con backoff exponencial (3 intentos max)",
+        "Escalacion a humano si 3 intentos fallan",
+        "Crash log: cada incidente registrado con before/after code",
+        "Lesson learned: cada crash curado se anade al knowledge base del SIL"
+      ],
+      "free_tier": "Gemini 3.6 Flash (15 RPM, 1500 RPD) + Python importlib (stdlib) + JSON logs",
+      "impact": "Sistema que nunca cae. Los usuarios no experimentan downtime. Cada crash hace a Daniela mas resistente.",
+      "triggers": "Excepcion no controlada en cualquier modulo de AIGestion",
+      "tech_stack": [
+        "Python sys.excepthook",
+        "importlib.reload",
+        "AST patching",
+        "Gemini 3.6 Flash"
+      ],
+      "dependencies": [
+        "AP-10"
+      ]
+    },
+    {
+      "id": "AP-05",
+      "title": "Auto-Bug Reproducer: de reporte a caso reproducible",
+      "category": "auto_fix",
+      "priority": "high",
+      "effort": "M",
+      "description": "Cuando un bug es reportado (GitHub issue, mensaje de voz, o log de error), Daniela automaticamente genera un script que reproduce el bug. Usa Gemini para analizar el reporte, identificar el codigo involucrado, y crear un test que falla reproduciendo el bug. Una vez arreglado, el test pasa y queda como regression test permanente.",
+      "key_features": [
+        "Parsea bug report (texto, issue, o voice transcript)",
+        "Gemini analiza codigo afectado y datos de entrada",
+        "Genera test que reproduce el bug (pytest)",
+        "Ejecuta test: confirma que falla",
+        "Despacha fix a Jules con el test como criterio de aceptacion",
+        "Test pasa post-fix -> regression test permanente",
+        "Bug tracking: reporte -> repro -> fix -> test en un solo flujo"
+      ],
+      "free_tier": "Gemini 3.6 Flash + pytest (gratis) + Jules (15 tasks/dia)",
+      "impact": "Cada bug reportado se convierte en un test permanente. Los bugs no se repiten.",
+      "triggers": "Bug reportado via GitHub Issue, dashboard, o voice",
+      "tech_stack": [
+        "pytest",
+        "Gemini 3.6 Flash",
+        "Jules API"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-06",
+      "title": "Dependency Auto-Updater: librerias siempre al dia",
+      "category": "auto_fix",
+      "priority": "medium",
+      "effort": "M",
+      "description": "Diariamente, Daniela verifica si hay nuevas versiones de las librerias del proyecto (pip list --outdated). Para cada update, genera un branch, actualiza, corre los tests, y si pasan, abre PR. Si los tests fallan, analiza el breaking change y genera el migration code necesario.",
+      "key_features": [
+        "pip list --outdated scan diario",
+        "Semantic versioning analysis: major = breaking, minor = safe, patch = always",
+        "Auto-update + test run en branch aislada",
+        "Si tests fallan: Gemini analiza el changelog de la libreria",
+        "Genera migration code para breaking changes",
+        "PR con: version anterior -> nueva, breaking changes, migration notes",
+        "Max 5 updates/dia para no saturar Jules"
+      ],
+      "free_tier": "pip (gratis) + Gemini Flash + Jules (15 tasks/dia)",
+      "impact": "Deuda tecnica de dependencias siempre en cero. Security patches aplicados en horas, no meses.",
+      "triggers": "Diario a las 6am (antes de que el usuario despierte)",
+      "tech_stack": [
+        "pip",
+        "pytest",
+        "Gemini 3.6 Flash",
+        "Jules API"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-07",
+      "title": "Test Genesis: cada funcion tiene su test automaticamente",
+      "category": "auto_test",
+      "priority": "critical",
+      "effort": "L",
+      "description": "Daniela escanea todo el codebase con AST, identifica cada funcion y metodo publico, y para cada uno genera un test unitario con casos de uso normales, edge cases, y error cases. Los tests se guardan en tests/auto_generated/. Cuando una funcion cambia, el test se regenera. Meta: 100% coverage de funciones publicas.",
+      "key_features": [
+        "AST scan: lista todas las funciones/metodos publicos",
+        "Para cada funcion: analiza signature, docstring, y body",
+        "Genera 3+ test cases: happy path, edge case, error case",
+        "Analiza tipos para generar mocks apropiados",
+        "Tests en tests/auto_generated/ con nombre espejo",
+        "Coverage tracking: % de funciones con test",
+        "Regeneracion: si funcion cambia, test se actualiza",
+        "Integration con SIL: coverage es una metrica de health score",
+        "Meta: subir coverage de 0% -> 80%+ en semanas"
+      ],
+      "free_tier": "Python AST (stdlib) + Gemini Flash + pytest (gratis)",
+      "impact": "Coverage de tests sube automaticamente. Bugs detectados antes de produccion. Confianza para refactorizar.",
+      "triggers": "Semanal (Mondays) o cuando se anade nueva funcion",
+      "tech_stack": [
+        "Python ast",
+        "pytest",
+        "Gemini 3.6 Flash",
+        "coverage.py"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-08",
+      "title": "Mutation Testing: los tests se validan a si mismos",
+      "category": "auto_test",
+      "priority": "high",
+      "effort": "M",
+      "description": "Daniela muta su propio codigo (cambia + por -, if por unless, return True por return False) y corre los tests. Si los tests siguen pasando con el codigo mutado, significa que los tests no cubren ese camino. Genera nuevos tests para los mutantes que sobrevivieron.",
+      "key_features": [
+        "Code mutation: operadores, condiciones, valores de retorno",
+        "Ejecuta tests contra cada mutante",
+        "Si mutante sobrevive: el test no cubre ese camino",
+        "Genera test nuevo para matar al mutante",
+        "Mutation score: % de mutantes asesinados (meta > 80%)",
+        "Max 100 mutantes/dia (gratis, solo CPU)",
+        "Reporte: que mutantes sobrevivieron, donde, y que tests faltan"
+      ],
+      "free_tier": "Python AST (stdlib) + pytest + CPU local (gratis)",
+      "impact": "Tests que de verdad protegen el codigo. No solo coverage, sino calidad de coverage.",
+      "triggers": "Despues de generar nuevos tests (AP-07) o semanalmente",
+      "tech_stack": [
+        "Python ast",
+        "pytest",
+        "mutmut (gratis)"
+      ],
+      "dependencies": [
+        "AP-07"
+      ]
+    },
+    {
+      "id": "AP-09",
+      "title": "Property-Based Testing: Daniela descubre edge cases imposibles",
+      "category": "auto_test",
+      "priority": "medium",
+      "effort": "M",
+      "description": "En vez de escribir casos de test manuales, Daniela define propiedades (ej: 'esta funcion nunca devuelve negativo') y un motor genera cientos de inputs aleatorios para intentar violar la propiedad. Descubre edge cases que un humano nunca pensaria.",
+      "key_features": [
+        "Property extraction: Gemini analiza funcion y sugiere propiedades",
+        "Hypothesis engine: genera cientos de inputs aleatorios",
+        "Si una propiedad se viola: bug encontrado",
+        "Auto-genera test case especifico para el input que fallo",
+        "Shrinking: reduce el input minimo que reproduce el fallo",
+        "Property coverage: cuantas propiedades se cumplen"
+      ],
+      "free_tier": "Hypothesis (gratis, pip) + Gemini Flash + CPU local",
+      "impact": "Bugs en edge cases extremos detectados automaticamente. Calidad de codigo profesional sin esfuerzo humano.",
+      "triggers": "Despues de AP-07 (test genesis) o en funciones criticas",
+      "tech_stack": [
+        "Hypothesis",
+        "pytest",
+        "Gemini 3.6 Flash"
+      ],
+      "dependencies": [
+        "AP-07"
+      ]
+    },
+    {
+      "id": "AP-10",
+      "title": "Living Docstrings: cada funcion documentada por IA",
+      "category": "auto_doc",
+      "priority": "high",
+      "effort": "M",
+      "description": "Daniela escanea cada funcion/metodo del codebase. Si no tiene docstring, o si el docstring no matcha lo que hace el codigo, genera uno nuevo con Gemini analizando el cuerpo de la funcion. Los docstrings se actualizan cuando el codigo cambia. Incluye: descripcion, args, returns, raises, examples.",
+      "key_features": [
+        "AST scan: identifica funciones sin docstring o con docstring desactualizado",
+        "Gemini analiza body de la funcion -> genera docstring preciso",
+        "Formato Google-style: Args, Returns, Raises, Example",
+        "Verificacion: docstring vs codigo (coherencia)",
+        "Si codigo cambia: docstring se regenera",
+        "Multi-idioma: docstrings en espanol (configurable)",
+        "Coverage: % de funciones con docstring valido"
+      ],
+      "free_tier": "Gemini 3.6 Flash (1500 RPD) + Python AST",
+      "impact": "Codebase 100% documentado. Nuevos desarrolladores (y el propio Daniela) entienden cada funcion al instante.",
+      "triggers": "Semanal o cuando codigo cambia (pre-commit hook)",
+      "tech_stack": [
+        "Python ast",
+        "Gemini 3.6 Flash",
+        "Jules API"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-11",
+      "title": "Auto-OpenAPI: spec de API generada desde el codigo",
+      "category": "auto_doc",
+      "priority": "high",
+      "effort": "S",
+      "description": "Daniela analiza todos los endpoints Flask/FastAPI del codebase y genera automaticamente una spec OpenAPI 3.1 completa. Incluye schemas de request/response, parametros, errores. Se actualiza cuando se anaden o cambian endpoints. Sirve para Swagger UI, client SDK generation, y validacion de contratos.",
+      "key_features": [
+        "AST scan de @app.route, @router.get, etc.",
+        "Extrae parametros, body schema, return types",
+        "Genera OpenAPI 3.1 JSON spec",
+        "Swagger UI servido en /docs (gratis, HTML estatico)",
+        "Auto-update cuando endpoints cambian",
+        "Validacion de request/response contra spec en runtime",
+        "SDK client generation: Python + JS desde la spec"
+      ],
+      "free_tier": "Python AST + JSON + Swagger UI (gratis, CDN)",
+      "impact": "API siempre documentada y testeable. Clientes auto-generados. Cero drift entre codigo y docs.",
+      "triggers": "Cuando se anade/modifica un endpoint",
+      "tech_stack": [
+        "Python ast",
+        "OpenAPI 3.1",
+        "Swagger UI"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-12",
+      "title": "Auto-Changelog: release notes desde git history",
+      "category": "auto_doc",
+      "priority": "medium",
+      "effort": "S",
+      "description": "Antes de cada release, Daniela analiza los commits desde el ultimo tag, los categoriza (feature, fix, refactor, docs, breaking), y genera un CHANGELOG.md en formato Keep a Changelog. Incluye summaries escritos por Gemini para cada cambio significativo.",
+      "key_features": [
+        "Git log desde ultimo tag",
+        "Categorizacion: Added, Changed, Fixed, Removed, Breaking",
+        "Gemini escribe summary legible para cada commit",
+        "CHANGELOG.md en formato Keep a Changelog",
+        "Auto-bump de version semantica segun cambios",
+        "GitHub Release auto-creada con notas",
+        "Tweet/LinkedIn post opcional con highlights del release"
+      ],
+      "free_tier": "Git (gratis) + Gemini Flash + GitHub API (gratis)",
+      "impact": "Release notes profesionales sin esfuerzo. Usuarios siempre saben que cambio.",
+      "triggers": "Cuando se crea un git tag o semanalmente",
+      "tech_stack": [
+        "Git",
+        "Gemini 3.6 Flash",
+        "GitHub API"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-13",
+      "title": "Auto-Deploy Pipeline: push -> test -> build -> deploy sin manos",
+      "category": "auto_deploy",
+      "priority": "high",
+      "effort": "L",
+      "description": "Cuando Daniela mergea un PR (via SIL auto-fix o feature factory), automaticamente se ejecuta el pipeline: lint -> type check -> tests -> build -> deploy. Si algo falla, rollback automatico. Usa GitHub Actions (2000 min/mes gratis) + Docker + Cloud Run (free tier).",
+      "key_features": [
+        "GitHub Actions workflow auto-generado",
+        "Pipeline: ruff lint -> mypy types -> pytest -> build -> deploy",
+        "Deploy a Cloud Run (free tier: 2M requests/mes)",
+        "Health check post-deploy: si falla, auto-rollback",
+        "Canary deploy: 10% trafico -> si OK -> 100%",
+        "Deploy log: cada deploy con version, commits, tests, tiempo",
+        "Rollback en <30 segundos si algo falla",
+        "Notificacion a Daniela dashboard: deploy status"
+      ],
+      "free_tier": "GitHub Actions (2000 min/mes) + Cloud Run (2M req/mes) + Docker Hub (gratis)",
+      "impact": "Deployments en minutos, no horas. Rollback instantaneo. Cero downtime.",
+      "triggers": "PR mergeado a main",
+      "tech_stack": [
+        "GitHub Actions",
+        "Docker",
+        "Cloud Run",
+        "pytest"
+      ],
+      "dependencies": [
+        "AP-07",
+        "AP-06"
+      ]
+    },
+    {
+      "id": "AP-14",
+      "title": "Auto-Dockerfile: container optimizado generado",
+      "category": "auto_deploy",
+      "priority": "medium",
+      "effort": "S",
+      "description": "Daniela analiza el codigo (imports, dependencies, entry points) y genera un Dockerfile optimizado: multi-stage build, solo dependencias necesarias, imagen minima (python:slim), health check incluido. Se regenera cuando cambian las dependencias.",
+      "key_features": [
+        "Analiza requirements.txt / pyproject.toml",
+        "Multi-stage build: builder + runtime",
+        "Base image: python:3.13-slim (minima)",
+        ".dockerignore auto-generado",
+        "Health check endpoint incluido",
+        "Layer caching optimizado",
+        "Image size tracking: meta < 200MB"
+      ],
+      "free_tier": "Docker (gratis) + Python AST",
+      "impact": "Containers optimizados sin conocimiento de Docker. Builds reproducibles.",
+      "triggers": "Cuando cambian dependencias o se anaden nuevos modulos",
+      "tech_stack": [
+        "Docker",
+        "Python ast"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-15",
+      "title": "Dead Code Reaper: eliminacion automatica de codigo inutil",
+      "category": "auto_evolve",
+      "priority": "high",
+      "effort": "M",
+      "description": "Daniela escanea el codebase y encuentra: funciones nunca llamadas, imports no usados, variables asignadas pero no leidas, clases sin instanciar. Para cada uno, verifica con Gemini que realmente no se usan (busquedas en todo el proyecto), y los elimina via Jules PR.",
+      "key_features": [
+        "AST analysis: mapea todas las definiciones (funciones, clases, variables)",
+        "Cross-reference: busca usos de cada definicion en todo el codebase",
+        "Gemini verification: confirma que no se usa dinamicamente (getattr, eval)",
+        "Elimina: codigo muerto + imports relacionados + tests del codigo muerto",
+        "PR con diff limpio: solo eliminaciones",
+        "Reporte: KB de codigo eliminado, funciones removidas",
+        "Semanal: el codebase se adelgaza constantemente"
+      ],
+      "free_tier": "Python AST (stdlib) + Gemini Flash + Jules (15 tasks/dia)",
+      "impact": "Codebase mas pequeno = mas rapido, mas facil de entender, menos bugs. Mantiene el proyecto limpio.",
+      "triggers": "Semanal (viernes: limpieza antes del fin de semana)",
+      "tech_stack": [
+        "Python ast",
+        "vulture (gratis)",
+        "Gemini 3.6 Flash",
+        "Jules API"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-16",
+      "title": "Auto-Refactor Engine: code smells -> codigo limpio",
+      "category": "auto_evolve",
+      "priority": "high",
+      "effort": "L",
+      "description": "Daniela detecta code smells (funciones largas, duplicacion, complejidad ciclomatica alta, parametros demasiados, God classes) y automaticamente los refactorea. Extrae metodos, elimina duplicacion, simplifica condicionales, divide clases grandes. Cada refactor se verifica con tests.",
+      "key_features": [
+        "Code smell detection: McCabe complexity, Halstead metrics, LCOM",
+        "Refactor patterns: Extract Method, Extract Class, Replace Conditional with Polymorphism",
+        "Gemini genera el refactor preservando comportamiento",
+        "Tests deben pasar antes y despues del refactor",
+        "AST-level diff: solo cambios estructurales, no de comportamiento",
+        "Max 3 refactors/dia para revision humana",
+        "Refactor log: antes/despues con metricas de mejora"
+      ],
+      "free_tier": "radon (gratis) + Gemini 3.1 Pro + pytest + Jules",
+      "impact": "El codigo se vuelve mas limpio cada semana sin esfuerzo. Mantenibilidad sube constantemente.",
+      "triggers": "Semanal o cuando complexity score supera threshold",
+      "tech_stack": [
+        "radon",
+        "pytest",
+        "Gemini 3.1 Pro",
+        "Jules API"
+      ],
+      "dependencies": [
+        "AP-07"
+      ]
+    },
+    {
+      "id": "AP-17",
+      "title": "Architecture Diff Simulator: que pasaria si...?",
+      "category": "auto_evolve",
+      "priority": "medium",
+      "effort": "L",
+      "description": "Antes de un cambio arquitectural mayor (migrar a microservices, cambiar framework, cambiar DB), Daniela simula el cambio en un branch paralelo. Genera el codigo migrado, corre todos los tests, mide performance, y compara con el estado actual. Presenta un informe: pros, contras, breaking changes, effort estimate.",
+      "key_features": [
+        "Architecture proposal: Gemini analiza y propone el cambio",
+        "Branch aislado: experimenta sin tocar main",
+        "Auto-migration: genera codigo migrado al nuevo patron",
+        "Test comparison: pass rate antes vs despues",
+        "Performance benchmark: tiempo de ejecucion antes vs despues",
+        "Risk assessment: breaking changes identificados",
+        "Effort estimate: horas/dias de trabajo manual equivalente",
+        "Go/no-go decision: Daniela recomienda si vale la pena"
+      ],
+      "free_tier": "Git branches (gratis) + Gemini 3.1 Pro + pytest",
+      "impact": "Decisiones arquitecturales basadas en datos, no en intuicion. Riesgo minimizado.",
+      "triggers": "Mensual o cuando se propone un cambio arquitectural",
+      "tech_stack": [
+        "Git",
+        "Gemini 3.1 Pro",
+        "pytest",
+        "radon"
+      ],
+      "dependencies": [
+        "AP-07",
+        "AP-16"
+      ]
+    },
+    {
+      "id": "AP-18",
+      "title": "Comparative Learning: Daniela estudia otros proyectos open source",
+      "category": "auto_learn",
+      "priority": "high",
+      "effort": "M",
+      "description": "Daniela periodicamente descarga repos populares de GitHub (FastAPI, LangChain, CrewAI), los analiza con Gemini 3.1 Pro (2M context), y extrae patrones, mejores practicas, y soluciones a problemas que ella tambien tiene. Los patrones se anaden a su knowledge base.",
+      "key_features": [
+        "GitHub trending: descarga 3 repos/semana relacionados con el dominio",
+        "Gemini 3.1 Pro analiza: arquitectura, patrones, testing, docs",
+        "Pattern extraction: 'este proyecto resuelve X con Y'",
+        "Comparison: 'yo resuelvo X con Z, ellos con Y, Y es mejor porque...'",
+        "Knowledge base: patrones aprendidos se anaden al SIL knowledge base",
+        "Actionable: si un patron es mejor, genera un refactor proposal",
+        "Learning journal: registro de lo aprendido cada semana"
+      ],
+      "free_tier": "GitHub API (gratis) + Gemini 3.1 Pro (100 RPD free)",
+      "impact": "Daniela aprende de los mejores. Su codigo mejora adoptando patrones probados de proyectos reales.",
+      "triggers": "Semanal (domingo: dia de estudio)",
+      "tech_stack": [
+        "GitHub API",
+        "Gemini 3.1 Pro",
+        "JSON knowledge base"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-19",
+      "title": "Skill Extractor: cada solucion se convierte en skill reusable",
+      "category": "auto_learn",
+      "priority": "high",
+      "effort": "M",
+      "description": "Cuando Daniela resuelve un problema dificil (bug tricky, refactor complejo, integracion nueva), automaticamente extrae la solucion como un 'skill' reutilizable. El skill contiene: el problema, la solucion, el codigo patron, y cuando aplicarlo. En el futuro, cuando vea un problema similar, consulta sus skills primero.",
+      "key_features": [
+        "Trigger: bug fixed con 3+ intentos, o refactor con complejidad alta",
+        "Gemini analiza la solucion: problema, enfoque, codigo, resultado",
+        "Skill structure: {problem_pattern, solution_code, when_to_apply, tags}",
+        "Skill library en data/skills/ (JSON, gratis)",
+        "Skill matching: nuevo problema -> busca skills similares",
+        "Skill application: sugiere el skill al programar algo similar",
+        "Skill evolution: si una skill falla, se actualiza con el nuevo aprendizaje"
+      ],
+      "free_tier": "Gemini Flash + JSON files (gratis)",
+      "impact": "Daniela acumula sabiduria practica. Cada problema dificil la hace mas eficiente en el futuro.",
+      "triggers": "Despues de fix complejo o refactor exitoso",
+      "tech_stack": [
+        "Gemini 3.6 Flash",
+        "JSON",
+        "AST pattern matching"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-20",
+      "title": "Pre-commit Self-Check: Daniela revisa antes de commit",
+      "category": "auto_fix",
+      "priority": "high",
+      "effort": "S",
+      "description": "Un git hook pre-commit que corre un analisis rapido de Gemini Flash sobre el diff (solo archivos cambiados). Si detecta un anti-patron conocido (del knowledge base del SIL), bloquea el commit con explicacion. Rapido (<5s con Flash). Solo bloquea, no auto-arregla (eso es post-commit).",
+      "key_features": [
+        "Git pre-commit hook (gratis, nativo)",
+        "Analiza solo diff (archivos cambiados, no todo el codebase)",
+        "Gemini Flash: <5 segundos de analisis",
+        "Consulta knowledge base: anti-patrones conocidos",
+        "Si detecta: bloquea commit + explica el problema + sugiere fix",
+        "Bypass con --no-verify (emergencia, pero se registra)",
+        "Bypass log: quien, cuando, que anti-patron se ignoro"
+      ],
+      "free_tier": "Git hooks (gratis) + Gemini 3.6 Flash (15 RPM)",
+      "impact": "Anti-patrones bloqueados antes de entrar al codebase. Prevencion > curacion.",
+      "triggers": "Cada git commit",
+      "tech_stack": [
+        "Git hooks",
+        "Gemini 3.6 Flash",
+        "Python subprocess"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-21",
+      "title": "Code Time Machine: viajar en el tiempo del codebase",
+      "category": "auto_evolve",
+      "priority": "low",
+      "effort": "L",
+      "description": "Daniela mantiene un arbol de versiones del codebase en memoria (como git pero con snapshots de AST). Puede responder preguntas como: 'como era esta funcion hace 3 meses?', 'que cambio introdujo este bug?', 'cuando empeoro la complejidad de este modulo?'. Visualizacion tipo timelapse del codigo evolucionando.",
+      "key_features": [
+        "AST snapshots diarios del codebase completo",
+        "AST diff: que cambio entre snapshot A y B",
+        "Blame ampliado: no solo quien, sino por que cambio (Gemini analiza el commit)",
+        "Complexity timeline: complejidad de cada funcion a lo largo del tiempo",
+        "Bug introduction detection: cuando se introdujo un bug (binsearch en snapshots)",
+        "Timelapse HTML: visualizacion del codigo evolucionando"
+      ],
+      "free_tier": "Python AST + JSON + Git history (todo gratis)",
+      "impact": "Entendimiento profundo de como el codigo evoluciona. Bugs traceados a su origen.",
+      "triggers": "Diario (snapshot) + on-demand (query)",
+      "tech_stack": [
+        "Python ast",
+        "Git",
+        "D3.js timeline"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "AP-22",
+      "title": "Self-Generated Onboarding: Daniela crea su propio manual",
+      "category": "auto_doc",
+      "priority": "low",
+      "effort": "M",
+      "description": "Daniela genera automaticamente un MANUAL.md que explica: como esta estructurado el codigo, que hace cada modulo, como anadir una feature nueva, como correr tests, como desplegar, que decisiones arquitecturales se tomaron y por que. Se actualiza cuando el codigo cambia. Un nuevo desarrollador (o la propia Daniela tras un reset) lo lee y entiende todo.",
+      "key_features": [
+        "AST scan + Gemini analisis: estructura completa del proyecto",
+        "Manual secciones: Overview, Architecture, Modules, Contributing, Testing, Deploy",
+        "Decision log: decisiones arquitecturales con contexto y rationale",
+        "Quick start: 3 comandos para levantar el proyecto",
+        "Glossary: terminos del dominio explicados",
+        "Auto-update: cuando cambian modulos o se anaden nuevos",
+        "Onboarding checklist: pasos para un nuevo dev"
+      ],
+      "free_tier": "Gemini 3.1 Pro (100 RPD free) + Markdown (gratis)",
+      "impact": "Cero friccion para nuevos desarrolladores. Daniela se reinicia a si misma tras cualquier reset.",
+      "triggers": "Mensual o cuando se anaden modulos nuevos",
+      "tech_stack": [
+        "Gemini 3.1 Pro",
+        "Markdown",
+        "Python ast"
+      ],
+      "dependencies": [
+        "AP-10",
+        "AP-11"
+      ]
+    },
+    {
+      "id": "AP-23",
+      "title": "Code Genome: ADN del codebase en JSON",
+      "category": "auto_learn",
+      "priority": "low",
+      "effort": "M",
+      "description": "Daniela crea un 'genoma' del codebase: un JSON que mapea cada modulo, funcion, clase, dependencia, y test. Como un index completo del proyecto. Permite queries tipo 'que funciones llaman a X?', 'que pasa si borro Y?', 'que modulos dependen de Z?'. Es el mapa neuronal del codigo.",
+      "key_features": [
+        "Genome build: AST scan completo -> JSON con todos los nodos",
+        "Nodos: modulos, clases, funciones, variables, imports, calls",
+        "Edges: quien llama a quien, quien importa a quien",
+        "Queries: impacto de cambiar X (que se rompe?)",
+        "Visualizacion: grafo interactivo (D3.js, gratis)",
+        "Diff genome: como cambia el ADN entre commits",
+        "Health genes: metricas por nodo (complejidad, coverage, lines)"
+      ],
+      "free_tier": "Python AST + JSON + D3.js (todo gratis)",
+      "impact": "Daniela entiende su propio codigo a nivel estructural profundo. Cambios informados por datos.",
+      "triggers": "On commit (incremental) o semanal (full rebuild)",
+      "tech_stack": [
+        "Python ast",
+        "JSON",
+        "D3.js force-directed graph"
+      ],
+      "dependencies": []
+    }
+  ]
+}

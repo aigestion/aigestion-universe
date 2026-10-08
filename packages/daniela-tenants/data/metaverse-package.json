@@ -1,0 +1,23 @@
+{
+  "name": "aig-metaverse",
+  "version": "1.0.0",
+  "description": "aig Metaverse - Multiusuario WebSocket server para el metaverso web propio",
+  "main": "metaverse_server.js",
+  "scripts": {
+    "start": "node metaverse_server.js",
+    "dev": "node metaverse_server.js",
+    "metaverse": "node metaverse_server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "keywords": [
+    "metaverse",
+    "websocket",
+    "multiplayer",
+    "threejs",
+    "aig"
+  ],
+  "author": "aig Team",
+  "license": "MIT"
+}

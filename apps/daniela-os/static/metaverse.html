@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIGestion Metaverse - Tu Oficina en el Metaverso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/effects/OutlineEffect.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #canvas-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+    #ui-layer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 10;
+      pointer-events: none;
+    }
+    #ui-layer > * { pointer-events: auto; }
+
+    /* HUD */
+    .hud-panel {
+      position: absolute;
+      background: rgba(0, 15, 30, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      padding: 12px;
+      font-size: 13px;
+    }
+    .hud-panel::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px;
+      width: 20px; height: 20px;
+      border-top: 2px solid #00f0ff;
+      border-left: 2px solid #00f0ff;
+      border-radius: 8px 0 0 0;
+    }
+    .hud-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; right: -1px;
+      width: 20px; height: 20px;
+      border-bottom: 2px solid #00f0ff;
+      border-right: 2px solid #00f0ff;
+      border-radius: 0 0 8px 0;
+    }
+
+    #top-bar {
+      top: 12px; left: 12px; right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    #top-bar .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #top-bar .stats {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+    }
+    #top-bar .stat { display: flex; align-items: center; gap: 6px; }
+    #top-bar .stat-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #00ff88;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    #zone-indicator {
+      top: 70px; left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #00f0ff;
+      text-shadow: 0 0 10px rgba(0,240,255,0.5);
+    }
+
+    /* Chat */
+    #chat-panel {
+      bottom: 80px; left: 12px;
+      width: 320px; height: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+    #chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      font-size: 12px;
+      padding: 5px;
+      scrollbar-width: thin;
+      scrollbar-color: #00f0ff transparent;
+    }
+    #chat-messages::-webkit-scrollbar { width: 4px; }
+    #chat-messages::-webkit-scrollbar-thumb { background: #00f0ff; border-radius: 2px; }
+    .chat-msg { margin-bottom: 6px; line-height: 1.4; }
+    .chat-msg .name { font-weight: 700; }
+    .chat-msg .time { opacity: 0.5; font-size: 10px; }
+    #chat-input {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    #chat-input input {
+      flex: 1;
+      background: rgba(0,240,255,0.1);
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 4px;
+      padding: 8px 12px;
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+    #chat-input input::placeholder { color: rgba(255,255,255,0.4); }
+    #chat-input button {
+      background: linear-gradient(135deg, #00f0ff, #0088ff);
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* Users list */
+    #users-panel {
+      top: 70px; right: 12px;
+      width: 180px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #users-panel h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: #00f0ff;
+    }
+    .user-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      font-size: 12px;
+    }
+    .user-color {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Zone selector */
+    #zone-panel {
+      bottom: 12px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+    }
+    .zone-btn {
+      background: rgba(0,15,30,0.9);
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 6px;
+      padding: 8px 16px;
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .zone-btn:hover, .zone-btn.active {
+      background: rgba(0,240,255,0.2);
+      border-color: #00f0ff;
+      box-shadow: 0 0 15px rgba(0,240,255,0.3);
+    }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s;
+    }
+    #loading-screen.hidden { opacity: 0; pointer-events: none; }
+    .loading-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 48px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff, #00f0ff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+      margin-bottom: 30px;
+    }
+    @keyframes shine { to { background-position: 200% center; } }
+    .loading-bar {
+      width: 300px; height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loading-bar-fill {
+      width: 0%; height: 100%;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff);
+      animation: load 3s ease forwards;
+    }
+    @keyframes load { to { width: 100%; } }
+    .loading-text {
+      margin-top: 15px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 2px;
+    }
+
+    /* Name input */
+    #name-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #name-modal.hidden { display: none; }
+    .name-box {
+      background: rgba(0,15,30,0.95);
+      border: 1px solid #00f0ff;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      max-width: 400px;
+    }
+    .name-box h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #00f0ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .name-box p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+    .name-box input {
+      width: 100%;
+      background: rgba(0,240,255,0.1);
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 15px;
+      outline: none;
+    }
+    .name-box button {
+      background: linear-gradient(135deg, #00f0ff, #0088ff);
+      border: none;
+      border-radius: 6px;
+      padding: 12px 30px;
+      color: #000;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* Emotes */
+    #emote-panel {
+      bottom: 12px; right: 12px;
+      display: flex;
+      gap: 6px;
+    }
+    .emote-btn {
+      width: 36px; height: 36px;
+      background: rgba(0,15,30,0.9);
+      border: 1px solid rgba(0,240,255,0.3);
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .emote-btn:hover {
+      background: rgba(0,240,255,0.2);
+      transform: scale(1.2);
+    }
+
+    /* Connection status */
+    #connection-status {
+      position: fixed;
+      top: 12px; right: 12px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+    #connection-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #ff4444;
+      transition: background 0.3s;
+    }
+    #connection-dot.connected { background: #00ff88; }
+  </style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="loading-logo">AIGESTION METAVERSE</div>
+  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+  <div class="loading-text">CARGANDO TU OFICINA VIRTUAL...</div>
+</div>
+
+<!-- Name Modal -->
+<div id="name-modal" class="hidden">
+  <div class="name-box">
+    <h2>BIENVENIDO AL METAVERso</h2>
+    <p>Elige tu nombre para explorar el mundo de AIGestion</p>
+    <input type="text" id="username-input" placeholder="Tu nombre..." maxlength="20" value="">
+    <button onclick="enterMetaverse()">ENTRAR</button>
+  </div>
+</div>
+
+<!-- Connection Status -->
+<div id="connection-status">
+  <div id="connection-dot"></div>
+  <span id="connection-text">Desconectado</span>
+</div>
+
+<!-- UI Layer -->
+<div id="ui-layer">
+  <div id="top-bar" class="hud-panel">
+    <div class="logo">AIGESTION METAVERSE</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-dot"></div><span id="online-count">0 usuarios online</span></div>
+      <div class="stat">FPS: <span id="fps-counter">60</span></div>
+      <div class="stat">Zona: <span id="current-zone" style="color:#00f0ff">Plaza Central</span></div>
+    </div>
+  </div>
+
+  <div id="zone-indicator" class="hud-panel">
+    PLAZA CENTRAL
+  </div>
+
+  <div id="chat-panel" class="hud-panel">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+      <input type="text" id="chat-text" placeholder="Escribe un mensaje..." maxlength="500">
+      <button onclick="sendChat()">Enviar</button>
+    </div>
+  </div>
+
+  <div id="users-panel" class="hud-panel">
+    <h3>USUARIOS ONLINE</h3>
+    <div id="users-list"></div>
+  </div>
+
+  <div id="zone-panel" class="hud-panel">
+    <button class="zone-btn active" onclick="changeZone('plaza-central')">Plaza Central</button>
+    <button class="zone-btn" onclick="changeZone('torre-neural')">Torre Neural</button>
+    <button class="zone-btn" onclick="changeZone('auditorio')">Auditorio</button>
+    <button class="zone-btn" onclick="changeZone('jardin')">Jardin Digital</button>
+    <button class="zone-btn" onclick="changeZone('daniela')">Daniela Hub</button>
+  </div>
+
+  <div id="emote-panel" class="hud-panel">
+    <button class="emote-btn" onclick="sendEmote('wave')" title="Saludar">👋</button>
+    <button class="emote-btn" onclick="sendEmote('dance')" title="Bailar">💃</button>
+    <button class="emote-btn" onclick="sendEmote('clap')" title="Aplaudir">👏</button>
+    <button class="emote-btn" onclick="sendEmote('think')" title="Pensar">🤔</button>
+    <button class="emote-btn" onclick="sendEmote('heart')" title="Corazon">❤️</button>
+  </div>
+</div>
+
+<!-- 3D Canvas -->
+<div id="canvas-container"></div>
+
+<script>
+// ======================
+// CONFIGURACION
+// ======================
+const CONFIG = {
+  wsUrl: (window.location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + window.location.host,
+  colors: {
+    primary: 0x00f0ff,
+    secondary: 0xff00ff,
+    accent: 0x00ff88,
+    grid: 0x003344
+  }
+};
+
+// ======================
+// ESTADO GLOBAL
+// ======================
+let scene, camera, renderer, controls;
+let userMesh, remoteUsers = new Map();
+let ws = null;
+let myUserId = null;
+let myName = '';
+let myColor = '#00f0ff';
+let currentZone = 'plaza-central';
+let clock = new THREE.Clock();
+let frameCount = 0;
+let lastFpsTime = performance.now();
+
+// ======================
+// INICIALIZACION THREE.JS
+// ======================
+function initThree() {
+  const container = document.getElementById('canvas-container');
+
+  scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x000510, 0.015);
+
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 5, 15);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  container.appendChild(renderer.domElement);
+
+  // Controls
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.maxPolarAngle = Math.PI / 2.2;
+  controls.minDistance = 3;
+  controls.maxDistance = 50;
+
+  // Luces
+  const ambientLight = new THREE.AmbientLight(0x112233, 0.5);
+  scene.add(ambientLight);
+
+  const dirLight = new THREE.DirectionalLight(0x00f0ff, 0.8);
+  dirLight.position.set(10, 20, 10);
+  dirLight.castShadow = true;
+  scene.add(dirLight);
+
+  const pointLight = new THREE.PointLight(0xff00ff, 0.6, 50);
+  pointLight.position.set(-10, 10, -10);
+  scene.add(pointLight);
+
+  const pointLight2 = new THREE.PointLight(0x00ff88, 0.4, 50);
+  pointLight2.position.set(10, 5, -15);
+  scene.add(pointLight2);
+
+  // Suelo con grid
+  const gridHelper = new THREE.GridHelper(100, 50, CONFIG.colors.primary, CONFIG.colors.grid);
+  scene.add(gridHelper);
+
+  const planeGeometry = new THREE.PlaneGeometry(200, 200);
+  const planeMaterial = new THREE.MeshStandardMaterial({
+    color: 0x000510,
+    roughness: 0.8,
+    metalness: 0.2
+  });
+  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane.rotation.x = -Math.PI / 2;
+  plane.receiveShadow = true;
+  scene.add(plane);
+
+  // Construir zona actual
+  buildZone(currentZone);
+
+  // Crear avatar del usuario
+  createUserAvatar();
+
+  // Eventos
+  window.addEventListener('resize', onWindowResize);
+  document.addEventListener('keydown', onKeyDown);
+
+  // Empezar loop
+  animate();
+}
+
+// ======================
+// CONSTRUCCION DE ZONAS
+// ======================
+function buildZone(zone) {
+  // Limpiar objetos existentes (excepto luces, suelo, avatar)
+  const toRemove = [];
+  scene.traverse(child => {
+    if (child.userData.isZoneObject) {
+      toRemove.push(child);
+    }
+  });
+  toRemove.forEach(obj => scene.remove(obj));
+
+  switch (zone) {
+    case 'plaza-central':
+      buildPlazaCentral();
+      break;
+    case 'torre-neural':
+      buildTorreNeural();
+      break;
+    case 'auditorio':
+      buildAuditorio();
+      break;
+    case 'jardin':
+      buildJardin();
+      break;
+    case 'daniela':
+      buildDanielaHub();
+      break;
+  }
+}
+
+function createBuilding(x, z, height, color, name) {
+  const geometry = new THREE.BoxGeometry(4, height, 4);
+  const material = new THREE.MeshStandardMaterial({
+    color: color,
+    roughness: 0.3,
+    metalness: 0.7,
+    transparent: true,
+    opacity: 0.9
+  });
+  const building = new THREE.Mesh(geometry, material);
+  building.position.set(x, height / 2, z);
+  building.castShadow = true;
+  building.userData = { isZoneObject: true, name: name };
+
+  // Glow edges
+  const edges = new THREE.EdgesGeometry(geometry);
+  const lineMaterial = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.5 });
+  const wireframe = new THREE.LineSegments(edges, lineMaterial);
+  wireframe.position.copy(building.position);
+  wireframe.userData = { isZoneObject: true };
+
+  // Floating label
+  const canvas = document.createElement('canvas');
+  canvas.width = 256; canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.7)';
+  ctx.fillRect(0, 0, 256, 64);
+  ctx.strokeStyle = '#' + color.toString(16).padStart(6, '0');
+  ctx.strokeRect(2, 2, 252, 60);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 20px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(name, 128, 38);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+  const sprite = new THREE.Sprite(spriteMaterial);
+  sprite.position.set(x, height + 1.5, z);
+  sprite.scale.set(4, 1, 1);
+  sprite.userData = { isZoneObject: true };
+
+  scene.add(building);
+  scene.add(wireframe);
+  scene.add(sprite);
+
+  return building;
+}
+
+function buildPlazaCentral() {
+  // Edificios representando modulos de AIGestion
+  const modules = [
+    { name: 'FACTURACION', color: 0x00f0ff, x: -15, z: -10, h: 8 },
+    { name: 'EMAIL AI', color: 0xff00ff, x: 0, z: -15, h: 10 },
+    { name: 'SENTIMENT', color: 0x00ff88, x: 15, z: -10, h: 7 },
+    { name: 'CODIGO', color: 0xffaa00, x: -12, z: 8, h: 9 },
+    { name: 'CONTENT', color: 0xff4444, x: 12, z: 8, h: 8 },
+    { name: 'SOPORTE', color: 0x4488ff, x: 0, z: 12, h: 6 },
+  ];
+
+  modules.forEach(m => createBuilding(m.x, m.z, m.h, m.color, m.name));
+
+  // Fuente central
+  const fountainGeo = new THREE.CylinderGeometry(2, 2.5, 1, 32);
+  const fountainMat = new THREE.MeshStandardMaterial({
+    color: 0x00f0ff,
+    transparent: true,
+    opacity: 0.3,
+    emissive: 0x00f0ff,
+    emissiveIntensity: 0.2
+  });
+  const fountain = new THREE.Mesh(fountainGeo, fountainMat);
+  fountain.position.set(0, 0.5, 0);
+  fountain.userData = { isZoneObject: true };
+  scene.add(fountain);
+
+  // Particulas de fuente
+  for (let i = 0; i < 30; i++) {
+    const pGeo = new THREE.SphereGeometry(0.05, 8, 8);
+    const pMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, transparent: true, opacity: 0.6 });
+    const particle = new THREE.Mesh(pGeo, pMat);
+    particle.position.set(
+      (Math.random() - 0.5) * 3,
+      Math.random() * 4 + 1,
+      (Math.random() - 0.5) * 3
+    );
+    particle.userData = { isZoneObject: true, velocity: Math.random() * 0.02 + 0.01 };
+    scene.add(particle);
+  }
+
+  // Portal a otras zonas
+  createPortal(20, 0, 0, 'torre-neural', 0xff00ff);
+  createPortal(-20, 0, 0, 'auditorio', 0x00ff88);
+}
+
+function buildTorreNeural() {
+  // Torre central masiva
+  const towerGeo = new THREE.CylinderGeometry(3, 5, 25, 8);
+  const towerMat = new THREE.MeshStandardMaterial({
+    color: 0x110022,
+    emissive: 0xff00ff,
+    emissiveIntensity: 0.1,
+    metalness: 0.9,
+    roughness: 0.1
+  });
+  const tower = new THREE.Mesh(towerGeo, towerMat);
+  tower.position.set(0, 12.5, 0);
+  tower.userData = { isZoneObject: true };
+  scene.add(tower);
+
+  // Anillos de luz
+  for (let i = 0; i < 5; i++) {
+    const ringGeo = new THREE.TorusGeometry(6 + i * 2, 0.1, 8, 64);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0xff00ff,
+      transparent: true,
+      opacity: 0.3 - i * 0.05
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.position.set(0, 5 + i * 4, 0);
+    ring.rotation.x = Math.PI / 2;
+    ring.userData = { isZoneObject: true, rotSpeed: 0.005 * (i % 2 === 0 ? 1 : -1) };
+    scene.add(ring);
+  }
+
+  // Label
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 128;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.8)';
+  ctx.fillRect(0, 0, 512, 128);
+  ctx.strokeStyle = '#ff00ff';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(4, 4, 504, 120);
+  ctx.fillStyle = '#ff00ff';
+  ctx.font = 'bold 48px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('TORRE NEURAL', 256, 75);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '20px Arial';
+  ctx.fillText('Centro de Procesamiento IA', 256, 105);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
+  sprite.position.set(0, 28, 0);
+  sprite.scale.set(12, 3, 1);
+  sprite.userData = { isZoneObject: true };
+  scene.add(sprite);
+
+  createPortal(0, 0, 20, 'plaza-central', 0x00f0ff);
+}
+
+function buildAuditorio() {
+  // Gradas semicirculares
+  for (let row = 0; row < 5; row++) {
+    const radius = 8 + row * 3;
+    const geo = new THREE.CylinderGeometry(radius, radius, 1, 32, 1, true, 0, Math.PI);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x001122,
+      side: THREE.DoubleSide,
+      metalness: 0.5
+    });
+    const grada = new THREE.Mesh(geo, mat);
+    grada.position.set(0, row * 0.8, 0);
+    grada.userData = { isZoneObject: true };
+    scene.add(grada);
+  }
+
+  // Escenario
+  const stageGeo = new THREE.BoxGeometry(10, 2, 6);
+  const stageMat = new THREE.MeshStandardMaterial({ color: 0x00ff88, emissive: 0x00ff88, emissiveIntensity: 0.1 });
+  const stage = new THREE.Mesh(stageGeo, stageMat);
+  stage.position.set(0, 1, -18);
+  stage.userData = { isZoneObject: true };
+  scene.add(stage);
+
+  // Pantalla holografica
+  const screenGeo = new THREE.PlaneGeometry(12, 7);
+  const screenMat = new THREE.MeshBasicMaterial({
+    color: 0x00ff88,
+    transparent: true,
+    opacity: 0.2,
+    side: THREE.DoubleSide
+  });
+  const screen = new THREE.Mesh(screenGeo, screenMat);
+  screen.position.set(0, 5, -20);
+  screen.userData = { isZoneObject: true };
+  scene.add(screen);
+
+  // Label
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 128;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.8)';
+  ctx.fillRect(0, 0, 512, 128);
+  ctx.strokeStyle = '#00ff88';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(4, 4, 504, 120);
+  ctx.fillStyle = '#00ff88';
+  ctx.font = 'bold 48px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('AUDITORIO HOLOGRAFICO', 256, 75);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '20px Arial';
+  ctx.fillText('Reuniones y Presentaciones', 256, 105);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
+  sprite.position.set(0, 10, -18);
+  sprite.scale.set(14, 3.5, 1);
+  sprite.userData = { isZoneObject: true };
+  scene.add(sprite);
+
+  createPortal(0, 0, 20, 'plaza-central', 0x00f0ff);
+}
+
+function buildJardin() {
+  // Arboles digitales
+  for (let i = 0; i < 15; i++) {
+    const angle = (i / 15) * Math.PI * 2;
+    const radius = 10 + Math.random() * 15;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+
+    // Tronco
+    const trunkGeo = new THREE.CylinderGeometry(0.3, 0.5, 4, 8);
+    const trunkMat = new THREE.MeshStandardMaterial({ color: 0x664422 });
+    const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+    trunk.position.set(x, 2, z);
+    trunk.userData = { isZoneObject: true };
+    scene.add(trunk);
+
+    // Copa
+    const crownGeo = new THREE.SphereGeometry(2 + Math.random(), 8, 8);
+    const crownColor = [0x00ff88, 0x00f0ff, 0xff00ff][i % 3];
+    const crownMat = new THREE.MeshStandardMaterial({
+      color: crownColor,
+      transparent: true,
+      opacity: 0.6,
+      emissive: crownColor,
+      emissiveIntensity: 0.1
+    });
+    const crown = new THREE.Mesh(crownGeo, crownMat);
+    crown.position.set(x, 5, z);
+    crown.userData = { isZoneObject: true };
+    scene.add(crown);
+  }
+
+  // Label
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 128;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.8)';
+  ctx.fillRect(0, 0, 512, 128);
+  ctx.strokeStyle = '#00ff88';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(4, 4, 504, 120);
+  ctx.fillStyle = '#00ff88';
+  ctx.font = 'bold 48px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('JARDIN DIGITAL', 256, 75);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '20px Arial';
+  ctx.fillText('Espacio de Relax y Creatividad', 256, 105);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
+  sprite.position.set(0, 10, 0);
+  sprite.scale.set(14, 3.5, 1);
+  sprite.userData = { isZoneObject: true };
+  scene.add(sprite);
+
+  createPortal(0, 0, 20, 'plaza-central', 0x00f0ff);
+}
+
+function buildDanielaHub() {
+  // Plataforma circular
+  const platformGeo = new THREE.CylinderGeometry(10, 12, 1, 32);
+  const platformMat = new THREE.MeshStandardMaterial({
+    color: 0x001133,
+    emissive: 0x00f0ff,
+    emissiveIntensity: 0.05,
+    metalness: 0.8
+  });
+  const platform = new THREE.Mesh(platformGeo, platformMat);
+  platform.position.set(0, 0.5, 0);
+  platform.userData = { isZoneObject: true };
+  scene.add(platform);
+
+  // Columnas
+  for (let i = 0; i < 8; i++) {
+    const angle = (i / 8) * Math.PI * 2;
+    const colGeo = new THREE.CylinderGeometry(0.3, 0.3, 12, 8);
+    const colMat = new THREE.MeshStandardMaterial({
+      color: 0x00f0ff,
+      transparent: true,
+      opacity: 0.3,
+      emissive: 0x00f0ff,
+      emissiveIntensity: 0.2
+    });
+    const col = new THREE.Mesh(colGeo, colMat);
+    col.position.set(Math.cos(angle) * 8, 6, Math.sin(angle) * 8);
+    col.userData = { isZoneObject: true };
+    scene.add(col);
+  }
+
+  // Holo-Daniela (esfera pulsante)
+  const holoGeo = new THREE.SphereGeometry(2, 32, 32);
+  const holoMat = new THREE.MeshStandardMaterial({
+    color: 0x00f0ff,
+    transparent: true,
+    opacity: 0.4,
+    emissive: 0x00f0ff,
+    emissiveIntensity: 0.5,
+    wireframe: true
+  });
+  const holo = new THREE.Mesh(holoGeo, holoMat);
+  holo.position.set(0, 7, 0);
+  holo.userData = { isZoneObject: true, isDaniela: true };
+  scene.add(holo);
+
+  // Label
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 128;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.8)';
+  ctx.fillRect(0, 0, 512, 128);
+  ctx.strokeStyle = '#00f0ff';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(4, 4, 504, 120);
+  ctx.fillStyle = '#00f0ff';
+  ctx.font = 'bold 48px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('DANIELA HUB', 256, 75);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '20px Arial';
+  ctx.fillText('Tu Asistente AI en el Metaverso', 256, 105);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
+  sprite.position.set(0, 11, 0);
+  sprite.scale.set(14, 3.5, 1);
+  sprite.userData = { isZoneObject: true };
+  scene.add(sprite);
+
+  createPortal(0, 0, 15, 'plaza-central', 0x00f0ff);
+}
+
+function createPortal(x, y, z, targetZone, color) {
+  const portalGeo = new THREE.TorusGeometry(2, 0.3, 16, 32);
+  const portalMat = new THREE.MeshStandardMaterial({
+    color: color,
+    emissive: color,
+    emissiveIntensity: 0.5,
+    transparent: true,
+    opacity: 0.8
+  });
+  const portal = new THREE.Mesh(portalGeo, portalMat);
+  portal.position.set(x, y + 2, z);
+  portal.userData = { isZoneObject: true, isPortal: true, targetZone: targetZone };
+  scene.add(portal);
+
+  // Particulas del portal
+  const particleGeo = new THREE.SphereGeometry(0.1, 8, 8);
+  const particleMat = new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.6 });
+  for (let i = 0; i < 20; i++) {
+    const p = new THREE.Mesh(particleGeo, particleMat);
+    const angle = (i / 20) * Math.PI * 2;
+    p.position.set(x + Math.cos(angle) * 2, y + 2, z + Math.sin(angle) * 2);
+    p.userData = { isZoneObject: true, isPortalParticle: true, angle: angle, centerX: x, centerZ: z };
+    scene.add(p);
+  }
+}
+
+// ======================
+// AVATARES
+// ======================
+function createUserAvatar() {
+  const group = new THREE.Group();
+
+  // Cuerpo
+  const bodyGeo = new THREE.CapsuleGeometry(0.4, 1.2, 4, 8);
+  const bodyMat = new THREE.MeshStandardMaterial({
+    color: CONFIG.colors.primary,
+    emissive: CONFIG.colors.primary,
+    emissiveIntensity: 0.2,
+    metalness: 0.5,
+    roughness: 0.3
+  });
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  body.position.y = 1.0;
+  group.add(body);
+
+  // Cabeza
+  const headGeo = new THREE.SphereGeometry(0.35, 16, 16);
+  const headMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    emissive: CONFIG.colors.primary,
+    emissiveIntensity: 0.1
+  });
+  const head = new THREE.Mesh(headGeo, headMat);
+  head.position.y = 1.9;
+  group.add(head);
+
+  // Ojos
+  const eyeGeo = new THREE.SphereGeometry(0.05, 8, 8);
+  const eyeMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
+  eyeL.position.set(-0.12, 1.95, 0.28);
+  group.add(eyeL);
+  const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
+  eyeR.position.set(0.12, 1.95, 0.28);
+  group.add(eyeR);
+
+  // Nombre flotante
+  const canvas = document.createElement('canvas');
+  canvas.width = 256; canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.7)';
+  ctx.fillRect(0, 0, 256, 64);
+  ctx.fillStyle = '#00f0ff';
+  ctx.font = 'bold 24px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('TU', 128, 40);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const nameSprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
+  nameSprite.position.y = 2.8;
+  nameSprite.scale.set(2, 0.5, 1);
+  nameSprite.name = 'nameTag';
+  group.add(nameSprite);
+
+  group.position.set(0, 0, 5);
+  scene.add(group);
+  userMesh = group;
+}
+
+function createRemoteAvatar(userId, name, color, position) {
+  const group = new THREE.Group();
+
+  const bodyGeo = new THREE.CapsuleGeometry(0.4, 1.2, 4, 8);
+  const bodyMat = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(color),
+    emissive: new THREE.Color(color),
+    emissiveIntensity: 0.2,
+    metalness: 0.5,
+    roughness: 0.3
+  });
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  body.position.y = 1.0;
+  group.add(body);
+
+  const headGeo = new THREE.SphereGeometry(0.35, 16, 16);
+  const headMat = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    emissive: new THREE.Color(color),
+    emissiveIntensity: 0.1
+  });
+  const head = new THREE.Mesh(headGeo, headMat);
+  head.position.y = 1.9;
+  group.add(head);
+
+  const eyeGeo = new THREE.SphereGeometry(0.05, 8, 8);
+  const eyeMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
+  eyeL.position.set(-0.12, 1.95, 0.28);
+  group.add(eyeL);
+  const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
+  eyeR.position.set(0.12, 1.95, 0.28);
+  group.add(eyeR);
+
+  // Nombre
+  const canvas = document.createElement('canvas');
+  canvas.width = 256; canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0.7)';
+  ctx.fillRect(0, 0, 256, 64);
+  ctx.fillStyle = color;
+  ctx.font = 'bold 20px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(name, 128, 38);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const nameSprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
+  nameSprite.position.y = 2.8;
+  nameSprite.scale.set(2.5, 0.6, 1);
+  group.add(nameSprite);
+
+  group.position.set(position.x, position.y, position.z);
+  scene.add(group);
+  remoteUsers.set(userId, { mesh: group, data: { name, color } });
+}
+
+function removeRemoteAvatar(userId) {
+  const user = remoteUsers.get(userId);
+  if (user) {
+    scene.remove(user.mesh);
+    remoteUsers.delete(userId);
+  }
+}
+
+function updateRemoteAvatar(userId, position, rotation) {
+  const user = remoteUsers.get(userId);
+  if (user && user.mesh) {
+    user.mesh.position.set(position.x, position.y, position.z);
+    if (rotation) {
+      user.mesh.rotation.set(rotation.x, rotation.y, rotation.z);
+    }
+  }
+}
+
+// ======================
+// WEBSOCKET
+// ======================
+function initWebSocket() {
+  try {
+    ws = new WebSocket(CONFIG.wsUrl);
+
+    ws.onopen = () => {
+      console.log('[WS] Conectado al metaverso');
+      updateConnectionStatus(true);
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      handleServerMessage(data);
+    };
+
+    ws.onclose = () => {
+      console.log('[WS] Desconectado');
+      updateConnectionStatus(false);
+      // Reintentar en 3 segundos
+      setTimeout(initWebSocket, 3000);
+    };
+
+    ws.onerror = (err) => {
+      console.error('[WS] Error:', err);
+      updateConnectionStatus(false);
+    };
+  } catch (e) {
+    console.error('[WS] No se pudo conectar:', e);
+    updateConnectionStatus(false);
+  }
+}
+
+function handleServerMessage(data) {
+  switch (data.type) {
+    case 'init':
+      myUserId = data.userId;
+      myName = data.name;
+      myColor = data.color;
+      document.getElementById('username-input').value = myName;
+      updateUserNameTag(myName);
+      addChatMessage('Sistema', '#00f0ff', `Bienvenido al Metaverse, ${myName}! Usuarios online: ${data.usersOnline}`);
+      // Cargar chat history
+      if (data.chatHistory) {
+        data.chatHistory.forEach(msg => addChatMessage(msg.name, msg.color, msg.message, msg.timestamp));
+      }
+      break;
+
+    case 'user-joined':
+      if (data.userId !== myUserId) {
+        createRemoteAvatar(data.userId, data.name, data.color, data.position);
+        addChatMessage('Sistema', '#00f0ff', `${data.name} ha entrado al metaverso`);
+      }
+      updateOnlineCount();
+      break;
+
+    case 'user-left':
+      removeRemoteAvatar(data.userId);
+      addChatMessage('Sistema', '#ff4444', `${data.name} ha salido`);
+      updateOnlineCount();
+      break;
+
+    case 'user-moved':
+      if (data.userId !== myUserId) {
+        updateRemoteAvatar(data.userId, data.position, data.rotation);
+      }
+      break;
+
+    case 'chat':
+      if (data.userId !== myUserId) {
+        addChatMessage(data.name, data.color, data.message, data.timestamp);
+      }
+      break;
+
+    case 'name-changed':
+      addChatMessage('Sistema', '#00f0ff', `${data.oldName} ahora es ${data.newName}`);
+      break;
+
+    case 'emote':
+      showEmote(data.userId, data.emote);
+      break;
+
+    case 'heartbeat':
+      updateOnlineCount(data.usersOnline);
+      break;
+
+    case 'error':
+      addChatMessage('Error', '#ff4444', data.message);
+      break;
+  }
+}
+
+function sendMessage(data) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify(data));
+  }
+}
+
+// ======================
+// UI FUNCTIONS
+// ======================
+function updateConnectionStatus(connected) {
+  const dot = document.getElementById('connection-dot');
+  const text = document.getElementById('connection-text');
+  if (connected) {
+    dot.classList.add('connected');
+    text.textContent = 'Conectado';
+  } else {
+    dot.classList.remove('connected');
+    text.textContent = 'Reconectando...';
+  }
+}
+
+function updateOnlineCount(count) {
+  const c = count || remoteUsers.size + 1;
+  document.getElementById('online-count').textContent = `${c} usuarios online`;
+  document.getElementById('users-list').innerHTML = '';
+
+  // Add self
+  const selfItem = document.createElement('div');
+  selfItem.className = 'user-item';
+  selfItem.innerHTML = `<div class="user-color" style="background:${myColor}"></div><span>${myName} (Tu)</span>`;
+  document.getElementById('users-list').appendChild(selfItem);
+
+  // Add others
+  remoteUsers.forEach((user, id) => {
+    const item = document.createElement('div');
+    item.className = 'user-item';
+    item.innerHTML = `<div class="user-color" style="background:${user.data.color}"></div><span>${user.data.name}</span>`;
+    document.getElementById('users-list').appendChild(item);
+  });
+}
+
+function addChatMessage(name, color, message, timestamp) {
+  const container = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg';
+  const time = timestamp ? new Date(timestamp).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }) : new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+  div.innerHTML = `<span class="time">[${time}]</span> <span class="name" style="color:${color}">${name}:</span> ${escapeHtml(message)}`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function sendChat() {
+  const input = document.getElementById('chat-text');
+  const msg = input.value.trim();
+  if (msg) {
+    sendMessage({ type: 'chat', message: msg });
+    addChatMessage(myName, myColor, msg);
+    input.value = '';
+  }
+}
+
+function changeZone(zone) {
+  currentZone = zone;
+  buildZone(zone);
+
+  // Actualizar UI
+  document.querySelectorAll('.zone-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const zoneNames = {
+    'plaza-central': 'Plaza Central',
+    'torre-neural': 'Torre Neural',
+    'auditorio': 'Auditorio Holografico',
+    'jardin': 'Jardin Digital',
+    'daniela': 'Daniela Hub'
+  };
+  document.getElementById('zone-indicator').textContent = zoneNames[zone].toUpperCase();
+  document.getElementById('current-zone').textContent = zoneNames[zone];
+
+  sendMessage({ type: 'zone-change', zone: zone });
+
+  // Reposicionar avatar
+  if (userMesh) {
+    userMesh.position.set(0, 0, 5);
+  }
+}
+
+function sendEmote(emote) {
+  sendMessage({ type: 'emote', emote: emote });
+  showEmote(myUserId, emote);
+}
+
+function showEmote(userId, emote) {
+  const emotes = {
+    'wave': '👋',
+    'dance': '💃',
+    'clap': '👏',
+    'think': '🤔',
+    'heart': '❤️'
+  };
+
+  let mesh;
+  if (userId === myUserId && userMesh) {
+    mesh = userMesh;
+  } else {
+    const user = remoteUsers.get(userId);
+    if (user) mesh = user.mesh;
+  }
+
+  if (mesh) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128; canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+    ctx.font = '80px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(emotes[emote] || '✨', 64, 90);
+
+    const tex = new THREE.CanvasTexture(canvas);
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+    sprite.position.set(0, 3.5, 0);
+    sprite.scale.set(1.5, 1.5, 1);
+    mesh.add(sprite);
+
+    // Animar y eliminar
+    let opacity = 1;
+    const anim = setInterval(() => {
+      opacity -= 0.02;
+      sprite.material.opacity = opacity;
+      sprite.position.y += 0.02;
+      if (opacity <= 0) {
+        clearInterval(anim);
+        mesh.remove(sprite);
+      }
+    }, 50);
+  }
+}
+
+function enterMetaverse() {
+  const name = document.getElementById('username-input').value.trim();
+  if (name) {
+    myName = name.substring(0, 20).replace(/[^\w\s]/g, '');
+    document.getElementById('name-modal').classList.add('hidden');
+    updateUserNameTag(myName);
+    sendMessage({ type: 'name-change', name: myName });
+  }
+}
+
+function updateUserNameTag(name) {
+  if (userMesh) {
+    const nameTag = userMesh.getObjectByName('nameTag');
+    if (nameTag) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256; canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = 'rgba(0,0,0,0.7)';
+      ctx.fillRect(0, 0, 256, 64);
+      ctx.fillStyle = myColor;
+      ctx.font = 'bold 24px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(name, 128, 40);
+
+      nameTag.material.map = new THREE.CanvasTexture(canvas);
+      nameTag.material.needsUpdate = true;
+    }
+  }
+}
+
+// ======================
+// CONTROLES Y MOVIMIENTO
+// ======================
+const keys = {};
+function onKeyDown(e) {
+  keys[e.key.toLowerCase()] = true;
+
+  if (e.key === 'Enter' && document.activeElement.id === 'chat-text') {
+    sendChat();
+  }
+
+  // Movimiento
+  if (!document.activeElement.matches('input')) {
+    const speed = 0.3;
+    let moved = false;
+    const pos = userMesh.position;
+
+    if (e.key === 'w' || e.key === 'arrowup') { pos.z -= speed; moved = true; }
+    if (e.key === 's' || e.key === 'arrowdown') { pos.z += speed; moved = true; }
+    if (e.key === 'a' || e.key === 'arrowleft') { pos.x -= speed; moved = true; }
+    if (e.key === 'd' || e.key === 'arrowright') { pos.x += speed; moved = true; }
+
+    if (moved) {
+      sendMessage({
+        type: 'position',
+        position: { x: pos.x, y: pos.y, z: pos.z },
+        rotation: { x: userMesh.rotation.x, y: userMesh.rotation.y, z: userMesh.rotation.z }
+      });
+    }
+  }
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// ======================
+// ANIMACION PRINCIPAL
+// ======================
+function animate() {
+  requestAnimationFrame(animate);
+
+  const delta = clock.getDelta();
+  const time = clock.getElapsedTime();
+
+  // FPS counter
+  frameCount++;
+  const now = performance.now();
+  if (now - lastFpsTime >= 1000) {
+    document.getElementById('fps-counter').textContent = frameCount;
+    frameCount = 0;
+    lastFpsTime = now;
+  }
+
+  // Animar particulas de fuente
+  scene.traverse(child => {
+    if (child.userData.isPortalParticle) {
+      child.userData.angle += delta * 2;
+      child.position.x = child.userData.centerX + Math.cos(child.userData.angle) * 2;
+      child.position.z = child.userData.centerZ + Math.sin(child.userData.angle) * 2;
+    }
+    if (child.userData.rotSpeed) {
+      child.rotation.z += child.userData.rotSpeed;
+    }
+    if (child.userData.isDaniela) {
+      child.rotation.y += delta * 0.5;
+      child.position.y = 7 + Math.sin(time * 2) * 0.3;
+      const scale = 1 + Math.sin(time * 3) * 0.05;
+      child.scale.set(scale, scale, scale);
+    }
+  });
+
+  // Animar avatar flotante
+  if (userMesh) {
+    userMesh.position.y = Math.sin(time * 2) * 0.1;
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+// ======================
+// INICIO
+// ======================
+window.addEventListener('DOMContentLoaded', () => {
+  // Mostrar loading
+  setTimeout(() => {
+    document.getElementById('loading-screen').classList.add('hidden');
+    document.getElementById('name-modal').classList.remove('hidden');
+  }, 3000);
+
+  initThree();
+  initWebSocket();
+});
+</script>
+</body>
+</html>

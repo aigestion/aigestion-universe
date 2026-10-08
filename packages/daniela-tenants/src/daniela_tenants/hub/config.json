@@ -1,0 +1,11 @@
+{
+ "min_bateria": 25,
+ "min_bateria_cargando": 5,
+ "max_temperatura": 42.0,
+ "silencio_inicio": "00:00",
+ "silencio_fin": "23:59",
+ "respetar_silencio": true,
+ "mantener_si_cargando": true,
+ "usar_job_scheduler": true,
+ "emergencia_min": 15
+}

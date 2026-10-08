@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniela OS - Epic PC Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root { --cyan:#00f0ff; --magenta:#ff0055; --green:#22c55e; --bg:#030814; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:#e2e8f0; font-family:'Rajdhani',sans-serif; min-height:100vh; }
+    .hero { text-align:center; padding:60px 20px 30px; }
+    .hero h1 { font-family:'Orbitron',monospace; font-size:32px; color:var(--cyan); letter-spacing:6px; text-shadow:0 0 30px rgba(0,240,255,0.3); }
+    .hero p { font-size:14px; color:#64748b; margin-top:8px; letter-spacing:2px; }
+    .section-title { font-family:'Orbitron',monospace; font-size:16px; color:var(--cyan); letter-spacing:3px; text-align:center; margin:30px 0 16px; padding-bottom:8px; border-bottom:1px solid rgba(0,240,255,0.15); max-width:1200px; margin-left:auto; margin-right:auto; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:16px; max-width:1200px; margin:0 auto; padding:0 30px; }
+    .card { background:rgba(3,8,20,0.8); border:1px solid rgba(0,240,255,0.12); border-radius:14px; padding:20px; transition:all 0.3s; cursor:pointer; position:relative; overflow:hidden; }
+    .card:hover { border-color:var(--cyan); box-shadow:0 0 30px rgba(0,240,255,0.12); transform:translateY(-4px); }
+    .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:0; transition:opacity 0.3s; }
+    .card:hover::before { opacity:1; }
+    .card-icon { font-size:36px; margin-bottom:10px; }
+    .card-title { font-family:'Orbitron',monospace; font-size:14px; color:var(--cyan); letter-spacing:2px; margin-bottom:6px; }
+    .card-desc { font-size:12px; color:#94a3b8; line-height:1.5; }
+    .card-port { position:absolute; top:12px; right:12px; font-family:'Share Tech Mono',monospace; font-size:9px; color:#64748b; background:rgba(0,240,255,0.05); padding:2px 6px; border-radius:4px; }
+    .footer { text-align:center; padding:40px 20px; font-size:11px; color:#475569; }
+    .footer a { color:var(--cyan); text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>EPIC PC EXPERIENCE</h1>
+    <p>62 AI-powered systems for your desktop</p>
+  </div>
+
+  <!-- CORE SYSTEMS (1-10) -->
+  <div class="section-title">CORE SYSTEMS</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:5010')">
+      <span class="card-port">:5010</span>
+      <div class="card-icon">🎤</div>
+      <div class="card-title">VOICE AI DESKTOP</div>
+      <div class="card-desc">Wake word "Hey Daniela" - voice commands to open apps, search files, control volume, take screenshots</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5011')">
+      <span class="card-port">:5011</span>
+      <div class="card-icon">🎨</div>
+      <div class="card-title">NEURAL WALLPAPER</div>
+      <div class="card-desc">Dynamic wallpaper that reacts to CPU load, time of day, and system activity with particle effects</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5012')">
+      <span class="card-port">:5012</span>
+      <div class="card-icon">🌌</div>
+      <div class="card-title">3D FILE GALAXY</div>
+      <div class="card-desc">File manager as a 3D galaxy - folders are stars, files orbit as planets, navigate by clicking</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5013')">
+      <span class="card-port">:5013</span>
+      <div class="card-icon">🧠</div>
+      <div class="card-title">NOTIFICATION BRAIN</div>
+      <div class="card-desc">AI-powered hub that summarizes 50 messages into 1, prioritizes by urgency, learns what you ignore</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5014')">
+      <span class="card-port">:5014</span>
+      <div class="card-icon">🔮</div>
+      <div class="card-title">SYSTEM HOLOGRAM</div>
+      <div class="card-desc">Real-time 3D hologram of PC health - CPU=brain glow, RAM=water level, disk=terrain heightmap</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5015')">
+      <span class="card-port">:5015</span>
+      <div class="card-icon">🤖</div>
+      <div class="card-title">CODE COPILOT</div>
+      <div class="card-desc">Floating overlay that explains code, finds bugs in real-time, suggests completions as you type</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5016')">
+      <span class="card-port">:5016</span>
+      <div class="card-icon">🔗</div>
+      <div class="card-title">CROSS-DEVICE TELEPATHY</div>
+      <div class="card-desc">Seamless phone-PC handoff: clipboard sync, file transfer, continue reading where you left off</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5017')">
+      <span class="card-port">:5017</span>
+      <div class="card-icon">🚀</div>
+      <div class="card-title">PREDICTIVE LAUNCHER</div>
+      <div class="card-desc">AI learns your patterns - suggests apps at 9AM, after lunch, Friday evening before you click</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5018')">
+      <span class="card-port">:5018</span>
+      <div class="card-icon">🔍</div>
+      <div class="card-title">AR DESKTOP</div>
+      <div class="card-desc">Webcam AR: hand gestures, face tracking, virtual monitors floating in space, photo capture</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5019')">
+      <span class="card-port">:5019</span>
+      <div class="card-icon">🧬</div>
+      <div class="card-title">LIVING ORGANISM</div>
+      <div class="card-desc">Your PC becomes a digital pet - happy when healthy, stressed when overloaded, follows your mouse</div>
+    </div>
+  </div>
+
+  <!-- INTELLIGENCE & ASSISTANTS (11-20) -->
+  <div class="section-title">INTELLIGENCE & ASSISTANTS</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:5021')">
+      <span class="card-port">:5021</span>
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">AI MEMORY PALACE</div>
+      <div class="card-desc">Semantic activity history - remembers everything you do on your PC, searchable by context</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5022')">
+      <span class="card-port">:5022</span>
+      <div class="card-icon">🌙</div>
+      <div class="card-title">DREAM LOGGER</div>
+      <div class="card-desc">Automatic visual diary - screenshots + context every 30 minutes, mood tracking</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5023')">
+      <span class="card-port">:5023</span>
+      <div class="card-icon">🔄</div>
+      <div class="card-title">CONTEXT SWITCHER</div>
+      <div class="card-desc">Smart Alt+Tab - saves/restores window layouts per context (work, coding, gaming)</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5024')">
+      <span class="card-port">:5024</span>
+      <div class="card-icon">📁</div>
+      <div class="card-title">AI AUTO-ORGANIZER</div>
+      <div class="card-desc">Classifies and moves files automatically by content/type - no more messy Downloads</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5025')">
+      <span class="card-port">:5025</span>
+      <div class="card-icon">🎯</div>
+      <div class="card-title">FOCUS MODE</div>
+      <div class="card-desc">Productivity mode - blocks distractions, Pomodoro timer, lo-fi music, task tracking</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5026')">
+      <span class="card-port">:5026</span>
+      <div class="card-icon">⌨️</div>
+      <div class="card-title">TYPING PREDICTOR</div>
+      <div class="card-desc">Learns your writing style and autocompletes full sentences as you type</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5027')">
+      <span class="card-port">:5027</span>
+      <div class="card-icon">📋</div>
+      <div class="card-title">MEETING PREPPER</div>
+      <div class="card-desc">5 min before a meeting, prepares: tabs, docs, files, and a context summary</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5028')">
+      <span class="card-port">:5028</span>
+      <div class="card-icon">📝</div>
+      <div class="card-title">POST-MEETING DIGEST</div>
+      <div class="card-desc">Transcribes audio, generates summary, extracts action items, creates calendar events</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5029')">
+      <span class="card-port">:5029</span>
+      <div class="card-icon">📧</div>
+      <div class="card-title">EMAIL PRIORITY BRAIN</div>
+      <div class="card-desc">Classifies emails by real urgency, auto-replies to trivial ones, learns your patterns</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5030')">
+      <span class="card-port">:5030</span>
+      <div class="card-icon">🕸️</div>
+      <div class="card-title">KNOWLEDGE WEAVER</div>
+      <div class="card-desc">Connects ideas between different apps - email mentions file which is in project</div>
+    </div>
+  </div>
+
+  <!-- VISUAL & EXPERIENCE (21-30) -->
+  <div class="section-title">VISUAL & EXPERIENCE</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:5031')">
+      <span class="card-port">:5031</span>
+      <div class="card-icon">🌅</div>
+      <div class="card-title">AMBIENT WALLPAPER</div>
+      <div class="card-desc">Dynamic wallpaper that reacts to weather, time of day, music, and system activity</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5032')">
+      <span class="card-port">:5032</span>
+      <div class="card-icon">🌿</div>
+      <div class="card-title">DESKTOP ZEN GARDEN</div>
+      <div class="card-desc">Floating ideas as stones/plants that grow into knowledge trees when watered</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5033')">
+      <span class="card-port">:5033</span>
+      <div class="card-icon">📚</div>
+      <div class="card-title">FLOATING WIKI</div>
+      <div class="card-desc">Contextual wiki that appears based on what you're working on - your knowledge base</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5034')">
+      <span class="card-port">:5034</span>
+      <div class="card-icon">⏰</div>
+      <div class="card-title">THEME TIME MACHINE</div>
+      <div class="card-desc">Change the entire PC look by decade: Windows 95, Aero, Metro, Neumorphism, Cyberpunk</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5035')">
+      <span class="card-port">:5035</span>
+      <div class="card-icon">🐱</div>
+      <div class="card-title">DESKTOP PETS 2.0</div>
+      <div class="card-desc">Digital pets that react to your productivity - feed them, pet them, watch them grow</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5036')">
+      <span class="card-port">:5036</span>
+      <div class="card-icon">💚</div>
+      <div class="card-title">CODE RAIN MATRIX</div>
+      <div class="card-desc">Falling code background - Matrix-style with your own code, adjustable speed and colors</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5037')">
+      <span class="card-port">:5037</span>
+      <div class="card-icon">👾</div>
+      <div class="card-title">PIXEL ART DASHBOARD</div>
+      <div class="card-desc">Dashboard estilo 8-bit que muestra stats del sistema - CPU, RAM, Disco, Red</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5038')">
+      <span class="card-port">:5038</span>
+      <div class="card-icon">📅</div>
+      <div class="card-title">HOLOGRAPHIC CALENDAR</div>
+      <div class="card-desc">3D floating calendar that shows your week as a landscape with events</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5039')">
+      <span class="card-port">:5039</span>
+      <div class="card-icon">🎵</div>
+      <div class="card-title">SOUND VISUALIZER PRO</div>
+      <div class="card-desc">Real-time audio visualization with 4 modes: bars, wave, circle, particles</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5040')">
+      <span class="card-port">:5040</span>
+      <div class="card-icon">🌙</div>
+      <div class="card-title">NIGHT MODE ORCHESTRATOR</div>
+      <div class="card-desc">Smart night mode - adjusts brightness, color temp, sounds, and wallpaper automatically</div>
+    </div>
+  </div>
+
+  <!-- PRODUCTIVITY & AUTOMATION (31-40) -->
+  <div class="section-title">PRODUCTIVITY & AUTOMATION</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:5041')">
+      <span class="card-port">:5041</span>
+      <div class="card-icon">📋</div>
+      <div class="card-title">SMART CLIPBOARD HISTORY</div>
+      <div class="card-desc">Infinite clipboard history with search, categories, pinning, and quick paste</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5042')">
+      <span class="card-port">:5042</span>
+      <div class="card-icon">📸</div>
+      <div class="card-title">AUTO-SCREENSHOT CONTEXT</div>
+      <div class="card-desc">Screenshots with automatic context - what app was active, searchable history</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5043')">
+      <span class="card-port">:5043</span>
+      <div class="card-icon">✏️</div>
+      <div class="card-title">BATCH FILE RENAMER AI</div>
+      <div class="card-desc">Smart batch renaming by content, date, pattern, or find/replace</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5044')">
+      <span class="card-port">:5044</span>
+      <div class="card-icon">👁️</div>
+      <div class="card-title">SMART FILE WATCHER</div>
+      <div class="card-desc">Monitors folders and executes actions on file events - create, modify, delete</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5045')">
+      <span class="card-port">:5045</span>
+      <div class="card-icon">⚡</div>
+      <div class="card-title">QUICK ACTIONS BAR</div>
+      <div class="card-desc">Floating bar with contextual quick actions - calculator, terminal, screenshot, volume</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5046')">
+      <span class="card-port">:5046</span>
+      <div class="card-icon">🎬</div>
+      <div class="card-title">DESKTOP MACROS AI</div>
+      <div class="card-desc">Records and replays macro sequences - keyboard, mouse, adaptive to screen changes</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5047')">
+      <span class="card-port">:5047</span>
+      <div class="card-icon">🌍</div>
+      <div class="card-title">CLIPBOARD TRANSLATOR</div>
+      <div class="card-desc">Auto-translates clipboard text - paste to translate, history, 9 languages</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5048')">
+      <span class="card-port">:5048</span>
+      <div class="card-icon">🔮</div>
+      <div class="card-title">SMART APP LAUNCHER 2.0</div>
+      <div class="card-desc">Fuzzy search launcher for apps, files, folders, URLs, commands - keyboard navigation</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5049')">
+      <span class="card-port">:5049</span>
+      <div class="card-icon">⏰</div>
+      <div class="card-title">FOCUS TIMER</div>
+      <div class="card-desc">Advanced Pomodoro with circular progress, session stats, and task tracking</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5050')">
+      <span class="card-port">:5050</span>
+      <div class="card-icon">💾</div>
+      <div class="card-title">AUTO-BACKUP BRAIN</div>
+      <div class="card-desc">Smart file backup - detects important files, scheduled backups, restore logs</div>
+    </div>
+  </div>
+
+  <!-- ENTERTAINMENT & GAMES (41-50) -->
+  <div class="section-title">ENTERTAINMENT & GAMES</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:5051')">
+      <span class="card-port">:5051</span>
+      <div class="card-icon">127918</div>
+      <div class="card-title">GAME LAUNCHER HUB</div>
+      <div class="card-desc">Central game launcher with stats - Steam, Epic, GOG, Xbox, and more</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5052')">
+      <span class="card-port">:5052</span>
+      <div class="card-icon">127925</div>
+      <div class="card-title">MUSIC REACTIVE DESKTOP</div>
+      <div class="card-desc">Desktop elements react to music - particles, colors, and shapes</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5053')">
+      <span class="card-port">:5053</span>
+      <div class="card-icon">127918</div>
+      <div class="card-title">RETRO EMULATOR HUB</div>
+      <div class="card-desc">Retro game emulators - NES, SNES, GBA, N64, PS2, PSP, and more</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5054')">
+      <span class="card-port">:5054</span>
+      <div class="card-icon">127925</div>
+      <div class="card-title">DESKTOP DJ</div>
+      <div class="card-desc">Mix audio from different sources with visual equalizer</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5055')">
+      <span class="card-port">:5055</span>
+      <div class="card-icon">128516</div>
+      <div class="card-title">MEME GENERATOR</div>
+      <div class="card-desc">Create memes from screenshots and templates with text overlays</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5056')">
+      <span class="card-port">:5056</span>
+      <div class="card-icon">127909</div>
+      <div class="card-title">STREAM OVERLAY</div>
+      <div class="card-desc">Stream overlay with alerts, chat, and widgets</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5057')">
+      <span class="card-port">:5057</span>
+      <div class="card-icon">128241</div>
+      <div class="card-title">VR DESKTOP</div>
+      <div class="card-desc">3D virtual desktop environment with Three.js - orbit, first person, top down</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5058')">
+      <span class="card-port">:5058</span>
+      <div class="card-icon">128187</div>
+      <div class="card-title">KEYBOARD SOUND ENGINE</div>
+      <div class="card-desc">Custom keyboard sounds with visual feedback - 8 sound packs</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5059')">
+      <span class="card-port">:5059</span>
+      <div class="card-icon">127908</div>
+      <div class="card-title">DESKTOP KARAOKE</div>
+      <div class="card-desc">Floating synced lyrics with music player and visualizer</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5060')">
+      <span class="card-port">:5060</span>
+      <div class="card-icon">127942</div>
+      <div class="card-title">ACHIEVEMENT SYSTEM</div>
+      <div class="card-desc">Gamification with 20 achievements, XP, levels, and challenges</div>
+    </div>
+  </div>
+
+  <!-- SECURITY & MONITORING (51-60) -->
+  <div class="section-title">SECURITY & MONITORING</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:5061')">
+      <span class="card-port">:5061</span>
+      <div class="card-icon">128301</div>
+      <div class="card-title">USB GUARDIAN</div>
+      <div class="card-desc">USB device monitoring - block unknown devices, scan for malware</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5062')">
+      <span class="card-port">:5062</span>
+      <div class="card-icon">128274</div>
+      <div class="card-title">SCREEN PRIVACY</div>
+      <div class="card-desc">Privacy filter - angled lines prevent shoulder surfing</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5063')">
+      <span class="card-port">:5063</span>
+      <div class="card-icon">128272</div>
+      <div class="card-title">PASSWORD VAULT</div>
+      <div class="card-desc">Encrypted password manager with generator and categories</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5064')">
+      <span class="card-port">:5064</span>
+      <div class="card-icon">127760</div>
+      <div class="card-title">NETWORK SENTINEL</div>
+      <div class="card-desc">Network monitoring - connections, traffic, and activity</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5065')">
+      <span class="card-port">:5065</span>
+      <div class="card-icon">128269</div>
+      <div class="card-title">FILE INTEGRITY</div>
+      <div class="card-desc">File integrity checker - scan directories, track changes</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5066')">
+      <span class="card-port">:5066</span>
+      <div class="card-icon">128221</div>
+      <div class="card-title">ENCRYPTED NOTES</div>
+      <div class="card-desc">Encrypted note-taking with categories and search</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5067')">
+      <span class="card-port">:5067</span>
+      <div class="card-icon">128106</div>
+      <div class="card-title">PARENTAL CONTROLS</div>
+      <div class="card-desc">Screen time limits, web filter, bedtime schedule</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5068')">
+      <span class="card-port">:5068</span>
+      <div class="card-icon">128737</div>
+      <div class="card-title">PRIVACY DASHBOARD</div>
+      <div class="card-desc">Privacy score, tracker detection, app permissions</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5069')">
+      <span class="card-port">:5069</span>
+      <div class="card-icon">128737</div>
+      <div class="card-title">FIREWALL MONITOR</div>
+      <div class="card-desc">Firewall rules, blocked IPs, traffic monitoring</div>
+    </div>
+    <div class="card" onclick="window.open('http://localhost:5070')">
+      <span class="card-port">:5070</span>
+      <div class="card-icon">128680</div>
+      <div class="card-title">THREAT DASHBOARD</div>
+      <div class="card-desc">Threat detection, security score, scan results</div>
+    </div>
+  </div>
+
+  <!-- FLOW BUILDER -->
+  <div class="section-title">AUTOMATION</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:9090')" style="grid-column:span 2">
+      <span class="card-port">:9090</span>
+      <div class="card-icon">128260</div>
+      <div class="card-title">FLOW BUILDER</div>
+      <div class="card-desc">Visual workflow constructor - drag-and-drop nodes, triggers, actions, conditions. Build automation flows visually.</div>
+    </div>
+  </div>
+
+  <!-- MULTI-MODAL -->
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:9091')" style="grid-column:span 2">
+      <span class="card-port">:9091</span>
+      <div class="card-icon">128247</div>
+      <div class="card-title">MULTI-MODAL</div>
+      <div class="card-desc">Vision, Audio, Image, Video - AI-powered analysis, generation, transcription, TTS/STT, OCR, face detection</div>
+    </div>
+  </div>
+
+  <!-- DANIELA OMNIPRESENTE -->
+  <div class="section-title">DANIELA OMNIPRESENTE - 50 IDEAS</div>
+  <div class="grid">
+    <div class="card" onclick="window.open('http://localhost:9200')" style="grid-column:span 2;border-color:#ff0066">
+      <span class="card-port">:9200</span>
+      <div class="card-icon" style="font-size:48px">10024</div>
+      <div class="card-title" style="color:#ff0066">DANIELA OMNIPRESENTE</div>
+      <div class="card-desc">50 ideas for a living AI across PC + phone. Ambient, Consciousness, Proactive, Emotional, Embodiment. The soul of Daniela.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Daniela OS v3.0 | Epic PC Experience | 112 Systems Active | <a href="http://localhost:5000">Daniela Server</a> | <a href="http://localhost:9200">Omnipresente</a>
+  </div>
+</body>
+</html>

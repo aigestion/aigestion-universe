@@ -1,0 +1,108 @@
+# docker-compose.android.yml - Stack de cliente: PWA + servicios edge
+# 
+# This compose file runs the Android app stack:
+# - pixel_bridge: PC-side bridge to Pixel phone
+# - termux_gateway: Termux API Gateway (runs on PC, connects to Pixel via WiFi)
+# - mobile_app: PWA served via simple HTTP server
+#
+# Usage:
+#   docker compose -f docker-compose.android.yml up -d
+#   docker compose -f docker-compose.android.yml logs -f
+
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: aig-redis-android
+    ports:
+      - "6379:6379"
+    networks:
+      - aig-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # Pixel Bridge Hub - PC side bridge to Pixel phone
+  pixel_bridge:
+    build:
+      context: ..
+      dockerfile: mobile-app/Dockerfile.edge
+    container_name: aig-pixel-bridge
+    command: ["python", "mobile-app/main.py", "--bridge"]
+    environment:
+      - PIXEL_TOKEN=${PIXEL_TOKEN}
+      - PIXEL_GATEWAY_PORT=8082
+      - PIXEL_IPS=${PIXEL_IPS:-192.168.1.133,192.168.1.170}
+      - PIXEL_IP=${PIXEL_IP:-192.168.1.133}
+      - PYTHONPATH=/app
+    volumes:
+      - ../data/pixel_bridge:/app/data/pixel_bridge
+      - ../.env:/app/.env:ro
+    networks:
+      - aig-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/api/pixel/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # Termux API Gateway - runs on PC, connects to Pixel via WiFi
+  termux_gateway:
+    build:
+      context: ..
+      dockerfile: mobile-app/Dockerfile.edge
+    container_name: aig-termux-gateway
+    command: ["python", "mobile-app/main.py", "--gateway"]
+    environment:
+      - PIXEL_GATEWAY_TOKEN=${PIXEL_TOKEN}
+      - PIXEL_GATEWAY_PORT=8082
+      - PYTHONPATH=/app
+    ports:
+      - "8082:8082"
+    networks:
+      - aig-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/api/pixel/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Mobile PWA Server
+  mobile_app:
+    build:
+      context: ..
+      dockerfile: mobile-app/Dockerfile.edge
+    container_name: aig-mobile-app
+    command: ["python", "mobile-app/main.py", "--mobile"]
+    environment:
+      - MOBILE_APP_PORT=8095
+      - PYTHONPATH=/app
+    ports:
+      - "8095:8095"
+    volumes:
+      - .:/app/mobile-app:ro
+    networks:
+      - aig-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8095/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  aig-network:
+    external: true
+    name: aig_aig-network

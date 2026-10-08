@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Daniela AR — E-18</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#07080d; color:#e8f6f8;
+         font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+         overflow:hidden; }
+  #hud { position:fixed; left:0; right:0; top:0; padding:14px; z-index:10;
+         pointer-events:none; text-shadow:0 1px 3px #000; }
+  #hud .chip { display:inline-block; background:rgba(0,0,0,.45);
+               border:1px solid rgba(77,208,225,.35); border-radius:999px;
+               padding:6px 12px; margin:0 6px 6px 0; font-size:13px; }
+  #frase { margin-top:8px; font-size:16px; line-height:1.35; max-width:34em; }
+  #pie { position:fixed; left:0; right:0; bottom:0; padding:14px; z-index:10;
+         display:flex; gap:10px; justify-content:center; }
+  button { pointer-events:auto; background:#0e7490; color:#fff; border:0;
+           border-radius:10px; padding:12px 18px; font-size:15px; font-weight:600; }
+  button:disabled { opacity:.45; }
+  #aviso { position:fixed; inset:auto 12px 68px 12px; background:rgba(120,0,0,.55);
+           border:1px solid #ff8a80; border-radius:10px; padding:10px; font-size:13px;
+           display:none; z-index:11; }
+  canvas { display:block; }
+</style>
+</head>
+<body>
+<div id="hud">
+  <span class="chip" id="chipEstado">comprobando WebXR…</span>
+  <span class="chip" id="chipPose">sin pose</span>
+  <div id="frase">Daniela AR — pulsá “Entrar en AR”.</div>
+</div>
+<div id="aviso"></div>
+<div id="pie">
+  <button id="btnAR" disabled>Entrar en AR</button>
+  <button id="btnPlano">Holograma plano</button>
+  <button id="btnAncla">Anclar aquí</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var ANCLAS = [{"id": "a1789157596", "nombre": "Puerta de Alcala", "lat": 40.4199, "lon": -3.6889, "alt": 0.0, "yaw": 0.0, "escala": 1.0, "color": "#4dd0e1", "creado": "2026-09-11T21:13:16", "visitas": 2, "vista": "2026-09-11T21:13:16", "nota": ""}];
+  var CFG = {"escala": 1.0, "cono_mirada": 35.0, "altura": 1.55, "color": "#4dd0e1", "auto_habla": true};
+  var API = "";                       // mismo origen: rutas relativas
+  var estado = document.getElementById("chipEstado");
+  var chipPose = document.getElementById("chipPose");
+  var fraseEl = document.getElementById("frase");
+  var aviso = document.getElementById("aviso");
+  var btnAR = document.getElementById("btnAR");
+  var btnPlano = document.getElementById("btnPlano");
+  var btnAncla = document.getElementById("btnAncla");
+
+  function decir(t) { fraseEl.textContent = t; }
+  function avisar(t) { aviso.style.display = "block"; aviso.textContent = t; }
+
+  if (!window.isSecureContext) {
+    avisar("Esta página no está en contexto seguro: WebXR no arrancará. " +
+           "Abre http://localhost:PUERTO/api/ar/scene desde el móvil " +
+           "(adb reverse), no por IP.");
+  }
+
+  // ---------- three.js ----------
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.01, 100);
+  camera.position.set(0, CFG.altura, 0);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.xr.enabled = true;
+  document.body.appendChild(renderer.domElement);
+
+  scene.add(new THREE.HemisphereLight(0xbfefff, 0x202030, 1.1));
+  var punto = new THREE.PointLight(0x4dd0e1, 1.2, 12);
+  punto.position.set(0, CFG.altura + 0.4, 0.6);
+  scene.add(punto);
+
+  // ---------- Daniela: anillos + núcleo + etiqueta ----------
+  var daniela = new THREE.Group();
+  var color = new THREE.Color(CFG.color || "#4dd0e1");
+  for (var i = 0; i < 3; i++) {
+    var geo = new THREE.TorusGeometry(0.16 + i * 0.055, 0.005 + i * 0.002, 12, 64);
+    var mat = new THREE.MeshBasicMaterial({ color: color, transparent: true,
+                                            opacity: 0.85 - i * 0.2 });
+    var anillo = new THREE.Mesh(geo, mat);
+    anillo.rotation.x = Math.PI / 2 * (i % 2);
+    daniela.add(anillo);
+  }
+  var nucleo = new THREE.Mesh(
+    new THREE.SphereGeometry(0.045, 24, 24),
+    new THREE.MeshBasicMaterial({ color: color }));
+  daniela.add(nucleo);
+  daniela.position.set(0, CFG.altura, -1.1);
+  daniela.scale.setScalar(CFG.escala || 1);
+  scene.add(daniela);
+
+  function etiqueta(texto) {
+    var c = document.createElement("canvas");
+    c.width = 512; c.height = 128;
+    var g = c.getContext("2d");
+    g.fillStyle = "rgba(0,0,0,0)"; g.fillRect(0, 0, 512, 128);
+    g.font = "600 44px system-ui, sans-serif";
+    g.fillStyle = "#e8f6f8"; g.textAlign = "center";
+    g.fillText(String(texto).slice(0, 28), 256, 74);
+    var tex = new THREE.CanvasTexture(c);
+    var spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+    spr.scale.set(0.6, 0.15, 1);
+    spr.position.set(0, 0.28, 0);
+    return spr;
+  }
+  var rotulo = etiqueta("Daniela");
+  daniela.add(rotulo);
+
+  // ---------- anclas del mundo real ----------
+  var grupoAnclas = new THREE.Group();
+  scene.add(grupoAnclas);
+  function pintarAnclas() {
+    while (grupoAnclas.children.length) grupoAnclas.remove(grupoAnclas.children[0]);
+    ANCLAS.forEach(function (a, i) {
+      var ang = (i / Math.max(ANCLAS.length, 1)) * Math.PI * 2;
+      var r = 2.2;
+      var m = new THREE.Mesh(
+        new THREE.OctahedronGeometry(0.08),
+        new THREE.MeshBasicMaterial({ color: new THREE.Color(a.color || "#4dd0e1"),
+                                      wireframe: true }));
+      m.position.set(Math.cos(ang) * r, CFG.altura - 0.2 + (i % 3) * 0.12,
+                     Math.sin(ang) * r);
+      m.add(etiqueta(a.nombre + " (" + a.visitas + ")"));
+      grupoAnclas.add(m);
+    });
+  }
+  pintarAnclas();
+
+  // ---------- envío de pose ----------
+  var ultimoEnvio = 0;
+  function extraerPose() {
+    var dir = new THREE.Vector3();
+    camera.getWorldDirection(dir);
+    var yaw = (Math.atan2(dir.x, -dir.z) * 180 / Math.PI + 360) % 360;
+    var pitch = Math.asin(Math.max(-1, Math.min(1, dir.y))) * 180 / Math.PI;
+    var p = camera.getWorldPosition(new THREE.Vector3());
+    return { yaw: yaw, pitch: pitch, roll: 0,
+             x: p.x, y: p.y, z: p.z, origen: renderer.xr.isPresenting ? "webxr" : "plano" };
+  }
+  function enviarPose(forzar) {
+    var ahora = performance.now();
+    if (!forzar && ahora - ultimoEnvio < 250) return;   // ~4 Hz
+    ultimoEnvio = ahora;
+    var pose = extraerPose();
+    chipPose.textContent = "yaw " + pose.yaw.toFixed(0) + "° · pitch " +
+                           pose.pitch.toFixed(0) + "°";
+    fetch(API + "/api/ar/pose", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pose)
+    }).then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.ok) actualizarMirada(pose); })
+      .catch(function () { });
+  }
+  function actualizarMirada(pose) {
+    fetch(API + "/api/ar/gaze?yaw=" + encodeURIComponent(pose.yaw) +
+          "&pitch=" + encodeURIComponent(pose.pitch))
+      .then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.frase) decir(d.frase); })
+      .catch(function () { });
+  }
+
+  // ---------- bucle ----------
+  var t0 = performance.now();
+  renderer.setAnimationLoop(function () {
+    var t = (performance.now() - t0) / 1000;
+    for (var i = 0; i < daniela.children.length; i++) {
+      var h = daniela.children[i];
+      if (h.geometry && h.geometry.type === "TorusGeometry") h.rotation.z = t * (0.4 + i * 0.2);
+    }
+    nucleo.scale.setScalar(1 + Math.sin(t * 2.2) * 0.12);
+    grupoAnclas.rotation.y = Math.sin(t * 0.15) * 0.05;
+    if (!renderer.xr.isPresenting) {
+      // Modo plano: orbita suave para que se vea algo en PC.
+      var r = 2.6, a = t * 0.25;
+      camera.position.set(Math.sin(a) * r, CFG.altura, Math.cos(a) * r);
+      camera.lookAt(daniela.position);
+    }
+    enviarPose(false);
+    renderer.render(scene, camera);
+  });
+
+  addEventListener("resize", function () {
+    camera.aspect = innerWidth / innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+
+  // ---------- WebXR ----------
+  var sesion = null;
+  if (navigator.xr) {
+    navigator.xr.isSessionSupported("immersive-ar").then(function (soportado) {
+      if (soportado) {
+        btnAR.disabled = false;
+        estado.textContent = "WebXR immersive-ar listo";
+      } else {
+        estado.textContent = "sin immersive-ar (modo plano)";
+        avisar("Este navegador no ofrece immersive-ar. Puedes seguir en modo " +
+               "holograma plano.");
+      }
+    }).catch(function () {
+      estado.textContent = "WebXR no disponible";
+    });
+  } else {
+    estado.textContent = "navigator.xr ausente";
+    avisar("Sin navigator.xr. Comprueba que abres la página por http://localhost " +
+           "(adb reverse) y no por IP.");
+  }
+
+  btnAR.addEventListener("click", function () {
+    if (!navigator.xr) return;
+    navigator.xr.requestSession("immersive-ar", {
+      optionalFeatures: ["local-floor", "dom-overlay"],
+      domOverlay: { root: document.getElementById("hud") }
+    }).then(function (s) {
+      sesion = s;
+      estado.textContent = "en AR";
+      return renderer.xr.setSession(s);
+    }).then(function () {
+      decir("Daniela anclada. Mueve la cabeza: te digo qué estás mirando.");
+      s = null;
+    }).catch(function (e) {
+      avisar("No se pudo entrar en AR: " + (e && e.message ? e.message : e));
+    });
+    var s = null;
+  });
+
+  btnPlano.addEventListener("click", function () {
+    if (sesion) { sesion.end(); sesion = null; }
+    estado.textContent = "holograma plano";
+    decir("Modo plano. Sin WebXR Daniela sigue aquí, flotando.");
+  });
+
+  btnAncla.addEventListener("click", function () {
+    if (!navigator.geolocation) { avisar("Sin geolocalización en el navegador."); return; }
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      fetch(API + "/api/ar/anchors", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ accion: "crear",
+                               lat: pos.coords.latitude, lon: pos.coords.longitude,
+                               alt: pos.coords.altitude || 0,
+                               nombre: "Ancla " + new Date().toLocaleTimeString() })
+      }).then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.ok) {
+            decir(d.accion === "visita"
+              ? ("Ya conocía este sitio: " + d.ancla.nombre + " (" + d.ancla.visitas + " visitas)")
+              : ("Ancla creada: " + d.ancla.nombre));
+            fetch(API + "/api/ar/anchors").then(function (r) { return r.json(); })
+              .then(function (l) { if (l && l.anclas) { ANCLAS = l.anclas; pintarAnclas(); } })
+              .catch(function () { });
+          } else { avisar("No se pudo anclar: " + (d && d.error ? d.error : "?")); }
+        }).catch(function (e) { avisar("Error de red al anclar: " + e); });
+    }, function (e) { avisar("Geolocalización denegada: " + e.message); },
+       { enableHighAccuracy: true, timeout: 10000 });
+  });
+})();
+</script>
+</body>
+</html>

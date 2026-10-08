@@ -1,0 +1,405 @@
+{
+  "current": "happy",
+  "history": [
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T21:15:54.620147"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T21:17:47.975007"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T21:53:52.014724"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T21:56:10.625289"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T22:03:21.778717"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T22:08:20.630020"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T22:14:35.176475"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T22:18:18.875860"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:03:19.647337"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:07:37.263417"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:11:11.659941"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:27:12.024212"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:29:54.049992"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:34:32.686701"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:40:28.231523"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:42:24.914392"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:44:29.183547"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:48:23.724203"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:50:18.041312"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-02T23:52:11.478897"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T01:14:09.217337"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T19:39:23.565410"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:09:54.858839"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:10:44.815609"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:13:58.737150"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:21:00.794756"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:26:37.867936"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:26:58.460026"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:31:47.282573"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T20:44:03.505261"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T21:13:33.196601"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T21:22:24.460843"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T21:23:12.377778"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-03T23:37:10.547015"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:00:59.827665"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:05:33.334870"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:10:19.775218"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:23:56.641811"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:24:27.361349"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:29:17.246855"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:30:15.423011"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:34:05.824941"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:39:16.764113"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T00:51:58.193932"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T01:03:30.502829"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T01:04:36.624670"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T01:12:58.476781"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T22:51:49.443991"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T22:58:55.015780"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T23:41:57.172120"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-04T23:48:31.407204"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T00:09:00.523610"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T00:15:15.923794"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T00:22:11.177942"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T00:35:25.075044"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T01:11:09.118694"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T01:17:48.802525"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T01:33:16.663572"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T01:50:29.250411"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T10:45:25.852201"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T10:51:12.633383"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T10:57:40.901332"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T11:47:53.011873"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T11:55:22.138666"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T12:26:53.323497"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T12:39:23.010035"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T13:14:32.032065"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T14:32:35.038028"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T16:48:44.590244"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T16:53:15.868995"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T17:13:17.220005"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T17:38:42.972143"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T18:03:25.092155"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T18:09:05.618436"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T18:15:07.827650"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T18:20:45.050326"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T18:26:57.163760"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T19:02:06.188389"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T19:09:48.648198"
+    },
+    {
+      "emotion": "happy",
+      "intensity": 0.8,
+      "timestamp": "2026-10-05T19:16:13.650970"
+    }
+  ]
+}

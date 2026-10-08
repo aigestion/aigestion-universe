@@ -1,0 +1,176 @@
+/* ============================================================
+   AIGestion Design System - Variables
+   Single source of truth for brand identity.
+   Brand kit: static/brand/brand_kit.json
+   ============================================================ */
+
+:root {
+  /* ---- Brand Colors (from brand_kit.json) ---- */
+  --color-primary:           #00ffff;   /* Cyan - main accent */
+  --color-primary-dark:      #0099ff;   /* Cyan dark - hover/active */
+  --color-primary-rgb:      0, 255, 255;
+
+  --color-secondary:         #ff0055;   /* Magenta - secondary accent */
+  --color-secondary-light:   #ff00aa;   /* Magenta light */
+  --color-secondary-rgb:    255, 0, 85;
+
+  --color-bg-dark:           #0b0f19;   /* Main background */
+  --color-bg-dark-blue:      #0f1428;   /* Alt background */
+  --color-panel:             #1a1f35;   /* Panel/card background */
+  --color-panel-rgb:         26, 31, 53;
+
+  /* ---- Derived UI Colors ---- */
+  --color-bg:                var(--color-bg-dark);
+  --color-bg-elevated:       var(--color-panel);
+  --color-surface:           rgba(26, 31, 53, 0.85);
+  --color-surface-glass:      rgba(26, 31, 53, 0.55);
+  --color-border:            rgba(0, 255, 255, 0.15);
+  --color-border-strong:     rgba(0, 255, 255, 0.35);
+  --color-border-magenta:    rgba(255, 0, 85, 0.25);
+
+  --color-text:              #e8ecf4;
+  --color-text-secondary:    #8892b0;
+  --color-text-muted:        #5d6885;
+  --color-text-bright:       #ffffff;
+
+  --color-success:           #00ff88;
+  --color-warning:           #ffaa00;
+  --color-danger:            #ff3355;
+  --color-info:              #00ccff;
+
+  /* ---- Agent Identity Colors ----
+     Each of the 9 agents has a distinct accent color.
+     Used in: dashboard cards, activity feed, message graph, toasts.
+   */
+  --agent-daniela:           #00ffff;   /* Core - Ciber-Ejecutiva */
+  --agent-guardian:          #ff0055;   /* Core - Security */
+  --agent-analyst:           #00ff88;   /* Core - Analytics */
+  --agent-operator:          #ffaa00;   /* Core - Operations */
+
+  --agent-coder:             #aa00ff;   /* Squad - Code */
+  --agent-correo:            #0099ff;   /* Squad - Email */
+  --agent-calendario:        #ff6600;   /* Squad - Calendar */
+  --agent-documentos:        #00ffaa;   /* Squad - Documents */
+  --agent-redes:             #ff00aa;   /* Squad - Social */
+  --agent-vigia:             #ff4444;   /* Squad - Monitor */
+
+  /* ---- Typography ---- */
+  --font-heading:            'Segoe UI', 'Arial Black', sans-serif;
+  --font-body:               'Segoe UI', sans-serif;
+  --font-mono:               'Consolas', 'Courier New', monospace;
+
+  --fs-xs:                   0.7rem;
+  --fs-sm:                   0.8rem;
+  --fs-base:                 0.95rem;
+  --fs-md:                   1.1rem;
+  --fs-lg:                   1.4rem;
+  --fs-xl:                   1.8rem;
+  --fs-2xl:                   2.4rem;
+  --fs-3xl:                   3.2rem;
+
+  --fw-normal:               400;
+  --fw-medium:               500;
+  --fw-bold:                 700;
+  --fw-black:                900;
+
+  --lh-tight:                1.2;
+  --lh-normal:               1.5;
+  --lh-relaxed:              1.75;
+
+  /* ---- Spacing Scale ---- */
+  --space-0:                 0;
+  --space-1:                 4px;
+  --space-2:                 8px;
+  --space-3:                 12px;
+  --space-4:                 16px;
+  --space-5:                 20px;
+  --space-6:                 24px;
+  --space-8:                 32px;
+  --space-10:                40px;
+  --space-12:                48px;
+  --space-16:                64px;
+
+  /* ---- Border Radius ---- */
+  --radius-sm:               4px;
+  --radius-md:               8px;
+  --radius-lg:               16px;
+  --radius-full:             9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm:               0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md:               0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg:               0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow-cyan:        0 0 20px rgba(0, 255, 255, 0.3);
+  --shadow-glow-magenta:     0 0 20px rgba(255, 0, 85, 0.3);
+
+  /* ---- Transitions ---- */
+  --transition-fast:         150ms ease;
+  --transition-normal:       250ms ease;
+  --transition-slow:         400ms ease;
+
+  /* ---- Z-Index Scale ---- */
+  --z-base:                  1;
+  --z-overlay:               10;
+  --z-hud:                   100;
+  --z-modal:                 1000;
+  --z-toast:                 2000;
+  --z-loading:               5000;
+
+  /* ---- Layout ---- */
+  --sidebar-width:           320px;
+  --hud-height:              60px;
+  --content-max-width:       1200px;
+  --safe-area-top:           env(safe-area-inset-top, 0px);
+  --safe-area-bottom:        env(safe-area-inset-bottom, 0px);
+  --safe-area-left:          env(safe-area-inset-left, 0px);
+  --safe-area-right:         env(safe-area-inset-right, 0px);
+
+  /* ---- Gradients ---- */
+  --gradient-brand:          linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  --gradient-brand-subtle:   linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 85, 0.1));
+  --gradient-panel:          linear-gradient(180deg, rgba(26, 31, 53, 0.9), rgba(15, 20, 40, 0.95));
+  --gradient-glow:           radial-gradient(circle at 50% 0%, rgba(0, 255, 255, 0.15), transparent 70%);
+}
+
+/* ---- Light Theme Override ---- */
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"], :root:not([data-theme]) {
+    --color-bg:              #f0f4f8;
+    --color-bg-elevated:     #ffffff;
+    --color-surface:         rgba(255, 255, 255, 0.9);
+    --color-surface-glass:   rgba(255, 255, 255, 0.7);
+    --color-border:          rgba(0, 153, 255, 0.2);
+    --color-border-strong:   rgba(0, 153, 255, 0.4);
+    --color-text:            #1a1a2e;
+    --color-text-secondary:  #4a5568;
+    --color-text-muted:      #8892a0;
+    --color-panel:           #ffffff;
+    --color-panel-rgb:       255, 255, 255;
+    --shadow-glow-cyan:      0 0 15px rgba(0, 153, 255, 0.2);
+  }
+}
+
+/* ---- Explicit theme overrides ---- */
+:root[data-theme="light"] {
+  --color-bg:                #f0f4f8;
+  --color-bg-elevated:       #ffffff;
+  --color-surface:           rgba(255, 255, 255, 0.9);
+  --color-surface-glass:     rgba(255, 255, 255, 0.7);
+  --color-border:            rgba(0, 153, 255, 0.2);
+  --color-border-strong:     rgba(0, 153, 255, 0.4);
+  --color-text:              #1a1a2e;
+  --color-text-secondary:    #4a5568;
+  --color-text-muted:        #8892a0;
+  --color-panel:             #ffffff;
+  --color-panel-rgb:         255, 255, 255;
+  --shadow-glow-cyan:        0 0 15px rgba(0, 153, 255, 0.2);
+}
+
+/* 3D experiences always stay dark regardless of theme */
+.scene-3d {
+  --color-bg:                #0b0f19;
+  --color-bg-elevated:       #1a1f35;
+  --color-surface:           rgba(26, 31, 53, 0.85);
+  --color-text:              #e8ecf4;
+  --color-text-secondary:    #8892b0;
+}

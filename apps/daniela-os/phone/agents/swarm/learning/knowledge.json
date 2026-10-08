@@ -1,0 +1,888 @@
+{
+  "patterns": [],
+  "insights": [
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-01T01:36:17.547144"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-01T01:40:33.950402"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-01T02:58:16.544827"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-01T02:58:16.650275"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-01T03:00:23.496589"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-01T03:00:23.597378"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-01T03:03:22.048565"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-01T03:03:22.374854"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-01T03:08:33.427599"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-01T03:08:33.694219"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-01T03:14:32.647164"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-01T03:14:32.845882"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T14:44:56.392804"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T14:44:58.669978"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T19:41:30.839830"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T19:41:33.270940"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T20:12:49.211077"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T20:12:51.619555"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T20:16:05.396418"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T20:16:07.682913"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T20:33:58.874407"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T20:34:00.667018"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T21:15:58.118045"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T21:15:59.935493"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-03T21:25:39.460066"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-03T21:25:41.322122"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:03:40.064097"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:03:42.424564"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:08:08.224839"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:08:10.731990"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:09:13.329528"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:09:15.875968"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:12:49.668542"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:12:52.205721"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:32:55.441744"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:32:57.840723"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:36:34.612835"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:36:37.165545"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:41:47.832235"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:41:50.310164"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T00:54:30.736080"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T00:54:33.358117"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T01:07:08.756076"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T01:07:11.375072"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T22:55:22.307653"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T22:55:22.965061"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T23:02:22.446389"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T23:02:23.115636"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T23:45:32.837138"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T23:45:33.521575"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-04T23:52:06.358523"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-04T23:52:06.962120"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T00:12:34.538513"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T00:12:35.163600"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T00:18:37.449791"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T00:18:38.116354"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T00:25:46.602529"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T00:25:47.358168"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T00:39:05.836354"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T00:39:06.462575"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T01:14:41.185346"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T01:14:41.805565"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T01:21:18.506941"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T01:21:19.108660"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T01:36:47.740144"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T01:36:48.494196"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T01:54:00.990650"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T01:54:01.691424"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T10:48:52.011163"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T10:48:52.791127"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T10:54:38.099566"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T10:54:38.830497"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T11:01:23.166621"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T11:01:23.943021"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T11:51:14.896180"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T11:51:15.787233"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T11:58:56.111992"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T11:58:56.824027"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T12:30:18.097430"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T12:30:18.867299"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T13:18:17.023280"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T13:18:18.038917"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T14:36:07.911230"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T14:36:08.752158"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T16:57:58.419875"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T16:57:59.519180"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T17:16:49.778356"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T17:16:50.671164"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T18:06:53.269948"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T18:06:53.900999"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T18:12:34.605372"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T18:12:35.267897"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T18:18:37.444481"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T18:18:38.234136"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T19:05:53.716155"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T19:05:54.548481"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "option1"
+      },
+      "pattern": "test",
+      "outcome": "option1",
+      "learned": "2026-10-05T19:13:25.016035"
+    },
+    {
+      "interaction": {
+        "pattern": "test",
+        "outcome": "success"
+      },
+      "pattern": "test",
+      "outcome": "success",
+      "learned": "2026-10-05T19:13:25.859091"
+    }
+  ],
+  "last_learning": "2026-10-05T19:13:25.859091"
+}

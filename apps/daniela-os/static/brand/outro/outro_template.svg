@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <radialGradient id="bgO" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" stop-color="#0f1428"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </radialGradient>
+    <linearGradient id="cyO" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#0099ff"/>
+    </linearGradient>
+    <linearGradient id="mgO" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0055"/>
+      <stop offset="100%" stop-color="#ff00aa"/>
+    </linearGradient>
+    <filter id="gO" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b1"/>
+      <feGaussianBlur stdDeviation="16" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="gOs" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1080" height="1920" fill="url(#bgO)"/>
+
+  <!-- Grid -->
+  <g stroke="#1a2a4a" stroke-width="1.5" opacity="0.1">
+    <line x1="0" y1="480" x2="1080" y2="480"/>
+    <line x1="0" y1="960" x2="1080" y2="960"/>
+    <line x1="0" y1="1440" x2="1080" y2="1440"/>
+    <line x1="270" y1="0" x2="270" y2="1920"/>
+    <line x1="540" y1="0" x2="540" y2="1920"/>
+    <line x1="810" y1="0" x2="810" y2="1920"/>
+  </g>
+
+  <!-- Corner brackets -->
+  <g stroke="#ff0055" stroke-width="4" fill="none" opacity="0.4" filter="url(#gOs)">
+    <polyline points="40,100 40,40 100,40"/>
+    <polyline points="980,40 1040,40 1040,100"/>
+    <polyline points="40,1820 40,1880 100,1880"/>
+    <polyline points="980,1880 1040,1880 1040,1820"/>
+  </g>
+
+  <!-- "GRACIAS" text -->
+  <text x="540" y="600" text-anchor="middle"
+        font-family="'Segoe UI', 'Arial Black', sans-serif"
+        font-size="120" font-weight="bold"
+        fill="#00ffff" letter-spacing="20"
+        filter="url(#gO)">GRACIAS</text>
+
+  <!-- Subtitle -->
+  <text x="540" y="680" text-anchor="middle"
+        font-family="'Segoe UI', sans-serif"
+        font-size="48" font-weight="normal"
+        fill="#ff0055" letter-spacing="8"
+        filter="url(#gO)" opacity="0.9">POR VER EL CONTENIDO</text>
+
+  <!-- Divider -->
+  <line x1="300" y1="740" x2="780" y2="740" stroke="url(#cyO)" stroke-width="3" opacity="0.4"/>
+  <line x1="380" y1="750" x2="700" y2="750" stroke="url(#mgO)" stroke-width="2" opacity="0.3"/>
+
+  <!-- CTA: Subscribe -->
+  <g transform="translate(340, 860)">
+    <rect x="0" y="0" width="400" height="90" rx="45" fill="none" stroke="url(#cyO)" stroke-width="3" filter="url(#gOs)"/>
+    <text x="200" y="58" text-anchor="middle"
+          font-family="'Segoe UI', sans-serif"
+          font-size="36" font-weight="bold"
+          fill="#00ffff" letter-spacing="4">SUSCRIBETE</text>
+  </g>
+
+  <!-- CTA: Like -->
+  <g transform="translate(340, 990)">
+    <rect x="0" y="0" width="400" height="90" rx="45" fill="none" stroke="url(#mgO)" stroke-width="3" filter="url(#gOs)"/>
+    <text x="200" y="58" text-anchor="middle"
+          font-family="'Segoe UI', sans-serif"
+          font-size="36" font-weight="bold"
+          fill="#ff0055" letter-spacing="4">DALE LIKE</text>
+  </g>
+
+  <!-- CTA: Comment -->
+  <g transform="translate(340, 1120)">
+    <rect x="0" y="0" width="400" height="90" rx="45" fill="none" stroke="url(#cyO)" stroke-width="3" filter="url(#gOs)"/>
+    <text x="200" y="58" text-anchor="middle"
+          font-family="'Segoe UI', sans-serif"
+          font-size="36" font-weight="bold"
+          fill="#00ffff" letter-spacing="4">COMENTA TU OPINION</text>
+  </g>
+
+  <!-- Logo (smaller, centered) -->
+  <g transform="translate(440, 1320)" filter="url(#gO)" opacity="0.8">
+    <polygon points="100,15 170,55 170,145 100,185 30,145 30,55"
+             fill="none" stroke="url(#cyO)" stroke-width="3" opacity="0.6"/>
+    <polygon points="100,30 155,62 155,138 100,170 45,138 45,62"
+             fill="none" stroke="url(#mgO)" stroke-width="2" opacity="0.4"/>
+    <line x1="80" y1="140" x2="100" y2="70" stroke="url(#cyO)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="120" y1="140" x2="100" y2="70" stroke="url(#mgO)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="87" y1="107" x2="113" y2="107" stroke="url(#cyO)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="100" cy="70" r="6" fill="#00ffff"/>
+    <circle cx="80" cy="140" r="5" fill="#ff0055"/>
+    <circle cx="120" cy="140" r="5" fill="#00ffff"/>
+  </g>
+
+  <!-- Social handles -->
+  <text x="540" y="1560" text-anchor="middle"
+        font-family="'Segoe UI', sans-serif"
+        font-size="32" fill="#3a6a8a"
+        opacity="0.7">@AIGestion | aigestion.net</text>
+
+  <!-- Watermark -->
+  <text x="540" y="1840" text-anchor="middle"
+        font-family="'Segoe UI', sans-serif"
+        font-size="24" fill="#3a4a6a"
+        opacity="0.5">Powered by AIGestion AI</text>
+</svg>
+

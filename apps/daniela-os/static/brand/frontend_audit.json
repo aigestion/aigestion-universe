@@ -1,0 +1,438 @@
+[
+  {
+    "path": "index.html",
+    "file_type": "html",
+    "lines": 29,
+    "role": "landing",
+    "status": "partial",
+    "description": "Minimal landing page. Dark bg card, AIGestion.net title, tagline, 3 service items. No JS, no links to app.",
+    "key_features": [
+      "Dark theme",
+      "Service list"
+    ],
+    "issues": [
+      "No navigation to app",
+      "No JS",
+      "No SEO meta tags",
+      "No responsive design",
+      "Not connected to brand kit"
+    ]
+  },
+  {
+    "path": "templates/index.html",
+    "file_type": "html",
+    "lines": 1,
+    "role": "redirect",
+    "status": "placeholder",
+    "description": "Single line redirect to Termux path. Dead link on any non-Termux system.",
+    "key_features": [],
+    "issues": [
+      "Points to /data/data/com.termux/... (dead on PC)",
+      "No fallback",
+      "No meta refresh or JS redirect"
+    ]
+  },
+  {
+    "path": "full_ui_v2.html",
+    "file_type": "html",
+    "lines": 530,
+    "role": "main_ui",
+    "status": "production",
+    "description": "Main Daniela OS UI. Cyberpunk HUD with Three.js 3D particle avatar (420 particles, cyan+magenta). Chat with proposal cards. Gemini dock. Speech synthesis. Camera toggle. File upload.",
+    "key_features": [
+      "Three.js particle avatar",
+      "Chat interface",
+      "Proposal cards (approve/reject)",
+      "Speech synthesis API",
+      "Camera getUserMedia",
+      "File upload",
+      "Dream ideas system",
+      "Fetch /api/chat"
+    ],
+    "issues": [
+      "Monolithic: 530 lines inline CSS+JS",
+      "No CSS extraction",
+      "No component reuse",
+      "Hardcoded dream ideas",
+      "No agent status display",
+      "No real-time updates",
+      "Colors differ from brand kit"
+    ]
+  },
+  {
+    "path": "templates/index_sovereign_master.html",
+    "file_type": "html",
+    "lines": 378,
+    "role": "mobile",
+    "status": "production",
+    "description": "Mobile-first core UI. Canvas 2D neural sphere (120 points). Draggable PIP camera. Popup menus. Live conversational mode (red button). API: /api/chat, /api/tts, /api/stt, /api/camera/snap.",
+    "key_features": [
+      "100dvh mobile layout",
+      "Safe-area-inset support",
+      "Canvas 2D neural sphere",
+      "Draggable PIP camera window",
+      "Touch event support",
+      "Live conversation mode",
+      "STT/TTS via API",
+      "Popup menu system"
+    ],
+    "issues": [
+      "No connection to full_ui_v2.html features",
+      "Separate codebase from desktop UI",
+      "No shared components",
+      "Missing agent squad integration"
+    ]
+  },
+  {
+    "path": "static/landing.html",
+    "file_type": "html",
+    "lines": 621,
+    "role": "landing",
+    "status": "production",
+    "description": "Full marketing page. Three.js 3D neural network (10 nodes, raycaster click). Features grid. Modules grid. Pricing tiers. Demo chat (keyword matching). VR badge.",
+    "key_features": [
+      "Three.js neural network visualization",
+      "Raycaster node click → popup",
+      "6 feature cards",
+      "10 module tags",
+      "3 pricing tiers (Free/Pro/Enterprise)",
+      "Demo chat with keyword responses",
+      "VR/WebXR badge",
+      "Responsive media queries"
+    ],
+    "issues": [
+      "Demo chat is fake (keyword matching, not AI)",
+      "Stats are static (10+, 10x, 24/7)",
+      "No link to actual app/dashboard",
+      "No real backend connection",
+      "Pricing not wired to billing system",
+      "CSS inline (621 lines)"
+    ]
+  },
+  {
+    "path": "static/neural_city.html",
+    "file_type": "html",
+    "lines": 631,
+    "role": "3d_experience",
+    "status": "production",
+    "description": "3D metaverse city. Ten buildings representing AI modules. Roads, vehicles, drones, stars. OrbitControls. Building info cards. Minimap. Decentraland integration.",
+    "key_features": [
+      "Three.js city with 10 module buildings",
+      "OrbitControls + auto-rotate",
+      "Animated vehicles (20) and drones (15)",
+      "Raycaster building selection",
+      "Building info cards with stats",
+      "Minimap with player position",
+      "Decentraland link (-25,42)",
+      "Loading screen with progress",
+      "VR support (WebXR)"
+    ],
+    "issues": [
+      "No connection to real agent data",
+      "Stats are hardcoded",
+      "No multi-user (unlike metaverse.html)",
+      "No link back to app",
+      "Standalone page, not integrated"
+    ]
+  },
+  {
+    "path": "static/daniela_hologram.html",
+    "file_type": "html",
+    "lines": 460,
+    "role": "3d_experience",
+    "status": "production",
+    "description": "3D holographic avatar. Head with jaw (lip-sync), eyes (blink), hair, neck, shoulders. Scan line effect. Hologram platform. Speech synthesis. Voice recognition.",
+    "key_features": [
+      "Three.js humanoid hologram",
+      "Lip-sync animation (jaw movement)",
+      "Eye blink animation",
+      "Scan line holographic effect",
+      "Platform with rings + light beam",
+      "Speech synthesis (es-ES)",
+      "Voice recognition (webkitSpeechRecognition)",
+      "Keyword-based responses",
+      "Mouse-tracking head rotation",
+      "Glitch effect"
+    ],
+    "issues": [
+      "Responses are keyword-based, not AI",
+      "No backend connection",
+      "No integration with full_ui_v2.html",
+      "Standalone page",
+      "No TTS voice selection"
+    ]
+  },
+  {
+    "path": "static/datacenter_live.html",
+    "file_type": "html",
+    "lines": 404,
+    "role": "3d_experience",
+    "status": "production",
+    "description": "3D globe visualization. Wireframe earth with atmosphere shader. 10 region nodes (lat/lon). Animated data packets on bezier curves. HUD with real-time counters.",
+    "key_features": [
+      "Three.js globe with atmosphere shader",
+      "Lat/lon to 3D position conversion",
+      "10 region nodes with glow",
+      "Animated data packets on bezier curves",
+      "HUD: total requests, system status, traffic by region, active modules",
+      "Real-time counter updates (setInterval)",
+      "Star field background",
+      "Mouse-tracking rotation"
+    ],
+    "issues": [
+      "Data is all fake (random increments)",
+      "No WebSocket for real-time data",
+      "No connection to actual backend metrics",
+      "Standalone page",
+      "No agent status"
+    ]
+  },
+  {
+    "path": "static/metaverse.html",
+    "file_type": "html",
+    "lines": 1431,
+    "role": "metaverse",
+    "status": "production",
+    "description": "Multi-user metaverse. 5 zones (Plaza, Torre, Auditorio, Jardin, Daniela Hub). WebSocket connection. Avatars. Chat. Emotes. Zone portals.",
+    "key_features": [
+      "Three.js 5-zone metaverse",
+      "WebSocket real-time sync",
+      "User avatars (self + remote)",
+      "Real-time chat with history",
+      "Emote system (wave, dance, clap, think, heart)",
+      "Zone portals (torus + particles)",
+      "Loading screen + name modal",
+      "FPS counter",
+      "Connection status indicator",
+      "WASD movement",
+      "CanvasTexture labels"
+    ],
+    "issues": [
+      "No connection to agent system",
+      "No AI NPCs (only user avatars)",
+      "No persistence (zones reset on reload)",
+      "No admin controls",
+      "Requires metaverse_server.js running",
+      "Large monolithic file"
+    ]
+  },
+  {
+    "path": "view_3d_office.html",
+    "file_type": "html",
+    "lines": 1393,
+    "role": "3d_experience",
+    "status": "production",
+    "description": "Massive 3D office. 10 blocks of features (50+ items). GLTF loader. Swarm lasers, task orbs, vector cloud, security scanner, dolly zoom, cyber vision, FPS mode, day/night, emergency dome, audio visualizer, data rain, holographic keyboard, video screen, positional 3D audio, monorepo graph, mic recording, Android twin, ping display, media studio, drones, plasma, firewall, radar, gamepad, task stack, ventures 3D, git deploy, quantum ring.",
+    "key_features": [
+      "Three.js + GLTFLoader + OrbitControls + Tween.js",
+      "GLTF model loading (oficina3d.glb, daniela3d.glb)",
+      "50+ interactive 3D features across 10 blocks",
+      "Positional 3D audio (AudioListener + PositionalAudio)",
+      "WebRTC mic recording → Flask backend",
+      "CanvasTexture live log screens",
+      "Raycaster → swarm dispatch",
+      "FPS WASD movement",
+      "Day/night cycle (real time)",
+      "Gamepad API support",
+      "Radar minimap (Canvas2D)",
+      "Monorepo graph 3D visualization",
+      "Video texture screens",
+      "Emergency dome shield",
+      "Data rain particles",
+      "Holographic keyboard"
+    ],
+    "issues": [
+      "EXTREMELY monolithic: 1393 lines, 10 script blocks",
+      "No code organization",
+      "Hardcoded local paths (C:/Users/Alejandro/Downloads/)",
+      "Hardcoded backend IP (192.168.1.133:5059)",
+      "No error handling for missing GLTF files",
+      "No mobile support",
+      "No loading state management",
+      "Impossible to maintain without refactoring"
+    ]
+  },
+  {
+    "path": "chrome-extension/sidepanel.html",
+    "file_type": "html",
+    "lines": 22,
+    "role": "extension",
+    "status": "partial",
+    "description": "Chrome extension sidepanel. 2 buttons (Analyze Tab, Extract Graph). Output div.",
+    "key_features": [
+      "Chrome sidePanel API",
+      "Tab content extraction",
+      "Gemini integration via localhost:8085"
+    ],
+    "issues": [
+      "Hardcoded localhost:8085",
+      "Only 2 features",
+      "No UI polish",
+      "No error recovery"
+    ]
+  },
+  {
+    "path": "chrome-extension/sidepanel.js",
+    "file_type": "js",
+    "lines": 27,
+    "role": "extension",
+    "status": "partial",
+    "description": "Gets active tab DOM innerText, sends to localhost:8085/api/chat, displays response.",
+    "key_features": [
+      "chrome.tabs.query",
+      "chrome.scripting.executeScript",
+      "Fetch to local backend"
+    ],
+    "issues": [
+      "Hardcoded localhost:8085",
+      "No streaming",
+      "4KB text limit",
+      "No auth"
+    ]
+  },
+  {
+    "path": "chrome-extension/background.js",
+    "file_type": "js",
+    "lines": 3,
+    "role": "extension",
+    "status": "production",
+    "description": "Sets sidePanel behavior (openPanelOnActionClick).",
+    "key_features": [
+      "chrome.sidePanel.setPanelBehavior"
+    ],
+    "issues": [
+      "Minimal, could have more background logic"
+    ]
+  },
+  {
+    "path": "app.js",
+    "file_type": "js",
+    "lines": 187,
+    "role": "module",
+    "status": "production",
+    "description": "Companion JS for full_ui_v2.html. Speech recognition (es-ES, continuous). Camera PIP (front/back). Sentry mode (captures frames every 10s). Backend communication.",
+    "key_features": [
+      "SpeechRecognition API (es-ES)",
+      "getUserMedia camera (front/back)",
+      "Sentry mode (interval frame capture)",
+      "Neural audio playback",
+      "Silence detection timer"
+    ],
+    "issues": [
+      "Not modular (IIFE, no exports)",
+      "Couples to specific DOM IDs",
+      "No error recovery for STT",
+      "Sentry interval is hardcoded 10s"
+    ]
+  },
+  {
+    "path": "metaverse_server.js",
+    "file_type": "js",
+    "lines": 318,
+    "role": "server",
+    "status": "production",
+    "description": "Node.js WebSocket server for metaverse. Multi-user world state. Chat history. User management. Static file serving.",
+    "key_features": [
+      "WebSocket (ws) server",
+      "HTTP static file server",
+      "User management (100 max)",
+      "Chat history (500 messages)",
+      "Position/rotation sync",
+      "Zone change broadcast",
+      "Emote broadcast",
+      "Heartbeat (30s)",
+      "REST API (/api/status, /api/users)",
+      "Auto-reconnect on client side"
+    ],
+    "issues": [
+      "No persistence (state lost on restart)",
+      "No auth",
+      "No rate limiting",
+      "No SSL/TLS",
+      "No admin controls",
+      "No room/zone isolation"
+    ]
+  },
+  {
+    "path": "static/daniela_haptics.js",
+    "file_type": "js",
+    "lines": 23,
+    "role": "module",
+    "status": "production",
+    "description": "Vibration API wrapper. 3 patterns: alert, confirmation, tuning.",
+    "key_features": [
+      "navigator.vibrate wrapper",
+      "3 vibration patterns"
+    ],
+    "issues": [
+      "No feature detection beyond 'vibrate' in navigator",
+      "Overrides playUISound globally"
+    ]
+  },
+  {
+    "path": "static/daniela_mobile_sync.js",
+    "file_type": "js",
+    "lines": 17,
+    "role": "module",
+    "status": "production",
+    "description": "Mobile detection + WakeLock API. Body class 'mobile-view'.",
+    "key_features": [
+      "Mobile UA detection",
+      "WakeLock API",
+      "Body class toggle"
+    ],
+    "issues": [
+      "Very minimal",
+      "No tablet optimization",
+      "No orientation handling"
+    ]
+  },
+  {
+    "path": "plugins/daniela_sentinel.js",
+    "file_type": "js",
+    "lines": 46,
+    "role": "extension",
+    "status": "production",
+    "description": "Google Apps Script. Scans Gmail for invoice emails, saves PDFs to Drive, labels threads.",
+    "key_features": [
+      "GmailApp.search",
+      "DriveApp folder management",
+      "PDF/image attachment extraction",
+      "Auto-labeling"
+    ],
+    "issues": [
+      "Apps Script only (not browser JS)",
+      "No OCR",
+      "No deduplication",
+      "No logging"
+    ]
+  },
+  {
+    "path": "projects/mi-dashboard/index.html",
+    "file_type": "html",
+    "lines": 1,
+    "role": "placeholder",
+    "status": "placeholder",
+    "description": "1-line placeholder: 'mi-dashboard - App Premium Soberana'",
+    "key_features": [],
+    "issues": [
+      "Not a real page",
+      "No content",
+      "No styling"
+    ]
+  },
+  {
+    "path": "projects/sistema-dashboard/index.html",
+    "file_type": "html",
+    "lines": 1,
+    "role": "placeholder",
+    "status": "placeholder",
+    "description": "1-line placeholder: 'sistema-dashboard - App Premium Soberana'",
+    "key_features": [],
+    "issues": [
+      "Not a real page",
+      "No content",
+      "No styling"
+    ]
+  }
+]

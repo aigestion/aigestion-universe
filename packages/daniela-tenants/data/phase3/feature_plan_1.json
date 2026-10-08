@@ -1,0 +1,25 @@
+{
+  "feature_id": "FF-1",
+  "title": "Demo feature",
+  "complexity": "S",
+  "requirements": [],
+  "files_to_modify": [
+    "(auto-detect via Gemini)"
+  ],
+  "steps": [
+    "1. Analyze existing code in suggested files",
+    "2. Design the implementation approach",
+    "3. Write the new code following existing patterns",
+    "4. Generate tests for the new feature",
+    "5. Update documentation if applicable",
+    "6. Run tests to verify",
+    "7. Open PR with description"
+  ],
+  "jules_prompt": "# Jules Task: Implement Demo feature\n\n## Issue #1\nDemo feature body\n\n## Requirements\n- See issue body\n\n## Suggested files to modify\n- (auto-detect via Gemini)\n\n## Complexity\nS\n\n## Instructions\n- Follow existing code patterns in the codebase\n- Add type hints and docstrings\n- Generate tests in tests/auto_generated/\n- Do NOT break existing API contracts\n- Keep changes focused and minimal\n",
+  "auto_merge_criteria": [
+    "All tests pass",
+    "SIL finds no new critical findings",
+    "No merge conflicts",
+    "Pre-commit hook passes"
+  ]
+}

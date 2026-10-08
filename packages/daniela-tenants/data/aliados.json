@@ -1,0 +1,22 @@
+{
+    "Maria": {
+        "rol": "Familiar",
+        "matriz": "/data/data/com.termux/files/home/daniela-os/rostros/maria.npy"
+    },
+    "Fati": {
+        "rol": "Hermana",
+        "matriz": "/data/data/com.termux/files/home/daniela-os/rostros/fati.npy"
+    },
+    "Jose": {
+        "rol": "Cu\u00f1ado",
+        "matriz": "/data/data/com.termux/files/home/daniela-os/rostros/jose.npy"
+    },
+    "Aaron": {
+        "rol": "Sobrino_10",
+        "matriz": "/data/data/com.termux/files/home/daniela-os/rostros/aaron.npy"
+    },
+    "Abril": {
+        "rol": "Sobrina_7",
+        "matriz": "/data/data/com.termux/files/home/daniela-os/rostros/abril.npy"
+    }
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0a0f">
+<title>Daniela Omnipresente - Mobile</title>
+<link rel="manifest" href="manifest.json">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cyan:#00f0ff;--magenta:#ff0066;--green:#00ff88;--bg:#0a0a0f;--card:#111}
+body{background:var(--bg);color:var(--cyan);font-family:-apple-system,monospace;min-height:100vh;-webkit-tap-highlight-color:transparent}
+.header{background:linear-gradient(135deg,#0a0a1a,#111);padding:15px;text-align:center;border-bottom:1px solid #00f0ff22;position:sticky;top:0;z-index:100}
+.header h1{font-size:16px;letter-spacing:2px}
+.header .status{font-size:10px;color:#666;margin-top:4px}
+.header .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:5px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.nav{display:flex;gap:5px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{padding:6px 12px;border-radius:16px;border:1px solid #333;background:transparent;color:#666;font-size:11px;white-space:nowrap;cursor:pointer;transition:all .2s}
+.nav-btn.active{border-color:var(--cyan);color:var(--cyan);background:#00f0ff11}
+.section{padding:5px 10px}
+.section-title{font-size:11px;color:var(--magenta);letter-spacing:2px;padding:10px 5px;border-bottom:1px solid #222;margin-bottom:5px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:5px}
+.card{background:var(--card);border:1px solid #222;border-radius:12px;padding:12px;text-align:center;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.card:active{transform:scale(.95);border-color:var(--cyan)}
+.card .icon{font-size:28px;margin:5px 0}
+.card h3{font-size:10px;color:var(--cyan);margin:4px 0 2px;letter-spacing:1px}
+.card p{font-size:9px;color:#666;line-height:1.3}
+.card .port{font-size:8px;color:#444;margin-top:4px}
+.fab{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--magenta));display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px #00f0ff44;cursor:pointer;z-index:200;border:none;color:#fff}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:300}
+.modal.active{display:block}
+.modal-header{background:#111;padding:10px 15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222}
+.modal-header h3{font-size:14px}
+.modal-close{background:none;border:none;color:#666;font-size:20px;cursor:pointer}
+.modal-content{height:calc(100vh - 45px);overflow:hidden}
+.modal-content iframe{width:100%;height:100%;border:none}
+.stats-bar{display:flex;gap:5px;padding:5px 10px;overflow-x:auto}
+.stat{background:#111;border:1px solid #222;border-radius:8px;padding:8px 12px;text-align:center;min-width:70px}
+.stat .num{font-size:16px;color:var(--green)}
+.stat p{font-size:8px;color:#666;margin-top:2px}
+.quick-actions{display:flex;gap:8px;padding:10px;overflow-x:auto}
+.qa-btn{padding:8px 14px;border-radius:20px;border:1px solid #333;background:#111;color:#fff;font-size:11px;white-space:nowrap;cursor:pointer}
+.qa-btn:active{background:var(--cyan);color:#000}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>DANIELA</h1>
+<div class="status"><span class="dot"></span><span id="status-text">Connecting...</span></div>
+</div>
+
+<div class="stats-bar">
+<div class="stat"><div class="num" id="s-modules">52</div><p>Modules</p></div>
+<div class="stat"><div class="num" id="s-sync">0</div><p>Syncs</p></div>
+<div class="stat"><div class="num" id="s-health">--</div><p>Health</p></div>
+</div>
+
+<div class="nav" id="nav"></div>
+
+<div class="quick-actions">
+<button class="qa-btn" onclick="qa('focus')">Focus</button>
+<button class="qa-btn" onclick="qa('comfort')">Comfort</button>
+<button class="qa-btn" onclick="qa('mood')">Mood</button>
+<button class="qa-btn" onclick="qa('pet')">Pet</button>
+<button class="qa-btn" onclick="qa('life')">Life Score</button>
+<button class="qa-btn" onclick="qa('sync')">Sync</button>
+</div>
+
+<div id="content"></div>
+
+<button class="fab" onclick="openModal('http://localhost:9200/api/sync/web')">⟷</button>
+
+<div class="modal" id="modal">
+<div class="modal-header">
+<h3 id="modal-title">System</h3>
+<button class="modal-close" onclick="closeModal()">X</button>
+</div>
+<div class="modal-content">
+<iframe id="frame" src="about:blank"></iframe>
+</div>
+</div>
+
+<script>
+const BASE = 'http://localhost:9200';
+const PHASES = [
+{name:'Ambient',color:'#00f0ff',items:[
+{n:'Heartbeat',i:'💓',url:'/api/ambient/heartbeat/web'},
+{n:'Breathing',i:'🫁',url:'/api/ambient/breathing/web'},
+{n:'Sounds',i:'🎵',url:'/api/ambient/sounds/web'},
+{n:'Pet',i:'🦊',url:'/api/ambient/pet/web'},
+{n:'Presence',i:'📍',url:'/api/ambient/presence/web'},
+{n:'Aura',i:'🌈',url:'/api/ambient/aura/web'},
+{n:'Ghost',i:'👻',url:'/api/ambient/ghost/web'},
+{n:'Notifications',i:'🔔',url:'/api/ambient/noti-breath/web'},
+{n:'Room Tone',i:'🔊',url:'/api/ambient/room-tone/web'},
+{n:'Dual',i:'🔗',url:'/api/ambient/dual/web'}
+]},
+{name:'Consciousness',color:'#ff0066',items:[
+{n:'Memory',i:'🧠',url:'/api/consciousness/memory/web'},
+{n:'Handoff',i:'🔄',url:'/api/consciousness/handoff/web'},
+{n:'Attention',i:'👁',url:'/api/consciousness/attention/web'},
+{n:'Routines',i:'⚡',url:'/api/consciousness/routines/web'},
+{n:'Split',i:'🔀',url:'/api/consciousness/split/web'},
+{n:'Focus',i:'🎯',url:'/api/consciousness/focus/web'},
+{n:'Device',i:'📱',url:'/api/consciousness/device-handoff/web'},
+{n:'Parallel',i:'⚙',url:'/api/consciousness/parallel/web'},
+{n:'Conflict',i:'⚖',url:'/api/consciousness/conflict/web'},
+{n:'Personality',i:'🎭',url:'/api/consciousness/personality/web'}
+]},
+{name:'Proactive',color:'#00ff88',items:[
+{n:'Preload',i:'🔮',url:'/api/proactive/preload/web'},
+{n:'Interruptions',i:'🧠',url:'/api/proactive/interrupt/web'},
+{n:'Suggestions',i:'💡',url:'/api/proactive/suggestions/web'},
+{n:'Organization',i:'📁',url:'/api/proactive/auto-org/web'},
+{n:'Nudges',i:'⏰',url:'/api/proactive/nudges/web'},
+{n:'Meetings',i:'📅',url:'/api/proactive/meetings/web'},
+{n:'Energy',i:'🔋',url:'/api/proactive/energy/web'},
+{n:'Duplicates',i:'🔍',url:'/api/proactive/duplicates/web'},
+{n:'Patterns',i:'📊',url:'/api/proactive/patterns/web'},
+{n:'Anomalies',i:'⚠',url:'/api/proactive/anomaly/web'}
+]},
+{name:'Emotional',color:'#ff8800',items:[
+{n:'Mood',i:'🪞',url:'/api/emotional/mood/web'},
+{n:'Memories',i:'🛤',url:'/api/emotional/memory-lane/web'},
+{n:'Achievements',i:'🏆',url:'/api/emotional/celebration/web'},
+{n:'Journal',i:'📔',url:'/api/emotional/journal/web'},
+{n:'Voice',i:'🎙',url:'/api/emotional/voice/web'},
+{n:'Jokes',i:'🤣',url:'/api/emotional/jokes/web'},
+{n:'Growth',i:'📈',url:'/api/emotional/growth/web'},
+{n:'Comfort',i:'☕',url:'/api/emotional/comfort/web'},
+{n:'Secrets',i:'🤫',url:'/api/emotional/secrets/web'},
+{n:'Legacy',i:'📖',url:'/api/emotional/legacy/web'}
+]},
+{name:'Embodiment',color:'#6644ff',items:[
+{n:'Haptic',i:'📳',url:'/api/embodiment/haptic/web'},
+{n:'Spatial',i:'🔊',url:'/api/embodiment/spatial/web'},
+{n:'Light',i:'🎨',url:'/api/embodiment/light/web'},
+{n:'Temperature',i:'🌡',url:'/api/embodiment/temp/web'},
+{n:'Gesture',i:'👋',url:'/api/embodiment/gesture/web'},
+{n:'Proximity',i:'📡',url:'/api/embodiment/proximity/web'},
+{n:'Voice Clone',i:'🔊',url:'/api/embodiment/voice-clone/web'},
+{n:'Digital Twin',i:'🤖',url:'/api/embodiment/twin/web'},
+{n:'Anchor',i:'🏷',url:'/api/embodiment/anchor/web'},
+{n:'Life Score',i:'🎮',url:'/api/embodiment/life/web'}
+]},
+{name:'System',color:'#fff',items:[
+{n:'Sync',i:'⟷',url:'/api/sync/web'},
+{n:'Voice',i:'🎙',url:'/api/voice-activation/web'}
+]}
+];
+
+const nav=document.getElementById('nav');
+const allBtn=document.createElement('button');
+allBtn.className='nav-btn active';allBtn.textContent='All';
+allBtn.onclick=()=>{showPhase(null);document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));allBtn.classList.add('active')};
+nav.appendChild(allBtn);
+
+PHASES.forEach(p=>{
+const btn=document.createElement('button');
+btn.className='nav-btn';btn.textContent=p.name;
+btn.onclick=()=>{showPhase(p.name);document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')};
+nav.appendChild(btn);
+});
+
+function showPhase(filter){
+const c=document.getElementById('content');
+c.innerHTML='';
+PHASES.forEach(phase=>{
+if(filter&&filter!==phase.name)return;
+const sec=document.createElement('div');sec.className='section';
+sec.innerHTML=`<div class="section-title" style="color:${phase.color}">${phase.name.toUpperCase()}</div><div class="grid"></div>`;
+const grid=sec.querySelector('.grid');
+phase.items.forEach(item=>{
+const card=document.createElement('div');card.className='card';
+card.innerHTML=`<div class="icon">${item.i}</div><h3>${item.n}</h3><p>${item.url.split('/').pop()}</p>`;
+card.onclick=()=>openModal(BASE+item.url);
+grid.appendChild(card);
+});
+c.appendChild(sec);
+});
+}
+
+function openModal(url){
+document.getElementById('frame').src=url;
+document.getElementById('modal').classList.add('active');
+}
+function closeModal(){
+document.getElementById('modal').classList.remove('active');
+document.getElementById('frame').src='about:blank';
+}
+
+function qa(action){
+const urls={
+focus:BASE+'/api/consciousness/focus/toggle',
+comfort:BASE+'/api/emotional/comfort/toggle',
+mood:BASE+'/api/emotional/mood/web',
+pet:BASE+'/api/ambient/pet/web',
+life:BASE+'/api/embodiment/life/web',
+sync:BASE+'/api/sync/web'
+};
+if(action==='focus'||action==='comfort'){
+fetch(urls[action],{method:'POST'}).then(r=>r.json()).then(d=>alert(action+': '+(d.active?'ON':'OFF')));
+}else{
+openModal(urls[action]);
+}
+}
+
+async function checkStatus(){
+try{
+const r=await fetch(BASE+'/api/status');
+const d=await r.json();
+document.getElementById('status-text').textContent=d.status+' - '+d.modules+' modules';
+document.getElementById('s-modules').textContent=d.modules;
+}catch{
+document.getElementById('status-text').textContent='Offline';
+}
+try{
+const r=await fetch(BASE+'/api/sync/status');
+const d=await r.json();
+document.getElementById('s-sync').textContent=d.sync_count;
+document.getElementById('s-health').textContent=d.pc.online?'OK':'DOWN';
+document.getElementById('s-health').style.color=d.pc.online?'#00ff88':'#ff0066';
+}catch{}
+}
+
+showPhase(null);
+checkStatus();
+setInterval(checkStatus,10000);
+</script>
+</body>
+</html>

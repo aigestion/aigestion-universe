@@ -1,0 +1,175 @@
+{
+  "run_date": "2026-09-05T22:35:22.198582",
+  "total_items": 8,
+  "by_status": {
+    "proposed": 4,
+    "accepted": 0,
+    "in_progress": 0,
+    "implemented": 4,
+    "rejected": 0
+  },
+  "by_priority": {
+    "critical": 0,
+    "high": 4,
+    "medium": 2,
+    "low": 2
+  },
+  "items": [
+    {
+      "id": "EV-01",
+      "title": "Standardize LLM access through ModelRouter",
+      "source": "Gemini 3.1 Pro architecture analysis",
+      "category": "architecture",
+      "priority": "high",
+      "effort": "M",
+      "description": "Multiple files use Gemini directly with different patterns. Centralize through gemini35_free_tier.py ModelRouter for consistent routing, fallback, and rate limiting.",
+      "status": "implemented",
+      "dependencies": [],
+      "date_added": ""
+    },
+    {
+      "id": "EV-02",
+      "title": "Implement SQLAlchemy ORM",
+      "source": "Gemini 3.1 Pro architecture analysis",
+      "category": "architecture",
+      "priority": "medium",
+      "effort": "L",
+      "description": "Replace scattered sqlite3 raw queries with SQLAlchemy/SQLModel ORM. Benefits: type safety, migrations, relationships, connection pooling.",
+      "status": "proposed",
+      "dependencies": [
+        "EV-01"
+      ],
+      "date_added": ""
+    },
+    {
+      "id": "EV-03",
+      "title": "Extract static data to JSON/YAML config files",
+      "source": "Gemini 3.1 Pro architecture analysis",
+      "category": "architecture",
+      "priority": "medium",
+      "effort": "M",
+      "description": "Brand kit, calendar, epic ideas are hardcoded in Python. Extract to JSON for easier updates and non-developer editing.",
+      "status": "implemented",
+      "dependencies": [],
+      "date_added": ""
+    },
+    {
+      "id": "EV-04",
+      "title": "Adopt real agent framework (LangGraph or CrewAI)",
+      "source": "Gemini 3.1 Pro architecture analysis",
+      "category": "architecture",
+      "priority": "high",
+      "effort": "L",
+      "description": "swarm_intelligence.py uses simulated execution. Replace with a real agent framework that supports parallel execution, state management, and inter-agent communication.",
+      "status": "proposed",
+      "dependencies": [
+        "EV-01"
+      ],
+      "date_added": ""
+    },
+    {
+      "id": "EV-05",
+      "title": "Standardize module interfaces with base AgentModule class",
+      "source": "Gemini 3.1 Pro architecture analysis",
+      "category": "architecture",
+      "priority": "high",
+      "effort": "M",
+      "description": "Each agent module has a different interface. Create an abstract base class that defines the contract: initialize(), process(), get_status(), shutdown(). All agents must implement it.",
+      "status": "proposed",
+      "dependencies": [
+        "EV-04"
+      ],
+      "date_added": ""
+    },
+    {
+      "id": "EV-06",
+      "title": "Add OpenAPI/Swagger documentation",
+      "source": "SIL finding SR-14",
+      "category": "documentation",
+      "priority": "low",
+      "effort": "S",
+      "description": "Flask endpoints have no API documentation. Add flask-smorest or flasgger for auto-generated OpenAPI spec and Swagger UI.",
+      "status": "implemented",
+      "dependencies": [],
+      "date_added": ""
+    },
+    {
+      "id": "EV-07",
+      "title": "Implement refresh token rotation",
+      "source": "SIL finding SR-15",
+      "category": "security",
+      "priority": "low",
+      "effort": "S",
+      "description": "Old refresh token not invalidated when used. Implement rotation: delete old, issue new on each refresh.",
+      "status": "proposed",
+      "dependencies": [
+        "EV-06"
+      ],
+      "date_added": ""
+    },
+    {
+      "id": "EV-08",
+      "title": "Connect content_factory_ai.py to Gemini ModelRouter",
+      "source": "SIL finding SR-07",
+      "category": "integration",
+      "priority": "high",
+      "effort": "S",
+      "description": "Content factory has stubs that return strings. Connect to real Gemini API via ModelRouter for actual content generation.",
+      "status": "implemented",
+      "dependencies": [
+        "EV-01"
+      ],
+      "date_added": ""
+    }
+  ],
+  "roadmap": [
+    {
+      "order": 3,
+      "id": "EV-05",
+      "title": "Standardize module interfaces with base AgentModule class",
+      "priority": "high",
+      "effort": "M",
+      "category": "architecture",
+      "dependencies": [
+        "EV-04"
+      ],
+      "status": "proposed"
+    },
+    {
+      "order": 4,
+      "id": "EV-04",
+      "title": "Adopt real agent framework (LangGraph or CrewAI)",
+      "priority": "high",
+      "effort": "L",
+      "category": "architecture",
+      "dependencies": [
+        "EV-01"
+      ],
+      "status": "proposed"
+    },
+    {
+      "order": 6,
+      "id": "EV-02",
+      "title": "Implement SQLAlchemy ORM",
+      "priority": "medium",
+      "effort": "L",
+      "category": "architecture",
+      "dependencies": [
+        "EV-01"
+      ],
+      "status": "proposed"
+    },
+    {
+      "order": 8,
+      "id": "EV-07",
+      "title": "Implement refresh token rotation",
+      "priority": "low",
+      "effort": "S",
+      "category": "security",
+      "dependencies": [
+        "EV-06"
+      ],
+      "status": "proposed"
+    }
+  ]
+}

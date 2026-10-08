@@ -1,0 +1,94 @@
+{
+  "columns": [
+    "agent",
+    "method",
+    "interval_sec",
+    "description",
+    "last_run",
+    "next_run",
+    "enabled"
+  ],
+  "rows": [
+    {
+      "agent": "calendario",
+      "method": "send_reminders",
+      "interval_sec": 1800,
+      "description": "Recordatorios cada 30min",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "calendario",
+      "method": "detect_conflicts",
+      "interval_sec": 3600,
+      "description": "Detectar conflictos horarios",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "calendario",
+      "method": "generate_briefing",
+      "interval_sec": 86400,
+      "description": "Briefing diario",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "correo",
+      "method": "process_inbox",
+      "interval_sec": 900,
+      "description": "Revisar bandeja cada 15min",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "documentos",
+      "method": "get_status",
+      "interval_sec": 86400,
+      "description": "Status de documentos",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "vigia",
+      "method": "run_monitoring_cycle",
+      "interval_sec": 300,
+      "description": "Health check cada 5min",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "vigia",
+      "method": "check_git_backup",
+      "interval_sec": 3600,
+      "description": "Verificar backup git cada hora",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "redes",
+      "method": "get_analytics",
+      "interval_sec": 86400,
+      "description": "Analytics diario",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    },
+    {
+      "agent": "epic_ideas",
+      "method": "audit_summary",
+      "interval_sec": 86400,
+      "description": "Auditoria diaria de agentes",
+      "last_run": null,
+      "next_run": null,
+      "enabled": 1
+    }
+  ]
+}

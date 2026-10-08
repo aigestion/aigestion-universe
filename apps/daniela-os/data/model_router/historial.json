@@ -1,0 +1,402 @@
+[
+  {
+    "cuando": 1791193439.8155828,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1014,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791193440.9189174,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1100,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791193785.2422228,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 855,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791193786.4520526,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1208,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791194149.6170328,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1064,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791194150.8845644,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1263,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791197184.1705065,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 885,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791197185.0606575,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 888,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791197633.2252219,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 855,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791197636.491982,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 3263,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791199528.7285137,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 855,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791199529.9387264,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1208,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791199986.311722,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1499,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791199987.5821526,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1266,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791202358.1525598,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1177,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791202359.1564038,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1000,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791207022.8945887,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1708,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791207024.480859,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1580,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791215197.464489,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1040,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791215199.1567159,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1689,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791215686.1363375,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1106,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791215689.2609038,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 3119,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791215842.0466065,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1042,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791215845.2284741,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 3178,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791216342.879783,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 2241,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791216345.3564794,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 2473,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791216538.2705033,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1322,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791216539.7606978,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1486,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791216774.8174849,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1233,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791216775.889569,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1066,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791218222.8956,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1591,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791218224.0407379,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 1143,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791219704.9481623,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 577,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791219705.5608947,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 610,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791220045.2623491,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 514,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791220045.986344,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 718,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791220407.007728,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 510,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791220407.6751099,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 662,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791220744.206239,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 501,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791220744.9872315,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 776,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791221114.603845,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 695,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791221115.1855936,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 579,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791223083.8631077,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 521,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791223084.4421482,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 575,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791223201.3169796,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 474,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791223202.2794154,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 958,
+    "caracteres": 74
+  },
+  {
+    "cuando": 1791223687.3934934,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 552,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791223687.958502,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 562,
+    "caracteres": 47
+  },
+  {
+    "cuando": 1791224044.2338285,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 535,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1791224044.9273207,
+    "proveedor": "cohere",
+    "modelo": "command-a-03-2025",
+    "prompt": "di hola",
+    "latencia_ms": 685,
+    "caracteres": 47
+  }
+]

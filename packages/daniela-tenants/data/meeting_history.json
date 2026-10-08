@@ -1,0 +1,80 @@
+[
+  {
+    "id": "MTG_20260911_143652",
+    "title": "Reunion comercial",
+    "date": "2026-09-11",
+    "duration": 30,
+    "participants": [],
+    "action_items": [
+      {
+        "person": "Laura",
+        "task": "me encargo de enviar la propuesta manana",
+        "deadline": "viernes",
+        "status": "pending"
+      },
+      {
+        "person": "Juan",
+        "task": "revisar el contrato el viernes",
+        "deadline": null,
+        "status": "pending"
+      }
+    ],
+    "decisions": []
+  },
+  {
+    "id": "MTG_20260911_143724",
+    "title": "Reunion comercial 2",
+    "date": "2026-09-11",
+    "duration": 30,
+    "participants": [],
+    "action_items": [
+      {
+        "person": "Laura",
+        "task": "me encargo de enviar la propuesta manana",
+        "deadline": "viernes",
+        "status": "pending"
+      },
+      {
+        "person": "Juan",
+        "task": "revisar el contrato el viernes",
+        "deadline": null,
+        "status": "pending"
+      }
+    ],
+    "decisions": []
+  },
+  {
+    "id": "MTG_20260911_143826",
+    "title": "Reunion: comercial / Q3?",
+    "date": "2026-09-11",
+    "duration": 30,
+    "participants": [],
+    "action_items": [
+      {
+        "person": "Laura",
+        "task": "me encargo de enviar la propuesta manana",
+        "deadline": null,
+        "status": "pending"
+      }
+    ],
+    "decisions": []
+  },
+  {
+    "id": "MTG_20260911_143836",
+    "title": "T",
+    "date": "2026-09-11",
+    "duration": 30,
+    "participants": [],
+    "action_items": [
+      {
+        "person": "Ana",
+        "task": "preparo el informe manana",
+        "deadline": null,
+        "status": "pending"
+      }
+    ],
+    "decisions": [
+      "Queda aprobado el plan."
+    ]
+  }
+]

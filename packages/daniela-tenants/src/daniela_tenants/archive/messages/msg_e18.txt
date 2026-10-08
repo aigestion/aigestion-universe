@@ -1,0 +1,35 @@
+feat(fase-11): E-18 Daniela AR (+8 rutas, 303 -> 314) — roadmap 28/28
+
+Cierra la ultima epica que quedaba. Daniela deja de ser una pantalla
+plana en el movil: escena WebXR de verdad, anclas espaciales y mirada.
+
+aig/pixel/ar_stage.py (958 lineas, 0 violaciones AST):
+- Escena **WebXR `immersive-ar`** generada por el propio backend
+  (three.js + anillos + nucleo + rotulos), no un HTML escrito a mano.
+- **Anclas espaciales** con lat/lon: si creas una a <60 m de otra cuenta
+  como visita, no como ancla nueva ("a 20 m de 'Puerta de Alcala'").
+- **Mirada**: con yaw/pitch reales Daniela dice QUE estas mirando y cuantas
+  visitas llevas ahi.
+
+🔴 El detalle que nadie cuenta (y que hace que esto funcione de verdad):
+WebXR SOLO arranca en **contexto seguro** (https o localhost). Abrir
+http://192.168.1.X:5000 en el movil NO expone navigator.xr. Sin dominio ni
+certificado, la solucion es gratis:
+
+    adb reverse tcp:5000 tcp:5000   ->   http://localhost:5000/api/ar/scene
+
+Para el navegador eso ES localhost. La pagina lo comprueba y avisa si no
+hay contexto seguro, en vez de fallar en silencio. `GET /api/ar/plan`
+trae los pasos. Este modulo NO ejecuta adb por ti.
+
+Verificado en vivo:
+- Las 8 rutas responden 200 (smoke test con el cliente de pruebas).
+- Gaze desde 300 m al sur del ancla: yaw 0 -> la ve (en_cono=1),
+  yaw 90 y 180 -> no. Pitch 80 -> variante "mirando al suelo".
+- Si estas ENCIMA del ancla no dice "a 0 m": el rumbo no significaria nada.
+- Sin WebXR degrada a holograma 3D plano en el navegador.
+- Sensores por el gateway de Termux; sin gateway da error claro, no explota.
+
+Rutas: /api/ar/{status,scene,anchors,pose,sensors,gaze,config,plan}
+
+Roadmap: 28/28 epicas hechas, todas con modulo declarado.

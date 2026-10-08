@@ -1,0 +1,33 @@
+[
+  {
+    "barcode": "8480000213587",
+    "name": "Griego Ligero Natural (Hacendado)"
+  },
+  {
+    "barcode": "8480000167125",
+    "name": "Maíz dulce (Hacendado)"
+  },
+  {
+    "barcode": "8480000860880",
+    "name": "Producto 8480000860880"
+  },
+  {
+    "name": "Leche Entera",
+    "price": 0.91,
+    "nutri": "B"
+  },
+  {
+    "name": "Leche Entera Hacendado",
+    "price": 0.91,
+    "avg_market_price": 1.15,
+    "cal": 63,
+    "nutri": "B"
+  },
+  {
+    "name": "Leche Entera Hacendado",
+    "price": 0.91,
+    "avg_market_price": 1.15,
+    "cal": 63,
+    "nutri": "B"
+  }
+]

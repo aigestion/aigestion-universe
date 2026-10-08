@@ -1,0 +1,22 @@
+{
+    "Fati": [
+        {
+            "mensaje": "Te dejé las llaves de la entrada en la mesa.",
+            "fecha": "2026-08-15 13:34:44"
+        },
+        {
+            "mensaje": "Recordar comprar el café para la tarde.",
+            "fecha": "2026-08-15 13:36:34"
+        }
+    ],
+    "Jose": [
+        {
+            "mensaje": "Recuerda revisar el cable HDMI antes de poner la película.",
+            "fecha": "2026-08-15 13:34:44"
+        },
+        {
+            "mensaje": "Te dejé el cargador tipo C en el escritorio.",
+            "fecha": "2026-08-15 13:36:34"
+        }
+    ]
+}

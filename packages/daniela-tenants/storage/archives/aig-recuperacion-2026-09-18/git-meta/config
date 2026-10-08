@@ -1,0 +1,15 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	hooksPath = .githooks
+[remote "origin"]
+	url = https://github.com/aigestion/AIGESTION-MONOREPO.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "universo-v1"]
+	remote = origin
+	merge = refs/heads/universo-v1
+	vscode-merge-base = origin/universo-v1

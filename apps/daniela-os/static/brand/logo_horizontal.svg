@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <defs>
+    <radialGradient id="bg3" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0f1428"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </radialGradient>
+    <linearGradient id="cy3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#0099ff"/>
+    </linearGradient>
+    <linearGradient id="mg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0055"/>
+      <stop offset="100%" stop-color="#ff00aa"/>
+    </linearGradient>
+    <filter id="g3" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b1"/>
+      <feGaussianBlur stdDeviation="12" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1280" height="720" fill="url(#bg3)"/>
+  <!-- Grid pattern -->
+  <g stroke="#1a2a4a" stroke-width="1" opacity="0.15">
+    <line x1="0" y1="180" x2="1280" y2="180"/>
+    <line x1="0" y1="360" x2="1280" y2="360"/>
+    <line x1="0" y1="540" x2="1280" y2="540"/>
+    <line x1="320" y1="0" x2="320" y2="720"/>
+    <line x1="640" y1="0" x2="640" y2="720"/>
+    <line x1="960" y1="0" x2="960" y2="720"/>
+  </g>
+  <!-- Logo center -->
+  <g transform="translate(540, 160)" filter="url(#g3)">
+    <!-- Hexagon -->
+    <polygon points="100,15 170,55 170,145 100,185 30,145 30,55"
+             fill="none" stroke="url(#cy3)" stroke-width="3" opacity="0.6"/>
+    <polygon points="100,30 155,62 155,138 100,170 45,138 45,62"
+             fill="none" stroke="url(#mg3)" stroke-width="2" opacity="0.4"/>
+    <!-- Circuit A -->
+    <line x1="80" y1="140" x2="100" y2="70" stroke="url(#cy3)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="120" y1="140" x2="100" y2="70" stroke="url(#mg3)" stroke-width="8" stroke-linecap="round"/>
+    <line x1="87" y1="107" x2="113" y2="107" stroke="url(#cy3)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="100" cy="70" r="7" fill="#00ffff"/>
+    <circle cx="80" cy="140" r="6" fill="#ff0055"/>
+    <circle cx="120" cy="140" r="6" fill="#00ffff"/>
+    <circle cx="100" cy="107" r="5" fill="#ff0055"/>
+  </g>
+  <!-- Title -->
+  <text x="640" y="430" text-anchor="middle"
+        font-family="'Segoe UI', 'Arial Black', sans-serif"
+        font-size="72" font-weight="bold"
+        fill="#00ffff" letter-spacing="12"
+        filter="url(#g3)">AIGESTION</text>
+  <!-- Tagline -->
+  <text x="640" y="480" text-anchor="middle"
+        font-family="'Segoe UI', sans-serif"
+        font-size="28" font-weight="normal"
+        fill="#ff0055" letter-spacing="8"
+        filter="url(#g3)" opacity="0.9">GESTION INTELIGENTE CON IA</text>
+  <!-- Accent lines -->
+  <line x1="400" y1="500" x2="880" y2="500" stroke="url(#cy3)" stroke-width="2" opacity="0.4"/>
+  <line x1="480" y1="510" x2="800" y2="510" stroke="url(#mg3)" stroke-width="1" opacity="0.3"/>
+  <!-- Corner brackets -->
+  <g stroke="#00ffff" stroke-width="2" fill="none" opacity="0.3">
+    <polyline points="20,60 20,20 60,20"/>
+    <polyline points="1220,20 1260,20 1260,60"/>
+    <polyline points="20,660 20,700 60,700"/>
+    <polyline points="1220,700 1260,700 1260,660"/>
+  </g>
+</svg>

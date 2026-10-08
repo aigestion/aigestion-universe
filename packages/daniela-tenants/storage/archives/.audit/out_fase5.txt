@@ -1,0 +1,172 @@
+===== T. DANIELAOS (ls -laR) =====
+/storage/emulated/0/DanielaOS:
+total 12
+drwxrws--- 2 u0_a291 media_rw 3452 2026-08-24 14:08 Queue
+drwxrws--- 2 u0_a291 media_rw 3452 2026-08-22 13:56 Rendered
+drwxrws--- 2 u0_a291 media_rw 3452 2026-09-10 14:08 audit
+drwxrws--- 4 u0_a291 media_rw 3452 2026-09-10 13:55 deploy
+
+/storage/emulated/0/DanielaOS/Queue:
+total 3072
+-rw-rw---- 1 u0_a291 media_rw   41472 2026-08-22 13:56 daniela_1787403364.mp3
+-rw-rw---- 1 u0_a291 media_rw 1523993 2026-08-22 13:56 daniela_1787403364.png
+-rw-rw---- 1 u0_a291 media_rw   41184 2026-08-24 14:08 daniela_1787576885.mp3
+-rw-rw---- 1 u0_a291 media_rw 1523993 2026-08-24 14:08 daniela_1787576885.png
+
+/storage/emulated/0/DanielaOS/Rendered:
+total 0
+
+/storage/emulated/0/DanielaOS/audit:
+total 0
+
+/storage/emulated/0/DanielaOS/deploy:
+total 578
+-rw-rw---- 1 u0_a291 media_rw   436 2026-09-10 13:49 LEEME.txt
+-rw-rw---- 1 u0_a291 media_rw 19644 2026-09-10 13:48 adb_mirror.py
+-rw-rw---- 1 u0_a291 media_rw 27833 2026-09-10 13:48 aig_core.py
+-rw-rw---- 1 u0_a291 media_rw 12902 2026-09-10 13:48 auto_sanitizer.py
+-rw-rw---- 1 u0_a291 media_rw 28433 2026-09-10 13:48 blackbox_forense.py
+-rw-rw---- 1 u0_a291 media_rw 13622 2026-09-10 13:48 clipboard_sync.py
+-rw-rw---- 1 u0_a291 media_rw 34716 2026-09-10 13:48 context_engine.py
+-rw-rw---- 1 u0_a291 media_rw 15749 2026-09-10 13:48 daemon_24_7.py
+-rw-rw---- 1 u0_a291 media_rw 23379 2026-09-10 13:48 daniela_mobile_core.py
+-rw-rw---- 1 u0_a291 media_rw 25272 2026-09-10 13:48 daniela_os.py
+-rw-rw---- 1 u0_a291 media_rw 24576 2026-09-10 13:48 daniela_vault.db
+drwxrws--- 4 u0_a291 media_rw  3452 2026-09-10 13:50 data
+-rw-rw---- 1 u0_a291 media_rw 16272 2026-09-10 13:48 fcm_real_bridge.py
+-rw-rw---- 1 u0_a291 media_rw 19386 2026-09-10 13:48 file_sync_daemon.py
+-rw-rw---- 1 u0_a291 media_rw 17748 2026-09-10 13:48 geofence_engine.py
+-rw-rw---- 1 u0_a291 media_rw 16598 2026-09-10 13:48 git_brain_sync.py
+-rw-rw---- 1 u0_a291 media_rw  6951 2026-09-10 13:49 install.sh
+-rw-rw---- 1 u0_a291 media_rw 16281 2026-09-10 13:48 iot_real_integration.py
+-rw-rw---- 1 u0_a291 media_rw 25831 2026-09-10 13:48 ir_bridge.py
+-rw-rw---- 1 u0_a291 media_rw 27055 2026-09-10 13:48 native_ui.py
+-rw-rw---- 1 u0_a291 media_rw 27447 2026-09-10 13:48 nfc_automation.py
+-rw-rw---- 1 u0_a291 media_rw 15318 2026-09-10 13:48 pixel_bridge_hub.py
+-rw-rw---- 1 u0_a291 media_rw  6272 2026-09-10 13:48 pixel_second_screen.py
+-rw-rw---- 1 u0_a291 media_rw   296 2026-09-10 13:50 requirements.txt
+-rw-rw---- 1 u0_a291 media_rw  4240 2026-09-10 13:48 safe_exec.py
+-rw-rw---- 1 u0_a291 media_rw 14232 2026-09-10 13:48 screen_ai_vision.py
+-rw-rw---- 1 u0_a291 media_rw 16898 2026-09-10 13:48 security_camera.py
+-rw-rw---- 1 u0_a291 media_rw 14164 2026-09-10 13:48 sensor_stream_live.py
+-rw-rw---- 1 u0_a291 media_rw 23604 2026-09-10 13:48 serial_bridge.py
+drwxrws--- 2 u0_a291 media_rw  3452 2026-09-10 13:50 templates
+-rw-rw---- 1 u0_a291 media_rw 14066 2026-09-10 13:48 termux_api_gateway.py
+-rw-rw---- 1 u0_a291 media_rw 17188 2026-09-10 13:48 voice_pipeline.py
+
+/storage/emulated/0/DanielaOS/deploy/data:
+total 6
+drwxrws--- 2 u0_a291 media_rw 3452 2026-09-10 13:50 ir_bridge
+drwxrws--- 2 u0_a291 media_rw 3452 2026-09-10 13:50 nfc
+
+/storage/emulated/0/DanielaOS/deploy/data/ir_bridge:
+total 12
+-rw-rw---- 1 u0_a291 media_rw 5386 2026-09-10 13:48 codes.json
+-rw-rw---- 1 u0_a291 media_rw  445 2026-09-10 13:48 macros.json
+
+/storage/emulated/0/DanielaOS/deploy/data/nfc:
+total 8
+-rw-rw---- 1 u0_a291 media_rw 1749 2026-09-10 13:48 scenes.json
+-rw-rw---- 1 u0_a291 media_rw   55 2026-09-10 13:48 tags.json
+
+
+===== U. .trash-storage =====
+88302	/storage/emulated/0/.trash-storage
+/storage/emulated/0/.trash-storage
+/storage/emulated/0/.trash-storage/Download
+/storage/emulated/0/.trash-storage/Download/.trashed-1791042401-masmovil.pdf
+/storage/emulated/0/.trash-storage/Download/.trashed-1791042461-solicitudcambiotitularidaasmovil.pdf
+/storage/emulated/0/.trash-storage/Download/.trashed-1791042461-solicitudcambiotitularidaasmovil (2).pdf
+/storage/emulated/0/.trash-storage/Download/Imágenes
+/storage/emulated/0/.trash-storage/Download/DanielaControl
+/storage/emulated/0/.trash-storage/Download/Daniela_Organizado
+/storage/emulated/0/.trash-storage/Download/.trashed-1789757409-Game_Cyberpunk_Android.py
+
+===== V. PROCESOS (todos) =====
+grep: bad regex '^\s*PID': trailing backslash (\)
+
+===== W. PUERTOS A LA ESCUCHA =====
+0100007F:4F11 0A
+00000000:1F92 0A
+FE9B4164:E430 08
+FE9B4164:BF8A 08
+FE9B4164:D12A 06
+FE9B4164:83A2 08
+FE9B4164:80AA 01
+FE9B4164:810C 08
+FE9B4164:E392 06
+FE9B4164:853A 08
+-- IPv6 --
+0000000000000000FFFF00008501A8C0:C9EC 0A
+0000000000000000FFFF00008501A8C0:FC94 0A
+00000000000000000000000000000000:9CFB 0A
+0000000000000000FFFF00000100007F:9505 0A
+0000000000000000FFFF0000FE9B4164:CA2C 01
+0000000000000000FFFF0000FE9B4164:C79C 08
+0000000000000000FFFF0000FE9B4164:CE7C 08
+0000000000000000FFFF0000FE9B4164:E73A 08
+0000000000000000FFFF0000FE9B4164:CD60 01
+0000000000000000FFFF0000FE9B4164:CCB8 08
+0000000000000000FFFF0000FE9B4164:CCB6 08
+0000000000000000FFFF0000FE9B4164:D46C 01
+0000000000000000FFFF0000FE9B4164:9B26 08
+0000000000000000FFFF0000FE9B4164:9D30 08
+0000000000000000FFFF0000FE9B4164:D06E 01
+0000000000000000FFFF0000FE9B4164:8EEA 08
+0000000000000000FFFF0000FE9B4164:E72E 08
+0000000000000000FFFF0000FE9B4164:8EF2 08
+0000000000000000FFFF0000FE9B4164:AB46 08
+0000000000000000FFFF0000FE9B4164:E2F4 08
+
+===== X. PROCESOS PYTHON / SERVIDORES =====
+ 1055 audioserver                 audioserver
+ 1069 mosey_server                mosey_server
+ 1152 drmserver                   drmserver
+ 1189 cameraserver                cameraserver
+ 1201 mediaserver                 mediaserver
+ 1542 system_server               system_server
+ 1864 com.termux.widget           com.termux.widget
+10158 grep                        grep -iE python|node|server|flask|termux|guardian|cloudflare|sshd
+10717 bash                        bash /data/data/com.termux/files/home/apps/aig-MONOREPO/scripts/daniela_guardian.sh
+10721 runsvdir                    runsvdir /data/data/com.termux/files/usr/var/service
+10725 runsv                       runsv sshd
+10730 svlogd                      svlogd -tt /data/data/com.termux/files/usr/var/log/sv/sshd
+10746 svlogd                      svlogd -tt /data/data/com.termux/files/usr/var/log/sv/crond
+10752 svlogd                      svlogd -tt /data/data/com.termux/files/usr/var/log/sv/ssh-agent
+17077 com.termux                  com.termux
+24194 termux-api                  termux-api BatteryStatus
+24531 com.termux.api              com.termux.api
+28438 runsv                       runsv cloudflared
+28439 svlogd                      svlogd -tt /data/data/com.termux/files/usr/var/log/sv/cloudflared
+28539 python3                     python3 server.py
+28646 cloudflared                 cloudflared tunnel --protocol http2 --url http://localhost:8082
+
+===== Y. BATERIA / MEMORIA / TERMICA =====
+  status: 4
+  health: 2
+  level: 87
+  temperature: 321
+  Capacity level: 4
+-- meminfo --
+MemTotal:        7754800 kB
+MemFree:          244592 kB
+MemAvailable:    1734312 kB
+Buffers:            1176 kB
+Cached:          1933536 kB
+SwapCached:        53628 kB
+-- thermal --
+IsStatusOverride: false
+ThermalEventListeners:
+	callbacks: 9
+	killed: false
+	broadcasts count: -1
+ThermalStatusListeners:
+	callbacks: 11
+	killed: false
+	broadcasts count: -1
+Thermal Status: 0
+Cached temperatures:
+	Temperature{mValue=77.0, mType=0, mName=LITTLE, mStatus=0}
+
+===== Z. APPS CON MAS CONSUMO (usagestats muestra) =====
+FIN-FASE5

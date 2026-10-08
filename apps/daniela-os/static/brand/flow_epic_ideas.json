@@ -1,0 +1,179 @@
+[
+  {
+    "id": "epic_01",
+    "title": "Serie Web 'Las Crónicas de Daniela' (6 episodios)",
+    "concept": "Mini-series cinematográfica de 6 episodios donde Daniela resuelve un reto de gestión empresarial diferente en cada uno. Episodio 1: Startup en caos. Episodio 2: Empresa familiar estancada. Episodio 3: E-commerce que no escala. Episodio 4: Agencia saturada. Episodio 5: Corporación burocrática. Episodio 6: Negocio en crisis.",
+    "flow_tools": [
+      "Storyboard Studio (script completo)",
+      "Veo 3.1 (cada escena)",
+      "Nano Banana (frames clave)",
+      "Type Overlays (títulos)",
+      "Shader Effects (look ciberpunk)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "YouTube long-form, 3-5 min por episodio",
+    "ingredient_lock": "Daniela + AIGestion Office + Dashboard",
+    "veo_scenes_per_episode": "5-7 scenes x 8s = 40-56s video base",
+    "estimated_credits": "350-490 credits per episode (Veo) + free Nano Banana frames",
+    "why_epic": "Contenido serial que construye audiencia recurrente. Cada episodio es un caso de uso real de AIGestion."
+  },
+  {
+    "id": "epic_02",
+    "title": "'Daniela vs el Caos' - Shorts Virales Semanales",
+    "concept": "Serie de YouTube Shorts (60s) donde Daniela se enfrenta a un tipo diferente de caos empresarial cada semana. Tono dinámico, humorístico, con un giro épico al final. Ej: 'Daniela vs 200 emails sin leer', 'Daniela vs calendario imposible', 'Daniela vs reporte de 500 páginas', 'Daniela vs crash del servidor'.",
+    "flow_tools": [
+      "Storyboard Studio",
+      "Veo 3.1 (4-6 scenes x 8s)",
+      "pixelBento (efecto glitch en transiciones)",
+      "Type Overlays (textos virales)"
+    ],
+    "storyboard_style": "3D Animated",
+    "format": "YouTube Shorts + TikTok + IG Reels (60s)",
+    "ingredient_lock": "Daniela + Dashboard",
+    "veo_scenes_per_episode": "6 scenes x 8s = 48s (perfecto para Short)",
+    "estimated_credits": "300 credits per Short (Veo)",
+    "why_epic": "Formato viral perfecto. El 'vs' genera expectativa. Fácil de producir en batch semanal."
+  },
+  {
+    "id": "epic_03",
+    "title": "'El Tour de AIGestion' - Recorrido Virtual Cinematográfico",
+    "concept": "Video de 5 minutos que lleva al espectador en un tour cinematográfico por el 'universo AIGestion'. Empieza en la ciudad ciberpunk, sube al edificio de oficinas, entra al despacho de Daniela, explora el dashboard holográfico en detalle, muestra los 5 agentes en acción, y termina con vista aérea de la ciudad con el logo brillando.",
+    "flow_tools": [
+      "Storyboard Studio (tour script)",
+      "Veo 3.1 (scenic shots)",
+      "Nano Banana (keyframes del tour)",
+      "Scout360 (vista 360 de la oficina)",
+      "Video Resizer (multi-formato)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "YouTube long-form (5 min) + teaser Short (60s)",
+    "ingredient_lock": "Daniela + Office + Dashboard + City",
+    "veo_scenes_per_episode": "10 scenes x 8s = 80s base, extend con Repeat",
+    "estimated_credits": "500-800 credits",
+    "why_epic": "Funciona como video de presentación principal del producto. Evergreen. Se puede reutilizar como intro en todos los canales."
+  },
+  {
+    "id": "epic_04",
+    "title": "'Conversación con Daniela' - Serie de Diálogos con IA",
+    "concept": "Serie donde el fundador/CEO 'conversa' con Daniela sobre temas de gestión. Daniela responde con datos, análisis, y recomendaciones. Cada episodio trata un tema: '¿Debería contratar?', '¿Cómo optimizar margen?', '¿Qué automatizar primero?', '¿IA en marketing?'. Tono: ejecutivo, profesional, insightful.",
+    "flow_tools": [
+      "Storyboard Studio (diálogo script)",
+      "Veo 3.1 (conversación shots)",
+      "Character X-ray (backstory Daniela)",
+      "Gemini Omni (edición natural del diálogo)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "YouTube long-form (3-5 min) + podcast audio",
+    "ingredient_lock": "Daniela + Office + Dashboard (with data visualizations)",
+    "veo_scenes_per_episode": "4-6 scenes x 8s = 32-48s video base",
+    "estimated_credits": "250-400 credits per episode",
+    "why_epic": "Posiciona a AIGestion como thought leader. El formato conversacional es el más efectivo para B2B. Genera confianza."
+  },
+  {
+    "id": "epic_05",
+    "title": "'Antes y Después' - Transformaciones Épicas",
+    "concept": "Serie de videos que muestran transformaciones dramáticas de negocios antes y después de AIGestion. Cada episodio es un caso real (anonimizado). Técnica de split screen: izquierda caos, derecha orden. La transformación visual es la estrella del contenido.",
+    "flow_tools": [
+      "Storyboard Studio (split screen script)",
+      "Veo 3.1 (generar L y R por separado)",
+      "Mockup (escenarios de oficina)",
+      "Shader Effects (diferenciar tonos L vs R)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "YouTube long-form (5 min) + Shorts condensados (60s)",
+    "ingredient_lock": "Daniela + Dashboard + Office (before/after variants)",
+    "veo_scenes_per_episode": "7 scenes x 8s = 56s por side = 112s total",
+    "estimated_credits": "700-800 credits per episode",
+    "why_epic": "El contenido de transformación es el más viral en B2B. El contraste visual es imposible de scroll-past."
+  },
+  {
+    "id": "epic_06",
+    "title": "'Backstage AIGestion' - Cómo Funciona Realmente",
+    "concept": "Serie que muestra el 'detrás de escena' de AIGestion. Cómo los agentes procesan datos, cómo Daniela toma decisiones, cómo fluye la información entre módulos. Visualización cinematográfica de procesos técnicos que normalmente son invisibles.",
+    "flow_tools": [
+      "Storyboard Studio (technical script)",
+      "Veo 3.1 (data flow visualization)",
+      "Grid Architect (grid de procesos)",
+      "Shader Effects (efectos de datos)",
+      "Converge (sketch to render)"
+    ],
+    "storyboard_style": "3D Animated",
+    "format": "YouTube long-form (5-8 min)",
+    "ingredient_lock": "Daniela + Dashboard + Agent characters",
+    "veo_scenes_per_episode": "8-10 scenes x 8s = 64-80s base",
+    "estimated_credits": "500-650 credits per episode",
+    "why_epic": "Transparencia genera confianza. Mostrar cómo funciona por dentro es diferenciador vs competencia opaca."
+  },
+  {
+    "id": "epic_07",
+    "title": "'El Futuro del Trabajo' - Serie Documental IA",
+    "concept": "Mini-documental de 3 partes sobre cómo la IA está transformando la gestión empresarial. Parte 1: El problema (trabajo manual ineficiente). Parte 2: La solución (IA en gestión). Parte 3: El futuro (coexistencia humano-IA). Daniela como narradora-presentadora.",
+    "flow_tools": [
+      "Storyboard Studio (documental script)",
+      "Veo 3.1 (todas las escenas)",
+      "Nano Banana (imágenes documentales)",
+      "Character X-ray (desarrollo de Daniela)",
+      "Scout360 (entornos 360)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "YouTube long-form (8-10 min por parte) = 30 min total",
+    "ingredient_lock": "Daniela + Office + Dashboard + City + abstract data spaces",
+    "veo_scenes_per_episode": "12-15 scenes x 8s por parte = ~100s base",
+    "estimated_credits": "600-750 credits per parte",
+    "why_epic": "Posicionamiento como líder de pensamiento. Formato documental = autoridad. 30 min de contenido evergreen."
+  },
+  {
+    "id": "epic_08",
+    "title": "'Retos con Daniela' - Serie Interactiva",
+    "concept": "Serie donde la audiencia propone retos de gestión en comentarios y Daniela los resuelve en el siguiente episodio. Ej: 'Daniela, mi equipo pierde 4 horas en reuniones, ¿qué hago?' → episodio donde Daniela analiza, diagnostica, y ejecuta la solución.",
+    "flow_tools": [
+      "Storyboard Studio (community-driven script)",
+      "Veo 3.1 (solution visualization)",
+      "Type Overlays (comentarios reales)",
+      "Gemini Omni (edición iterativa)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "YouTube long-form (3-5 min) + Shorts teasers",
+    "ingredient_lock": "Daniela + Dashboard + Office",
+    "veo_scenes_per_episode": "5-7 scenes x 8s = 40-56s base",
+    "estimated_credits": "300-450 credits per episode",
+    "why_epic": "Contenido generado por la comunidad = engagement máximo. Cada comentario es idea para un episodio. Loop virtuoso de contenido."
+  },
+  {
+    "id": "epic_09",
+    "title": "'AIGestion Universe' - Mundo Expandible",
+    "concept": "Construir un universo narrativo expandible tipo Marvel: Daniela como personaje central, los 5 agentes como secundarios, la ciudad ciberpunk como mundo, futuros productos como nuevas historias. Cada pieza de contenido existe dentro del mismo universo. Genera continuidad, lore, y fandom.",
+    "flow_tools": [
+      "Storyboard Studio (master universe bible)",
+      "Veo 3.1 (todas las historias)",
+      "Character X-ray (todos los personajes)",
+      "Nano Banana (concept art)",
+      "Mockup (nuevos escenarios)"
+    ],
+    "storyboard_style": "Mixed (Cinematic + 3D Animated)",
+    "format": "Multi-formato: Shorts, long-form, carousel, todo conectado",
+    "ingredient_lock": "Daniela + 5 Agents + Office + City + Dashboard",
+    "veo_scenes_per_episode": "Variable",
+    "estimated_credits": "1000-2000 credits/month for full universe",
+    "why_epic": "El universo es el activo más valioso. Marvel, Star Wars, lo demuestran. AIGestion puede ser el primer universo IA de gestión empresarial."
+  },
+  {
+    "id": "epic_10",
+    "title": "'Spot de Super Bowl' - El Comercial Definitivo",
+    "concept": "Producir el comercial más épico posible para AIGestion: 60 segundos cinematográficos que cuenten la historia completa: problema → Daniela → transformación → resultado → logo. Calidad de Super Bowl. Usar las mejores herramientas de Flow: Veo 3.1 Quality mode, Nano Banana Pro para keyframes, Shader Effects para polish, Type Overlays para textos finales.",
+    "flow_tools": [
+      "Storyboard Studio (script de 60s)",
+      "Veo 3.1 Quality (máxima calidad)",
+      "Nano Banana Pro (keyframes)",
+      "Shader Effects (polish final)",
+      "Type Overlays (títulos y CTA)",
+      "Video Resizer (multi-formato: 16:9 + 9:16 + 1:1)"
+    ],
+    "storyboard_style": "Cinematic Photorealistic",
+    "format": "60s comercial multi-plataforma (YouTube, IG, TV, web)",
+    "ingredient_lock": "Daniela + Office + Dashboard + City + Logo",
+    "veo_scenes_per_episode": "8 scenes x 8s = 64s (perfect 60s after trim)",
+    "estimated_credits": "500-600 credits (Quality mode = more credits per clip)",
+    "why_epic": "Un comercial de calidad Super Bowl posiciona la marca como premium. Evergreen, reutilizable en todos los canales. Inversión única, retorno perpetuo."
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "status": {
+    "created_at": "2026-09-05T22:21:13.337040",
+    "tests_generated": 13554,
+    "docstrings_generated": 340,
+    "heals_applied": 0,
+    "precommit_blocks": 0,
+    "precommit_bypasses": 0,
+    "last_run": "",
+    "updated_at": "2026-09-05T22:23:10.465087"
+  },
+  "anti_patterns": [
+    {
+      "id": "AP-S01",
+      "pattern": "shell=True",
+      "description": "subprocess with shell=True allows command injection",
+      "fix": "Use subprocess.run([...], shell=False) with list args",
+      "severity": "critical"
+    },
+    {
+      "id": "AP-S02",
+      "pattern": "os.system(f",
+      "description": "os.system with f-string allows command injection",
+      "fix": "Use subprocess.run([...], shell=False)",
+      "severity": "critical"
+    },
+    {
+      "id": "AP-S03",
+      "pattern": "eval(",
+      "description": "eval() allows arbitrary code execution",
+      "fix": "Use ast.literal_eval() for safe evaluation",
+      "severity": "critical"
+    },
+    {
+      "id": "AP-S04",
+      "pattern": "pickle.load",
+      "description": "pickle.load can execute arbitrary code",
+      "fix": "Use json.load() instead",
+      "severity": "high"
+    },
+    {
+      "id": "AP-S05",
+      "pattern": "password.*=.*\".*\"",
+      "description": "Hardcoded password in source code",
+      "fix": "Load from environment variable: os.getenv('PASSWORD')",
+      "severity": "high"
+    },
+    {
+      "id": "AP-S06",
+      "pattern": "secret.*=.*\".*\"",
+      "description": "Hardcoded secret in source code",
+      "fix": "Load from environment variable: os.getenv('SECRET')",
+      "severity": "high"
+    },
+    {
+      "id": "AP-S07",
+      "pattern": "0.0.0.0",
+      "description": "Binding to 0.0.0.0 exposes server to all interfaces",
+      "fix": "Use 127.0.0.1 for local-only access",
+      "severity": "medium"
+    },
+    {
+      "id": "AP-S08",
+      "pattern": "debug=True",
+      "description": "Debug mode enabled in production",
+      "fix": "Use debug=os.getenv('DEBUG', 'false').lower() == 'true'",
+      "severity": "medium"
+    }
+  ],
+  "crash_patterns": {
+    "KeyError": {
+      "cause": "Dictionary key not found",
+      "fix": "Use dict.get(key, default) instead of dict[key]",
+      "patch": "Replace dict[key] with dict.get(key, {default})"
+    },
+    "AttributeError: 'NoneType'": {
+      "cause": "NoneType object has no attribute — function returned None unexpectedly",
+      "fix": "Add None check before accessing attribute",
+      "patch": "if obj is not None: obj.attribute"
+    },
+    "IndexError": {
+      "cause": "List index out of range",
+      "fix": "Add bounds check before indexing",
+      "patch": "if len(lst) > index: lst[index]"
+    },
+    "ModuleNotFoundError": {
+      "cause": "Module not installed or not in path",
+      "fix": "Install module or add to sys.path",
+      "patch": "try: import module except ImportError: pip install module"
+    },
+    "ImportError": {
+      "cause": "Cannot import name from module",
+      "fix": "Check if the name exists in the module",
+      "patch": "try: from x import y except ImportError: y = None"
+    },
+    "TypeError: 'NoneType'": {
+      "cause": "None passed where a value was expected",
+      "fix": "Add type check or default value",
+      "patch": "if value is not None: process(value)"
+    },
+    "FileNotFoundError": {
+      "cause": "File path does not exist",
+      "fix": "Check if file exists before opening",
+      "patch": "if Path(file).exists(): open(file)"
+    },
+    "ConnectionError": {
+      "cause": "Network connection failed",
+      "fix": "Add retry logic with backoff",
+      "patch": "retry 3 times with exponential backoff"
+    },
+    "TimeoutError": {
+      "cause": "Operation timed out",
+      "fix": "Increase timeout or add retry",
+      "patch": "Increase timeout or add try/except with retry"
+    },
+    "PermissionError": {
+      "cause": "Permission denied",
+      "fix": "Check permissions or use try/except",
+      "patch": "try: operation except PermissionError: handle"
+    }
+  }
+}

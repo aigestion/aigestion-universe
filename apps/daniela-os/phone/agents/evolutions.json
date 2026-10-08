@@ -1,0 +1,493 @@
+{
+  "evolutions": [
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:04:30.284288"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:05:14.131246"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:05:48.171703"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:56:51.203720"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:59:04.410176"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:01:11.173619"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:05:14.068128"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:11:20.288041"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:10:16.315207"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:13:30.333237"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:31:22.292887"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:13:07.730087"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:22:46.244889"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:00:27.210114"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:05:03.566302"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:09:49.214574"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:29:06.832658"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:29:40.645936"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:33:31.746189"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:38:42.340562"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:51:25.529817"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:03:21.413336"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:04:04.807422"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:50:32.400236"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:57:31.331136"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:40:25.090874"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:46:49.113741"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:07:37.216974"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:13:55.991843"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:20:26.797333"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:33:53.569218"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:09:53.927310"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:16:36.508307"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:29:22.661177"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:31:53.171500"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:49:03.633223"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:44:06.577010"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:49:51.729792"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:55:58.321841"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:46:30.870301"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:54:02.057833"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:25:34.529358"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:33:24.953879"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T13:12:45.745716"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T14:30:32.194429"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:46:47.253188"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:54:57.299557"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:57:34.619763"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:05:51.408718"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:09:07.596941"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:13:03.449459"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:37:09.555999"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:01:52.124921"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:07:32.046306"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:13:33.993291"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:19:11.428839"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:25:22.291126"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:58:10.820050"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:00:09.520517"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:08:14.341531"
+    },
+    {
+      "analysis": {
+        "issues": "test"
+      },
+      "proposal": "Refactor propuesto basado en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:14:12.558683"
+    }
+  ],
+  "last_evolution": "2026-10-05T19:14:12.558683"
+}

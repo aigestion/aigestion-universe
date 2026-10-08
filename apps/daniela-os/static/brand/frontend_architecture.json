@@ -1,0 +1,77 @@
+{
+  "total_files": 19,
+  "total_lines": 6523,
+  "html_files": 11,
+  "js_files": 8,
+  "css_files": 0,
+  "framework": "None (vanilla JS + Three.js r128 from CDN)",
+  "bundler": "None",
+  "typescript": "No",
+  "state_management": "None",
+  "router": "None (static HTML files)",
+  "shared_css": "None (all inline)",
+  "shared_components": "None",
+  "cdn_dependencies": [
+    "Three.js r128 (cdnjs.cloudflare.com)",
+    "Three.js OrbitControls r128 (cdn.jsdelivr.net)",
+    "Three.js GLTFLoader r128 (cdn.jsdelivr.net)",
+    "Three.js OutlineEffect r128 (cdn.jsdelivr.net)",
+    "Tween.js 18.6.4 (cdnjs.cloudflare.com)",
+    "Google Fonts: Orbitron, Rajdhani, Share Tech Mono",
+    "Font Awesome (CDN)",
+    "ws (npm, for metaverse_server.js)"
+  ],
+  "color_inconsistencies": {
+    "full_ui_v2.html": {
+      "cyan": "#00f0ff",
+      "magenta": "#e026de",
+      "bg": "#03060a"
+    },
+    "index_sovereign_master.html": {
+      "cyan": "#00f0ff",
+      "green": "#00ff66",
+      "magenta": "#ff0055"
+    },
+    "landing.html": {
+      "primary": "#0ea5e9",
+      "secondary": "#8b5cf6",
+      "bg": "#0f172a"
+    },
+    "neural_city.html": {
+      "primary": "#0ea5e9",
+      "secondary": "#8b5cf6",
+      "bg": "#050510"
+    },
+    "daniela_hologram.html": {
+      "primary": "#0ea5e9",
+      "accent": "#00ffcc",
+      "bg": "#000000"
+    },
+    "datacenter_live.html": {
+      "primary": "#0ea5e9",
+      "green": "#22c55e",
+      "bg": "#000000"
+    },
+    "metaverse.html": {
+      "cyan": "#00f0ff",
+      "magenta": "#ff00ff",
+      "green": "#00ff88"
+    },
+    "view_3d_office.html": {
+      "cyan": "#00f3ff",
+      "magenta": "#ff0055",
+      "bg": "#030611"
+    }
+  },
+  "api_endpoints_used": [
+    "/api/chat (full_ui_v2.html, index_sovereign_master.html, app.js)",
+    "/api/tts (index_sovereign_master.html)",
+    "/api/stt (index_sovereign_master.html)",
+    "/api/camera/snap (index_sovereign_master.html)",
+    "/api/speech (app.js)",
+    "http://localhost:8085/api/chat (chrome-extension/sidepanel.js)",
+    "http://192.168.1.133:5059/api/swarm/dispatch (view_3d_office.html)",
+    "http://192.168.1.133:5059/api/voice/process (view_3d_office.html)",
+    "ws://host:7777 (metaverse.html → metaverse_server.js)"
+  ]
+}

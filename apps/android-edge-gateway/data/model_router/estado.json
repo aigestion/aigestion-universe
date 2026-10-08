@@ -1,0 +1,66 @@
+{
+  "salud": {
+    "gemini": {
+      "ok": true,
+      "error": "",
+      "latencia_ms": 3740,
+      "cuando": 1791476271.4602778
+    },
+    "groq": {
+      "ok": false,
+      "error": "HTTP 404: {\"error\":{\"message\":\"The model `llama-3.1-8b-instant` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}}\n",
+      "latencia_ms": 544,
+      "cuando": 1791196580.1095796
+    },
+    "openrouter": {
+      "ok": false,
+      "error": "HTTP 404: {\"error\":{\"message\":\"This model is unavailable for free. The paid version is available now - use this slug instead: meta-llama/llama-3.1-8b-instruct\",\"code\":404},\"user_id\":\"user_3B",
+      "latencia_ms": 573,
+      "cuando": 1791196581.3680303
+    },
+    "ollama": {
+      "ok": false,
+      "error": "ollama no disponible -> http://0.0.0.0:11434: ConnectionError; http://localhost:11434: ConnectionError; http://127.0.0.1:11434: ConnectionError",
+      "latencia_ms": 6116,
+      "cuando": 1791196605.892582
+    },
+    "mistral": {
+      "ok": false,
+      "error": "HTTP 429: {\"object\":\"error\",\"message\":\"Rate limit exceeded\",\"type\":\"rate_limited\",\"param\":null,\"code\":\"1300\",\"raw_status_code\":429}",
+      "latencia_ms": 804,
+      "cuando": 1791475072.416232,
+      "motivo": "cuota",
+      "ttl": 180
+    }
+  },
+  "ultimo_exitoso": "gemini",
+  "config": {
+    "version": 3,
+    "orden": [
+      "gemini",
+      "groq",
+      "openrouter",
+      "ollama",
+      "huggingface",
+      "deepseek",
+      "qwen",
+      "mistral"
+    ],
+    "modelos": {
+      "gemini": "gemini-2.5-flash",
+      "openrouter": "nvidia/nemotron-3.5-lightning:free",
+      "groq": "qwen/qwen3.8-27b",
+      "deepseek": "deepseek-chat",
+      "qwen": "qwen-turbo",
+      "mistral": "mistral-small-latest",
+      "anthropic": "claude-3-5-haiku-20241022",
+      "cohere": "command-a-03-2025",
+      "ollama": "daniela-local:latest",
+      "huggingface": "mistralai/Mistral-7B-Instruct-v0.2"
+    },
+    "ttl_salud_s": 900,
+    "ttl_cuota_s": 180,
+    "sonda_auto_min": 30,
+    "reintentos": 1
+  }
+}

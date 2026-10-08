@@ -1,0 +1,71 @@
+{
+  "salud": {
+    "gemini": {
+      "ok": false,
+      "error": "HTTP 401: {\n  \"error\": {\n    \"code\": 401,\n    \"message\": \"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential",
+      "latencia_ms": 242,
+      "cuando": 1789728584.6362925
+    },
+    "groq": {
+      "ok": false,
+      "error": "HTTP 404: {\"error\":{\"message\":\"The model `llama-3.1-8b-instant` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}}\n",
+      "latencia_ms": 208,
+      "cuando": 1789895638.3332658
+    },
+    "openrouter": {
+      "ok": false,
+      "error": "HTTP 401: {\"error\":{\"message\":\"User not found.\",\"code\":401}}",
+      "latencia_ms": 245,
+      "cuando": 1789728586.0202165
+    },
+    "anthropic": {
+      "ok": false,
+      "error": "HTTP 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}",
+      "latencia_ms": 388,
+      "cuando": 1789728586.8232892
+    },
+    "cohere": {
+      "ok": true,
+      "error": "",
+      "latencia_ms": 521,
+      "cuando": 1789855996.859164
+    },
+    "ollama": {
+      "ok": true,
+      "error": "",
+      "latencia_ms": 54794,
+      "cuando": 1789924805.68466
+    },
+    "huggingface": {
+      "ok": false,
+      "error": "ConnectionError: HTTPSConnectionPool(host='api-inference.huggingface.co', port=443): Max retries exceeded with url: /models/mistralai/Mistral-7B-Instruct-v0.2 (Caused by NameResolutionError(\"HTTPSConnection(host='api-inference.huggingface.co', port=443): Failed to resolve 'api-inference.huggingface.",
+      "latencia_ms": 65,
+      "cuando": 1789391539.4933066
+    }
+  },
+  "ultimo_exitoso": "ollama",
+  "config": {
+    "version": 2,
+    "orden": [
+      "gemini",
+      "groq",
+      "openrouter",
+      "anthropic",
+      "cohere",
+      "ollama",
+      "huggingface"
+    ],
+    "modelos": {
+      "gemini": "gemini-2.5-flash",
+      "groq": "llama-3.1-8b-instant",
+      "openrouter": "meta-llama/llama-3.1-8b-instruct:free",
+      "anthropic": "claude-3-5-haiku-20241022",
+      "cohere": "command-a-03-2025",
+      "ollama": "daniela-local:latest",
+      "huggingface": "mistralai/Mistral-7B-Instruct-v0.2"
+    },
+    "ttl_salud_s": 900,
+    "sonda_auto_min": 30,
+    "reintentos": 1
+  }
+}

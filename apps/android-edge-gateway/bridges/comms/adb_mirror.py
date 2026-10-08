@@ -1,0 +1,512 @@
+#!/usr/bin/env python3
+"""
+PA-02: ADB Mirror - scrcpy + ADB control remoto del Pixel
+================================================================
+Daniela puede ver la pantalla del Pixel en una ventana del PC,
+hacer clicks, escribir texto, instalar apps, tomar screenshots.
+Todo via ADB over WiFi (sin cable).
+
+Requisitos:
+  - ADB en el PC (Android SDK Platform Tools, gratis)
+  - scrcpy en el PC (open source, gratis)
+  - ADB WiFi activado en el Pixel (Developer Options > ADB over network)
+
+Fallback:
+  - Si ADB no disponible, usa termux-camera-photo para screenshots
+  - Si scrcpy no disponible, screenshot via ADB + descarga
+
+Rutas en daniela_os.py:
+  - GET  /api/pixel/adb/status     (estado ADB)
+  - POST /api/pixel/adb/connect     (conectar al Pixel)
+  - POST /api/pixel/adb/screenshot  (capturar pantalla)
+  - POST /api/pixel/adb/mirror      (lanzar scrcpy)
+  - POST /api/pixel/adb/tap          (click en coordenadas)
+  - POST /api/pixel/adb/swipe        (deslizar)
+  - POST /api/pixel/adb/type         (escribir texto)
+  - POST /api/pixel/adb/key          (enviar tecla)
+  - GET  /api/pixel/adb/packages     (lista de apps)
+  - POST /api/pixel/adb/install      (instalar APK)
+  - POST /api/pixel/adb/shell        (comando shell seguro)
+
+Coste: $0/mes (ADB + scrcpy son open source y gratis)
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import shutil
+import subprocess
+import time
+from dataclasses import asdict, dataclass
+from typing import Dict, List, Optional
+
+import requests
+
+# ── Config ───────────────────────────────────────────────────
+
+# Raiz del repo (este modulo vive en pixel/ desde Fase 2).
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+STATE_DIR = os.path.join(PROJECT_ROOT, "data", "adb_mirror")
+STATE_FILE = os.path.join(STATE_DIR, "adb_mirror_state.json")
+SCREENSHOT_DIR = os.path.join(PROJECT_ROOT, "data", "adb_mirror", "screenshots")
+
+# Pixel ADB over WiFi
+PIXEL_ADB_IP = "192.168.1.133"
+PIXEL_ADB_PORT = 5555
+
+# Termux API fallback
+GATEWAY_PORT = 8082
+AUTH_TOKEN = os.getenv("PIXEL_TOKEN", "")
+DISCOVERY_TIMEOUT = 2
+REQUEST_TIMEOUT = 10
+
+# Safe ADB shell commands whitelist (prevent injection)
+SAFE_ADB_COMMANDS = {
+    "screenshot",
+    "tap",
+    "swipe",
+    "type",
+    "key",
+    "packages",
+    "install",
+    "shell",
+}
+
+# Safe shell commands (prevent arbitrary command execution)
+SAFE_SHELL_PREFIXES = (
+    "pm ",
+    "dumpsys ",
+    "getprop ",
+    "settings ",
+    "input ",
+    "screencap ",
+    "am ",
+    "wm ",
+    "cmd ",
+)
+
+# ── Data classes ─────────────────────────────────────────────
+
+
+@dataclass
+class ADBState:
+    adb_available: bool = False
+    scrcpy_available: bool = False
+    connected: bool = False
+    device_serial: str = ""
+    pixel_ip: str = ""
+    last_screenshot: str = ""
+    last_command: str = ""
+    command_count: int = 0
+    error_count: int = 0
+
+
+# ── ADB Mirror ───────────────────────────────────────────────
+
+
+class ADBMirror:
+    """Remote Pixel control via ADB and scrcpy."""
+
+    def __init__(self):
+        self._state = ADBState()
+        self._check_tools()
+
+    def _check_tools(self):
+        self._state.adb_available = shutil.which("adb") is not None
+        self._state.scrcpy_available = shutil.which("scrcpy") is not None
+        self._state.pixel_ip = PIXEL_ADB_IP
+
+    # ── ADB connection ────────────────────────────────────────
+
+    def connect(self, ip: str = "", port: int = 5555) -> Dict:
+        """Connect to Pixel via ADB over WiFi."""
+        if not self._state.adb_available:
+            return {"ok": False, "error": "ADB not installed. Download Android SDK Platform Tools."}
+
+        target_ip = ip or PIXEL_ADB_IP
+        target = f"{target_ip}:{port}"
+
+        try:
+            result = subprocess.run(
+                ["adb", "connect", target],
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            if result.returncode == 0 and "connected" in result.stdout.lower():
+                self._state.connected = True
+                self._state.device_serial = target
+                return {"ok": True, "device": target, "message": result.stdout.strip()}
+            else:
+                return {"ok": False, "error": result.stderr.strip() or "Connection failed"}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "ADB connect timeout (10s)"}
+        except FileNotFoundError:
+            return {"ok": False, "error": "ADB not found"}
+
+    def disconnect(self) -> Dict:
+        if not self._state.adb_available:
+            return {"ok": False, "error": "ADB not available"}
+        try:
+            subprocess.run(
+                ["adb", "disconnect", self._state.device_serial],
+                capture_output=True,
+                timeout=5,
+            )
+            self._state.connected = False
+            return {"ok": True}
+        except Exception:
+            return {"ok": False}
+
+    def _run_adb(self, args: List[str], timeout: int = 10) -> subprocess.CompletedProcess:
+        full_args = ["adb"]
+        if self._state.device_serial:
+            full_args.extend(["-s", self._state.device_serial])
+        full_args.extend(args)
+        return subprocess.run(full_args, capture_output=True, text=True, timeout=timeout)
+
+    # ── Screenshot ────────────────────────────────────────────
+
+    def screenshot(self) -> Dict:
+        """Take a screenshot of the Pixel screen."""
+        os.makedirs(SCREENSHOT_DIR, exist_ok=True)
+        filename = f"screenshot_{int(time.time())}.png"
+        filepath = os.path.join(SCREENSHOT_DIR, filename)
+
+        # Try ADB screencap first
+        if self._state.adb_available and self._state.connected:
+            try:
+                # Take screenshot on device, then pull
+                self._run_adb(["shell", "screencap", "-p", "/sdcard/_daniela_screenshot.png"])
+                result = self._run_adb(["pull", "/sdcard/_daniela_screenshot.png", filepath])
+                if result.returncode == 0 and os.path.exists(filepath):
+                    self._state.last_screenshot = filepath
+                    self._state.command_count += 1
+                    # Clean up on device
+                    self._run_adb(["shell", "rm", "/sdcard/_daniela_screenshot.png"], timeout=3)
+                    return {"ok": True, "path": filepath, "method": "adb"}
+            except subprocess.TimeoutExpired:
+                pass
+
+        # Fallback: termux-camera-photo via API gateway (takes a photo, not a screenshot)
+        ip = self._state.pixel_ip
+        if ip:
+            try:
+                url = f"http://{ip}:{GATEWAY_PORT}/api/pixel/camera"
+                r = requests.post(
+                    url,
+                    headers={"X-Pixel-Token": AUTH_TOKEN},
+                    json={"filename": filename},
+                    timeout=REQUEST_TIMEOUT,
+                )
+                if r.status_code == 200:
+                    self._state.last_screenshot = filepath
+                    self._state.command_count += 1
+                    return {
+                        "ok": True,
+                        "path": filepath,
+                        "method": "camera_fallback",
+                        "note": "Photo, not screenshot",
+                    }
+            except requests.RequestException:
+                pass
+
+        self._state.error_count += 1
+        return {
+            "ok": False,
+            "error": "No screenshot method available (ADB not connected, Pixel offline)",
+        }
+
+    # ── Screen mirror (scrcpy) ────────────────────────────────
+
+    def start_mirror(self, max_size: int = 1024, bitrate: int = 2) -> Dict:
+        """Launch scrcpy to mirror the Pixel screen."""
+        if not self._state.scrcpy_available:
+            return {"ok": False, "error": "scrcpy not installed. Install: winget install scrcpy"}
+        if not self._state.connected:
+            connect_result = self.connect()
+            if not connect_result.get("ok"):
+                return {
+                    "ok": False,
+                    "error": "ADB not connected. " + connect_result.get("error", ""),
+                }
+
+        try:
+            args = [
+                "scrcpy",
+                "--max-size",
+                str(max_size),
+                "--video-bit-rate",
+                f"{bitrate}M",
+                "--stay-awake",
+                "--turn-screen-off",
+            ]
+            # Launch in background (non-blocking)
+            subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            self._state.command_count += 1
+            return {"ok": True, "message": "scrcpy launched. Mirror window should appear."}
+        except FileNotFoundError:
+            return {"ok": False, "error": "scrcpy not found"}
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+
+    # ── Input commands ────────────────────────────────────────
+
+    def tap(self, x: int, y: int) -> Dict:
+        """Tap at coordinates (x, y)."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        try:
+            result = self._run_adb(["shell", "input", "tap", str(x), str(y)], timeout=5)
+            if result.returncode == 0:
+                self._state.command_count += 1
+                return {"ok": True}
+            return {"ok": False, "error": result.stderr.strip()}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Timeout"}
+
+    def swipe(self, x1: int, y1: int, x2: int, y2: int, duration: int = 300) -> Dict:
+        """Swipe from (x1, y1) to (x2, y2)."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        try:
+            result = self._run_adb(
+                ["shell", "input", "swipe", str(x1), str(y1), str(x2), str(y2), str(duration)],
+                timeout=5,
+            )
+            if result.returncode == 0:
+                self._state.command_count += 1
+                return {"ok": True}
+            return {"ok": False, "error": result.stderr.strip()}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Timeout"}
+
+    def type_text(self, text: str) -> Dict:
+        """Type text on the Pixel (safe: uses ADB input, no shell injection)."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        # Sanitize: only allow printable chars, limit length
+        safe_text = "".join(c for c in text if c.isprintable() and c != "%")[:500]
+        if not safe_text:
+            return {"ok": False, "error": "No valid text"}
+        try:
+            result = self._run_adb(["shell", "input", "text", safe_text], timeout=5)
+            if result.returncode == 0:
+                self._state.command_count += 1
+                self._state.last_command = f"type '{safe_text[:30]}'"
+                return {"ok": True}
+            return {"ok": False, "error": result.stderr.strip()}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Timeout"}
+
+    def key(self, keycode: str) -> Dict:
+        """Send a key event (e.g. KEYCODE_HOME, KEYCODE_BACK, KEYCODE_POWER)."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        # Validate keycode format
+        if not keycode.startswith("KEYCODE_"):
+            keycode = f"KEYCODE_{keycode.upper()}"
+        try:
+            result = self._run_adb(["shell", "input", "keyevent", keycode], timeout=5)
+            if result.returncode == 0:
+                self._state.command_count += 1
+                self._state.last_command = f"key {keycode}"
+                return {"ok": True}
+            return {"ok": False, "error": result.stderr.strip()}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Timeout"}
+
+    # ── Package management ───────────────────────────────────
+
+    def list_packages(self) -> Dict:
+        """List installed packages on the Pixel."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        try:
+            result = self._run_adb(["shell", "pm", "list", "packages"], timeout=10)
+            if result.returncode == 0:
+                packages = [
+                    line.replace("package:", "").strip()
+                    for line in result.stdout.splitlines()
+                    if line.startswith("package:")
+                ]
+                self._state.command_count += 1
+                return {"ok": True, "count": len(packages), "packages": packages}
+            return {"ok": False, "error": result.stderr.strip()}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Timeout"}
+
+    def install_apk(self, apk_path: str) -> Dict:
+        """Install an APK on the Pixel."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        if not os.path.exists(apk_path):
+            return {"ok": False, "error": f"APK not found: {apk_path}"}
+        try:
+            result = self._run_adb(["install", "-r", apk_path], timeout=60)
+            if result.returncode == 0 and "Success" in result.stdout:
+                self._state.command_count += 1
+                return {"ok": True, "message": "APK installed successfully"}
+            return {"ok": False, "error": result.stdout.strip() or result.stderr.strip()}
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Install timeout (60s)"}
+
+    # ── Safe shell ────────────────────────────────────────────
+
+    def safe_shell(self, command: str) -> Dict:
+        """Run a whitelisted ADB shell command."""
+        if not self._state.connected:
+            return {"ok": False, "error": "Not connected"}
+        # Validate against whitelist
+        is_safe = any(command.strip().startswith(prefix) for prefix in SAFE_SHELL_PREFIXES)
+        if not is_safe:
+            return {
+                "ok": False,
+                "error": f"Command not allowed. Safe prefixes: {', '.join(SAFE_SHELL_PREFIXES)}",
+            }
+        try:
+            result = self._run_adb(["shell", command], timeout=10)
+            self._state.command_count += 1
+            self._state.last_command = command[:50]
+            return {
+                "ok": result.returncode == 0,
+                "output": result.stdout.strip(),
+                "error": result.stderr.strip(),
+            }
+        except subprocess.TimeoutExpired:
+            return {"ok": False, "error": "Timeout"}
+
+    # ── State ────────────────────────────────────────────────
+
+    def get_state(self) -> Dict:
+        return asdict(self._state)
+
+    def save_state(self):
+        os.makedirs(STATE_DIR, exist_ok=True)
+        with open(STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump(self.get_state(), f, indent=2, ensure_ascii=False)
+
+
+# ── Singleton ─────────────────────────────────────────────────
+
+_instance: Optional[ADBMirror] = None
+
+
+def get_instance() -> ADBMirror:
+    global _instance
+    if _instance is None:
+        _instance = ADBMirror()
+    return _instance
+
+
+# ── Flask route registration ──────────────────────────────────
+
+
+def register_adb_routes(flask_app):
+    """Register ADB mirror routes in daniela_os.py."""
+
+    @flask_app.route("/api/pixel/adb/status")
+    def pixel_adb_status():
+        return flask_app.jsonify(get_instance().get_state())
+
+    @flask_app.route("/api/pixel/adb/connect", methods=["POST"])
+    def pixel_adb_connect():
+        data = flask_app.request.json or {}
+        ip = data.get("ip", PIXEL_ADB_IP)
+        port = data.get("port", 5555)
+        return flask_app.jsonify(get_instance().connect(ip, port))
+
+    @flask_app.route("/api/pixel/adb/screenshot", methods=["POST"])
+    def pixel_adb_screenshot():
+        result = get_instance().screenshot()
+        return flask_app.jsonify(result)
+
+    @flask_app.route("/api/pixel/adb/mirror", methods=["POST"])
+    def pixel_adb_mirror():
+        data = flask_app.request.json or {}
+        max_size = data.get("max_size", 1024)
+        bitrate = data.get("bitrate", 2)
+        return flask_app.jsonify(get_instance().start_mirror(max_size, bitrate))
+
+    @flask_app.route("/api/pixel/adb/tap", methods=["POST"])
+    def pixel_adb_tap():
+        data = flask_app.request.json or {}
+        x = data.get("x", 0)
+        y = data.get("y", 0)
+        return flask_app.jsonify(get_instance().tap(int(x), int(y)))
+
+    @flask_app.route("/api/pixel/adb/swipe", methods=["POST"])
+    def pixel_adb_swipe():
+        data = flask_app.request.json or {}
+        return flask_app.jsonify(
+            get_instance().swipe(
+                int(data.get("x1", 0)),
+                int(data.get("y1", 0)),
+                int(data.get("x2", 0)),
+                int(data.get("y2", 0)),
+                int(data.get("duration", 300)),
+            )
+        )
+
+    @flask_app.route("/api/pixel/adb/type", methods=["POST"])
+    def pixel_adb_type():
+        text = (flask_app.request.json or {}).get("text", "")
+        return flask_app.jsonify(get_instance().type_text(text))
+
+    @flask_app.route("/api/pixel/adb/key", methods=["POST"])
+    def pixel_adb_key():
+        keycode = (flask_app.request.json or {}).get("keycode", "HOME")
+        return flask_app.jsonify(get_instance().key(keycode))
+
+    @flask_app.route("/api/pixel/adb/packages")
+    def pixel_adb_packages():
+        return flask_app.jsonify(get_instance().list_packages())
+
+    @flask_app.route("/api/pixel/adb/install", methods=["POST"])
+    def pixel_adb_install():
+        apk = (flask_app.request.json or {}).get("apk_path", "")
+        return flask_app.jsonify(get_instance().install_apk(apk))
+
+    @flask_app.route("/api/pixel/adb/shell", methods=["POST"])
+    def pixel_adb_shell():
+        cmd = (flask_app.request.json or {}).get("command", "")
+        return flask_app.jsonify(get_instance().safe_shell(cmd))
+
+    print(
+        "[ADB Mirror] Routes registered: /api/pixel/adb/* (status, connect, screenshot, mirror, tap, swipe, type, key, packages, install, shell)"
+    )
+
+
+# ── CLI ───────────────────────────────────────────────────────
+
+
+def main():
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python adb_mirror.py [status|connect|screenshot|packages|shell <cmd>]")
+        return
+
+    cmd = sys.argv[1]
+    mirror = get_instance()
+
+    if cmd == "status":
+        print(json.dumps(mirror.get_state(), indent=2))
+    elif cmd == "connect":
+        print(json.dumps(mirror.connect(), indent=2))
+    elif cmd == "screenshot":
+        print(json.dumps(mirror.screenshot(), indent=2))
+    elif cmd == "packages":
+        print(json.dumps(mirror.list_packages(), indent=2))
+    elif cmd == "shell":
+        if len(sys.argv) < 3:
+            print("Usage: shell <command>")
+            return
+        print(json.dumps(mirror.safe_shell(sys.argv[2]), indent=2))
+    else:
+        print(f"Unknown command: {cmd}")
+
+
+if __name__ == "__main__":
+    main()

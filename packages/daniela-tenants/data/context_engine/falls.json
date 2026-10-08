@@ -1,0 +1,43 @@
+[
+  {
+    "id": "fall_1789030944_0",
+    "detected_at": "2026-09-10T10:02:24",
+    "ts": 1789030944.071043,
+    "impact_mag": 9.84,
+    "stillness_var": 0.0,
+    "orient_delta": 0.99,
+    "context_before": "desconocido",
+    "state": "cancelled",
+    "confirm_until": 1789030974.0710459,
+    "sos_sent": false,
+    "location": null,
+    "resolved_at": "2026-09-10T10:02:24"
+  },
+  {
+    "id": "fall_1789030978_1",
+    "detected_at": "2026-09-10T10:02:58",
+    "ts": 1789030978.9950502,
+    "impact_mag": 30.0,
+    "stillness_var": 0.0,
+    "orient_delta": 0.99,
+    "context_before": "desconocido",
+    "state": "cancelled",
+    "confirm_until": 1789031008.995053,
+    "sos_sent": false,
+    "location": null,
+    "resolved_at": "2026-09-10T10:02:59"
+  },
+  {
+    "id": "fall_1789031029_2",
+    "detected_at": "2026-09-10T10:03:49",
+    "ts": 1789031029.8483143,
+    "impact_mag": 30.0,
+    "stillness_var": 0.0,
+    "orient_delta": 0.99,
+    "context_before": "desconocido",
+    "state": "pending",
+    "confirm_until": 1789031059.848324,
+    "sos_sent": false,
+    "location": null
+  }
+]

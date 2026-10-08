@@ -1,0 +1,32 @@
+[
+  {
+    "file": "paella.txt",
+    "status": "ok",
+    "note": "docs\\NotebookLM\\Cocina Lenta\\paella.md",
+    "chars": 118,
+    "rag": {
+      "chunks_ok": 0,
+      "chunks_total": 1,
+      "errors": [
+        "chunk 1: [WinError 10054] Se ha forzado la interrupción de una conexión existente por el host remoto"
+      ],
+      "collection": "nb_cocina-lenta"
+    },
+    "notebook": "Cocina Lenta"
+  },
+  {
+    "file": "transformers.txt",
+    "status": "ok",
+    "note": "docs\\NotebookLM\\Cuaderno IA\\transformers.md",
+    "chars": 132,
+    "rag": {
+      "chunks_ok": 0,
+      "chunks_total": 1,
+      "errors": [
+        "chunk 1: [WinError 10054] Se ha forzado la interrupción de una conexión existente por el host remoto"
+      ],
+      "collection": "nb_cuaderno-ia"
+    },
+    "notebook": "Cuaderno IA"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "config": {
+    "pre_roll_s": 300,
+    "post_roll_s": 60,
+    "segment_s": 30,
+    "tick_s": 1.0,
+    "max_incidents": 20,
+    "audio_enabled": true,
+    "photo_burst": 3,
+    "photo_enabled": true,
+    "gps_every_s": 15,
+    "auto_triggers": [
+      "PANIC",
+      "FALL_DETECTED"
+    ]
+  },
+  "incidents": [],
+  "updated": "2026-09-10T10:08:21"
+}

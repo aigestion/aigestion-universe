@@ -1,0 +1,153 @@
+version: '3.8'
+
+services:
+  # ── EU-West (Madrid) ─────────────────────────────────────────
+  eu-west-redis:
+    image: redis:7-alpine
+    container_name: aig-redis-eu-west
+    ports:
+      - "6380:6379"
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  eu-west-service:
+    build:
+      context: .
+      dockerfile: multi-region/Dockerfile
+    container_name: aig-eu-west
+    ports:
+      - "8081:8080"
+    environment:
+      - REGION=eu-west
+      - PORT=8080
+      - REDIS_URL=redis://eu-west-redis:6379
+      - PEER_REGIONS=us-east-service,ap-south-service
+    depends_on:
+      eu-west-redis:
+        condition: service_healthy
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # ── US-East (Virginia) ───────────────────────────────────────
+  us-east-redis:
+    image: redis:7-alpine
+    container_name: aig-redis-us-east
+    ports:
+      - "6381:6379"
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  us-east-service:
+    build:
+      context: .
+      dockerfile: multi-region/Dockerfile
+    container_name: aig-us-east
+    ports:
+      - "8082:8080"
+    environment:
+      - REGION=us-east
+      - PORT=8080
+      - REDIS_URL=redis://us-east-redis:6379
+      - PEER_REGIONS=eu-west-service,ap-south-service
+    depends_on:
+      us-east-redis:
+        condition: service_healthy
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # ── AP-South (Mumbai) ────────────────────────────────────────
+  ap-south-redis:
+    image: redis:7-alpine
+    container_name: aig-redis-ap-south
+    ports:
+      - "6382:6379"
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  ap-south-service:
+    build:
+      context: .
+      dockerfile: multi-region/Dockerfile
+    container_name: aig-ap-south
+    ports:
+      - "8083:8080"
+    environment:
+      - REGION=ap-south
+      - PORT=8080
+      - REDIS_URL=redis://ap-south-redis:6379
+      - PEER_REGIONS=eu-west-service,us-east-service
+    depends_on:
+      ap-south-redis:
+        condition: service_healthy
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # ── Global Load Balancer ─────────────────────────────────────
+  global-lb:
+    build:
+      context: .
+      dockerfile: multi-region/Dockerfile
+    container_name: aig-global-lb
+    ports:
+      - "8080:8080"
+    environment:
+      - REGION=global
+      - PORT=8080
+      - MODE=load_balancer
+      - REGIONS=eu-west,us-east,ap-south
+    depends_on:
+      eu-west-service:
+        condition: service_healthy
+      us-east-service:
+        condition: service_healthy
+      ap-south-service:
+        condition: service_healthy
+    networks:
+      - multi-region-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+networks:
+  multi-region-net:
+    driver: bridge
+    name: aig-multi-region

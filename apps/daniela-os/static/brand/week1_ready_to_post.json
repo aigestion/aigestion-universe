@@ -1,0 +1,73 @@
+[
+  {
+    "day": "Lunes",
+    "platform": "YouTube Long (8 min)",
+    "title": "Que es AIGestion y como puede transformar tu negocio",
+    "script": "Usar TutorialTemplates.TUTORIALS[0] completo del modulo aigestion_brand_kit.py. 7 fases: Hook (0-15s) -> Intro Daniela (15-45s) -> Problema (45-90s) -> Solucion (90-180s) -> Demo Live (180-300s) -> Pricing (300-360s) -> CTA (360-420s). Voiceover: edge-tts ElviraNeural. B-roll: screen recordings de AIGestion. Thumbnail: thumb_template.svg con titulo 'QUE ES AIGESTION?'",
+    "youtube_description": "AIGestion es la plataforma de gestion inteligente que usa IA para automatizar tu trabajo. En este video te explico como funciona, que puede hacer por ti, y como empezar gratis.\n\nTIMESTAMPS:\n0:00 Introduccion\n0:15 Conoce a Daniela\n0:45 El problema (2.8 hrs perdidas al dia)\n1:30 La solucion: AIGestion\n3:00 Demo en vivo\n5:00 Planes y precios\n6:00 Como empezar\n\nWeb: aigestion.net\nGratis para empezar\n\n#AIGestion #IA #Productividad #Automatizacion #GestionEmpresarial",
+    "youtube_tags": [
+      "AIGestion",
+      "inteligencia artificial",
+      "gestion empresarial",
+      "automatizacion",
+      "productividad",
+      "IA gestion",
+      "Daniela AI",
+      "Ciber-Ejecutiva",
+      "gestion inteligente",
+      "agentes IA",
+      "automatizacion empresarial"
+    ]
+  },
+  {
+    "day": "Martes",
+    "platform": "YouTube Short + TikTok (45s)",
+    "title": "PERDISTE 3 HORAS hoy (y no lo sabias)",
+    "script": "Usar ViralAnnouncements.ANNOUNCEMENTS[0] (launch_epic). 7 escenas: 0-3s 'PERDISTE 3 HORAS HOY' -> 3-8s tareas repetitivas -> 8-15s logo AIGestion -> 15-25s dashboard en accion -> 25-35s '30 hrs/semana' -> 35-40s 'aigestion.net' -> 40-45s 'SUSCRIBETE'. Generar con Flow: usar SCRIPT_1 veo_prompts scene 4-6. TikTok: anadir trend audio del momento.",
+    "tiktok_caption": "Si gastas mas de 3 horas en tareas repetitivas, estas perdiendo el 40% de tu productividad. AIGestion lo cambia todo. 30 horas/semana ahorradas. Gratis en aigestion.net\n\n#AIGestion #IA #Productividad #Automatizacion #FYP #TipsEmpresariales"
+  },
+  {
+    "day": "Miercoles",
+    "platform": "YouTube Long (5 min) + LinkedIn Carousel",
+    "title": "Cronicas de Daniela Ep.1: La Startup en Caos",
+    "script": "Usar EpicFlowIdeas epic_01 (Cronicas de Daniela). Episodio 1: Startup en caos. Flow: Storyboard Studio con SCRIPT_1 o script nuevo. 5-7 escenas Veo 3.1 de 8s cada una. Lock @Daniela ingredient. Estilo: Cinematic Photorealistic. LinkedIn: usar ViralAnnouncements social_carousel_1 (7 slides).",
+    "linkedin_text": "5 formas en que la IA gestiona tu negocio mientras duermes:\n\n1. Correo automatico: clasifica, responde y archiva 50+ emails/dia\n2. Agenda inteligente: optimiza reuniones, evita conflictos\n3. Reportes automaticos: genera, guarda y publica en Drive\n4. Redes sociales: crea y publica contenido diario\n5. Monitoreo 24/7: alertas en tiempo real, sin que hagas nada\n\nTodo esto por 0 euros. En aigestion.net\n\n#AIGestion #IA #Automatizacion #Productividad #GestionEmpresarial"
+  },
+  {
+    "day": "Jueves",
+    "platform": "YouTube Short + Twitter Thread",
+    "title": "Antes vs Despues de AIGestion (CHOCKING)",
+    "script": "Usar flow_studio_aigestion.py SCRIPT_3 (Before/After). 7 escenas Veo 3.1 con split screen. Generar L y R por separado. Condensar a 60s para Short. Twitter: usar ViralAnnouncements twitter_thread (9 tweets).",
+    "twitter_thread": [
+      "1/ AIGestion usa 67 herramientas gratuitas de Google para gestionar empresas enteras.\n\nEl valor total: 2,847 EUR/mes.\nEl costo: 0.\n\nTe cuento cuales y como:",
+      "2/ Gemini CLI: IA gratis. Gemini 3 Pro. 60 RPM. 1,000 peticiones/dia.\n\nAIGestion lo usa como motor principal. Sin API key.\n\nEsto solo vale 20 EUR/mes (vs ChatGPT+).",
+      "3/ BigQuery: 1 TB de consultas gratis/mes.\n\nAIGestion guarda todos los logs de actividad aqui. Analytics empresarial sin pagar.",
+      "4/ Google Cloud Free Tier: 31 servicios always-free.\nCompute, Cloud Run, Functions, Firestore, Storage, Pub/Sub.\n\nInfraestructura completa gratis.",
+      "5/ Google Labs: NotebookLM, Veo 2, ImageFX, Jules, Stitch.\n\nAIGestion usa todo para crear contenido automaticamente.",
+      "6/ YouTube Data API: 10K unidades/dia gratis.\nAIGestion rastrea tendencias y analiza canales.",
+      "7/ Firebase: 50K usuarios, 1GB Firestore, 10GB Hosting, FCM ilimitado.\n\nNotificaciones push gratis.",
+      "8/ Resultado:\n\nSin AIGestion: 2,847 EUR/mes\nCon AIGestion: 0 EUR/mes\n\nTodo integrado en un dashboard.\n\naigestion.net",
+      "9/ Sigue a @AIGestion para mas. Proximo hilo: configuracion paso a paso.\n\nRT si te fue util"
+    ]
+  },
+  {
+    "day": "Viernes",
+    "platform": "YouTube Short + Instagram Reel",
+    "title": "Conoce a DANIKA - la IA que gestiona empresas",
+    "script": "Usar ViralAnnouncements daniela_intro (30s, 7 escenas). Flow: generar con Veo 3.1 usando @Daniela ingredient. Estilo: Cinematic Photorealistic. Instagram Reel: misma version, anadir texto overlay.",
+    "instagram_caption": "Ella no es humana. Pero gestiona mejor que cualquier ejecutivo que conozcas.\n\nSe llama Daniela. Es la Ciber-Ejecutiva de AIGestion.\nGestiona correo, agenda, documentos, redes sociales. 24/7.\n\nTu trabajas 8 horas. Ella trabaja siempre.\n\naigestion.net - Gratis para empezar\n\n#AIGestion #DanielaAI #CiberEjecutiva #IA #Reels #GestionEmpresarial"
+  },
+  {
+    "day": "Sabado",
+    "platform": "YouTube Long (5 min) + Instagram Carousel",
+    "title": "El Tour de AIGestion - Recorrido Virtual",
+    "script": "Usar EpicFlowIdeas epic_03 (El Tour de AIGestion). Flow: Storyboard Studio script de tour. 10 scenes Veo 3.1 de 8s. Lock: @Daniela + @AIGestion Office + @Dashboard + @City. Instagram: carousel de 7 slides con snapshots del tour."
+  },
+  {
+    "day": "Domingo",
+    "platform": "YouTube Short + Twitter Summary",
+    "title": "Tu tiempo vale mas (Motivacional)",
+    "script": "Short motivacional dominical. Script original: 'Cada hora que pierdes en tareas repetitivas es una hora que no puedes recuperar. 30 horas a la semana. 1,500 al ano. Que harías con 1,500 horas extra? Viajar. Aprender. Estar con los tuyos. AIGestion te devuelve esas horas. aigestion.net. Gratis. Hoy.' Veo 3.1: @Daniela en oficina al atardecer, mirando la ciudad. Tono: reflexivo, inspirador.",
+    "twitter_summary": "Esta semana en AIGestion:\n\nLunes: Tutorial 'Que es AIGestion' (8 min)\nMartes: Short 'Perdiste 3 horas' (45s)\nMiercoles: Cronicas de Daniela Ep.1 (5 min)\nJueves: Antes vs Despues (Short + Thread)\nViernes: Conoce a Daniela (Reel)\nSabado: Tour de AIGestion (5 min)\nDomingo: Tu tiempo vale mas (Short)\n\nTodo el contenido: gratis.\nLa plataforma: gratis.\nTu tiempo recuperado: no tiene precio.\n\naigestion.net | #AIGestion"
+  }
+]

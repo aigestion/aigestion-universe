@@ -1,0 +1,202 @@
+{
+  "$schema": "https://webmcp.dev/schemas/v1/manifest.json",
+  "name": "AIGestion",
+  "version": "1.0.0",
+  "description": "AI platform for gestoria and SME automation. Exposes chat, agent status, proposal generation, and content tools to browser agents via WebMCP.",
+  "homepage": "https://aigestion.net",
+  "tools": [
+    {
+      "name": "chat",
+      "description": "Send a message to Daniela AI and get a response",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "User message or question for Daniela"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source of the message (e.g., 'webmcp_agent')",
+            "default": "webmcp_agent"
+          }
+        },
+        "required": ["message"]
+      },
+      "function": "aigestion_chat",
+      "endpoint": "/api/chat"
+    },
+    {
+      "name": "get_agent_status",
+      "description": "Get the current status of all DanielaOS agents (9 agents)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "function": "aigestion_get_agents",
+      "endpoint": "/api/agents"
+    },
+    {
+      "name": "get_activity_feed",
+      "description": "Get the recent activity log from DanielaOS agents",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of activities to return",
+            "default": 20
+          }
+        },
+        "required": []
+      },
+      "function": "aigestion_get_activity",
+      "endpoint": "/api/activity"
+    },
+    {
+      "name": "get_metrics",
+      "description": "Get AIGestion platform metrics (requests, uptime, agent tasks completed)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "function": "aigestion_get_metrics",
+      "endpoint": "/api/metrics"
+    },
+    {
+      "name": "generate_proposal",
+      "description": "Generate a structured proposal card for a user request. Returns JSON with title, description, impact, effort, and action steps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "type": "string",
+            "description": "The user's request or feature idea"
+          },
+          "context": {
+            "type": "string",
+            "description": "Additional context (optional)"
+          }
+        },
+        "required": ["request"]
+      },
+      "function": "aigestion_generate_proposal",
+      "endpoint": "/api/proposal"
+    },
+    {
+      "name": "text_to_speech",
+      "description": "Convert text to speech using Daniela's voice (ElviraNeural, Spanish)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text to convert to audio"
+          }
+        },
+        "required": ["text"]
+      },
+      "function": "aigestion_tts",
+      "endpoint": "/api/tts"
+    },
+    {
+      "name": "classify_email",
+      "description": "Classify an email by priority and category using AGENT_CORREO",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "subject": { "type": "string", "description": "Email subject" },
+          "body": { "type": "string", "description": "Email body text" },
+          "sender": { "type": "string", "description": "Sender email address" }
+        },
+        "required": ["subject", "body"]
+      },
+      "function": "aigestion_classify_email",
+      "endpoint": "/api/email/classify"
+    },
+    {
+      "name": "get_calendar_briefing",
+      "description": "Get today's calendar briefing from AGENT_CALENDARIO",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Date in YYYY-MM-DD format (defaults to today)"
+          }
+        },
+        "required": []
+      },
+      "function": "aigestion_calendar_briefing",
+      "endpoint": "/api/calendar/briefing"
+    },
+    {
+      "name": "create_document",
+      "description": "Create a document using AGENT_DOCUMENTOS (report, proposal, invoice, etc.)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string",
+            "enum": ["report", "proposal", "invoice", "email_response", "meeting_minutes", "weekly_summary"],
+            "description": "Document template type"
+          },
+          "topic": { "type": "string", "description": "Topic or subject of the document" },
+          "details": { "type": "string", "description": "Additional details or requirements" }
+        },
+        "required": ["template", "topic"]
+      },
+      "function": "aigestion_create_document",
+      "endpoint": "/api/document/create"
+    },
+    {
+      "name": "schedule_social_post",
+      "description": "Schedule a social media post via AGENT_REDES (8 platforms)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "content": { "type": "string", "description": "Post content" },
+          "platforms": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Platforms: youtube, youtube_shorts, tiktok, instagram, linkedin, twitter, facebook, telegram"
+          },
+          "scheduled_at": {
+            "type": "string",
+            "description": "ISO 8601 datetime for scheduled posting"
+          }
+        },
+        "required": ["content", "platforms"]
+      },
+      "function": "aigestion_schedule_post",
+      "endpoint": "/api/social/schedule"
+    },
+    {
+      "name": "get_system_health",
+      "description": "Get system health status from AGENT_VIGIA (CPU, RAM, disk, services)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      },
+      "function": "aigestion_system_health",
+      "endpoint": "/api/system/health"
+    }
+  ],
+  "forms": [
+    {
+      "name": "contact_form",
+      "description": "Contact AIGestion for a demo or consultation",
+      "selector": "#contact-form",
+      "fields": {
+        "name": { "type": "text", "required": true },
+        "email": { "type": "email", "required": true },
+        "company": { "type": "text", "required": false },
+        "message": { "type": "textarea", "required": true }
+      },
+      "submitEndpoint": "/api/contact"
+    }
+  ]
+}

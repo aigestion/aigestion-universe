@@ -1,0 +1,12 @@
+{
+  "luz salon": "light.living_room",
+  "luz cocina": "light.kitchen",
+  "luz dormitorio": "light.bedroom",
+  "luz baño": "light.bathroom",
+  "luz entrada": "light.entrance",
+  "todas las luces": "light.all",
+  "termostato": "climate.thermostat",
+  "tv": "media_player.tv",
+  "musica": "media_player.spotify",
+  "enchufe": "switch.smart_plug"
+}

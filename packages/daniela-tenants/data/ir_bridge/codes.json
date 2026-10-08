@@ -1,0 +1,111 @@
+{
+  "codes": {
+    "tv_samsung_power": {
+      "name": "tv_samsung_power",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,560,560,560,560,560,560,560,560,560,560,560,560,1690,560,560,560",
+      "protocol": "nec-ext",
+      "device": "Samsung TV",
+      "room": "salon",
+      "address": 1799,
+      "command": 2,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 4
+    },
+    "tv_samsung_hdmi1": {
+      "name": "tv_samsung_hdmi1",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,560,560,560,560,560,560,560,560,1690,560,1690,560,560,560,1690,560",
+      "protocol": "nec-ext",
+      "device": "Samsung TV",
+      "room": "salon",
+      "address": 1799,
+      "command": 13,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 0
+    },
+    "tv_samsung_hdmi2": {
+      "name": "tv_samsung_hdmi2",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,560,560,560,560,560,560,560,560,1690,560,1690,560,560,560,560,560",
+      "protocol": "nec-ext",
+      "device": "Samsung TV",
+      "room": "salon",
+      "address": 1799,
+      "command": 12,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 2
+    },
+    "tv_samsung_vol_up": {
+      "name": "tv_samsung_vol_up",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560",
+      "protocol": "nec-ext",
+      "device": "Samsung TV",
+      "room": "salon",
+      "address": 1799,
+      "command": 7,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 0
+    },
+    "tv_samsung_vol_down": {
+      "name": "tv_samsung_vol_down",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,560,560,560,560,560,560,560,560,1690,560,560,560,1690,560,1690,560",
+      "protocol": "nec-ext",
+      "device": "Samsung TV",
+      "room": "salon",
+      "address": 1799,
+      "command": 11,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 0
+    },
+    "tv_samsung_mute": {
+      "name": "tv_samsung_mute",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,560,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,560,560,560,560,560,560,560,560,1690,560,1690,560,1690,560,1690,560",
+      "protocol": "nec-ext",
+      "device": "Samsung TV",
+      "room": "salon",
+      "address": 1799,
+      "command": 15,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 0
+    },
+    "tv_lg_power": {
+      "name": "tv_lg_power",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,1690,560,1690,560,1690,560,1690,560,1690,560,560,560,1690,560,1690,560,560,560,560,560,560,560,560,560,1690,560,560,560,560,560,560,560",
+      "protocol": "nec-ext",
+      "device": "LG TV",
+      "room": "salon",
+      "address": 1275,
+      "command": 8,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 0
+    },
+    "tv_lg_input": {
+      "name": "tv_lg_input",
+      "frequency": 38000,
+      "pattern": "9000,4500,560,1690,560,1690,560,1690,560,1690,560,1690,560,560,560,1690,560,1690,560,560,560,560,560,560,560,560,560,1690,560,560,560,1690,560,1690,560",
+      "protocol": "nec-ext",
+      "device": "LG TV",
+      "room": "salon",
+      "address": 1275,
+      "command": 11,
+      "note": "plantilla generada por protocolo — ajusta con learn()",
+      "created": "2026-09-10T13:12:43",
+      "uses": 0
+    }
+  },
+  "sent": 6,
+  "failed": 0,
+  "updated": "2026-09-10T13:13:17"
+}

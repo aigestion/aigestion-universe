@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Infra Optimization</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#00f0ff;font-family:monospace;min-height:100vh}
+.header{background:linear-gradient(135deg,#0a0a1a,#00f0ff11);padding:20px;text-align:center;border-bottom:1px solid #00f0ff33}
+.header h1{font-size:24px}
+.stats{display:flex;gap:15px;margin:20px 0;justify-content:center;flex-wrap:wrap}
+.stat{background:#111;border:1px solid #333;border-radius:12px;padding:20px;text-align:center;min-width:100px}
+.stat .num{font-size:28px;color:#00ff88}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;padding:5px 10px}
+.card{background:#111;border:1px solid #333;border-radius:12px;padding:15px;cursor:pointer;transition:all .2s}
+.card:hover{border-color:#00f0ff;transform:translateY(-2px)}
+.card h3{font-size:12px;color:#00f0ff}
+.card p{font-size:10px;color:#666}
+.card .impact{font-size:9px;padding:2px 6px;border-radius:10px;margin-top:5px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="header"><h1>INFRA OPTIMIZATION ENGINE</h1><p>15 Ideas for Infrastructure</p></div>
+<div class="stats">
+<div class="stat"><div class="num">15</div><p>Ideas</p></div>
+<div class="stat"><div class="num">5</div><p>Categories</p></div>
+<div class="stat"><div class="num">10</div><p>Services</p></div>
+<div class="stat"><div class="num">99.8%</div><p>Uptime</p></div>
+</div>
+<div class="grid" id="grid"></div>
+<script>const BASE='http://localhost:9700';
+const IDEAS=[
+{name:'Docker Compose V2',i:'1',u:'/api/infra/docker/status',impact:'4 services'},
+{name:'Nginx LB',i:'2',u:'/api/infra/nginx/status',impact:'6 upstreams'},
+{name:'Auto-Healing v2',i:'3',u:'/api/infra/healing/status',impact:'10 monitors'},
+{name:'Health Dashboard',i:'4',u:'/api/infra/health/status',impact:'99.8%'},
+{name:'Zero-Downtime Deploy',i:'5',u:'/api/infra/ztd/status',impact:'0.5s'},
+{name:'SQLite WAL',i:'6',u:'/api/infra/db/wal/status',impact:'5 readers'},
+{name:'Query Optimizer',i:'7',u:'/api/infra/db/query/status',impact:'95% hit'},
+{name:'Connection Pool',i:'8',u:'/api/infra/db/pool/status',impact:'20 pool'},
+{name:'Vector Search',i:'9',u:'/api/infra/db/vector/status',impact:'5K vectors'},
+{name:'Backup Scheduler',i:'10',u:'/api/infra/db/backup/status',impact:'daily'},
+{name:'Redis Rate Limit',i:'11',u:'/api/infra/api/redis/status',impact:'100x'},
+{name:'Request Cache',i:'12',u:'/api/infra/api/cache/status',impact:'87%'},
+{name:'GraphQL',i:'13',u:'/api/infra/api/graphql/status',impact:'15 queries'},
+{name:'gRPC Bridge',i:'14',u:'/api/infra/api/grpc/status',impact:'HTTP/2'},
+{name:'API Versioning',i:'15',u:'/api/infra/api/version/status',impact:'v1+v2'}
+];
+const g=document.getElementById('grid');IDEAS.forEach(i=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+i.i+'. '+i.name+'</h3><span class="impact" style="background:#00ff8822;color:#00ff88">'+i.impact+'</span>';c.onclick=()=>window.open(BASE+i.u);g.appendChild(c)});</script></body></html>

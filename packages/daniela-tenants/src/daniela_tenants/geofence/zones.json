@@ -1,0 +1,16 @@
+{
+  "home": {
+    "name": "Casa",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "radius": 100,
+    "mode": "home"
+  },
+  "work": {
+    "name": "Trabajo",
+    "lat": 40.4477,
+    "lon": -3.692,
+    "radius": 150,
+    "mode": "work"
+  }
+}

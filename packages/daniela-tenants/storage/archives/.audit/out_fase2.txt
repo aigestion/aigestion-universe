@@ -1,0 +1,162 @@
+===== A. TOTALES =====
+ficheros: 6853
+directorios: 1052
+enlaces rotos: 0
+
+===== B. PESO POR CARPETA (nivel 1) =====
+5865002	/storage/emulated/0/Android
+3185897	/storage/emulated/0/Documents
+726395	/storage/emulated/0/DCIM
+474551	/storage/emulated/0/Movies
+378598	/storage/emulated/0/Download
+150789	/storage/emulated/0/Pictures
+3728	/storage/emulated/0/DanielaOS
+1380	/storage/emulated/0/TermuxAudioRecording_2026-08-04_12-49-55.m4a
+1380	/storage/emulated/0/TermuxAudioRecording_2026-08-04_12-30-58.m4a
+1380	/storage/emulated/0/TermuxAudioRecording_2026-08-04_12-15-27.m4a
+1380	/storage/emulated/0/TermuxAudioRecording_2026-08-04_12-00-07.m4a
+1380	/storage/emulated/0/TermuxAudioRecording_2026-08-04_11-44-16.m4a
+88	/storage/emulated/0/screen.png
+32	/storage/emulated/0/DanielaCloud
+11	/storage/emulated/0/Music
+11	/storage/emulated/0/DanielaOS_Media
+8	/storage/emulated/0/DanielaOS_Docs
+4	/storage/emulated/0/mis_apps.txt
+4	/storage/emulated/0/Ringtones
+4	/storage/emulated/0/Recordings
+4	/storage/emulated/0/Podcasts
+4	/storage/emulated/0/Notifications
+4	/storage/emulated/0/Audiobooks
+4	/storage/emulated/0/Alarms
+
+===== C. PESO POR CARPETA (nivel 2) =====
+5285027	/storage/emulated/0/Android/data
+3185772	/storage/emulated/0/Documents/NexusAI
+726388	/storage/emulated/0/DCIM/Camera
+579968	/storage/emulated/0/Android/media
+295799	/storage/emulated/0/Download/DanielaControl
+132988	/storage/emulated/0/Movies/output_epic_composition.mp4
+84660	/storage/emulated/0/Pictures/Screenshots
+82932	/storage/emulated/0/Movies/output_screencast_tech.mp4
+82648	/storage/emulated/0/Movies/output_dynamic_9x16.mp4
+61208	/storage/emulated/0/Movies/output_short_9x16.mp4
+57182	/storage/emulated/0/Download/Daniela_Organizado
+26776	/storage/emulated/0/Movies/output_briefing_9x16.mp4
+21920	/storage/emulated/0/Download/Instaladores_APK
+16840	/storage/emulated/0/Movies/output_multiscene.mp4
+14660	/storage/emulated/0/Movies/daniela_loop.mp4
+14008	/storage/emulated/0/Movies/output_zerocost.mp4
+13424	/storage/emulated/0/Movies/daniela_animated.mp4
+10344	/storage/emulated/0/Movies/output_sovereign_viral.mp4
+6116	/storage/emulated/0/Movies/output_auto_viral.mp4
+6064	/storage/emulated/0/Movies/output_viral_pro.mp4
+3624	/storage/emulated/0/Download/Documentos
+3076	/storage/emulated/0/DanielaOS/Queue
+2788	/storage/emulated/0/Movies/gemini_generated_video_f3a0a782.mp4
+2396	/storage/emulated/0/Pictures/file_000000009a00821195771bc85f28c1a3.png
+2140	/storage/emulated/0/Movies/gemini_generated_video_6483cc2d.mp4
+1924	/storage/emulated/0/Pictures/1786787755050.png
+1696	/storage/emulated/0/Pictures/1786787216622.png
+1492	/storage/emulated/0/Pictures/1787399351571.png
+1492	/storage/emulated/0/Pictures/1787398121249.png
+1248	/storage/emulated/0/Pictures/WhatsApp
+642	/storage/emulated/0/DanielaOS/deploy
+111	/storage/emulated/0/Documents/allreader
+16	/storage/emulated/0/Download/DANIELA OS __ ULTIMATE CORE.mht
+16	/storage/emulated/0/DanielaCloud/daniela_memory_sync.db
+11	/storage/emulated/0/Documents/Obsidian
+8	/storage/emulated/0/Download/SDC_1_2_21_A_ALFONSO_FERNANDEZ_ALEJANDRO_MANUEL___28921591B.p12
+8	/storage/emulated/0/DanielaOS_Media/Shorts
+4	/storage/emulated/0/Download/Imágenes
+4	/storage/emulated/0/Download/Comprimidos
+4	/storage/emulated/0/Download/Apps_APKs
+4	/storage/emulated/0/DanielaOS_Docs/Informe_Ejecutivo.pdf
+4	/storage/emulated/0/DanielaOS/audit
+4	/storage/emulated/0/DanielaOS/Rendered
+4	/storage/emulated/0/DanielaCloud/content_Automatizacion_de_Termux.json
+4	/storage/emulated/0/DanielaCloud/content_Automatizacion_Total_en_Android.json
+4	/storage/emulated/0/DanielaCloud/colab_task_task_001.json
+4	/storage/emulated/0/DCIM/Restored
+4	/storage/emulated/0/Android/obb
+
+===== D. DOCUMENTS (3 GB, sospechoso) =====
+3185772	/storage/emulated/0/Documents/NexusAI
+111	/storage/emulated/0/Documents/allreader
+11	/storage/emulated/0/Documents/Obsidian
+-- ficheros sueltos en Documents --
+
+===== E. ANDROID (5.8 GB) =====
+5285027	/storage/emulated/0/Android/data
+579968	/storage/emulated/0/Android/media
+4	/storage/emulated/0/Android/obb
+-- Android/data --
+4663508	/storage/emulated/0/Android/data/com.google.ai.edge.gallery
+480378	/storage/emulated/0/Android/data/com.llmproxy
+35819	/storage/emulated/0/Android/data/com.google.android.apps.maps
+35234	/storage/emulated/0/Android/data/com.viture.spacewalker
+30219	/storage/emulated/0/Android/data/org.telegram.messenger
+7270	/storage/emulated/0/Android/data/com.screen.mirroring.smart.view.tv.cast
+6281	/storage/emulated/0/Android/data/com.alibaba.aliexpresshd
+6253	/storage/emulated/0/Android/data/com.spotify.music
+5935	/storage/emulated/0/Android/data/com.zhiliaoapp.musically
+3119	/storage/emulated/0/Android/data/mega.privacy.android.app
+2540	/storage/emulated/0/Android/data/com.whatsapp.w4b
+2150	/storage/emulated/0/Android/data/com.idealista.android
+1778	/storage/emulated/0/Android/data/com.google.android.apps.adm
+1738	/storage/emulated/0/Android/data/com.anuntis.fotocasa
+1482	/storage/emulated/0/Android/data/com.google.android.apps.photos
+191	/storage/emulated/0/Android/data/com.gnf.apm
+166	/storage/emulated/0/Android/data/com.miracast.chromecast.screenmirroring.smartview.tvcast.smartcast
+131	/storage/emulated/0/Android/data/alldocumentreader.office.viewer.filereader
+51	/storage/emulated/0/Android/data/com.pdfsign.editor
+51	/storage/emulated/0/Android/data/com.amazon.mShop.android.shopping
+31	/storage/emulated/0/Android/data/com.microsoft.office.outlook
+31	/storage/emulated/0/Android/data/com.microsoft.copilot
+31	/storage/emulated/0/Android/data/com.microsoft.appmanager
+31	/storage/emulated/0/Android/data/com.google.android.apps.pixel.dcservice
+31	/storage/emulated/0/Android/data/com.google.android.GoogleCamera
+-- Android/media --
+579936	/storage/emulated/0/Android/media/com.whatsapp.w4b
+14	/storage/emulated/0/Android/media/org.telegram.messenger
+4	/storage/emulated/0/Android/media/com.tcl.browser
+4	/storage/emulated/0/Android/media/com.openai.chatgpt
+4	/storage/emulated/0/Android/media/com.instagram.android
+4	/storage/emulated/0/Android/media/com.google.android.gms
+-- Android/obb --
+
+===== F. DOWNLOAD =====
+295799	/storage/emulated/0/Download/DanielaControl
+57182	/storage/emulated/0/Download/Daniela_Organizado
+21920	/storage/emulated/0/Download/Instaladores_APK
+3624	/storage/emulated/0/Download/Documentos
+16	/storage/emulated/0/Download/DANIELA OS __ ULTIMATE CORE.mht
+8	/storage/emulated/0/Download/SDC_1_2_21_A_ALFONSO_FERNANDEZ_ALEJANDRO_MANUEL___28921591B.p12
+4	/storage/emulated/0/Download/Imágenes
+4	/storage/emulated/0/Download/Comprimidos
+4	/storage/emulated/0/Download/Apps_APKs
+
+===== G. DCIM / PICTURES / MOVIES =====
+726388	/storage/emulated/0/DCIM/Camera
+4	/storage/emulated/0/DCIM/Restored
+84660	/storage/emulated/0/Pictures/Screenshots
+2396	/storage/emulated/0/Pictures/file_000000009a00821195771bc85f28c1a3.png
+1924	/storage/emulated/0/Pictures/1786787755050.png
+1696	/storage/emulated/0/Pictures/1786787216622.png
+1492	/storage/emulated/0/Pictures/1787399351571.png
+1492	/storage/emulated/0/Pictures/1787398121249.png
+1248	/storage/emulated/0/Pictures/WhatsApp
+132988	/storage/emulated/0/Movies/output_epic_composition.mp4
+82932	/storage/emulated/0/Movies/output_screencast_tech.mp4
+82648	/storage/emulated/0/Movies/output_dynamic_9x16.mp4
+61208	/storage/emulated/0/Movies/output_short_9x16.mp4
+26776	/storage/emulated/0/Movies/output_briefing_9x16.mp4
+16840	/storage/emulated/0/Movies/output_multiscene.mp4
+14660	/storage/emulated/0/Movies/daniela_loop.mp4
+14008	/storage/emulated/0/Movies/output_zerocost.mp4
+13424	/storage/emulated/0/Movies/daniela_animated.mp4
+10344	/storage/emulated/0/Movies/output_sovereign_viral.mp4
+6116	/storage/emulated/0/Movies/output_auto_viral.mp4
+6064	/storage/emulated/0/Movies/output_viral_pro.mp4
+2788	/storage/emulated/0/Movies/gemini_generated_video_f3a0a782.mp4
+2140	/storage/emulated/0/Movies/gemini_generated_video_6483cc2d.mp4
+FIN-FASE2

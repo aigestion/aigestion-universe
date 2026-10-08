@@ -1,0 +1,22 @@
+docs: guia para cerrar el P0 con Tailscale + quitar falso positivo
+
+El usuario ha instalado Tailscale en el movil (com.tailscale.ipn, IP
+100.65.50.219). Verificado por adb: en el PC NO estaba instalado.
+
+docs/TAILSCALE-P0.md: estado real y pasos para cerrar el agujero.
+- Instalador de Windows ya descargado (data/instaladores/, 38 MB).
+  No se puede instalar en silencio: crea un servicio y pide UAC.
+- `pkill cloudflared` en Termux: adb NO puede matarlo (el movil no tiene
+  root: `kill: 28646: Operation not permitted`). Se descarta
+  `am force-stop com.termux` porque mataria tambien el gateway.
+- El 8082 escucha en 0.0.0.0: con Tailscale conviene que el gateway
+  escuche solo en la IP de la VPN.
+
+Falso positivo del guardia: tunnel_guard contaba 1 literal de token "alto"
+que en realidad era PROSA: la descripcion de la E-30 en el roadmap
+(una cadena dentro de un string, no un #comentario, asi que el audit no
+la saltaba). Reformulado el texto sin reproducir el literal.
+Ahora `literales: 0` y el informe deja de ensuciar el nivel CRITICO.
+
+Tambien: PIXEL_IPS en el .env para que tunnel_guard escanee la IP de
+Tailscale. El .env no se commitea (ignorado), igual que config/.env.

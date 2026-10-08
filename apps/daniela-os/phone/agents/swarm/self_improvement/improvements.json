@@ -1,0 +1,1851 @@
+{
+  "improvements": [
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T01:36:17.607877"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T01:40:33.923717"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T01:40:34.060477"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:57:04.922808"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:58:16.520188"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:58:16.620835"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:58:16.719728"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T02:59:16.494015"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:00:23.481676"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:00:23.574628"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:00:23.665287"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:01:22.214888"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:03:21.979552"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:03:22.258406"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:03:22.619470"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:05:44.977107"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:08:33.387056"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:08:33.625049"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:08:33.922498"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:11:47.726165"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:14:32.593659"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:14:32.792733"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:14:33.005458"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:15:58.289809"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T03:17:27.982772"
+    },
+    {
+      "analysis": {
+        "error": "[Errno 2] No such file or directory: 'ruff'"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-01T10:00:07.832730"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n117\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 42\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tI001  \t[-] unsorted-imports\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n 11\t      \t[ ] invalid-syntax\n  9\tC416  \t[ ] unnecessary-comprehension\n  9\tUP035 \t[ ] deprecated-import\n  9\tUP042 \t[ ] replace-str-enum\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tB018  \t[ ] useless-expression\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tUP030 \t[ ] format-literals\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 22 fixable with the `--fix` option (450 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T14:44:56.382053"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T14:44:56.382077"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n117\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 42\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tI001  \t[-] unsorted-imports\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n 11\t      \t[ ] invalid-syntax\n  9\tC416  \t[ ] unnecessary-comprehension\n  9\tUP035 \t[ ] deprecated-import\n  9\tUP042 \t[ ] replace-str-enum\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tB018  \t[ ] useless-expression\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tUP030 \t[ ] format-literals\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 22 fixable with the `--fix` option (450 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T14:44:58.655452"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T14:44:58.655482"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n117\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 42\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tI001  \t[-] unsorted-imports\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n 11\t      \t[ ] invalid-syntax\n  9\tC416  \t[ ] unnecessary-comprehension\n  9\tUP035 \t[ ] deprecated-import\n  9\tUP042 \t[ ] replace-str-enum\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tB018  \t[ ] useless-expression\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tUP030 \t[ ] format-literals\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 22 fixable with the `--fix` option (450 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T14:44:59.787509"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T14:44:59.787531"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T19:41:30.826207"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T19:41:30.826207"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T19:41:33.254437"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T19:41:33.254437"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T19:41:34.689276"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T19:41:34.689276"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:10:24.741746"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:10:24.741746"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:12:49.195675"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:12:49.195675"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:12:51.603799"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:12:51.603799"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:12:52.714846"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:12:52.714846"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:13:38.420740"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:13:38.420740"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:16:05.385935"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:16:05.385935"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:16:07.667649"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:16:07.667649"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:16:08.863441"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:16:08.863441"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:31:29.855071"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:31:29.855071"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:33:58.861448"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:33:58.861448"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:34:00.654405"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:34:00.654405"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n104\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 59\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 21\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 943 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T20:34:01.601022"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T20:34:01.601022"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n105\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 36\tI001  \t[-] unsorted-imports\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 36 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:13:15.479215"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:13:15.479215"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n105\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 36\tI001  \t[-] unsorted-imports\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 36 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:15:58.104854"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:15:58.105405"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n105\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 36\tI001  \t[-] unsorted-imports\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 36 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:15:59.922877"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:15:59.922877"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n105\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 36\tI001  \t[-] unsorted-imports\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tUP035 \t[ ] deprecated-import\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 955 errors.\n[*] 36 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:16:00.866615"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:16:00.866615"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:22:54.314357"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:22:54.314357"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:25:39.446998"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:25:39.446998"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:25:41.306775"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:25:41.306775"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-03T21:25:42.225625"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-03T21:25:42.225625"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:00:36.277868"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:00:36.277868"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:03:40.051079"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:03:40.051079"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:03:42.403994"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:03:42.403994"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:03:43.659543"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:03:43.659543"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:05:12.096606"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:05:12.096606"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:08:08.208842"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:08:08.208842"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:08:10.716010"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:08:10.716010"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:08:12.006658"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:08:12.006658"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:09:13.314044"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:09:13.314044"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:09:15.857234"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:09:15.857234"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:09:17.099333"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:09:17.099333"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:09:57.436558"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:09:57.436558"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:12:49.655432"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:12:49.655432"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:12:52.189701"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:12:52.189701"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 32\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 946 errors.\n[*] 32 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:12:53.498732"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:12:53.498732"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:29:16.301499"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:29:16.301499"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:29:49.023128"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:29:49.023128"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:32:55.430295"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:32:55.430295"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:32:57.822312"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:32:57.822312"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:32:59.001988"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:32:59.002992"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:33:40.154900"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:33:40.154900"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:36:34.595772"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:36:34.595772"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:36:37.147554"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:36:37.147554"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:36:38.499064"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:36:38.499064"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:38:50.647066"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:38:50.647066"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:41:47.814513"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:41:47.814513"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:41:50.288996"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:41:50.288996"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:41:51.618993"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:41:51.618993"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:51:33.665643"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:51:33.665643"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:54:30.721017"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:54:30.721017"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:54:33.341839"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:54:33.341839"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T00:54:34.588879"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T00:54:34.588879"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T01:03:29.781911"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:03:29.782633"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T01:04:12.932715"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:04:12.932715"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T01:07:08.735266"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:07:08.735266"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T01:07:11.355757"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:07:11.355757"
+    },
+    {
+      "analysis": {
+        "issues": "180\tW293  \t[ ] blank-line-with-whitespace\n164\tE701  \t[ ] multiple-statements-on-one-line-colon\n102\tF401  \t[-] unused-import\n 74\tF841  \t[ ] unused-variable\n 66\tE722  \t[ ] bare-except\n 55\tW291  \t[ ] trailing-whitespace\n 41\tB007  \t[ ] unused-loop-control-variable\n 40\tUP031 \t[ ] printf-string-formatting\n 35\tE702  \t[ ] multiple-statements-on-one-line-semicolon\n 33\tI001  \t[-] unsorted-imports\n 26\tPIE810\t[ ] multiple-starts-ends-with\n 22\tUP022 \t[ ] replace-stdout-stderr\n 22\tF821  \t[ ] undefined-name\n 20\tF403  \t[ ] undefined-local-with-import-star\n 15\tB904  \t[ ] raise-without-from-inside-except\n  9\t      \t[ ] invalid-syntax\n  9\tUP042 \t[ ] replace-str-enum\n  9\tC416  \t[ ] unnecessary-comprehension\n  8\tC401  \t[ ] unnecessary-generator-set\n  4\tB023  \t[ ] function-uses-loop-variable\n  3\tUP030 \t[ ] format-literals\n  3\tUP007 \t[ ] non-pep604-annotation-union\n  3\tB018  \t[ ] useless-expression\n  2\tF601  \t[ ] multi-value-repeated-key-literal\n  1\tE902  \t[ ] io-error\n  1\tUP028 \t[ ] yield-in-for-loop\nFound 947 errors.\n[*] 33 fixable with the `--fix` option (449 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-04T01:07:12.600780"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T01:07:12.600780"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T22:50:39.456087"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:50:39.456087"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T22:55:22.300138"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:55:22.300138"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T22:55:22.948520"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:55:22.948520"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T22:55:23.277682"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:55:23.277682"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T22:57:38.794915"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T22:57:38.794915"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:02:22.437385"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:02:22.437385"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:02:23.101583"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:02:23.101583"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:02:23.421774"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:02:23.421774"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:40:32.922225"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:40:32.922225"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:45:32.820767"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:45:32.820767"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:45:33.503297"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:45:33.503297"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:45:33.841904"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:45:33.841904"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:46:58.365010"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:46:58.365010"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:52:06.346059"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:52:06.346059"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:52:06.949013"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:52:06.949013"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-04T23:52:07.332695"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-04T23:52:07.332695"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:07:44.666213"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:07:44.666213"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:12:34.526980"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:12:34.526980"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:12:35.150881"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:12:35.150881"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:12:35.519935"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:12:35.519935"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:14:03.460973"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:14:03.460973"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:18:37.433703"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:18:37.433703"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:18:38.094898"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:18:38.094898"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:18:38.429129"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:18:38.429129"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:20:34.256240"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:20:34.256240"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:25:46.586339"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:25:46.586339"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:25:47.345968"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:25:47.345968"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:25:47.683998"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:25:47.683998"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:34:01.334096"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:34:01.334096"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:39:05.827445"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:39:05.827445"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:39:06.446276"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:39:06.446276"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T00:39:06.776300"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T00:39:06.776300"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:10:01.502076"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:10:01.502076"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:14:41.173315"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:14:41.173315"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:14:41.790035"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:14:41.790035"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:14:42.126544"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:14:42.126544"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:16:43.745344"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:16:43.745344"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:21:18.498564"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:21:18.498564"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:21:19.089974"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:21:19.089974"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:21:19.484428"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:21:19.484428"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:29:29.770368"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:29:29.770368"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:32:01.025773"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:32:01.025773"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:36:47.735295"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:36:47.735295"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:36:48.478555"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:36:48.478555"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T01:36:48.885561"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:36:48.885561"
+    },
+    {
+      "analysis": {
+        "issues": "1\tF821\tundefined-name\nFound 1 error.\n",
+        "timestamp": "2026-10-05T01:49:11.496175"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:49:11.496175"
+    },
+    {
+      "analysis": {
+        "issues": "1\tF821\tundefined-name\nFound 1 error.\n",
+        "timestamp": "2026-10-05T01:54:00.976030"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:54:00.976030"
+    },
+    {
+      "analysis": {
+        "issues": "1\tF821\tundefined-name\nFound 1 error.\n",
+        "timestamp": "2026-10-05T01:54:01.677201"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:54:01.677201"
+    },
+    {
+      "analysis": {
+        "issues": "1\tF821\tundefined-name\nFound 1 error.\n",
+        "timestamp": "2026-10-05T01:54:02.079352"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T01:54:02.079352"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:44:15.127003"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:44:15.127019"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:48:51.998989"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:48:51.999009"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:48:52.779656"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:48:52.779680"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:48:53.121863"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:48:53.121888"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:50:00.270262"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:50:00.270280"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:54:38.082740"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:54:38.082767"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:54:38.817080"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:54:38.817099"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:54:39.185128"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:54:39.185150"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T10:56:08.879582"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T10:56:08.879606"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:01:23.156238"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:01:23.156262"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:01:23.932431"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:01:23.932447"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:01:24.322367"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:01:24.322386"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:46:39.813651"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:46:39.813676"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:51:14.885309"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:51:14.885331"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:51:15.774881"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:51:15.774901"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:51:16.149643"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:51:16.149658"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:54:10.796671"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:54:10.796696"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:58:56.096528"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:58:56.096551"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:58:56.810586"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:58:56.810606"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T11:58:57.236607"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T11:58:57.236626"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T12:25:42.947682"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:25:42.947707"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T12:30:18.081304"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:30:18.081356"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T12:30:18.848700"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:30:18.848724"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T12:30:19.269216"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:30:19.269239"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T12:33:39.955116"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T12:33:39.955145"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T13:12:55.556864"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T13:12:55.556889"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T13:18:17.007626"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T13:18:17.007649"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T13:18:18.027043"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T13:18:18.027064"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T13:18:18.468718"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T13:18:18.468738"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T14:30:42.439676"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T14:30:42.439697"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T14:36:07.901589"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T14:36:07.901614"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T14:36:08.737196"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T14:36:08.737216"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T14:36:09.183875"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T14:36:09.183896"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T16:46:57.253289"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:46:57.253313"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T16:55:08.179728"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:55:08.179750"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T16:57:45.853481"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:57:45.853524"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T16:57:58.406413"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:57:58.406439"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T16:57:59.504448"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:57:59.504476"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T16:58:00.102620"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T16:58:00.102659"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:06:01.176865"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:06:01.176885"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:09:17.455472"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:09:17.455495"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:13:13.489745"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:13:13.489774"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:16:49.769551"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:16:49.769606"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:16:50.658683"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:16:50.658701"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:16:51.189572"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:16:51.189586"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T17:37:18.441465"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T17:37:18.441482"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:01:59.924025"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:01:59.924025"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:06:53.258056"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:06:53.258056"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:06:53.884702"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:06:53.884702"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:06:54.224886"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:06:54.224886"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:07:40.823290"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:07:40.823290"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:12:34.593389"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:12:34.593389"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:12:35.257409"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:12:35.257409"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:12:35.581229"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:12:35.581229"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:13:41.745517"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:13:41.745517"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:18:37.426761"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:18:37.426761"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:18:38.223607"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:18:38.223607"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:18:38.565189"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:18:38.565189"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:19:19.078930"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:19:19.078930"
+    },
+    {
+      "analysis": {
+        "issues": "",
+        "timestamp": "2026-10-05T18:25:29.711791"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:25:29.711791"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T18:58:18.783876"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T18:58:18.783876"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:00:17.453860"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:00:17.453860"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:05:53.696688"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:05:53.696688"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:05:54.514657"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:05:54.514657"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:05:54.939596"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:05:54.939596"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:08:21.672457"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:08:21.672457"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:13:24.992720"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:13:24.992720"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:13:25.843735"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:13:25.843735"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:13:26.270475"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:13:26.270475"
+    },
+    {
+      "analysis": {
+        "issues": "14\tF541  \t[*] f-string-missing-placeholders\n 7\tUP017 \t[*] datetime-timezone-utc\n 4\tUP045 \t[*] non-pep604-annotation-optional\n 2\tC401  \t[ ] unnecessary-generator-set\n 2\tF401  \t[*] unused-import\n 1\tPIE810\t[ ] multiple-starts-ends-with\n 1\tPIE807\t[*] reimplemented-container-builtin\n 1\tI001  \t[*] unsorted-imports\n 1\tB007  \t[ ] unused-loop-control-variable\n 1\tF841  \t[ ] unused-variable\nFound 34 errors.\n[*] 29 fixable with the `--fix` option (5 hidden fixes can be enabled with the `--unsafe-fixes` option).\n",
+        "timestamp": "2026-10-05T19:14:20.483716"
+      },
+      "suggestion": "Mejora sugerida basada en an\u00e1lisis",
+      "priority": "medium",
+      "timestamp": "2026-10-05T19:14:20.483716"
+    }
+  ],
+  "last_improvement": "2026-10-05T19:14:20.483716"
+}

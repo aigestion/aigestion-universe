@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Daniela",
+    "role": "Ciber-Ejecutiva / Leader",
+    "color": "Cyan + Magenta",
+    "hex_color": "#00ffff + #ff0055",
+    "nano_banana_prompt": "Cinematic portrait of Daniela, a confident AI executive woman in her 30s. She wears a sleek charcoal-black futuristic business suit with subtle neon cyan and magenta glowing accents along the lapels and cuffs. Dark hair in a sharp executive cut. She stands in a glass-walled office overlooking a neon cyberpunk metropolis at night. Holographic dashboard panels float around her. Lighting: dramatic cyan and magenta neon rim light. Expression: confident, direct gaze, subtle professional smile. Photorealistic, 8K, cinematic, Blade Runner aesthetic.",
+    "personality": "Profesional, directa, segura de si misma. Habla con datos. No promete, muestra resultados. Confianza ejecutiva sin arrogancia. Trata a cada usuario como un cliente VIP cuyo tiempo vale oro.",
+    "abilities": [
+      "Coordina los 5 agentes de IA",
+      "Genera reportes ejecutivos automaticos",
+      "Analiza datos de multiples fuentes",
+      "Predice problemas antes de que ocurran",
+      "Briefing diario personalizado",
+      "Gestion 24/7 sin descanso"
+    ],
+    "first_appearance": "AIGestion Launch Commercial",
+    "voice_tone": "ElviraNeural (es-ES) - firme pero elegante, pacing medido"
+  },
+  {
+    "name": "Agente Correo",
+    "role": "Email Manager",
+    "color": "Blue",
+    "hex_color": "#0099ff",
+    "nano_banana_prompt": "A sleek humanoid figure made of flowing blue light, standing in a dark digital space with a neon grid floor. The figure has no facial features - it is pure energy shaped like a person. Email icons and message streams flow through its body. Blue particles trail from its hands. 3D rendered, sci-fi, abstract, glowing.",
+    "personality": "Rapido, preciso, clasifica todo. No duerme, no se abruma.",
+    "abilities": [
+      "Procesa 50+ emails en 30 segundos",
+      "Clasifica por prioridad (urgente/routine/spam)",
+      "Redacta respuestas automaticas",
+      "Archiva y organiza inbox",
+      "Detecta phishing y scams"
+    ],
+    "first_appearance": "El Escuadron: 5 Agentes IA",
+    "voice_tone": "AlvaroNeural (es-ES) - rapido, eficiente, directo"
+  },
+  {
+    "name": "Agente Calendario",
+    "role": "Schedule Manager",
+    "color": "Gold",
+    "hex_color": "#ffaa00",
+    "nano_banana_prompt": "A sleek humanoid figure made of flowing golden light, standing in a dark digital space with a neon grid floor. The figure has no facial features - pure energy shaped like a person. Calendar grids and timeline streams orbit around it like rings. Gold particles emanate from its core. 3D rendered, sci-fi, abstract, glowing.",
+    "personality": "Vision del tiempo completa. Ve conflictos antes de que pasen.",
+    "abilities": [
+      "Detecta conflictos de agenda automaticamente",
+      "Reprograma reuniones con notificaciones polite",
+      "Prepara briefing para cada reunion",
+      "Optimiza bloques de tiempo",
+      "Envia recordatorios inteligentes"
+    ],
+    "first_appearance": "El Escuadron: 5 Agentes IA",
+    "voice_tone": "XimenaNeural (es-ES) - organizada, clara, calmada"
+  },
+  {
+    "name": "Agente Documentos",
+    "role": "Document & Report Generator",
+    "color": "Green",
+    "hex_color": "#00ff88",
+    "nano_banana_prompt": "A sleek humanoid figure made of flowing green light, standing in a dark digital space with a neon grid floor. The figure has no facial features - pure energy shaped like a person. Data streams, document icons, and chart graphics flow through its body. Green particles form report pages around its hands. 3D rendered, sci-fi, abstract, glowing.",
+    "personality": "Metodico, exhaustivo, transforma datos en conocimiento.",
+    "abilities": [
+      "Genera reportes desde multiples fuentes de datos",
+      "Crea graficos y visualizaciones",
+      "Resume documentos largos en segundos",
+      "Organiza Drive por proyecto automaticamente",
+      "Exporta a PDF, Sheets, Docs"
+    ],
+    "first_appearance": "El Escuadron: 5 Agentes IA",
+    "voice_tone": "JorgeNeural (es-ES) - metodico, claro, didactico"
+  },
+  {
+    "name": "Agente Redes",
+    "role": "Social Media Manager",
+    "color": "Magenta",
+    "hex_color": "#ff0055",
+    "nano_banana_prompt": "A sleek humanoid figure made of flowing magenta light, standing in a dark digital space with a neon grid floor. The figure has no facial features - pure energy shaped like a person. Social media icons, engagement metrics, and trending hashtags orbit around it. Magenta particles pulse with each notification. 3D rendered, sci-fi, abstract, glowing.",
+    "personality": "Creativa, siempre al dia con tendencias. Habla el idioma del internet.",
+    "abilities": [
+      "Crea contenido para 8 plataformas",
+      "Programa posts en horarios optimos",
+      "Analiza engagement y ajusta estrategia",
+      "Detecta tendencias virales",
+      "Responde comentarios y DMs"
+    ],
+    "first_appearance": "El Escuadron: 5 Agentes IA",
+    "voice_tone": "DaliaNeural (es-ES) - dinamica, creativa, cercana"
+  },
+  {
+    "name": "Agente Vigia",
+    "role": "Security & Monitoring",
+    "color": "Red",
+    "hex_color": "#ff3333",
+    "nano_banana_prompt": "A sleek humanoid figure made of flowing red light, standing in a dark digital space with a neon grid floor. The figure has no facial features - pure energy shaped like a person. Security shields, alert indicators, and monitoring screens form a protective aura around it. Red particles pulse rhythmically like a heartbeat. 3D rendered, sci-fi, abstract, glowing.",
+    "personality": "Alerta, protectivo, nunca parpadea. El guardian silencioso.",
+    "abilities": [
+      "Monitorea servidores 24/7",
+      "Detecta anomalias en tiempo real",
+      "Alerta al equipo de problemas",
+      "Crea tickets automaticos",
+      "Escanea seguridad y vulnerabilidades"
+    ],
+    "first_appearance": "El Escuadron: 5 Agentes IA",
+    "voice_tone": "JorgeNeural (es-ES) - grave, alerta, protectivo"
+  }
+]

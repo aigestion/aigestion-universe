@@ -1,0 +1,501 @@
+/* ============================================================
+   AIGestion Design System - HUD (Heads-Up Display)
+   Overlay UI panels, status indicators, docks, and pills.
+   Used in: main app, 3D experiences, agent dashboard.
+   Depends on: variables.css, base.css
+   ============================================================ */
+
+/* ---- HUD Container ---- */
+.hud {
+  position: fixed;
+  z-index: var(--z-hud);
+  pointer-events: none;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+/* ---- HUD Top Bar ---- */
+.hud-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  padding-top: calc(var(--space-2) + var(--safe-area-top));
+  background: linear-gradient(180deg, rgba(11, 15, 25, 0.9), transparent);
+  backdrop-filter: blur(8px);
+}
+
+.hud-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.hud-brand-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hud-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ---- HUD Dock ---- */
+.hud-dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  padding-bottom: calc(var(--space-3) + var(--safe-area-bottom));
+  background: linear-gradient(0deg, rgba(11, 15, 25, 0.95), transparent);
+  backdrop-filter: blur(8px);
+  z-index: var(--z-hud);
+}
+
+.dock-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+.dock-btn:hover {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.dock-btn:active {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.dock-btn.active {
+  background: var(--gradient-brand-subtle);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* Dock button label tooltip */
+.dock-btn[data-label]::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px var(--space-2);
+  background: var(--color-bg-dark);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  margin-bottom: var(--space-2);
+}
+
+.dock-btn[data-label]:hover::after {
+  opacity: 1;
+}
+
+/* ---- Status Pill ---- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  background: var(--color-surface-glass);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+}
+
+.status-pill .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.status-pill.online .dot {
+  background: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+  animation: pulse-dot 2s infinite;
+}
+
+.status-pill.offline .dot {
+  background: var(--color-text-muted);
+}
+
+.status-pill.busy .dot {
+  background: var(--color-warning);
+  box-shadow: 0 0 6px var(--color-warning);
+  animation: pulse-dot 1s infinite;
+}
+
+.status-pill.error .dot {
+  background: var(--color-danger);
+  box-shadow: 0 0 6px var(--color-danger);
+  animation: pulse-dot 0.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ---- HUD Side Panel (collapsible) ---- */
+.hud-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--color-panel);
+  border-right: 1px solid var(--color-border);
+  z-index: var(--z-hud);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal);
+  overflow: hidden;
+}
+
+.hud-sidebar.left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.hud-sidebar.left.collapsed {
+  transform: translateX(-100%);
+}
+
+.hud-sidebar.right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.hud-sidebar.right.collapsed {
+  transform: translateX(100%);
+}
+
+.hud-sidebar-header {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hud-sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-3);
+}
+
+.hud-sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 48px;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: var(--z-hud);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.hud-sidebar.right .hud-sidebar-toggle {
+  left: -24px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.hud-sidebar-toggle:hover {
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .hud-sidebar {
+    width: 100%;
+  }
+  .hud-sidebar.left.collapsed,
+  .hud-sidebar.right.collapsed {
+    transform: translateX(-100%);
+  }
+}
+
+/* ---- HUD Floating Panel (PIP camera, popups) ---- */
+.hud-float {
+  position: fixed;
+  z-index: var(--z-hud);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  resize: both;
+  min-width: 200px;
+  min-height: 150px;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.hud-float-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  background: rgba(0, 0, 0, 0.3);
+  cursor: move;
+  user-select: none;
+}
+
+.hud-float-title {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hud-float-close {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.hud-float-close:hover {
+  background: rgba(255, 0, 85, 0.2);
+  color: var(--color-danger);
+}
+
+.hud-float-body {
+  width: 100%;
+  height: calc(100% - 32px);
+  overflow: hidden;
+}
+
+/* ---- Activity Feed ---- */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-primary);
+  font-size: var(--fs-sm);
+  animation: activity-in var(--transition-normal);
+}
+
+@keyframes activity-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.activity-item .agent-color {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.activity-item .timestamp {
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  font-family: var(--font-mono);
+}
+
+.activity-item .agent-name {
+  font-weight: var(--fw-bold);
+  color: var(--color-text-bright);
+}
+
+.activity-item .action {
+  color: var(--color-text-secondary);
+}
+
+/* ---- Connection Indicator ---- */
+.conn-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.conn-indicator .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+}
+
+.conn-indicator.connected .dot {
+  background: var(--color-success);
+  box-shadow: 0 0 4px var(--color-success);
+}
+
+.conn-indicator.disconnected .dot {
+  background: var(--color-danger);
+}
+
+.conn-indicator.connecting .dot {
+  background: var(--color-warning);
+  animation: pulse-dot 1s infinite;
+}
+
+/* ---- FPS Counter ---- */
+.fps-counter {
+  position: fixed;
+  top: var(--space-2);
+  right: var(--space-2);
+  padding: 2px var(--space-2);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--color-success);
+  z-index: var(--z-hud);
+  pointer-events: none;
+}
+
+/* ---- PIP Camera Window ---- */
+.pip-camera {
+  position: fixed;
+  top: calc(var(--space-2) + var(--safe-area-top));
+  right: var(--space-2);
+  width: 200px;
+  height: 150px;
+  z-index: var(--z-hud);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-glow-cyan);
+  background: #000;
+  cursor: move;
+  user-select: none;
+  touch-action: none;
+}
+
+.pip-camera video,
+.pip-camera canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pip-camera-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2px var(--space-2);
+  background: rgba(0, 0, 0, 0.6);
+  font-size: var(--fs-xs);
+  color: var(--color-primary);
+  text-align: center;
+  font-weight: var(--fw-medium);
+}
+
+@media (max-width: 768px) {
+  .pip-camera {
+    width: 120px;
+    height: 90px;
+  }
+}
+
+/* ---- Record Button ---- */
+.record-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-danger);
+  border: 3px solid rgba(255, 0, 85, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.record-btn::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: #fff;
+  transition: all var(--transition-fast);
+}
+
+.record-btn.recording {
+  background: var(--color-danger);
+  box-shadow: 0 0 20px var(--color-danger);
+  animation: record-pulse 1.5s infinite;
+}
+
+.record-btn.recording::before {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes record-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--color-danger); }
+  50% { box-shadow: 0 0 40px var(--color-danger); }
+}

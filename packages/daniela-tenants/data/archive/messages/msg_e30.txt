@@ -1,0 +1,51 @@
+feat(fase-11): E-30 vigilante de tuneles (+8 rutas, 278 -> 286)
+
+La epica P0. No era teorica: en el primer escaneo salio esto en vivo.
+
+  - cloudflared pid 28646 EN EL MOVIL publicando el puerto 8082
+    (visto con `adb shell ps -A -o PID,ARGS`).
+  - 192.168.1.133:8082 responde SIN credenciales: `/` -> 200,
+    `/api/skills/dispatch` -> 405. Lo que escucha ahi no es el gateway
+    real (`/api/pixel/health` da 404) sino el HUD de server.py, sin auth.
+  - 30 literales de `daniela-pixel-2026` incrustados en el codigo -> 0.
+
+Que hace aig/pixel/tunnel_guard.py (1135 lineas, 0 os.system, 0 shell=True):
+
+  1. Escanea tuneles con una lista CERRADA de binarios (cloudflared, ngrok,
+     frpc, bore, chisel...). Local: tasklist/ps sin shell; la linea de
+     comandos se saca con PowerShell -NoProfile y el nombre del proceso
+     validado contra [A-Za-z0-9_.-]+ antes de interpolarlo. Movil: por ADB.
+  2. Prueba el puerto con y sin token, y distingue QUE hay detras:
+     gateway real / servidor sin auth / desconocido. Un 405 cuenta como
+     "responde", porque significa que la ruta existe.
+  3. Rota el token con secrets.token_urlsafe(32) y escribe PIXEL_TOKEN y
+     PIXEL_GATEWAY_TOKEN en el .env (borra las apariciones viejas y anade
+     una al final: dotenv manda la ultima, y dejar la nueva arriba nos
+     dejaria con la clave caducada).
+  4. Endurece el codigo. La trampa: si el default pasa a "" y la
+     comparacion es `if token != AUTH_TOKEN`, una peticion SIN cabecera
+     (token == "") coincide con el default vacio y ENTRA. Por eso el
+     parche anade `if not AUTH_TOKEN or not hmac.compare_digest(...)`:
+     sin token configurado, rechaza todo (fail-closed).
+  5. Plan de migracion a Tailscale; si esta instalado lee
+     `tailscale status --json` y lista los peers.
+
+Seguridad de las rutas: las que CAMBIAN algo (token/rotate, harden,
+tunnel/stop) solo se sirven a 127.0.0.1. Matar exige confirmar=true y
+re-verifica en el momento de matar que el pid sigue siendo un tunel
+conocido (un pid puede cambiar de duenio entre el escaneo y el kill).
+
+Dos bugs reales encontrados y corregidos aqui mismo:
+  - El modulo se parcheaba A SI MISMO: la regla "resto" reescribia su
+    propia tabla de patrones y los dejaba inservibles (ya paso el
+    2026-09-10 a las 17:51; hay backup en data/tunnel_guard/backups/).
+    Ahora `_ficheros_python()` se excluye a si mismo.
+  - La regla "resto" reescribia comentarios. Se anadio `(?!\s*#)`:
+    mencionar el token en un comentario no es una fuga, es texto.
+
+Estructura: codigo real en aig/pixel/ (padre de la refactorizacion
+fase-2) y shim en scripts/tunnel_guard.py, igual que model_router.py.
+ROOT se calcula con parents[2] porque los datos y el .env siguen en la raiz.
+
+Sin instalar aun: Tailscale. El plan paso a paso esta en
+GET /api/guard/tailscale.

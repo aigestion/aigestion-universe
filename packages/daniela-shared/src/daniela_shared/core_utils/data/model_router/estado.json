@@ -1,0 +1,65 @@
+{
+  "salud": {
+    "gemini": {
+      "ok": true,
+      "error": "",
+      "latencia_ms": 3682,
+      "cuando": 1790458569.854114
+    },
+    "groq": {
+      "ok": false,
+      "error": "HTTP 404: {\"error\":{\"message\":\"The model `llama-3.1-8b-instant` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}}\n",
+      "latencia_ms": 190,
+      "cuando": 1790243841.466063
+    },
+    "openrouter": {
+      "ok": false,
+      "error": "HTTP 401: {\"error\":{\"message\":\"User not found.\",\"code\":401}}",
+      "latencia_ms": 155,
+      "cuando": 1790243841.9587185
+    },
+    "anthropic": {
+      "ok": false,
+      "error": "HTTP 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}",
+      "latencia_ms": 377,
+      "cuando": 1789930813.4542353
+    },
+    "cohere": {
+      "ok": true,
+      "error": "",
+      "latencia_ms": 2896,
+      "cuando": 1790173682.516117
+    },
+    "ollama": {
+      "ok": false,
+      "error": "ollama no disponible -> http://0.0.0.0:11434: ConnectionError; http://localhost:11434: ConnectionError; http://127.0.0.1:11434: ConnectionError",
+      "latencia_ms": 6145,
+      "cuando": 1790244059.4005034
+    }
+  },
+  "ultimo_exitoso": "gemini",
+  "config": {
+    "version": 2,
+    "orden": [
+      "gemini",
+      "groq",
+      "openrouter",
+      "anthropic",
+      "cohere",
+      "ollama",
+      "huggingface"
+    ],
+    "modelos": {
+      "gemini": "gemini-2.5-flash",
+      "groq": "llama-3.1-8b-instant",
+      "openrouter": "meta-llama/llama-3.1-8b-instruct:free",
+      "anthropic": "claude-3-5-haiku-20241022",
+      "cohere": "command-a-03-2025",
+      "ollama": "daniela-local:latest",
+      "huggingface": "mistralai/Mistral-7B-Instruct-v0.2"
+    },
+    "ttl_salud_s": 900,
+    "sonda_auto_min": 30,
+    "reintentos": 1
+  }
+}

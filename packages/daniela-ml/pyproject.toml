@@ -1,0 +1,59 @@
+[project]
+name = "daniela-ml"
+version = "0.1.0"
+description = "Daniela OS - ML Service, Research, and Prototypes"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "AIGESTION", email = "team@aigestion.com"}]
+requires-python = ">=3.11"
+dependencies = [
+    "daniela-core",
+    "daniela-shared",
+    "numpy>=1.26",
+    "scikit-learn>=1.3",
+    "torch>=2.1",
+    "transformers>=4.35",
+    "sentence-transformers>=2.2",
+    "chromadb>=0.4",
+    "faiss-cpu>=1.7",
+    "httpx>=0.25",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.5", "mypy>=1.10"]
+all = ["onnxruntime>=1.16", "tensorrt>=8.6"]
+
+[tool.uv.sources]
+daniela-core = {path = "../daniela-core", editable = true}
+daniela-shared = {path = "../daniela-shared", editable = true}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["ml_service", "research", "prototypes"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E4", "E7", "E9", "F"]
+exclude = [
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "dist",
+    "build",
+    "*.egg-info",
+    "node_modules",
+]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_configs = true
+# Baseline legacy migrado desde aig: sin strict, se endurece incrementalmente.
+
+

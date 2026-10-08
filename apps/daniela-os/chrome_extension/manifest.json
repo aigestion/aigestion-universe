@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Daniela OS — Sovereign SidePanel Assistant",
+  "version": "1.0.0",
+  "description": "Panel lateral oficial de Daniela OS conectado con Gemini 3.6 Flash y Termux.",
+  "permissions": ["sidePanel", "activeTab", "scripting"],
+  "action": {
+    "default_title": "Abrir Daniela OS"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

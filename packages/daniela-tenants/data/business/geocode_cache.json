@@ -1,0 +1,16 @@
+{
+ "calle mayor 1, madrid, spain": {
+  "lat": 40.4162599,
+  "lon": -3.7046505,
+  "ciudad": "Madrid",
+  "pais": "España",
+  "mostrado": "1, Calle Mayor, Barrio de los Austrias, Sol, Centro, Madrid, Comunidad de Madrid, 28013, España"
+ },
+ "calle mayor 1, madrid": {
+  "lat": 40.4162599,
+  "lon": -3.7046505,
+  "ciudad": "Madrid",
+  "pais": "España",
+  "mostrado": "1, Calle Mayor, Barrio de los Austrias, Sol, Centro, Madrid, Comunidad de Madrid, 28013, España"
+ }
+}

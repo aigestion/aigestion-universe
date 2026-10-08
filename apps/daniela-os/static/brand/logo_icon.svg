@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="cyanGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#0099ff"/>
+    </linearGradient>
+    <linearGradient id="magentaGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0055"/>
+      <stop offset="100%" stop-color="#ff00aa"/>
+    </linearGradient>
+    <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b1"/>
+      <feGaussianBlur stdDeviation="6" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Hexagon -->
+  <polygon points="100,15 170,55 170,145 100,185 30,145 30,55"
+           fill="none" stroke="url(#cyanGrad2)" stroke-width="2.5" filter="url(#glow2)" opacity="0.5"/>
+  <polygon points="100,30 155,62 155,138 100,170 45,138 45,62"
+           fill="none" stroke="url(#magentaGrad2)" stroke-width="1.5" filter="url(#glow2)" opacity="0.3"/>
+  <!-- Circuit A -->
+  <g filter="url(#glow2)">
+    <line x1="80" y1="140" x2="100" y2="70" stroke="url(#cyanGrad2)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="120" y1="140" x2="100" y2="70" stroke="url(#magentaGrad2)" stroke-width="7" stroke-linecap="round"/>
+    <line x1="87" y1="107" x2="113" y2="107" stroke="url(#cyanGrad2)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="100" cy="70" r="5" fill="#00ffff"/>
+    <circle cx="80" cy="140" r="4" fill="#ff0055"/>
+    <circle cx="120" cy="140" r="4" fill="#00ffff"/>
+    <circle cx="100" cy="107" r="3" fill="#ff0055"/>
+  </g>
+</svg>

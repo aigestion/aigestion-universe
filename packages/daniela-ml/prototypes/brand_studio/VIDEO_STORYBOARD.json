@@ -1,0 +1,28 @@
+{
+    "id_proyecto": "BRAND_NEXO_DANIELA_OS",
+    "marca": "AntiGravity / Winsoft",
+    "estilo_visual": "Cyber-Corporativo Premium, tonos cian/ámbar, interfaces holográficas, Iluminación volumétrica 8K",
+    "escenas": [
+        {
+            "numero_escena": 1,
+            "duracion_seg": 10,
+            "prompt_visual": "Cinematic macro shot of an obsidian microchip opening, glowing cyan holographic neural core, volumetrical neon fog, 8k resolution, unreal engine 5 render, raytracing",
+            "locucion": "Bienvenidos al ecosistema de inteligencia artificial distribuida de AntiGravity y Winsoft.",
+            "transicion": "Zoom in continuo hacia el núcleo"
+        },
+        {
+            "numero_escena": 2,
+            "duracion_seg": 12,
+            "prompt_visual": "Futuristic dark server room with golden laser beams scanning translucent glass data crystals in mid air, Dune aesthetic, high contrast, cinematic depth of field, 8k",
+            "locucion": "Agentes autónomos colaborando en tiempo real con precisión milimétrica y RAG avanzado.",
+            "transicion": "Pan panorámico a la derecha"
+        },
+        {
+            "numero_escena": 3,
+            "duracion_seg": 10,
+            "prompt_visual": "Infinite glowing blue neural network expanding over a dark horizon, gold particles floating, hyper realistic light reflections, cinematic wide angle, 8k",
+            "locucion": "El futuro del software no es monolítico: es colaborativo, distribuido y preciso.",
+            "transicion": "Vuelo de cámara hacia el horizonte"
+        }
+    ]
+}

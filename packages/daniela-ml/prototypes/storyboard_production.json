@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "titulo": "Arquitectura de Agentes IA Distribuidos y RAG Avanzado",
+    "concepto": "Visualización inmersiva de un ecosistema de inteligencia artificial distribuida, mostrando cómo múltiples agentes autónomos colaboran y consultan una base de conocimiento vectorial (RAG) para resolver tareas complejas con precisión.",
+    "estilo_visual": "Cinematográfico, fotorrealista, futurismo corporativo elegante, iluminación volumétrica en tonos azul profundo y dorado, hologramas translúcidos, redes neuronales cristalinas, alta gama.",
+    "duracion": "60 segundos"
+  },
+  "escenas": [
+    {
+      "numero_escena": 1,
+      "duracion_segundos": 10,
+      "prompt_visual_hunyuan": "Photorealistic modern data center transitioning into a glowing blue and gold neural network, volumetric lighting, high-end server racks emitting holographic data streams, 8k resolution, cinematic depth of field, hyper-realistic reflections.",
+      "locucion_es": "Bienvenidos al núcleo de la inteligencia artificial. Hoy exploramos la arquitectura de agentes IA distribuidos y la generación aumentada por recuperación, o RAG avanzado.",
+      "diseno_sonoro": "Ambiente digital profundo, zumbido de servidores de baja frecuencia, swoosh cinematográfico al transformarse en red neuronal."
+    },
+    {
+      "numero_escena": 2,
+      "duracion_segundos": 12,
+      "prompt_visual_hunyuan": "Photorealistic glowing translucent geometric nodes floating in a dark sleek server room, connected by bright laser-like data streams, representing distributed AI agents, cinematic lighting, hyper-detailed, futuristic corporate aesthetic, 8k.",
+      "locucion_es": "En lugar de un cerebro monolítico, este sistema utiliza múltiples agentes autónomos. Cada agente especializado comunica y colabora en tiempo real para resolver tareas complejas.",
+      "diseno_sonoro": "Pulsos de energía sincronizados, pequeños sonidos de ping metálicos representando la comunicación entre agentes."
+    },
+    {
+      "numero_escena": 3,
+      "duracion_segundos": 12,
+      "prompt_visual_hunyuan": "Photorealistic massive crystal database structure glowing from within, floating data particles transforming into organized vector lines, dark background, blue and gold volumetric fog, highly detailed, 8k.",
+      "locucion_es": "El corazón de su precisión es el RAG avanzado. Una base de datos vectorial que almacena conocimiento dimensional, permitiendo a los agentes acceder a información precisa y actualizada.",
+      "diseno_sonoro": "Cristales resonando, sonido de flujo de datos líquido, frecuencias agudas y limpias."
+    },
+    {
+      "numero_escena": 4,
+      "duracion_segundos": 14,
+      "prompt_visual_hunyuan": "Photorealistic close-up of a glowing robotic AI node sending a pulse of light into a massive crystal vector database, retrieving a glowing shard of information, hyper-realistic light refractions, cinematic lighting, 8k.",
+      "locucion_es": "Cuando un agente requiere datos, transforma su consulta en vectores semánticos. El sistema recupera el contexto exacto, eliminando alucinaciones y garantizando respuestas exactas.",
+      "diseno_sonoro": "Rayo láser disparando, eco de recuperación de datos, sonido de cristal al romperse suavemente al obtener la información."
+    },
+    {
+      "numero_escena": 5,
+      "duracion_segundos": 12,
+      "prompt_visual_hunyuan": "Photorealistic multiple glowing AI nodes merging their light beams into a central floating holographic display showing a perfectly structured document, dark sleek environment, cinematic lighting, 8k resolution.",
+      "locucion_es": "Los agentes distribuidos procesan este contexto y fusionan sus resultados. Esta sinergia genera una salida unificada, coherente y altamente estructurada.",
+      "diseno_sonoro": "Acordes sintéticos ascendentes, sonido de fusión de energía, clímax orquestal suave."
+    },
+    {
+      "numero_escena": 6,
+      "duracion_segundos": 10,
+      "prompt_visual_hunyuan": "Photorealistic vast futuristic neural network expanding infinitely across a dark horizon, glowing blue and gold nodes, hyper-realistic, cinematic wide shot, atmospheric perspective, 8k.",
+      "locucion_es": "Esta arquitectura distribuida no solo optimiza recursos, sino que asegura una escalabilidad infinita. El futuro de la IA es colaborativo, distribuido y preciso.",
+      "diseno_sonoro": "Expansión de eco infinito, tono grave de cierre, fade out suave."
+    }
+  ]
+}

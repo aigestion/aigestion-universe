@@ -1,0 +1,74 @@
+{
+  "scenes": {
+    "modo_noche": {
+      "name": "modo_noche",
+      "steps": [
+        {
+          "type": "speak",
+          "text": "Buenas noches, Comandante."
+        },
+        {
+          "type": "ir_macro",
+          "macro": "tv_off"
+        },
+        {
+          "type": "notify",
+          "title": "Daniela",
+          "content": "Modo noche activado"
+        },
+        {
+          "type": "event",
+          "event": "NIGHT_MODE"
+        }
+      ],
+      "note": "Mesita de noche: apaga la tele, avisa y silencia",
+      "created": "2026-10-02T21:49:12",
+      "runs": 0
+    },
+    "modo_conduccion": {
+      "name": "modo_conduccion",
+      "steps": [
+        {
+          "type": "speak",
+          "text": "Modo conduccion. Manos libres activos."
+        },
+        {
+          "type": "notify",
+          "title": "Daniela",
+          "content": "Modo conduccion activo",
+          "ongoing": true
+        },
+        {
+          "type": "event",
+          "event": "DRIVING_MODE"
+        }
+      ],
+      "note": "Soporte del coche: voz y avisos sin tocar la pantalla",
+      "created": "2026-10-02T21:49:12",
+      "runs": 0
+    },
+    "llegue_a_casa": {
+      "name": "llegue_a_casa",
+      "steps": [
+        {
+          "type": "set_home"
+        },
+        {
+          "type": "speak",
+          "text": "Bienvenido a casa."
+        },
+        {
+          "type": "event",
+          "event": "ZONE_CHANGE",
+          "data": {
+            "zone": "home"
+          }
+        }
+      ],
+      "note": "Tag de la entrada: fija la zona hogar y saluda",
+      "created": "2026-10-02T21:49:12",
+      "runs": 0
+    }
+  },
+  "updated": "2026-10-02T21:49:12"
+}

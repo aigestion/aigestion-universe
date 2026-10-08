@@ -1,0 +1,20 @@
+{
+  "context": [],
+  "system_notes": [
+    {
+      "timestamp": "2026-08-29T19:13:19.509086",
+      "category": "nube",
+      "note": "Google Drive se mantiene al 0% mediante purgas automáticas."
+    },
+    {
+      "timestamp": "2026-08-29T19:13:19.509570",
+      "category": "cuentas",
+      "note": "Las cuentas administradas son noemisanalex@gmail.com y admin@aigestion.net."
+    },
+    {
+      "timestamp": "2026-08-29T19:13:19.509814",
+      "category": "infraestructura",
+      "note": "El monorepo principal reside en ~/apps/AIGESTION-MONOREPO."
+    }
+  ]
+}

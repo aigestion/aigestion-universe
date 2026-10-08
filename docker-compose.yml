@@ -311,3 +311,284 @@ volumes:
 secrets:
   grafana_password:
     file: ./secrets/grafana_password.txt
+  # === ENGINES (19 Federated Engines) ===
+  daniela-engines:
+    build:
+      context: ./packages/daniela-engines
+      dockerfile: Dockerfile
+    container_name: daniela-engines
+    ports:
+      - "9400:9400"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=\
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9400/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === SHARED INFRASTRUCTURE ===
+  daniela-shared:
+    build:
+      context: ./packages/daniela-shared
+      dockerfile: Dockerfile
+    container_name: daniela-shared
+    ports:
+      - "9500:9500"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=\
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9500/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === API GATEWAY ===
+  daniela-api:
+    build:
+      context: ./packages/daniela-api
+      dockerfile: Dockerfile
+    container_name: daniela-api
+    ports:
+      - "9600:9600"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=\
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+    depends_on:
+      - postgres
+      - redis
+      - daniela-core
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9600/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === BACKEND SERVICES ===
+  daniela-backend:
+    build:
+      context: ./packages/daniela-backend
+      dockerfile: Dockerfile
+    container_name: daniela-backend
+    ports:
+      - "9700:9700"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=\
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+    depends_on:
+      - postgres
+      - redis
+      - daniela-core
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9700/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === GOOGLE INTEGRATIONS ===
+  daniela-google:
+    build:
+      context: ./packages/daniela-google
+      dockerfile: Dockerfile
+    container_name: daniela-google
+    ports:
+      - "9801:9801"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - GOOGLE_CREDENTIALS_FILE=/credentials/google.json
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+      - ./secrets/google.json:/credentials/google.json:ro
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9801/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === ML SERVICE ===
+  daniela-ml:
+    build:
+      context: ./packages/daniela-ml
+      dockerfile: Dockerfile
+    container_name: daniela-ml
+    ports:
+      - "9802:9802"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=\
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+      - daniela-models:/models
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9802/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  # === SECURE ENGINE ===
+  daniela-secure:
+    build:
+      context: ./packages/daniela-secure
+      dockerfile: Dockerfile
+    container_name: daniela-secure
+    ports:
+      - "9999:9999"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=\
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === TENANTS / MULTI-TENANCY ===
+  daniela-tenants:
+    build:
+      context: ./packages/daniela-tenants
+      dockerfile: Dockerfile
+    container_name: daniela-tenants
+    ports:
+      - "9803:9803"
+    environment:
+      - DATABASE_URL=postgresql://daniela:changeme@postgres:5432/daniela
+      - REDIS_URL=redis://redis:6379/0
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - ENVIRONMENT=production
+      - LOG_LEVEL=info
+    volumes:
+      - daniela-data:/data
+    depends_on:
+      - postgres
+      - redis
+      - minio
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9803/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # === MINIO (Object Storage for Tenants) ===
+  minio:
+    image: minio/minio:latest
+    container_name: daniela-minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - minio-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  minio-data:

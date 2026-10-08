@@ -1,0 +1,38 @@
+{
+  "flash": {
+    "model_id": "gemini-2.5-flash",
+    "display_name": "Gemini 3.5 Flash (preview)",
+    "context_window": "1M tokens",
+    "speed": "4x faster than frontier models",
+    "best_for": "Real-time chat, quick agent responses, content generation",
+    "free_tier": "Default model in free tier. 15 RPM, 1500 RPD, 1M TPM",
+    "cost_per_million": "Input ~$1.50, Output ~$9 (paid tier)",
+    "use_for": [
+      "chat_responses",
+      "content_generation",
+      "email_classification",
+      "calendar_briefings",
+      "social_media",
+      "code_documentation",
+      "summarization",
+      "translation"
+    ]
+  },
+  "pro": {
+    "model_id": "gemini-2.5-pro",
+    "display_name": "Gemini 3.5 Pro (preview)",
+    "context_window": "2M tokens (largest in production)",
+    "speed": "Frontier-level reasoning",
+    "best_for": "Deep analysis, architecture review, multi-file codebase analysis",
+    "free_tier": "Daily allotment in free tier. 5 RPM, 100 RPD",
+    "cost_per_million": "Paid tier only after free allotment",
+    "use_for": [
+      "codebase_analysis",
+      "architecture_review",
+      "security_audit",
+      "deep_research",
+      "refactoring_recommendations",
+      "long_context_reasoning"
+    ]
+  }
+}

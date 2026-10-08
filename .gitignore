@@ -91,3 +91,21 @@ packages/daniela-core/src/daniela_core/legacy/data/brain/
 packages/daniela-core/src/daniela_core/legacy/backend/credentials/aig_service_account_432cbcf511e9.json
 packages/daniela-core/src/daniela_core/legacy/
 packages/daniela-core/tests/legacy/
+packages/daniela-tenants/data/brain/
+packages/daniela-backend/backend/credentials/
+packages/ui/src/assets/video/
+packages/daniela-tenants/src/daniela_tenants/brain/
+packages/daniela-backend/src/daniela_backend/credentials/
+
+# Basura autogenerada migrada por error desde aig
+**/.basura-auto-generada*/
+
+# Secrets locales (nunca llegaron a un remoto; no subirlos jamas)
+**/credentials.json
+**/secret.key
+**/*service_account*.json
+
+# Artefactos locales >100MB (limite GitHub; se conservan solo en disco)
+packages/daniela-tenants/storage/archives/aig_backups/
+packages/daniela-tenants/storage/archives/worktree-backup-*.tar.gz
+packages/daniela-tenants/data/voice_pipeline/piper_voices/

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DANIELA OS :: SUPREME COMMAND CENTER</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+    "three": "/vendor/three/build/three.module.min.js",
+    "three/addons/": "/vendor/three/examples/jsm/"
+} }
+</script>
+<style>
+:root {
+    --cyan: #00f3ff;
+    --magenta: #ff0055;
+    --purple: #7000ff;
+    --bg: #02050e;
+    --panel: rgba(10, 15, 30, 0.85);
+    --border: rgba(0, 243, 255, 0.4);
+    --green: #00ff88;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+body, html { width: 100%; height: 100%; background: var(--bg); color: #fff; font-family: 'Rajdhani', sans-serif; overflow: hidden; }
+#canvas-3d { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; }
+.ui-container { position: relative; z-index: 10; display: flex; flex-direction: column; height: 100vh; padding: 10px; gap: 8px; }
+.header { background: var(--panel); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.title { font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 900; color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+.status-badge { background: rgba(0,243,255,0.15); border: 1px solid var(--cyan); color: var(--cyan); padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: bold; }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tab { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #94a3b8; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.tab:hover, .tab.active { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #fff; border-color: var(--cyan); }
+.main { flex: 1; display: flex; gap: 8px; overflow: hidden; }
+.panel { background: var(--panel); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; }
+.panel-left { flex: 1 1 60%; min-width: 320px; }
+.panel-right { width: 380px; flex-shrink: 0; }
+.panel-header { background: rgba(0,243,255,0.1); border-bottom: 1px solid var(--border); padding: 8px 12px; font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 900; color: var(--cyan); display: flex; justify-content: space-between; align-items: center; }
+.chat-logs { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.chat-logs::-webkit-scrollbar { width: 4px; }
+.chat-logs::-webkit-scrollbar-thumb { background: var(--cyan); }
+.msg { padding: 10px 14px; border-radius: 10px; font-size: 13px; max-width: 85%; line-height: 1.4; animation: fadeIn 0.2s ease-out; }
+.msg.user { background: rgba(112,0,255,0.3); border: 1px solid var(--purple); align-self: flex-end; color: #f1f5f9; }
+.msg.daniela { background: rgba(0,243,255,0.15); border: 1px solid var(--cyan); align-self: flex-start; color: #fff; }
+.msg.system { background: rgba(255,170,0,0.15); border: 1px solid #ffaa00; align-self: center; font-size: 11px; color: #ffaa00; max-width: 95%; text-align: center; }
+.control-panel { background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+.input-row { display: flex; gap: 6px; align-items: center; }
+input { flex: 1; background: rgba(0,0,0,0.6); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 14px; outline: none; }
+input:focus { border-color: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+.btn { background: linear-gradient(135deg, var(--cyan), var(--purple)); border: none; border-radius: 8px; padding: 10px 16px; color: #fff; font-weight: bold; font-family: 'Orbitron', sans-serif; font-size: 11px; cursor: pointer; transition: all 0.15s; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,243,255,0.4); }
+.btn:active { transform: translateY(0); }
+.btn-mic { background: rgba(255,0,85,0.2); border: 1px solid var(--magenta); color: var(--magenta); padding: 10px 14px; font-size: 16px; }
+.btn-mic.listening { background: var(--magenta); color: #fff; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,0,85,0.6); } 50% { box-shadow: 0 0 0 8px rgba(255,0,85,0); } }
+.btn-secondary { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--cyan); }
+.quick-commands { display: flex; gap: 6px; flex-wrap: wrap; padding: 8px; }
+.qcmd { background: rgba(0,243,255,0.1); border: 1px solid var(--border); color: var(--cyan); padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: bold; cursor: pointer; font-family: 'Orbitron', sans-serif; }
+.qcmd:hover { background: var(--cyan); color: #000; }
+.tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 12px; }
+.tool-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; transition: all 0.2s; }
+.tool-card:hover { border-color: var(--cyan); background: rgba(0,243,255,0.1); }
+.tool-icon { font-size: 20px; margin-bottom: 4px; }
+.tool-name { font-weight: 700; font-size: 12px; color: var(--cyan); }
+.tool-desc { font-size: 10px; color: #94a3b8; margin-top: 4px; }
+.memory-list { padding: 12px; overflow-y: auto; flex: 1; }
+.memory-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; font-size: 11px; }
+.memory-item .meta { color: #64748b; font-size: 9px; margin-top: 4px; }
+.telemetry { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.6); font-family: 'Orbitron', sans-serif; padding: 4px 12px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.3); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1000px) { .main { flex-direction: column; } .panel-right { width: 100%; } }
+</style>
+</head>
+<body>
+<div id="canvas-3d"></div>
+<div class="ui-container">
+    <div class="header">
+        <div class="title">💃 DANIELA OS :: UNIFIED</div>
+        <div class="tabs" id="tabs">
+            <button class="tab active" data-tab="chat">💬 Chat</button>
+            <button class="tab" data-tab="tools">🛠 Herramientas</button>
+            <button class="tab" data-tab="memory">🧠 Memoria</button>
+            <button class="tab" data-tab="windows">🪟 Windows</button>
+            <button class="tab" data-tab="proactive">⚡ Proactive</button>
+        </div>
+        <div class="status-badge" id="statusBadge">ONLINE</div>
+    </div>
+    <div class="main">
+        <div class="panel panel-left">
+            <div class="panel-header" id="panelTitle">💬 Conversación con Daniela</div>
+            <div class="chat-logs" id="chatLogs">
+                <div class="msg daniela">¡Hola, Comandante! Daniela Unified activa. Tengo control total del PC, memoria persistente y LLM local. ¿En qué te ayudo?</div>
+            </div>
+            <div class="control-panel">
+                <div class="input-row">
+                    <button class="btn btn-mic" id="btnMic" onclick="toggleMicro()">🎙️</button>
+                    <input type="text" id="userInput" placeholder="Escribe o pulsa el micro... (comandos: /apps, /shell, /files, /memory, /proactive)" onkeypress="if(event.key==='Enter') enviar()">
+                    <button class="btn" onclick="enviar()">ENVIAR</button>
+                </div>
+                <div class="quick-commands" id="quickCmds"></div>
+            </div>
+        </div>
+        <div class="panel panel-right" id="rightPanel">
+            <div class="panel-header">🛠 Herramientas Rápidas</div>
+            <div class="tools-grid" id="toolsGrid"></div>
+        </div>
+    </div>
+    <div class="telemetry">
+        <span>NODOS: <span id="nodeStatus">CONECTANDO</span></span>
+        <span id="batStatus">BAT: --%</span>
+        <span>ENGINE: <span id="llmStatus">DETECTANDO</span></span>
+    </div>
+</div>
+
+<script>
+// ─── Config ──────────────────────────────────────────────
+const API = "";  // same origin
+let currentTab = "chat";
+let isSpeaking = false;
+let recognition = null;
+let mediaRecorder = null;
+let audioChunks = [];
+
+// ─── Avatar 3D de Daniela (módulo compartido con la PWA) ──
+// El busto va desplazado a la derecha (shift) porque el chat ocupa la izquierda.
+window.__danielaAvatar = null;
+</script>
+<script type="module">
+import { mountDanielaAvatar } from '/shared/daniela-avatar.js';
+try {
+    const avatar = await mountDanielaAvatar(document.getElementById('canvas-3d'), { shift: 0.25 });
+    window.__danielaAvatar = avatar;
+} catch(e) { console.warn('Avatar 3D no disponible:', e); }
+</script>
+<script>
+
+// ─── Battery API ─────────────────────────────────────────
+if ('getBattery' in navigator) {
+    navigator.getBattery().then(bat => {
+        const upd = () => document.getElementById('batStatus').textContent = `BAT: ${Math.round(bat.level*100)}%`;
+        upd(); bat.addEventListener('levelchange', upd);
+    });
+}
+
+// ─── Tab Switching ───────────────────────────────────────
+document.querySelectorAll('.tab').forEach(btn => btn.onclick = () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTab = btn.dataset.tab;
+    switchTab(currentTab);
+});
+function switchTab(tab) {
+    const title = document.getElementById('panelTitle');
+    const right = document.getElementById('rightPanel');
+    if(tab === 'chat') {
+        title.textContent = '💬 Conversación con Daniela';
+        right.innerHTML = '<div class="panel-header">🛠 Herramientas Rápidas</div><div class="tools-grid" id="toolsGrid"></div>';
+        loadTools();
+    } else if(tab === 'tools') {
+        title.textContent = '🛠 Herramientas del Sistema';
+        right.innerHTML = '<div class="panel-header">🛠 Herramientas</div><div class="tools-grid" id="toolsGrid"></div>';
+        loadTools();
+    } else if(tab === 'memory') {
+        title.textContent = '🧠 Memoria Persistente';
+        right.innerHTML = '<div class="panel-header">🧠 Memoria (ChromaDB)</div><div class="memory-list" id="memList"></div>';
+        loadMemory();
+    } else if(tab === 'windows') {
+        title.textContent = '🪟 Control Windows';
+        right.innerHTML = '<div class="panel-header">🪟 Windows Control</div><div class="tools-grid" id="toolsGrid"></div>';
+        loadWindowsTools();
+    } else if(tab === 'proactive') {
+        title.textContent = '⚡ Tareas Proactivas';
+        right.innerHTML = '<div class="panel-header">⚡ Proactive Engine</div><div class="memory-list" id="proactiveList"></div>';
+        loadProactive();
+    }
+}
+
+// ─── Load Tools Grid ─────────────────────────────────────
+function loadTools() {
+    const grid = document.getElementById('toolsGrid');
+    const tools = [
+        {icon:"🧠", name:"Chat LLM", desc:"Pregunta a Daniela (Ollama/Gemini)", action:()=>setQuick("/llm ")},
+        {icon:"💾", name:"Memoria", desc:"Guardar/Buscar en ChromaDB", action:()=>switchTab('memory')},
+        {icon:"🪟", name:"Apps Windows", desc:"Listar y lanzar apps instaladas", action:()=>switchTab('windows')},
+        {icon:"💻", name:"Shell Seguro", desc:"PowerShell allowlist (Get-, Start-, etc)", action:()=>setQuick("/shell ")},
+        {icon:"📁", name:"Archivos", desc:"Leer/Escribir/Buscar archivos", action:()=>setQuick("/files ")},
+        {icon:"⚙️", name:"Procesos", desc:"Ver y matar procesos (psutil)", action:()=>switchTab('windows')},
+        {icon:"⚡", name:"Proactive", desc:"Recordatorios y watchers", action:()=>switchTab('proactive')},
+        {icon:"🌐", name:"God's Eye 3D", desc:"Abrir visor 3D aig", action:()=>window.open('/gods-eye','_blank')},
+    ];
+    grid.innerHTML = tools.map(t => `<div class="tool-card" onclick="${t.action.toString().match(/\(\)\s*\{([^}]+)\}/)[1]}"><div class="tool-icon">${t.icon}</div><div class="tool-name">${t.name}</div><div class="tool-desc">${t.desc}</div></div>`).join('');
+    // Re-bind clicks after innerHTML
+    grid.querySelectorAll('.tool-card').forEach((el, i) => el.onclick = tools[i].action);
+}
+function loadWindowsTools() {
+    const grid = document.getElementById('toolsGrid');
+    const tools = [
+        {icon:"📋", name:"Listar Apps", desc:"Apps del Start Menu + Registro", action:()=>apiWin('apps')},
+        {icon:"🚀", name:"Lanzar App", desc:"Por nombre o ruta exe", action:()=>setQuick("/launch ")},
+        {icon:"💻", name:"PowerShell", desc:"Comandos allowlist (Get-Process, etc)", action:()=>setQuick("/shell ")},
+        {icon:"📁", name:"Explorar", desc:"Listar/Leer/Escribir/Buscar archivos", action:()=>setQuick("/files ")},
+        {icon:"📊", name:"Procesos", desc:"Top CPU/Memoria + Kill", action:()=>apiWin('processes')},
+    ];
+    grid.innerHTML = tools.map(t => `<div class="tool-card" onclick="${t.action.toString().match(/\(\)\s*\{([^}]+)\}/)[1]}"><div class="tool-icon">${t.icon}</div><div class="tool-name">${t.name}</div><div class="tool-desc">${t.desc}</div></div>`).join('');
+    grid.querySelectorAll('.tool-card').forEach((el, i) => el.onclick = tools[i].action);
+}
+
+// ─── Quick Command Helpers ───────────────────────────────
+function setQuick(prefix) {
+    document.getElementById('userInput').value = prefix;
+    document.getElementById('userInput').focus();
+    switchTab('chat');
+}
+function addQuick(cmd, label) {
+    const box = document.getElementById('quickCmds');
+    const btn = document.createElement('button');
+    btn.className = 'qcmd';
+    btn.textContent = label;
+    btn.onclick = () => { document.getElementById('userInput').value = cmd; enviar(); };
+    box.appendChild(btn);
+}
+
+// ─── Chat / API ──────────────────────────────────────────
+async function api(path, body) {
+    const res = await fetch(API + path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+    return res.json();
+}
+async function apiWin(action, data={}) {
+    const map = {apps:'/api/windows/apps', launch:'/api/windows/launch', shell:'/api/windows/shell', files:'/api/windows/files', processes:'/api/windows/processes', kill:'/api/windows/kill'};
+    return api(map[action], data);
+}
+function addMsg(role, text, isSystem=false) {
+    const logs = document.getElementById('chatLogs');
+    const div = document.createElement('div');
+    div.className = `msg ${role}${isSystem?' system':''}`;
+    div.textContent = text;
+    logs.appendChild(div);
+    logs.scrollTop = logs.scrollHeight;
+}
+async function enviar() {
+    const input = document.getElementById('userInput');
+    const msg = input.value.trim();
+    if(!msg) return;
+    addMsg('user', msg);
+    input.value = '';
+    document.getElementById('statusBadge').textContent = 'PROCESANDO';
+    document.getElementById('statusBadge').style.borderColor = '#ff0055';
+    isSpeaking = true;
+    window.__danielaAvatar?.setState('thinking');
+    try {
+        // Comandos locales rápidos
+        if(msg.startsWith('/apps')) { const r = await apiWin('apps'); addMsg('daniela', `Apps encontradas: ${r.apps?.length||0}`); r.apps?.slice(0,10).forEach(a=>addQuick(`/launch "${a.name}"`, a.name)); return; }
+        if(msg.startsWith('/launch ')) { const target = msg.slice(8).replace(/^"|"$/g,''); const r = await apiWin('launch', {target}); addMsg('daniela', r.ok?`Lanzado (PID ${r.pid})`:`Error: ${r.error}`); return; }
+        if(msg.startsWith('/shell ')) { const cmd = msg.slice(7); const r = await apiWin('shell', {cmd}); addMsg('daniela', r.ok?r.stdout||'OK':`Error: ${r.error}`); return; }
+        if(msg.startsWith('/files ')) { const args = msg.slice(7).split(' '); const op = args[0]; const path = args.slice(1).join(' '); const r = await apiWin('files', {op, path}); addMsg('daniela', JSON.stringify(r, null, 2)); return; }
+        if(msg.startsWith('/memory ')) { const q = msg.slice(8); const r = await api('/api/memory/search', {query:q}); addMsg('daniela', r.ok?r.results.map(([d,m])=>d).join('\n---\n'):r.error); return; }
+        if(msg.startsWith('/proactive ')) { const t = msg.slice(11); const r = await api('/api/proactive/tasks', {text:t}); addMsg('daniela', r.ok?'Tarea creada':r.error); return; }
+        if(msg.startsWith('/llm ') || msg.startsWith('/ask ')) { const p = msg.replace(/^\/(llm|ask)\s*/,''); const r = await api('/api/llm/chat', {prompt:p}); addMsg('daniela', r.ok?r.reply:r.error); return; }
+        if(msg === '/audita' || msg.startsWith('/audita ')) { const perfil = msg.includes('completo')?'completo':'rapido'; addMsg('daniela', `Ejecutando auditoría ${perfil}...`); window.__danielaAvatar?.setState('thinking'); const r = await api('/api/secops/audit', {perfil}); if(r.ok) { addMsg('daniela', r.resumen); speak(r.resumen); } else { addMsg('daniela', `Error: ${r.error}`, true); } return; }
+
+        // Default: LLM chat
+        const r = await api('/api/llm/chat', {prompt: msg});
+        if(r.ok) {
+            addMsg('daniela', r.reply);
+            speak(r.reply);
+        } else {
+            addMsg('daniela', `Error: ${r.error}`, true);
+        }
+    } catch(e) {
+        addMsg('daniela', `Excepción: ${e}`, true);
+    } finally {
+        setTimeout(() => { isSpeaking=false; document.getElementById('statusBadge').textContent='ONLINE'; document.getElementById('statusBadge').style.borderColor='#00f3ff'; }, 1500);
+    }
+}
+
+// ─── TTS (edge-tts via backend, boca sincronizada) ──────
+async function speak(text) {
+    const avatar = window.__danielaAvatar;
+    if (avatar) {
+        try {
+            if (await avatar.hablarTTS(text)) return;
+        } catch(e) { console.warn('TTS avatar', e); }
+    }
+    try {
+        // Fallback inmediato: voz del dispositivo
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'es-ES';
+        utter.rate = 1.05;
+        utter.pitch = 1.1;
+        speechSynthesis.speak(utter);
+    } catch(e) { console.warn('TTS error', e); }
+}
+
+// ─── Speech Recognition (Web Speech API) ─────────────────
+function toggleMicro() {
+    const btn = document.getElementById('btnMic');
+    if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert('Web Speech API no soportado. Usa Chrome/Edge.');
+        return;
+    }
+    if(recognition) { recognition.stop(); recognition = null; btn.classList.remove('listening'); btn.textContent='🎙️'; return; }
+    const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new Speech();
+    recognition.lang = 'es-ES';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.onstart = () => { btn.classList.add('listening'); btn.textContent='🔴'; };
+    recognition.onresult = e => { document.getElementById('userInput').value = e.results[0][0].transcript; enviar(); };
+    recognition.onerror = () => { btn.classList.remove('listening'); btn.textContent='🎙️'; };
+    recognition.onend = () => { btn.classList.remove('listening'); btn.textContent='🎙️'; recognition=null; };
+    recognition.start();
+}
+
+// ─── Memory UI ───────────────────────────────────────────
+async function loadMemory() {
+    const r = await api('/api/memory/search', {query:'', n:20});
+    const box = document.getElementById('memList');
+    if(r.ok && r.results.length) {
+        box.innerHTML = r.results.map(([doc, meta, dist])=>`<div class="memory-item">${doc}<div class="meta">${JSON.stringify(meta)} · dist: ${dist.toFixed(3)}</div></div>`).join('');
+    } else {
+        box.innerHTML = '<div class="memory-item">Sin memorias aún. Usa /memory <texto> para guardar.</div>';
+    }
+}
+
+// ─── Proactive UI ────────────────────────────────────────
+async function loadProactive() {
+    const r = await api('/api/proactive/tasks');
+    const box = document.getElementById('proactiveList');
+    if(r.ok && r.tasks.length) {
+        box.innerHTML = r.tasks.map(t=>`<div class="memory-item">${t.text} ${t.done?'✅':'⏳'}<div class="meta">ID:${t.id} · ${t.repeat?'repeat':''}</div></div>`).join('');
+    } else {
+        box.innerHTML = '<div class="memory-item">Sin tareas. Usa /proactive <texto> para crear.</div>';
+    }
+}
+
+// ─── Init ────────────────────────────────────────────────
+loadTools();
+setInterval(async()=>{ try{const r=await fetch('/api/health'); document.getElementById('nodeStatus').textContent=r.ok?'ONLINE':'ERROR';}catch{} },5000);
+// Detectar Ollama
+fetch('http://localhost:11434/api/tags').then(r=>r.ok?document.getElementById('llmStatus').textContent='OLLAMA':'').catch(()=>document.getElementById('llmStatus').textContent='GEMINI');
+</script>
+</body>
+</html>

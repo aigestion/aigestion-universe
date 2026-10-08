@@ -1,0 +1,353 @@
+[
+  {
+    "id": "launch_epic",
+    "platform": "YouTube (Short)",
+    "format": "9:16",
+    "duration_sec": 45,
+    "title": "Esto va a cambiar COMO TRABAJAS para siempre",
+    "hook": "Acabas de perder 3 horas hoy en tareas que una IA podria hacer en 30 segundos.",
+    "script": [
+      {
+        "time": "0-3s",
+        "visual": "Texto grande en pantalla",
+        "text": "PERDISTE 3 HORAS HOY",
+        "voice": "Acabas de perder 3 horas hoy."
+      },
+      {
+        "time": "3-8s",
+        "visual": "Animacion de tareas repetitivas",
+        "text": "Tareas que una IA haria en 30 segundos",
+        "voice": "En tareas que una IA podria hacer en 30 segundos."
+      },
+      {
+        "time": "8-15s",
+        "visual": "Logo AIGestion aparece con neón",
+        "text": "AIGestion",
+        "voice": "Pero existe AIGestion. Gestion inteligente con IA."
+      },
+      {
+        "time": "15-25s",
+        "visual": "Dashboard en accion, agentes trabajando",
+        "text": "Agentes que trabajan por ti",
+        "voice": "Agentes que gestionan tu correo, agenda, documentos, y redes sociales. Automaticamente."
+      },
+      {
+        "time": "25-35s",
+        "visual": "Numeros: horas ahorradas, dinero ahorrado",
+        "text": "30 hrs/semana ahorradas",
+        "voice": "30 horas a la semana. Para ti. Para lo que importa."
+      },
+      {
+        "time": "35-40s",
+        "visual": "Logo + URL grande",
+        "text": "aigestion.net",
+        "voice": "aigestion.net. Gratis para empezar."
+      },
+      {
+        "time": "40-45s",
+        "visual": "CTA suscribete",
+        "text": "SUSCRIBETE",
+        "voice": "Suscribete. Tu tiempo vale mas."
+      }
+    ],
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Productividad",
+      "#Automatizacion",
+      "#FuturoDeTrabajo"
+    ],
+    "thumbnail_spec": {
+      "background": "dark_neon",
+      "main_text": "PERDISTE 3 HORAS",
+      "sub_text": "IA lo hace en 30 seg",
+      "logo": true,
+      "colors": [
+        "cyan",
+        "magenta"
+      ]
+    }
+  },
+  {
+    "id": "daniela_intro",
+    "platform": "YouTube (Short) + Instagram Reel",
+    "format": "9:16",
+    "duration_sec": 30,
+    "title": "Conoce a DANIKA - la IA que gestiona empresas",
+    "hook": "Ella no es humana. Pero gestiona mejor que cualquier ejecutivo que conozcas.",
+    "script": [
+      {
+        "time": "0-3s",
+        "visual": "Daniela aparece en pantalla",
+        "text": "NO ES HUMANA",
+        "voice": "Ella no es humana."
+      },
+      {
+        "time": "3-8s",
+        "visual": "Daniela en oficina holografica",
+        "text": "Pero gestiona mejor que tu",
+        "voice": "Pero gestiona mejor que cualquier ejecutivo que conozcas."
+      },
+      {
+        "time": "8-12s",
+        "visual": "Nombre aparece: DANIKA - Ciber-Ejecutiva",
+        "text": "DANIKA | Ciber-Ejecutiva",
+        "voice": "Se llama Daniela. Es la Ciber-Ejecutiva de AIGestion."
+      },
+      {
+        "time": "12-20s",
+        "visual": "Demo de capacidades rapidas",
+        "text": "Correo | Agenda | Documentos | Redes",
+        "voice": "Gestiona correo, agenda, documentos, redes sociales. Sin parar. 24/7."
+      },
+      {
+        "time": "20-25s",
+        "visual": "Comparativa: humano vs Daniela",
+        "text": "Humano: 8h | Daniela: 24/7",
+        "voice": "Tu trabajas 8 horas. Ella trabaja siempre."
+      },
+      {
+        "time": "25-30s",
+        "visual": "Logo + URL",
+        "text": "aigestion.net | GRATIS",
+        "voice": "aigestion.net. Ella te espera."
+      }
+    ],
+    "hashtags": [
+      "#DanielaAI",
+      "#CiberEjecutiva",
+      "#AIGestion",
+      "#IA",
+      "#GestionEmpresarial"
+    ],
+    "thumbnail_spec": {
+      "background": "daniela_portrait",
+      "main_text": "NO ES HUMANA",
+      "sub_text": "Pero gestiona mejor",
+      "logo": true,
+      "colors": [
+        "cyan",
+        "magenta"
+      ]
+    }
+  },
+  {
+    "id": "comparison_viral",
+    "platform": "YouTube (Long-form 5min)",
+    "format": "16:9",
+    "duration_sec": 300,
+    "title": "Antes vs Despues de AIGestion (CHOCKING)",
+    "hook": "Mira lo que pasaba ANTES de AIGestion y lo que pasa DESPUES. La diferencia es brutal.",
+    "script": [
+      {
+        "time": "0-10s",
+        "phase": "HOOK",
+        "visual": "Split screen: antes vs despues",
+        "text": "ANTES vs DESPUES",
+        "voice": "Mira esto. Antes de AIGestion. Y despues de AIGestion."
+      },
+      {
+        "time": "10-60s",
+        "phase": "ANTES",
+        "visual": "Caos: 20 pestañas, correos sin leer, reloj",
+        "text": "ANTES: Caos total",
+        "voice": "Antes: 50 correos sin leer. Calendario saturado. 3 horas perdidas cada dia en tareas que no aportan nada."
+      },
+      {
+        "time": "60-120s",
+        "phase": "DESPUES",
+        "visual": "Dashboard limpio, agentes trabajando, notificaciones utiles",
+        "text": "DESPUES: Control total",
+        "voice": "Despues: Dashboard unico. Agentes de IA gestionan todo. Correo clasificado y respondido. Calendario optimizado. Reportes automaticos."
+      },
+      {
+        "time": "120-180s",
+        "phase": "NUMEROS",
+        "visual": "Graficos comparativos animados",
+        "text": "30 hrs/semana ahorradas | 2000 EUR/mes",
+        "voice": "Los numeros: 30 horas ahorradas a la semana. 2000 euros menos al mes. Tiempo de respuesta a clientes: de 4 horas a 15 minutos."
+      },
+      {
+        "time": "180-240s",
+        "phase": "TESTIMONIO",
+        "visual": "Testimonio de usuario real",
+        "text": "'Mi mejor empleado'",
+        "voice": "Los usuarios dicen: 'Es el mejor empleado que he tenido. Y no cobra salario.'"
+      },
+      {
+        "time": "240-300s",
+        "phase": "CTA",
+        "visual": "Logo + URL + QR",
+        "text": "aigestion.net | GRATIS",
+        "voice": "Si quieres pasar del caos al control, ve a aigestion.net. Plan gratuito disponible. Suscribete para mas."
+      }
+    ],
+    "hashtags": [
+      "#AIGestion",
+      "#AntesVsDespues",
+      "#Productividad",
+      "#Automatizacion"
+    ],
+    "thumbnail_spec": {
+      "background": "split_screen",
+      "main_text": "ANTES vs DESPUES",
+      "sub_text": "La diferencia es BRUTAL",
+      "logo": true,
+      "colors": [
+        "cyan",
+        "magenta"
+      ]
+    }
+  },
+  {
+    "id": "free_tools_reveal",
+    "platform": "YouTube (Short) + TikTok",
+    "format": "9:16",
+    "duration_sec": 40,
+    "title": "AIGestion usa 67 herramientas GRATIS de Google (te muestro cuales)",
+    "hook": "AIGestion usa 67 herramientas de Google gratis. Juntas valen 2800 euros al mes. Cuesta 0.",
+    "script": [
+      {
+        "time": "0-3s",
+        "visual": "Numero grande: 67",
+        "text": "67 HERRAMIENTAS GRATIS",
+        "voice": "67 herramientas de Google. Gratis."
+      },
+      {
+        "time": "3-8s",
+        "visual": "Lista rapida de logos: Gemini, Drive, BigQuery, YouTube API",
+        "text": "Valor: 2800 EUR/mes",
+        "voice": "Juntas valen 2800 euros al mes. AIGestion las usa todas. Por 0."
+      },
+      {
+        "time": "8-15s",
+        "visual": "Gemini CLI en accion",
+        "text": "Gemini CLI: IA gratis",
+        "voice": "Gemini CLI: acceso a Gemini 3 Pro gratis. Sin API key."
+      },
+      {
+        "time": "15-22s",
+        "visual": "BigQuery + Firestore + Cloud Run",
+        "text": "GCP Free Tier: 31 servicios",
+        "voice": "Google Cloud Free Tier: 31 servicios always-free. Compute, BigQuery, Firestore, Cloud Run."
+      },
+      {
+        "time": "22-30s",
+        "visual": "NotebookLM + Veo 2 + ImageFX",
+        "text": "Labs: NotebookLM + Veo 2 + ImageFX",
+        "voice": "Google Labs: NotebookLM para knowledge base. Veo 2 para videos. ImageFX para imagenes."
+      },
+      {
+        "time": "30-35s",
+        "visual": "Logo AIGestion + mensaje",
+        "text": "AIGestion = todo esto integrado",
+        "voice": "AIGestion integra todo esto en una sola plataforma de gestion."
+      },
+      {
+        "time": "35-40s",
+        "visual": "URL + CTA",
+        "text": "aigestion.net | GRATIS",
+        "voice": "aigestion.net. Gratis para empezar."
+      }
+    ],
+    "hashtags": [
+      "#AIGestion",
+      "#GoogleFreeTier",
+      "#HerramientasGratis",
+      "#IA",
+      "#GCP"
+    ],
+    "thumbnail_spec": {
+      "background": "google_logos_grid",
+      "main_text": "67 HERRAMIENTAS GRATIS",
+      "sub_text": "Valor: 2800 EUR/mes | Costo: 0",
+      "logo": true,
+      "colors": [
+        "cyan",
+        "magenta"
+      ]
+    }
+  },
+  {
+    "id": "social_carousel_1",
+    "platform": "Instagram + LinkedIn Carousel",
+    "format": "1:1 (1080x1080)",
+    "duration_sec": 0,
+    "title": "5 formas en que IA gestiona tu negocio (mientras duermes)",
+    "slides": [
+      {
+        "slide": 1,
+        "title": "5 formas en que la IA gestiona tu negocio",
+        "subtitle": "Mientras tu duermes",
+        "visual": "Logo AIGestion + numero 5 grande"
+      },
+      {
+        "slide": 2,
+        "title": "1. Correo automatico",
+        "subtitle": "Clasifica, responde y archiva 50+ correos/dia",
+        "visual": "Icono de correo con check verde neón"
+      },
+      {
+        "slide": 3,
+        "title": "2. Agenda inteligente",
+        "subtitle": "Optimiza reuniones y evita conflictos",
+        "visual": "Calendario con slots optimizados"
+      },
+      {
+        "slide": 4,
+        "title": "3. Reportes automaticos",
+        "subtitle": "Genera, guarda y publica en Drive",
+        "visual": "Grafico de barras subiendo"
+      },
+      {
+        "slide": 5,
+        "title": "4. Redes sociales",
+        "subtitle": "Crea y publica contenido diario",
+        "visual": "Iconos de redes sociales"
+      },
+      {
+        "slide": 6,
+        "title": "5. Monitoreo 24/7",
+        "subtitle": "Alertas en tiempo real, sin que tu hagas nada",
+        "visual": "Dashboard con alertas"
+      },
+      {
+        "slide": 7,
+        "title": "Todo esto por 0 euros",
+        "subtitle": "aigestion.net | Plan gratuito",
+        "visual": "Logo + URL + CTA"
+      }
+    ],
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Automatizacion",
+      "#Productividad",
+      "#GestionEmpresarial"
+    ]
+  },
+  {
+    "id": "twitter_thread",
+    "platform": "Twitter/X Thread",
+    "format": "text",
+    "duration_sec": 0,
+    "title": "Hilo: Como AIGestion automatiza empresas con 67 herramientas gratis de Google",
+    "tweets": [
+      "1/ AIGestion usa 67 herramientas gratuitas de Google para gestionar empresas enteras.\n\nEl valor total: 2,847 EUR/mes.\nEl costo: 0.\n\nTe cuento cuales y como: 🧵",
+      "2/ 🧠 Gemini CLI\nIA gratis. Gemini 3 Pro. 60 RPM. 1,000 peticiones/dia.\n\nAIGestion lo usa como motor de IA principal. Sin API key. Sin costo.\n\nEsto solo ya vale 20 EUR/mes (vs ChatGPT+).",
+      "3/ 📊 BigQuery\n1 TB de consultas gratis al mes.\n\nAIGestion guarda todos los logs de actividad de agentes aqui. Analytics empresarial sin pagar.",
+      "4/ ☁️ Google Cloud Free Tier\n31 servicios always-free:\n- Compute e2-micro\n- Cloud Run (2M req)\n- Cloud Functions (2M invoc)\n- Firestore (50K lecturas)\n- Storage (5GB)\n- Pub/Sub (10GB)\n\nInfraestructura completa gratis.",
+      "5/ 🎥 Google Labs\n- NotebookLM: knowledge base ilimitado\n- Veo 2: 30 videos/mes\n- ImageFX: imagenes con IA\n- Jules: 15 PRs automaticos/dia\n- Stitch: 450 UIs generadas/mes\n\nAIGestion usa todo para crear contenido.",
+      "6/ 📺 YouTube Data API\n10,000 unidades/dia gratis.\n\nAIGestion rastrea tendencias, analiza canales, y programa contenido basado en datos reales.",
+      "7/ 🌐 Firebase Spark Plan\n50K usuarios activos. 1GB Firestore. 10GB Hosting. FCM ilimitado.\n\nNotificaciones push gratis para toda la app de AIGestion.",
+      "8/ El resultado:\n\n❌ Sin AIGestion: 2,847 EUR/mes en herramientas\n✅ Con AIGestion: 0 EUR/mes\n\nY lo mejor: todo integrado en un dashboard.\n\nPruebalo gratis: aigestion.net",
+      "9/ ¿Quieres saber como configurar cada uno de estos?\n\nSigue a @AIGestion para el siguiente hilo donde explico la configuracion paso a paso.\n\nRT si te fue util 🔄"
+    ],
+    "hashtags": [
+      "#AIGestion",
+      "#GoogleFreeTier",
+      "#IA",
+      "#Hilo"
+    ]
+  }
+]

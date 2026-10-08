@@ -1,0 +1,1243 @@
+[
+  {
+    "day": 1,
+    "platform": "YouTube Short",
+    "content_type": "Viral Short",
+    "title": "Daniela vs [Problema semanal]",
+    "description": "Short viral semanal: Daniela resuelve un reto",
+    "script_source": "flow_studio_aigestion.py SCRIPT_2 o SCRIPT_4",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-50K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Shorts",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 1,
+    "platform": "TikTok",
+    "content_type": "Viral Video",
+    "title": "Daniela vs [Problema semanal] (TikTok edit)",
+    "description": "Version TikTok del Short con trend audio",
+    "script_source": "viral_content_factory.py TrendHunter",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "20K-100K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#DanielaAI",
+      "#ForYou",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 1,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 2,
+    "platform": "YouTube Long",
+    "content_type": "Cinematic",
+    "title": "Cronicas de Daniela Ep.X",
+    "description": "Episodio cinematografico de la serie web",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas epic_01",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "3K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#CronicasDaniela",
+      "#SerieWeb",
+      "#IA"
+    ]
+  },
+  {
+    "day": 2,
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "5 Formas en que la IA Gestion tu Negocio",
+    "description": "Carousel educativo para LinkedIn",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "1K-5K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Automatizacion",
+      "#GestionEmpresarial"
+    ]
+  },
+  {
+    "day": 3,
+    "platform": "YouTube Short",
+    "content_type": "Before/After",
+    "title": "Antes vs Despues de AIGestion",
+    "description": "Short de transformacion visual",
+    "script_source": "flow_studio_aigestion.py SCRIPT_3",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "15K-60K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AntesVsDespues",
+      "#Transformacion",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 3,
+    "platform": "Twitter/X",
+    "content_type": "Thread",
+    "title": "Hilo: Como AIGestion usa X herramientas gratis",
+    "description": "Thread semanal con tips y datos",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements twitter_thread",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "5K-30K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Hilo",
+      "#Tips"
+    ]
+  },
+  {
+    "day": 3,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 4,
+    "platform": "YouTube Short",
+    "content_type": "Agent Spotlight",
+    "title": "Agente Correo en accion",
+    "description": "Short spotlight de un agente especifico",
+    "script_source": "flow_studio_aigestion.py SCRIPT_4 Agent Squad",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "8K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AgenteIA",
+      "#Shorts",
+      "#Automatizacion"
+    ]
+  },
+  {
+    "day": 4,
+    "platform": "Instagram",
+    "content_type": "Reel",
+    "title": "Daniela presenta AIGestion (Reel)",
+    "description": "Reel de presentacion para Instagram",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements daniela_intro",
+    "best_time": "21:00",
+    "estimated_reach": "5K-20K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Reels",
+      "#IA",
+      "#CiberEjecutiva"
+    ]
+  },
+  {
+    "day": 4,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 5,
+    "platform": "YouTube Long",
+    "content_type": "Epic Content",
+    "title": "Contenido epic semanal (rotacion)",
+    "description": "Rotacion: Tour / Universe / Before-After / Documentary",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas (rotacion semanal)",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "5K-15K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Epic",
+      "#FuturoDeTrabajo"
+    ]
+  },
+  {
+    "day": 5,
+    "platform": "Instagram",
+    "content_type": "Carousel",
+    "title": "Carousel semanal educativo",
+    "description": "Carousel de 7 slides sobre AIGestion",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "12:00",
+    "estimated_reach": "2K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Carousel",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 6,
+    "platform": "YouTube Short",
+    "content_type": "Motivation",
+    "title": "Daniela: Tu tiempo vale mas",
+    "description": "Short motivacional dominical",
+    "script_source": "viral_content_factory.py ScriptEngine",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-40K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Motivacion",
+      "#Domingo",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 6,
+    "platform": "Twitter/X",
+    "content_type": "Summary Thread",
+    "title": "Resumen semanal: lo que AIGestion hizo esta semana",
+    "description": "Thread recopilando contenido de la semana",
+    "script_source": "viral_content_factory.py ChannelManager",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "3K-15K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#Resumen",
+      "#Semanal",
+      "#IA"
+    ]
+  },
+  {
+    "day": 6,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 7,
+    "platform": "YouTube Long",
+    "content_type": "Tutorial",
+    "title": "Tutorial AIGestion Ep.2",
+    "description": "Tutorial semanal: como usar AIGestion paso a paso",
+    "script_source": "aigestion_brand_kit.py TutorialTemplates",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "2K-5K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Tutorial",
+      "#IA",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 7,
+    "platform": "LinkedIn",
+    "content_type": "Article/Post",
+    "title": "El Futuro de la Gestion Empresarial con IA",
+    "description": "Articulo sobre como la IA esta transformando la gestion",
+    "script_source": "content_factory_ai.py",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "500-2K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#GestionEmpresarial",
+      "#TransformacionDigital"
+    ]
+  },
+  {
+    "day": 8,
+    "platform": "YouTube Short",
+    "content_type": "Viral Short",
+    "title": "Daniela vs [Problema semanal]",
+    "description": "Short viral semanal: Daniela resuelve un reto",
+    "script_source": "flow_studio_aigestion.py SCRIPT_2 o SCRIPT_4",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-50K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Shorts",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 8,
+    "platform": "TikTok",
+    "content_type": "Viral Video",
+    "title": "Daniela vs [Problema semanal] (TikTok edit)",
+    "description": "Version TikTok del Short con trend audio",
+    "script_source": "viral_content_factory.py TrendHunter",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "20K-100K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#DanielaAI",
+      "#ForYou",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 8,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 9,
+    "platform": "YouTube Long",
+    "content_type": "Cinematic",
+    "title": "Cronicas de Daniela Ep.X",
+    "description": "Episodio cinematografico de la serie web",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas epic_01",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "3K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#CronicasDaniela",
+      "#SerieWeb",
+      "#IA"
+    ]
+  },
+  {
+    "day": 9,
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "5 Formas en que la IA Gestion tu Negocio",
+    "description": "Carousel educativo para LinkedIn",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "1K-5K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Automatizacion",
+      "#GestionEmpresarial"
+    ]
+  },
+  {
+    "day": 10,
+    "platform": "YouTube Short",
+    "content_type": "Before/After",
+    "title": "Antes vs Despues de AIGestion",
+    "description": "Short de transformacion visual",
+    "script_source": "flow_studio_aigestion.py SCRIPT_3",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "15K-60K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AntesVsDespues",
+      "#Transformacion",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 10,
+    "platform": "Twitter/X",
+    "content_type": "Thread",
+    "title": "Hilo: Como AIGestion usa X herramientas gratis",
+    "description": "Thread semanal con tips y datos",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements twitter_thread",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "5K-30K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Hilo",
+      "#Tips"
+    ]
+  },
+  {
+    "day": 10,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 11,
+    "platform": "YouTube Short",
+    "content_type": "Agent Spotlight",
+    "title": "Agente Calendario en accion",
+    "description": "Short spotlight de un agente especifico",
+    "script_source": "flow_studio_aigestion.py SCRIPT_4 Agent Squad",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "8K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AgenteIA",
+      "#Shorts",
+      "#Automatizacion"
+    ]
+  },
+  {
+    "day": 11,
+    "platform": "Instagram",
+    "content_type": "Reel",
+    "title": "Daniela presenta AIGestion (Reel)",
+    "description": "Reel de presentacion para Instagram",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements daniela_intro",
+    "best_time": "21:00",
+    "estimated_reach": "5K-20K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Reels",
+      "#IA",
+      "#CiberEjecutiva"
+    ]
+  },
+  {
+    "day": 11,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 12,
+    "platform": "YouTube Long",
+    "content_type": "Epic Content",
+    "title": "Contenido epic semanal (rotacion)",
+    "description": "Rotacion: Tour / Universe / Before-After / Documentary",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas (rotacion semanal)",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "5K-15K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Epic",
+      "#FuturoDeTrabajo"
+    ]
+  },
+  {
+    "day": 12,
+    "platform": "Instagram",
+    "content_type": "Carousel",
+    "title": "Carousel semanal educativo",
+    "description": "Carousel de 7 slides sobre AIGestion",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "12:00",
+    "estimated_reach": "2K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Carousel",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 13,
+    "platform": "YouTube Short",
+    "content_type": "Motivation",
+    "title": "Daniela: Tu tiempo vale mas",
+    "description": "Short motivacional dominical",
+    "script_source": "viral_content_factory.py ScriptEngine",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-40K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Motivacion",
+      "#Domingo",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 13,
+    "platform": "Twitter/X",
+    "content_type": "Summary Thread",
+    "title": "Resumen semanal: lo que AIGestion hizo esta semana",
+    "description": "Thread recopilando contenido de la semana",
+    "script_source": "viral_content_factory.py ChannelManager",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "3K-15K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#Resumen",
+      "#Semanal",
+      "#IA"
+    ]
+  },
+  {
+    "day": 13,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 14,
+    "platform": "YouTube Long",
+    "content_type": "Tutorial",
+    "title": "Tutorial AIGestion Ep.3",
+    "description": "Tutorial semanal: como usar AIGestion paso a paso",
+    "script_source": "aigestion_brand_kit.py TutorialTemplates",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "2K-5K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Tutorial",
+      "#IA",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 14,
+    "platform": "LinkedIn",
+    "content_type": "Article/Post",
+    "title": "El Futuro de la Gestion Empresarial con IA",
+    "description": "Articulo sobre como la IA esta transformando la gestion",
+    "script_source": "content_factory_ai.py",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "500-2K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#GestionEmpresarial",
+      "#TransformacionDigital"
+    ]
+  },
+  {
+    "day": 15,
+    "platform": "YouTube Short",
+    "content_type": "Viral Short",
+    "title": "Daniela vs [Problema semanal]",
+    "description": "Short viral semanal: Daniela resuelve un reto",
+    "script_source": "flow_studio_aigestion.py SCRIPT_2 o SCRIPT_4",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-50K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Shorts",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 15,
+    "platform": "TikTok",
+    "content_type": "Viral Video",
+    "title": "Daniela vs [Problema semanal] (TikTok edit)",
+    "description": "Version TikTok del Short con trend audio",
+    "script_source": "viral_content_factory.py TrendHunter",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "20K-100K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#DanielaAI",
+      "#ForYou",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 15,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 16,
+    "platform": "YouTube Long",
+    "content_type": "Cinematic",
+    "title": "Cronicas de Daniela Ep.X",
+    "description": "Episodio cinematografico de la serie web",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas epic_01",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "3K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#CronicasDaniela",
+      "#SerieWeb",
+      "#IA"
+    ]
+  },
+  {
+    "day": 16,
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "5 Formas en que la IA Gestion tu Negocio",
+    "description": "Carousel educativo para LinkedIn",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "1K-5K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Automatizacion",
+      "#GestionEmpresarial"
+    ]
+  },
+  {
+    "day": 17,
+    "platform": "YouTube Short",
+    "content_type": "Before/After",
+    "title": "Antes vs Despues de AIGestion",
+    "description": "Short de transformacion visual",
+    "script_source": "flow_studio_aigestion.py SCRIPT_3",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "15K-60K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AntesVsDespues",
+      "#Transformacion",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 17,
+    "platform": "Twitter/X",
+    "content_type": "Thread",
+    "title": "Hilo: Como AIGestion usa X herramientas gratis",
+    "description": "Thread semanal con tips y datos",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements twitter_thread",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "5K-30K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Hilo",
+      "#Tips"
+    ]
+  },
+  {
+    "day": 17,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 18,
+    "platform": "YouTube Short",
+    "content_type": "Agent Spotlight",
+    "title": "Agente Documentos en accion",
+    "description": "Short spotlight de un agente especifico",
+    "script_source": "flow_studio_aigestion.py SCRIPT_4 Agent Squad",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "8K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AgenteIA",
+      "#Shorts",
+      "#Automatizacion"
+    ]
+  },
+  {
+    "day": 18,
+    "platform": "Instagram",
+    "content_type": "Reel",
+    "title": "Daniela presenta AIGestion (Reel)",
+    "description": "Reel de presentacion para Instagram",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements daniela_intro",
+    "best_time": "21:00",
+    "estimated_reach": "5K-20K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Reels",
+      "#IA",
+      "#CiberEjecutiva"
+    ]
+  },
+  {
+    "day": 18,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 19,
+    "platform": "YouTube Long",
+    "content_type": "Epic Content",
+    "title": "Contenido epic semanal (rotacion)",
+    "description": "Rotacion: Tour / Universe / Before-After / Documentary",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas (rotacion semanal)",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "5K-15K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Epic",
+      "#FuturoDeTrabajo"
+    ]
+  },
+  {
+    "day": 19,
+    "platform": "Instagram",
+    "content_type": "Carousel",
+    "title": "Carousel semanal educativo",
+    "description": "Carousel de 7 slides sobre AIGestion",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "12:00",
+    "estimated_reach": "2K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Carousel",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 20,
+    "platform": "YouTube Short",
+    "content_type": "Motivation",
+    "title": "Daniela: Tu tiempo vale mas",
+    "description": "Short motivacional dominical",
+    "script_source": "viral_content_factory.py ScriptEngine",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-40K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Motivacion",
+      "#Domingo",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 20,
+    "platform": "Twitter/X",
+    "content_type": "Summary Thread",
+    "title": "Resumen semanal: lo que AIGestion hizo esta semana",
+    "description": "Thread recopilando contenido de la semana",
+    "script_source": "viral_content_factory.py ChannelManager",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "3K-15K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#Resumen",
+      "#Semanal",
+      "#IA"
+    ]
+  },
+  {
+    "day": 20,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 21,
+    "platform": "YouTube Long",
+    "content_type": "Tutorial",
+    "title": "Tutorial AIGestion Ep.4",
+    "description": "Tutorial semanal: como usar AIGestion paso a paso",
+    "script_source": "aigestion_brand_kit.py TutorialTemplates",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "2K-5K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Tutorial",
+      "#IA",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 21,
+    "platform": "LinkedIn",
+    "content_type": "Article/Post",
+    "title": "El Futuro de la Gestion Empresarial con IA",
+    "description": "Articulo sobre como la IA esta transformando la gestion",
+    "script_source": "content_factory_ai.py",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "500-2K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#GestionEmpresarial",
+      "#TransformacionDigital"
+    ]
+  },
+  {
+    "day": 22,
+    "platform": "YouTube Short",
+    "content_type": "Viral Short",
+    "title": "Daniela vs [Problema semanal]",
+    "description": "Short viral semanal: Daniela resuelve un reto",
+    "script_source": "flow_studio_aigestion.py SCRIPT_2 o SCRIPT_4",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-50K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Shorts",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 22,
+    "platform": "TikTok",
+    "content_type": "Viral Video",
+    "title": "Daniela vs [Problema semanal] (TikTok edit)",
+    "description": "Version TikTok del Short con trend audio",
+    "script_source": "viral_content_factory.py TrendHunter",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "20K-100K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#DanielaAI",
+      "#ForYou",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 22,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 23,
+    "platform": "YouTube Long",
+    "content_type": "Cinematic",
+    "title": "Cronicas de Daniela Ep.X",
+    "description": "Episodio cinematografico de la serie web",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas epic_01",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "3K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#CronicasDaniela",
+      "#SerieWeb",
+      "#IA"
+    ]
+  },
+  {
+    "day": 23,
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "5 Formas en que la IA Gestion tu Negocio",
+    "description": "Carousel educativo para LinkedIn",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "1K-5K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Automatizacion",
+      "#GestionEmpresarial"
+    ]
+  },
+  {
+    "day": 24,
+    "platform": "YouTube Short",
+    "content_type": "Before/After",
+    "title": "Antes vs Despues de AIGestion",
+    "description": "Short de transformacion visual",
+    "script_source": "flow_studio_aigestion.py SCRIPT_3",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "15K-60K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AntesVsDespues",
+      "#Transformacion",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 24,
+    "platform": "Twitter/X",
+    "content_type": "Thread",
+    "title": "Hilo: Como AIGestion usa X herramientas gratis",
+    "description": "Thread semanal con tips y datos",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements twitter_thread",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "5K-30K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Hilo",
+      "#Tips"
+    ]
+  },
+  {
+    "day": 24,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 25,
+    "platform": "YouTube Short",
+    "content_type": "Agent Spotlight",
+    "title": "Agente Redes en accion",
+    "description": "Short spotlight de un agente especifico",
+    "script_source": "flow_studio_aigestion.py SCRIPT_4 Agent Squad",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "8K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#AgenteIA",
+      "#Shorts",
+      "#Automatizacion"
+    ]
+  },
+  {
+    "day": 25,
+    "platform": "Instagram",
+    "content_type": "Reel",
+    "title": "Daniela presenta AIGestion (Reel)",
+    "description": "Reel de presentacion para Instagram",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements daniela_intro",
+    "best_time": "21:00",
+    "estimated_reach": "5K-20K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Reels",
+      "#IA",
+      "#CiberEjecutiva"
+    ]
+  },
+  {
+    "day": 25,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 26,
+    "platform": "YouTube Long",
+    "content_type": "Epic Content",
+    "title": "Contenido epic semanal (rotacion)",
+    "description": "Rotacion: Tour / Universe / Before-After / Documentary",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas (rotacion semanal)",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "5K-15K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Epic",
+      "#FuturoDeTrabajo"
+    ]
+  },
+  {
+    "day": 26,
+    "platform": "Instagram",
+    "content_type": "Carousel",
+    "title": "Carousel semanal educativo",
+    "description": "Carousel de 7 slides sobre AIGestion",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "12:00",
+    "estimated_reach": "2K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Carousel",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 27,
+    "platform": "YouTube Short",
+    "content_type": "Motivation",
+    "title": "Daniela: Tu tiempo vale mas",
+    "description": "Short motivacional dominical",
+    "script_source": "viral_content_factory.py ScriptEngine",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-40K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Motivacion",
+      "#Domingo",
+      "#Shorts"
+    ]
+  },
+  {
+    "day": 27,
+    "platform": "Twitter/X",
+    "content_type": "Summary Thread",
+    "title": "Resumen semanal: lo que AIGestion hizo esta semana",
+    "description": "Thread recopilando contenido de la semana",
+    "script_source": "viral_content_factory.py ChannelManager",
+    "best_time": "08:00 + 13:00 + 18:00 (daily)",
+    "estimated_reach": "3K-15K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#Resumen",
+      "#Semanal",
+      "#IA"
+    ]
+  },
+  {
+    "day": 27,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 28,
+    "platform": "YouTube Long",
+    "content_type": "Tutorial",
+    "title": "Tutorial AIGestion Ep.5",
+    "description": "Tutorial semanal: como usar AIGestion paso a paso",
+    "script_source": "aigestion_brand_kit.py TutorialTemplates",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "2K-5K views",
+    "hashtags": [
+      "#AIGestion",
+      "#Tutorial",
+      "#IA",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 28,
+    "platform": "LinkedIn",
+    "content_type": "Article/Post",
+    "title": "El Futuro de la Gestion Empresarial con IA",
+    "description": "Articulo sobre como la IA esta transformando la gestion",
+    "script_source": "content_factory_ai.py",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "500-2K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#GestionEmpresarial",
+      "#TransformacionDigital"
+    ]
+  },
+  {
+    "day": 29,
+    "platform": "YouTube Short",
+    "content_type": "Viral Short",
+    "title": "Daniela vs [Problema semanal]",
+    "description": "Short viral semanal: Daniela resuelve un reto",
+    "script_source": "flow_studio_aigestion.py SCRIPT_2 o SCRIPT_4",
+    "best_time": "18:00 (daily)",
+    "estimated_reach": "10K-50K views",
+    "hashtags": [
+      "#AIGestion",
+      "#DanielaAI",
+      "#Shorts",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 29,
+    "platform": "TikTok",
+    "content_type": "Viral Video",
+    "title": "Daniela vs [Problema semanal] (TikTok edit)",
+    "description": "Version TikTok del Short con trend audio",
+    "script_source": "viral_content_factory.py TrendHunter",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "20K-100K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#DanielaAI",
+      "#ForYou",
+      "#Productividad"
+    ]
+  },
+  {
+    "day": 29,
+    "platform": "TikTok",
+    "content_type": "Daily Short",
+    "title": "Clip del dia (trend/hook viral)",
+    "description": "Short diario siguiendo tendencia del momento",
+    "script_source": "viral_content_factory.py TrendHunter + ScriptEngine",
+    "best_time": "20:00 (daily)",
+    "estimated_reach": "5K-30K views",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#FYP",
+      "#Trend"
+    ]
+  },
+  {
+    "day": 30,
+    "platform": "YouTube Long",
+    "content_type": "Cinematic",
+    "title": "Cronicas de Daniela Ep.X",
+    "description": "Episodio cinematografico de la serie web",
+    "script_source": "flow_studio_aigestion.py EpicFlowIdeas epic_01",
+    "best_time": "14:00 (Tue/Thu/Sat)",
+    "estimated_reach": "3K-8K views",
+    "hashtags": [
+      "#AIGestion",
+      "#CronicasDaniela",
+      "#SerieWeb",
+      "#IA"
+    ]
+  },
+  {
+    "day": 30,
+    "platform": "LinkedIn",
+    "content_type": "Carousel",
+    "title": "5 Formas en que la IA Gestion tu Negocio",
+    "description": "Carousel educativo para LinkedIn",
+    "script_source": "aigestion_brand_kit.py ViralAnnouncements social_carousel_1",
+    "best_time": "09:00 (Tue/Wed/Thu)",
+    "estimated_reach": "1K-5K impressions",
+    "hashtags": [
+      "#AIGestion",
+      "#IA",
+      "#Automatizacion",
+      "#GestionEmpresarial"
+    ]
+  }
+]

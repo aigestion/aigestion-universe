@@ -1,0 +1,10 @@
+{
+  "ollama:daniela-local": {
+    "veces": 4,
+    "ok": 4,
+    "ms_total": 62471,
+    "ms_min": 2332,
+    "ms_medio": 15618,
+    "ultimo": "2026-09-11 20:54:49"
+  }
+}

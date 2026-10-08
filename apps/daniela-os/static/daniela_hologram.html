@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniela Hologram - AIGestion</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;overflow:hidden;font-family:'Segoe UI',system-ui,sans-serif;}
+#canvas-container{position:fixed;top:0;left:0;width:100%;height:100%;}
+#ui{position:fixed;bottom:40px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:12px;align-items:center;}
+#ui input{flex:1;min-width:300px;padding:14px 20px;border:1px solid #0ea5e9;background:rgba(15,23,41,0.9);color:#fff;border-radius:12px;font-size:1rem;backdrop-filter:blur(10px);}
+#ui input:focus{outline:none;box-shadow:0 0 20px rgba(14,165,233,0.4);}
+#ui button{padding:14px 24px;border:none;background:linear-gradient(135deg,#0ea5e9,#8b5cf6);color:#fff;border-radius:12px;font-weight:600;cursor:pointer;transition:all 0.3s;}
+#ui button:hover{transform:translateY(-2px);box-shadow:0 10px30px rgba(14,165,233,0.4);}
+#status{position:fixed;top:20px;left:20px;z-index:10;color:#0ea5e9;font-size:0.85rem;background:rgba(15,23,41,0.8);padding:8px 16px;border-radius:8px;border:1px solid #0ea5e9;}
+#status.speaking{color:#22c55e;border-color:#22c55e;box-shadow:0 0 20px rgba(34,197,94,0.3);}
+#subtitle{position:fixed;bottom:120px;left:50%;transform:translateX(-50%);z-index:10;color:#f1f5f9;font-size:1.1rem;text-align:center;max-width:700px;padding:16px 24px;background:rgba(15,23,41,0.8);border-radius:12px;border:1px solid #334155;backdrop-filter:blur(10px);opacity:0;transition:opacity 0.3s;}
+#subtitle.show{opacity:1;}
+</style>
+</head>
+<body>
+<div id="canvas-container"></div>
+<div id="status">Daniela Holographic AI v3.0 - Ready</div>
+<div id="subtitle"></div>
+<div id="ui">
+<input type="text" id="userInput" placeholder="Habla con Daniela..." onkeypress="if(event.key==='Enter')speak()">
+<button onclick="speak()">🎙️ Hablar</button>
+<button onclick="startVoice()">🎤 Voz</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// DANIELA HOLOGRAM v3.0 - Avatar 3D con lip-sync y voz
+// ═══════════════════════════════════════════════════════════════
+
+let scene, camera, renderer, danielaGroup, head, jaw, eyes = [], mouth;
+let isSpeaking = false;
+let mouthOpenness = 0;
+let time = 0;
+
+// Speech synthesis
+const synth = window.speechSynthesis;
+let utterance = null;
+
+function init() {
+    const container = document.getElementById('canvas-container');
+
+    // Scene
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    scene.fog = new THREE.FogExp2(0x000000, 0.02);
+
+    // Camera
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 1.5, 4);
+
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    container.appendChild(renderer.domElement);
+
+    // Lights
+    const ambient = new THREE.AmbientLight(0x404080, 0.5);
+    scene.add(ambient);
+
+    const keyLight = new THREE.PointLight(0x0ea5e9, 2, 20);
+    keyLight.position.set(2, 3, 3);
+    scene.add(keyLight);
+
+    const fillLight = new THREE.PointLight(0x8b5cf6, 1, 20);
+    fillLight.position.set(-2, 2, 3);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.PointLight(0x22c55e, 1.5, 20);
+    rimLight.position.set(0, 2, -3);
+    scene.add(rimLight);
+
+    // Create Daniela hologram
+    createDaniela();
+
+    // Hologram platform
+    createPlatform();
+
+    // Particles
+    createParticles();
+
+    // Grid floor
+    const grid = new THREE.GridHelper(20, 40, 0x1a1a3a, 0x0d0d20);
+    grid.position.y = -2;
+    scene.add(grid);
+
+    // Events
+    window.addEventListener('resize', onResize);
+    document.addEventListener('mousemove', onMouseMove);
+
+    animate();
+}
+
+function createDaniela() {
+    danielaGroup = new THREE.Group();
+
+    // Head (stylized female shape)
+    const headGeo = new THREE.SphereGeometry(0.5, 64, 64);
+    const headMat = new THREE.MeshPhysicalMaterial({
+        color: 0x0ea5e9,
+        emissive: 0x0ea5e9,
+        emissiveIntensity: 0.1,
+        transparent: true,
+        opacity: 0.7,
+        roughness: 0.1,
+        metalness: 0.9,
+        transmission: 0.2,
+    });
+    head = new THREE.Mesh(headGeo, headMat);
+    danielaGroup.add(head);
+
+    // Jaw (for mouth animation)
+    const jawGeo = new THREE.SphereGeometry(0.35, 32, 32, 0, Math.PI * 2, 0, Math.PI * 0.4);
+    const jawMat = new THREE.MeshPhysicalMaterial({
+        color: 0x0ea5e9,
+        emissive: 0x0ea5e9,
+        emissiveIntensity: 0.2,
+        transparent: true,
+        opacity: 0.6,
+    });
+    jaw = new THREE.Mesh(jawGeo, jawMat);
+    jaw.position.y = -0.15;
+    jaw.rotation.x = Math.PI;
+    danielaGroup.add(jaw);
+
+    // Eyes
+    const eyeGeo = new THREE.SphereGeometry(0.08, 32, 32);
+    const eyeMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
+
+    const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+    leftEye.position.set(-0.18, 0.05, 0.42);
+    danielaGroup.add(leftEye);
+    eyes.push(leftEye);
+
+    const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+    rightEye.position.set(0.18, 0.05, 0.42);
+    danielaGroup.add(rightEye);
+    eyes.push(rightEye);
+
+    // Eye glow
+    const glowGeo = new THREE.SphereGeometry(0.12, 32, 32);
+    const glowMat = new THREE.MeshBasicMaterial({
+        color: 0x00ffcc,
+        transparent: true,
+        opacity: 0.2,
+    });
+    const leftGlow = new THREE.Mesh(glowGeo, glowMat);
+    leftGlow.position.copy(leftEye.position);
+    danielaGroup.add(leftGlow);
+
+    const rightGlow = new THREE.Mesh(glowGeo, glowMat);
+    rightGlow.position.copy(rightEye.position);
+    danielaGroup.add(rightGlow);
+
+    // Hair (wireframe style)
+    const hairGeo = new THREE.SphereGeometry(0.55, 32, 32, 0, Math.PI * 2, 0, Math.PI * 0.6);
+    const hairMat = new THREE.MeshBasicMaterial({
+        color: 0x0ea5e9,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3,
+    });
+    const hair = new THREE.Mesh(hairGeo, hairMat);
+    hair.position.y = 0.1;
+    danielaGroup.add(hair);
+
+    // Neck
+    const neckGeo = new THREE.CylinderGeometry(0.15, 0.2, 0.4, 32);
+    const neckMat = new THREE.MeshPhysicalMaterial({
+        color: 0x0ea5e9,
+        transparent: true,
+        opacity: 0.5,
+        emissive: 0x0ea5e9,
+        emissiveIntensity: 0.1,
+    });
+    const neck = new THREE.Mesh(neckGeo, neckMat);
+    neck.position.y = -0.7;
+    danielaGroup.add(neck);
+
+    // Shoulders
+    const shoulderGeo = new THREE.CylinderGeometry(0.05, 0.4, 0.8, 32);
+    const shoulderMat = new THREE.MeshPhysicalMaterial({
+        color: 0x0ea5e9,
+        transparent: true,
+        opacity: 0.3,
+        wireframe: true,
+    });
+    const shoulders = new THREE.Mesh(shoulderGeo, shoulderMat);
+    shoulders.position.y = -1.0;
+    danielaGroup.add(shoulders);
+
+    // Scan lines effect
+    const scanGeo = new THREE.PlaneGeometry(1.5, 0.02);
+    const scanMat = new THREE.MeshBasicMaterial({
+        color: 0x0ea5e9,
+        transparent: true,
+        opacity: 0.8,
+        side: THREE.DoubleSide,
+    });
+    const scanLine = new THREE.Mesh(scanGeo, scanMat);
+    scanLine.position.y = -0.5;
+    danielaGroup.add(scanLine);
+    danielaGroup.userData.scanLine = scanLine;
+
+    // Position
+    danielaGroup.position.y = 0.5;
+    scene.add(danielaGroup);
+}
+
+function createPlatform() {
+    const platformGroup = new THREE.Group();
+
+    // Base ring
+    const ringGeo = new THREE.TorusGeometry(1.2, 0.05, 16, 100);
+    const ringMat = new THREE.MeshBasicMaterial({
+        color: 0x0ea5e9,
+        transparent: true,
+        opacity: 0.6,
+    });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = -Math.PI / 2;
+    platformGroup.add(ring);
+
+    // Inner ring
+    const ring2Geo = new THREE.TorusGeometry(0.8, 0.03, 16, 100);
+    const ring2Mat = new THREE.MeshBasicMaterial({
+        color: 0x8b5cf6,
+        transparent: true,
+        opacity: 0.4,
+    });
+    const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+    ring2.rotation.x = -Math.PI / 2;
+    platformGroup.add(ring2);
+
+    // Hologram light beam
+    const beamGeo = new THREE.CylinderGeometry(0.6, 1.2, 3, 32, 1, true);
+    const beamMat = new THREE.MeshBasicMaterial({
+        color: 0x0ea5e9,
+        transparent: true,
+        opacity: 0.05,
+        side: THREE.DoubleSide,
+    });
+    const beam = new THREE.Mesh(beamGeo, beamMat);
+    beam.position.y = 1.5;
+    platformGroup.add(beam);
+
+    platformGroup.position.y = -2;
+    scene.add(platformGroup);
+}
+
+function createParticles() {
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i = 0; i < 500; i++) {
+        vertices.push(
+            (Math.random() - 0.5) * 6,
+            Math.random() * 6 - 1,
+            (Math.random() - 0.5) * 6
+        );
+    }
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    const material = new THREE.PointsMaterial({
+        color: 0x0ea5e9,
+        size: 0.03,
+        transparent: true,
+        opacity: 0.6,
+    });
+    const particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+}
+
+let mouseX = 0, mouseY = 0;
+function onMouseMove(event) {
+    mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
+}
+
+function onResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+// Lip-sync animation
+function updateMouth() {
+    if (isSpeaking && utterance) {
+        // Simulate mouth movement based on time
+        mouthOpenness = 0.3 + Math.sin(time * 15) * 0.2 + Math.sin(time * 23) * 0.15;
+    } else {
+        mouthOpenness *= 0.9; // Close mouth smoothly
+    }
+
+    if (jaw) {
+        jaw.rotation.x = Math.PI + mouthOpenness * 0.5;
+        jaw.position.y = -0.15 - mouthOpenness * 0.1;
+    }
+}
+
+// Blink animation
+let blinkTimer = 0;
+let isBlinking = false;
+function updateEyes() {
+    blinkTimer += 0.016;
+    if (blinkTimer > 3 + Math.random() * 2) {
+        isBlinking = true;
+        blinkTimer = 0;
+    }
+
+    if (isBlinking) {
+        const blinkPhase = Math.sin(blinkTimer * 20);
+        eyes.forEach(eye => {
+            eye.scale.y = Math.max(0.1, blinkPhase);
+        });
+        if (blinkTimer > 0.15) isBlinking = false;
+    } else {
+        eyes.forEach(eye => eye.scale.y = 1);
+    }
+}
+
+// Scan line animation
+function updateScanLine() {
+    if (danielaGroup && danielaGroup.userData.scanLine) {
+        danielaGroup.userData.scanLine.position.y = -0.5 + Math.sin(time * 2) * 0.8;
+        danielaGroup.userData.scanLine.material.opacity = 0.3 + Math.sin(time * 4) * 0.2;
+    }
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    time += 0.016;
+
+    // Rotate head slightly towards mouse
+    if (danielaGroup) {
+        danielaGroup.rotation.y += (mouseX * 0.3 - danielaGroup.rotation.y) * 0.05;
+        danielaGroup.rotation.x += (-mouseY * 0.1 - danielaGroup.rotation.x) * 0.05;
+
+        // Floating animation
+        danielaGroup.position.y = 0.5 + Math.sin(time) * 0.05;
+
+        // Glitch effect occasionally
+        if (Math.random() > 0.995) {
+            danielaGroup.position.x = (Math.random() - 0.5) * 0.05;
+            setTimeout(() => { danielaGroup.position.x = 0; }, 50);
+        }
+    }
+
+    updateMouth();
+    updateEyes();
+    updateScanLine();
+
+    renderer.render(scene, camera);
+}
+
+// Speech function
+function speak() {
+    const input = document.getElementById('userInput');
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Stop previous
+    synth.cancel();
+
+    // Generate response
+    const response = generateResponse(text);
+
+    // Show subtitle
+    const subtitle = document.getElementById('subtitle');
+    subtitle.textContent = response;
+    subtitle.classList.add('show');
+
+    // Speak
+    utterance = new SpeechSynthesisUtterance(response);
+    utterance.lang = 'es-ES';
+    utterance.rate = 1;
+    utterance.pitch = 1.1; // Slightly higher pitch for female voice
+
+    utterance.onstart = () => {
+        isSpeaking = true;
+        document.getElementById('status').textContent = 'Daniela is speaking...';
+        document.getElementById('status').classList.add('speaking');
+    };
+
+    utterance.onend = () => {
+        isSpeaking = false;
+        document.getElementById('status').textContent = 'Daniela Holographic AI v3.0 - Ready';
+        document.getElementById('status').classList.remove('speaking');
+        setTimeout(() => subtitle.classList.remove('show'), 3000);
+    };
+
+    synth.speak(utterance);
+    input.value = '';
+}
+
+function generateResponse(input) {
+    const lower = input.toLowerCase();
+    if (lower.includes('hola') || lower.includes('buenas')) {
+        return 'Hola! Soy Daniela, tu asistente de inteligencia artificial para gestoria. En que puedo ayudarte hoy?';
+    }
+    if (lower.includes('factura') || lower.includes('invoice')) {
+        return 'Puedo auditar tus facturas con OCR, detectar duplicados y alertarte de posibles fraudes. Solo enviame una imagen o PDF.';
+    }
+    if (lower.includes('email') || lower.includes('correo')) {
+        return 'Mi sistema de Email Zero Inbox clasifica automaticamente tus correos, genera respuestas inteligentes y te alerta de lo urgente.';
+    }
+    if (lower.includes('reunion') || lower.includes('meeting')) {
+        return 'Puedo transcribir tus reuniones, extraer action items y decisiones clave. Nunca mas tomes notas a mano.';
+    }
+    if (lower.includes('contenido') || lower.includes('content')) {
+        return 'Mi Content Factory genera blog posts, newsletters, posts para redes sociales y copy publicitario en segundos.';
+    }
+    if (lower.includes('codigo') || lower.includes('code')) {
+        return 'Dime que necesitas en lenguaje natural y generare el codigo Python, JavaScript o el lenguaje que prefieras, con tests incluidos.';
+    }
+    if (lower.includes('precio') || lower.includes('precios') || lower.includes('tier')) {
+        return 'Tenemos tres planes: Free con 100 requests diarios, Pro a 29 euros al mes con acceso completo a la API, y Enterprise a 99 euros con white-label y soporte prioritario.';
+    }
+    if (lower.includes('metaverso') || lower.includes('vr')) {
+        return 'Puedes visitar nuestra Neural City en tres dimensiones, o entrar en Decentraland en la parcela menos 25 coma 42. Es una experiencia inmersiva completa.';
+    }
+    return 'Entiendo. Procesando tu solicitud con AIGestion Core. Tengo acceso a 10 modulos de inteligencia artificial especializados para gestoria fiscal y contable.';
+}
+
+// Voice recognition
+function startVoice() {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert('Tu navegador no soporta reconocimiento de voz. Prueba con Chrome.');
+        return;
+    }
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'es-ES';
+    recognition.start();
+
+    document.getElementById('status').textContent = 'Escuchando...';
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('userInput').value = transcript;
+        speak();
+    };
+
+    recognition.onerror = () => {
+        document.getElementById('status').textContent = 'Error de reconocimiento. Intenta de nuevo.';
+    };
+}
+
+// Initialize
+init();
+</script>
+</body>
+</html>

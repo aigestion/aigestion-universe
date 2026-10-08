@@ -1,0 +1,82 @@
+[
+  {
+    "hash": "ea30d087cb1f7371070bef193518922e",
+    "proveedor": "AcerosX",
+    "numero": "F-221",
+    "fecha": "2026-09-01",
+    "total": 4200.0,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 14:34:08"
+  },
+  {
+    "hash": "d3447a66a57254d5aa780078bc218424",
+    "proveedor": "AcerosX",
+    "numero": "F-230",
+    "fecha": "2026-09-10",
+    "total": 4200.0,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 14:34:09"
+  },
+  {
+    "hash": "ea30d087cb1f7371070bef193518922e",
+    "proveedor": "AcerosX",
+    "numero": "F-221",
+    "fecha": "2026-09-01",
+    "total": 4200.0,
+    "categoria": "otros",
+    "status": "duplicate",
+    "fecha_procesado": "2026-09-11 14:34:10"
+  },
+  {
+    "hash": "65cb1614f6de3854763d6590fb5befb8",
+    "proveedor": "T",
+    "numero": "1",
+    "fecha": "2026-09-01",
+    "total": 10,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 14:34:18"
+  },
+  {
+    "hash": "6938c04aace8672a195b44ad38ffc71b",
+    "proveedor": "Nuevo",
+    "numero": "N-1",
+    "fecha": "2026-09-11",
+    "total": 900.0,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 14:34:20"
+  },
+  {
+    "hash": "606643221317146af0df5ac97568fdd8",
+    "proveedor": "TestHud",
+    "numero": "H-1",
+    "fecha": "2026-09-11",
+    "total": 50.0,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 15:34:34"
+  },
+  {
+    "hash": "790dc93c3ddecf23e1b445fdb539b683",
+    "proveedor": "AcerosX",
+    "numero": "F-999",
+    "fecha": "2026-09-11",
+    "total": 4200.0,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 15:34:42"
+  },
+  {
+    "hash": "64debe3d4b5f54c1ad271c26ca3645e5",
+    "proveedor": "HotelSol",
+    "numero": "H-77",
+    "fecha": "2026-09-11",
+    "total": 2500.0,
+    "categoria": "otros",
+    "status": "valid",
+    "fecha_procesado": "2026-09-11 15:37:22"
+  }
+]

@@ -1,0 +1,242 @@
+{
+  "containers": {
+    "aig-hermes": {
+      "container_id": "2bd6dae82176",
+      "image": "aig-hermes",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:9300->9300/tcp, [::]:9300->9300/tcp",
+      "last_seen": "2026-09-26T22:36:18.743962"
+    },
+    "aig-agent": {
+      "container_id": "52afa79715f2",
+      "image": "aig-agent",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:9800->9800/tcp, [::]:9800->9800/tcp",
+      "last_seen": "2026-09-26T22:36:18.743936"
+    },
+    "aig-prometheus": {
+      "container_id": "06cad542c31a",
+      "image": "aig-prometheus",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp",
+      "last_seen": "2026-09-26T22:36:18.743981"
+    },
+    "aig-daniela": {
+      "container_id": "3c0db26b7da0",
+      "image": "aig-daniela",
+      "status": "Up 2 hours (healthy)",
+      "ports": "0.0.0.0:9200->9200/tcp, [::]:9200->9200/tcp",
+      "last_seen": "2026-09-26T22:36:18.743881"
+    },
+    "aig-perf": {
+      "container_id": "c9297ea1c392",
+      "image": "aig-perf",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:9998->9998/tcp, [::]:9998->9998/tcp",
+      "last_seen": "2026-09-26T22:36:18.743957"
+    },
+    "aig-infra": {
+      "container_id": "a3d60b0c0cf5",
+      "image": "aig-infra",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:9700->9700/tcp, [::]:9700->9700/tcp",
+      "last_seen": "2026-09-26T22:36:18.743944"
+    },
+    "aig-security": {
+      "container_id": "b4a0cd192c40",
+      "image": "aig-security",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:9999->9999/tcp, [::]:9999->9999/tcp",
+      "last_seen": "2026-09-26T22:36:18.743950"
+    },
+    "zen_mendeleev": {
+      "container_id": "30513257ff62",
+      "image": "6c3fc5354990",
+      "status": "removed",
+      "ports": "",
+      "last_seen": "2026-09-26T22:36:18.744010"
+    },
+    "epic_cohen": {
+      "container_id": "ab8c9a21ce54",
+      "image": "fe3aa6d0f938",
+      "status": "removed",
+      "ports": "",
+      "last_seen": "2026-09-26T22:36:18.744017"
+    },
+    "aig-nginx": {
+      "container_id": "0d35649816d4",
+      "image": "aig-nginx",
+      "status": "removed",
+      "ports": "",
+      "last_seen": "2026-09-26T22:36:18.744021"
+    },
+    "compassionate_sammet": {
+      "container_id": "37a81a61e623",
+      "image": "99470fc6d189",
+      "status": "removed",
+      "ports": "",
+      "last_seen": "2026-09-26T22:36:18.744024"
+    },
+    "angry_mirzakhani": {
+      "container_id": "691d20223492",
+      "image": "52147f5b824d",
+      "status": "removed",
+      "ports": "",
+      "last_seen": "2026-09-26T22:36:18.744027"
+    },
+    "aig-gods-eye": {
+      "container_id": "4fa89c7d5151",
+      "image": "aig-gods-eye:latest",
+      "status": "Up 3 hours (healthy)",
+      "ports": "4173/tcp",
+      "last_seen": "2026-09-26T22:36:18.743916"
+    },
+    "aig-frontend": {
+      "container_id": "7f6f2b56f128",
+      "image": "aig-frontend",
+      "status": "removed",
+      "ports": "9500/tcp",
+      "last_seen": "2026-09-26T22:36:18.744030"
+    },
+    "aig-dashboard": {
+      "container_id": "67052419e5d1",
+      "image": "aig-dashboard",
+      "status": "removed",
+      "ports": "0.0.0.0:9997->9997/tcp, [::]:9997->9997/tcp",
+      "last_seen": "2026-09-26T22:36:18.744033"
+    },
+    "aig-redis": {
+      "container_id": "7499b0dafc8d",
+      "image": "redis:7-alpine",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp",
+      "last_seen": "2026-09-26T22:36:18.743975"
+    },
+    "aig-epic-pc": {
+      "container_id": "a28e7ec053a8",
+      "image": "aig-epic-pc",
+      "status": "removed",
+      "ports": "0.0.0.0:5020->5020/tcp, [::]:5020->5020/tcp",
+      "last_seen": "2026-09-26T22:36:18.744036"
+    },
+    "aig-grafana": {
+      "container_id": "a96bb64b993e",
+      "image": "grafana/grafana:latest",
+      "status": "Up 30 hours (healthy)",
+      "ports": "0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp",
+      "last_seen": "2026-09-26T22:36:18.743968"
+    },
+    "aig-optimization": {
+      "container_id": "063fbe40b510",
+      "image": "aig-optimization",
+      "status": "removed",
+      "ports": "0.0.0.0:9400->9400/tcp, [::]:9400->9400/tcp",
+      "last_seen": "2026-09-26T22:36:18.744039"
+    },
+    "aig-orchestrator": {
+      "container_id": "6134cbe8f0be",
+      "image": "aig-orchestrator",
+      "status": "Up 2 days (healthy)",
+      "ports": "0.0.0.0:9900->9900/tcp, [::]:9900->9900/tcp",
+      "last_seen": "2026-09-26T22:36:18.743987"
+    },
+    "aig-agent-mobile": {
+      "container_id": "d7d5d4956c78",
+      "image": "aig-agent_mobile",
+      "status": "removed",
+      "ports": "0.0.0.0:9800->9800/tcp, [::]:9800->9800/tcp",
+      "last_seen": "2026-09-26T22:36:18.744042"
+    },
+    "aig-infra-opt": {
+      "container_id": "f2ecbd0dd329",
+      "image": "aig-infra_opt",
+      "status": "removed",
+      "ports": "0.0.0.0:9700->9700/tcp, [::]:9700->9700/tcp",
+      "last_seen": "2026-09-26T22:36:18.744045"
+    },
+    "aig-gateway": {
+      "container_id": "d358ea2801b2",
+      "image": "aig-gateway",
+      "status": "removed",
+      "ports": "0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp",
+      "last_seen": "2026-09-26T22:36:18.744048"
+    },
+    "aig-devtools-engine": {
+      "container_id": "77203e723140",
+      "image": "aig-devtools_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9890->9890/tcp, [::]:9890->9890/tcp",
+      "last_seen": "2026-09-26T22:36:18.744051"
+    },
+    "aig-ecosystem-engine": {
+      "container_id": "2a84fca166dc",
+      "image": "aig-ecosystem_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9840->9840/tcp, [::]:9840->9840/tcp",
+      "last_seen": "2026-09-26T22:36:18.744053"
+    },
+    "aig-auto-engine": {
+      "container_id": "baa21cba926c",
+      "image": "aig-auto_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9860->9860/tcp, [::]:9860->9860/tcp",
+      "last_seen": "2026-09-26T22:36:18.744056"
+    },
+    "aig-scale-engine": {
+      "container_id": "e40b2e37f66b",
+      "image": "aig-scale_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9820->9820/tcp, [::]:9820->9820/tcp",
+      "last_seen": "2026-09-26T22:36:18.744059"
+    },
+    "aig-chaos-engine": {
+      "container_id": "19d976d9192a",
+      "image": "aig-chaos_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9910->9910/tcp, [::]:9910->9910/tcp",
+      "last_seen": "2026-09-26T22:36:18.744061"
+    },
+    "aig-secure-engine": {
+      "container_id": "f3120f58efa3",
+      "image": "aig-secure_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9880->9880/tcp, [::]:9880->9880/tcp",
+      "last_seen": "2026-09-26T22:36:18.744064"
+    },
+    "aig-intel-engine": {
+      "container_id": "b6356ddc9f43",
+      "image": "aig-intel_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9850->9850/tcp, [::]:9850->9850/tcp",
+      "last_seen": "2026-09-26T22:36:18.744067"
+    },
+    "aig-data-engine": {
+      "container_id": "463ccf2b0036",
+      "image": "aig-data_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9870->9870/tcp, [::]:9870->9870/tcp",
+      "last_seen": "2026-09-26T22:36:18.744070"
+    },
+    "aig-ux-engine": {
+      "container_id": "9a8f7defb845",
+      "image": "aig-ux_engine",
+      "status": "removed",
+      "ports": "0.0.0.0:9830->9830/tcp, [::]:9830->9830/tcp",
+      "last_seen": "2026-09-26T22:36:18.744073"
+    },
+    "aig-brand-studio": {
+      "container_id": "d9bc1119d54b",
+      "image": "c1e32b39bde4",
+      "status": "removed",
+      "ports": "0.0.0.0:9920->9920/tcp, [::]:9920->9920/tcp",
+      "last_seen": "2026-09-26T22:36:18.744075"
+    },
+    "aig-caddy": {
+      "container_id": "ab872df906f3",
+      "image": "caddy:2-alpine",
+      "status": "Restarting (1) 11 seconds ago",
+      "ports": "",
+      "last_seen": "2026-09-26T22:36:18.743927"
+    }
+  }
+}

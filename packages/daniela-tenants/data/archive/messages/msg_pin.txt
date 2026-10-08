@@ -1,0 +1,7 @@
+sec: quitar el PIN de los documentos publicados
+
+Dos ficheros trackeados (y por tanto en GitHub) escribian el PIN de acceso
+en texto plano: GUIA_GITHUB.md y branch_policy.md. Se sustituye por una
+referencia a la linea 1 de .env, que si esta fuera de git.
+
+Comprobado: 0 ocurrencias del PIN en ficheros trackeados.

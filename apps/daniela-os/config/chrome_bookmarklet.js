@@ -1,0 +1,1 @@
+javascript:(function(){let text=window.getSelection().toString()||document.title;fetch('http://localhost:8081/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:window.location.href,content:text})}).then(()=>alert('📌 Capturado para Daniela OS')).catch(e=>alert('⚠️ Error de conexión: '+e));})();

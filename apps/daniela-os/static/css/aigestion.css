@@ -1,0 +1,12 @@
+/* ============================================================
+   AIGestion Design System - Main Bundle
+   Import this single file to get the complete design system.
+   Usage in HTML:
+   <link rel="stylesheet" href="/static/css/aigestion.css">
+   ============================================================ */
+
+@import url('variables.css');
+@import url('base.css');
+@import url('components.css');
+@import url('hud.css');
+@import url('3d-experiences.css');

@@ -1,0 +1,4 @@
+"""MCP 1 - Data Source Connector."""
+def connect_to_data_source(url: str) -> bool:
+    """Connect to a data source."""
+    return True

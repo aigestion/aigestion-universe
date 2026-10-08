@@ -1,0 +1,65 @@
+{
+  "salud": {
+    "gemini": {
+      "ok": false,
+      "error": "HTTP 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"API key not valid. Please pass a valid API key.\",\n    \"status\": \"INVALID_ARGUMENT\",\n    \"details\": [\n      {\n        \"@type\": \"type.",
+      "latencia_ms": 534,
+      "cuando": 1791034950.1250968
+    },
+    "groq": {
+      "ok": false,
+      "error": "HTTP 404: {\"error\":{\"message\":\"The model `llama-3.1-8b-instant` does not exist or you do not have access to it.\",\"type\":\"invalid_request_error\",\"code\":\"model_not_found\"}}\n",
+      "latencia_ms": 179,
+      "cuando": 1791072135.9415216
+    },
+    "openrouter": {
+      "ok": false,
+      "error": "HTTP 404: {\"error\":{\"message\":\"This model is unavailable for free. The paid version is available now - use this slug instead: meta-llama/llama-3.1-8b-instruct\",\"code\":404},\"user_id\":\"user_3B",
+      "latencia_ms": 153,
+      "cuando": 1791072136.4042776
+    },
+    "anthropic": {
+      "ok": false,
+      "error": "HTTP 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"API key is invalid.\"},\"request_id\":null}",
+      "latencia_ms": 591,
+      "cuando": 1791034953.2684126
+    },
+    "cohere": {
+      "ok": true,
+      "error": "",
+      "latencia_ms": 685,
+      "cuando": 1791224044.9273207
+    },
+    "ollama": {
+      "ok": false,
+      "error": "ollama no disponible -> http://0.0.0.0:11434: ConnectionError; http://localhost:11434: ConnectionError; http://127.0.0.1:11434: ConnectionError",
+      "latencia_ms": 6174,
+      "cuando": 1791072199.6971612
+    }
+  },
+  "ultimo_exitoso": "cohere",
+  "config": {
+    "version": 2,
+    "orden": [
+      "gemini",
+      "groq",
+      "openrouter",
+      "anthropic",
+      "cohere",
+      "ollama",
+      "huggingface"
+    ],
+    "modelos": {
+      "gemini": "gemini-2.5-flash",
+      "groq": "llama-3.1-8b-instant",
+      "openrouter": "meta-llama/llama-3.1-8b-instruct:free",
+      "anthropic": "claude-3-5-haiku-20241022",
+      "cohere": "command-a-03-2025",
+      "ollama": "daniela-local:latest",
+      "huggingface": "mistralai/Mistral-7B-Instruct-v0.2"
+    },
+    "ttl_salud_s": 900,
+    "sonda_auto_min": 30,
+    "reintentos": 1
+  }
+}

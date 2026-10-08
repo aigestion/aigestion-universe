@@ -1,0 +1,39 @@
+feat(fase-9): E-15 CI en ARM real (+6 rutas, 230 -> 236)
+
+Un workflow de GitHub Actions corre en ubuntu-latest, es decir en x86. Y
+Daniela no vive ahi: vive en un Pixel 8a (aarch64) con toybox, limites de
+memoria de telefono y un /proc distinto. Ese CI no puede ver ninguno de los
+fallos que de verdad nos duelen.
+
+La solucion obvia, un runner self-hosted, es inaceptable aqui: un runner
+ejecuta el codigo que venga en el repo, y eso significaria ejecutar codigo
+de terceros en el movil de una persona. Asi que este modulo es lo contrario:
+
+  - los trabajos estan definidos AQUI, en una lista cerrada (TRABAJOS);
+  - nunca se ejecuta un run: que venga del repositorio o de internet;
+  - lo unico que se publica en GitHub es el estado del commit.
+
+Trabajos: sintaxis, seguridad (AST), arranque, ruff, mypy, pytest.
+Los tres ultimos degradan a "omitido" si no estan instalados: que falte un
+linter no puede suspender un CI.
+
+Tres bugs reales que cazo su propio demo al ejecutarse:
+
+  1. Colgado 5 minutos con un timeout de 300 s que en teoria ya habia
+     saltado. Causa: subprocess.run con tuberias. El padre muere, pero el
+     nieto (pytest arrancando servidores) sigue vivo agarrando la tuberia y
+     la lectura se bloquea para siempre. Arreglado escribiendo la salida a
+     ficheros temporales y matando el arbol completo (taskkill /T en
+     Windows, killpg en POSIX).
+  2. Se usaba el ejecutable suelto y shutil.which encontraBA el pytest de
+     OTRO python: el CI media un interprete distinto al de Daniela. Ahora
+     todo pasa por sys.executable -m y se comprueba ahi.
+  3. La expresion jq de estado_github estaba mal formada (interpolacion
+     fuera de comillas) y gh devolvia "failed to parse jq expression".
+     Corregida; ahora lista los ultimos runs reales del repo.
+
+El trabajo de seguridad devuelve FALLO honesto: 45 os.system reales en
+codigo legacy del repo (auditoria_sistema.py, centinela.py...), ninguno en
+los modulos del Pixel Bridge. El CI debe estar rojo hasta que se limpien.
+
+AST: 0 os.system / 0 shell=True.

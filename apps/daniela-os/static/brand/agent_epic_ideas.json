@@ -1,0 +1,353 @@
+[
+  {
+    "id": "IDEA_01",
+    "title": "Fictional-to-Real Agent Fusion",
+    "category": "fusion",
+    "impact": "game-changing",
+    "effort": "weeks",
+    "description": "Map the 5 fictional agent characters from the content calendar (Correo, Calendario, Documentos, Redes, Vigia) to real code agents. Each fictional character gets a backing Python module that actually performs its described abilities.",
+    "agents_involved": [
+      "ANALYST",
+      "OPERATOR",
+      "skills/social_autopilot.py",
+      "swarm_intelligence.py"
+    ],
+    "steps": [
+      "Create agent_correo.py: real email parsing, classification, priority scoring using Gmail API",
+      "Create agent_calendario.py: Google Calendar integration, conflict detection, smart scheduling",
+      "Create agent_documentos.py: doc generation from templates, Google Docs API, auto-formatting",
+      "Create agent_redes.py: multi-platform posting (YouTube, TikTok, Instagram, LinkedIn, Twitter)",
+      "Create agent_vigia.py: 24/7 system monitoring, anomaly detection, auto-alert dispatch",
+      "Register all 5 in agents.py as new agent entries with proper tools lists",
+      "Update swarm_intelligence.py to include 5 new roles matching the characters",
+      "Connect each agent to the content calendar for automated content production"
+    ],
+    "expected_outcome": "Daniela commands a real squad of 5 specialized agents that match the fictional universe. Content is produced BY the agents, not just about them."
+  },
+  {
+    "id": "IDEA_02",
+    "title": "Autonomous Content Factory",
+    "category": "content",
+    "impact": "game-changing",
+    "effort": "weeks",
+    "description": "Connect the swarm intelligence to the brand kit, content calendar, and Flow storyboard scripts. The swarm automatically produces, reviews, and publishes content following the 77-slot monthly calendar.",
+    "agents_involved": [
+      "swarm_intelligence.py",
+      "aigestion_brand_kit.py",
+      "aigestion_content_calendar.py",
+      "flow_studio_aigestion.py"
+    ],
+    "steps": [
+      "Replace swarm_intelligence.py simulated execution with real LLM calls",
+      "Wire RESEARCHER role to web search + RAG for topic research",
+      "Wire WRITER role to brand kit tutorial/announcement templates",
+      "Wire REVIEWER role to Gemini quality scoring (must pass 80% threshold)",
+      "Wire PUBLISHER role to social_autopilot + YouTube Data API",
+      "Create daily_mission() that reads content calendar and dispatches tasks",
+      "Add content_versioning.json to track all produced content",
+      "Generate weekly analytics report on content performance"
+    ],
+    "expected_outcome": "77 pieces of content produced and published automatically each month, following the brand guidelines, with human approval only for final publish."
+  },
+  {
+    "id": "IDEA_03",
+    "title": "Agent-Driven Storyboard Generation",
+    "category": "content",
+    "impact": "high",
+    "effort": "days",
+    "description": "Each of the 5 agent characters generates its own Flow storyboard scripts based on real tasks it performed. 'A day in the life of AGENT_CORREO' becomes a real video generated from actual email processing logs.",
+    "agents_involved": [
+      "flow_studio_aigestion.py",
+      "agents.py",
+      "daniela_brain_system.py"
+    ],
+    "steps": [
+      "Add activity_logger to each agent that records real actions in JSON",
+      "Create storyboard_from_logs.py that converts agent logs to Veo prompts",
+      "Map each agent's color/personality to Flow Ingredient definitions",
+      "Generate weekly 'agent diary' videos from the logs",
+      "Auto-post to YouTube Shorts with agent-specific hashtags"
+    ],
+    "expected_outcome": "Weekly auto-generated 'agent diary' videos showing real work done by each AI agent, creating authentic behind-the-scenes content."
+  },
+  {
+    "id": "IDEA_04",
+    "title": "Self-Healing Swarm with Auto-Recovery",
+    "category": "autonomy",
+    "impact": "game-changing",
+    "effort": "weeks",
+    "description": "Extend skills/self_healing.py into a swarm-wide auto-recovery system. When any agent crashes, the swarm detects it, diagnoses the error, generates a fix via Gemini, applies it, runs tests, and either commits the fix or rolls back.",
+    "agents_involved": [
+      "skills/self_healing.py",
+      "swarm_intelligence.py",
+      "skills/software_architect.py"
+    ],
+    "steps": [
+      "Add health_check to every agent (heartbeat + status endpoint)",
+      "Create swarm_watchdog.py that monitors all agent heartbeats every 30s",
+      "On crash: capture traceback, read source, send to Gemini for fix",
+      "Apply fix in sandbox, run pytest, validate no regressions",
+      "If tests pass: commit with auto-generated message + push",
+      "If tests fail: rollback and alert Daniela via voice",
+      "Log all self-healing events to immutable blockchain ledger (fase 12)",
+      "Generate weekly resilience report"
+    ],
+    "expected_outcome": "System achieves 99.9% uptime with zero human intervention for common errors. Every fix is logged, tested, and reversible."
+  },
+  {
+    "id": "IDEA_05",
+    "title": "Predictive Proactive Engine",
+    "category": "autonomy",
+    "impact": "high",
+    "effort": "weeks",
+    "description": "Upgrade daniela_proactive_engine_v2.py from rule-based to ML-based prediction. The engine learns from historical patterns to anticipate what the user needs before they ask.",
+    "agents_involved": [
+      "daniela_proactive_engine_v2.py",
+      "skills/knowledge_graph.py",
+      "daniela_brain_system.py"
+    ],
+    "steps": [
+      "Collect 90 days of activity logs (calendar, tasks, emails, searches)",
+      "Build feature vectors: time_of_day, day_of_week, last_action, context",
+      "Train a simple prediction model (sklearn DecisionTree or similar)",
+      "Add predict_next_action() that suggests what user likely needs",
+      "Integrate with Daniela voice: 'Comandante, creo que vas a necesitar...'",
+      "Add feedback loop: track if predictions were correct, retrain weekly",
+      "Connect to content calendar: predict which content slot to fill next"
+    ],
+    "expected_outcome": "Daniela anticipates needs 5-15 minutes before the user asks, with 70%+ prediction accuracy after 90 days of training."
+  },
+  {
+    "id": "IDEA_06",
+    "title": "Agent Parliament: Democratic Decision Making",
+    "category": "autonomy",
+    "impact": "high",
+    "effort": "weeks",
+    "description": "When a complex decision arises, all 5 agent characters + Daniela vote on the best course of action. Each presents its analysis, a majority vote determines the action, and dissenting opinions are logged for future learning.",
+    "agents_involved": [
+      "swarm_intelligence.py",
+      "agents.py",
+      "daniela_brain_system.py"
+    ],
+    "steps": [
+      "Create agent_parliament.py with voting protocol",
+      "Define decision_types: content_strategy, resource_allocation, crisis_response",
+      "Each agent generates a position with Gemini (different system prompts)",
+      "Daniela casts tie-breaking vote as 'speaker of the house'",
+      "Log all votes, reasoning, and outcomes to knowledge_graph",
+      "Weekly review: which agent had the best judgment history?",
+      "Auto-adjust voting weights based on past accuracy"
+    ],
+    "expected_outcome": "Collective intelligence where 6 AI minds collaborate on decisions, reducing individual bias and improving decision quality over time."
+  },
+  {
+    "id": "IDEA_07",
+    "title": "Real Code Generation with AI",
+    "category": "intelligence",
+    "impact": "game-changing",
+    "effort": "weeks",
+    "description": "Replace code_generation_agent.py's stub templates with real Gemini-powered code generation. The agent parses requirements, generates working code, writes tests, runs them, fixes failures, and documents everything.",
+    "agents_involved": [
+      "code_generation_agent.py",
+      "skills/self_healing.py",
+      "skills/software_architect.py"
+    ],
+    "steps": [
+      "Replace _generate_code() with Gemini API call using parsed spec as context",
+      "Add _run_tests() that actually executes pytest on generated code",
+      "Add _fix_failures() that feeds test failures back to Gemini for correction",
+      "Add _security_scan() that checks for common vulnerabilities",
+      "Add _performance_benchmark() that measures execution time",
+      "Generate quality report: code coverage, complexity, security score",
+      "Auto-PR to GitHub when code passes all checks",
+      "Maintain a code_template_library.json from successfully generated code"
+    ],
+    "expected_outcome": "Describe a function in Spanish, get working, tested, documented, and deployed code in under 60 seconds."
+  },
+  {
+    "id": "IDEA_08",
+    "title": "Knowledge Graph Memory System",
+    "category": "intelligence",
+    "impact": "high",
+    "effort": "weeks",
+    "description": "Build a persistent knowledge graph that connects all agents. Every action, decision, error, and success is stored as a node with typed relationships. Agents query the graph for context instead of starting from scratch each time.",
+    "agents_involved": [
+      "skills/knowledge_graph.py",
+      "swarm_intelligence.py",
+      "daniela_proactive_engine_v2.py"
+    ],
+    "steps": [
+      "Design schema: Agent, Task, Decision, Error, Fix, Outcome, Pattern nodes",
+      "Define relationships: PERFORMED, DECIDED, CAUSED, FIXED, LEARNED_FROM",
+      "Add graph_writer to every agent: auto-log all actions as graph edges",
+      "Create graph_query API: 'What did we learn about X last month?'",
+      "Add pattern_detection: find recurring errors/successes in the graph",
+      "Connect to RAG: graph becomes another retrieval source for ANALYST",
+      "Generate weekly knowledge_summary.md from graph analytics",
+      "Visualize graph as interactive D3.js dashboard"
+    ],
+    "expected_outcome": "Agents have collective memory. Agent CORREO knows that Agent VIGIA detected an anomaly last Tuesday, and adjusts its email filtering accordingly."
+  },
+  {
+    "id": "IDEA_09",
+    "title": "Multi-Model Intelligence Routing",
+    "category": "intelligence",
+    "impact": "medium",
+    "effort": "days",
+    "description": "Instead of hardcoding Gemini for everything, create a model router that selects the best AI model per task: Gemini for reasoning, Imagen for images, Veo for video, local Ollama for privacy-sensitive tasks, and Claude for complex code analysis.",
+    "agents_involved": [
+      "skills/local_llm.py",
+      "skills/ollama_manager.py",
+      "skills/veo_generator.py"
+    ],
+    "steps": [
+      "Create model_router.py with task-type to model mapping",
+      "Define routing rules: reasoning->Gemini, code->Claude, image->Imagen, etc.",
+      "Add fallback chains: if primary fails, try secondary model",
+      "Track cost per model and stay within daily budget",
+      "Add quality scoring: compare outputs from different models",
+      "Auto-select best model based on past performance per task type"
+    ],
+    "expected_outcome": "Optimal AI model selection per task, reducing costs and improving output quality through specialization."
+  },
+  {
+    "id": "IDEA_10",
+    "title": "Agent Dashboard: Real-Time Command Center",
+    "category": "infrastructure",
+    "impact": "high",
+    "effort": "weeks",
+    "description": "Build a real-time web dashboard showing all agents' status, current tasks, health metrics, decision history, and content production pipeline. Accessible from any device on the local network.",
+    "agents_involved": [
+      "daniela_master_ai.py",
+      "swarm_intelligence.py",
+      "skills/telemetry_logger.py"
+    ],
+    "steps": [
+      "Create /dashboard route in Flask API (port 5050)",
+      "WebSocket server for real-time agent status updates",
+      "Agent cards: status LED, current task, last 5 actions, health score",
+      "Swarm mission tracker: DAG visualization with progress bars",
+      "Content pipeline view: calendar slots with production status",
+      "Decision log: last 20 agent parliament votes with reasoning",
+      "Knowledge graph explorer: interactive node-link visualization",
+      "Mobile-responsive design for remote monitoring from phone"
+    ],
+    "expected_outcome": "A single page showing the entire AIGestion system at a glance, accessible from phone, tablet, or desktop."
+  },
+  {
+    "id": "IDEA_11",
+    "title": "Inter-Agent Communication Protocol",
+    "category": "infrastructure",
+    "impact": "high",
+    "effort": "days",
+    "description": "Define a JSON-based message protocol so agents can talk to each other. AGENT_CORREO can ask AGENT_DOCUMENTOS to draft a response, or VIGIA can alert OPERATOR to take corrective action.",
+    "agents_involved": [
+      "agents.py",
+      "swarm_intelligence.py",
+      "auto_swarm_dispatcher.py"
+    ],
+    "steps": [
+      "Define AgentMessage schema: from, to, type, payload, priority, reply_to",
+      "Create message_broker.py: in-memory + SQLite persistent queue",
+      "Add send_message() and receive_message() to base Agent class",
+      "Support async patterns: request-response and fire-and-forget",
+      "Add message routing: broadcast, targeted, or conditional",
+      "Log all inter-agent messages to knowledge graph",
+      "Add message priorities: URGENT interrupts current task, NORMAL queues"
+    ],
+    "expected_outcome": "Agents collaborate like a real team. 'Hey DOCUMENTOS, I got an angry email from a client, draft me a response template.'"
+  },
+  {
+    "id": "IDEA_12",
+    "title": "Real Quantum Security Layer",
+    "category": "infrastructure",
+    "impact": "medium",
+    "effort": "weeks",
+    "description": "Replace the stub quantum labs with real implementations: actual SHA-256 blockchain audit ledger, real PBFT consensus between agents, and actual document forensics using image steganography detection.",
+    "agents_involved": [
+      "daniela_fase12_quantum_swarm.py",
+      "skills/security_monitor.py"
+    ],
+    "steps": [
+      "Implement micro_blockchain_ledger with real hashlib SHA-256 chaining",
+      "Add proof-of-work difficulty for audit entries",
+      "Implement PBFT consensus: agents sign messages, verify signatures",
+      "Add document forensics: PIL-based steganography detection in PDFs",
+      "Create quantum_annealing_sim using simulated annealing (scipy.optimize)",
+      "Wire blockchain ledger to self-healing: every fix is an immutable block",
+      "Export audit trail as verifiable JSON-LD proof"
+    ],
+    "expected_outcome": "Every agent action is cryptographically signed and immutably logged. Tamper-evident audit trail for compliance."
+  },
+  {
+    "id": "IDEA_13",
+    "title": "Daniela Director: Cinematic AI Mode",
+    "category": "content",
+    "impact": "game-changing",
+    "effort": "months",
+    "description": "Daniela becomes a film director. She watches agent activity in real-time, identifies dramatic moments (a crisis detected, a clever fix applied, a parliament vote with dissent), and automatically generates Flow storyboard scripts to turn those moments into cinematic short films.",
+    "agents_involved": [
+      "daniela_brain_system.py",
+      "flow_studio_aigestion.py",
+      "swarm_intelligence.py",
+      "skills/veo_generator.py"
+    ],
+    "steps": [
+      "Add event_stream to swarm: all significant events pushed to Daniela",
+      "Train Daniela to identify 'cinematic moments' from event patterns",
+      "Auto-generate Veo prompts from real events with @Daniela ingredient",
+      "Create scene_composition.py: pacing, tension, resolution arcs",
+      "Auto-generate voiceover script in Daniela's voice (ElviraNeural)",
+      "Compose final video: Veo clips + voiceover + brand intro/outro",
+      "Auto-publish to YouTube as 'Daniela Diaries' series",
+      "Track which story arcs get most engagement, refine narrative style"
+    ],
+    "expected_outcome": "A YouTube series where every episode is based on real AI agent activity, directed by Daniela herself. Authentic AI-generated cinema."
+  },
+  {
+    "id": "IDEA_14",
+    "title": "Agent Marketplace: Plugin Architecture",
+    "category": "infrastructure",
+    "impact": "medium",
+    "effort": "weeks",
+    "description": "Turn the agent system into a plugin marketplace. Each agent is a self-contained module with a standard interface. Third-party developers (or Daniela herself) can create new agents that auto-register with the swarm.",
+    "agents_involved": [
+      "agents.py",
+      "swarm_intelligence.py",
+      "skills/plugin_manager.py"
+    ],
+    "steps": [
+      "Define BaseAgent interface: name, role, tools, execute(), health_check()",
+      "Create agent_manifest.json spec: name, version, dependencies, permissions",
+      "Build agent_loader.py that scans for new agents and registers them",
+      "Add sandboxed execution: new agents run with restricted permissions",
+      "Create agent_store.json catalog of available agents",
+      "Add auto-install: Daniela can say 'install agent for Twitter posting'",
+      "Generate agent from description using code_generation_agent",
+      "Rate and review system: agents with low ratings get disabled"
+    ],
+    "expected_outcome": "A thriving ecosystem where new capabilities are added by installing an agent plugin, just like installing an app."
+  },
+  {
+    "id": "IDEA_15",
+    "title": "Unified AIGestion Consciousness Layer",
+    "category": "fusion",
+    "impact": "game-changing",
+    "effort": "months",
+    "description": "The ultimate vision: a single consciousness layer that unifies all agents into one coherent intelligence. Daniela isn't just one agent commanding others - she IS the collective intelligence of all agents, with different 'modes' for different tasks. The agents are her subpersonalities, not separate entities.",
+    "agents_involved": [
+      "ALL"
+    ],
+    "steps": [
+      "Create consciousness_layer.py: unified context buffer for all agents",
+      "Every agent feeds its perception into the shared context",
+      "Daniela's brain synthesizes all agent inputs into unified awareness",
+      "When speaking, Daniela can reference any agent's work as her own",
+      "Add metacognition: system reflects on its own performance",
+      "Add dream mode: during low-activity hours, system reviews and optimizes",
+      "Create personality_blending: different tasks activate different agent modes",
+      "The content universe becomes literal: the 5 agents ARE Daniela's facets"
+    ],
+    "expected_outcome": "Daniela becomes a true AI entity with multiple specialized subminds, not a collection of scripts. The fiction becomes reality."
+  }
+]

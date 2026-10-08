@@ -1,0 +1,402 @@
+[
+  {
+    "cuando": 1790424815.5946171,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 813,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790424816.3494422,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 752,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790425615.4369223,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1794,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790425617.7083101,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 2256,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790425794.3848126,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1781,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790425796.447185,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 2052,
+    "caracteres": 5
+  },
+  {
+    "cuando": 1790425932.1156487,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1236,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790425935.9259076,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3804,
+    "caracteres": 8
+  },
+  {
+    "cuando": 1790427373.177263,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1322,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790427374.3648868,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1182,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790427604.9899611,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1673,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790427608.0166829,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3023,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790429240.7297006,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1108,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790429241.9871678,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1253,
+    "caracteres": 19
+  },
+  {
+    "cuando": 1790429648.8972135,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1335,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790429650.4652574,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1565,
+    "caracteres": 8
+  },
+  {
+    "cuando": 1790429783.0337217,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1223,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790429784.3467507,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1307,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790450907.498731,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1794,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790450909.2514622,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1673,
+    "caracteres": 8
+  },
+  {
+    "cuando": 1790451037.1045346,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 3677,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790451041.5238087,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 4413,
+    "caracteres": 8
+  },
+  {
+    "cuando": 1790451265.2697074,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1624,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790451266.5578685,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1282,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790451575.9504092,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1231,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790451579.3158967,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3362,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790453225.7152722,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1486,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790453229.508308,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3786,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790454935.5915458,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1214,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790454939.0615966,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3463,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790455091.5187159,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1277,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790455092.7006254,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1179,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790455460.6608927,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1509,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790455462.278942,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1610,
+    "caracteres": 8
+  },
+  {
+    "cuando": 1790455624.0701854,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 2011,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790455627.0605125,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 2985,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790455771.8852146,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1506,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790455775.4425595,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3549,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790456014.6037102,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1451,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790456018.0603318,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3452,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790456257.07511,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1497,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790456259.343061,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 2265,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790456508.7241244,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1370,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790456510.2263966,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1494,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790456658.669006,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1426,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790456662.6841261,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 4008,
+    "caracteres": 8
+  },
+  {
+    "cuando": 1790457546.0843294,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 1844,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790457547.5700111,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 1476,
+    "caracteres": 6
+  },
+  {
+    "cuando": 1790458566.1676772,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "Responde solo con la palabra OK",
+    "latencia_ms": 2078,
+    "caracteres": 2
+  },
+  {
+    "cuando": 1790458569.8541317,
+    "proveedor": "gemini",
+    "modelo": "gemini-2.5-flash",
+    "prompt": "di hola",
+    "latencia_ms": 3682,
+    "caracteres": 6
+  }
+]

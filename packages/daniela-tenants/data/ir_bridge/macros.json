@@ -1,0 +1,21 @@
+{
+  "macros": {
+    "netflix": {
+      "name": "netflix",
+      "steps": [
+        {
+          "code": "tv_samsung_power",
+          "wait": 3.0
+        },
+        {
+          "code": "tv_samsung_hdmi2",
+          "wait": 1.5
+        }
+      ],
+      "note": "Enciende la tele y salta a HDMI2 (donde esta el Chromecast)",
+      "created": "2026-09-10T13:12:43",
+      "uses": 2
+    }
+  },
+  "updated": "2026-09-10T13:13:17"
+}

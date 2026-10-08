@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Voice AI Desktop",
+    "port": 5010,
+    "pid": 324028
+  },
+  {
+    "name": "Neural Wallpaper",
+    "port": 5011,
+    "pid": 324152
+  },
+  {
+    "name": "3D File Galaxy",
+    "port": 5012,
+    "pid": 74900
+  },
+  {
+    "name": "Notification Brain",
+    "port": 5013,
+    "pid": 331416
+  },
+  {
+    "name": "System Hologram",
+    "port": 5014,
+    "pid": 329540
+  },
+  {
+    "name": "Code Copilot",
+    "port": 5015,
+    "pid": 329924
+  },
+  {
+    "name": "Cross-Device Telepathy",
+    "port": 5016,
+    "pid": 328916
+  },
+  {
+    "name": "Predictive Launcher",
+    "port": 5017,
+    "pid": 331192
+  },
+  {
+    "name": "AR Desktop",
+    "port": 5018,
+    "pid": 327036
+  },
+  {
+    "name": "Living Organism",
+    "port": 5019,
+    "pid": 328208
+  },
+  {
+    "name": "Web Launcher",
+    "port": 5020,
+    "pid": 329196
+  }
+]

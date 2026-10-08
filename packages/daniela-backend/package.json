@@ -1,0 +1,16 @@
+{
+  "name": "@aigestion/daniela-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "uv pip install -e . --no-cache",
+    "build:python": "uv pip install -e . --no-cache",
+    "test": "uv run --extra dev pytest -q --tb=short",
+    "test:python": "uv run --extra dev pytest -q --tb=short",
+    "lint": "uv run --extra dev ruff check .",
+    "lint:python": "uv run --extra dev ruff check .",
+    "typecheck": "uv run --extra dev mypy -p daniela_backend",
+    "typecheck:python": "uv run --extra dev mypy -p daniela_backend",
+    "format": "uv run --extra dev ruff format ."
+  }
+}

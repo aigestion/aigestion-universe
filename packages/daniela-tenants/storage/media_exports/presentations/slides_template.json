@@ -1,0 +1,82 @@
+{
+    "title": "aig & Daniela OS - Autonomous Infrastructure & AI Orchestration",
+    "theme": {
+        "backgroundColor": "#0A0C10",
+        "primaryColor": "#00C8FF",
+        "secondaryColor": "#00FFAA"
+    },
+    "slides": [
+        {
+            "title": "Daniela OS",
+            "subtitle": "High-Resiliency Autonomous Workstation"
+        },
+        {
+            "title": "Core Architecture",
+            "bullet_points": [
+                "Docker Compose Auto-Healing",
+                "Groq Tier 1 Llama-3.3-70B",
+                "Google Workspace Integration"
+            ]
+        },
+        {
+            "title": "DevOps & Automation",
+            "bullet_points": [
+                "Nightly Maintenance Daemon",
+                "Hermes Agent Workflow",
+                "Rainmeter HUD Telemetry"
+            ]
+        },
+        {
+            "title": "aig Core",
+            "bullet_points": [
+                "11 modulos",
+                "Intent routing",
+                "API Gateway"
+            ]
+        },
+        {
+            "title": "Pixel Bridge",
+            "bullet_points": [
+                "37 modulos",
+                "Second Screen HUD",
+                "Edge Node"
+            ]
+        },
+        {
+            "title": "Seguridad",
+            "bullet_points": [
+                "Safe Exec",
+                "Secret Guard",
+                "Safe Evolution Gate"
+            ]
+        },
+        {
+            "title": "Contenido",
+            "bullet_points": [
+                "Content OS",
+                "Memory Vault",
+                "Zero-Inbox"
+            ]
+        },
+        {
+            "title": "CAD & Hardware",
+            "bullet_points": [
+                "Open CADStudio",
+                "STL/STEP",
+                "Blender renders"
+            ]
+        },
+        {
+            "title": "White-Label",
+            "bullet_points": [
+                "Tenant bootstrap",
+                "Enterprise compose"
+            ]
+        },
+        {
+            "title": "Contacto",
+            "subtitle": "aig — hablemos"
+        }
+    ],
+    "push": "diferido (requiere OAuth Google Slides API)"
+}

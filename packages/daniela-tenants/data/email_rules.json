@@ -1,0 +1,42 @@
+{
+  "senders_urgent": [
+    "jefe",
+    "ceo",
+    "director",
+    "cliente",
+    "urgente"
+  ],
+  "senders_important": [
+    "contable",
+    "abogado",
+    "proveedor",
+    "socio"
+  ],
+  "subjects_urgent": [
+    "urgente",
+    "critico",
+    "deadline",
+    "vence",
+    "inmediato"
+  ],
+  "subjects_newsletter": [
+    "newsletter",
+    "boletin",
+    "oferta",
+    "promo",
+    "unsubscribe"
+  ],
+  "domains_delegable": [
+    "marketing",
+    "rrhh",
+    "soporte",
+    "admin"
+  ],
+  "keywords_spam": [
+    "ganaste",
+    "premio",
+    "loteria",
+    "herencia",
+    "principe"
+  ]
+}

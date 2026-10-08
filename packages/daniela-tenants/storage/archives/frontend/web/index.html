@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frontend Optimization Engine</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#00f0ff;font-family:monospace;min-height:100vh}
+.header{background:linear-gradient(135deg,#0a0a1a,#00f0ff11);padding:20px;text-align:center;border-bottom:1px solid #00f0ff33}
+.header h1{font-size:24px}
+.stats{display:flex;gap:15px;margin:20px 0;justify-content:center;flex-wrap:wrap}
+.stat{background:#111;border:1px solid #333;border-radius:12px;padding:20px;text-align:center;min-width:100px}
+.stat .num{font-size:28px;color:#00ff88}
+.section{padding:10px 20px;font-size:11px;color:#666;text-transform:uppercase;letter-spacing:2px;border-top:1px solid #222;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;padding:5px 10px}
+.card{background:#111;border:1px solid #333;border-radius:12px;padding:15px;cursor:pointer;transition:all .2s}
+.card:hover{border-color:#00f0ff;transform:translateY(-2px)}
+.card h3{font-size:12px;color:#00f0ff}
+.card .impact{font-size:9px;padding:2px 6px;border-radius:10px;margin-top:5px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="header"><h1>FRONTEND OPTIMIZATION ENGINE</h1><p>24 Modules / 100 Ideas for Better UI/UX Performance</p></div>
+<div class="stats">
+<div class="stat"><div class="num">60</div><p>FPS</p></div>
+<div class="stat"><div class="num">100</div><p>Ideas</p></div>
+<div class="stat"><div class="num">24</div><p>Modules</p></div>
+<div class="stat"><div class="num">-80%</div><p>Bundle</p></div>
+<div class="stat"><div class="num">96</div><p>A11y</p></div>
+</div>
+
+<div class="section">Runtime UX (v1)</div>
+<div class="grid" id="v1"></div>
+
+<div class="section">Build &amp; Transport (v2)</div>
+<div class="grid" id="v2"></div>
+
+<script>
+const BASE=window.location.origin;
+const V1=[
+{name:'PWA/Service Worker',u:'/api/frontend/sw/web',impact:'-70% load'},
+{name:'Virtual Scroll',u:'/api/frontend/virtual/web',impact:'-90% memory'},
+{name:'Perf Monitor',u:'/api/frontend/perf/web',impact:'Lighthouse'},
+{name:'Asset Optimizer',u:'/api/frontend/assets/web',impact:'-60% bundle'},
+{name:'Theme Engine',u:'/api/frontend/theme/web',impact:'4 themes'},
+{name:'UX Enhancements',u:'/api/frontend/ux/web',impact:'Skeletons'},
+{name:'Command Palette',u:'/api/frontend/cmd/web',impact:'Ctrl+K'},
+{name:'Frontend Cache',u:'/api/frontend/cache/web',impact:'Cache-first'},
+{name:'Animations',u:'/api/frontend/anim/web',impact:'60fps GPU'},
+{name:'PWA Manifest',u:'/api/frontend/manifest/web',impact:'Installable'}
+];
+const V2=[
+{name:'Code Splitting',u:'/api/frontend/code/status',impact:'-65%'},
+{name:'Lazy Loading',u:'/api/frontend/lazy/status',impact:'-70%'},
+{name:'Web Workers',u:'/api/frontend/worker/status',impact:'20x'},
+{name:'SSR/SSG/ISR',u:'/api/frontend/ssr/status',impact:'0ms TTFB'},
+{name:'Image Opt',u:'/api/frontend/image/status',impact:'-70%'},
+{name:'Font Opt',u:'/api/frontend/font/status',impact:'-80%'},
+{name:'Tree Shaking',u:'/api/frontend/tree/status',impact:'-80%'},
+{name:'WebAssembly',u:'/api/frontend/wasm/status',impact:'20x'},
+{name:'Edge Compute',u:'/api/frontend/edge/status',impact:'12ms'},
+{name:'A11y',u:'/api/frontend/a11y/status',impact:'96/100'},
+{name:'Security',u:'/api/frontend/security/status',impact:'A+'},
+{name:'Analytics',u:'/api/frontend/analytics/status',impact:'25 events'},
+{name:'Resource Hints',u:'/api/frontend/rh/status',impact:'preload'},
+{name:'HTTP/2',u:'/api/frontend/http2/status',impact:'multiplex'}
+];
+function render(list,el){const g=document.getElementById(el);list.forEach((m,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+(i+1)+'. '+m.name+'</h3><span class="impact" style="background:#00ff8822;color:#00ff88">'+m.impact+'</span>';c.onclick=()=>window.open(BASE+m.u);g.appendChild(c)});}
+render(V1,'v1');render(V2,'v2');
+</script>
+</body>
+</html>

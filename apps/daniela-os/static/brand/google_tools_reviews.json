@@ -1,0 +1,133 @@
+[
+  {
+    "tool_name": "Google Jules",
+    "category": "coding_agent",
+    "key_capabilities": [
+      "Async autonomous coding tasks in Google Cloud VMs",
+      "Clones repo, makes multi-file changes, opens GitHub PRs",
+      "15 free tasks/day (Gemini 3 Flash), 3 concurrent",
+      "Android Studio CLI for build/test/emulator",
+      "Firebase AI Logic integration for agent-native backend",
+      "MCP partner integrations (Linear, Supabase, Neon, Tinybird)",
+      "Jules V2 'Jitro' with KPI-driven development (in development)",
+      "SOC 2 Type II, ISO 27001 certified"
+    ],
+    "pricing_free_tier": "15 tasks/day, 3 concurrent, Gemini 3 Flash",
+    "pricing_paid": "Pro $19.99/mo: 100 tasks, 15 concurrent, Gemini 3.1 Pro | Ultra $124.99/mo: 300 tasks, 60 concurrent",
+    "integrations": [
+      "GitHub",
+      "Android Studio CLI",
+      "Firebase AI Logic",
+      "MCP (Linear, Supabase, Neon, Tinybird, Context7, Stitch)"
+    ],
+    "relevance_aigestion": "Automated PR generation for the AIGestion repo. Jules can take feature descriptions from the chat interface and produce real, reviewable code changes.",
+    "relevance_danielaos": "DanielaOS can delegate coding tasks to Jules instead of the current stub code_generation_agent.py. Real PRs replace simulated execution.",
+    "verdict": "GAME-CHANGER. Replaces the simulated swarm code generation with real autonomous coding. Free tier is sufficient for daily development tasks."
+  },
+  {
+    "tool_name": "Antigravity 2.0",
+    "category": "dev_platform",
+    "key_capabilities": [
+      "Desktop app for orchestrating multiple agents in parallel",
+      "Dynamic subagents for parallelized workflows",
+      "Scheduled tasks for background automation",
+      "Antigravity CLI (replacing Gemini CLI)",
+      "Antigravity SDK for programmatic agent hosting on custom infra",
+      "Enterprise Cloud integration for Google Cloud customers",
+      "MCP tool support"
+    ],
+    "pricing_free_tier": "Included in AI Ultra plan ($100/mo, 5x Antigravity usage)",
+    "pricing_paid": "AI Ultra $100/mo with $100 bonus credits",
+    "integrations": [
+      "Gemini CLI migration path",
+      "Google Cloud",
+      "MCP",
+      "Firebase AI Logic"
+    ],
+    "relevance_aigestion": "Replace auto_swarm_dispatcher.py with Antigravity's multi-agent orchestration. Real parallel agent execution instead of sequential API calls.",
+    "relevance_danielaos": "DanielaOS's 9 agents can run as parallel Antigravity subagents. Scheduled tasks replace the proactive engine's cron-like system with native scheduling.",
+    "verdict": "STRATEGIC UPGRADE. The SDK allows hosting DanielaOS agents on Google Cloud infrastructure, moving from local Python scripts to enterprise-grade agent hosting."
+  },
+  {
+    "tool_name": "Google AI Studio",
+    "category": "dev_platform",
+    "key_capabilities": [
+      "Managed Agents via Interactions API (single call → reasoning agent)",
+      "Agents execute code in isolated Linux environments",
+      "Persistent environments across calls (files + state intact)",
+      "Custom agent templates via markdown files",
+      "Mobile app (pre-register) for remote monitoring",
+      "Workspace integration: agents call Gmail/Docs/Calendar APIs natively",
+      "Export to Antigravity (one-click project transfer)",
+      "Native Android support: build Android apps from prompt → Play Console"
+    ],
+    "pricing_free_tier": "Gemini 3.5 Flash default, daily Pro allotment, 5 Deep Research/mo",
+    "pricing_paid": "AI Plus $7.99/mo | AI Pro $19.99/mo (1M context) | AI Ultra from $99.99/mo",
+    "integrations": [
+      "Gmail API",
+      "Google Docs API",
+      "Google Calendar API",
+      "Android Play Console",
+      "Antigravity"
+    ],
+    "relevance_aigestion": "Managed Agents API can host cloud versions of DanielaOS agents. Workspace integration enables real email/doc/calendar automation instead of simulated actions.",
+    "relevance_danielaos": "Each of the 9 DanielaOS agents gets a persistent Linux environment. Markdown-defined agent templates match the existing skill/ pattern. Code execution replaces stub returns.",
+    "verdict": "TRANSFORMATIVE. Managed Agents eliminates the need to self-host agent infrastructure. Persistent environments solve the state management problem. Workspace APIs connect agents to real Google services."
+  },
+  {
+    "tool_name": "Chrome (I/O 2026)",
+    "category": "browser",
+    "key_capabilities": [
+      "WebMCP: expose JS functions/HTML forms as structured tools for browser agents",
+      "DevTools for Agents: 20+ coding agents access console/network/a11y tree",
+      "Built-in Prompt API (stable in Chrome 148): on-device AI, multimodal input, structured JSON output",
+      "Gemma 197M: task-specific APIs (summarizer, translator, language detector)",
+      "HTML-in-Canvas API: DOM elements directly in WebGL/WebGPU canvas",
+      "Element-scoped View Transitions (Chrome 147)",
+      "Auto Browse: Gemini-powered 24/7 browser automation (Spark integration coming)",
+      "Chrome Gemini on Android: browsing assistant with Calendar/Keep/Gmail",
+      "Nano Banana: in-browser image transformation",
+      "Chrome Skills: save/reuse multi-tab AI prompt workflows",
+      "Screen selection to prompt Gemini (pointer-based)",
+      "Voice input across the web (Gemini-cleaned transcription)"
+    ],
+    "pricing_free_tier": "All browser features free with Chrome 147+",
+    "pricing_paid": "Chrome Gemini advanced features may require Google AI subscription",
+    "integrations": [
+      "WebMCP standard",
+      "Gemini API",
+      "Google Workspace",
+      "Android Chrome"
+    ],
+    "relevance_aigestion": "WebMCP lets AIGestion expose its API as structured tools that any browser agent can call directly. Built-in Prompt API enables zero-cost on-device AI for the landing page demo chat. HTML-in-Canvas upgrades the Three.js avatar with DOM overlays.",
+    "relevance_danielaos": "Auto Browse gives DanielaOS real browser control for 24/7 task automation. Chrome Gemini on Android extends DanielaOS to mobile browsing. DevTools for Agents enables real-time debugging of agent-driven web actions.",
+    "verdict": "WEB-NATIVE SUPERPOWER. WebMCP is the bridge between AIGestion's web interface and agent-driven automation. Built-in AI eliminates API costs for demo interactions. Auto Browse makes DanielaOS a real web automation agent, not just a chat interface."
+  },
+  {
+    "tool_name": "Gemini 3.5",
+    "category": "model",
+    "key_capabilities": [
+      "Gemini 3.5 Flash: 4x faster than frontier models, outperforms 3.1 Pro on most benchmarks",
+      "Gemini 3.5 Pro: 2M-token context window (largest in production)",
+      "Multimodal: text, images, audio, video input",
+      "Structured JSON output (native, not prompt-engineered)",
+      "Function calling / tool use",
+      "Gemini Live: real-time voice mode",
+      "Code execution in isolated environment",
+      "Image generation (Imagen)"
+    ],
+    "pricing_free_tier": "Flash default, daily Pro allotment, image gen, voice mode, 5 Deep Research/mo",
+    "pricing_paid": "API: ~$1.50/M input, $9/M output (Flash). AI Plus $7.99/mo | AI Pro $19.99/mo | AI Ultra from $99.99/mo",
+    "integrations": [
+      "Google Workspace",
+      "Android",
+      "Chrome",
+      "Antigravity",
+      "AI Studio",
+      "Firebase AI Logic"
+    ],
+    "relevance_aigestion": "2M context = entire AIGestion codebase in one prompt for architecture analysis. Flash for real-time chat responses at 4x speed. Structured JSON output for proposal cards without prompt engineering.",
+    "relevance_danielaos": "Flash replaces current model for all 9 agents (faster, cheaper, better). Pro 2M context enables whole-project-aware decisions. Free tier Deep Research reports fuel the proactive engine's research tasks.",
+    "verdict": "FOUNDATION MODEL UPGRADE. Flash is the default for speed-sensitive paths. Pro's 2M context is the killer feature — DanielaOS can reason about the entire project state in a single call."
+  }
+]

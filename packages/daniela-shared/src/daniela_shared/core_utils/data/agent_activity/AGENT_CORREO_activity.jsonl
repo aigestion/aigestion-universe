@@ -1,0 +1,10 @@
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-09-20T20:16:35.453963"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-09-20T20:16:35.454875"}
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-09-20T21:46:12.774733"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-09-20T21:46:12.780882"}
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-09-20T21:47:06.632906"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-09-20T21:47:06.632906"}
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-09-20T21:53:36.648443"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-09-20T21:53:36.649443"}
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-09-20T21:54:34.205544"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-09-20T21:54:34.205544"}

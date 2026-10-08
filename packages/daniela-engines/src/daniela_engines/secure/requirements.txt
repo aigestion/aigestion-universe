@@ -1,0 +1,1 @@
+flask>=3.0`ncryptography>=41.0

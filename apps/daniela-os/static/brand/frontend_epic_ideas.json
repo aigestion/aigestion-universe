@@ -1,0 +1,345 @@
+[
+  {
+    "id": "FE-01",
+    "title": "Extract all inline CSS into shared design system",
+    "category": "architecture",
+    "priority": "critical",
+    "effort": "M",
+    "description": "Create a single `static/css/` directory with: `variables.css` (brand colors, fonts, spacing), `base.css` (reset, typography, utilities), `components.css` (buttons, cards, panels, chat bubbles), `hud.css` (HUD panels, status badges, pills), and `3d-experiences.css` (canvas containers, loading screens, overlays). Every HTML file imports these instead of inline styles. This eliminates the 7+ different color palettes and creates a single source of truth for the brand identity.",
+    "files_affected": [
+      "ALL HTML files"
+    ],
+    "dependencies": [],
+    "impact": "Eliminates color inconsistencies, enables theme switching, reduces page weight by 40%+"
+  },
+  {
+    "id": "FE-02",
+    "title": "Create shared JavaScript component library",
+    "category": "architecture",
+    "priority": "critical",
+    "effort": "L",
+    "description": "Extract reusable JS into `static/js/components/`: `ChatPanel.js` (shared chat UI used by full_ui_v2, landing demo, metaverse), `CameraPIP.js` (shared camera module from app.js + sovereign_master), `VoiceInput.js` (shared STT from app.js + hologram), `ThreeScene.js` (base Three.js setup with scene/camera/renderer/controls), `HudPanel.js` (shared HUD panel component), `ProposalCard.js` (approve/reject cards from full_ui_v2). Use ES6 modules (import/export) instead of global IIFEs.",
+    "files_affected": [
+      "app.js",
+      "full_ui_v2.html",
+      "templates/index_sovereign_master.html",
+      "static/daniela_hologram.html",
+      "static/metaverse.html"
+    ],
+    "dependencies": [
+      "FE-01"
+    ],
+    "impact": "Eliminates code duplication, enables feature consistency, reduces maintenance burden"
+  },
+  {
+    "id": "FE-03",
+    "title": "Implement SPA router with lazy-loaded views",
+    "category": "architecture",
+    "priority": "high",
+    "effort": "L",
+    "description": "Build a lightweight client-side router (hash-based or History API) that loads views on demand: `/` → landing, `/app` → full_ui_v2, `/metaverse` → metaverse, `/city` → neural_city, `/globe` → datacenter_live, `/hologram` → daniela_hologram, `/office` → view_3d_office, `/dashboard` → agent dashboard (new), `/mobile` → sovereign_master. Each view lazy-loads its Three.js scene only when visited, reducing initial load from ~50MB+ of 3D content to ~2MB.",
+    "files_affected": [
+      "ALL HTML files",
+      "NEW: static/js/router.js"
+    ],
+    "dependencies": [
+      "FE-01",
+      "FE-02"
+    ],
+    "impact": "Transforms 11 standalone pages into a unified SPA, dramatically improves load time"
+  },
+  {
+    "id": "FE-04",
+    "title": "Centralize API client with WebSocket fallback",
+    "category": "architecture",
+    "priority": "high",
+    "effort": "M",
+    "description": "Create `static/js/api-client.js` that unifies all API calls. Single base URL (configurable via env), automatic REST→WebSocket fallback, request queuing, retry logic, and auth token injection. Replaces the 4 different hardcoded endpoints (localhost:8085, 192.168.1.133:5059, /api/chat, /api/speech) with one configurable client.",
+    "files_affected": [
+      "app.js",
+      "full_ui_v2.html",
+      "templates/index_sovereign_master.html",
+      "chrome-extension/sidepanel.js",
+      "view_3d_office.html"
+    ],
+    "dependencies": [],
+    "impact": "Fixes broken endpoints, enables deployment to any environment, simplifies debugging"
+  },
+  {
+    "id": "FE-05",
+    "title": "Build real-time Agent Squad dashboard",
+    "category": "agent_integration",
+    "priority": "critical",
+    "effort": "L",
+    "description": "Create a new `/dashboard` view showing the 9 agents (4 core + 5 squad) as live cards. Each card shows: agent name, color, status (online/offline/busy), current task, last activity timestamp, and message count. Data comes from the message_broker.py SQLite database via a new `/api/agents/status` WebSocket endpoint. Cards pulse when agents send messages. Clicking a card opens the agent's activity log (from ActivityLogger JSONL files). This connects the backend agent system to the frontend for the first time.",
+    "files_affected": [
+      "NEW: templates/dashboard.html",
+      "NEW: static/js/agent-dashboard.js",
+      "message_broker.py",
+      "agents.py"
+    ],
+    "dependencies": [
+      "FE-01",
+      "FE-02",
+      "FE-04"
+    ],
+    "impact": "First real-time visibility into agent operations, connects backend to frontend"
+  },
+  {
+    "id": "FE-06",
+    "title": "Wire 5 squad agents into main UI with action buttons",
+    "category": "agent_integration",
+    "priority": "high",
+    "effort": "M",
+    "description": "Add 5 agent action buttons to the full_ui_v2.html Gemini dock (alongside existing camera/file/magic/mic): 📧 Correo (shows inbox summary from agent_correo.py), 📅 Calendario (shows today's events from agent_calendario.py), 📄 Documentos (generates document from agent_documentos.py), 📱 Redes (shows social queue from agent_redes.py), 🛡️ Vigía (shows system health from agent_vigia.py). Each button triggers a fetch to a new `/api/agent/{name}/status` endpoint that calls the corresponding Python agent module.",
+    "files_affected": [
+      "full_ui_v2.html",
+      "agent_correo.py",
+      "agent_calendario.py",
+      "agent_documentos.py",
+      "agent_redes.py",
+      "agent_vigia.py"
+    ],
+    "dependencies": [
+      "FE-04",
+      "FE-05"
+    ],
+    "impact": "Connects the 5 fictional-to-real agents to the user interface, completing the fusion"
+  },
+  {
+    "id": "FE-07",
+    "title": "Visualize inter-agent message flow in real-time",
+    "category": "agent_integration",
+    "priority": "medium",
+    "effort": "L",
+    "description": "Create a real-time network graph visualization (D3.js or custom Canvas) showing agents as nodes and messages as animated edges. When agent_correo sends a message to agent_documentos via the broker, a glowing particle travels along the edge. Priority is color-coded (URGENT=red, HIGH=orange, NORMAL=cyan, LOW=green). This uses the message_broker.py get_history() method to show the last N messages and subscribes to new ones via WebSocket.",
+    "files_affected": [
+      "NEW: static/js/message-graph.js",
+      "message_broker.py"
+    ],
+    "dependencies": [
+      "FE-05"
+    ],
+    "impact": "Makes the agent communication visible and debuggable, great for demos"
+  },
+  {
+    "id": "FE-08",
+    "title": "Unify color palette to brand kit specification",
+    "category": "ui_ux",
+    "priority": "critical",
+    "effort": "S",
+    "description": "Replace all 7+ color variants with the brand kit colors: Cyan #00ffff, Magenta #ff0055, dark background #03060a. Update CSS variables in all files. Create `static/css/variables.css` as the single source. The 3D experiences keep their per-module accent colors but the base UI (HUD, panels, text, borders) all use brand colors.",
+    "files_affected": [
+      "ALL HTML files"
+    ],
+    "dependencies": [
+      "FE-01"
+    ],
+    "impact": "Instant brand consistency, professional appearance"
+  },
+  {
+    "id": "FE-09",
+    "title": "Add dark/light theme toggle with system preference detection",
+    "category": "ui_ux",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Implement CSS custom properties for both dark and light themes. Auto-detect via `prefers-color-scheme` media query. Add a toggle button in the HUD. The 3D experiences always stay dark (they're space/night scenes), but the chat, panels, and text adapt. Light theme: bg #f0f4f8, text #1a1a2e, borders #cbd5e1, primary #0ea5e9.",
+    "files_affected": [
+      "ALL HTML files"
+    ],
+    "dependencies": [
+      "FE-01",
+      "FE-08"
+    ],
+    "impact": "Accessibility, user preference, modern UX expectation"
+  },
+  {
+    "id": "FE-10",
+    "title": "Replace fake demo chat with real Gemini connection",
+    "category": "ui_ux",
+    "priority": "high",
+    "effort": "S",
+    "description": "In static/landing.html, replace the `demoResponses` keyword-matching object with a real fetch to `/api/chat` (same endpoint as full_ui_v2.html). Add a loading spinner. Show a 'Demo mode - limited responses' badge. Rate-limit to 5 messages per session (localStorage counter). This turns the landing page into a real product demo.",
+    "files_affected": [
+      "static/landing.html"
+    ],
+    "dependencies": [
+      "FE-04"
+    ],
+    "impact": "Landing page becomes a genuine conversion tool, not a mockup"
+  },
+  {
+    "id": "FE-11",
+    "title": "Add notification system with toast notifications",
+    "category": "ui_ux",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Create a shared toast notification component (`static/js/components/Toast.js`) that shows slide-in notifications for: agent alerts (from Vigía), new email classified (from Correo), calendar reminders (from Calendario), social post scheduled (from Redes), document generated (from Documentos). Toasts auto-dismiss after 5s, stack in bottom-right, support click-to-expand. Different colors per agent (blue/gold/green/magenta/red).",
+    "files_affected": [
+      "full_ui_v2.html",
+      "templates/index_sovereign_master.html"
+    ],
+    "dependencies": [
+      "FE-02",
+      "FE-06"
+    ],
+    "impact": "Users see agent activity without opening the dashboard"
+  },
+  {
+    "id": "FE-12",
+    "title": "Connect datacenter globe to real backend metrics",
+    "category": "realtime",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Replace the fake setInterval counter in datacenter_live.html with a WebSocket connection to a new `/ws/metrics` endpoint. The backend pushes: request count, active agents, CPU/RAM (from agent_vigia.py), messages/sec (from message_broker.py). Region nodes show real traffic from actual API request logs. Data packets animate only when real requests are processed.",
+    "files_affected": [
+      "static/datacenter_live.html",
+      "agent_vigia.py",
+      "message_broker.py"
+    ],
+    "dependencies": [
+      "FE-04"
+    ],
+    "impact": "Datacenter becomes a real ops dashboard, not a decoration"
+  },
+  {
+    "id": "FE-13",
+    "title": "Add live agent activity stream to main UI",
+    "category": "realtime",
+    "priority": "high",
+    "effort": "M",
+    "description": "Add a collapsible sidebar to full_ui_v2.html showing a live activity feed. Each entry shows: timestamp, agent name (colored), action, and result. Data comes from ActivityLogger JSONL files via a new `/api/activity/stream` SSE (Server-Sent Events) endpoint. The feed auto-scrolls, supports pause/resume, and can be filtered by agent. This is the 'black box' of agent operations visible to the user.",
+    "files_affected": [
+      "full_ui_v2.html",
+      "message_broker.py"
+    ],
+    "dependencies": [
+      "FE-02",
+      "FE-05"
+    ],
+    "impact": "Transparency into autonomous agent operations, builds trust"
+  },
+  {
+    "id": "FE-14",
+    "title": "Add AI NPC agents to the metaverse",
+    "category": "metaverse",
+    "priority": "medium",
+    "effort": "L",
+    "description": "Populate the metaverse with AI-controlled NPC avatars for each of the 9 agents (Daniela, Guardian, Analyst, Operator, Coder, Correo, Calendario, Documentos, Redes, Vigia). Each NPC has a unique 3D model (or colored capsule with name tag), patrols its zone, and responds when clicked (shows agent info + status). NPCs are server-driven (metaverse_server.js spawns them on startup).",
+    "files_affected": [
+      "static/metaverse.html",
+      "metaverse_server.js",
+      "agents.py"
+    ],
+    "dependencies": [
+      "FE-05"
+    ],
+    "impact": "Metaverse becomes a living workspace, not just empty rooms"
+  },
+  {
+    "id": "FE-15",
+    "title": "Connect neural city buildings to real agent data",
+    "category": "metaverse",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Update neural_city.html building info cards to show real data from agents: uptime (from last startup), request count (from broker stats), current task, status. Buildings glow green when agent is online, red when offline, pulse when processing. Clicking a building navigates to the agent dashboard filtered to that agent.",
+    "files_affected": [
+      "static/neural_city.html",
+      "agents.py",
+      "message_broker.py"
+    ],
+    "dependencies": [
+      "FE-05",
+      "FE-12"
+    ],
+    "impact": "3D city becomes a real monitoring tool"
+  },
+  {
+    "id": "FE-16",
+    "title": "Build progressive web app (PWA) with offline support",
+    "category": "mobile",
+    "priority": "high",
+    "effort": "L",
+    "description": "Add a `manifest.json` with app name, icons (from brand kit), theme color, start_url. Add a service worker that caches: index.html, CSS, JS, and Three.js CDN. Enable 'Add to Home Screen' on Android/iOS. Cache the last chat session for offline viewing. Show a custom offline page with cached data. This makes AIGestion installable as a native app.",
+    "files_affected": [
+      "NEW: manifest.json",
+      "NEW: static/js/sw.js",
+      "index.html",
+      "full_ui_v2.html"
+    ],
+    "dependencies": [
+      "FE-01",
+      "FE-03"
+    ],
+    "impact": "Native app experience, offline capability, app store readiness"
+  },
+  {
+    "id": "FE-17",
+    "title": "Unify mobile and desktop UIs with responsive breakpoints",
+    "category": "mobile",
+    "priority": "high",
+    "effort": "L",
+    "description": "Merge templates/index_sovereign_master.html and full_ui_v2.html into a single responsive UI. Desktop: full HUD with 3D avatar + chat sidebar + proposal cards. Mobile: compact HUD with neural sphere + banner responses + bottom dock. Use CSS Grid + Flexbox with breakpoints at 768px and 1024px. Touch events fall back to mouse events. PIP camera works on both.",
+    "files_affected": [
+      "full_ui_v2.html",
+      "templates/index_sovereign_master.html"
+    ],
+    "dependencies": [
+      "FE-01",
+      "FE-02"
+    ],
+    "impact": "Single codebase for all devices, eliminates mobile/desktop divergence"
+  },
+  {
+    "id": "FE-18",
+    "title": "Wire landing page to real app with auth flow",
+    "category": "marketing",
+    "priority": "high",
+    "effort": "M",
+    "description": "Update landing.html 'Dashboard' button to link to `/app` (the SPA route). Add a login modal (email + password, or Google OAuth). If not authenticated, redirect to landing. If authenticated, redirect to dashboard. Add a 'Try Demo' button that opens a sandboxed version with rate-limited API calls. Pricing buttons trigger signup flow. Connect to billing_system.py for plan selection.",
+    "files_affected": [
+      "static/landing.html",
+      "auth_system.py",
+      "billing_system.py"
+    ],
+    "dependencies": [
+      "FE-03",
+      "FE-10"
+    ],
+    "impact": "Landing page becomes the real entry point to the product"
+  },
+  {
+    "id": "FE-19",
+    "title": "Add SEO optimization and social media meta tags",
+    "category": "marketing",
+    "priority": "medium",
+    "effort": "S",
+    "description": "Add to index.html and landing.html: Open Graph tags (og:title, og:description, og:image from brand kit), Twitter Card tags, structured data (JSON-LD for Organization + SoftwareApplication), sitemap.xml, robots.txt. Optimize page titles and meta descriptions. Add canonical URLs. This makes AIGestion discoverable on Google and shareable on social media.",
+    "files_affected": [
+      "index.html",
+      "static/landing.html",
+      "NEW: sitemap.xml",
+      "NEW: robots.txt"
+    ],
+    "dependencies": [],
+    "impact": "Organic discovery, professional social sharing"
+  },
+  {
+    "id": "FE-20",
+    "title": "Build project dashboard templates for clients",
+    "category": "marketing",
+    "priority": "low",
+    "effort": "L",
+    "description": "Replace the 1-line placeholder files in projects/ with real dashboard templates. mi-dashboard: personal KPI dashboard (tasks, emails, calendar, budget). sistema-dashboard: system overview (agent status, server health, message flow, uptime). Both use the shared CSS/JS components and connect to the same backend. These become the 'client portal' view.",
+    "files_affected": [
+      "projects/mi-dashboard/index.html",
+      "projects/sistema-dashboard/index.html"
+    ],
+    "dependencies": [
+      "FE-01",
+      "FE-02",
+      "FE-05"
+    ],
+    "impact": "Client-facing dashboards, replaces placeholders with real value"
+  }
+]

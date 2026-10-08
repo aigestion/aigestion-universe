@@ -1,0 +1,15 @@
+{
+  "tags": {
+    "a1b2c3": {
+      "tag_id": "a1b2c3",
+      "action": "daniela:scene:llegue_a_casa",
+      "label": "Entrada",
+      "room": "",
+      "created": "2026-09-10T13:15:44",
+      "hits": 1,
+      "last_seen": "2026-09-10T13:15:44",
+      "enabled": true
+    }
+  },
+  "updated": "2026-09-10T13:15:54"
+}

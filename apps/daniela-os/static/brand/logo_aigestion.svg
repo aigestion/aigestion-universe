@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Background gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#0f1428"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </radialGradient>
+    <!-- Cyan gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#0099ff"/>
+    </linearGradient>
+    <!-- Magenta gradient -->
+    <linearGradient id="magentaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff0055"/>
+      <stop offset="100%" stop-color="#ff00aa"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="cyanGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur1"/>
+      <feGaussianBlur stdDeviation="8" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="magentaGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur1"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Hexagon path -->
+    <clipPath id="hexClip">
+      <polygon points="200,40 340,120 340,280 200,360 60,280 60,120"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Circuit lines (background decoration) -->
+  <g stroke="#1a2a4a" stroke-width="1" fill="none" opacity="0.4">
+    <line x1="0" y1="80" x2="80" y2="80"/>
+    <line x1="80" y1="80" x2="80" y2="40"/>
+    <line x1="320" y1="80" x2="400" y2="80"/>
+    <line x1="320" y1="80" x2="320" y2="40"/>
+    <line x1="0" y1="320" x2="80" y2="320"/>
+    <line x1="80" y1="320" x2="80" y2="360"/>
+    <line x1="320" y1="320" x2="400" y2="320"/>
+    <line x1="320" y1="320" x2="320" y2="360"/>
+    <circle cx="80" cy="40" r="3"/>
+    <circle cx="320" cy="40" r="3"/>
+    <circle cx="80" cy="360" r="3"/>
+    <circle cx="320" cy="360" r="3"/>
+  </g>
+
+  <!-- Outer hexagon -->
+  <polygon points="200,30 355,115 355,285 200,370 45,285 45,115"
+           fill="none" stroke="url(#cyanGrad)" stroke-width="2.5" filter="url(#cyanGlow)" opacity="0.6"/>
+
+  <!-- Inner hexagon -->
+  <polygon points="200,60 325,132 325,268 200,340 75,268 75,132"
+           fill="none" stroke="url(#magentaGrad)" stroke-width="1.5" filter="url(#magentaGlow)" opacity="0.4"/>
+
+  <!-- Central "A" monogram - stylized circuit A -->
+  <g filter="url(#cyanGlow)">
+    <!-- Left stroke of A -->
+    <line x1="160" y1="280" x2="200" y2="140" stroke="url(#cyanGrad)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Right stroke of A -->
+    <line x1="240" y1="280" x2="200" y2="140" stroke="url(#magentaGrad)" stroke-width="8" stroke-linecap="round"/>
+    <!-- Crossbar of A -->
+    <line x1="175" y1="215" x2="225" y2="215" stroke="url(#cyanGrad)" stroke-width="5" stroke-linecap="round"/>
+    <!-- Circuit nodes at tips -->
+    <circle cx="200" cy="140" r="6" fill="#00ffff"/>
+    <circle cx="160" cy="280" r="5" fill="#ff0055"/>
+    <circle cx="240" cy="280" r="5" fill="#00ffff"/>
+    <!-- Center node -->
+    <circle cx="200" cy="215" r="4" fill="#ff0055"/>
+  </g>
+
+  <!-- "AIG" text below -->
+  <text x="200" y="392" text-anchor="middle"
+        font-family="'Segoe UI', 'Arial Black', sans-serif"
+        font-size="16" font-weight="bold"
+        fill="#00ffff" letter-spacing="6"
+        filter="url(#cyanGlow)">AIGESTION</text>
+
+  <!-- Top accent line -->
+  <line x1="120" y1="50" x2="280" y2="50" stroke="#ff0055" stroke-width="2" opacity="0.5" filter="url(#magentaGlow)"/>
+  <!-- Bottom accent line -->
+  <line x1="120" y1="350" x2="280" y2="350" stroke="#00ffff" stroke-width="2" opacity="0.5" filter="url(#cyanGlow)"/>
+</svg>

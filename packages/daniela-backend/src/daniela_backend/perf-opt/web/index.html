@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performance & Quality Optimization</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#00f0ff;font-family:monospace;min-height:100vh}
+.header{background:linear-gradient(135deg,#0a0a1a,#00f0ff11);padding:20px;text-align:center;border-bottom:1px solid #00f0ff33}
+.header h1{font-size:24px}
+.stats{display:flex;gap:15px;margin:20px 0;justify-content:center;flex-wrap:wrap}
+.stat{background:#111;border:1px solid #333;border-radius:12px;padding:20px;text-align:center;min-width:100px}
+.stat .num{font-size:28px;color:#00ff88}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;padding:5px 10px}
+.card{background:#111;border:1px solid #333;border-radius:12px;padding:15px;cursor:pointer;transition:all .2s}
+.card:hover{border-color:#00f0ff;transform:translateY(-2px)}
+.card h3{font-size:12px;color:#00f0ff}
+.card p{font-size:10px;color:#666}
+.card .impact{font-size:9px;padding:2px 6px;border-radius:10px;margin-top:5px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="header"><h1>PERFORMANCE & QUALITY OPTIMIZATION</h1><p>10 Ideas for Speed & Quality</p></div>
+<div class="stats">
+<div class="stat"><div class="num">10</div><p>Ideas</p></div>
+<div class="stat"><div class="num">78%</div><p>Test Coverage</p></div>
+<div class="stat"><div class="num">2.5x</div><p>Compression</p></div>
+<div class="stat"><div class="num">85%</div><p>Type Coverage</p></div>
+</div>
+<div class="grid" id="grid"></div>
+<script>const BASE='http://localhost:9998';
+const IDEAS=[
+{name:'Async I/O (Quart)',i:'1',u:'/api/perf/async/status',impact:'non-blocking'},
+{name:'Background Workers',i:'2',u:'/api/perf/worker/status',impact:'10 concurrent'},
+{name:'HTTP/2 Server',i:'3',u:'/api/perf/http2/status',impact:'multiplexing'},
+{name:'Brotli Compression',i:'4',u:'/api/perf/brotli/status',impact:'2.5x ratio'},
+{name:'Connection Keep-Alive',i:'5',u:'/api/perf/keepalive/status',impact:'65s timeout'},
+{name:'Type Hints',i:'6',u:'/api/perf/types/status',impact:'85%'},
+{name:'Auto Formatting',i:'7',u:'/api/perf/format/status',impact:'black/ruff'},
+{name:'Test Coverage',i:'8',u:'/api/perf/test/status',impact:'78%'},
+{name:'CI/CD Pipeline',i:'9',u:'/api/perf/ci/status',impact:'5 workflows'},
+{name:'WebSocket Real-time',i:'10',u:'/api/perf/ws/status',impact:'12 clients'}
+];
+const g=document.getElementById('grid');IDEAS.forEach(i=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+i.i+'. '+i.name+'</h3><span class="impact" style="background:#00ff8822;color:#00ff88">'+i.impact+'</span>';c.onclick=()=>window.open(BASE+i.u);g.appendChild(c)});</script></body></html>

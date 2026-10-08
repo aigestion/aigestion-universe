@@ -1,0 +1,54 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'aig-epic-pc'
+    static_configs:
+      - targets: ['aig-epic-pc:5020']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-daniela'
+    static_configs:
+      - targets: ['aig-daniela:9200']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-hermes'
+    static_configs:
+      - targets: ['aig-hermes:9300']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-optimization'
+    static_configs:
+      - targets: ['aig-optimization:9400']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-frontend'
+    static_configs:
+      - targets: ['aig-frontend:9500']
+    metrics_path: '/api/frontend/status'
+
+  - job_name: 'aig-infra'
+    static_configs:
+      - targets: ['aig-infra:9700']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-agent'
+    static_configs:
+      - targets: ['aig-agent:9800']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-security'
+    static_configs:
+      - targets: ['aig-security:9999']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-perf'
+    static_configs:
+      - targets: ['aig-perf:9998']
+    metrics_path: '/api/status'
+
+  - job_name: 'aig-dashboard'
+    static_configs:
+      - targets: ['aig-dashboard:9997']
+    metrics_path: '/api/status'

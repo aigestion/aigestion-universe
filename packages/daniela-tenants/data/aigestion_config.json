@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "modules": {
+    "daniela_proactive": {
+      "enabled": true,
+      "priority": 1
+    },
+    "email_zero_inbox": {
+      "enabled": true,
+      "priority": 2
+    },
+    "smart_invoice": {
+      "enabled": true,
+      "priority": 3
+    },
+    "meeting_intel": {
+      "enabled": true,
+      "priority": 4
+    },
+    "sentiment_dashboard": {
+      "enabled": true,
+      "priority": 5
+    },
+    "social_media": {
+      "enabled": true,
+      "priority": 6
+    },
+    "customer_support": {
+      "enabled": true,
+      "priority": 7
+    },
+    "code_gen": {
+      "enabled": true,
+      "priority": 8
+    },
+    "content_factory": {
+      "enabled": true,
+      "priority": 9
+    },
+    "swarm_intel": {
+      "enabled": true,
+      "priority": 10
+    }
+  },
+  "features": {
+    "auto_route": true,
+    "pipeline_fallback": true,
+    "health_checks": true
+  }
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "evt_1",
+    "title": "Reunion de equipo 1",
+    "date": "2026-09-22",
+    "time": "09:00",
+    "duration_min": 60,
+    "type": "meeting",
+    "priority": 5,
+    "attendees": [
+      "Alejandro",
+      "Daniela"
+    ],
+    "location": "Oficina virtual"
+  },
+  {
+    "id": "evt_2",
+    "title": "Reunion de equipo 2",
+    "date": "2026-09-22",
+    "time": "11:00",
+    "duration_min": 60,
+    "type": "meeting",
+    "priority": 6,
+    "attendees": [
+      "Alejandro",
+      "Daniela"
+    ],
+    "location": "Oficina virtual"
+  },
+  {
+    "id": "evt_3",
+    "title": "Reunion de equipo 3",
+    "date": "2026-09-22",
+    "time": "13:00",
+    "duration_min": 60,
+    "type": "meeting",
+    "priority": 7,
+    "attendees": [
+      "Alejandro",
+      "Daniela"
+    ],
+    "location": "Oficina virtual"
+  },
+  {
+    "id": "evt_4",
+    "title": "Reunion de equipo 4",
+    "date": "2026-09-22",
+    "time": "15:00",
+    "duration_min": 60,
+    "type": "meeting",
+    "priority": 8,
+    "attendees": [
+      "Alejandro",
+      "Daniela"
+    ],
+    "location": "Oficina virtual"
+  },
+  {
+    "id": "evt_5",
+    "title": "Reunion de equipo 5",
+    "date": "2026-09-22",
+    "time": "17:00",
+    "duration_min": 60,
+    "type": "meeting",
+    "priority": 9,
+    "attendees": [
+      "Alejandro",
+      "Daniela"
+    ],
+    "location": "Oficina virtual"
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "id": "SIL-01",
+    "title": "Weekly self-review loop: Daniela reads her own code every Monday",
+    "category": "learning_loop",
+    "priority": "critical",
+    "effort": "S",
+    "description": "Every Monday at 9am (free Cloud Scheduler or cron), Daniela runs the codebase analysis (gaps + architecture + security) through Gemini 3.1 Pro's 2M context. Findings are compared to last week's — new issues flagged, fixed issues celebrated. The delta becomes a 'weekly health report' that Daniela presents in the dashboard.",
+    "key_features": [
+      "Scheduled weekly Gemini 3.1 Pro codebase scan (free daily Pro allotment)",
+      "Diff comparison: new findings vs previous week",
+      "Weekly health score: (fixed - new) / total",
+      "Auto-generated improvement report in dashboard",
+      "Trend tracking: is the codebase getting healthier over time?"
+    ],
+    "free_tier": "Gemini 3.1 Pro free daily allotment (5 RPM, 100 RPD)",
+    "impact": "Daniela becomes self-aware of her own technical debt. She tracks whether she's improving or degrading over time. No human needs to read the code — she does it herself."
+  },
+  {
+    "id": "SIL-02",
+    "title": "Auto-fix pipeline: findings → Jules PR → verify → merge",
+    "category": "auto_fix",
+    "priority": "critical",
+    "effort": "M",
+    "description": "When the self-review finds a fixable issue (jules_dispatchable=True), Daniela automatically dispatches a Jules task. Jules opens a PR. Daniela re-runs the analysis on the PR branch to verify the fix. If verified, she merges. The entire loop is autonomous — bug found, fixed, verified, and merged without human intervention.",
+    "key_features": [
+      "Auto-filter: only jules_dispatchable=True findings trigger",
+      "Jules task dispatch with finding context as prompt",
+      "Post-PR re-analysis to verify fix (did the finding disappear?)",
+      "Auto-merge if finding resolved and no new findings introduced",
+      "Daily limit: max 5 auto-fix PRs/day (within Jules free 15/day)",
+      "Human approval required for severity=critical (safety gate)"
+    ],
+    "free_tier": "Jules free tier (15 tasks/day) + Gemini Pro free daily allotment",
+    "impact": "Daniela becomes a self-healing system. She finds her own bugs, fixes them, verifies the fixes, and ships — autonomously. Technical debt decreases over time without human intervention."
+  },
+  {
+    "id": "SIL-03",
+    "title": "Growing knowledge base: every fix teaches Daniela a lesson",
+    "category": "knowledge_base",
+    "priority": "high",
+    "effort": "M",
+    "description": "Each time Daniela fixes a finding, the fix is stored as a 'lesson' in a JSON knowledge base. Each lesson has: the finding, the fix applied, the files changed, the pattern recognized, and the prevention rule. Over time, Daniela accumulates hundreds of lessons. When writing new code, she checks lessons first to avoid repeating mistakes.",
+    "key_features": [
+      "Lesson JSON structure: {id, finding, fix, files, pattern, prevention_rule}",
+      "Pattern extraction: 'When I see X, it usually means Y, fix with Z'",
+      "Prevention rules: checked before any new code is generated",
+      "Lesson search: 'have I made this mistake before?'",
+      "Lesson categories: security, architecture, stub, integration",
+      "Export as markdown for human-readable learning log"
+    ],
+    "free_tier": "JSON files on disk (free), Gemini Flash for pattern extraction (free)",
+    "impact": "Daniela doesn't just fix bugs — she learns from them. Each fix makes her smarter. Over months, she develops an internal 'wisdom' about what patterns cause problems in her codebase."
+  },
+  {
+    "id": "SIL-04",
+    "title": "Code health dashboard: live metrics from self-review",
+    "category": "monitoring",
+    "priority": "high",
+    "effort": "M",
+    "description": "A real-time dashboard showing Daniela's code health: total findings by severity, findings fixed this week, findings introduced this week, code health score trend, lessons learned count, auto-fix PRs merged, and a 'self-awareness meter' showing how well Daniela understands her own codebase.",
+    "key_features": [
+      "Code health score: 100 - (critical*10 + high*5 + medium*2 + low*1)",
+      "Weekly trend chart: health score over time",
+      "Findings by category: security, architecture, stubs, integration",
+      "Auto-fix counter: PRs opened, merged, rejected",
+      "Lesson counter: total lessons learned, by category",
+      "Self-awareness meter: % of codebase files analyzed",
+      "Integration with existing AIGestion dashboard"
+    ],
+    "free_tier": "All data from free-tier Gemini analysis + JSON state files",
+    "impact": "Visual proof that Daniela is improving. The health score going up over time is motivating and measurable. Stakeholders can see the system getting better."
+  },
+  {
+    "id": "SIL-05",
+    "title": "Evolution engine: architecture recommendations become roadmap items",
+    "category": "evolution",
+    "priority": "high",
+    "effort": "L",
+    "description": "When Gemini 3.1 Pro makes architecture recommendations (e.g., 'adopt SQLAlchemy', 'use LangGraph for agents'), these aren't just noted — they're automatically added to the epic_ideas roadmap with priority, effort, and dependencies. The roadmap evolves itself based on what Daniela learns about her own architecture.",
+    "key_features": [
+      "Parse Gemini recommendations into structured epic ideas",
+      "Auto-add to google_tools_epic_ideas.py or agent_epic_ideas.py",
+      "Track which recommendations have been implemented",
+      "Re-evaluate recommendations monthly (are they still relevant?)",
+      "Dependency graph: which recommendations block others?"
+    ],
+    "free_tier": "Gemini Pro free daily allotment for analysis",
+    "impact": "The roadmap isn't static — it evolves based on real analysis. Daniela's architecture plan updates itself as she learns more about her own code."
+  },
+  {
+    "id": "SIL-06",
+    "title": "Pre-commit self-check: Daniela reviews her own changes before merge",
+    "category": "auto_fix",
+    "priority": "medium",
+    "effort": "M",
+    "description": "A git pre-commit hook that runs a quick Gemini Flash analysis on the diff (changed files only). If the change introduces a known anti-pattern (from the lesson knowledge base), the commit is blocked with an explanation. Fast enough for development flow (Flash is 4x faster).",
+    "key_features": [
+      "Git pre-commit hook using Gemini Flash (fast, free)",
+      "Diff-only analysis (not full codebase, fast response)",
+      "Check against lesson knowledge base for known anti-patterns",
+      "Block commit with explanation if anti-pattern detected",
+      "--force-skip flag for intentional overrides",
+      "Auto-add lesson: if overridden, record why"
+    ],
+    "free_tier": "Gemini Flash free tier (15 RPM, 1500 RPD)",
+    "impact": "Daniela prevents herself from making the same mistake twice. The lesson knowledge base becomes a living linting system."
+  },
+  {
+    "id": "SIL-07",
+    "title": "Comparative learning: Daniela studies other AI agent codebases",
+    "category": "learning_loop",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Daniela uses Gemini Deep Research (5 free reports/month) to study how other AI agent platforms are architected (CrewAI, AutoGen, LangGraph, MetaGPT). She compares their patterns to her own, identifies what she can learn, and generates improvement proposals. The comparisons become lessons in the knowledge base.",
+    "key_features": [
+      "Monthly Deep Research: 'How does CrewAI handle agent communication?'",
+      "Pattern comparison: their approach vs DanielaOS approach",
+      "Improvement proposals: \"CrewAI uses X pattern, we should adopt it because Y\"",
+      "Importable patterns: code snippets that can be adapted",
+      "Lesson category: 'comparative_learning'"
+    ],
+    "free_tier": "5 Deep Research reports/month (free tier)",
+    "impact": "Daniela doesn't just learn from her own mistakes — she learns from the entire AI agent ecosystem. She becomes a student of her own field."
+  },
+  {
+    "id": "SIL-08",
+    "title": "Self-generated tests: Daniela writes tests for her own code",
+    "category": "auto_fix",
+    "priority": "high",
+    "effort": "L",
+    "description": "Daniela identifies untested code paths (finding SR-11) and generates pytest tests for them. She dispatches Jules tasks to write tests for each module. Once tests exist, the self-improvement loop can verify fixes with actual test runs, not just re-analysis.",
+    "key_features": [
+      "Identify untested modules from self-review",
+      "Dispatch Jules tasks: 'Write pytest tests for module X'",
+      "Coverage tracking: % of codebase with tests",
+      "Test verification: run tests before and after each fix",
+      "Regression detection: new tests must pass before auto-merge"
+    ],
+    "free_tier": "Jules free tier (15 tasks/day) for test generation",
+    "impact": "Daniela builds her own safety net. Tests prove that fixes work and catch regressions. Over time, coverage approaches 100%."
+  },
+  {
+    "id": "SIL-09",
+    "title": "Learning journal: Daniela writes about what she learned",
+    "category": "knowledge_base",
+    "priority": "medium",
+    "effort": "S",
+    "description": "Each week, Daniela generates a markdown 'learning journal' entry summarizing: what she found in her code, what she fixed, what patterns she learned, and what she wants to improve next week. The journal is a growing document that tells the story of Daniela's evolution.",
+    "key_features": [
+      "Weekly markdown journal entry (auto-generated)",
+      "Sections: findings, fixes, lessons, goals for next week",
+      "Stored in data/journal/YYYY-MM-DD.md",
+      "Tone: first-person, as if Daniela is reflecting",
+      "Searchable: 'what did I learn about security in September?'",
+      "Human-readable: Alejandro can read Daniela's thoughts"
+    ],
+    "free_tier": "Gemini Flash free tier for journal generation",
+    "impact": "Daniela develops a narrative of her own evolution. The journal is both a technical log and a story of growth. Alejandro can read it to understand what Daniela has learned."
+  },
+  {
+    "id": "SIL-10",
+    "title": "Skill extraction: repeated patterns become reusable skills",
+    "category": "evolution",
+    "priority": "medium",
+    "effort": "L",
+    "description": "When Daniela notices she's solving the same type of problem repeatedly (e.g., 'add authentication to a Flask route', 'sanitize subprocess calls'), she extracts the solution into a reusable skill module in skills/. The skill is then available for future code generation, making her faster at solving similar problems.",
+    "key_features": [
+      "Pattern detection: same fix applied 3+ times → candidate skill",
+      "Skill extraction: Gemini Pro generates reusable skill module",
+      "Skill storage: skills/auto_extracted/skill_name.py",
+      "Skill registration: added to aigestion_core.py ModuleRegistry",
+      "Skill documentation: auto-generated markdown docs",
+      "Skill versioning: track improvements over time"
+    ],
+    "free_tier": "Gemini Pro free daily allotment for skill generation",
+    "impact": "Daniela doesn't just fix the same bug repeatedly — she learns the fix, extracts it as a skill, and never makes that mistake again. Her capability grows with each cycle."
+  }
+]

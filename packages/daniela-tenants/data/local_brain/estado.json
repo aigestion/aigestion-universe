@@ -1,0 +1,20 @@
+{
+  "config": {
+    "backend_preferido": "auto",
+    "modelo_ollama": "daniela-local",
+    "modelo_llamacpp": "",
+    "llamacpp_url": "",
+    "timeout_s": 150
+  },
+  "ultimo": {
+    "ts": "2026-09-11 20:54:49",
+    "backend": "ollama",
+    "modelo": "daniela-local",
+    "ms": 2510,
+    "ok": true,
+    "prompt": "Di solo: OK",
+    "respuesta": "OK\n",
+    "nota": ""
+  },
+  "cuando": "2026-09-11 20:54:49"
+}

@@ -1,0 +1,101 @@
+{
+  "setup_steps": [
+    {
+      "step": 1,
+      "title": "Crear cuenta en Google Flow",
+      "url": "https://flow.google.com",
+      "action": "Ir a flow.google.com y hacer clic en Get Started",
+      "note": "Necesitas cuenta de Google. Free tier: 50 credits/dia."
+    },
+    {
+      "step": 2,
+      "title": "Crear nuevo proyecto",
+      "action": "Dashboard > New Project",
+      "note": "Nombrar el proyecto: 'AIGestion - [nombre del contenido]'"
+    },
+    {
+      "step": 3,
+      "title": "Definir Ingredients (referencias de consistencia)",
+      "action": "Media > Characters > Add Character > Generate with Nano Banana",
+      "note": "Pegar el prompt de DANIELA_INGREDIENT.nano_banana_prompt. Generar la imagen. Verificar que se vea como Daniela. Repetir para AIGestion Office y Dashboard. Estos 3 ingredients locked = consistencia en todas las escenas."
+    },
+    {
+      "step": 4,
+      "title": "Abrir Storyboard Studio",
+      "action": "Tools > Storyboard Studio > Get Started",
+      "note": "Seleccionar estilo: 'Cinematic Photorealistic' o '3D Animated' segun el script."
+    },
+    {
+      "step": 5,
+      "title": "Pegar el script",
+      "action": "Paste story_text del StoryboardScript elegido",
+      "note": "Storyboard Studio analizara el texto y: - Generara titulo automatico - Dividira en escenas - Creara dialogos - Detectara personajes, localizaciones, props"
+    },
+    {
+      "step": 6,
+      "title": "Autofill Details",
+      "action": "Assets > Autofill Details",
+      "note": "Genera descripciones detalladas de cada personaje, localizacion y prop. Editar manualmente si es necesario."
+    },
+    {
+      "step": 7,
+      "title": "Generar storyboard panels",
+      "action": "Storyboard > Generate Panels",
+      "note": "Cada escena se convierte en un panel visual con camera shot sugerido. Editar angulos si es necesario."
+    },
+    {
+      "step": 8,
+      "title": "Generar videos con Veo 3.1",
+      "action": "Para cada panel: usar el veo_prompts correspondiente",
+      "note": "Pegar el prompt en Veo 3.1. Usar @Daniela para mantener consistencia. Seleccionar duracion (4s/6s/8s). Veo genera video + audio nativo. Free tier: Veo 3.1 Lite. Pro tier: Veo 3.1 Quality para maxima calidad."
+    },
+    {
+      "step": 9,
+      "title": "Ensamblar en Scenebuilder",
+      "action": "Scenebuilder > arrastrar clips al timeline",
+      "note": "Ordenar clips segun el storyboard. Trim, reorder, ajustar transiciones. Usar Gemini para edicion natural: 'change lighting to golden hour' 'slow down camera movement'"
+    },
+    {
+      "step": 10,
+      "title": "Exportar y publicar",
+      "action": "Export > MP4 (1080p o 4K)",
+      "note": "Usar Video Resizer para multi-formato: - 16:9 para YouTube long-form - 9:16 para Shorts/TikTok/Reels - 1:1 para feed Guardar proyecto como JSON para futuras ediciones."
+    }
+  ],
+  "credit_budget": {
+    "free_tier": {
+      "daily_credits": 50,
+      "veo_lite_8s": 8,
+      "veo_fast_8s": 12,
+      "veo_quality_8s": 25,
+      "nano_banana": 0,
+      "gemini_omni_720p": 15,
+      "gemini_omni_360p": 8,
+      "daily_veo_clips_lite": "6 clips (50/8)",
+      "daily_veo_clips_quality": "2 clips (50/25)",
+      "monthly_free_clips": "~180 clips (Veo Lite)"
+    },
+    "pro_tier": {
+      "monthly_credits": 1000,
+      "daily_bonus": 50,
+      "total_monthly": 1050,
+      "monthly_veo_clips_lite": "~131 clips",
+      "monthly_veo_clips_quality": "~42 clips",
+      "cost": "$19.99/mes"
+    },
+    "ultra_tier": {
+      "monthly_credits": 10000,
+      "daily_bonus": 50,
+      "total_monthly": 10050,
+      "monthly_veo_clips_lite": "~1256 clips",
+      "monthly_veo_clips_quality": "~402 clips",
+      "cost": "$99.99/mes",
+      "extras": [
+        "4K upscaling",
+        "highest limits",
+        "20TB storage"
+      ]
+    },
+    "strategy_free": "Con free tier (50/dia = ~180 clips/mes Veo Lite): - 2 episodios semanales de 6 clips cada uno = 12 clips/semana = 48 clips/mes - Sobran ~130 clips para experimentacion y iteration - Nano Banana (imagenes) es GRATIS, ilimitado - Usar Nano Banana para storyboard frames, thumbnails, social posts"
+  }
+}

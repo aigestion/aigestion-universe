@@ -1,0 +1,2626 @@
+{
+  "agents": [
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-01T02:23:06.772190"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-01T02:58:03.661214"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-01T03:00:12.573756"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-01T03:02:42.960809"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-01T03:07:56.750444"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-01T03:13:56.193001"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T19:39:23.469713"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:09:54.838869"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:10:43.559655"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:10:44.787227"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:13:57.601971"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:13:58.708339"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:26:37.808370"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:26:58.425827"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:31:46.334510"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:31:47.267272"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T20:44:03.488613"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T21:13:32.286131"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T21:13:33.181447"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T21:23:11.494940"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T21:23:12.361923"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-03T23:37:10.530228"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:00:58.020764"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:00:59.779071"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:05:32.154835"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:05:33.298546"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:10:18.243124"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:10:19.737891"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:23:56.594841"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:24:27.327842"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:28:10.946496"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:28:27.965116"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:29:17.199730"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:29:18.137929"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:30:10.856912"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:30:15.396231"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:34:00.895040"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:34:05.790107"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:39:12.231969"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:39:16.722991"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:51:53.873011"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T00:51:58.124066"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T01:03:30.458924"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T01:03:31.194681"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T01:04:32.328699"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T01:04:36.592679"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T01:12:58.434701"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T22:51:24.639498"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T22:51:49.419640"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T22:58:29.644112"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T22:58:54.990975"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T23:41:30.388023"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T23:41:57.122076"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T23:48:05.247613"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-04T23:48:31.347403"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:08:35.011251"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:09:00.473793"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:14:50.656853"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:15:15.895791"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:21:45.113451"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:22:11.121982"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:34:59.512410"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T00:35:25.013150"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:10:43.289719"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:11:09.083047"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:17:23.738196"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:17:48.750323"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:30:46.925585"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:32:51.360020"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:33:16.631113"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:50:03.501174"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T01:50:29.222318"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T10:44:59.905792"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T10:45:25.825816"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T10:50:46.296257"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T10:51:12.606129"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T10:57:12.885659"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T10:57:40.840534"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T11:47:26.512544"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T11:47:52.986149"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T11:54:55.690115"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T11:55:22.116692"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T12:26:27.421484"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T12:26:53.295489"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T12:38:43.319897"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T12:39:22.836637"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T13:13:56.626010"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T13:14:32.000278"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T14:31:58.646646"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T14:32:34.993064"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T16:48:08.927443"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T16:48:44.557705"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T16:53:15.813581"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T16:54:03.403457"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T16:56:40.489311"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:05:01.675866"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:08:18.408987"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:10:25.463566"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:12:13.797265"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:13:17.173801"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:38:08.378430"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T17:38:42.947886"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:02:51.121966"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:03:25.014033"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:08:31.286538"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:09:05.566679"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:14:33.961825"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:15:07.791399"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:20:11.042368"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:20:45.015457"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:26:23.355255"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:26:57.123372"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T18:59:18.969239"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T19:01:30.643318"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T19:02:06.132001"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T19:09:14.308844"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T19:09:48.596168"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T19:15:37.350369"
+    },
+    {
+      "name": "test",
+      "role": "tester",
+      "capabilities": [
+        "test"
+      ],
+      "status": "active",
+      "created": "2026-10-05T19:16:13.554233"
+    }
+  ],
+  "subagents": [
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-01T02:23:06.779231"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-01T02:58:03.675697"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-01T03:00:12.585674"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-01T03:02:42.982862"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-01T03:07:56.782114"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-01T03:13:56.217215"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T19:39:23.482654"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:09:54.841454"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:10:43.563550"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:10:44.790110"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:13:57.603971"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:13:58.710866"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:26:37.812227"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:26:58.430221"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:31:46.339363"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:31:47.267272"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T20:44:03.495012"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T21:13:32.286131"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T21:13:33.181447"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T21:23:11.505732"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T21:23:12.369612"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-03T23:37:10.531400"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:00:58.031407"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:00:59.786124"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:05:32.161367"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:05:33.301557"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:10:18.248152"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:10:19.741891"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:23:56.599855"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:24:27.330839"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:28:10.949276"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:28:27.968999"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:29:17.206748"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:29:18.141124"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:30:10.859914"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:30:15.399633"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:34:00.902793"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:34:05.793147"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:39:12.236172"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:39:16.731623"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:51:53.877177"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T00:51:58.131111"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T01:03:30.462925"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T01:03:31.198701"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T01:04:32.331701"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T01:04:36.596802"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T01:12:58.440478"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T22:51:24.647833"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T22:51:49.427933"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T22:58:29.647713"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T22:58:54.994840"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T23:41:30.395639"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T23:41:57.132238"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T23:48:05.254148"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-04T23:48:31.355945"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:08:35.016303"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:09:00.473793"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:14:50.661854"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:15:15.901043"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:21:45.120392"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:22:11.127594"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:34:59.514928"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T00:35:25.018480"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:10:43.289719"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:11:09.087044"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:17:23.744540"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:17:48.761262"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:30:46.928570"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:32:51.369215"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:33:16.634113"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:50:03.511825"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T01:50:29.227647"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T10:44:59.908890"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T10:45:25.829093"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T10:50:46.299975"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T10:51:12.609030"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T10:57:12.889827"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T10:57:40.850314"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T11:47:26.516758"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T11:47:52.990584"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T11:54:55.694391"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T11:55:22.119435"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T12:26:27.424471"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T12:26:53.300332"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T12:38:43.330092"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T12:39:22.854177"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T13:13:56.630075"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T13:14:32.007101"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T14:31:58.652939"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T14:32:34.998881"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T16:48:08.931094"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T16:48:44.560853"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T16:53:15.821569"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T16:54:03.412708"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T16:56:40.493922"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:05:01.686551"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:08:18.413022"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:10:25.472648"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:12:13.801757"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:13:17.178393"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:38:08.382219"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T17:38:42.951397"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:02:51.126076"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:03:25.039812"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:08:31.291551"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:09:05.573973"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:14:33.976115"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:15:07.795904"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:20:11.052905"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:20:45.020978"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:26:23.362059"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:26:57.127891"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T18:59:18.977754"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T19:01:30.661818"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T19:02:06.140811"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T19:09:14.313329"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T19:09:48.604491"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T19:15:37.366951"
+    },
+    {
+      "parent": "parent",
+      "task": "task",
+      "status": "active",
+      "created": "2026-10-05T19:16:13.563751"
+    }
+  ],
+  "missions": [
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-01T02:23:06.784325"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-01T02:58:03.687078"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-01T03:00:12.599192"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-01T03:02:43.000478"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-01T03:07:56.811254"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-01T03:13:56.243082"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T19:39:23.490637"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:09:54.843535"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:10:43.567560"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:10:44.793669"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:13:57.606568"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:13:58.719066"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:26:37.818104"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:26:58.438250"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:31:46.341941"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:31:47.267272"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T20:44:03.495012"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T21:13:32.286131"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T21:13:33.196601"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T21:23:11.505732"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T21:23:12.369612"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-03T23:37:10.531400"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:00:58.050133"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:00:59.792653"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:05:32.164884"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:05:33.306585"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:10:18.252154"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:10:19.745922"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:23:56.604809"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:24:27.338032"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:28:10.952314"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:28:27.974974"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:29:17.212745"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:29:18.149927"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:30:10.864149"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:30:15.402632"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:34:00.909888"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:34:05.796792"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:39:12.240167"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:39:16.737168"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:51:53.880175"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T00:51:58.139522"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T01:03:30.467965"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T01:03:31.204205"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T01:04:32.336074"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T01:04:36.599843"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T01:12:58.444038"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T22:51:24.647833"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T22:51:49.427933"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T22:58:29.650714"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T22:58:54.997064"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T23:41:30.404048"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T23:41:57.140409"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T23:48:05.258953"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-04T23:48:31.363461"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:08:35.027378"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:09:00.473793"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:14:50.667415"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:15:15.906331"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:21:45.131095"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:22:11.131592"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:34:59.518458"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T00:35:25.026309"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:10:43.299902"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:11:09.090324"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:17:23.748539"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:17:48.766611"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:30:46.933087"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:32:51.374060"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:33:16.642864"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:50:03.516937"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T01:50:29.230677"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T10:44:59.912340"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T10:45:25.832170"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T10:50:46.303134"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T10:51:12.612408"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T10:57:12.894957"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T10:57:40.856197"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T11:47:26.519589"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T11:47:52.995089"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T11:54:55.698126"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T11:55:22.122318"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T12:26:27.428099"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T12:26:53.303704"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T12:38:43.344781"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T12:39:22.865961"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T13:13:56.635466"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T13:14:32.010597"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T14:31:58.658362"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T14:32:35.005169"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T16:48:08.939888"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T16:48:44.563705"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T16:53:15.828333"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T16:54:03.421781"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T16:56:40.500437"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:05:01.692755"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:08:18.424026"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:10:25.478474"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:12:13.806314"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:13:17.182293"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:38:08.386287"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T17:38:42.954852"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:02:51.130554"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:03:25.047362"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:08:31.296215"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:09:05.579793"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:14:33.981165"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:15:07.800463"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:20:11.066385"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:20:45.025484"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:26:23.367648"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:26:57.132888"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T18:59:18.983762"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T19:01:30.670245"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T19:02:06.148329"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T19:09:14.319506"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T19:09:48.610086"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T19:15:37.379004"
+    },
+    {
+      "agent": "agent",
+      "mission": "mission",
+      "reward": 100,
+      "status": "active",
+      "created": "2026-10-05T19:16:13.573811"
+    }
+  ]
+}

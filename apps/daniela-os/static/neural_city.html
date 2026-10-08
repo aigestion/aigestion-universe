@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIGestion Neural City - Metaverso</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;overflow:hidden;font-family:'Segoe UI',system-ui,sans-serif;}
+#canvas-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;}
+#ui-layer{position:fixed;top:0;left:0;width:100%;height:100%;z-index:10;pointer-events:none;}
+#ui-layer > *{pointer-events:auto;}
+
+/* HUD */
+.hud{position:absolute;padding:16px 24px;background:rgba(15,23,41,0.85);border:1px solid #0ea5e9;border-radius:12px;backdrop-filter:blur(10px);color:#f1f5f9;}
+.hud-top-left{top:20px;left:20px;}
+.hud-top-right{top:20px;right:20px;display:flex;gap:12px;align-items:center;}
+.hud-bottom-left{bottom:30px;left:20px;max-width:350px;}
+.hud-bottom-right{bottom:30px;right:20px;}
+
+.logo-text{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,#0ea5e9,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.coords{font-size:0.85rem;color:#94a3b8;font-family:monospace;}
+.status-indicator{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:#22c55e;}
+.pulse-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.5);}}
+
+.btn-hud{padding:8px 20px;border:1px solid #0ea5e9;background:rgba(14,165,233,0.2);color:#0ea5e9;border-radius:8px;cursor:pointer;font-weight:600;transition:all 0.3s;font-size:0.9rem;}
+.btn-hud:hover{background:rgba(14,165,233,0.4);transform:translateY(-2px);}
+.btn-hud.vr{background:rgba(34,197,94,0.2);border-color:#22c55e;color:#22c55e;}
+.btn-hud.vr:hover{background:rgba(34,197,94,0.4);}
+
+/* Building Info Card */
+#building-card{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(15,23,41,0.95);border:2px solid #0ea5e9;border-radius:20px;padding:32px;max-width:420px;width:90%;display:none;backdrop-filter:blur(20px);box-shadow:0 0 60px rgba(14,165,233,0.3);}
+#building-card.active{display:block;animation:cardIn 0.4s ease;}
+@keyframes cardIn{from{opacity:0;transform:translate(-50%,-45%) scale(0.9);}to{opacity:1;transform:translate(-50%,-50%) scale(1);}}
+.building-header{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+.building-icon{font-size:3rem;}
+.building-title h2{color:#0ea5e9;font-size:1.5rem;}
+.building-title span{color:#94a3b8;font-size:0.9rem;}
+.building-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0;}
+.stat-box{background:rgba(30,41,59,0.8);padding:12px;border-radius:10px;text-align:center;}
+.stat-box .value{color:#0ea5e9;font-size:1.5rem;font-weight:700;}
+.stat-box .label{color:#94a3b8;font-size:0.75rem;}
+.building-desc{color:#cbd5e1;margin-bottom:20px;line-height:1.6;}
+.close-btn{position:absolute;top:12px;right:16px;background:none;border:none;color:#94a3b8;font-size:1.5rem;cursor:pointer;}
+.close-btn:hover{color:#fff;}
+
+/* Minimap */
+.minimap{width:150px;height:150px;background:rgba(15,23,41,0.8);border:1px solid #334155;border-radius:12px;position:relative;overflow:hidden;}
+.minimap-dot{position:absolute;width:6px;height:6px;background:#0ea5e9;border-radius:50%;transform:translate(-50%,-50%);}
+.minimap-player{position:absolute;width:10px;height:10px;background:#22c55e;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px #22c55e;}
+
+/* Notification */
+.notification{position:fixed;top:100px;left:50%;transform:translateX(-50%) translateY(-20px);background:rgba(14,165,233,0.9);color:#fff;padding:12px 24px;border-radius:10px;font-weight:600;opacity:0;transition:all 0.3s;z-index:100;}
+.notification.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* Loading Screen */
+#loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:1000;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 1s;}
+#loading-screen.hidden{opacity:0;pointer-events:none;}
+.loading-bar{width:300px;height:4px;background:#1e293b;border-radius:2px;overflow:hidden;margin-top:20px;}
+.loading-fill{height:100%;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);width:0%;transition:width 0.5s;}
+.loading-text{color:#94a3b8;margin-top:16px;font-size:0.9rem;}
+
+/* Decentraland badge */
+.dcl-badge{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(255,0,128,0.15);border:1px solid #ff0080;border-radius:12px;padding:10px 20px;display:flex;align-items:center;gap:10px;color:#ff69b4;font-size:0.85rem;cursor:pointer;transition:all 0.3s;}
+.dcl-badge:hover{background:rgba(255,0,128,0.3);transform:translateX(-50%) scale(1.05);}
+.dcl-badge img{width:24px;height:24px;}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+<div class="logo-text" style="font-size:3rem;">AIGestion Neural City</div>
+<div class="loading-bar"><div class="loading-fill" id="loading-fill"></div></div>
+<div class="loading-text" id="loading-text">Generando ciudad...</div>
+</div>
+
+<!-- 3D Canvas -->
+<div id="canvas-container"></div>
+
+<!-- UI Layer -->
+<div id="ui-layer">
+<!-- Top Left -->
+<div class="hud hud-top-left">
+<div class="logo-text">AIGestion City</div>
+<div class="coords" id="coords">X: 0 | Y: 0 | Z: 0</div>
+</div>
+
+<!-- Top Right -->
+<div class="hud hud-top-right">
+<div class="status-indicator"><div class="pulse-dot"></div><span>Neural Network Active</span></div>
+<button class="btn-hud" onclick="resetCamera()">Reset View</button>
+<button class="btn-hud vr" onclick="enterVR()">Enter VR</button>
+<a href="landing.html" class="btn-hud" style="text-decoration:none;">Back to Site</a>
+</div>
+
+<!-- Bottom Left - Minimap -->
+<div class="hud hud-bottom-left">
+<div style="margin-bottom:8px;font-weight:600;color:#0ea5e9;">City Map</div>
+<div class="minimap" id="minimap">
+<div class="minimap-player" id="minimap-player" style="left:50%;top:50%;"></div>
+</div>
+<div style="margin-top:8px;font-size:0.8rem;color:#94a3b8;">Click buildings to explore modules</div>
+</div>
+
+<!-- Bottom Right -->
+<div class="hud hud-bottom-right">
+<div style="font-weight:600;color:#8b5cf6;margin-bottom:4px;">Decentraland</div>
+<div style="font-size:0.8rem;color:#94a3b8;">Parcel: <span style="color:#ff69b4;">-25, 42</span></div>
+<div style="font-size:0.8rem;color:#94a3b8;">Status: <span style="color:#22c55e;">Owned</span></div>
+<button class="btn-hud" style="margin-top:8px;width:100%;" onclick="openDecentraland()">Visit in Decentraland</button>
+</div>
+
+<!-- Building Info Card -->
+<div id="building-card">
+<button class="close-btn" onclick="closeBuildingCard()">&times;</button>
+<div class="building-header">
+<div class="building-icon" id="card-icon">🏢</div>
+<div class="building-title">
+<h2 id="card-title">Building</h2>
+<span id="card-subtitle">AI Module</span>
+</div>
+</div>
+<div class="building-stats">
+<div class="stat-box"><div class="value" id="card-stat1">99%</div><div class="label">Uptime</div></div>
+<div class="stat-box"><div class="value" id="card-stat2">10K</div><div class="label">Requests</div></div>
+<div class="stat-box"><div class="value" id="card-stat3">4.9</div><div class="label">Rating</div></div>
+</div>
+<div class="building-desc" id="card-desc">Description here</div>
+<button class="btn-hud" style="width:100%;" onclick="activateModule()">Activate Module</button>
+</div>
+
+<!-- Notification -->
+<div class="notification" id="notification">Notification</div>
+
+<!-- Decentraland Floating Badge -->
+<div class="dcl-badge" onclick="openDecentraland()">
+<span style="font-size:1.2rem;">🌐</span>
+<span>Also available in Decentraland at <strong>-25, 42</strong></span>
+</div>
+</div>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// AIGESTION NEURAL CITY - METAVERSO 3D
+// Con integracion Decentraland
+// ═══════════════════════════════════════════════════════════════
+
+let scene, camera, renderer, controls, raycaster, mouse;
+let buildings = [], roads = [], vehicles = [], drones = [];
+let clock = new THREE.Clock();
+let selectedBuilding = null;
+
+// Module data for buildings
+const cityModules = [
+    { name: "Daniela Proactive Tower", desc: "Motor proactivo que anticipa tus necesidades fiscales", icon: "🔮", color: 0x0ea5e9, height: 120, x: -150, z: -100, stat1: "99.9%", stat2: "45K", stat3: "4.9" },
+    { name: "Email Nexus", desc: "Centro neural de procesamiento de correos", icon: "📧", color: 0x8b5cf6, height: 90, x: 100, z: -150, stat1: "99.8%", stat2: "128K", stat3: "4.8" },
+    { name: "Invoice Fortress", desc: "Fortaleza de auditoria con OCR y deteccion de fraude", icon: "📄", color: 0x22c55e, height: 100, x: 180, z: 50, stat1: "99.9%", stat2: "89K", stat3: "5.0" },
+    { name: "Meeting Sphere", desc: "Esfera de inteligencia para reuniones", icon: "🤝", color: 0xf59e0b, height: 80, x: -50, z: 150, stat1: "99.5%", stat2: "34K", stat3: "4.7" },
+    { name: "Sentiment Core", desc: "Nucleo emocional que analiza sentimientos", icon: "🎭", color: 0xec4899, height: 70, x: -200, z: 80, stat1: "99.7%", stat2: "67K", stat3: "4.9" },
+    { name: "Social Plaza", desc: "Plaza central de redes sociales", icon: "📱", color: 0x06b6d4, height: 85, x: 50, z: 120, stat1: "99.6%", stat2: "92K", stat3: "4.8" },
+    { name: "Support Hub", desc: "Hub de soporte automatizado", icon: "🎧", color: 0x84cc16, height: 75, x: 150, z: -50, stat1: "99.4%", stat2: "156K", stat3: "4.6" },
+    { name: "Code Citadel", desc: "Ciudadela de generacion de codigo", icon: "💻", color: 0xa855f7, height: 110, x: -100, z: -180, stat1: "99.8%", stat2: "23K", stat3: "4.9" },
+    { name: "Content Arena", desc: "Arena de creacion de contenido", icon: "📝", color: 0xf97316, height: 95, x: 200, z: 150, stat1: "99.7%", stat2: "78K", stat3: "4.8" },
+    { name: "Swarm Colony", desc: "Colonia de inteligencia multi-agente", icon: "🐝", color: 0xe11d48, height: 105, x: -180, z: 180, stat1: "99.6%", stat2: "41K", stat3: "4.9" },
+];
+
+// Loading
+function updateLoading(progress, text) {
+    document.getElementById('loading-fill').style.width = progress + '%';
+    document.getElementById('loading-text').textContent = text;
+}
+
+function initCity() {
+    const container = document.getElementById('canvas-container');
+    updateLoading(10, 'Inicializando motor 3D...');
+
+    // Scene
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x050510);
+    scene.fog = new THREE.FogExp2(0x050510, 0.0018);
+
+    // Camera
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 3000);
+    camera.position.set(0, 200, 400);
+
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    // Controls
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxPolarAngle = Math.PI / 2.2;
+    controls.minDistance = 100;
+    controls.maxDistance = 800;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.5;
+
+    updateLoading(25, 'Generando terreno...');
+
+    // Ground
+    const groundGeometry = new THREE.PlaneGeometry(2000, 2000);
+    const groundMaterial = new THREE.MeshStandardMaterial({
+        color: 0x0a0a1a,
+        roughness: 0.8,
+        metalness: 0.3,
+    });
+    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+    ground.rotation.x = -Math.PI / 2;
+    ground.receiveShadow = true;
+    scene.add(ground);
+
+    // Grid
+    const gridHelper = new THREE.GridHelper(2000, 100, 0x1a1a3a, 0x0d0d20);
+    scene.add(gridHelper);
+
+    updateLoading(40, 'Construyendo edificios...');
+
+    // Buildings
+    cityModules.forEach((mod, i) => {
+        createBuilding(mod, i);
+    });
+
+    updateLoading(60, 'Generando infraestructura...');
+
+    // Roads
+    createRoads();
+
+    // Vehicles
+    createVehicles();
+
+    // Drones
+    createDrones();
+
+    updateLoading(75, 'Iluminando ciudad...');
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0x404080, 0.5);
+    scene.add(ambientLight);
+
+    const moonLight = new THREE.DirectionalLight(0x4466aa, 0.8);
+    moonLight.position.set(200, 300, 100);
+    moonLight.castShadow = true;
+    moonLight.shadow.mapSize.width = 2048;
+    moonLight.shadow.mapSize.height = 2048;
+    scene.add(moonLight);
+
+    // Point lights for atmosphere
+    const colors = [0x0ea5e9, 0x8b5cf6, 0x22c55e];
+    colors.forEach((c, i) => {
+        const light = new THREE.PointLight(c, 2, 400);
+        light.position.set(Math.sin(i * 2) * 300, 100, Math.cos(i * 2) * 300);
+        scene.add(light);
+    });
+
+    updateLoading(90, 'Finalizando...');
+
+    // Stars
+    createStars();
+
+    // Raycaster
+    raycaster = new THREE.Raycaster();
+    mouse = new THREE.Vector2();
+
+    // Events
+    window.addEventListener('resize', onWindowResize);
+    renderer.domElement.addEventListener('click', onMouseClick);
+    renderer.domElement.addEventListener('mousemove', onMouseMove);
+
+    updateLoading(100, 'Bienvenido a Neural City');
+    setTimeout(() => {
+        document.getElementById('loading-screen').classList.add('hidden');
+        showNotification('Bienvenido a AIGestion Neural City! Explora los edificios.');
+    }, 1000);
+
+    animate();
+}
+
+function createBuilding(mod, index) {
+    const group = new THREE.Group();
+
+    // Main building
+    const width = 30 + Math.random() * 20;
+    const depth = 30 + Math.random() * 20;
+    const geometry = new THREE.BoxGeometry(width, mod.height, depth);
+    const material = new THREE.MeshStandardMaterial({
+        color: mod.color,
+        emissive: mod.color,
+        emissiveIntensity: 0.3,
+        roughness: 0.2,
+        metalness: 0.8,
+        transparent: true,
+        opacity: 0.9,
+    });
+    const building = new THREE.Mesh(geometry, material);
+    building.position.y = mod.height / 2;
+    building.castShadow = true;
+    building.receiveShadow = true;
+    group.add(building);
+
+    // Windows (glowing strips)
+    for (let i = 0; i < 5; i++) {
+        const winGeo = new THREE.PlaneGeometry(width * 0.8, 2);
+        const winMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.3 + Math.random() * 0.4,
+        });
+        const win = new THREE.Mesh(winGeo, winMat);
+        win.position.set(0, 20 + i * (mod.height / 6), depth / 2 + 0.1);
+        group.add(win);
+
+        // Back windows
+        const winBack = win.clone();
+        winBack.position.z = -depth / 2 - 0.1;
+        winBack.rotation.y = Math.PI;
+        group.add(winBack);
+    }
+
+    // Roof light
+    const roofGeo = new THREE.CylinderGeometry(2, 2, 15, 8);
+    const roofMat = new THREE.MeshBasicMaterial({ color: mod.color, transparent: true, opacity: 0.6 });
+    const roofLight = new THREE.Mesh(roofGeo, roofMat);
+    roofLight.position.y = mod.height + 7;
+    group.add(roofLight);
+
+    // Antenna
+    const antGeo = new THREE.CylinderGeometry(0.5, 0.5, 30, 4);
+    const antMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const antenna = new THREE.Mesh(antGeo, antMat);
+    antenna.position.y = mod.height + 15;
+    group.add(antenna);
+
+    // Beacon light
+    const beaconGeo = new THREE.SphereGeometry(1, 8, 8);
+    const beaconMat = new THREE.MeshBasicMaterial({ color: mod.color });
+    const beacon = new THREE.Mesh(beaconGeo, beaconMat);
+    beacon.position.y = mod.height + 30;
+    group.add(beacon);
+
+    // Position
+    group.position.set(mod.x, 0, mod.z);
+    group.userData = { module: mod, index: index, beacon: beacon };
+
+    scene.add(group);
+    buildings.push(group);
+
+    // Minimap dot
+    const minimap = document.getElementById('minimap');
+    const dot = document.createElement('div');
+    dot.className = 'minimap-dot';
+    dot.style.left = (50 + (mod.x / 500) * 50) + '%';
+    dot.style.top = (50 + (mod.z / 500) * 50) + '%';
+    dot.style.background = '#' + mod.color.toString(16).padStart(6, '0');
+    minimap.appendChild(dot);
+}
+
+function createRoads() {
+    const roadMat = new THREE.MeshStandardMaterial({ color: 0x1a1a3a, roughness: 0.9 });
+
+    // Main roads
+    for (let i = -400; i <= 400; i += 200) {
+        const roadGeo = new THREE.PlaneGeometry(20, 800);
+        const road = new THREE.Mesh(roadGeo, roadMat);
+        road.rotation.x = -Math.PI / 2;
+        road.position.set(i, 0.1, 0);
+        scene.add(road);
+
+        const roadGeo2 = new THREE.PlaneGeometry(800, 20);
+        const road2 = new THREE.Mesh(roadGeo2, roadMat);
+        road2.rotation.x = -Math.PI / 2;
+        road2.position.set(0, 0.1, i);
+        scene.add(road2);
+    }
+}
+
+function createVehicles() {
+    const vehicleGeo = new THREE.BoxGeometry(4, 2, 8);
+
+    for (let i = 0; i < 20; i++) {
+        const color = new THREE.Color().setHSL(Math.random(), 0.8, 0.5);
+        const mat = new THREE.MeshBasicMaterial({ color: color });
+        const vehicle = new THREE.Mesh(vehicleGeo, mat);
+
+        const road = Math.floor(Math.random() * 5) - 2;
+        vehicle.position.set(road * 200 + (Math.random() - 0.5) * 10, 1, (Math.random() - 0.5) * 800);
+        vehicle.userData = {
+            speed: 0.5 + Math.random() * 1.5,
+            direction: Math.random() > 0.5 ? 1 : -1,
+        };
+
+        scene.add(vehicle);
+        vehicles.push(vehicle);
+    }
+}
+
+function createDrones() {
+    const droneGeo = new THREE.ConeGeometry(1, 3, 4);
+    const droneMat = new THREE.MeshBasicMaterial({ color: 0x0ea5e9, transparent: true, opacity: 0.7 });
+
+    for (let i = 0; i < 15; i++) {
+        const drone = new THREE.Mesh(droneGeo, droneMat);
+        drone.position.set(
+            (Math.random() - 0.5) * 600,
+            80 + Math.random() * 100,
+            (Math.random() - 0.5) * 600
+        );
+        drone.userData = {
+            radius: 50 + Math.random() * 100,
+            speed: 0.2 + Math.random() * 0.5,
+            angle: Math.random() * Math.PI * 2,
+            centerX: drone.position.x,
+            centerZ: drone.position.z,
+        };
+        scene.add(drone);
+        drones.push(drone);
+    }
+}
+
+function createStars() {
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i = 0; i < 3000; i++) {
+        vertices.push((Math.random() - 0.5) * 3000, Math.random() * 1500 + 200, (Math.random() - 0.5) * 3000);
+    }
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    const material = new THREE.PointsMaterial({ color: 0xffffff, size: 2, transparent: true, opacity: 0.8 });
+    const stars = new THREE.Points(geometry, material);
+    scene.add(stars);
+}
+
+function onMouseMove(event) {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(buildings, true);
+
+    if (intersects.length > 0) {
+        document.body.style.cursor = 'pointer';
+    } else {
+        document.body.style.cursor = 'default';
+    }
+}
+
+function onMouseClick(event) {
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(buildings, true);
+
+    if (intersects.length > 0) {
+        let obj = intersects[0].object;
+        while (obj.parent && !obj.userData.module) {
+            obj = obj.parent;
+        }
+        if (obj.userData.module) {
+            selectBuilding(obj);
+        }
+    } else {
+        closeBuildingCard();
+    }
+}
+
+function selectBuilding(buildingGroup) {
+    selectedBuilding = buildingGroup;
+    const mod = buildingGroup.userData.module;
+
+    // Stop auto rotation
+    controls.autoRotate = false;
+
+    // Move camera to building
+    const targetPos = new THREE.Vector3(
+        buildingGroup.position.x + 80,
+        buildingGroup.position.y + 60,
+        buildingGroup.position.z + 80
+    );
+
+    animateCamera(targetPos, buildingGroup.position);
+
+    // Show card
+    document.getElementById('card-icon').textContent = mod.icon;
+    document.getElementById('card-title').textContent = mod.name;
+    document.getElementById('card-subtitle').textContent = 'AI Module #' + (buildingGroup.userData.index + 1);
+    document.getElementById('card-desc').textContent = mod.desc;
+    document.getElementById('card-stat1').textContent = mod.stat1;
+    document.getElementById('card-stat2').textContent = mod.stat2;
+    document.getElementById('card-stat3').textContent = mod.stat3;
+    document.getElementById('building-card').classList.add('active');
+
+    showNotification(mod.name + ' seleccionado');
+}
+
+function animateCamera(targetPos, lookAt) {
+    const startPos = camera.position.clone();
+    const startTime = Date.now();
+    const duration = 1500;
+
+    function update() {
+        const elapsed = Date.now() - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+
+        camera.position.lerpVectors(startPos, targetPos, ease);
+        controls.target.lerp(lookAt, ease * 0.1);
+        controls.update();
+
+        if (t < 1) requestAnimationFrame(update);
+    }
+    update();
+}
+
+function closeBuildingCard() {
+    document.getElementById('building-card').classList.remove('active');
+    controls.autoRotate = true;
+    selectedBuilding = null;
+}
+
+function activateModule() {
+    if (selectedBuilding) {
+        const mod = selectedBuilding.userData.module;
+        showNotification('Activando ' + mod.name + '...');
+        // Flash effect
+        selectedBuilding.children.forEach(child => {
+            if (child.material && child.material.emissive) {
+                const original = child.material.emissiveIntensity;
+                child.material.emissiveIntensity = 2;
+                setTimeout(() => { child.material.emissiveIntensity = original; }, 500);
+            }
+        });
+    }
+}
+
+function resetCamera() {
+    controls.autoRotate = true;
+    controls.reset();
+    camera.position.set(0, 200, 400);
+    closeBuildingCard();
+}
+
+function enterVR() {
+    if (navigator.xr) {
+        navigator.xr.requestSession('immersive-vr', { requiredFeatures: ['local-floor'] }).then(session => {
+            renderer.xr.enabled = true;
+            renderer.xr.setSession(session);
+            showNotification('Modo VR activado!');
+        }).catch(() => {
+            showNotification('VR no disponible en este dispositivo');
+        });
+    } else {
+        showNotification('WebXR no soportado');
+    }
+}
+
+function openDecentraland() {
+    window.open('https://play.decentraland.org/?position=-25%2C42', '_blank');
+}
+
+function showNotification(text) {
+    const notif = document.getElementById('notification');
+    notif.textContent = text;
+    notif.classList.add('show');
+    setTimeout(() => notif.classList.remove('show'), 3000);
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function updateCoords() {
+    const x = Math.round(camera.position.x);
+    const y = Math.round(camera.position.y);
+    const z = Math.round(camera.position.z);
+    document.getElementById('coords').textContent = `X: ${x} | Y: ${y} | Z: ${z}`;
+
+    // Update minimap player
+    const player = document.getElementById('minimap-player');
+    player.style.left = (50 + (x / 500) * 50) + '%';
+    player.style.top = (50 + (z / 500) * 50) + '%';
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    const time = clock.getElapsedTime();
+
+    // Animate vehicles
+    vehicles.forEach(v => {
+        v.position.z += v.userData.speed * v.userData.direction;
+        if (v.position.z > 400) v.position.z = -400;
+        if (v.position.z < -400) v.position.z = 400;
+    });
+
+    // Animate drones
+    drones.forEach(d => {
+        d.userData.angle += d.userData.speed * 0.01;
+        d.position.x = d.userData.centerX + Math.cos(d.userData.angle) * d.userData.radius;
+        d.position.z = d.userData.centerZ + Math.sin(d.userData.angle) * d.userData.radius;
+        d.position.y += Math.sin(time * 2 + d.userData.angle) * 0.2;
+        d.rotation.y = -d.userData.angle;
+    });
+
+    // Pulse beacons
+    buildings.forEach(b => {
+        if (b.userData.beacon) {
+            const scale = 1 + Math.sin(time * 3 + b.userData.index) * 0.3;
+            b.userData.beacon.scale.setScalar(scale);
+        }
+    });
+
+    controls.update();
+    updateCoords();
+    renderer.render(scene, camera);
+}
+
+// Initialize
+initCity();
+</script>
+</body>
+</html>

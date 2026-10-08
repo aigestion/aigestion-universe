@@ -1,0 +1,49 @@
+{
+  "fictional_character": {
+    "DANIELA": {
+      "real_module": "daniela_brain_system.py",
+      "real_role": "Primary consciousness + voice interface",
+      "gap": "No memory persistence, no metacognition",
+      "fusion_plan": "Add consciousness_layer.py that unifies all agent inputs"
+    },
+    "AGENT_CORREO": {
+      "real_module": "TO BE CREATED: agent_correo.py",
+      "real_role": "Email processing + classification + priority scoring",
+      "gap": "Does not exist in code yet",
+      "fusion_plan": "Create with Gmail API, wire to ANALYST for RAG, auto-respond with DOCUMENTOS"
+    },
+    "AGENT_CALENDARIO": {
+      "real_module": "TO BE CREATED: agent_calendario.py",
+      "real_role": "Calendar management + conflict detection + smart scheduling",
+      "gap": "calendar_events.json exists but no agent processes it",
+      "fusion_plan": "Create with Google Calendar API, wire to proactive_engine for predictions"
+    },
+    "AGENT_DOCUMENTOS": {
+      "real_module": "TO BE CREATED: agent_documentos.py",
+      "real_role": "Document generation + formatting + Google Docs sync",
+      "gap": "skills/docs_synthesizer.py exists but not connected to agents",
+      "fusion_plan": "Wire docs_synthesizer to CODER agent, add Gemini-powered drafting"
+    },
+    "AGENT_REDES": {
+      "real_module": "TO BE CREATED: agent_redes.py",
+      "real_role": "Multi-platform social media management + auto-posting",
+      "gap": "skills/social_autopilot.py only queues, doesn't publish",
+      "fusion_plan": "Add platform APIs (YouTube Data API, Twitter API, etc.) to autopilot"
+    },
+    "AGENT_VIGIA": {
+      "real_module": "TO BE CREATED: agent_vigia.py",
+      "real_role": "24/7 system monitoring + anomaly detection + alert dispatch",
+      "gap": "GUARDIAN does basic monitoring but not 24/7 or anomaly detection",
+      "fusion_plan": "Extend GUARDIAN with ML anomaly detection, wire to self_healing"
+    }
+  },
+  "swarm_roles_to_real": {
+    "RESEARCHER": "skills/agent.py (deep research) + web search",
+    "WRITER": "aigestion_brand_kit.py (tutorial/announcement templates)",
+    "REVIEWER": "skills/software_architect.py (quality scoring)",
+    "PUBLISHER": "skills/social_autopilot.py (post queue)",
+    "ANALYZER": "skills/knowledge_graph.py (pattern analysis)",
+    "CODER": "code_generation_agent.py + skills/self_healing.py",
+    "TESTER": "pytest integration (to be built)"
+  }
+}

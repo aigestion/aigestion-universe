@@ -1,0 +1,6 @@
+{
+    "Fati": {"edad": "Adulto", "intereses": "conversar", "alerta_especial": "Ninguna"},
+    "Jose": {"edad": "Adulto", "intereses": "tecnología", "alerta_especial": "Modo Serio"},
+    "Aaron": {"edad": 10, "intereses": "videojuegos", "alerta_especial": "Modo Juegos"},
+    "Abril": {"edad": 7, "intereses": "dibujos animados", "alerta_especial": "Modo Cuentos"}
+}

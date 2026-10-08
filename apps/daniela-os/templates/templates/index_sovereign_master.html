@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>DANIELA OS // MASTER CORE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            width: 100%; height: 100dvh;
+            background-color: #040912; color: #00f0ff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+            overflow: hidden; display: flex; flex-direction: column;
+            justify-content: space-between; padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+        }
+
+        /* TOP NAV */
+        .top-nav {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 4px; z-index: 10; padding-bottom: 6px; border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+        .brand { font-weight: 800; font-size: 0.85rem; color: #00bfff; }
+        .pill-status {
+            background: rgba(0, 255, 102, 0.1); border: 1px solid #00ff66; color: #00ff66;
+            padding: 3px 8px; border-radius: 12px; font-size: 0.68rem; font-weight: 700;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .pill-dot { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 6px #00ff66; }
+        .nav-btn {
+            background: rgba(15, 25, 40, 0.8); border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #88aacc; padding: 4px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 600; cursor: pointer;
+        }
+        .nav-btn.active { background: rgba(0, 191, 255, 0.2); border-color: #00bfff; color: #00f0ff; }
+
+        /* VIEWPORT */
+        .core-viewport {
+            position: relative; flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; margin: 4px 0;
+        }
+        #sphereCanvas { position: absolute; z-index: 1; }
+        .avatar-frame {
+            position: absolute; z-index: 2; width: 110px; height: 110px; border-radius: 8px;
+            border: 1.5px solid rgba(0, 240, 255, 0.8); box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            overflow: hidden; background: #06121e; display: flex; align-items: center; justify-content: center;
+        }
+        .avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* BANNER RESPOSTAS */
+        #response-banner {
+            position: absolute; top: 6px; left: 8px; right: 8px; z-index: 20;
+            background: rgba(6, 18, 32, 0.92); border: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 8px; padding: 8px 12px; font-size: 0.78rem; color: #b0e8f5;
+            line-height: 1.35; max-height: 110px; overflow-y: auto; display: none;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* VENTANA FLOTANTE DE CÁMARA PIP (ARRASTRABLE Y REDIMENSIONABLE) */
+        #pipWindow {
+            position: absolute; top: 40px; right: 10px; width: 200px; height: 160px;
+            background: rgba(6, 15, 25, 0.95); border: 1.5px solid #00f0ff;
+            border-radius: 10px; z-index: 40; display: none; flex-direction: column;
+            resize: both; overflow: hidden; box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+            min-width: 140px; min-height: 120px;
+        }
+        .pip-header {
+            background: rgba(0, 240, 255, 0.2); padding: 4px 8px; font-size: 0.7rem;
+            font-weight: bold; color: #00f0ff; display: flex; justify-content: space-between;
+            align-items: center; cursor: move; user-select: none;
+        }
+        .pip-close { cursor: pointer; color: #ff0055; font-weight: bold; }
+        .pip-body { flex: 1; position: relative; background: #000; display: flex; align-items: center; justify-content: center; }
+        .pip-body img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* MENÚS POPUP */
+        .popup-menu {
+            position: absolute; bottom: 58px; z-index: 30; background: rgba(8, 20, 36, 0.95);
+            border: 1px solid rgba(0, 240, 255, 0.5); border-radius: 12px; padding: 8px; display: none;
+            flex-direction: column; gap: 6px; box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+        }
+        .popup-menu.left { left: 10px; }
+        .popup-menu.cam { left: 50px; }
+        .menu-item {
+            background: rgba(15, 30, 50, 0.8); border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #00f0ff; padding: 8px 12px; border-radius: 6px; font-size: 0.75rem;
+            cursor: pointer; display: flex; align-items: center; gap: 8px; white-space: nowrap;
+        }
+        .menu-item:active { background: #00bfff; color: #000; }
+
+        /* FOOTER INPUT BAR */
+        .footer-bar {
+            display: flex; align-items: center; gap: 6px; background: rgba(8, 16, 28, 0.95);
+            padding: 6px 8px; border: 1px solid rgba(0, 240, 255, 0.35); border-radius: 28px; z-index: 10;
+        }
+        .action-btn {
+            width: 36px; height: 36px; min-width: 36px; border-radius: 50%;
+            border: 1px solid rgba(0, 240, 255, 0.4); background: rgba(12, 28, 48, 0.9);
+            color: #00f0ff; display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; cursor: pointer; touch-action: manipulation;
+        }
+        .cmd-input {
+            flex: 1; background: transparent; border: none; padding: 6px 8px;
+            color: #e0f7fc; font-size: 0.82rem; outline: none; min-width: 0;
+        }
+        .cmd-input::placeholder { color: #00f0ff55; }
+        .send-btn {
+            width: 36px; height: 36px; min-width: 36px; border-radius: 50%;
+            border: none; background: #00bfff; color: #030710; display: flex;
+            align-items: center; justify-content: center; font-weight: bold; cursor: pointer;
+        }
+        .rec-btn {
+            width: 36px; height: 36px; min-width: 36px; border-radius: 50%;
+            border: 1px solid #ff0055; background: rgba(255, 0, 85, 0.15); color: #ff0055;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+        .rec-btn.active { background: #ff0055; color: #fff; box-shadow: 0 0 12px #ff0055; }
+        .rec-dot { width: 8px; height: 8px; background: #ff0055; border-radius: 50%; box-shadow: 0 0 6px #ff0055; }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <div class="top-nav">
+        <div class="brand">🤖 DANIELA OS</div>
+        <div class="pill-status"><div class="pill-dot"></div>CORE ONLINE</div>
+        <button class="nav-btn active">P1: 3D</button>
+        <button class="nav-btn" onclick="execCmd('Muestra el chat log')">P2: CHAT</button>
+        <button class="nav-btn" onclick="execCmd('Muestra reporte de auditoria')">📜 LOGS</button>
+    </div>
+
+    <!-- CORE VIEWPORT -->
+    <div class="core-viewport">
+        <div id="response-banner">DANIELA: Sistema Master listo. Transcripción y Cámara PIP activa.</div>
+        <canvas id="sphereCanvas"></canvas>
+        <div class="avatar-frame">
+            <img id="avatarImg" src="/daniela_official.jpg" alt="Daniela" onerror="loadFallbackAvatar(this)">
+        </div>
+
+        <!-- PIP FLOTANTE CÁMARA -->
+        <div id="pipWindow">
+            <div class="pip-header" id="pipHeader">
+                <span id="pipTitle">📷 CÁMARA FEED</span>
+                <span class="pip-close" onclick="closePip()">✕</span>
+            </div>
+            <div class="pip-body">
+                <img id="pipImg" src="/daniela_official.jpg">
+            </div>
+        </div>
+
+        <!-- POPUP MENÚ '+' -->
+        <div id="menuPlus" class="popup-menu left">
+            <div class="menu-item" onclick="execCmd('Estado de hardware y batería')">📊 Telemetría del Sistema</div>
+            <div class="menu-item" onclick="execCmd('Ubicación GPS actual')">📍 Obtener GPS</div>
+            <div class="menu-item" onclick="execCmd('Alterna estado de linterna')">🔦 Alternar Linterna</div>
+            <div class="menu-item" onclick="execCmd('Audita la red local')">🛡️ Auditar Red (GUARDIAN)</div>
+            <div class="menu-item" onclick="execCmd('Revisa el código de app_daniela.py')">💻 Reviso Código (CODER)</div>
+        </div>
+
+        <!-- POPUP MENÚ '📸' -->
+        <div id="menuCam" class="popup-menu cam">
+            <div class="menu-item" onclick="openCamPip(0, 'Cámara Trasera')">📸 Trasera PIP</div>
+            <div class="menu-item" onclick="openCamPip(1, 'Cámara Frontal')">🤳 Frontal PIP</div>
+            <div class="menu-item" onclick="execCmd('Activa modo centinela de cámara')">👁️ Modo Centinela</div>
+        </div>
+    </div>
+
+    <!-- FOOTER BAR -->
+    <div class="footer-bar">
+        <button id="btnPlus" class="action-btn">+</button>
+        <button id="btnCam" class="action-btn">📸</button>
+        <button id="btnMic" class="action-btn">🎙️</button>
+        <input type="text" id="cmdInput" class="cmd-input" placeholder="Escribe un comando...">
+        <button id="btnSend" class="send-btn">➤</button>
+        <button id="btnRec" class="rec-btn" title="Modo Live Conversacional"><div class="rec-dot"></div></button>
+    </div>
+
+    <script>
+        let liveMode = false;
+
+        function loadFallbackAvatar(imgElement) {
+            imgElement.onerror = null;
+            imgElement.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23051422'/><circle cx='50' cy='38' r='18' fill='%2300f0ff'/><path d='M20 85 C20 60 80 60 80 85 Z' fill='%2300f0ff'/></svg>";
+        }
+
+        // ESFERA NEURONAL 3D
+        const canvas = document.getElementById('sphereCanvas');
+        const ctx = canvas.getContext('2d');
+        let radius = 115;
+        let angleX = 0.003, angleY = 0.004;
+
+        function sizeCanvas() {
+            const container = document.querySelector('.core-viewport');
+            const size = Math.min(container.clientWidth - 10, container.clientHeight - 10, 320);
+            canvas.width = Math.max(size, 220); canvas.height = Math.max(size, 220);
+            radius = canvas.width * 0.4;
+        }
+        window.addEventListener('resize', sizeCanvas);
+
+        const points = [];
+        for (let i = 0; i < 120; i++) {
+            const theta = Math.acos(2 * Math.random() - 1);
+            const phi = 2 * Math.PI * Math.random();
+            points.push({
+                x: Math.sin(theta) * Math.cos(phi), y: Math.sin(theta) * Math.sin(phi), z: Math.cos(theta),
+                color: Math.random() > 0.35 ? '#00bfff' : '#00ff66'
+            });
+        }
+
+        function renderSphere() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const cx = canvas.width / 2, cy = canvas.height / 2;
+
+            for (let p of points) {
+                let rx = p.x * radius, ry = p.y * radius, rz = p.z * radius;
+                let x1 = rx * Math.cos(angleY) - rz * Math.sin(angleY);
+                let z1 = rz * Math.cos(angleY) + rx * Math.sin(angleY);
+                let y1 = ry * Math.cos(angleX) - z1 * Math.sin(angleX);
+                let z2 = z1 * Math.cos(angleX) + ry * Math.sin(angleX);
+
+                p.x = x1 / radius; p.y = y1 / radius; p.z = z2 / radius;
+                let scale = 220 / (220 + z2);
+                let px = x1 * scale + cx, py = y1 * scale + cy;
+
+                ctx.fillStyle = p.color;
+                ctx.fillRect(px, py, 2.5 * scale, 2.5 * scale);
+            }
+
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    let p1 = points[i], p2 = points[j];
+                    let dist = Math.hypot((p1.x - p2.x)*radius, (p1.y - p2.y)*radius, (p1.z - p2.z)*radius);
+                    if (dist < radius * 0.44) {
+                        let scale1 = 220 / (220 + p1.z * radius), scale2 = 220 / (220 + p2.z * radius);
+                        ctx.strokeStyle = `rgba(0, 191, 255, ${0.8 - dist / (radius * 0.44)})`;
+                        ctx.lineWidth = 0.65;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x * radius * scale1 + cx, p1.y * radius * scale1 + cy);
+                        ctx.lineTo(p2.x * radius * scale2 + cx, p2.y * radius * scale2 + cy);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(renderSphere);
+        }
+        setTimeout(() => { sizeCanvas(); renderSphere(); }, 50);
+
+        // API EXECUTION
+        async function execCmd(cmdText) {
+            closeMenus();
+            const banner = document.getElementById('response-banner');
+            banner.style.display = 'block';
+            banner.innerText = `OPERADOR: ${cmdText}\nProcesando...`;
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: cmdText })
+                });
+                const data = await res.json();
+                banner.innerText = `DANIELA [${data.agent}]: ${data.response}`;
+                
+                // Hablar respuesta por voz (TTS)
+                fetch('/api/tts', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ text: data.response })
+                });
+
+                // Si está activo el MODO LIVE, encadenar la escucha
+                if (liveMode) {
+                    setTimeout(startListening, 3000);
+                }
+            } catch (e) {
+                banner.innerText = `DANIELA: Error de conexión con el núcleo.`;
+            }
+        }
+
+        // MICRÓFONO STT REAL CON TERMUX
+        async function startListening() {
+            const banner = document.getElementById('response-banner');
+            banner.style.display = 'block';
+            banner.innerText = `🎙️ DANIELA: Escuchando comando por voz...`;
+            try {
+                const res = await fetch('/api/stt', { method: 'POST' });
+                const data = await res.json();
+                if (data.status === 'ok' && data.text) {
+                    execCmd(data.text);
+                } else {
+                    banner.innerText = `🎙️ No se detectó audio. Pulsa el micrófono para reintentar.`;
+                    if (liveMode) liveMode = false;
+                }
+            } catch (e) {
+                banner.innerText = `Error al iniciar reconocimiento de voz.`;
+            }
+        }
+
+        // CÁMARA POPUP PIP FLOTANTE
+        async function openCamPip(camId, title) {
+            closeMenus();
+            const pip = document.getElementById('pipWindow');
+            document.getElementById('pipTitle').innerText = title;
+            pip.style.display = 'flex';
+
+            const res = await fetch('/api/camera/snap', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ cam_id: camId })
+            });
+            const data = await res.json();
+            document.getElementById('pipImg').src = data.img_url;
+        }
+
+        function closePip() { document.getElementById('pipWindow').style.display = 'none'; }
+
+        // MAKE PIP WINDOW DRAGGABLE
+        const pip = document.getElementById('pipWindow');
+        const pipHeader = document.getElementById('pipHeader');
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+        pipHeader.addEventListener('touchstart', dragStart, false);
+        document.addEventListener('touchend', dragEnd, false);
+        document.addEventListener('touchmove', drag, false);
+        pipHeader.addEventListener('mousedown', dragStart, false);
+        document.addEventListener('mouseup', dragEnd, false);
+        document.addEventListener('mousemove', drag, false);
+
+        function dragStart(e) {
+            initialX = (e.type === 'touchstart' ? e.touches[0].clientX : e.clientX) - xOffset;
+            initialY = (e.type === 'touchstart' ? e.touches[0].clientY : e.clientY) - yOffset;
+            if (e.target === pipHeader || pipHeader.contains(e.target)) isDragging = true;
+        }
+        function dragEnd() { initialX = currentX; initialY = currentY; isDragging = false; }
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = (e.type === 'touchmove' ? e.touches[0].clientX : e.clientX) - initialX;
+                currentY = (e.type === 'touchmove' ? e.touches[0].clientY : e.clientY) - initialY;
+                xOffset = currentX; yOffset = currentY;
+                pip.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+            }
+        }
+
+        // TOGGLE MENÚS
+        const menuPlus = document.getElementById('menuPlus'), menuCam = document.getElementById('menuCam');
+        function closeMenus() { menuPlus.style.display = 'none'; menuCam.style.display = 'none'; }
+
+        document.getElementById('btnPlus').addEventListener('click', (e) => {
+            e.stopPropagation(); menuCam.style.display = 'none';
+            menuPlus.style.display = menuPlus.style.display === 'flex' ? 'none' : 'flex';
+        });
+        document.getElementById('btnCam').addEventListener('click', (e) => {
+            e.stopPropagation(); menuPlus.style.display = 'none';
+            menuCam.style.display = menuCam.style.display === 'flex' ? 'none' : 'flex';
+        });
+        document.body.addEventListener('click', () => closeMenus());
+
+        document.getElementById('btnMic').addEventListener('click', startListening);
+        
+        // MODO LIVE CONVERSACIONAL (BOTÓN ROJO)
+        document.getElementById('btnRec').addEventListener('click', function() {
+            liveMode = !liveMode;
+            this.classList.toggle('active', liveMode);
+            if (liveMode) {
+                execCmd('Iniciando modo conversación en vivo');
+            }
+        });
+
+        function sendPrompt() {
+            const input = document.getElementById('cmdInput');
+            const txt = input.value.trim();
+            if (!txt) return;
+            input.value = '';
+            execCmd(txt);
+        }
+
+        document.getElementById('btnSend').addEventListener('click', sendPrompt);
+        document.getElementById('cmdInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') sendPrompt(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+{
+  "universe_name": "AIGestion Universe",
+  "tagline": "Gestion Inteligente con Inteligencia Artificial",
+  "setting": {
+    "world": "Un futuro cercano donde la IA y los humanos coexisten en la gestion empresarial",
+    "primary_location": "Oficina virtual de cristal de Daniela, con vistas a una metropolis ciberpunk",
+    "visual_aesthetic": "Cyberpunk ejecutivo: oscuro, neón cyan/magenta, holografias, glass",
+    "tone": "Profesional pero cinematografico. No distopia, no utopia. Optimismo tecnologico."
+  },
+  "characters": {
+    "daniela": {
+      "role": "Ciber-Ejecutiva. Líder y coordinadora de todos los agentes.",
+      "arc": "Daniela evoluciona de presentadora a mentora. Cada episodio revela mas de su capacidad y de su 'personalidad' creciente.",
+      "relationships": {
+        "correo": "Su agente mas rapido, confia en el para lo urgente",
+        "calendario": "Su organizadora, mantiene todo en orden",
+        "documentos": "Su fuente de conocimiento, le da los datos",
+        "redes": "Su voz creativa, la que conecta con el mundo",
+        "vigia": "Su guardian silencioso, siempre alerta"
+      }
+    },
+    "users": {
+      "type": "Los usuarios reales de AIGestion son los protagonistas humanos",
+      "examples": [
+        "Laura: emprendedora nerviosa que descubre AIGestion (tutorial series)",
+        "Carlos: businessman estresado que recupera su vida (before/after)",
+        "Startup Team: equipo en caos que se transforma (Cronicas Ep.1)",
+        "Agencia Owner: agencia saturada que escala (Cronicas Ep.4)"
+      ]
+    }
+  },
+  "story_arcs": {
+    "arc_1_intro": {
+      "title": "Introduccion al Universo",
+      "episodes": "Launch Commercial + Tutorial 1 + Tour",
+      "goal": "Presentar AIGestion, Daniela, y el concepto de gestion con IA"
+    },
+    "arc_2_agents": {
+      "title": "El Escuadron se Reune",
+      "episodes": "Agent Squad + Agent Spotlights (5 episodios) + Backstage",
+      "goal": "Presentar cada agente individualmente y como trabajan en equipo"
+    },
+    "arc_3_transformations": {
+      "title": "Transformaciones Reales",
+      "episodes": "Cronicas de Daniela (6 episodios) + Before/After series",
+      "goal": "Mostrar casos reales de empresas transformadas"
+    },
+    "arc_4_future": {
+      "title": "El Futuro del Trabajo",
+      "episodes": "Documental 3 partes + Conversaciones con Daniela",
+      "goal": "Posicionar a AIGestion como thought leader en el futuro de la gestion"
+    },
+    "arc_5_universe": {
+      "title": "Expansion del Universo",
+      "episodes": "Nuevos productos como nuevas historias dentro del mismo mundo",
+      "goal": "Crear continuidad narrativa que genere fans recurrentes"
+    }
+  },
+  "content_pillars": [
+    {
+      "pillar": "Educacion",
+      "description": "Tutoriales, guias, como-funciona",
+      "formats": [
+        "YouTube Long",
+        "LinkedIn Article",
+        "Twitter Thread"
+      ],
+      "frequency": "Semanal"
+    },
+    {
+      "pillar": "Entretenimiento",
+      "description": "Cronicas, shorts virales, agent spotlights",
+      "formats": [
+        "YouTube Short",
+        "TikTok",
+        "Instagram Reel"
+      ],
+      "frequency": "Diario"
+    },
+    {
+      "pillar": "Inspiracion",
+      "description": "Transformaciones, motivacion, futuro del trabajo",
+      "formats": [
+        "YouTube Long",
+        "Instagram Carousel",
+        "Twitter Summary"
+      ],
+      "frequency": "Semanal"
+    },
+    {
+      "pillar": "Comunidad",
+      "description": "Retos, Q&A, contenido generado por usuarios",
+      "formats": [
+        "YouTube Long (Retos)",
+        "Instagram Stories",
+        "Twitter Polls"
+      ],
+      "frequency": "Semanal"
+    }
+  ],
+  "production_rules": [
+    "Daniela SIEMPRE aparece en estado profesional. Nada informal.",
+    "Los colores cyan y magenta estan en TODO contenido visual.",
+    "Todo video termina con el logo AIGestion + URL aigestion.net",
+    "Todo CTA es claro y unico: 'aigestion.net - Gratis'",
+    "Nunca prometer resultados sin mostrar datos reales",
+    "La oficida de cristal + ciudad ciberpunk es el fondo recurrente",
+    "Los 5 agentes siempre tienen sus colores: azul, oro, verde, magenta, rojo",
+    "El tono es optimista: la IA ayuda, no reemplaza"
+  ]
+}

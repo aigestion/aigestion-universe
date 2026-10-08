@@ -1,0 +1,272 @@
+{
+  "agents": [
+    {
+      "id": "content-agent",
+      "name": "Content Agent",
+      "icon": "✍️",
+      "description": "Genera blog posts, tweets, emails, docs automáticamente",
+      "category": "marketing",
+      "persona": "marketer",
+      "schedule": "daily",
+      "skills": ["blog-writing", "social-media", "email-copy", "documentation"],
+      "triggers": {
+        "sources": ["rss", "trending", "calendar", "email"],
+        "keywords": ["content", "blog", "post", "newsletter", "update"]
+      },
+      "actions": [
+        {"name": "generate_blog_post", "description": "Genera post de blog sobre trending topic"},
+        {"name": "create_social_calendar", "description": "Crea calendario de contenido semanal"},
+        {"name": "write_email_sequence", "description": "Secuencia de emails de nurturing"},
+        {"name": "repurpose_content", "description": "Reutiliza contenido en múltiples formatos"}
+      ],
+      "output": ["markdown", "html", "json"],
+      "schedule_config": {"time": "09:00", "days": ["monday", "wednesday", "friday"]},
+      "credits_per_run": 15,
+      "free_tier": true,
+      "rating": 4.8,
+      "installs": 1250
+    },
+    {
+      "id": "seo-agent",
+      "name": "SEO Agent",
+      "icon": "🔍",
+      "description": "Analiza sitio web, sugiere mejoras, genera meta tags",
+      "category": "marketing",
+      "persona": "analyst",
+      "schedule": "weekly",
+      "skills": ["keyword-research", "on-page-seo", "technical-seo", "competitor-analysis"],
+      "triggers": {
+        "sources": ["website", "analytics", "search-console"],
+        "keywords": ["seo", "ranking", "keywords", "traffic", "backlinks"]
+      },
+      "actions": [
+        {"name": "audit_website", "description": "Auditoría completa de SEO"},
+        {"name": "generate_meta_tags", "description": "Genera title, description, keywords"},
+        {"name": "analyze_competitors", "description": "Analiza SEO de competidores"},
+        {"name": "suggest_improvements", "description": "Sugerencias de mejora priorizadas"}
+      ],
+      "output": ["report", "json", "html"],
+      "schedule_config": {"time": "08:00", "days": ["monday"]},
+      "credits_per_run": 20,
+      "free_tier": true,
+      "rating": 4.6,
+      "installs": 890
+    },
+    {
+      "id": "support-agent",
+      "name": "Support Agent",
+      "icon": "🎧",
+      "description": "Responde tickets, clasifica urgencia, escala humanos",
+      "category": "customer",
+      "persona": "support",
+      "schedule": "continuous",
+      "skills": ["ticket-triage", "auto-response", "escalation", "satisfaction"],
+      "triggers": {
+        "sources": ["zendesk", "intercom", "email", "chat"],
+        "keywords": ["help", "support", "issue", "bug", "problem", "urgent"]
+      },
+      "actions": [
+        {"name": "classify_ticket", "description": "Clasifica ticket por urgencia y categoría"},
+        {"name": "auto_respond", "description": "Respuesta automática para FAQ"},
+        {"name": "escalate_to_human", "description": "Escala a humano si es necesario"},
+        {"name": "send_satisfaction_survey", "description": "Encuesta post-resolución"}
+      ],
+      "output": ["ticket-update", "response", "escalation"],
+      "schedule_config": {"time": "00:00", "days": ["*"]},
+      "credits_per_run": 5,
+      "free_tier": true,
+      "rating": 4.9,
+      "installs": 2100
+    },
+    {
+      "id": "research-agent",
+      "name": "Research Agent",
+      "icon": "🔬",
+      "description": "Busca información, resume papers, crea reportes",
+      "category": "productivity",
+      "persona": "analyst",
+      "schedule": "on-demand",
+      "skills": ["web-search", "paper-summarization", "report-generation", "fact-checking"],
+      "triggers": {
+        "sources": ["browser", "pdf", "academic", "news"],
+        "keywords": ["research", "investigate", "find", "summarize", "report"]
+      },
+      "actions": [
+        {"name": "deep_research", "description": "Investigación profunda sobre un tema"},
+        {"name": "summarize_paper", "description": "Resume paper académico"},
+        {"name": "fact_check", "description": "Verifica información"},
+        {"name": "generate_report", "description": "Genera reporte ejecutivo"}
+      ],
+      "output": ["report", "summary", "citations"],
+      "schedule_config": null,
+      "credits_per_run": 25,
+      "free_tier": true,
+      "rating": 4.7,
+      "installs": 1500
+    },
+    {
+      "id": "code-agent",
+      "name": "Code Agent",
+      "icon": "💻",
+      "description": "Revisa PRs, sugiere fixes, genera tests",
+      "category": "development",
+      "persona": "developer",
+      "schedule": "continuous",
+      "skills": ["code-review", "bug-detection", "test-generation", "refactoring"],
+      "triggers": {
+        "sources": ["github", "gitlab", "bitbucket"],
+        "keywords": ["pr", "review", "commit", "merge", "bug", "test"]
+      },
+      "actions": [
+        {"name": "review_pr", "description": "Revisa PR y sugiere mejoras"},
+        {"name": "detect_bugs", "description": "Detecta bugs potenciales"},
+        {"name": "generate_tests", "description": "Genera tests unitarios"},
+        {"name": "suggest_refactor", "description": "Sugiere refactorizaciones"}
+      ],
+      "output": ["review", "suggestions", "tests"],
+      "schedule_config": null,
+      "credits_per_run": 10,
+      "free_tier": true,
+      "rating": 4.8,
+      "installs": 3200
+    },
+    {
+      "id": "finance-agent",
+      "name": "Finance Agent",
+      "icon": "💰",
+      "description": "Categoriza gastos, genera facturas, predice cashflow",
+      "category": "business",
+      "persona": "finance",
+      "schedule": "daily",
+      "skills": ["expense-categorization", "invoice-generation", "cashflow-forecast", "budget-tracking"],
+      "triggers": {
+        "sources": ["stripe", "paypal", "bank", "email"],
+        "keywords": ["invoice", "payment", "expense", "budget", "revenue"]
+      },
+      "actions": [
+        {"name": "categorize_expenses", "description": "Categoriza gastos del día"},
+        {"name": "generate_invoice", "description": "Genera factura automática"},
+        {"name": "forecast_cashflow", "description": "Predicción de cashflow 30 días"},
+        {"name": "budget_alert", "description": "Alerta si excedes presupuesto"}
+      ],
+      "output": ["invoice", "report", "alert"],
+      "schedule_config": {"time": "18:00", "days": ["monday", "tuesday", "wednesday", "thursday", "friday"]},
+      "credits_per_run": 10,
+      "free_tier": true,
+      "rating": 4.5,
+      "installs": 980
+    },
+    {
+      "id": "social-agent",
+      "name": "Social Agent",
+      "icon": "📱",
+      "description": "Programa posts, analiza engagement, responde DMs",
+      "category": "marketing",
+      "persona": "marketer",
+      "schedule": "continuous",
+      "skills": ["post-scheduling", "engagement-analysis", "dm-response", "trend-tracking"],
+      "triggers": {
+        "sources": ["twitter", "instagram", "linkedin", "tiktok"],
+        "keywords": ["social", "post", "engagement", "followers", "trending"]
+      },
+      "actions": [
+        {"name": "schedule_post", "description": "Programa post en mejor horario"},
+        {"name": "analyze_engagement", "description": "Analiza métricas de engagement"},
+        {"name": "respond_dm", "description": "Responde DMs con tono apropiado"},
+        {"name": "track_trends", "description": "Tracking de trends relevantes"}
+      ],
+      "output": ["post", "analytics", "response"],
+      "schedule_config": {"time": "09:00", "days": ["*"]},
+      "credits_per_run": 8,
+      "free_tier": true,
+      "rating": 4.6,
+      "installs": 1800
+    },
+    {
+      "id": "data-agent",
+      "name": "Data Agent",
+      "icon": "📊",
+      "description": "Limpia datos, genera dashboards, detecta anomalías",
+      "category": "analytics",
+      "persona": "analyst",
+      "schedule": "daily",
+      "skills": ["data-cleaning", "dashboard-generation", "anomaly-detection", "reporting"],
+      "triggers": {
+        "sources": ["database", "csv", "api", "excel"],
+        "keywords": ["data", "clean", "analyze", "dashboard", "report"]
+      },
+      "actions": [
+        {"name": "clean_data", "description": "Limpia y normaliza datos"},
+        {"name": "generate_dashboard", "description": "Genera dashboard automático"},
+        {"name": "detect_anomalies", "description": "Detecta anomalías en datos"},
+        {"name": "generate_report", "description": "Reporte ejecutivo con insights"}
+      ],
+      "output": ["dashboard", "report", "clean-data"],
+      "schedule_config": {"time": "07:00", "days": ["monday", "friday"]},
+      "credits_per_run": 15,
+      "free_tier": true,
+      "rating": 4.7,
+      "installs": 1100
+    },
+    {
+      "id": "email-agent",
+      "name": "Email Agent",
+      "icon": "📧",
+      "description": "Clasifica inbox, redacta respuestas, programa follow-ups",
+      "category": "productivity",
+      "persona": "ceo",
+      "schedule": "continuous",
+      "skills": ["email-triage", "draft-response", "follow-up", "newsletter"],
+      "triggers": {
+        "sources": ["gmail", "outlook", "email"],
+        "keywords": ["email", "inbox", "reply", "follow-up", "newsletter"]
+      },
+      "actions": [
+        {"name": "triage_inbox", "description": "Clasifica emails por prioridad"},
+        {"name": "draft_response", "description": "Redacta respuesta sugerida"},
+        {"name": "schedule_followup", "description": "Programa follow-up automático"},
+        {"name": "generate_newsletter", "description": "Genera newsletter semanal"}
+      ],
+      "output": ["email-draft", "classification", "schedule"],
+      "schedule_config": {"time": "08:00", "days": ["*"]},
+      "credits_per_run": 5,
+      "free_tier": true,
+      "rating": 4.9,
+      "installs": 4500
+    },
+    {
+      "id": "automation-agent",
+      "name": "Automation Agent",
+      "icon": "⚡",
+      "description": "Detecta tareas repetitivas, crea workflows, optimiza procesos",
+      "category": "productivity",
+      "persona": "developer",
+      "schedule": "weekly",
+      "skills": ["task-detection", "workflow-creation", "process-optimization", "integration"],
+      "triggers": {
+        "sources": ["calendar", "tasks", "email", "slack"],
+        "keywords": ["automate", "workflow", "process", "repetitive", "optimize"]
+      },
+      "actions": [
+        {"name": "detect_repetitive", "description": "Detecta tareas repetitivas"},
+        {"name": "create_workflow", "description": "Crea workflow automatizado"},
+        {"name": "optimize_process", "description": "Optimiza procesos existentes"},
+        {"name": "integrate_tools", "description": "Integra herramientas disparate"}
+      ],
+      "output": ["workflow", "optimization", "integration"],
+      "schedule_config": {"time": "10:00", "days": ["friday"]},
+      "credits_per_run": 20,
+      "free_tier": true,
+      "rating": 4.4,
+      "installs": 750
+    }
+  ],
+  "categories": [
+    {"id": "marketing", "name": "Marketing", "icon": "🎯"},
+    {"id": "customer", "name": "Customer Support", "icon": "🎧"},
+    {"id": "productivity", "name": "Productividad", "icon": "⚡"},
+    {"id": "development", "name": "Desarrollo", "icon": "💻"},
+    {"id": "business", "name": "Negocios", "icon": "💼"},
+    {"id": "analytics", "name": "Analytics", "icon": "📊"}
+  ]
+}

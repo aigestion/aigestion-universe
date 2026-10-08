@@ -1,0 +1,5 @@
+name: Audit & Sync Termux Swarm
+description: Valida conectividad con el backend Flask en Termux e indexa cambios
+steps:
+  - run: Test-NetConnection -ComputerName 192.168.1.133 -Port 5059 | Select-Object ComputerName, RemotePort, TcpTestSucceeded
+  - run: git status --short

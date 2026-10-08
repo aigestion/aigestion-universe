@@ -1,0 +1,42 @@
+[
+  {
+    "ts": "2026-09-11 20:54:03",
+    "backend": "ollama",
+    "modelo": "daniela-local",
+    "ms": 33378,
+    "ok": true,
+    "prompt": "Responde exactamente: Hola",
+    "respuesta": "Hola\n",
+    "nota": ""
+  },
+  {
+    "ts": "2026-09-11 20:54:44",
+    "backend": "ollama",
+    "modelo": "daniela-local",
+    "ms": 24251,
+    "ok": true,
+    "prompt": "Di solo: OK",
+    "respuesta": "OK\n",
+    "nota": ""
+  },
+  {
+    "ts": "2026-09-11 20:54:46",
+    "backend": "ollama",
+    "modelo": "daniela-local",
+    "ms": 2332,
+    "ok": true,
+    "prompt": "Di solo: OK",
+    "respuesta": "OK\n",
+    "nota": ""
+  },
+  {
+    "ts": "2026-09-11 20:54:49",
+    "backend": "ollama",
+    "modelo": "daniela-local",
+    "ms": 2510,
+    "ok": true,
+    "prompt": "Di solo: OK",
+    "respuesta": "OK\n",
+    "nota": ""
+  }
+]

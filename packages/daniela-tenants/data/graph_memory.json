@@ -1,0 +1,109 @@
+{
+  "nodes": [
+    {
+      "id": "Daniela_OS",
+      "type": "Core"
+    },
+    {
+      "id": "Pixel_Termux",
+      "type": "Host"
+    },
+    {
+      "id": "server-ai",
+      "type": "RemoteNode"
+    },
+    {
+      "id": "parte_de",
+      "type": "Entity"
+    },
+    {
+      "id": "monorepo/core",
+      "type": "Entity"
+    },
+    {
+      "id": "contiene",
+      "type": "Entity"
+    },
+    {
+      "id": "monorepo/scripts",
+      "type": "Entity"
+    },
+    {
+      "id": "monorepo/data",
+      "type": "Entity"
+    },
+    {
+      "id": "skills_engine",
+      "type": "Entity"
+    },
+    {
+      "id": "depende_de",
+      "type": "Entity"
+    },
+    {
+      "id": "git_ai_hooks",
+      "type": "Entity"
+    },
+    {
+      "id": "consulta_a",
+      "type": "Entity"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Daniela_OS",
+      "target": "Pixel_Termux",
+      "relation": "runs_on"
+    },
+    {
+      "source": "Daniela_OS",
+      "target": "server-ai",
+      "relation": "delegates_to"
+    },
+    {
+      "source": "Daniela_OS",
+      "target": "parte_de",
+      "relation": "Proyecto_IA_Soberana"
+    },
+    {
+      "source": "Daniela_OS",
+      "target": "parte_de",
+      "relation": "Proyecto_IA_Soberana"
+    },
+    {
+      "source": "monorepo/core",
+      "target": "contiene",
+      "relation": "skills_engine"
+    },
+    {
+      "source": "monorepo/scripts",
+      "target": "contiene",
+      "relation": "git_ai_hooks"
+    },
+    {
+      "source": "monorepo/data",
+      "target": "contiene",
+      "relation": "graph_memory"
+    },
+    {
+      "source": "skills_engine",
+      "target": "depende_de",
+      "relation": "local_llm"
+    },
+    {
+      "source": "skills_engine",
+      "target": "depende_de",
+      "relation": "event_pipeline"
+    },
+    {
+      "source": "skills_engine",
+      "target": "depende_de",
+      "relation": "knowledge_graph"
+    },
+    {
+      "source": "git_ai_hooks",
+      "target": "consulta_a",
+      "relation": "local_llm"
+    }
+  ]
+}

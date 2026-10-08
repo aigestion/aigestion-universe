@@ -1,0 +1,31 @@
+{
+  "tools_reviewed": 5,
+  "total_epic_ideas": 25,
+  "total_fusion_ideas": 5,
+  "ideas_by_tool": {
+    "jules": 4,
+    "antigravity": 4,
+    "ai_studio": 5,
+    "chrome": 7,
+    "gemini": 5
+  },
+  "ideas_by_target": {
+    "aigestion": 12,
+    "danielaos": 10,
+    "both": 3
+  },
+  "ideas_by_priority": {
+    "critical": 7,
+    "high": 10,
+    "medium": 8,
+    "low": 0
+  },
+  "ideas_by_effort": {
+    "S": 10,
+    "M": 9,
+    "L": 5,
+    "XL": 1
+  },
+  "roadmap_phases": 5,
+  "roadmap_weeks_total": 19
+}

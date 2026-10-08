@@ -1,0 +1,357 @@
+[
+  {
+    "id": "flow_launch_commercial",
+    "title": "AIGestion: El Futuro de la Gestion Empresarial",
+    "style": "Cinematic Photorealistic",
+    "story_text": "In a dark, chaotic office at night, a stressed executive sits\nsurrounded by piles of paper, dozens of browser tabs, and a phone\nthat won't stop buzzing with notifications. The clock on the wall\nspins faster and faster. Coffee cups stack up. The executive rubs\nhis temples in frustration.\n\nSuddenly, the room goes dark. A beam of cyan light cuts through\nthe darkness. The executive looks up. Through the glass wall,\na neon cyberpunk metropolis glows in the distance.\n\nDaniela appears, walking calmly through a holographic doorway.\nShe wears a sleek dark suit with glowing cyan and magenta accents.\nHolographic dashboard panels materialize around her, showing\nreal-time data, automated task flows, and green success indicators.\n\nShe speaks directly to the executive: \"You're losing 3 hours every\nday to tasks I can handle in 30 seconds.\"\n\nShe gestures, and the chaos around the desk transforms. Papers\ndigitize and organize themselves. Browser tabs consolidate into\na single clean dashboard. Notifications sort by priority and\nauto-respond. The clock slows to a calm, steady pace.\n\nDaniela smiles. \"I'm Daniela, your Ciber-Ejecutiva. This is\nAIGestion.\"\n\nThe scene pulls back to reveal the AIGestion logo glowing in\nneon cyan and magenta. The tagline appears: \"Gestion Inteligente\ncon Inteligencia Artificial.\" A URL appears: aigestion.net\n",
+    "cast": [
+      "Daniela",
+      "Stressed Executive"
+    ],
+    "locations": [
+      "Chaotic Office (dark, messy)",
+      "AIGestion Glass Office (neon, clean)"
+    ],
+    "props": [
+      "Piles of paper",
+      "Phone with notifications",
+      "Coffee cups",
+      "Holographic dashboards",
+      "AIGestion logo"
+    ],
+    "veo_prompts": [
+      {
+        "scene": 1,
+        "description": "Chaotic office at night",
+        "prompt": "Wide shot of a messy office at night. An executive sits at a desk buried under piles of paper. Dozens of browser windows glow on multiple monitors. A phone buzzes with notifications. Coffee cups stack up. The clock on the wall spins rapidly. Dark, oppressive lighting. Camera: slow dolly in toward the stressed executive. Mood: chaotic, stressful, overwhelming.",
+        "duration": "8s",
+        "audio": "Phone buzzing, keyboard clacking, clock ticking fast"
+      },
+      {
+        "scene": 2,
+        "description": "Darkness and light beam",
+        "prompt": "The office goes completely dark. A beam of cyan neon light cuts through the darkness from the glass wall. Through the window, a neon cyberpunk metropolis is visible at night. Camera: low angle looking up at the light beam. Mood: mysterious, transitional, hopeful.",
+        "duration": "6s",
+        "audio": "Silence, then a low electronic hum building"
+      },
+      {
+        "scene": 3,
+        "description": "Daniela enters",
+        "prompt": "@Daniela walks calmly through a holographic doorway made of cyan light. She wears her dark suit with neon cyan and magenta accents. Holographic dashboard panels materialize around her showing data graphs. Camera: medium tracking shot following her entrance. Mood: confident, powerful, futuristic.",
+        "duration": "8s",
+        "audio": "Electronic crescendo, confident footsteps"
+      },
+      {
+        "scene": 4,
+        "description": "Daniela speaks to executive",
+        "prompt": "@Daniela stands in front of the stressed executive. She looks directly at him with a confident, subtle smile. Holographic panels float between them. The executive looks up in amazement. Camera: over-the-shoulder shot from executive's perspective. Mood: authoritative, reassuring, transformative.",
+        "duration": "6s",
+        "audio": "Daniela speaks: 'You're losing 3 hours every day to tasks I can handle in 30 seconds.'"
+      },
+      {
+        "scene": 5,
+        "description": "Transformation sequence",
+        "prompt": "@Daniela gestures with her hand. Papers on the desk digitize and fly into a clean dashboard. Browser tabs consolidate into one screen. Notifications sort by priority and auto-respond with check marks. The clock on the wall slows to a calm pace. Camera: sweeping 180-degree shot around the desk. Mood: magical, satisfying, organized.",
+        "duration": "8s",
+        "audio": "Digital transformation sounds, soft electronic music, chimes"
+      },
+      {
+        "scene": 6,
+        "description": "Daniela introduces AIGestion",
+        "prompt": "@Daniela stands in her glass office with the neon city behind her. She smiles confidently. The AIGestion logo glows in cyan and magenta behind her. Holographic text appears: 'Gestion Inteligente con IA'. Camera: slow pull back to wide shot. Mood: epic, conclusive, call-to-action.",
+        "duration": "6s",
+        "audio": "Daniela speaks: 'I'm Daniela, your Ciber-Ejecutiva. This is AIGestion.' Epic final chord."
+      }
+    ],
+    "nano_banana_prompts": [
+      {
+        "purpose": "Storyboard panel - chaotic office",
+        "prompt": "Wide shot of a messy dark office at night. Stressed executive at desk buried in paper. Multiple monitors with browser tabs. Phone buzzing. Coffee cups stacked. Clock spinning. Oppressive dim lighting. Photorealistic, cinematic."
+      },
+      {
+        "purpose": "Storyboard panel - Daniela entrance",
+        "prompt": "A woman in a dark futuristic suit with neon cyan and magenta accents walks through a doorway of cyan holographic light. Glass office with cyberpunk city visible. Holographic dashboard panels float around her. Photorealistic, 8K, Blade Runner aesthetic."
+      },
+      {
+        "purpose": "Storyboard panel - transformation",
+        "prompt": "Desk transformation scene. Papers digitizing into floating data streams. Browser tabs consolidating into one clean holographic dashboard. Green check marks appearing on notifications. Clock slowing down. Cyan and magenta neon glow. Photorealistic."
+      },
+      {
+        "purpose": "Storyboard panel - final logo",
+        "prompt": "Woman in futuristic dark suit standing confidently in glass office with neon cyberpunk city behind her. A glowing hexagonal logo with circuit patterns in cyan and magenta floats behind her. Holographic text reads 'AIGestion'. Epic lighting. Photorealistic, 8K."
+      }
+    ],
+    "notes": "WORKFLOW: 1) Open Google Flow > New Project. 2) Tools > Storyboard Studio > Get Started. 3) Select style: 'Cinematic Photorealistic'. 4) Paste the story_text above into the script editor. 5) Let AI auto-detect cast, locations, props. 6) Click Autofill Details for asset descriptions. 7) For each panel, use the veo_prompts in Veo 3.1. 8) Use nano_banana_prompts for storyboard panel images. 9) Lock @Daniela, @AIGestion Office, @Dashboard as ingredients. 10) Export as JSON when done."
+  },
+  {
+    "id": "flow_daniela_day_in_life",
+    "title": "Un Dia con Daniela: Como la IA Gestion tu Empresa 24/7",
+    "style": "3D Animated",
+    "story_text": "Morning breaks over the neon cyberpunk metropolis. Inside\nher glass office, Daniela is already working. She doesn't sleep.\nShe doesn't need coffee. She is always on.\n\nAt 6:00 AM, Daniela scans 47 overnight emails. She classifies\neach one: 12 urgent (flagged red), 25 routine (auto-responded\nwith green check marks), 10 spam (deleted). The executive's\ninbox is clean before he even wakes up.\n\nAt 7:00 AM, Daniela checks the calendar. She spots a scheduling\nconflict: two meetings booked at 10 AM. She reschedules one,\nsends polite notifications to all participants, and prepares\na briefing document for the 10 AM meeting that's still on.\n\nAt 9:00 AM, Daniela generates a weekly sales report. She pulls\ndata from 5 sources, creates 3 charts, writes an executive\nsummary, saves it to Google Drive, and posts it to the team\ndashboard. The report is ready before anyone asks for it.\n\nAt 12:00 PM, Daniela monitors social media. She drafts 3 tweets,\n2 LinkedIn posts, and an Instagram caption. All scheduled for\noptimal posting times. Engagement metrics from yesterday's\nposts are tracked and analyzed.\n\nAt 3:00 PM, Daniela detects an anomaly: server response time\nspiked by 200%. She alerts the team, creates a ticket, and\npulls diagnostic logs. The issue is resolved before customers\neven notice.\n\nAt 6:00 PM, Daniela prepares tomorrow's briefing: weather,\ncalendar, priorities, news digest, and a motivational quote.\nShe sends it to the executive's phone. The day is done.\nBut Daniela never sleeps. She'll be ready again at 6 AM.\n",
+    "cast": [
+      "Daniela"
+    ],
+    "locations": [
+      "AIGestion Glass Office (dawn to dusk lighting changes)"
+    ],
+    "props": [
+      "Holographic email interface",
+      "Calendar with scheduling conflict",
+      "Sales report with charts",
+      "Social media dashboard",
+      "Server alert panel",
+      "Daily briefing on phone"
+    ],
+    "veo_prompts": [
+      {
+        "scene": 1,
+        "description": "Dawn over the city",
+        "prompt": "Time-lapse of a neon cyberpunk metropolis at dawn. The sun rises behind skyscrapers with holographic billboards. Camera: aerial wide shot slowly descending toward a glass office tower. Mood: serene, beginning, anticipation.",
+        "duration": "6s",
+        "audio": "Soft ambient electronic music, distant city sounds"
+      },
+      {
+        "scene": 2,
+        "description": "Daniela scanning emails at 6AM",
+        "prompt": "@Daniela stands at her glass desk in the office. Holographic email panels float in front of her. Emails fly past rapidly: red flags for urgent, green checks for auto-responded, trash icon for spam. 47 emails processed in seconds. Camera: side tracking shot. Mood: efficient, precise, effortless.",
+        "duration": "8s",
+        "audio": "Soft digital processing sounds, notification chimes"
+      },
+      {
+        "scene": 3,
+        "description": "Calendar conflict resolution at 7AM",
+        "prompt": "@Daniela gestures at a holographic calendar. Two meetings overlap at 10 AM, highlighted in red. She drags one meeting to a new slot. Polite notification messages fly out automatically. A briefing document materializes for the remaining meeting. Camera: over-shoulder looking at calendar. Mood: organized, proactive.",
+        "duration": "8s",
+        "audio": "Calendar scheduling sounds, message send chimes"
+      },
+      {
+        "scene": 4,
+        "description": "Sales report generation at 9AM",
+        "prompt": "@Daniela pulls data from 5 floating source panels. Data streams merge into a single holographic report with 3 animated charts. The report compiles, saves to a Drive icon, and posts to a team dashboard. Everything happens automatically. Camera: wide shot of the full desk with all panels active. Mood: powerful, comprehensive, satisfying.",
+        "duration": "8s",
+        "audio": "Data processing sounds, chart building, save confirmation"
+      },
+      {
+        "scene": 5,
+        "description": "Social media management at 12PM",
+        "prompt": "@Daniela drafts social media content. Three tweet cards, two LinkedIn posts, and an Instagram caption float in front of her. A scheduling timeline shows optimal posting times highlighted. Engagement metrics from yesterday appear as small bar charts. Camera: medium shot, dynamic composition. Mood: creative, strategic.",
+        "duration": "6s",
+        "audio": "Light typing sounds, social media notification sounds"
+      },
+      {
+        "scene": 6,
+        "description": "Server anomaly at 3PM",
+        "prompt": "@Daniela's dashboard flashes red. A server response graph spikes 200%. Alert notifications fly out. A diagnostic log panel appears. The spike graph flattens back to normal. Green check mark appears. Camera: fast zoom into the alert, then pull back to calm. Mood: tense then resolved, protective.",
+        "duration": "8s",
+        "audio": "Alert sound, rapid processing, resolution chime"
+      },
+      {
+        "scene": 7,
+        "description": "Daily briefing and night",
+        "prompt": "@Daniela sends a holographic briefing card to a phone screen. The card contains: weather, calendar, priorities, news, quote. The office lights dim to a soft cyan glow. The city glows outside. @Daniela stands calmly, ready for tomorrow. Camera: slow pull back to wide, fade to the city skyline. Mood: peaceful, complete, ever-present.",
+        "duration": "8s",
+        "audio": "Soft send chime, ambient night sounds, gentle electronic fade"
+      }
+    ],
+    "nano_banana_prompts": [],
+    "notes": "This script is perfect for Storyboard Studio's auto-scene detection. The time stamps (6AM, 7AM, 9AM, etc.) will be detected as scene breaks. Use '3D Animated' style in Storyboard Studio. Lock @Daniela as the only character ingredient. Use @Dashboard and @AIGestion Office as location and prop ingredients."
+  },
+  {
+    "id": "flow_before_after",
+    "title": "Antes vs Despues: La Transformacion AIGestion",
+    "style": "Cinematic Photorealistic",
+    "story_text": "BEFORE: A businessman named Carlos sits in his office at 7 PM,\nexhausted. His desk is chaos. 50 unread emails. A calendar\ndouble-booked. Three reports due tomorrow. His phone shows\n47 missed calls. He hasn't seen his family before 8 PM in weeks.\nThe clock on the wall seems to mock him.\n\nA split screen appears. LEFT side: Carlos's chaotic present.\nRIGHT side: empty, dark, waiting.\n\nDaniela steps into the RIGHT side of the screen. She activates\nthe AIGestion dashboard. Holographic panels light up. The right\nside transforms into a clean, organized, neon-lit workspace.\n\nNow both sides run simultaneously in fast-forward:\n\nLEFT (BEFORE): Carlos manually opens each email, reads, types\na response, sends. 50 emails take 2 hours. He's still at his\ndesk at 9 PM.\n\nRIGHT (AFTER): Daniela processes 50 emails in 30 seconds.\nRed flags for 5 urgent ones. Green checks for 40 auto-responded.\nTrash for 5 spam. Done. Carlos leaves at 6 PM.\n\nLEFT: Carlos manually creates a report. Opens Excel, copies data,\nformats, writes summary, exports PDF, emails it. 90 minutes.\n\nRIGHT: Daniela pulls data from 5 sources, generates charts,\nwrites summary, saves to Drive, posts to dashboard. 30 seconds.\n\nLEFT: Carlos misses his daughter's school play. He's at the office.\n\nRIGHT: Carlos is in the front row of the school play, phone\nin pocket. Daniela handles everything.\n\nThe split screen merges. Carlos stands with Daniela in the\nAIGestion office. He looks relieved. Grateful. Free.\n\nDaniela: \"30 hours a week. That's what you get back.\"\n\nLogo. Tagline. URL.\n",
+    "cast": [
+      "Daniela",
+      "Carlos (stressed businessman)"
+    ],
+    "locations": [
+      "BEFORE: Chaotic office (dim, messy)",
+      "AFTER: AIGestion office (neon, clean)",
+      "School auditorium"
+    ],
+    "props": [
+      "Email inbox (50 unread)",
+      "Calendar (double-booked)",
+      "Excel report",
+      "Phone with missed calls",
+      "Holographic dashboards",
+      "School play stage"
+    ],
+    "veo_prompts": [
+      {
+        "scene": 1,
+        "description": "BEFORE - Carlos exhausted",
+        "prompt": "A businessman sits exhausted at a messy desk at 7 PM. 50 unread emails on screen. Calendar double-booked. Phone showing 47 missed calls. Three reports stacked. Dim overhead lighting. Clock on wall. Camera: static wide shot, slightly high angle. Mood: exhausted, trapped, hopeless.",
+        "duration": "8s",
+        "audio": "Ticking clock, phone buzz, heavy sigh"
+      },
+      {
+        "scene": 2,
+        "description": "Split screen introduction",
+        "prompt": "Screen splits vertically. LEFT: the chaotic office with Carlos. RIGHT: empty dark space. A vertical neon line separates them. Camera: static split screen. Mood: anticipatory, about to change.",
+        "duration": "4s",
+        "audio": "A low hum, building tension"
+      },
+      {
+        "scene": 3,
+        "description": "Daniela activates the RIGHT side",
+        "prompt": "@Daniela steps into the RIGHT side of the split screen. She touches the air and holographic dashboard panels light up around her. The dark space transforms into a clean neon-lit office. Camera: medium shot on Daniela, dynamic lighting change. Mood: transformative, powerful, hopeful.",
+        "duration": "8s",
+        "audio": "Activation sound, electronic build-up, confident footsteps"
+      },
+      {
+        "scene": 4,
+        "description": "Email comparison - fast forward",
+        "prompt": "Split screen, fast-forward effect. LEFT: Carlos manually opening emails one by one, typing responses, clock shows 2 hours passing. RIGHT: @Daniela processes 50 emails in seconds. Red flags, green checks, trash icons fly past. Done in 30 seconds. Camera: split screen, time-lapse effect on both sides. Mood: dramatic contrast, satisfying.",
+        "duration": "8s",
+        "audio": "Fast-forward sounds on left, rapid processing on right"
+      },
+      {
+        "scene": 5,
+        "description": "Report comparison",
+        "prompt": "Split screen continues. LEFT: Carlos in Excel, manually copying data, formatting, slow tedious work. RIGHT: @Daniela pulls 5 data streams, charts auto-generate, report compiles instantly, saves to Drive. Camera: split screen, zoom on details. Mood: stark contrast, revelation.",
+        "duration": "8s",
+        "audio": "Keyboard typing on left, data processing sounds on right"
+      },
+      {
+        "scene": 6,
+        "description": "School play - emotional payoff",
+        "prompt": "LEFT: Carlos at his desk at night, phone shows a photo of his daughter on stage. He missed it. RIGHT: Carlos sits in the front row of a school auditorium, watching his daughter perform. He smiles. Phone in pocket. Camera: emotional close-up on both faces. Mood: heartbreaking left, heartwarming right.",
+        "duration": "8s",
+        "audio": "Silence on left, children's play music on right"
+      },
+      {
+        "scene": 7,
+        "description": "Merge and conclusion",
+        "prompt": "The split screen merges into one. Carlos stands with @Daniela in the AIGestion glass office. He looks relieved, grateful, free. @Daniela smiles. The AIGestion logo glows behind them. Camera: slow pull back to wide. Mood: resolution, freedom, epic.",
+        "duration": "6s",
+        "audio": "Daniela: '30 hours a week. That's what you get back.' Epic music."
+      }
+    ],
+    "nano_banana_prompts": [],
+    "notes": "SPLIT SCREEN TECHNIQUE: Use Veo 3.1 to generate LEFT and RIGHT clips separately, then composite in the Scenebuilder timeline. The contrast between dim/messy and neon/clean is the key visual driver. Emotional peak is Scene 6 (school play). Best for YouTube long-form (5 min version) or condensed Short (60s)."
+  },
+  {
+    "id": "flow_agent_squad",
+    "title": "El Escuadron: 5 Agentes IA que Trabajan por Ti",
+    "style": "3D Animated",
+    "story_text": "Deep inside the AIGestion system, five AI agents power up\nin sequence, like a team assembling for a mission.\n\nAgent 1: CORREO. A sleek figure made of blue light. He processes\nemail flows at superhuman speed. 50 emails in 30 seconds.\nClassification, response, archiving. Done.\n\nAgent 2: CALENDARIO. A figure made of golden light. She sees\nthe full calendar, past and future. She optimizes schedules,\navoids conflicts, sends reminders. Time bends to her will.\n\nAgent 3: DOCUMENTOS. A figure made of green light. He pulls\ndata from everywhere, generates reports, creates presentations,\norganizes Drive. Knowledge flows through him.\n\nAgent 4: REDES. A figure made of magenta light. She crafts\nsocial media content, schedules posts, tracks engagement,\nfinds trends. She speaks the language of the internet.\n\nAgent 5: VIGIA. A figure made of red light. He monitors\neverything: servers, security, anomalies. He never blinks.\nHe never sleeps. He is the guardian.\n\nDaniela stands at the center, coordinating all five agents.\nShe is the conductor of this digital orchestra. Each agent\nreports to her. She reports to you.\n\nTogether, they form the AIGestion Agent Squad. 24/7. No breaks.\nNo salary. Just results.\n\nThe five agents merge into a single beam of light that forms\nthe AIGestion logo.\n",
+    "cast": [
+      "Daniela",
+      "Agent Correo (blue)",
+      "Agent Calendario (gold)",
+      "Agent Documentos (green)",
+      "Agent Redes (magenta)",
+      "Agent Vigia (red)"
+    ],
+    "locations": [
+      "AIGestion digital core (abstract dark space with neon grid)"
+    ],
+    "props": [
+      "Email flow visualizations",
+      "Calendar timeline",
+      "Document streams",
+      "Social media feed",
+      "Security monitors",
+      "AIGestion logo"
+    ],
+    "veo_prompts": [
+      {
+        "scene": 1,
+        "description": "Agents power up in sequence",
+        "prompt": "Dark abstract space with a neon grid floor. Five humanoid figures made of colored light power up one by one in sequence: blue, gold, green, magenta, red. Each figure materializes from particles. Camera: slow 360-degree orbit around the forming squad. Mood: epic, assembling, powerful.",
+        "duration": "8s",
+        "audio": "Power-up sounds, electronic build, each agent gets a tone"
+      },
+      {
+        "scene": 2,
+        "description": "Agent Correo in action",
+        "prompt": "A blue glowing figure processes email flows. Emails fly past as streams of light. Red flags, green checks, trash icons appear instantly. The figure moves at superhuman speed. Camera: dynamic tracking shot following email streams. Mood: fast, precise, efficient.",
+        "duration": "6s",
+        "audio": "Rapid processing sounds, email notification chimes"
+      },
+      {
+        "scene": 3,
+        "description": "Daniela coordinates",
+        "prompt": "@Daniela stands at the center of the five agents. Glowing connection lines link her to each agent. She gestures and the agents respond. She is the conductor of this digital orchestra. Camera: low angle hero shot looking up at Daniela. Mood: commanding, epic, powerful.",
+        "duration": "8s",
+        "audio": "Orchestral electronic music, commanding"
+      },
+      {
+        "scene": 4,
+        "description": "Agents merge into logo",
+        "prompt": "The five agents (blue, gold, green, magenta, red) fly toward the center and merge into a single brilliant beam of light. The beam forms the AIGestion hexagonal logo with circuit patterns. Cyan and magenta glow. Camera: dramatic zoom into the merge. Mood: climactic, unified, epic.",
+        "duration": "6s",
+        "audio": "Building crescendo, merge sound, final chord"
+      }
+    ],
+    "nano_banana_prompts": [
+      {
+        "purpose": "Agent character designs",
+        "prompt": "Five humanoid AI agent characters standing in formation on a neon grid floor. Each made of a different colored light: blue, gold, green, magenta, red. Abstract digital space. A woman in a dark suit with cyan/magenta accents stands at the center. Epic, sci-fi, photorealistic."
+      }
+    ],
+    "notes": "Use '3D Animated' style in Storyboard Studio. Each agent should be created as a separate ingredient for consistency. The merge scene (Scene 4) works best with Veo 3.1's particle effects. Perfect for a 60-second YouTube Short or TikTok."
+  },
+  {
+    "id": "flow_tutorial_epic",
+    "title": "Tu Primera Semana con AIGestion: Un Viaje Epico",
+    "style": "Cinematic Photorealistic",
+    "story_text": "Day 1: A nervous entrepreneur named Laura opens AIGestion\nfor the first time. The dashboard is overwhelming. Daniela\nappears as a holographic guide. \"Don't worry. I'll walk you\nthrough this.\" Daniela guides Laura to set up her first agent:\nEmail. Laura connects her Gmail. Within 30 seconds, 47 emails\nare processed. Laura's eyes go wide.\n\nDay 2: Laura adds the Calendar agent. Daniela shows her how\nthe agent found 3 scheduling conflicts and resolved them all.\nLaura's calendar is clean for the first time in months.\n\nDay 3: Laura activates the Documents agent. She watches in\namazement as it generates a full sales report from raw data\nin under a minute. \"This would have taken me 2 hours,\"\nLaura whispers.\n\nDay 5: Laura has 5 agents running. She sits in her office,\nrelaxed, while the agents work around her. Holographic\npanels show: emails managed, calendar optimized, reports\ngenerated, social media scheduled, security monitored.\n\nDaniela appears beside Laura. \"This is your first week.\nImagine a year.\" Laura smiles. The camera pulls back to\nshow the city below, the neon office above, and the\nAIGestion logo glowing in the night sky.\n",
+    "cast": [
+      "Daniela",
+      "Laura (entrepreneur)"
+    ],
+    "locations": [
+      "Laura's office (Day 1: messy, Day 5: clean)",
+      "AIGestion dashboard interior"
+    ],
+    "props": [
+      "Laptop with AIGestion",
+      "Email panel",
+      "Calendar panel",
+      "Report panel",
+      "5 floating agent indicators"
+    ],
+    "veo_prompts": [
+      {
+        "scene": 1,
+        "description": "Day 1 - Laura nervous, Daniela appears",
+        "prompt": "A young woman sits nervously at a laptop showing a complex dashboard. @Daniela appears as a holographic figure beside the screen, smiling reassuringly. She points at the interface. The first agent card glows: 'Email Agent'. Camera: over-shoulder shot of laptop. Mood: nervous then reassured.",
+        "duration": "8s",
+        "audio": "Soft electronic ambience, Daniela: 'Don't worry. I'll walk you through this.'"
+      },
+      {
+        "scene": 2,
+        "description": "Day 1 - First email processing",
+        "prompt": "Close-up of the laptop screen. Gmail connects to AIGestion. 47 emails flow through a processing pipeline. Red flags, green checks, trash icons appear rapidly. Counter shows 0 remaining. Laura's face reflects in the screen, eyes wide with amazement. Camera: screen to face reaction shot. Mood: revelation, excitement.",
+        "duration": "6s",
+        "audio": "Processing sounds, completion chime, gasp"
+      },
+      {
+        "scene": 3,
+        "description": "Day 3 - Report generation",
+        "prompt": "@Daniela stands beside Laura at the laptop. A documents agent pulls data streams from 5 floating source icons. Charts auto-generate. A full report compiles on screen in under 60 seconds. Laura whispers in amazement. Camera: dynamic close-up of the report forming. Mood: wonder, disbelief, satisfaction.",
+        "duration": "8s",
+        "audio": "Data sounds, chart building, Laura: 'This would have taken me 2 hours.'"
+      },
+      {
+        "scene": 4,
+        "description": "Day 5 - 5 agents running",
+        "prompt": "Laura sits relaxed in her now-clean office. Five holographic agent indicators float around her: blue (email), gold (calendar), green (documents), magenta (social), red (security). All showing green status. She sips coffee calmly. Camera: wide slow pan around her. Mood: peaceful, accomplished, empowered.",
+        "duration": "8s",
+        "audio": "Calm ambient music, soft agent status sounds"
+      },
+      {
+        "scene": 5,
+        "description": "Daniela's promise",
+        "prompt": "@Daniela appears beside Laura. They look out the window at the neon city. Daniela smiles. Camera pulls back through the window, rising above the city. The AIGestion logo glows in the night sky. Camera: dramatic crane shot rising above the city. Mood: epic, promising, limitless.",
+        "duration": "8s",
+        "audio": "Daniela: 'This is your first week. Imagine a year.' Epic orchestral finale."
+      }
+    ],
+    "nano_banana_prompts": [],
+    "notes": "Best tutorial format for YouTube. 3-5 min long-form. The day-by-day structure maps perfectly to Storyboard Studio's auto-scene detection. Use 'Cinematic Photorealistic' style. Laura represents the target user - relatable, amazed, empowered."
+  }
+]

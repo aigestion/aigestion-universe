@@ -1,0 +1,11 @@
+{"ev": "factura", "proveedor": "AcerosX", "numero": "F-221", "total": 4200.0, "fecha": "2026-09-01", "concepto": "vigas", "auditor_status": "valid", "auditor_warnings": [], "ts": "2026-09-11T14:34:08.960371"}
+{"ev": "factura", "proveedor": "AcerosX", "numero": "F-230", "total": 4200.0, "fecha": "2026-09-10", "concepto": "vigas", "auditor_status": "valid", "auditor_warnings": [], "ts": "2026-09-11T14:34:09.874342"}
+{"ev": "factura", "proveedor": "AcerosX", "numero": "F-221", "total": 4200.0, "fecha": "2026-09-01", "concepto": "vigas", "auditor_status": "duplicate", "auditor_warnings": ["DUPLICADO: Factura ya procesada el 2026-09-11 14:34:08"], "ts": "2026-09-11T14:34:10.744823"}
+{"ev": "factura", "proveedor": "Nuevo", "numero": "N-1", "total": 900.0, "fecha": "2026-09-11", "concepto": "servicios", "auditor_status": "valid", "auditor_warnings": [], "ts": "2026-09-11T14:34:20.738812"}
+{"ev": "factura", "proveedor": "TestHud", "numero": "H-1", "total": 50.0, "fecha": "2026-09-11", "concepto": "x", "auditor_status": "valid", "auditor_warnings": [], "ts": "2026-09-11T15:34:34.017520"}
+{"ev": "veredicto", "veredicto": "pagar", "proveedor": "TestHud", "numero": "H-1", "total": 50.0, "motivos": [], "ts": "2026-09-11T15:34:34.019029"}
+{"ev": "factura", "proveedor": "AcerosX", "numero": "F-999", "total": 4200.0, "fecha": "2026-09-11", "concepto": "vigas", "auditor_status": "valid", "auditor_warnings": [], "ts": "2026-09-11T15:34:42.743464"}
+{"ev": "veredicto", "veredicto": "revisar", "proveedor": "AcerosX", "numero": "F-999", "total": 4200.0, "motivos": ["duplicado probable: F-221@2026-09-01 vs F-230@2026-09-10 (4200.0 EUR)"], "ts": "2026-09-11T15:34:42.744481"}
+{"ev": "revision", "proveedor": "AcerosX", "numero": "F-999", "por": "HUD", "accion": "visto", "ts": "2026-09-11T15:36:11.934256"}
+{"ev": "factura", "proveedor": "HotelSol", "numero": "H-77", "total": 2500.0, "fecha": "2026-09-11", "concepto": "evento", "auditor_status": "valid", "auditor_warnings": [], "ts": "2026-09-11T15:37:22.881052"}
+{"ev": "veredicto", "veredicto": "revisar", "proveedor": "HotelSol", "numero": "H-77", "total": 2500.0, "motivos": ["proveedor nuevo con importe alto: 2500.0 EUR"], "ts": "2026-09-11T15:37:22.882011"}

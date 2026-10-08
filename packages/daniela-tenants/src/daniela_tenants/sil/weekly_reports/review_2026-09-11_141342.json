@@ -1,0 +1,39 @@
+{
+  "review_id": "review_2026-09-11_141342",
+  "timestamp": "2026-09-11T14:13:42.531491",
+  "focus": "all",
+  "files_analyzed": 15,
+  "total_findings": 15,
+  "findings_by_severity": {
+    "critical": 4,
+    "high": 5,
+    "medium": 4,
+    "low": 2
+  },
+  "delta": {
+    "new": 15,
+    "fixed": 0,
+    "persisting": 0,
+    "new_ids": [
+      "SR-04",
+      "SR-09",
+      "SR-14",
+      "SR-01",
+      "SR-08",
+      "SR-05",
+      "SR-03",
+      "SR-12",
+      "SR-10",
+      "SR-07",
+      "SR-02",
+      "SR-11",
+      "SR-06",
+      "SR-13",
+      "SR-15"
+    ],
+    "fixed_ids": []
+  },
+  "health_score": 25,
+  "model_used": "stored_findings",
+  "analysis_success": false
+}

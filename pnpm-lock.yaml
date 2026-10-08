@@ -297,6 +297,28 @@ importers:
         specifier: ^2.1.0
         version: 2.1.9(@types/node@22.0.0)(terser@5.51.2)
 
+  packages/daniela-agents: {}
+
+  packages/daniela-api: {}
+
+  packages/daniela-backend: {}
+
+  packages/daniela-engines: {}
+
+  packages/daniela-google: {}
+
+  packages/daniela-ml: {}
+
+  packages/daniela-secure: {}
+
+  packages/daniela-shared: {}
+
+  packages/daniela-sil: {}
+
+  packages/daniela-tenants: {}
+
+  packages/daniela-tools: {}
+
   packages/three-daniela:
     devDependencies:
       '@react-three/fiber':

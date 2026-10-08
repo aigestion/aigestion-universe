@@ -7,8 +7,5 @@ const nextConfig = {
       { protocol: 'https', hostname: '**.github.com' }
     ]
   },
-  experimental: {
-    serverActions: true
-  }
 }
 module.exports = nextConfig

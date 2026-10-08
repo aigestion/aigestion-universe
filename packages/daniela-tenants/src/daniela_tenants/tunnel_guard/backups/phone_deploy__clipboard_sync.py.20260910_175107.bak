@@ -1,0 +1,373 @@
+#!/usr/bin/env python3
+"""
+PA-12: Clipboard Sync - bidireccional PC <-> Pixel
+====================================================
+Sincronizacion del portapapeles en tiempo real.
+Copias texto en el PC (Ctrl+C) y aparece en el Pixel automaticamente.
+Copias en el Pixel y aparece en el PC.
+
+Mecanismo:
+  - PC: monitor con subprocess de PowerShell Get-Clipboard
+  - Pixel: monitor con termux-clipboard-get via API gateway
+  - Dedup con hash MD5 del contenido
+  - Push instantaneo via API REST
+
+Rutas en daniela_os.py:
+  - GET  /api/pixel/clipboard         (obtener clipboard remoto)
+  - POST /api/pixel/clipboard         (setear clipboard remoto)
+  - GET  /api/pixel/clipboard/status  (estado del sync)
+
+Coste: $0/mes
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import subprocess
+import threading
+import time
+from dataclasses import asdict, dataclass
+from typing import Dict, Optional
+
+import requests
+
+# ── Config ───────────────────────────────────────────────────
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATE_DIR = os.path.join(PROJECT_ROOT, "data", "clipboard_sync")
+STATE_FILE = os.path.join(STATE_DIR, "clipboard_sync_state.json")
+
+GATEWAY_PORT = 8082
+AUTH_TOKEN = "daniela-pixel-2026"
+DISCOVERY_TIMEOUT = 2
+REQUEST_TIMEOUT = 3
+POLL_INTERVAL = 1.5  # seconds
+
+KNOWN_IPS = ["192.168.1.133", "192.168.1.170", "192.168.1.100"]
+
+
+# ── Data classes ──────────────────────────────────────────────
+
+
+@dataclass
+class ClipboardState:
+    last_pc_hash: str = ""
+    last_pixel_hash: str = ""
+    last_pc_text: str = ""
+    last_pixel_text: str = ""
+    sync_count: int = 0
+    last_sync_direction: str = ""  # "pc->pixel", "pixel->pc"
+    last_sync_time: float = 0.0
+    running: bool = False
+
+
+# ── Clipboard Sync ────────────────────────────────────────────
+
+
+class ClipboardSync:
+    """Two-way clipboard sync between PC and Pixel."""
+
+    def __init__(self):
+        self._pixel_ip: Optional[str] = None
+        self._state = ClipboardState()
+        self._lock = threading.Lock()
+        self._running = False
+        self._thread: Optional[threading.Thread] = None
+
+    # ── Pixel discovery ───────────────────────────────────────
+
+    def _get_pixel_ip(self) -> Optional[str]:
+        if self._pixel_ip:
+            return self._pixel_ip
+        for ip in KNOWN_IPS:
+            try:
+                url = f"http://{ip}:{GATEWAY_PORT}/api/pixel/health"
+                r = requests.get(
+                    url, headers={"X-Pixel-Token": AUTH_TOKEN}, timeout=DISCOVERY_TIMEOUT
+                )
+                if r.status_code == 200:
+                    self._pixel_ip = ip
+                    return ip
+            except requests.RequestException:
+                continue
+        return None
+
+    # ── Clipboard read/write ───────────────────────────────────
+
+    def _read_pc_clipboard(self) -> str:
+        """Read Windows clipboard via PowerShell."""
+        try:
+            result = subprocess.run(
+                [
+                    "powershell", "-NoProfile", "-Command",
+                    "Get-Clipboard -Format Text -Raw",
+                ],
+                capture_output=True, text=True, timeout=3,
+            )
+            return result.stdout.rstrip("\r\n") if result.stdout else ""
+        except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+            return ""
+
+    def _set_pc_clipboard(self, text: str) -> bool:
+        """Write to Windows clipboard via PowerShell."""
+        try:
+            # Escape single quotes for PowerShell
+            safe = text.replace("'", "''")
+            subprocess.run(
+                [
+                    "powershell", "-NoProfile", "-Command",
+                    f"Set-Clipboard -Value '{safe}'",
+                ],
+                capture_output=True, timeout=3,
+            )
+            return True
+        except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+            return False
+
+    def _read_pixel_clipboard(self) -> str:
+        """Read Pixel clipboard via Termux API gateway."""
+        ip = self._get_pixel_ip()
+        if not ip:
+            return ""
+        try:
+            url = f"http://{ip}:{GATEWAY_PORT}/api/pixel/clipboard"
+            r = requests.get(
+                url, headers={"X-Pixel-Token": AUTH_TOKEN}, timeout=REQUEST_TIMEOUT
+            )
+            if r.status_code == 200:
+                data = r.json().get("data", {})
+                if isinstance(data, dict):
+                    return data.get("text", "")
+                return str(data)
+        except requests.RequestException:
+            pass
+        return ""
+
+    def _set_pixel_clipboard(self, text: str) -> bool:
+        """Write to Pixel clipboard via Termux API gateway."""
+        ip = self._get_pixel_ip()
+        if not ip:
+            return False
+        try:
+            url = f"http://{ip}:{GATEWAY_PORT}/api/pixel/clipboard"
+            r = requests.post(
+                url,
+                headers={"X-Pixel-Token": AUTH_TOKEN},
+                json={"text": text},
+                timeout=REQUEST_TIMEOUT,
+            )
+            return r.status_code == 200
+        except requests.RequestException:
+            return False
+
+    # ── Sync logic ────────────────────────────────────────────
+
+    def _sync_loop(self):
+        """Background thread: detect clipboard changes and sync."""
+        # Initialize with current values
+        pc_text = self._read_pc_clipboard()
+        with self._lock:
+            self._state.last_pc_hash = self._hash(pc_text)
+            self._state.last_pc_text = pc_text[:200]
+
+        while self._running:
+            try:
+                # Read both clipboards
+                pc_text = self._read_pc_clipboard()
+                pc_hash = self._hash(pc_text)
+
+                # Read pixel clipboard (may fail if offline)
+                pixel_text = self._read_pixel_clipboard()
+                pixel_hash = self._hash(pixel_text)
+
+                with self._lock:
+                    # PC changed?
+                    if pc_hash != self._state.last_pc_hash and pc_hash:
+                        # Push to pixel
+                        if self._set_pixel_clipboard(pc_text):
+                            self._state.last_pc_hash = pc_hash
+                            self._state.last_pixel_hash = pc_hash
+                            self._state.last_pc_text = pc_text[:200]
+                            self._state.last_pixel_text = pc_text[:200]
+                            self._state.sync_count += 1
+                            self._state.last_sync_direction = "pc->pixel"
+                            self._state.last_sync_time = time.time()
+
+                    # Pixel changed?
+                    elif pixel_hash != self._state.last_pixel_hash and pixel_hash:
+                        # Push to PC
+                        if self._set_pc_clipboard(pixel_text):
+                            self._state.last_pixel_hash = pixel_hash
+                            self._state.last_pc_hash = pixel_hash
+                            self._state.last_pixel_text = pixel_text[:200]
+                            self._state.last_pc_text = pixel_text[:200]
+                            self._state.sync_count += 1
+                            self._state.last_sync_direction = "pixel->pc"
+                            self._state.last_sync_time = time.time()
+
+            except Exception:
+                pass
+
+            time.sleep(POLL_INTERVAL)
+
+    @staticmethod
+    def _hash(text: str) -> str:
+        if not text:
+            return ""
+        return hashlib.md5(text.encode("utf-8")).hexdigest()[:16]
+
+    # ── Public API ────────────────────────────────────────────
+
+    def start(self):
+        if self._running:
+            return
+        self._running = True
+        self._state.running = True
+        self._thread = threading.Thread(target=self._sync_loop, daemon=True, name="clipboard-sync")
+        self._thread.start()
+
+    def stop(self):
+        self._running = False
+        self._state.running = False
+        if self._thread and self._thread.is_alive():
+            self._thread.join(timeout=3)
+
+    def get_state(self) -> Dict:
+        with self._lock:
+            return asdict(self._state)
+
+    def get_pc_clipboard(self) -> str:
+        return self._read_pc_clipboard()
+
+    def get_pixel_clipboard(self) -> str:
+        return self._read_pixel_clipboard()
+
+    def push_to_pixel(self, text: str) -> bool:
+        """Manually push text to Pixel clipboard."""
+        ok = self._set_pixel_clipboard(text)
+        if ok:
+            with self._lock:
+                h = self._hash(text)
+                self._state.last_pc_hash = h
+                self._state.last_pixel_hash = h
+                self._state.last_pc_text = text[:200]
+                self._state.last_pixel_text = text[:200]
+                self._state.sync_count += 1
+                self._state.last_sync_direction = "pc->pixel"
+                self._state.last_sync_time = time.time()
+        return ok
+
+    def pull_from_pixel(self) -> str:
+        """Manually pull text from Pixel clipboard."""
+        text = self._read_pixel_clipboard()
+        if text:
+            self._set_pc_clipboard(text)
+            with self._lock:
+                h = self._hash(text)
+                self._state.last_pixel_hash = h
+                self._state.last_pc_hash = h
+                self._state.last_pixel_text = text[:200]
+                self._state.last_pc_text = text[:200]
+                self._state.sync_count += 1
+                self._state.last_sync_direction = "pixel->pc"
+                self._state.last_sync_time = time.time()
+        return text
+
+    def save_state(self):
+        os.makedirs(STATE_DIR, exist_ok=True)
+        with open(STATE_FILE, "w", encoding="utf-8") as f:
+            json.dump(self.get_state(), f, indent=2, ensure_ascii=False)
+
+
+# ── Singleton ─────────────────────────────────────────────────
+
+_instance: Optional[ClipboardSync] = None
+
+
+def get_instance() -> ClipboardSync:
+    global _instance
+    if _instance is None:
+        _instance = ClipboardSync()
+    return _instance
+
+
+# ── Flask route registration ──────────────────────────────────
+
+
+def register_clipboard_routes(flask_app):
+    """Register clipboard sync routes in daniela_os.py."""
+
+    @flask_app.route("/api/pixel/clipboard")
+    def pixel_clipboard_get():
+        """Get clipboard from both devices."""
+        sync = get_instance()
+        return flask_app.jsonify({
+            "pc": sync.get_pc_clipboard(),
+            "pixel": sync.get_pixel_clipboard(),
+            "state": sync.get_state(),
+        })
+
+    @flask_app.route("/api/pixel/clipboard", methods=["POST"])
+    def pixel_clipboard_set():
+        """Push text to Pixel clipboard."""
+        text = (flask_app.request.json or {}).get("text", "")
+        sync = get_instance()
+        ok = sync.push_to_pixel(text)
+        return flask_app.jsonify({"ok": ok, "synced": ok})
+
+    @flask_app.route("/api/pixel/clipboard/pull", methods=["POST"])
+    def pixel_clipboard_pull():
+        """Pull clipboard from Pixel to PC."""
+        sync = get_instance()
+        text = sync.pull_from_pixel()
+        return flask_app.jsonify({"ok": bool(text), "text": text})
+
+    @flask_app.route("/api/pixel/clipboard/status")
+    def pixel_clipboard_status():
+        """Clipboard sync status."""
+        return flask_app.jsonify(get_instance().get_state())
+
+    print("[Clipboard Sync] Routes registered: /api/pixel/clipboard, /clipboard/pull, /clipboard/status")
+
+
+# ── CLI ───────────────────────────────────────────────────────
+
+def main():
+    import sys
+    if len(sys.argv) < 2:
+        print("Usage: python clipboard_sync.py [status|get|push <text>|start]")
+        return
+
+    cmd = sys.argv[1]
+    sync = get_instance()
+
+    if cmd == "status":
+        print(json.dumps(sync.get_state(), indent=2))
+    elif cmd == "get":
+        pc = sync.get_pc_clipboard()
+        pixel = sync.get_pixel_clipboard()
+        print(f"PC clipboard: {pc[:100]}")
+        print(f"Pixel clipboard: {pixel[:100]}")
+    elif cmd == "push":
+        text = " ".join(sys.argv[2:])
+        ok = sync.push_to_pixel(text)
+        print(f"Push to pixel: {'OK' if ok else 'FAILED'}")
+    elif cmd == "start":
+        sync.start()
+        print("Clipboard sync started. Press Ctrl+C to stop.")
+        try:
+            while True:
+                time.sleep(30)
+                s = sync.get_state()
+                print(f"  syncs={s['sync_count']} last={s['last_sync_direction']} text={s['last_pc_text'][:50]}")
+        except KeyboardInterrupt:
+            sync.stop()
+            print("Stopped.")
+    else:
+        print(f"Unknown command: {cmd}")
+
+
+if __name__ == "__main__":
+    main()

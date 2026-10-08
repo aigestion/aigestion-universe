@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Short, actionable title of the proposal (max 60 chars)"
+    },
+    "description": {
+      "type": "string",
+      "description": "What the proposal does and why it matters (2-3 sentences)"
+    },
+    "impact": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "description": "Impact level of implementing this proposal"
+    },
+    "effort": {
+      "type": "string",
+      "enum": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "description": "Effort estimate: S=<1day, M=<1week, L=<1month, XL=>1month"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string",
+            "description": "Action step description"
+          },
+          "file": {
+            "type": "string",
+            "description": "File to modify or create"
+          }
+        }
+      },
+      "description": "Ordered list of implementation steps"
+    },
+    "files_affected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files that would be modified"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "feature",
+        "bugfix",
+        "refactor",
+        "infra",
+        "content",
+        "security"
+      ],
+      "description": "Category of the proposal"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "impact",
+    "effort",
+    "actions"
+  ]
+}

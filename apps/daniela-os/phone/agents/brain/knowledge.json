@@ -1,0 +1,325 @@
+{
+  "insights": [
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T02:04:25.509888"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T02:05:07.269915"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T02:05:46.482607"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T02:56:51.152905"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T02:59:04.347867"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T03:01:11.130035"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T03:05:13.811614"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-01T03:11:20.096166"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-03T20:10:16.281539"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-03T20:13:30.309629"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-03T20:31:22.270284"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-03T21:13:07.698400"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-03T21:22:46.221762"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-03T23:37:10.608661"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:00:27.172334"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:05:03.545439"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:09:49.192392"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:29:06.815083"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:29:40.621643"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:33:31.723324"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:38:42.316694"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T00:51:25.505099"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T01:03:21.394090"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T01:04:04.775764"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T02:03:41.210349"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T22:50:32.379900"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T22:57:31.314953"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T23:40:25.064458"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-04T23:46:49.021812"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T00:07:37.196915"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T00:13:55.972463"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T00:20:26.770013"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T00:33:53.545408"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T01:09:53.910570"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T01:16:36.484266"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T01:29:22.650106"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T01:31:53.153515"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T01:49:03.601464"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T10:44:06.559235"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T10:49:51.716379"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T10:55:58.297734"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T11:46:30.850598"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T11:54:02.022255"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T12:25:34.512590"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T12:33:24.906437"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T13:12:45.709900"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T14:30:32.168115"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T16:46:47.233476"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T16:54:57.245628"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T16:57:34.586686"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T17:05:51.363291"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T17:09:07.576152"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T17:13:03.412947"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T17:37:09.542694"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T18:01:52.094775"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T18:07:32.012127"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T18:13:33.970392"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T18:19:11.402849"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T18:25:22.270110"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T18:58:10.794336"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T19:00:09.497292"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T19:08:14.309535"
+    },
+    {
+      "insight": "test insight",
+      "pattern": "test pattern",
+      "timestamp": "2026-10-05T19:14:12.505101"
+    },
+    {
+      "insight": "[sandbox-decisor] complet\u00f3: 4/4 comprobaciones OK",
+      "pattern": "reporte",
+      "timestamp": "2026-10-08T16:57:54.224655"
+    }
+  ],
+  "learnings": []
+}

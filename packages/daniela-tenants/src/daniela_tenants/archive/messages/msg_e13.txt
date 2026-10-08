@@ -1,0 +1,32 @@
+feat(fase-11): E-13 cerebro local (+8 rutas, 294 -> 303)
+
+Daniela sigue hablando cuando se corta la red, y lo que dices deja de
+salir del dispositivo.
+
+aig/pixel/local_brain.py (611 lineas, 0 violaciones AST):
+- Una interfaz, dos backends: Ollama en el PC (VIVO) y llama.cpp en el
+  movil (el objetivo). Elegido automaticamente, degrada si no hay red.
+- NO descarga un modelo nuevo: reutiliza el GGUF de com.llmproxy que ya
+  esta en el movil.
+- Peticiones locales SIN proxy (proxies={"http": None, "https": None}):
+  con HTTP_PROXY puesto, una llamada a localhost rebota y devuelve 502.
+- Historial de llamadas en data/local_brain/ con latencia y backend.
+
+Medido en vivo (Ollama, 4 modelos):
+- daniela-local 3.3 GB | qwen3.5 6.6 GB | deepseek-coder 776 MB
+  | nomic-embed-text 274 MB
+- Latencia: 24-33 s la PRIMERA llamada (carga GBs a RAM), 2.3-2.5 s en
+  caliente. Se guarda en /api/local/benchmark.
+- Respuesta real obtenida: "Hola" -> "Hola".
+
+LIMITACION HONESTA: la parte de llama.cpp EN EL MOVIL no esta hecha.
+El home de Termux es inaccesible por adb, asi que /api/local/plan solo
+ESCRIBE data/local_brain/instalar_llama_movil.sh; lo ejecuta el usuario.
+Hasta entonces el backend llamacpp figura como "caido" y todo va por Ollama.
+
+Rutas: /api/local/{status,models,ask,test,config,plan,benchmark,history}
+
+Tambien: chore(fase-2) registra en git el movimiento de modulos a
+scripts/, config/ y aig/ (estaban borrados sin commitear, 154 " D").
+Sin cambios de contenido: solo reubicacion + shims de compatibilidad.
+Se excluyen api_gateway.py e index.html (cambios ajenos de un autofix).

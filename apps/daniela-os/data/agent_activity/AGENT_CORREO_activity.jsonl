@@ -1,0 +1,4 @@
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-10-04T19:12:19.276977"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-10-04T19:12:19.277981"}
+{"agent": "AGENT_CORREO", "action": "fetch_attempt", "details": {"status": "no_credentials", "message": "IMAP credentials not configured"}, "timestamp": "2026-10-05T01:28:24.133297"}
+{"agent": "AGENT_CORREO", "action": "process_inbox_complete", "details": {"total": 0, "by_category": {}, "by_priority": {"high": 0, "medium": 0, "low": 0}, "drafts_requested": 0, "spam_filtered": 0}, "timestamp": "2026-10-05T01:28:24.133297"}

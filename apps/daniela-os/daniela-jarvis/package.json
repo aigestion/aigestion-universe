@@ -1,0 +1,41 @@
+{
+  "name": "daniela-jarvis",
+  "version": "1.0.0",
+  "description": "Daniela OS — Jarvis Desktop Overlay",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "build:portable": "electron-builder --win portable",
+    "dev": "set ELECTRON_DEV=1 && electron ."
+  },
+  "author": "aig",
+  "license": "MIT",
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "express": "^4.18.2",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.aig.daniela-jarvis",
+    "productName": "Daniela Jarvis",
+    "win": {
+      "target": "nsis",
+      "icon": "overlay/assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "overlay/**/*",
+      "backend/**/*"
+    ]
+  }
+}

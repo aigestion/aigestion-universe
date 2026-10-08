@@ -1,0 +1,77 @@
+{
+  "phase_1_foundation": {
+    "name": "Phase 1: Foundation (Weeks 1-3)",
+    "ideas": [
+      "IDEA_11",
+      "IDEA_07",
+      "IDEA_01"
+    ],
+    "goal": "Agents can talk to each other, generate real code, and the 5 character agents exist",
+    "deliverables": [
+      "agent_correo.py, agent_calendario.py, agent_documentos.py, agent_redes.py, agent_vigia.py",
+      "message_broker.py with inter-agent protocol",
+      "code_generation_agent.py upgraded with real Gemini integration",
+      "All 5 agents registered in agents.py and swarm_intelligence.py"
+    ]
+  },
+  "phase_2_intelligence": {
+    "name": "Phase 2: Intelligence (Weeks 4-7)",
+    "ideas": [
+      "IDEA_08",
+      "IDEA_04",
+      "IDEA_05"
+    ],
+    "goal": "Agents have memory, self-heal, and predict needs",
+    "deliverables": [
+      "knowledge_graph.py with full schema and query API",
+      "swarm_watchdog.py with auto-recovery",
+      "proactive_engine_v2.py upgraded with ML prediction",
+      "All agent actions logged to knowledge graph"
+    ]
+  },
+  "phase_3_content": {
+    "name": "Phase 3: Content (Weeks 8-11)",
+    "ideas": [
+      "IDEA_02",
+      "IDEA_03",
+      "IDEA_13"
+    ],
+    "goal": "Agents produce content automatically from real activity",
+    "deliverables": [
+      "swarm_intelligence.py with real LLM execution (no more simulation)",
+      "activity_logger on all agents",
+      "storyboard_from_logs.py converting real actions to Veo prompts",
+      "Daily auto-content production following the 77-slot calendar"
+    ]
+  },
+  "phase_4_governance": {
+    "name": "Phase 4: Governance (Weeks 12-14)",
+    "ideas": [
+      "IDEA_06",
+      "IDEA_12",
+      "IDEA_09"
+    ],
+    "goal": "Democratic decisions, real security, optimal model routing",
+    "deliverables": [
+      "agent_parliament.py with voting protocol",
+      "Real SHA-256 blockchain audit ledger",
+      "model_router.py with multi-model intelligence",
+      "PBFT consensus between agents"
+    ]
+  },
+  "phase_5_consciousness": {
+    "name": "Phase 5: Consciousness (Months 4-6)",
+    "ideas": [
+      "IDEA_15",
+      "IDEA_10",
+      "IDEA_14"
+    ],
+    "goal": "Unified consciousness, dashboard, plugin marketplace",
+    "deliverables": [
+      "consciousness_layer.py unifying all agent perceptions",
+      "Real-time web dashboard with WebSocket updates",
+      "Agent plugin architecture with BaseAgent interface",
+      "Daniela as true collective intelligence"
+    ]
+  }
+}

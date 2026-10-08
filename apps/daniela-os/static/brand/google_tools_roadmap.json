@@ -1,0 +1,93 @@
+[
+  {
+    "phase": 1,
+    "name": "Foundation: Model Upgrade + Free-Tier Exploitation",
+    "duration_weeks": 2,
+    "ideas": [
+      "GT-21",
+      "GT-22",
+      "GT-23",
+      "GT-24"
+    ],
+    "goal": "Upgrade to Gemini 3.5 (Flash default, Pro for deep analysis), enable structured JSON output, and exploit free-tier Deep Research. Immediate quality and speed improvement with zero infrastructure changes.",
+    "tools_required": [
+      "Gemini 3.5 API (free tier sufficient)"
+    ]
+  },
+  {
+    "phase": 2,
+    "name": "Web-Native: Built-in AI + WebMCP",
+    "duration_weeks": 3,
+    "ideas": [
+      "GT-14",
+      "GT-15",
+      "GT-16",
+      "GT-17"
+    ],
+    "goal": "Make AIGestion web-native: zero-cost on-device AI for demos, WebMCP for browser agent discovery, DevTools for agent debugging, and HTML-in-Canvas for immersive UI. The landing page becomes a free, instant, offline-capable demo.",
+    "tools_required": [
+      "Chrome 148+",
+      "Chrome 149 origin trial (WebMCP)"
+    ]
+  },
+  {
+    "phase": 3,
+    "name": "Agent Infrastructure: Managed Agents + Workspace",
+    "duration_weeks": 4,
+    "ideas": [
+      "GT-09",
+      "GT-10",
+      "GT-13"
+    ],
+    "goal": "Move DanielaOS agents to cloud-hosted Managed Agents with persistent environments. Connect 5 agents to real Google Workspace APIs. Define all 9 agents as markdown templates. Eliminate simulated actions and local execution limitations.",
+    "tools_required": [
+      "AI Studio API",
+      "Google Workspace OAuth",
+      "Managed Agents API"
+    ]
+  },
+  {
+    "phase": 4,
+    "name": "Autonomous Coding: Jules + Antigravity Orchestration",
+    "duration_weeks": 4,
+    "ideas": [
+      "GT-01",
+      "GT-02",
+      "GT-05",
+      "GT-07"
+    ],
+    "goal": "Integrate Jules for real autonomous PR generation. Replace swarm dispatcher with Antigravity multi-agent orchestration. Enable scheduled agent tasks. The system writes, tests, and deploys real code autonomously.",
+    "tools_required": [
+      "Jules API",
+      "Antigravity 2.0 desktop app",
+      "GitHub (connected)"
+    ]
+  },
+  {
+    "phase": 5,
+    "name": "Full Autonomy: Cloud Hosting + Browser Control + Fusion",
+    "duration_weeks": 6,
+    "ideas": [
+      "GT-03",
+      "GT-06",
+      "GT-08",
+      "GT-11",
+      "GT-18",
+      "GT-20",
+      "GT-25",
+      "FUSION-01",
+      "FUSION-02",
+      "FUSION-03",
+      "FUSION-04",
+      "FUSION-05"
+    ],
+    "goal": "Full autonomous system: Firebase backend, Antigravity SDK cloud hosting, Auto Browse browser control, Android app generation, voice mode, and all fusion pipelines. DanielaOS becomes a 24/7 autonomous cloud operating system.",
+    "tools_required": [
+      "Firebase",
+      "Antigravity SDK",
+      "Chrome Auto Browse",
+      "AI Studio Android",
+      "Gemini Live API"
+    ]
+  }
+]

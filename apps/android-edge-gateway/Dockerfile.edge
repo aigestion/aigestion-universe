@@ -1,0 +1,53 @@
+# aig Mobile Edge Runtime (Python) — heredado del "Android App Dockerfile"
+# Multi-stage build: servicios del teléfono (Pixel bridge + Termux gateway).
+#
+# NOTA: la imagen de la PWA (nginx, puerto 8090) es `mobile-app/Dockerfile`.
+# Esta imagen arranca el runtime Python de edge:
+#   docker build -f mobile-app/Dockerfile.edge -t aig-mobile-edge .
+# Rutas adaptadas de `android_app/` a `mobile-app/` durante la unificación.
+
+# ---- Base stage ----
+FROM python:3.11-slim AS base
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# ---- Python dependencies ----
+FROM base AS deps
+
+WORKDIR /app
+
+# Copy requirements
+COPY --chown=appuser:appuser mobile-app/requirements.txt ./requirements.txt
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# ---- Application ----
+FROM deps AS app
+
+WORKDIR /app
+
+# Copy application code
+COPY --chown=appuser:appuser mobile-app/ ./mobile-app/
+COPY --chown=appuser:appuser config/.env ./.env
+
+# Expose ports
+EXPOSE 8082 8095 9800
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:8082/api/pixel/health || exit 1
+
+# Default command
+CMD ["python", "mobile-app/main.py", "--all"]

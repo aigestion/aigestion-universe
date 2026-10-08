@@ -1,0 +1,40 @@
+docs(fase-9): E-16 politica de ramas y mapa de secretos
+
+Analisis de las 5 ramas del repo medido contra la API de GitHub, no contra el
+ref local (que en este repo miente). Resultado: el plan que teniamos era
+correcto en la teoria y erroneo en los datos.
+
+Hallazgos que cambian las decisiones:
+
+1. ui-stable NO TIENE ANCESTRO COMUN CON MAIN. La API lo dice literalmente:
+   "No common ancestor between main and ui-stable". Son dos historias no
+   relacionadas. Las famosas -270.100 lineas no son un borrado: es que el
+   algoritmo de comparacion no tiene base. Un merge ahi no es arriesgado, es
+   directamente imposible sin reescribir todo. -> se congela con tag.
+
+2. feature/darwin-api NO era la rama "segura de mergear" que creiamos.
+   Tiene 11 secretos (.env con 1 AIza y .env.master con 10: 2 AIza, 2 AQ.,
+   4 sk-) y 282 de sus 300 ficheros son archive/ mas __pycache__ y .db.
+   Rescatable de verdad: ai/brain_router.py (300 lineas, 0 os.system),
+   ai/__init__.py y .github/workflows/ci.yml.
+   aictl.py se descarta: tiene 3 os.system.
+
+3. universo-v1: 12 secretos, pero .env esta limpio. El .env.master es el MISMO
+   blob que en darwin-api (30.682 bytes): arreglarlo en un sitio no lo arregla
+   en el otro. Rescatable: los 3 index_master_*.html del universo 3D,
+   autofix_engine.py, swarm_planner.py, openrouter_core.py.
+
+4. ui-stable tiene un client_secret de Google OAuth (GOCSPX) duplicado en
+   data/client_secret.json y data/credentials.json.
+
+5. edicion-apk va 0 commits por delante: ya esta contenido en main. Borrable.
+
+6. La clave nueva del usuario (AQ.Ab8RN6LqH...) NO aparece en ninguna rama.
+   Las dos AQ. expuestas son anteriores y distintas.
+
+branch_policy.md incluye: foto de ramas, mapa de secretos (sin escribir los
+valores a proposito), decision por rama, comandos exactos con el truco de la
+rama plana, reglas futuras y checklist de rotacion P0.
+
+No se ha borrado ni mergeado nada: borrar ramas no borra el historial, asi que
+lo unico que arregla esto de verdad es revocar las claves.

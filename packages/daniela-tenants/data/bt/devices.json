@@ -1,0 +1,24 @@
+{
+  "aa:bb:cc:dd:ee:01": {
+    "mac": "aa:bb:cc:dd:ee:01",
+    "rol": "coche",
+    "nombre": "Manos libres coche",
+    "accion_on": "contexto",
+    "accion_off": "evento",
+    "param": "en_vehiculo",
+    "visto": 1789052201.8947527,
+    "rssi": -52.0,
+    "conectado": true
+  },
+  "aa:bb:cc:dd:ee:02": {
+    "mac": "aa:bb:cc:dd:ee:02",
+    "rol": "wearable",
+    "nombre": "Pulsera",
+    "accion_on": "evento",
+    "accion_off": "evento",
+    "param": "",
+    "visto": 1789052201.9800074,
+    "rssi": -40.0,
+    "conectado": false
+  }
+}

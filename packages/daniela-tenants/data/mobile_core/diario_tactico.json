@@ -1,0 +1,134 @@
+[
+  {
+    "timestamp": "2026-09-10T09:56:14",
+    "tipo": "WAKE_WORD",
+    "detalle": "{\"word\": \"daniela\"}",
+    "source": "test"
+  },
+  {
+    "timestamp": "2026-09-10T09:56:14",
+    "tipo": "BATTERY_LOW",
+    "detalle": "{\"percentage\": 15}",
+    "source": "test"
+  },
+  {
+    "timestamp": "2026-09-10T09:56:14",
+    "tipo": "PLUGIN_TOGGLED",
+    "detalle": "{\"plugin\": \"pocket_sense\", \"enabled\": false}",
+    "source": "core"
+  },
+  {
+    "timestamp": "2026-09-10T09:56:14",
+    "tipo": "CORE_STARTED",
+    "detalle": "{\"platform\": \"pc\"}",
+    "source": "core"
+  },
+  {
+    "timestamp": "2026-09-10T09:56:15",
+    "tipo": "CORE_STOPPED",
+    "detalle": "{}",
+    "source": "core"
+  },
+  {
+    "timestamp": "2026-09-10T10:03:49",
+    "tipo": "SOS",
+    "detalle": "simulado",
+    "source": "core"
+  },
+  {
+    "timestamp": "2026-09-10T10:03:49",
+    "tipo": "SOS_COMPLETE",
+    "detalle": "{\"ts\": \"20260910_100349\", \"audio\": \"C:\\\\Users\\\\Alejandro\\\\aig\\\\data\\\\mobile_core\\\\evidencia_sos\\\\sos_20260910_100349.wav\", \"simulated\": true}",
+    "source": "panic_sos"
+  },
+  {
+    "timestamp": "2026-09-10T10:03:50",
+    "tipo": "FALL_DETECTED",
+    "detalle": "{\"id\": \"fall_1789031029_2\", \"impact_mag\": 30.0, \"location\": null}",
+    "source": "context_engine"
+  },
+  {
+    "timestamp": "2026-09-10T10:08:20",
+    "tipo": "SOS",
+    "detalle": "simulado",
+    "source": "core"
+  },
+  {
+    "timestamp": "2026-09-10T10:08:20",
+    "tipo": "SOS_COMPLETE",
+    "detalle": "{\"ts\": \"20260910_100820\", \"audio\": \"C:\\\\Users\\\\Alejandro\\\\aig\\\\data\\\\mobile_core\\\\evidencia_sos\\\\sos_20260910_100820.wav\", \"simulated\": true}",
+    "source": "panic_sos"
+  },
+  {
+    "timestamp": "2026-09-10T10:08:20",
+    "tipo": "PANIC",
+    "detalle": "{\"origen\": \"test e2e\"}",
+    "source": "test"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:21",
+    "tipo": "ZONE_CHANGE",
+    "detalle": "{\"zone\": \"home\"}",
+    "source": "nfc"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:41",
+    "tipo": "DRIVING_MODE",
+    "detalle": "{}",
+    "source": "nfc"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:44",
+    "tipo": "DRIVING_MODE",
+    "detalle": "{}",
+    "source": "nfc"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:44",
+    "tipo": "ZONE_CHANGE",
+    "detalle": "{\"zone\": \"home\"}",
+    "source": "nfc"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:54",
+    "tipo": "SOS",
+    "detalle": "simulado",
+    "source": "core"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:54",
+    "tipo": "SOS_COMPLETE",
+    "detalle": "{\"ts\": \"20260910_131554\", \"audio\": \"C:\\\\Users\\\\Alejandro\\\\aig\\\\data\\\\mobile_core\\\\evidencia_sos\\\\sos_20260910_131554.wav\", \"simulated\": true}",
+    "source": "panic_sos"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:54",
+    "tipo": "PANIC",
+    "detalle": "{}",
+    "source": "nfc"
+  },
+  {
+    "timestamp": "2026-09-10T13:15:54",
+    "tipo": "ZONE_CHANGE",
+    "detalle": "{\"zone\": \"home\"}",
+    "source": "nfc"
+  },
+  {
+    "timestamp": "2026-09-10T15:56:20",
+    "tipo": "BT_CONNECTED",
+    "detalle": "{\"mac\": \"aa:bb:cc:dd:ee:02\", \"rol\": \"wearable\", \"nombre\": \"Pulsera\"}",
+    "source": "bt_bridge"
+  },
+  {
+    "timestamp": "2026-09-10T15:56:42",
+    "tipo": "BT_CONNECTED",
+    "detalle": "{\"mac\": \"aa:bb:cc:dd:ee:02\", \"rol\": \"wearable\", \"nombre\": \"Pulsera\"}",
+    "source": "bt_bridge"
+  },
+  {
+    "timestamp": "2026-09-10T15:56:42",
+    "tipo": "BT_DISCONNECTED",
+    "detalle": "{\"mac\": \"aa:bb:cc:dd:ee:02\", \"rol\": \"wearable\", \"nombre\": \"Pulsera\"}",
+    "source": "bt_bridge"
+  }
+]

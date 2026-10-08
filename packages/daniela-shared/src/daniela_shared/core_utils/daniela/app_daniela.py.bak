@@ -1,0 +1,57 @@
+import os, json, logging
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from socketserver import ThreadingMixIn
+from skills import (local_llm, event_pipeline, knowledge_graph, 
+                    plugin_manager, backup_manager, visualizer_labs, 
+                    notebooklm_sync, audio_feedback, vision_astra, 
+                    pip_auditor, telegram_gateway, self_healing)
+
+PORT = 8085
+logging.basicConfig(level=logging.INFO)
+
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    daemon_threads = True
+
+class SovereignHandler(SimpleHTTPRequestHandler):
+    def do_POST(self):
+        if self.path == '/api/chat':
+            length = int(self.headers.get('Content-Length', 0))
+            data = json.loads(self.rfile.read(length).decode('utf-8'))
+            msg = data.get('message', '').strip()
+            msg_lower = msg.lower()
+            
+            try:
+                if "offline" in msg_lower or "gemini" in msg_lower:
+                    resp = local_llm.query_offline(msg)
+                elif "visualiza" in msg_lower:
+                    resp = visualizer_labs.generate_visual_asset(msg)
+                elif "sync notebook" in msg_lower:
+                    resp = notebooklm_sync.export_digest_for_notebooklm()
+                elif "audio" in msg_lower:
+                    resp = audio_feedback.play_system_tone("ok")
+                elif "vision" in msg_lower:
+                    resp = vision_astra.inspect_hardware_with_camera()
+                elif "instala" in msg_lower:
+                    resp = pip_auditor.audit_and_install_package(msg.replace("instala", "").strip())
+                elif "telegram" in msg_lower:
+                    resp = telegram_gateway.start_telegram_bot()
+                elif "respaldo" in msg_lower:
+                    resp = backup_manager.backup_to_gdrive()
+                elif "grafo" in msg_lower:
+                    resp = knowledge_graph.query_graph()
+                elif "lista plugins" in msg_lower:
+                    resp = "📋 [PLUGINS]: " + str(len(os.listdir("skills"))) + " en disco."
+                elif "test_error" in msg_lower:
+                    raise ValueError("Error de prueba para auto-reparación")
+                else:
+                    resp = f"Comando '{msg}' procesado."
+            except Exception as e:
+                resp = f"🚨 [RUNTIME EXCEPTION]: {self_healing.auto_fix_exception(e)}"
+
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({"response": resp}).encode('utf-8'))
+
+print("🟢 Daniela OS v32.0 (Self-Healing Activo)")
+ThreadedHTTPServer(('0.0.0.0', PORT), SovereignHandler).serve_forever()

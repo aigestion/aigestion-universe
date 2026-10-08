@@ -1,0 +1,15 @@
+{
+  "month": "2026-09",
+  "total_tasks": 5,
+  "completed": 0,
+  "remaining": 5,
+  "due_now": [
+    {
+      "id": "DR-1",
+      "topic": "AI tools industry trends",
+      "day": 1
+    }
+  ],
+  "free_tier_limit": "5 per month",
+  "last_run": null
+}

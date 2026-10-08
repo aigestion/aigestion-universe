@@ -1,0 +1,15 @@
+[
+  {
+    "key": "barcelona",
+    "nombre": "Barcelona",
+    "lat": 41.3902,
+    "lon": 2.154,
+    "radio_km": 60.0,
+    "capas": [
+      "vuelos",
+      "sismos"
+    ],
+    "min_mag": 4.0,
+    "alt_camara": 1200.0
+  }
+]

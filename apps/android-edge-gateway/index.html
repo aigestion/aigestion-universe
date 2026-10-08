@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="aig - AI Service Management Dashboard">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="/css/mobile.css">
+  <title>aig Mobile</title>
+</head>
+<body>
+  <div id="app">
+    <div id="offline-banner" class="offline-banner hidden">
+      <span class="offline-dot"></span>
+      Modo offline
+    </div>
+
+    <div id="install-prompt" class="install-prompt hidden">
+      <div class="install-content">
+        <p>Instalar aig en tu dispositivo</p>
+        <div class="install-actions">
+          <button id="install-accept" class="btn btn-primary btn-sm">Instalar</button>
+          <button id="install-dismiss" class="btn btn-ghost btn-sm">Ahora no</button>
+        </div>
+      </div>
+    </div>
+
+    <main id="view-container" class="view-container">
+      <div class="pull-indicator" id="pull-indicator">
+        <div class="spinner"></div>
+      </div>
+      <div id="view-content"></div>
+    </main>
+
+    <nav id="bottom-nav" class="bottom-nav">
+      <button class="nav-item active" data-view="home">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2"/>
+        </svg>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-item" data-view="daniela">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        <span class="nav-label">Daniela</span>
+      </button>
+      <button class="nav-item" data-view="gev">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span class="nav-label">God's Eye</span>
+      </button>
+      <button class="nav-item" data-view="hermes">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <span class="nav-label">Hermes</span>
+      </button>
+      <button class="nav-item" data-view="engines">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <span class="nav-label">Engines</span>
+      </button>
+      <button class="nav-item" data-view="gateway">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+        </svg>
+        <span class="nav-label">Gateway</span>
+      </button>
+      <button class="nav-item" data-view="settings">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <span class="nav-label">Settings</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Resuelve los bare specifiers de three ('three', 'three/addons/') para
+       los módulos ES. Debe ir antes de cualquier <script type="module">. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/build/three.module.min.js",
+      "three/addons/": "/vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- api.js y views.js definen clases; views.js es ya un módulo porque
+       importa el motor del avatar. app.js SIEMPRE módulo: usa `import`. -->
+  <script src="/js/api.js"></script>
+  <script type="module" src="/js/views.js"></script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniela OS — God's Eye Dashboard</title>
+  <link rel="stylesheet" href="/gods-eye/brand/tokens.css" />
+  <link rel="stylesheet" href="/gods-eye/vendor/cesium/Widgets/widgets.css" />
+  <link rel="stylesheet" href="/gods-eye/static/style.css" />
+</head>
+<body>
+  <!-- Globo -->
+  <div id="globe"></div>
+
+  <!-- Cabecera -->
+  <header id="hud">
+    <div class="hud-marca">
+      <img class="hud-logo" src="/gods-eye/brand/logo_icon.svg"
+           alt="aig" width="30" height="30" />
+      <span class="pulso"></span>
+      <div>
+        <h1 data-i18n="app.titulo">God's Eye Dashboard</h1>
+        <p id="hud-rol">Daniela OS</p>
+      </div>
+      <span class="hud-chip" title="aig">AIG</span>
+    </div>
+    <div class="hud-metricas" id="hud-metricas"></div>
+    <div class="hud-acciones">
+      <button id="btn-sede" class="btn" data-i18n="hud.sede">Ir a la Sede</button>
+      <button id="btn-globo" class="btn" data-i18n="hud.globo">Ver todo</button>
+      <button id="btn-refrescar" class="btn" data-i18n="hud.refrescar">Refrescar</button>
+      <!-- God's Eye View original completo: se sirve desde el mismo origen en
+           /gods-eye/pro/ (servidor propio del original tras un proxy inverso).
+           En otra pestana para no perder este visor. -->
+      <a id="btn-pro" class="btn btn-pro" href="/gods-eye/pro/" target="_blank"
+         rel="noopener" data-i18n="hud.pro">Visor completo</a>
+      <button id="btn-idioma" class="btn btn-idioma" title="Idioma / Language">ES</button>
+    </div>
+  </header>
+
+  <!-- Panel lateral: nodos -->
+  <aside id="panel">
+    <h2 id="panel-titulo" data-i18n="panel.titulo">Nodos</h2>
+    <div id="panel-lista" class="panel-lista"></div>
+    <button id="btn-nueva-empresa" class="btn btn-ancho" data-i18n="cli.titulo">Nueva empresa</button>
+  </aside>
+
+  <!-- Panel lateral: capas OSINT -->
+  <aside id="panel-osint">
+    <h2 data-i18n="osint.titulo">Capas OSINT</h2>
+    <div id="osint-lista" class="osint-lista"></div>
+    <p id="osint-estado" class="osint-estado"></p>
+  </aside>
+
+  <!-- Modal Command Center (sede) -->
+  <div id="modal-sede" class="modal oculto">
+    <div class="modal-caja holograma">
+      <button class="modal-cerrar" data-cerrar="modal-sede">×</button>
+      <h2 data-i18n="cc.titulo">Daniela Command Center</h2>
+      <p class="modal-sub" id="sede-sub">Sede aigestion.net</p>
+      <div class="herramientas">
+        <button class="herramienta" data-accion="astra">
+          <span class="h-ico">◈</span>
+          <span class="h-txt"><b data-i18n="cc.astra">Astra Document Sniper</b><small data-i18n="cc.astra.sub">Ingesta RAG</small></span>
+        </button>
+        <button class="herramienta" data-accion="voice">
+          <span class="h-ico">◉</span>
+          <span class="h-txt"><b data-i18n="cc.voice">Voice Briefing Agent</b><small data-i18n="cc.voice.sub">Sintesis TTS / resumen</small></span>
+        </button>
+        <button class="herramienta" data-accion="inbox">
+          <span class="h-ico">✉</span>
+          <span class="h-txt"><b data-i18n="cc.inbox">Inbox Zero Drafter</b><small data-i18n="cc.inbox.sub">Triaje correo y WhatsApp</small></span>
+        </button>
+        <button class="herramienta" data-accion="telemetria">
+          <span class="h-ico">⌁</span>
+          <span class="h-txt"><b data-i18n="cc.telemetria">Life Telemetry HUD</b><small data-i18n="cc.telemetria.sub">Hardware, sensores, ESP32</small></span>
+        </button>
+        <button class="herramienta" data-accion="consola">
+          <span class="h-ico">▣</span>
+          <span class="h-txt"><b data-i18n="cc.consola">Command &amp; Control</b><small data-i18n="cc.consola.sub">Terminal de agentes y logs</small></span>
+        </button>
+        <button class="herramienta" data-accion="memoria">
+          <span class="h-ico">⬢</span>
+          <span class="h-txt"><b data-i18n="cc.memoria">Memoria de Daniela</b><small data-i18n="cc.memoria.sub">Recuerdos: buscar y guardar</small></span>
+        </button>
+      </div>
+      <pre id="consola-salida" class="consola" data-i18n="cc.listo">Listo. Elige una herramienta.</pre>
+      <!-- Memoria bidireccional: la misma base que escribe el chat de Daniela
+           (`agents/memory_vault.py`), visible y escribible desde la pantalla. -->
+      <div id="memoria-caja" class="memoria-caja oculto">
+        <input id="memoria-texto" type="text" autocomplete="off"
+               data-i18n-ph="cc.memoria.ph" placeholder="¿Qué recuerdas de…?" />
+        <button id="memoria-buscar" class="btn" data-i18n="cc.memoria.buscar">Buscar</button>
+        <button id="memoria-guardar" class="btn btn-guardar"
+                data-i18n="cc.memoria.guardar">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal estructura de empresa -->
+  <div id="modal-empresa" class="modal oculto">
+    <div class="modal-caja">
+      <button class="modal-cerrar" data-cerrar="modal-empresa">×</button>
+      <h2 id="emp-nombre" data-i18n="emp.titulo">Empresa</h2>
+      <p class="modal-sub" id="emp-sub"></p>
+      <div class="emp-grid">
+        <div><span class="k" data-i18n="emp.plan">Plan</span><span class="v" id="emp-tier">—</span></div>
+        <div><span class="k" data-i18n="emp.estado">Estado</span><span class="v" id="emp-estado">—</span></div>
+        <div><span class="k" data-i18n="emp.mrr">MRR</span><span class="v" id="emp-mrr">—</span></div>
+        <div><span class="k" data-i18n="emp.eventos">Eventos 24h</span><span class="v" id="emp-eventos">—</span></div>
+      </div>
+      <h3 data-i18n="emp.estructura">Estructura 3D</h3>
+      <div id="emp-modulos" class="modulos"></div>
+      <h3 data-i18n="emp.telemetria">Telemetria reciente</h3>
+      <div id="emp-log" class="log"></div>
+    </div>
+  </div>
+
+  <!-- Modal alta de empresa -->
+  <div id="modal-alta" class="modal oculto">
+    <div class="modal-caja">
+      <button class="modal-cerrar" data-cerrar="modal-alta">×</button>
+      <h2 data-i18n="cli.titulo">Nueva empresa</h2>
+      <p class="modal-sub" id="alta-sub"></p>
+      <div class="form">
+        <label><span data-i18n="cli.nombre">Nombre</span>
+          <input id="alta-nombre" type="text" autocomplete="off" /></label>
+        <label><span data-i18n="cli.direccion">Direccion</span>
+          <input id="alta-direccion" type="text" autocomplete="off" /></label>
+        <label><span data-i18n="cli.sector">Sector</span>
+          <input id="alta-sector" type="text" autocomplete="off" /></label>
+        <label><span data-i18n="cli.tier">Plan</span>
+          <select id="alta-tier">
+            <option value="free">Free</option>
+            <option value="pro">Pro</option>
+            <option value="enterprise">Enterprise</option>
+          </select></label>
+      </div>
+      <button id="alta-crear" class="btn btn-ancho" data-i18n="cli.crear">Crear empresa</button>
+    </div>
+  </div>
+
+  <div id="aviso" class="aviso oculto"></div>
+
+  <script src="/gods-eye/vendor/cesium/Cesium.js"></script>
+  <script src="/gods-eye/static/viewer.js"></script>
+</body>
+</html>

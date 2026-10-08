@@ -1,0 +1,566 @@
+[
+  {
+    "id": "GT-01",
+    "title": "Jules as AIGestion's Autonomous PR Generator",
+    "source_tool": "jules",
+    "target": "aigestion",
+    "category": "coding_automation",
+    "priority": "critical",
+    "effort": "M",
+    "description": "Integrate Google Jules API to accept feature descriptions from the AIGestion chat interface and produce real, reviewable GitHub PRs. When a user approves a proposal card in the chat UI, DanielaOS sends the task to Jules, which clones the repo, implements the change across multiple files, runs tests, and opens a PR. This replaces the current simulated code generation with actual autonomous coding.",
+    "key_features": [
+      "Jules API integration in api_gateway.py",
+      "Chat proposal card → Jules task creation pipeline",
+      "GitHub PR webhook back to AIGestion for status tracking",
+      "PR review notification in chat interface",
+      "Free tier: 15 tasks/day covers daily development needs"
+    ],
+    "dependencies": [
+      "GitHub connector (already connected)",
+      "Jules API key"
+    ],
+    "replaces": "code_generation_agent.py stub templates (body='pass')",
+    "impact": "Transforms AIGestion from a chat interface that talks about code into a platform that writes and ships real code. 15 free autonomous PRs/day is enough for continuous feature development."
+  },
+  {
+    "id": "GT-02",
+    "title": "Android Studio CLI Bridge for App Build/Test",
+    "source_tool": "jules",
+    "target": "aigestion",
+    "category": "coding_automation",
+    "priority": "high",
+    "effort": "M",
+    "description": "Use Jules' Android Studio CLI integration to automate the full Android app lifecycle: build, run emulator tests, and deploy the AIGestion Android app to Play Console test tracks. When Jules opens a PR affecting the Android app, it can automatically run instrumented tests in an emulator before the PR is reviewable.",
+    "key_features": [
+      "Android Studio CLI bridge in android_control.py",
+      "Automated emulator test runs on PR creation",
+      "Play Console test track deployment from chat approval",
+      "Build status displayed in AIGestion HUD"
+    ],
+    "dependencies": [
+      "GT-01",
+      "Android app (android_app/ exists)",
+      "Play Console account"
+    ],
+    "replaces": "Manual Android build/test/deploy cycle",
+    "impact": "Closes the loop from feature request to shipped Android app with zero manual build steps."
+  },
+  {
+    "id": "GT-03",
+    "title": "Firebase AI Logic as Agent-Native Backend",
+    "source_tool": "jules",
+    "target": "both",
+    "category": "integration",
+    "priority": "high",
+    "effort": "L",
+    "description": "Migrate AIGestion's backend from local Flask scripts to Firebase AI Logic, which provides agent-native infrastructure: real-time data sync, authentication, cloud functions, and Firestore. Jules tasks can deploy Firebase functions directly. DanielaOS agents use Firestore as their shared state store instead of local JSON files.",
+    "key_features": [
+      "Firebase Firestore as shared agent state store",
+      "Firebase Cloud Functions for agent API endpoints",
+      "Firebase Auth replacing auth_system.py",
+      "Real-time sync between web UI and agent state",
+      "Jules can deploy Firebase functions as part of PRs"
+    ],
+    "dependencies": [
+      "Firebase project",
+      "Google Cloud account"
+    ],
+    "replaces": "Local JSON files for state (battery_state.json, calendar_events.json, etc.)",
+    "impact": "Eliminates the local-file-state problem. Agents, web UI, and mobile all see the same real-time state. Jules can modify backend infrastructure in PRs."
+  },
+  {
+    "id": "GT-04",
+    "title": "Jules V2 'Jitro' KPI-Driven Development",
+    "source_tool": "jules",
+    "target": "danielaos",
+    "category": "coding_automation",
+    "priority": "medium",
+    "effort": "L",
+    "description": "When Jules V2 'Jitro' launches with KPI-driven development, integrate it so DanielaOS can define success metrics (e.g., 'reduce API response time below 200ms', 'increase test coverage to 90%') and Jules autonomously iterates until KPIs are met. DanielaOS monitors KPI dashboards and dispatches Jules tasks when metrics drift.",
+    "key_features": [
+      "KPI definition interface in AIGestion dashboard",
+      "DanielaOS monitoring loop checking KPI thresholds",
+      "Automatic Jules task dispatch on KPI regression",
+      "KPI achievement notification in chat UI"
+    ],
+    "dependencies": [
+      "GT-01",
+      "Jules V2 release (in development)"
+    ],
+    "replaces": "Manual performance optimization cycles",
+    "impact": "Autonomous continuous improvement. DanielaOS doesn't just detect problems — it autonomously fixes them through Jules until measurable KPIs are achieved."
+  },
+  {
+    "id": "GT-05",
+    "title": "Replace Swarm Dispatcher with Antigravity Multi-Agent Orchestration",
+    "source_tool": "antigravity",
+    "target": "danielaos",
+    "category": "agent_infra",
+    "priority": "critical",
+    "effort": "L",
+    "description": "Replace auto_swarm_dispatcher.py (which makes sequential local API calls) with Antigravity's multi-agent desktop application. DanielaOS's 9 agents run as parallel Antigravity subagents with dynamic task allocation. The Antigravity desktop app provides a visual orchestration view showing all agents working simultaneously.",
+    "key_features": [
+      "Antigravity desktop app as DanielaOS orchestration layer",
+      "9 agents as Antigravity subagent templates",
+      "Dynamic subagent spawning for parallel workflows",
+      "Visual agent orchestration dashboard",
+      "Real parallel execution (not simulated)"
+    ],
+    "dependencies": [
+      "Antigravity 2.0 desktop app",
+      "Agent template definitions"
+    ],
+    "replaces": "auto_swarm_dispatcher.py (sequential API calls) + swarm_intelligence.py (simulated execution)",
+    "impact": "Eliminates the #1 gap identified in agent_epic_ideas.py: 'Swarm intelligence uses SIMULATED execution'. Real parallel agent execution with visual oversight."
+  },
+  {
+    "id": "GT-06",
+    "title": "Antigravity SDK for Cloud-Hosted DanielaOS Agents",
+    "source_tool": "antigravity",
+    "target": "danielaos",
+    "category": "agent_infra",
+    "priority": "high",
+    "effort": "XL",
+    "description": "Use the Antigravity SDK to programmatically host DanielaOS agents on Google Cloud infrastructure instead of local Python processes. Agents become cloud services with autoscaling, persistent state, and 24/7 availability. The SDK enables custom agent hosting on the project's own infrastructure.",
+    "key_features": [
+      "DanielaOS agents as Antigravity SDK hosted services",
+      "Google Cloud autoscaling for agent workloads",
+      "24/7 agent availability (no local machine required)",
+      "Custom agent hosting infrastructure",
+      "Agent state persistence in Cloud Storage"
+    ],
+    "dependencies": [
+      "GT-05",
+      "Google Cloud project",
+      "Antigravity SDK"
+    ],
+    "replaces": "Local Python agent processes (agents.py, daniela_proactive_engine_v2.py)",
+    "impact": "DanielaOS becomes a true cloud operating system. Agents run 24/7 without requiring Alejandro's machine to be on. Enterprise-grade infrastructure."
+  },
+  {
+    "id": "GT-07",
+    "title": "Scheduled Agent Tasks via Antigravity",
+    "source_tool": "antigravity",
+    "target": "danielaos",
+    "category": "agent_infra",
+    "priority": "high",
+    "effort": "S",
+    "description": "Replace daniela_proactive_engine_v2.py's scheduling with Antigravity's native scheduled tasks. Define cron-like schedules for each of the 9 agents (e.g., GUARDIAN runs every 15 min, ANALYST runs every hour, CODER runs on PR events). Antigravity handles scheduling, retries, and execution.",
+    "key_features": [
+      "Antigravity scheduled task definitions per agent",
+      "Native retry and failure notification",
+      "Schedule visualization in AIGestion dashboard",
+      "Event-triggered tasks (GitHub webhook, chat message, KPI threshold)"
+    ],
+    "dependencies": [
+      "GT-05"
+    ],
+    "replaces": "daniela_proactive_engine_v2.py scheduling logic",
+    "impact": "Reliable, native scheduling without custom cron implementations. Agents run on schedule even when no one is watching the dashboard."
+  },
+  {
+    "id": "GT-08",
+    "title": "Migrate from Gemini CLI to Antigravity CLI",
+    "source_tool": "antigravity",
+    "target": "aigestion",
+    "category": "integration",
+    "priority": "medium",
+    "effort": "S",
+    "description": "Migrate all Gemini CLI usage in the AIGestion codebase to the Antigravity CLI (which Google is positioning as Gemini CLI's successor). This ensures compatibility with the latest agent infrastructure and unlocks Antigravity-specific features like multi-agent orchestration from the command line.",
+    "key_features": [
+      "Audit all Gemini CLI references in codebase",
+      "Replace with Antigravity CLI equivalents",
+      "Update deployment scripts and CI/CD",
+      "Migration guide for team reference"
+    ],
+    "dependencies": [
+      "Antigravity CLI release"
+    ],
+    "replaces": "All Gemini CLI usage in scripts and automation",
+    "impact": "Future-proofs the codebase. Antigravity CLI is the supported path going forward."
+  },
+  {
+    "id": "GT-09",
+    "title": "Managed Agents API for Cloud-Hosted DanielaOS Agents",
+    "source_tool": "ai_studio",
+    "target": "danielaos",
+    "category": "agent_infra",
+    "priority": "critical",
+    "effort": "L",
+    "description": "Use AI Studio's Managed Agents via Interactions API to create cloud-hosted versions of DanielaOS's 9 agents. A single API call spins up a reasoning agent with tool use and code execution in an isolated Linux environment. State persists across calls. Each agent gets its own persistent environment with files intact between interactions.",
+    "key_features": [
+      "9 Managed Agent instances (one per DanielaOS agent role)",
+      "Persistent Linux environments per agent",
+      "Tool use: web search, code execution, file I/O",
+      "Custom agent templates via markdown (matches skills/ pattern)",
+      "Interactions API integration in api_gateway.py"
+    ],
+    "dependencies": [
+      "Google AI Studio API key",
+      "Agent role definitions"
+    ],
+    "replaces": "Local agent execution in agents.py (limited by local compute)",
+    "impact": "Solves state management (persistent envs), compute limitations (cloud execution), and infrastructure complexity. Agents become real cloud services with one API call."
+  },
+  {
+    "id": "GT-10",
+    "title": "Workspace Integration: Real Gmail/Docs/Calendar Automation",
+    "source_tool": "ai_studio",
+    "target": "both",
+    "category": "integration",
+    "priority": "critical",
+    "effort": "M",
+    "description": "Connect DanielaOS agents to real Google Workspace APIs through AI Studio's native integration. Instead of simulated 'send email' or 'create calendar event' actions, agents call Gmail, Docs, and Calendar APIs directly. The 5 fictional agent characters (Correo, Calendario, Documentos, Redes, Vigia) become real Workspace-connected agents.",
+    "key_features": [
+      "Correo agent → Gmail API (read, draft, send)",
+      "Calendario agent → Calendar API (create, update, query events)",
+      "Documentos agent → Docs API (create, edit, export documents)",
+      "Real OAuth flow for Workspace access",
+      "Agent action audit log in AIGestion dashboard"
+    ],
+    "dependencies": [
+      "Google Workspace account",
+      "OAuth consent screen",
+      "GT-09"
+    ],
+    "replaces": "Simulated agent actions in aigestion_content_calendar.py",
+    "impact": "The 5 fictional agent characters become real, useful automation agents. No more simulated actions — every agent action produces a real Google Workspace result."
+  },
+  {
+    "id": "GT-11",
+    "title": "Android App Building from Prompt → Play Console",
+    "source_tool": "ai_studio",
+    "target": "aigestion",
+    "category": "mobile",
+    "priority": "high",
+    "effort": "M",
+    "description": "Use AI Studio's Native Android support to build and publish AIGestion's Android app from natural language descriptions. Users describe a feature in the chat UI, AI Studio generates an Android app, and publishes to the Play Console test track for immediate testing on real devices.",
+    "key_features": [
+      "Feature description → Android app generation pipeline",
+      "Play Console test track auto-publishing",
+      "Feature flag integration for A/B testing",
+      "Device testing feedback loop in AIGestion dashboard"
+    ],
+    "dependencies": [
+      "Google Play Console account",
+      "AI Studio API"
+    ],
+    "replaces": "Manual Android app development cycle",
+    "impact": "Feature-to-app in minutes instead of weeks. The Android app evolves through natural language descriptions, not manual coding."
+  },
+  {
+    "id": "GT-12",
+    "title": "AI Studio Mobile App for Remote Agent Monitoring",
+    "source_tool": "ai_studio",
+    "target": "aigestion",
+    "category": "mobile",
+    "priority": "medium",
+    "effort": "S",
+    "description": "Use the AI Studio mobile app (when released) to monitor and interact with DanielaOS agents remotely. Push notifications for agent task completion, KPI alerts, and approval requests. Approve proposal cards from mobile without opening the full web dashboard.",
+    "key_features": [
+      "Push notifications for agent events",
+      "Mobile proposal card approval/rejection",
+      "Agent status monitoring on mobile",
+      "Quick chat with DanielaOS from mobile"
+    ],
+    "dependencies": [
+      "AI Studio mobile app release"
+    ],
+    "replaces": "Desktop-only access to AIGestion dashboard",
+    "impact": "Alejandro can monitor and control DanielaOS from anywhere. Agent approval workflows become mobile-first."
+  },
+  {
+    "id": "GT-13",
+    "title": "Markdown-Defined Agent Templates for All 9 Agents",
+    "source_tool": "ai_studio",
+    "target": "danielaos",
+    "category": "agent_infra",
+    "priority": "high",
+    "effort": "M",
+    "description": "Define each of DanielaOS's 9 agents as markdown template files for AI Studio's Managed Agents. Each template specifies the agent's role, tools, system prompt, and skill set. This matches the existing skills/ pattern in the codebase and makes agents portable, version-controlled, and editable without code changes.",
+    "key_features": [
+      "9 markdown agent templates (one per role)",
+      "Role-specific tool definitions per agent",
+      "Skill inheritance from skills/ directory",
+      "Version-controlled agent definitions in Git",
+      "Hot-reload agent templates without restart"
+    ],
+    "dependencies": [
+      "GT-09"
+    ],
+    "replaces": "Hardcoded agent definitions in agents.py",
+    "impact": "Agents become configuration, not code. Non-technical users can adjust agent behavior by editing markdown. Agents are portable across infrastructure."
+  },
+  {
+    "id": "GT-14",
+    "title": "WebMCP: Expose AIGestion API as Structured Tools for Browser Agents",
+    "source_tool": "chrome",
+    "target": "aigestion",
+    "category": "web_native",
+    "priority": "critical",
+    "effort": "M",
+    "description": "Implement WebMCP on the AIGestion web interface to expose JavaScript functions and HTML forms as structured tools that any browser-based agent (Chrome Gemini, Antigravity web agents, third-party agents) can call directly. Instead of screen-scraping, agents call AIGestion's API functions natively: create_task(), approve_proposal(), query_agent_status(), etc.",
+    "key_features": [
+      "WebMCP manifest declaring AIGestion's callable functions",
+      "Structured tool definitions for all API endpoints",
+      "Chrome 149 origin trial participation",
+      "Agent authentication via WebMCP (scoped permissions)",
+      "Tool discovery for third-party agents"
+    ],
+    "dependencies": [
+      "Chrome 149+ (origin trial)",
+      "WebMCP spec adoption"
+    ],
+    "replaces": "",
+    "impact": "AIGestion becomes a web-native agent platform. Any browser agent can interact with AIGestion's features programmatically. This is the bridge between the web UI and the agent ecosystem."
+  },
+  {
+    "id": "GT-15",
+    "title": "Built-in Prompt API: Zero-Cost On-Device AI for Landing Page",
+    "source_tool": "chrome",
+    "target": "aigestion",
+    "category": "web_native",
+    "priority": "high",
+    "effort": "S",
+    "description": "Use Chrome's built-in Prompt API (stable in Chrome 148) to power the landing page demo chat with on-device AI. No API key needed, no server calls, no cost. The model runs in the browser. Falls back to Gemini API for unsupported browsers. Also use Gemma 197M for task-specific APIs: summarizer for content previews, translator for multilingual support, language detector for auto-localization.",
+    "key_features": [
+      "On-device Prompt API for landing page demo chat",
+      "Zero API cost for demo interactions",
+      "Graceful fallback to Gemini API for non-Chrome browsers",
+      "Gemma 197M summarizer for content card previews",
+      "Gemma translator for instant multilingual UI",
+      "Multimodal input (text + image) for rich demo",
+      "Structured JSON output for proposal cards"
+    ],
+    "dependencies": [
+      "Chrome 148+ for users"
+    ],
+    "replaces": "Gemini API calls for demo chat on landing page",
+    "impact": "Eliminates API costs for all landing page demo interactions. The demo chat works offline, instantly, with no rate limits. Huge for viral sharing — visitors can try AIGestion without any backend cost."
+  },
+  {
+    "id": "GT-16",
+    "title": "Chrome DevTools for Agents: Real-Time Frontend Debugging",
+    "source_tool": "chrome",
+    "target": "aigestion",
+    "category": "web_native",
+    "priority": "medium",
+    "effort": "S",
+    "description": "Enable Chrome DevTools for Agents protocol so DanielaOS's CODER agent can access real-time console logs, network requests, and accessibility tree of the AIGestion web interface. When a user reports a bug, DanielaOS inspects the running frontend directly through DevTools — no manual screenshot reproduction needed.",
+    "key_features": [
+      "DevTools for Agents protocol integration",
+      "CODER agent accesses console/network/a11y tree",
+      "Automated bug reproduction from DevTools data",
+      "Performance profiling via Lighthouse data for agents",
+      "AI-assisted debugging widgets in DevTools"
+    ],
+    "dependencies": [
+      "Chrome with DevTools for Agents enabled"
+    ],
+    "replaces": "Manual bug reproduction and screenshot-based debugging",
+    "impact": "DanielaOS can debug the frontend it builds. The CODER agent sees real console errors, network failures, and accessibility issues — then dispatches Jules to fix them."
+  },
+  {
+    "id": "GT-17",
+    "title": "HTML-in-Canvas: DOM Overlays on Daniela's 3D Avatar",
+    "source_tool": "chrome",
+    "target": "aigestion",
+    "category": "web_native",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Use Chrome's HTML-in-Canvas API to render DOM elements directly inside the WebGL/WebGPU canvas where Daniela's Three.js particle avatar lives. Chat bubbles, proposal cards, status indicators, and HUD elements float in 3D space around the avatar instead of being separate DOM overlays. Creates a unified immersive interface.",
+    "key_features": [
+      "Chat bubbles rendered inside 3D canvas near avatar",
+      "Proposal cards as 3D-positioned DOM elements",
+      "Agent status indicators as 3D HUD elements",
+      "Smooth transitions between 2D and 3D UI elements",
+      "Element-scoped View Transitions for smooth state changes"
+    ],
+    "dependencies": [
+      "Chrome with HTML-in-Canvas origin trial",
+      "Three.js canvas (exists in full_ui_v2.html)"
+    ],
+    "replaces": "Separate DOM overlay + 3D canvas layering",
+    "impact": "AIGestion's interface becomes a true mixed-reality experience. DOM elements and 3D objects coexist seamlessly. Visually stunning and functionally integrated."
+  },
+  {
+    "id": "GT-18",
+    "title": "Auto Browse: DanielaOS Browser Automation 24/7",
+    "source_tool": "chrome",
+    "target": "danielaos",
+    "category": "web_native",
+    "priority": "critical",
+    "effort": "L",
+    "description": "Integrate Chrome's Auto Browse feature to give DanielaOS real browser control for 24/7 task automation. Agents can navigate websites, fill forms, extract data, and perform multi-step web workflows autonomously. Gemini Spark integration (coming soon) enables complex reasoning during browsing. Replaces simulated web actions with real browser automation.",
+    "key_features": [
+      "Auto Browse integration in DanielaOS OPERATOR agent",
+      "Multi-step web workflow automation (login, navigate, extract, report)",
+      "Gemini Spark integration for complex browsing reasoning",
+      "Screenshot + DOM state capture for audit logs",
+      "WebMCP-aware browsing (call structured tools when available)",
+      "Session persistence for authenticated browsing"
+    ],
+    "dependencies": [
+      "Chrome with Auto Browse enabled",
+      "Gemini Spark (when available)"
+    ],
+    "replaces": "Simulated web actions in OPERATOR agent",
+    "impact": "DanielaOS becomes a real web automation agent. It doesn't just talk about browsing the web — it actually browses, extracts, and acts on web content 24/7."
+  },
+  {
+    "id": "GT-19",
+    "title": "Chrome Skills: Reusable AI Workflows for Content Creation",
+    "source_tool": "chrome",
+    "target": "aigestion",
+    "category": "web_native",
+    "priority": "medium",
+    "effort": "S",
+    "description": "Create Chrome Skills (saved, reusable multi-tab AI prompt workflows) for AIGestion's content creation pipeline. Pre-built workflows for: blog post generation (research → draft → optimize → publish), social media campaign (trend analysis → content → schedule → post), competitor monitoring (monitor → analyze → report), and code documentation (scan → document → PR).",
+    "key_features": [
+      "Content creation Chrome Skills (blog, social, docs, monitoring)",
+      "Multi-tab AI workflow templates",
+      "One-click workflow execution from AIGestion dashboard",
+      "Workflow sharing and community templates",
+      "Integration with viral_content_factory.py pipeline"
+    ],
+    "dependencies": [
+      "Chrome with Skills support"
+    ],
+    "replaces": "Manual content creation workflows",
+    "impact": "Content creation becomes one-click. DanielaOS loads the right Chrome Skill, opens the right tabs, and runs the AI workflow automatically."
+  },
+  {
+    "id": "GT-20",
+    "title": "Chrome Gemini on Android: Mobile Agent Actions",
+    "source_tool": "chrome",
+    "target": "danielaos",
+    "category": "mobile",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Integrate Chrome Gemini on Android to extend DanielaOS agent actions to mobile browsing. Agents can perform web tasks on Alejandro's Android device: research while browsing, extract calendar events from web pages, save content to Keep, and send emails via Gmail — all from the mobile Chrome browser with DanielaOS direction.",
+    "key_features": [
+      "Chrome Gemini Android integration",
+      "Mobile web task automation (Calendar, Keep, Gmail)",
+      "Personal Intelligence features (context-aware suggestions)",
+      "Mobile browsing assistant powered by DanielaOS",
+      "Voice input across mobile web for hands-free agent control"
+    ],
+    "dependencies": [
+      "Chrome Gemini on Android (rolling out)"
+    ],
+    "replaces": "Desktop-only agent web actions",
+    "impact": "DanielaOS follows Alejandro to mobile. Agent actions work on the phone's browser, not just the desktop. True cross-device agent presence."
+  },
+  {
+    "id": "GT-21",
+    "title": "Gemini 3.5 Pro 2M Context: Whole-Codebase Analysis",
+    "source_tool": "gemini",
+    "target": "both",
+    "category": "model_upgrade",
+    "priority": "critical",
+    "effort": "S",
+    "description": "Use Gemini 3.5 Pro's 2M-token context window to analyze the entire AIGestion codebase in a single prompt. DanielaOS's ANALYST agent can reason about the full project architecture, cross-file dependencies, and system-wide patterns without chunking or RAG. Architecture reviews, security audits, and refactoring recommendations become single-call operations.",
+    "key_features": [
+      "Full codebase context injection (2M tokens = ~500K lines of code)",
+      "Architecture analysis in a single API call",
+      "Cross-file dependency mapping",
+      "Security audit with complete code visibility",
+      "Refactoring recommendations with project-wide context",
+      "Arquitecto.py upgraded to use full-context analysis"
+    ],
+    "dependencies": [
+      "Gemini 3.5 Pro API access"
+    ],
+    "replaces": "RAG-based code search in ANALYST agent (limited context)",
+    "impact": "DanielaOS sees the entire project at once. No more blind spots from context truncation. Architecture decisions are made with full information, not fragments."
+  },
+  {
+    "id": "GT-22",
+    "title": "Gemini 3.5 Flash as Default for Real-Time Agent Responses",
+    "source_tool": "gemini",
+    "target": "danielaos",
+    "category": "model_upgrade",
+    "priority": "high",
+    "effort": "S",
+    "description": "Switch all DanielaOS agents from current model to Gemini 3.5 Flash as the default model for real-time responses. Flash is 4x faster than frontier models and outperforms Gemini 3.1 Pro on most benchmarks. Reserve Gemini 3.5 Pro for tasks requiring deep reasoning or the 2M context window.",
+    "key_features": [
+      "Flash as default model for all 9 agents",
+      "Automatic Pro upgrade for tasks >100K tokens or deep reasoning",
+      "Model selection logic in api_gateway.py",
+      "Cost optimization: Flash at $1.50/M input vs Pro pricing",
+      "4x faster chat responses for AIGestion users"
+    ],
+    "dependencies": [
+      "Gemini 3.5 API access"
+    ],
+    "replaces": "Current model configuration in all agent modules",
+    "impact": "4x faster agent responses at lower cost. Users perceive instant interactions. Pro reserved for where it matters — architecture, deep analysis, full-context reasoning."
+  },
+  {
+    "id": "GT-23",
+    "title": "Structured JSON Output for Native Proposal Cards",
+    "source_tool": "gemini",
+    "target": "aigestion",
+    "category": "model_upgrade",
+    "priority": "high",
+    "effort": "S",
+    "description": "Use Gemini 3.5's native structured JSON output to generate proposal cards directly from the model — no prompt engineering or parsing hacks. The model returns a JSON object with title, description, impact, effort, and action items that maps directly to the proposal card UI component. Eliminates fragile regex parsing of model output.",
+    "key_features": [
+      "Native JSON schema for proposal cards",
+      "Schema: {title, description, impact, effort, actions[], files[]}",
+      "No regex/parsing of model output",
+      "Type-safe proposal card generation",
+      "Consistent card format across all agents"
+    ],
+    "dependencies": [
+      "GT-22"
+    ],
+    "replaces": "Prompt engineering + regex parsing for proposal card extraction",
+    "impact": "Proposal cards are always well-formed. No more broken UI from malformed model output. Every agent produces consistent, structured proposals."
+  },
+  {
+    "id": "GT-24",
+    "title": "Free Tier Deep Research for Proactive Intelligence",
+    "source_tool": "gemini",
+    "target": "danielaos",
+    "category": "model_upgrade",
+    "priority": "high",
+    "effort": "S",
+    "description": "Exploit Gemini's free tier (5 Deep Research reports/month) to fuel DanielaOS's proactive engine. Schedule 5 monthly deep research tasks on: industry trends, competitor analysis, technology radar, user feedback synthesis, and codebase improvement opportunities. Results feed into the content calendar and agent task queue.",
+    "key_features": [
+      "5 monthly Deep Research tasks scheduled automatically",
+      "Research topics: trends, competitors, tech radar, feedback, codebase",
+      "Results parsed into actionable agent tasks",
+      "Content calendar auto-population from research findings",
+      "Integration with daniela_proactive_engine_v2.py"
+    ],
+    "dependencies": [
+      "Google AI free tier account"
+    ],
+    "replaces": "Manual research and trend monitoring",
+    "impact": "Free, high-quality research fueling proactive agent actions. DanielaOS knows what's happening in the industry and acts on it — without any API cost."
+  },
+  {
+    "id": "GT-25",
+    "title": "Gemini Live Voice Mode for DanielaOS Voice Interactions",
+    "source_tool": "gemini",
+    "target": "aigestion",
+    "category": "model_upgrade",
+    "priority": "medium",
+    "effort": "M",
+    "description": "Integrate Gemini Live's real-time voice mode into AIGestion for natural voice conversations with DanielaOS. Users speak naturally, DanielaOS responds with voice. Enables hands-free agent control, mobile voice interaction, and accessibility. Combined with Chrome's voice input across the web for a fully voice-native experience.",
+    "key_features": [
+      "Real-time voice conversation with DanielaOS",
+      "Voice-activated agent task dispatch",
+      "Voice proposal card reading (text-to-speech for accessibility)",
+      "Mobile voice control via Chrome voice input",
+      "Voice command shortcuts ('Hey Daniela, check the servers')"
+    ],
+    "dependencies": [
+      "Gemini Live API access",
+      "Microphone permissions"
+    ],
+    "replaces": "Text-only chat interface as the sole interaction method",
+    "impact": "AIGestion becomes a voice-first assistant on mobile and desktop. Hands-free agent control while coding, driving, or walking. Accessibility win."
+  }
+]

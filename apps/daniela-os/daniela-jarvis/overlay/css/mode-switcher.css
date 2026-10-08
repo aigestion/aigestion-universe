@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════════════════
+   DANIELA JARVIS — Mode Switcher Radial Menu
+   ═══════════════════════════════════════════════════════════════ */
+
+.mode-switcher {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  pointer-events: auto;
+}
+
+/* ═══ TOGGLE BUTTON ═══ */
+
+.mode-toggle-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  background: var(--bg-dark);
+  color: var(--cyan);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: 0 0 20px var(--cyan-dim);
+  position: relative;
+  z-index: 10001;
+}
+
+.mode-toggle-btn:hover {
+  box-shadow: 0 0 30px var(--cyan-glow);
+  transform: scale(1.1);
+}
+
+.mode-toggle-icon {
+  display: block;
+  animation: spin 8s linear infinite;
+}
+
+/* ═══ RADIAL MENU ═══ */
+
+.mode-radial {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.mode-switcher.open .mode-radial {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ═══ MODE ITEMS ═══ */
+
+.mode-item {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--color, var(--cyan));
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transform: translate(calc(-50% + var(--rx)), calc(-50% + var(--ry))) scale(0);
+  transition: transform 0.3s var(--delay), box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.mode-switcher.open .mode-item {
+  transform: translate(calc(-50% + var(--rx)), calc(-50% + var(--ry))) scale(1);
+}
+
+.mode-item:hover {
+  box-shadow: 0 0 20px var(--color, var(--cyan));
+  border-color: var(--color, var(--cyan));
+  transform: translate(calc(-50% + var(--rx)), calc(-50% + var(--ry))) scale(1.15) !important;
+}
+
+.mode-item.active {
+  border-width: 2px;
+  box-shadow: 0 0 25px var(--color, var(--cyan));
+}
+
+.mode-item-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.mode-item-label {
+  font-family: var(--font-display);
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  line-height: 1;
+}
+
+.mode-item:hover .mode-item-label {
+  color: var(--text-primary);
+}
+
+/* ═══ ANIMATION DELAYS ═══ */
+
+.mode-item:nth-child(1) { --delay: 0ms; }
+.mode-item:nth-child(2) { --delay: 30ms; }
+.mode-item:nth-child(3) { --delay: 60ms; }
+.mode-item:nth-child(4) { --delay: 90ms; }
+.mode-item:nth-child(5) { --delay: 120ms; }
+.mode-item:nth-child(6) { --delay: 150ms; }

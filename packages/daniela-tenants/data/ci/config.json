@@ -1,0 +1,19 @@
+{
+  "timeout_s": 300,
+  "timeout_herramienta_s": 90,
+  "solo_raiz": true,
+  "ignorar": [
+    "phone_deploy",
+    "node_modules",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "tests",
+    ".git",
+    "data",
+    "output"
+  ],
+  "contexto_github": "daniela-ci-arm",
+  "repo": "aig/aig-MONOREPO",
+  "publicar_auto": false
+}

@@ -1,0 +1,791 @@
+# 2026-09-10 — AIGestion / DanielaOS
+
+## AUDITORIA V1 (ramas Git + Termux + seguridad)
+Usuario pidio revisar ramas de GitHub, auditar v1 y dar ideas epicas avanzando con Termux.
+
+### Hallazgos de Git (repo: github.com/aigestion/AIGESTION-MONOREPO)
+- Local `main` @ 7900cfaa — **19 commits sin pushear**, 27 modificados, 65 untracked
+- **origin/ui-stable** (909b0366): +331 / -297 commits vs main. 3750 archivos,
+  +24.344 / **-270.100 lineas**. Reorganizo arbol (scripts/->raiz, creo tests/) y
+  BORRO web_app/, web/, ventures/fitvision-os/, PDFs ejecutivos.
+  Tiene Flask WSGI nativo + /api/offload asincrono que main NO tiene.
+  **MERGE A CIEGAS = PELIGRO (borraria 270k lineas).**
+- **origin/feature/darwin-api** (10ccb2a6): +4 / -175 commits. JWT auth Darwin API,
+  CI workflow, vault/ (daniela_memory.db, memory_tree.db), tests/ reorganizado.
+  Solo 4 commits de divergencia -> **merge facil, hacer primero.**
+- Codigo: 246 .py en raiz / 42.894 lineas
+
+### 🔴 P0 — .env CON API KEY REAL COMMITEADO
+- `git ls-files` muestra `.env` TRACKEADO (y `.env.master.example`, ese limpio)
+- `git show HEAD:.env` -> `GEMINI_API_KEY=AIzaSyAG...` + `DANIELA_PIN=8374`
+- El .gitignore SI tiene `.env`, pero eso solo impide anadir archivos NUEVOS.
+  Una vez trackeado sigue en el historial.
+- **ACCION REQUERIDA**: rotar key -> `git rm --cached .env` -> purgar con
+  git filter-repo / BFG -> pre-commit hook anti-secretos
+- `.env.master` (31 KB, disco) SI esta protegido por `.env.*` — correcto
+
+### Seguridad codigo
+- **109** os.system()/os.popen()/shell=True en 40 archivos
+  (conversar_daniela 8, modo_calle 8, panic_sos 7, daniela_master_ai 6, tools 6,
+  daniela_proactiva 5, android_control/caja_negra/centinela/mobile_daemon/
+  satellite_ai/tui/monitor_recursos 4 cada uno...)
+- Contraste: 12 modulos Pixel Bridge v1 = **0 vulnerabilidades** (AST verificado)
+
+### Ecosistema Termux
+- 54 archivos usan comandos termux-* / 202 referencias / 34 comandos distintos
+- **40 de 54 modulos huerfanos (74%)** — ~1100 lineas de logica de campo desconectada
+  - Con valor: daniela_proactiva (202 l), daniela_satellite_ai (111),
+    notas_proactivas (111), daniela_mobile_daemon (81), geofence (76),
+    modo_calle (62), escolta_notificaciones (57), panic_sos (60), seguridad (49)
+- **18 comandos Termux:API sin explotar**: termux-wake-lock (CRITICO, Android mata
+  el daemon), termux-boot, termux-job-scheduler, termux-usb (Arduino/ESP32),
+  termux-nfc, termux-infrared-transmit, termux-dialog, termux-telephony-cellinfo,
+  termux-share, termux-download, termux-open-url, termux-keystore, termux-media-scan,
+  termux-tts-engines, termux-wifi-enable, termux-saf-*, termux-bluetooth-scan/connect,
+  termux-thermal-status
+
+### Pixel Bridge v1 — estado OK
+15 modulos · 71 rutas · $0/mes · boot smoke test OK (79 rutas totales) · 0 vulns
+
+## Archivos creados hoy
+- **AUDITORIA_V1.md** — informe completo (ramas, working tree, P0 secretos,
+  109 vulns, 40 huerfanos, comandos sin explotar, prioridades)
+- **termux_v2_roadmap.py** (~600 lineas) — modulo con 18 ideas epicas E-01..E-18
+  en 5 fases (5-9), 76 rutas nuevas, ~86 h, $0/mes
+  CLI: status / audit / security / termux / ideas / roadmap / export / all
+
+## Roadmap de ideas (fases 5-9)
+- **F5 Fundamentos 24/7** (9h): E-01 wake-lock+boot (P0), E-02 auto-sanitizer
+  109 os.system (P0), E-03 git brain sync (P1)
+- **F6 Consolidar oro** (15h): E-04 Daniela Mobile Core (fusion 40 huerfanos),
+  E-05 Modo Calle 2.0 context engine + detector caidas, E-06 caja negra forense
+- **F7 Hardware** (14h): E-07 IR universal, E-08 NFC fisico, E-09 USB->Arduino/ESP32,
+  E-10 termux-dialog UI nativa + widgets
+- **F8 Distribuida** (26h): E-11 Daniela Mesh CRDT, E-12 nodos urbanos sin GPS,
+  E-13 Daniela offline llama.cpp ARM, E-14 Bluetooth bridge
+- **F9 DevOps** (22h): E-15 CI ARM real (GH Actions self-hosted en Termux),
+  E-16 unificacion ramas, E-17 health monitor, E-18 Daniela AR WebXR
+
+## Pendiente decidir por el usuario
+1. Rotar Gemini key + purgar .env (P0, urgente)
+2. Commit+push de los 92 cambios pendientes (P0)
+3. Que fase ejecutar primero
+
+## FASE 5 EJECUTADA (usuario dijo "procede")
+Orden seguido: P0 secretos -> P0 commit -> E-02 -> E-01 + E-03
+
+### P0-A Seguridad (HECHO)
+- `git rm --cached .env` — ya no trackeado, sigue en disco (backup en .env.local.backup)
+- **Hallazgo ampliado**: 2 API keys MAS hardcodeadas en codigo fuente
+  (daniela_advanced_modules.py:8, seguridad.py:5). Corregidas -> leen
+  GEMINI_API_KEY del entorno con degradacion elegante (model=None si falta)
+- Creado **scripts/secret_guard.py** (416 lineas): escanea staging/worktree/historial
+  buscando Google/OpenAI/Anthropic/AWS/GitHub/Slack keys, private keys, JWT secrets,
+  DB urls con password, Telegram tokens, seed phrases y alta entropia
+  - Instalado pre-commit hook en .githooks/ + `git config core.hooksPath .githooks`
+  - CLI: (default staging) / --all / --history / --install / --uninstall
+  - Allowlist en .secretguard-allow
+  - BUG corregido: subprocess text=True fallaba con binarios ->
+    anadido errors="replace" + guard `if not text: return []`
+- **Pickaxe** (`git log --all -S"AIza"`): la key esta en 56b2fab4 y 929b6722,
+  commits YA PUSHEADOS -> rotacion obligatoria
+- Escanear historial completo con secret_guard.py --history es demasiado lento
+  (21 min sin terminar) -> usar `git log --all -S"patron"` en su lugar
+
+### P0-B Commits (HECHO) — 11 commits, working tree limpio
+c254d008 security(p0) · 7bf36ae7 feat(pixel-bridge) 15 modulos 71 rutas ·
+0f98f389 feat(agents) · c7e3ea7d feat(autoprog) · 25e5c7df feat(free-tier) ·
+3ba84dcf feat(content) · 962237ed docs(audit-v1) · d8a59c0a chore(infra) ·
+26f7c10c refactor(core) 24 modulos · ad5904c4 security(e-02) ·
+779186d3 feat(fase-5) · b8c26426 docs update
+- .gitignore ampliado: *.db, capturas temp, graph_memory.json.enc, .bak,
+  .workbuddy-ai/, tests/auto_generated/ (935 ficheros basura)
+- **28 commits sin pushear** — `git push origin main` falla: auth de GitHub no
+  disponible en este entorno ("could not read Username"). Lo hace el usuario.
+
+### E-02 Auto-Sanitizer (HECHO) — 109 -> 45 vulnerabilidades
+- **safe_exec.py** (127 l): punto unico de ejecucion. run_cmd/run_code/run_out/run_json/ok
+  - shlex.split + subprocess.run(list_args). NUNCA shell
+  - Expande ~ y $VARS (sin shell). Captura FileNotFoundError(127) y Timeout(124)
+- **auto_sanitizer.py** (368 l): refactor por AST
+  - os.system(X) -> run_code(X) · os.popen(X).read() -> run_out(X)
+  - subprocess.run(X, shell=True) -> run_cmd(X) [+ call/check_call/check_output/getoutput]
+  - SHELL_META = | > < & ; $ ` \n * ? -> si aparecen, NO convierte (shlex no reproduciria
+    el comportamiento) y lo marca para revision manual
+  - Modos: informe / --apply (con .bak) / --verify / --rollback / --file
+  - **64 llamadas convertidas en 30 archivos. 32 modulos usan safe_exec**
+  - Quedan 45 (todas con metacaracteres de shell). Peores: conversar_daniela 7,
+    daniela_master_ai 5, centinela/satellite_ai/tui/monitor_recursos 3 cada uno
+- 3 errores de sintaxis PREEXISTENTES (no del sanitizer, no los toco):
+  daniela_self_improvement.py:554, jules_free_dispatch.py:290, plugin_system.py:202
+
+### E-01 daemon_24_7.py (HECHO) — 396 lineas, 7 rutas
+- El candado: Android mata Termux al bloquear pantalla. Tres capas:
+  1. termux-wake-lock / termux-wake-unlock
+  2. notificacion sticky `--ongoing` id=daniela-247 (Android respeta servicios visibles)
+  3. watchdog: chequea GET /api/pixel/health:8082 y relanza el gateway si cae
+- install_boot_service() escribe ~/.termux/boot/daniela-boot.sh (chmod 755)
+- Rutas: /api/pixel/daemon/{status,start,stop,heartbeat,install-boot,config,events}
+- is_termux() por TERMUX_VERSION / PREFIX / /data/data/com.termux
+
+### E-03 git_brain_sync.py (HECHO) — 409 lineas, 8 rutas
+- data/brain/ como repo git propio (git init + user DanielaOS + .gitignore de secretos)
+- write_episode / write_learning / commit / sync (pull --rebase + push) / history / rollback
+- Conflictos: compara `_updated` de las 3 versiones (ours/theirs) y gana la mas reciente
+- Autosync thread cada 120s
+- Rutas: /api/brain/{status,commit,sync,history,rollback,write,read,autosync}
+- device_id = hostname + plataforma (ej: AlexPc-win)
+
+### Resultado
+- daniela_os.py: 582 -> ~600 lineas. **Boot OK: 94 rutas totales** (79 + 15 nuevas)
+- Seguridad en los 5 modulos nuevos: **0 os.system, 0 shell=True** (AST)
+
+## FASE 6 EJECUTADA — E-04, E-05, E-06 (completada al 100%)
+Commits: 794d4c58 (E-04) · 59385929 (E-05) · 733ad7a6 (E-06) · 53a3cab6 (docs)
+
+### E-04 daniela_mobile_core.py (640 l, 8 rutas, 0 vulns)
+- Fusiona los 40 huerfanos en UN daemon con **EventBus pub/sub**
+- 13 tipos de evento: SENSOR_TICK, POCKET_STATE, HEADSET_CONNECTED, ZONE_CHANGE,
+  BATTERY_LOW, WAKE_WORD, PANIC, FALL_DETECTED, NOTIFICATION, SOS_COMPLETE,
+  CORE_STARTED, CORE_STOPPED, PLUGIN_TOGGLED
+- 6 plugins: pocket_sense, headset_guard, haptics, panic_sos, home_zone, diario
+- Clase base `Plugin` con on_event()/on_tick(); toggle en caliente
+- **API IMPORTANTE**: el metodo para emitir es `core.bus.emit(tipo, datos, source=...)`.
+  NO existe `bus_emit()`. `core.bus.subscribe(None, handler)` escucha todo.
+- Rutas: /api/pixel/core/{status,plugins,plugin/<n>/toggle,events,emit,start,stop,panic}
+
+### E-05 context_engine.py (620 l, 8 rutas, 0 vulns)
+- 9 senales -> 1 contexto con confianza Y explicacion:
+  durmiendo, en_bolsillo, en_casa, caminando, en_vehiculo, en_mano, quieto,
+  caida, desconocido
+- Detector de caidas 3 fases + refuerzo por orientacion:
+  caida libre |a|<2.5 -> impacto |a|>22 en 1.5s -> inmovilidad var<=1.2 por 4s
+  + cambio del vector gravedad >= 0.55
+- `feed_acceleration(acc, ts=None)` — acepta marca de tiempo inyectada
+  (imprescindible para testear: el bucle real tarda segundos, el test microsegundos)
+- **Truco**: excluir el transitorio del impacto (0.5s) de la ventana de
+  inmovilidad, si no el pico de 30 m/s2 dispara la varianza y nunca detecta
+- `gravity_ref` se actualiza al registrar la caida (nueva orientacion de reposo)
+- Zona hogar por haversine; set_home_here() desde GPS
+- 18 umbrales ajustables en caliente por /api/pixel/context/config
+
+### E-06 blackbox_forense.py (560 l, 9 rutas, 0 vulns)
+- Buffer circular: graba SIEMPRE, congela a disco al disparar -> el incidente
+  tiene los 5 min ANTERIORES (pre-roll), no solo los posteriores
+- 3 capas: telemetria (RAM ~1Hz) + audio (segmentos rotativos 30s) + fotos
+- **Integridad**: hash-chain SHA256 (entry[i]=SHA256(entry[i-1]+hash+ts))
+  + SELLO del propio manifiesto (SHA256 del JSON canonico sin el campo seal)
+- Autodisparo suscrito al bus: PANIC, FALL_DETECTED
+- **Bugs corregidos**: (1) IDs con resolucion de segundos colisionaban ->
+  milisegundos; (2) telemetry.json se escribia DESPUES de hashear y quedaba
+  fuera de la cadena -> ahora va primero y entra; (3) sello del manifiesto
+
+### Resultado Fase 6
+- **Boot verificado: 118 rutas** (94 -> 118, +25 nuevas)
+- Seguridad: 45 llamadas inseguras restantes en el repo (de 109);
+  los 3 modulos Fase 6 = **0**
+- E2E: PANIC -> Mobile Core -> SOS_COMPLETE + Caja Negra congela incidente
+  con integridad VALIDA
+- AST scan util: cuenta os.system/popen/shell=True. **Falso positivo conocido**:
+  `platform.system()` matchea por nombre de atributo
+- termux_v2_roadmap.py: anadidos campos done/module a EpicIdea;
+  `python termux_v2_roadmap.py roadmap` muestra ✔ + modulo (E-01..E-06 hechos)
+
+## FASE 7 EJECUTADA — E-07..E-10 (completada al 100%)
+Commits: 3e8d81f8 (E-10) · 6422156b (E-07) · d3800cde (E-08) ·
+f2b14992 (E-09) · 628d5046 (docs)
+Boot verificado: **153 rutas** (118 -> 153, +35). 0 os.system en los 4 modulos.
+
+### E-10 native_ui.py (520 l, 10 rutas) — se hizo PRIMERO (es P1 y es la capa
+de interaccion que usan los demas)
+- 10 tipos de termux-dialog: confirm, text, radio, checkbox, spinner, sheet,
+  counter, date, time, speech. Parseo: code -1 = confirmado, -2 = cancelado
+- Confirmaciones ASINCRONAS: ask() devuelve un id al instante y lanza hilo;
+  el PC consulta /pending/<id>?wait=N o responde por /answer. TTL 10 min
+- Notificacion con hasta 3 botones accionables (--buttonN-action)
+- 6 widgets Termux:Widget en ~/.shortcuts/ (dime, estado, sos, caja-negra,
+  contexto, sincroniza)
+- **API**: `ui.ask(kind, title, timeout, **opts)`, `ui.dialog(kind, title, **opts)`
+
+### E-07 ir_bridge.py (560 l, 9 rutas)
+- NO es libreria de hex opacos: **codificador de protocolos**
+  encode_nec(addr, cmd, extended) / encode_rc5(addr, cmd, toggle)
+- NEC: lead 9000+4500, bit mark 560, space 560 (0) / 1690 (1), trail 560
+  → NEC-EXT = direccion 16 bits + cmd + ~cmd (32 bits = 67 valores)
+- RC5: bi-phase Manchester, semiciclo 889 us, compacta tramos iguales
+- Validacion: patron longitud IMPAR, positivo, <=1000 valores, freq 20-60 kHz
+- Degrada a Home Assistant si el Pixel no tiene blaster IR
+
+### E-08 nfc_automation.py (540 l, 8 rutas)
+- Payload `daniela:scene:<n>` / `daniela:event:<T>` / `daniela:url:<u>`;
+  lo demas = texto libre que NO se ejecuta
+- **REGLA DE SEGURIDAD**: el tag nunca ejecuta shell. Allowlist de 10 tipos
+  de paso (scene, event, ir_macro, notify, toast, speak, url, set_home,
+  blackbox, wait). URLs solo http(s):// (bloquea javascript:). Anti-rebote 3 s
+- Lector background: `termux-nfc -r` BLOQUEA hasta que acercan un tag
+  (lo espera el hardware, no la CPU) y se relanza en bucle
+- Si el tag esta registrado, su binding manda sobre su propio payload
+- Los pasos opcionales fallan con nonfatal=True y NO tumban la escena
+
+### E-09 serial_bridge.py (590 l, 8 rutas)
+- pyserial OPCIONAL (no instalado aqui) -> modo simulado, el modulo arranca igual
+- Protocolo lineas JSON: {"c":"ping"|"read"|"set"|"state"|"info"}
+  Tambien acepta compacto `temp=23.4;hum=51.2`
+- **Firmware MicroPython incluido** (110 l): DHT22, PIR, ADC, reles.
+  Solo permite tocar los pines declarados en RELAYS/LED
+- `validate_firmware()` hace ast.parse del codigo generado (fallo silencioso
+  si no compila). Instalar con `pip install pyserial`
+
+### Bugs corregidos Fase 7
+1. NEC extendido generaba 16 bits en vez de 32 (faltaban cmd y ~cmd)
+2. dispatch() pasaba a _run_action() el payload SIN el prefijo `daniela:`
+   → la validacion lo rechazaba siempre
+3. El hilo del dialogo sobrescribia una respuesta manual -> solo escribe
+   si el pendiente sigue en "waiting"
+
+### Instalar para usar en real
+`pip install pyserial` (puente serie). Resto: solo Termux:API + Termux:Widget.
+
+## AUDITORIA DEL TELEFONO (Pixel 8a conectado por USB) — HECHA
+Commits: 7c7a5ee5 (fix sintaxis) · 96c0c615 (deployer + auditoria)
+Informe: **AUDITORIA_TELEFONO.md**
+
+### Dispositivo
+- Pixel 8a · Android 17 (CP2A.260805.005) · build **user** (SIN root) · 92% batt
+- 66 GB / 110 GB usados · IP 192.168.1.133/24 · pantalla bloqueada (keyguard)
+- Termux **0.118.3** (versionCode 1002, targetSdk 28) + boot + api + window + widget
+
+### Acceso: lo que NO funciona (no perder tiempo la proxima vez)
+- `ls /data/data/com.termux/files/home` → Permission denied
+- `run-as com.termux` → **package not debuggable**
+- `pm grant com.android.shell com.termux.permission.RUN_COMMAND` → no surte efecto
+  (shell no declara el permiso; dumpsys no lo muestra). El permiso ES `dangerous`,
+  pero pm grant no funciona para paquetes que no lo declaran.
+- `am startservice ...RunCommandService` → Requires permission
+- `adb root` → cannot run as root in production builds
+- `/proc/<pid>/cwd` y `/proc/<pid>/root` → Permission denied
+- **SI funciona**: `adb push` a `/sdcard`, y `ps -A -o PID,UID,NAME,ARGS` (veo cmdlines)
+
+### 🔴 HUD del puerto 8082 = MOCK (hallazgo critico)
+- Werkzeug 3.1.8 / Python 3.14.6, HTML 63 KB "DANIELA OS // CORE HUD TÁCTICO"
+- Solo 2 rutas: `/` y `/api/skills/dispatch`. Todo lo demas 404.
+- El dispatcher SIEMPRE devuelve `{"status":"success","Acción:'<x>'","[200 OK]"}`.
+  Probado `{"action":"ejecutar_codigo","code":"open(...)"}` → 200 OK pero
+  **no crea el fichero**. El "Python REPL" del HUD no ejecuta nada.
+- → El movil tiene 0 de los 154 endpoints reales del PC.
+
+### Servicios que SI corren en Termux (ver con `ps -A -o PID,UID,NAME,ARGS`)
+- `runsvdir /data/data/com.termux/files/usr/var/service` → sshd, crond,
+  ssh-agent, **cloudflared** (hay tunel Cloudflare)
+- `bash ~/apps/AIGESTION-MONOREPO/scripts/daniela_guardian.sh` → **clon del
+  monorepo en el movil** con un script que NO existe en el PC
+- `python3 server.py` (pid 28539) = el HUD mock
+- Puertos escuchando: 8082, 20241, 38149, 38943, 51692, 53601, 64660
+
+### univero-v1 — sigue sin aparecer
+No esta en ramas locales (solo main), ni en remotos cacheados, ni en reflog,
+ni en `git log --all --grep`, ni en /sdcard, ni en el filesystem del PC.
+`git ls-remote` bloqueado por auth. Pista: el clon `~/apps/AIGESTION-MONOREPO`.
+
+### Errores de sintaxis PREEXISTENTES — REPARADOS (3/3)
+Causa comun: un generador automatico **"AP-10"** inyecto 95 docstrings DENTRO de
+expresiones (comprehensions, bloques `with`, sentencias sueltas) en 24 ficheros.
+**Un SyntaxError NO lo captura `except ImportError`** → podia reventar el arranque.
+- 95 docstrings eliminadas (backup en .audit/backup_ap10, ya borrado)
+- daniela_self_improvement.py, jules_free_dispatch.py, plugin_system.py → OK
+- **403 modulos .py verificados: 0 errores de sintaxis** · daniela_os.py = 154 rutas
+
+### dotenv ahora es opcional
+`daniela_os.py` hacia `from dotenv import load_dotenv` sin proteccion → habria
+reventado en Termux. Ahora degrada con fallback. (154 rutas, era 153.)
+
+### Paquete de despliegue — YA SUBIDO al movil
+`/sdcard/DanielaOS/deploy/` = 26 modulos + install.sh + requirements.txt + LEEME.txt
+- `termux_deployer.py` (nuevo): `build` (arma + verifica 154 rutas) / `push` / `all`
+- `install.sh` audita Termux y vuelca a `/sdcard/DanielaOS/deploy/AUDIT_TERMUX.txt`
+  (home, ramas git de ~/apps/*, widgets, boot, pip, procesos) ← aqui saldra univero-v1
+- Copia a ~/daniela-os, pip install, 6 widgets, autostart, core :5000 + gateway :8083
+  (8082 lo ocupa el HUD viejo)
+- El usuario ejecuta: `bash /sdcard/DanielaOS/deploy/install.sh`
+
+### Basura detectada en el movil (NO borrada, pide confirmacion)
+- 5 × TermuxAudioRecording_2026-08-04_*.m4a huerfanos en /sdcard
+- ~470 MB de videos generados en /sdcard/Movies
+- daniela_1787403364.png == daniela_1787576885.png (mismo md5, 1.5 MB)
+- Informe_Ejecutivo.pdf de 71 bytes (vacio) · .trash-storage/
+
+## AUDITORIA PROFUNDA DEL TELEFONO + OPTIMIZACION (HECHA)
+Commit: 5f495503 · Informe: **AUDITORIA_TELEFONO_PROFUNDA.md**
+Script: **phone_deploy/optimizar_telefono.sh** (ya subido a /sdcard/DanielaOS/deploy/)
+
+### Inventario real de /sdcard
+6.853 ficheros · 1.052 directorios · 0 enlaces rotos · 68/110 GB (62%)
+- `Android/data/com.google.ai.edge.gallery` **4,66 GB** (Gemma 4 E2B + 1,48 GB de cache)
+- `Documents/NexusAI` **3,19 GB** → DOS ficheros con el MISMO md5
+- `Android/media/com.whatsapp.w4b` 580 MB · `DCIM/Camera` 726 MB
+- `Movies/` 475 MB (13 videos generados) · `Android/data/com.llmproxy` 480 MB
+- `.trash-storage/` 86 MB · `Download/` 379 MB · `Pictures/` 151 MB
+
+### 🔴 Duplicado EXACTO de 1,52 GiB (verificado por md5, no por tamaño)
+```
+814d0dc106a099f581ffad0fad0218c0  Documents/NexusAI/gemma_soberano.bin
+814d0dc106a099f581ffad0fad0218c0  Documents/NexusAI/gemma2-2b.bin
+```
+Mismo md5, 1.629.509.152 bytes. Uno sobraba.
+
+### Caches regenerables de AI Edge Gallery — 1,48 GiB
+`*_mldrift_weight_cache.bin` (746 MB) · 2 × `*.xnnpack_cache` (260 MB c/u) ·
+`*vision_encoder*` (145 MB) · `*static_audio_encoder*` (87 MB) · program/audio
+cache (12+9 MB). Los regenera la app sola al abrirla.
+
+### 🔴 CONFLICTO ESTRUCTURAL: 4 stacks de LLM local
+| Stack | Modelo | Tamano | Formato |
+|---|---|---|---|
+| com.google.ai.edge.gallery | Gemma 4 E2B | 2,59 GB | .litertlm |
+| Documents/NexusAI | gemma_soberano | 1,52 GB | .bin |
+| com.llmproxy | Qwen2.5-0.5B | 0,46 GB | **GGUF** |
+| E-13 Daniela Offline (planeado) | ¿otro? | ~0,5 GB | llama.cpp |
+→ **DECISION**: E-13 NO debe descargar modelo nuevo. Debe apuntar llama.cpp al
+GGUF de com.llmproxy (0,46 GB). Ahorra 500 MB y evita el 4º motor.
+
+### 🔴 Salud del sistema (peor que el disco)
+- **Swap al 98,5 %** (3.728 / 3.786 MB) y 332 MB RAM libres de 7.573 → thrashing
+- **Wakelock `termux:service-wakelock` activo 10 d 20 h** (uid 10431, pid 17077)
+  → el telefono NO hace suspension profunda desde hace 11 dias. Causa del calor.
+- Temperatura CPU LITTLE **77 °C** · bateria 32,1 °C · loadavg 4,19/5,84/5,79
+- `com.android.vending:background` al **59 % CPU** (20 min acumulados)
+- 659 jobs programados en JobScheduler · 468 paquetes instalados
+- **cloudflared expone a internet el HUD MOCK** (`tunnel --url http://localhost:8082`)
+- `DanielaOS/Queue/` con 4 ficheros desde ago y `Rendered/` vacio → pipeline colgado
+
+### Optimizacion ejecutada — 4,1 GB (REVERSIBLE, nada borrado)
+Todo movido a `/sdcard/DanielaOS/.papelera/` por categorias:
+duplicados 1,59 GB · caches 1,58 GB · modelos_demo 565 MB ·
+videos_antiguos 468 MB · trash-storage 88 MB · apks 22 MB · huerfanos 6,9 MB
+(31 elementos, 257 ficheros). Se verificado que gemma_soberano.bin, el
+Gemma 4 E2B y los originales de Queue siguen en su sitio.
+- `--restaurar` devuelve todo · espacio real solo se libera con
+  `rm -rf /sdcard/DanielaOS/.papelera` (pendiente de confirmacion del usuario)
+
+### Trampas del shell de Android (no perder tiempo)
+- **Aritmetica de 32 bits con signo**: acumular bytes desborda a partir de 2 GB
+  (daba -946127381). Solucion: acumular en KB.
+- `find /sdcard ...` devuelve 0 (es symlink y find no lo sigue como punto de
+  partida). Usar `/storage/emulated/0/` con barra final.
+- `sort -h` no existe → `du -sk | sort -rn`
+- `find -printf '%y'` no va bien en toybox → usar `ls`
+- `free -m`: filtrar por `/Mem:/` y `/Swap:/`, no por numero de linea
+- `dumpsys battery | grep level` saca 2 lineas → `awk '/level/{print;exit}'`
+
+## LIMPIEZA FINAL EJECUTADA + IDEAS DE ESPLENDOR (commit 77dfdb53)
+El usuario dio criterio propio: "elimina lo que no necesitamos" + "ideas epicas
+para tener el telefono en maximo esplendor".
+
+### Criterio aplicado al borrar (RESCATAR antes que borrar)
+- BORRADO: duplicados 1557 MB · caches 1546 MB · modelos_demo 551 MB ·
+  trash-storage 86 MB · huerfanos 6 MB = **~3,7 GB**
+- **RESCATADO (no era redundancia, era contenido del usuario)**: los 14 videos
+  generados por Daniela (468 MB) y el APK de HeliBoard. Devueltos a /sdcard/Movies.
+  → Los renders de un pipeline de contenido son el PRODUCTO, no basura.
+- Pipeline desatascado: `DanielaOS/Queue/*` → `Rendered/` (nada borrado).
+- `am force-stop com.android.vending` (Play Store al 59 % CPU).
+- Resultado: disco 68G→**63G** (46G libres) · RAM 332→**449 MB** · swap 98,5%→**92,8%**
+
+### Hardware verificado del Pixel 8a (`pm list features`) — oro sin explotar
+- **`com.google.android.aicore` INSTALADO** → Gemini Nano on-device (IA gratis,
+  offline, privada). OJO: el acceso de terceros esta capado por Google (allowlist).
+- `wifi.rtt` → posicion interior a 1-2 m SIN GPS (mejora E-12)
+- `wifi.aware` → malla P2P sin router ni internet (mejora E-11)
+- `context_hub` → sensores always-on en coprocesador → **solucion al wakelock de 10 dias**
+- `strongbox_keystore=300` + `hardware_keystore=500` + `device_unique_attestation`
+  → Titan M2: guardar API keys en silicio (CERRARIA el P0 del .env)
+- `nfc.hce` + `nfc.hcef` + `nfc.ese` + `com.nxp.mifare` → el movil como tarjeta/llave
+- `camera.concurrent` + `capability.raw` + `manual_sensor` (nivel FULL) → vision estereo
+- `freeform_window_management` + `activities_on_secondary_displays` → modo escritorio
+- `sensor.barometer` (planta) · `virtualization_framework` (VMs) ·
+  `vulkan.compute` (NPU) · `live_wallpaper` · `ADAPTIVE_CHARGING`
+- Android 17 / SDK 37 · Tensor G3 (zuma) · 8 GB RAM
+
+### Fase 10 anadida al roadmap — E-19..E-26 (28 rutas, 32 h, $0)
+E-19 WiFi RTT (P1) · E-20 WiFi Aware (P2) · E-21 Context Hub (**P0**, bateria) ·
+E-22 Titan M2/StrongBox (**P0**, cierra el P0 de secretos) · E-23 modo escritorio ·
+E-24 wallpaper vivo · E-25 NFC HCE · E-26 camara estereo.
+Roadmap total: **26 epicas · 104 rutas nuevas · 118 h**.
+- **CUIDADO**: EpicIdea NO tiene campo `status`; se marca con `done=True` + `module=`.
+- Informe: **ESPLENDOR_TELEFONO.md** (16 ideas en 5 niveles + metrica de esplendor)
+- Script: **phone_deploy/limpieza_final.sh** (rescata → borra → desatasca → mide)
+
+## FASE 10 EJECUTADA — E-19..E-26 ("procede con todo exxplendor")
+Commits: 78936970 (Fase 10) · ed7b3246 (recupera extras del bundle)
+Boot verificado: **218 rutas** (162 → 218, +56). 28 modulos cargan, 0 fallidos.
+AST: **0 os.system / 0 shell=True** en los 8 modulos nuevos.
+Roadmap: 19/26 epicas hechas · 111 rutas hechas · 38 h pendientes.
+
+| Epic | Modulo | Rutas | Que hace |
+|---|---|---|---|
+| E-19 | wifi_rtt.py | 7 | huella WiFi + barometro, degrada a RSSI si no hay RTT |
+| E-20 | wifi_aware.py | 6 | beacon UDP + 4 transportes (aware/p2p/hotspot/lan) → E-11 |
+| E-21 | context_hub.py | 8 | wakelock battery-aware, decision sobre 4 senales |
+| E-22 | silicon_vault.py | 8 | PBKDF2+SHAKE256+HMAC, keystore si existe |
+| E-23 | desktop_mode.py | 7 | dumpsys display, settings, script X11 generado |
+| E-24 | live_wallpaper.py | 6 | PNG escrito a mano (IHDR/IDAT/IEND), 9 temas |
+| E-25 | nfc_hce.py | 8 | reto-respuesta HMAC + TOTP, clave por cerradura |
+| E-26 | stereo_vision.py | 6 | disparidad SAD + codec PNG propio (lee y escribe) |
+
+### Trampas nuevas (no perder tiempo la proxima vez)
+1. **Flask: los `endpoint` colisionan**. Varios modulos llamaban `_status`/`_config`
+   a sus vistas; Flask usa `__name__` como endpoint y el 2º modulo revienta el
+   arranque con "View function mapping is overwriting an existing endpoint".
+   → pasar `endpoint="<prefijo>_<nombre>"` explicito en cada `@app.route`.
+2. **`cmd` existe en Android Y en Windows**. `cmd wifiaware help` en Windows
+   devuelve codigo 0 + la banner de Microsoft → falsos positivos de
+   "hotspot activo" y "wifi.aware disponible". → toda llamada a herramientas
+   de Android condicionada a `es_android()` (mira /system/build.prop, no `which`).
+3. **`adb push DIRECTORIO DESTINO_EXISTENTE` ANIDA**, no fusiona: crea
+   `deploy/phone_deploy/`. La 1ª vez colo porque el destino no existia.
+   → empujar `DIRECTORIO/.`. El telefono se quedo con la version vieja sin avisar.
+4. **`build()` vacia phone_deploy/ y reconstruye desde la RAIZ**. Un fichero que
+   solo viva en phone_deploy/ desaparece y un `git add -A` lo commitea como
+   borrado. Perdi install.sh y LEEME.txt (rescatados del telefono con adb pull)
+   y los dos .sh (rescatados de HEAD~1). Ahora viven en la raiz y el deployer
+   **avisa** si falta un EXTRA_FILES en vez de callarse.
+5. **No usar backticks en mensajes de commit con `-m`**: bash los ejecuta.
+   Un `cmd` entre backticks metio la banner de Windows en el mensaje.
+   → escribir el mensaje en fichero y `git commit -F`.
+6. **6 digitos + reto de 120 s = fuerza brutable** (1M combinaciones). nfc_hce
+   quema el reto SOLO si acierta, asi que anadi contador de fallos: 5 fallos
+   bloquean la cerradura 300 s.
+
+### Bundle en el telefono
+`/sdcard/DanielaOS/deploy/` = **35 modulos · 43 ficheros · 725 KB · 218 rutas**
+(install.sh + LEEME.txt + optimizar + limpieza incluidos, ya no se pierden).
+Pendiente del usuario: `bash /sdcard/DanielaOS/deploy/install.sh` en Termux.
+
+## AYUDA CON GITHUB — el usuario no sabe usarlo (pide "hacerlo bien")
+Guia escrita: **GUIA_GITHUB.md** (git vs GitHub, `gh auth login` con las 5
+respuestas exactas, push, comprobacion, que NO hacer, tabla de errores).
+
+### Estado real al revisarlo
+- Remoto: `https://github.com/aigestion/AIGESTION-MONOREPO.git`
+- **50 commits sin pushear** · `.env` NO trackeado (bien) · `gh` 2.89.0 instalado
+  pero sin sesion (`gh auth status` → not logged in).
+- El repo **parece privado**: la API de GitHub devuelve 404 sin autenticar.
+
+### 🔴 La clave SI esta en GitHub (confirmado, no era solo sospecha)
+```
+git grep -E "AIza[0-9A-Za-z_-]{35}" origin/main
+  origin/main:.env:2                    GEMINI_API_KEY=AIzaSyAGTxKesg-xGP9i2Dihrnps3VDM_JZ7wpk
+  origin/main:.env.bak_1787041188:2     la misma
+  origin/main:.env.bak_1787041220:2     la misma
+```
+→ Rotar en https://aistudio.google.com/app/apikey es la unica reparacion real.
+  Limpiar el historial (filter-repo + force-push) se deja para mas adelante.
+
+### Limpieza hecha ANTES de que el usuario pushee (commits bdb66e96, 01b4cba8)
+- `daniela_os.py`: `ACCESS_PIN = os.getenv("DANIELA_PIN", "8374")` → sin
+  default; si falta la variable **falla cerrado** (`check_pin` devuelve error y
+  `pin_configurado:false`). Su .env local SI define DANIELA_PIN → no se queda fuera.
+- `docs/WALLET-AUDIT-REPORT.md`: **contrasena del vault de MetaMask en claro**.
+  Redactada. Comprobado: **no estaba en origin/main** → nunca se subio. Avisar
+  de cambiarla si la reutiliza.
+- `daniela_os.py.bak` tenia `ACCESS_PIN = "8374"` literal. Corregido.
+- Redactado el PIN en README.md, AUDITORIA_V1.md, output/*.md,
+  static/brand/*.json, daniela_self_improvement.py, docker-compose.yml
+  (tenia `:-8374`), y la demo de silicon_vault.py (ahora 000000).
+- Verificado: 0 coincidencias de clave completa, PIN o contrasena en tracked.
+
+### Rotacion de la clave (hecha por el usuario)
+Borro todas las claves de AI Studio y metio una nueva en `.env`
+(no la guardo aqui a proposito). `GEMINI_API_KEY` = 53 caracteres, prefijo
+`AQ.Ab8` — **no es el formato habitual `AIza`** de una API key de Gemini;
+parece un token OAuth. Pendiente verificar que el cliente la acepta: si da
+401, hay que sacar una API key normal de https://aistudio.google.com/app/apikey.
+`.env` sigue en `.gitignore` → la clave nueva no se sube.
+`DANIELA_PIN` local sigue siendo 8374 (ahora viene del .env, no del codigo)
+pero ese valor estuvo publicado → conviene cambiarlo.
+
+### Leccion: el Secret Guard funciona
+Al commitear la guia **meti la clave completa dentro del .md** para que el
+usuario la reconociera, y el hook la paro en seco (P0). Sustituida por el
+prefijo `AIzaSyAGTx…` + `git show origin/main:.env`.
+→ Nunca pegar un secreto real en documentacion, ni "para ejemplo".
+
+## RESOLUCION DEL PUSH — diagnostico y merge (sesion actual)
+
+### Por que fallaba `git push` con non-fast-forward aunque "no faltaba nada"
+**Causa real**: el remoto tenia **119 commits que yo no tenia** (la rama
+`universo` / `edicion-apk` / tokenomics AIG se habia mergeado en main).
+El diagnostico anterior daba un falso "0 commits" por una trampa del entorno:
+
+- **`git fetch` no persiste los refs remotos**: el reflog SI registraba
+  `ade280a9 refs/remotes/origin/main@{0}: fetch: fast-forward`, pero
+  `git rev-parse origin/main` segia devolviendo `1954ba37`.
+- Causa: `.git/refs/remotes/origin/` **no existia** y `update-ref` no creaba
+  el subdirectorio → devolvia exit 0 sin escribir nada (fallo silencioso).
+- Comprobado: `refs/heads/probe-test` (directorio ya existente) SI se creaba;
+  `refs/heads/backup/x` y `refs/remotes/origin/main` NO. Tras `mkdir -p
+  .git/refs/remotes/origin` algunos refs ya se escriben.
+- **Receta para la proxima vez**: no fiarse de `git status -sb` ni de
+  `git log HEAD..origin/main`. Comparar contra `git ls-remote origin main`
+  o crear una rama local plana: `git update-ref refs/heads/remoto-main <sha>`.
+- **Branch de backup con barra falla en silencio**: `git branch backup/x`
+  no crea nada (mismo problema del subdirectorio). Usar nombre PLANO:
+  `git branch backup-local-main-50commits`.
+
+### Merge resuelto (sin force, sin rebase)
+- Backup: `backup-local-main-50commits` (apunta a 01b4cba8, los 50 locales).
+- `git merge remoto-main` → solo **2 ficheros solapaban** de 320 vs 31:
+  - `.gitignore` → conservada la version local (mas completa) + anadidas
+    las del remoto: `*.idsig`, `*.jks`, `native_apk_build/`,
+    `build_standalone/`, `.audit/`
+  - `server.log` → **mantenido borrado** (es un log y `*.log` ya esta ignorado)
+- Commit merge `7ffd158e`. Secret Guard: "Sin secretos detectados".
+- Verificado `git merge-base --is-ancestor ade280a9 HEAD` → SI → **push
+  fast-forward limpio, sin --force**. 51 commits (50 + el merge).
+
+### 🔴 El push borra las claves filtradas de GitHub (efecto secundario bueno)
+```
+git diff --name-status ade280a9 HEAD -- ".env*"
+  D .env  D .env.bak_1787041188  D .env.bak_1787041220  D .env.master
+  A .env.master.example
+```
+Los 4 ficheros con la clave real salen de GitHub. Sigue en el HISTORIAL
+(por eso la rotacion era obligatoria), pero el arbol actual queda limpio.
+Escaneo de las 93.483 lineas del diff: **0 secretos en lineas `+`**.
+
+### Ultimo bloqueo (pendiente del usuario)
+```
+! [remote rejected] main -> main (refusing to allow an OAuth App to create or
+  update workflow `.github/workflows/auto-deploy.yml` without `workflow` scope)
+```
+- Mis commits anaden `.github/workflows/auto-deploy.yml` (lint ruff +
+  type-check mypy, sin secretos).
+- El token OAuth de `gh` tiene scopes `gist, read:org, repo` — falta `workflow`.
+- Solucion en marcha: `gh auth refresh -h github.com -s workflow`
+  (device flow: URL https://github.com/login/device + codigo de un solo uso).
+- Alternativa si no quiere autorizar: usar un PAT con scope `workflow`,
+  o SSH. NO vale quitar el workflow: es CI util.
+
+### universo-v1 ENCONTRADO
+`git fetch` destapo dos ramas remotas nuevas: `universo-v1` y `edicion-apk`.
+Los 119 commits del remoto SON ese trabajo (index.html, daniela_universe.html,
+server.py, tactical_server.py, sw.js, build_apk.sh, tokenomics AIG).
+El usuario lo habia buscado en muchas sesiones como "univero-v1".
+
+Traida como rama local **`universo-v1-flat`** (2d14ce2a) con
+`git fetch origin universo-v1:universo-v1-flat` — nombre plano por la trampa
+de los refs. Contenido: Skills 56/57/58 (OpenRouter AI Core, Swarm Planner,
+Auto_Fix_Core), Watchdog. Diverge mucho: **189 commits suyos no estan en main**
+y 52 de main no estan en ella; 375 ficheros difieren.
+Nombres de fichero corruptos por secuencias ANSI: `C[Fase`, `E{Suscripción`,
+`F[Modelo`.
+
+### 🔴 universo-v1 SIGUE CON LAS CLAVES API EXPUESTAS
+```
+universo-v1-flat:.env                  -> 0 clave AIza
+universo-v1-flat:.env.bak_1787041188   -> 1
+universo-v1-flat:.env.bak_1787041220   -> 1
+universo-v1-flat:.env.master           -> 4
+```
+Tras mi merge, **main esta limpio** (los 4 ficheros ya no existen en HEAD).
+**AVISO**: si algun dia se mergea universo-v1 en main, las claves VUELVEN.
+Hay que borrarlas en esa rama antes de mergearla (o no mergearla).
+
+### Verificado tras el merge
+Boot de `daniela_os.py`: **218 rutas, 165 de ellas /pixel/**, 18 modulos
+registrados, 0 errores. El merge del universo 3D no rompio nada.
+
+## ✅ PUSH COMPLETADO — 52 commits subidos (ade280a9..9e103560)
+El usuario autorizo el scope `workflow` por device flow (`gh auth refresh
+-h github.com -s workflow` → "Authentication complete"). Scopes finales:
+`gist, read:org, repo, workflow`.
+
+### Verificacion contra la API (NO contra el ref local, que sigue mintiendo)
+```
+gh api repos/aigestion/AIGESTION-MONOREPO/commits/main → 9e103560 ✔
+gh api .../contents/.env         → 404 (ya no existe)   ✔
+gh api .../contents/.env.master  → 404 (ya no existe)   ✔
+gh api .../contents/.github/workflows → auto-deploy.yml  ✔
+```
+En `origin/main` solo queda `.env.master.example` (la plantilla limpia).
+**Las 4 API keys filtradas ya no estan en el arbol de GitHub.**
+
+## EPICAS E-14 y E-17 IMPLEMENTADAS (commit b667c43f, +12 rutas → 230)
+Boot verificado: **230 rutas** (218 → 230), 177 de ellas /pixel/.
+AST: 0 os.system, 0 shell=True en los dos modulos. Roadmap: **21/26 epicas**.
+
+### E-14 bt_bridge.py (6 rutas) — /api/pixel/bt/*
+- Prefijo elegido a proposito: `/api/pixel/bluetooth` ya lo usa
+  `termux_api_gateway.py` (el que corre EN el movil, puerto 8082).
+- ROL por dispositivo, no MAC suelta: wearable, coche, auriculares,
+  altavoz, otro. Una MAC sin rol no sirve para nada.
+- **Acciones en LISTA CERRADA** (`ACCIONES_PERMITIDAS`), igual que E-08 NFC:
+  un periferico nunca ejecuta shell. `registrar(accion_on="rm -rf /")` →
+  rechazado. Es una entrada de datos, no una fuente de instrucciones.
+- Presencia por RSSI: al_lado(>=-60) / en_la_sala(-75) / lejos(-90) /
+  casi_perdido. Anti-rebote 20 s (el manos libres corta y vuelve al apagar
+  el motor, y no debe disparar dos veces).
+- El coche tiene prioridad sobre el resto en `rol_activo()`.
+- Alimenta E-05 (`_contexto`) y emite BT_CONNECTED/BT_DISCONNECTED al bus
+  de E-04. Ambas integraciones van en try/except: si el modulo no esta, no pasa nada.
+- Demo: MACs en 3 formatos, rol inventado rechazado, accion shell rechazada,
+  anti-rebote (0 cambios en el reescaneo), dispositivo no registrado aparece
+  como "desconocido" (asi descubres tu pulsera antes de decirle que lo es).
+
+### E-17 health_monitor.py (6 rutas) — /api/pixel/vitals/*
+- Seis sensores opcionales que devuelven `None` si no saben medir:
+  RAM, swap, disco, bateria (`dumpsys battery`), temperatura
+  (`/sys/class/thermal/thermal_zone*/temp`, ojo: algunos dan MILIGRADOS →
+  si >1000 dividir entre 1000), wakelock (`dumpsys power`, parsea "+1d2h3m").
+- **BUG DE DISENO que cace con la demo**: en PC solo responden swap y disco
+  y salia "excelente" con 2 de 6 sensores. Falsa seguridad. Arreglado con
+  `confiable = len(disponibles) >= (len(SENSORES)+1)//2` → veredicto
+  **"parcial"** + alerta informativa.
+- El peor sensor LIMITA la nota global (si <=20 puntos, la media se capa a
+  45): una media taparia un critico.
+- Sugiere, NO ejecuta: no mata procesos ni suelta wakelocks.
+- Demo con los numeros REALES de la auditoria (swap 98,5 %, 332 MB, 77 C,
+  wakelock 260 h) → puntuacion 31,3, veredicto "critico", 3 alertas criticas.
+
+### Leccion: capturar Exception, no solo ImportError
+Al registrar modulos en `daniela_os.py`, un **SyntaxError dentro del modulo
+NO es ImportError** y revienta el arranque entero (ya paso con los docstrings
+"AP-10"). Los dos bloques nuevos usan `except Exception as e` con el motivo
+documentado en un comentario.
+
+### Ramas reales en GitHub (via API, el ref local miente)
+`edicion-apk`, `feature/darwin-api`, `main`, `ui-stable`, **`universo-v1`
+(2d14ce2a — SI existe)**.
+
+### Arreglo del ref local (funciona si se hace TODO en el mismo comando)
+El subdirectorio `.git/refs/remotes/origin/` NO persiste entre comandos.
+Hay que crearlo Y escribir el ref en la misma invocacion:
+```
+mkdir -p .git/refs/remotes/origin && printf '<sha>\n' > .git/refs/remotes/origin/main
+```
+Tras eso `git status -sb` ya no miente ("ahead 171" → sincronizado).
+Si vuelve a mentir, repetir ese comando o verificar con `gh api`.
+
+## E-15 · ci_runner.py — CI en ARM real (COMPLETADO, commit 4389767f, pusheado)
+`/api/ci/{status,jobs,run,history,github,publish}` · 230 → **236 rutas** · 22/26 épicas.
+No es un self-hosted runner: ejecutar codigo del repo en el movil de una persona
+es inaceptable. Lista cerrada `TRABAJOS` + solo publica *commit status*.
+Trabajos: sintaxis, seguridad(AST), arranque, ruff, mypy, pytest (degradan a
+"omitido" si no estan instalados).
+
+### 3 bugs reales que cazo su propio demo (lecciones reutilizables)
+1. **subprocess.run + tuberias = cuelgue eterno aunque salte el timeout.**
+   El padre muere, el nieto (pytest arrancando servidores) sigue agarrando la
+   tuberia y la lectura bloquea para siempre (5 min colgado con timeout 300).
+   Solucion: salida a `tempfile.TemporaryFile` (no PIPE) + matar el ARBOL:
+   `taskkill /F /T /PID` en Windows, `os.killpg` + `start_new_session=True` en POSIX.
+2. **`shutil.which('pytest')` encuentra el de OTRO python.** El CI media un
+   interprete distinto al de Daniela. Usar siempre `[sys.executable, "-m", mod]`
+   y comprobar disponibilidad con eso mismo (`_tiene_modulo`).
+3. **jq: la interpolacion `\(...)` solo vale DENTRO de comillas.** Fuera da
+   "failed to parse jq expression". Forma correcta:
+   `[.workflow_runs[]][0:5] | map([.status, (.conclusion // "nada"), .head_sha[0:8], .name] | join("  ")) | join("\n")`
+
+### Trabajo "seguridad" da FALLO honesto
+45 `os.system` REALES en codigo legacy (auditoria_sistema.py:23/28, centinela.py:10...),
+0 en los modulos del Pixel Bridge. Verificado a mano: no son falsos positivos.
+CI debe estar rojo hasta limpiarlos.
+
+### Residuo de test encontrado y revertido
+`index.html` tenia un bloque inyectado por `test_pip_stream.py` que metia un
+iframe de YouTube. Revertido con `git checkout -- index.html`.
+`static/cam_feed.jpg` (4.7 MB) aparece borrado — mismo tipo de residuo, sin commitear.
+
+## E-16 · branch_policy.md — Unificación de Ramas (commit 999dc61d, pusheado)
+Analisis real de las 5 ramas via `gh api .../compare/main...<rama>`.
+**23/26 epicas** (faltan E-12, E-13, E-18).
+
+Desmiente tres cosas que dábamos por ciertas:
+- **ui-stable NO tiene ancestro común con main** ("No common ancestor"). Las
+  −270.100 líneas no son un borrado: el diff no tiene base. Merge imposible.
+- **darwin-api NO era segura**: 11 secretos + 282/300 ficheros en `archive/`.
+- **edicion-apk**: 0 ahead, ya contenido en main → borrable.
+- `.env.master` (30.682 B, 10 secretos) es el MISMO blob en darwin-api y
+  universo-v1: arreglar uno no arregla el otro.
+- La clave NUEVA del usuario (`AQ.Ab8RN6LqH...`) no está en ninguna rama.
+
+No se borró ni mergeó nada: borrar ramas no borra el historial. P0 = rotar claves.
+
+### Truco para inspeccionar una rama remota sin pelearse con el ref
+`git fetch --depth 1 origin ui-stable:uistable-flat` y luego
+`git ls-tree -r --name-only uistable-flat` / `git show uistable-flat:<path>`.
+Los nombres planos (sin "/") son obligatorios aquí.
+
+## Dónde vive DANIELA_PIN (y limpieza de fugas)
+- **Se cambia en la LÍNEA 1 de `.env`** (`DANIELA_PIN=`). `.env` está fuera de git
+  (verificado con `git ls-files --error-unmatch .env` → no trackeado). Seguro ahí.
+- `daniela_os.py:44` lo lee con `os.getenv("DANIELA_PIN","")`: si falta, cierra el acceso.
+  No hay que tocar código. `docker-compose.yml:19` lo reenvía; `data/vault/vault.json`
+  lo guarda CIFRADO (nonce/cipher/mac) y no está trackeado.
+- Fuga corregida: `GUIA_GITHUB.md:50` y `branch_policy.md:200` escribían el PIN en
+  texto plano y SÍ están trackeados → commit `80f08e48`, pusheado. Ahora
+  **0 ocurrencias del PIN en ficheros trackeados**.
+- Los `.env.bak_*`, `AUDITORIA_V1.md` y `output/architect_audit_*.md` ya venían
+  redactados de antes (`<redactado>`), no contenían el valor.
+- El PIN viejo sigue en el HISTORIAL de git (el fichero se borró del árbol, no de la
+  historia) → cambiarlo es la única medida real.
+
+### La GEMINI_API_KEY del .env SÍ es la nueva
+Verificado: `.env` línea 2 == `AQ.Ab8RN6LqHyoXqE0lI0k2...` (53 chars, la que dio el
+usuario). O sea que el "no me la reconoce" NO es un problema de configuración:
+la clave está bien puesta y responde 200 por HTTP. El fallo está en el código que
+la consume (20 ficheros referencian GEMINI_API_KEY).
+
+## El ".env de más de 300 líneas" era `.env.master` (ENCONTRADO, no perdido)
+- `aig/.env.master` → **779 líneas / 639 variables**. Copia idéntica en
+  `config/env/.env.master`. Ambos **ignorados por .gitignore** y fuera de git ✅.
+- `.env.master.example` (779 líneas) SÍ está trackeado pero tiene **0 secretos**
+  (es plantilla) → sin riesgo.
+- `.env` (11 vars) es el de Daniela a secas; `.env.master` es la config de TODA la
+  infra AIGestion (Postgres, MinIO, Redis, n8n, Pinecone, Plan Soberano de Puertos).
+- **`.env.master` NO tiene `DANIELA_PIN`** y tiene una Gemini key VIEJA en la línea
+  320 (`AQ.Ab8RN6IPol3...`). Copiarlo sobre `.env` borraría el PIN nuevo y
+  reemplazaría la key nueva. **No hacer copia ciega.**
+
+### 🔴 `.env.master` tiene 22 secretos reales
+4 AIza, 2 AQ., 4 sk-, 4 GOCSPX, 1 Pinecone (`pcsk_`), **2 GitHub PAT `ghp_` de
+40 chars (reales, el mismo en las líneas 379 y 380)**, 5 SECRET_KEY.
+Un token GitHub puede pushear/borrar repos → es el P0 más alto ahora.
+No está publicado (fichero ignorado), pero hay que revocarlo.
+
+### CAUSA DEL BUG "no reconoce la API key" — RESUELTO
+`daniela_os.py:28-33` hace `from dotenv import load_dotenv` dentro de un
+`try/except ImportError`, y si falla define un `load_dotenv` NO-OP. Pues bien:
+**`.venv/Scripts/python.exe` NO tiene python-dotenv instalado** → `load_dotenv()`
+no hace nada → `GEMINI_API_KEY` y `DANIELA_PIN` quedan vacíos → la app dice que no
+reconoce la key, en silencio y sin error.
+El Python del sistema y el gestionado SÍ lo tienen (verificado: cargan la key nueva
+y el PIN nuevo de 12 caracteres correctamente).
+Arreglo: `pip install python-dotenv` en el venv (o arrancar con un python que lo tenga).
+
+## Unificación .env + .env.master (hecha) y bug dotenv (arreglado)
+- Instalado `python-dotenv` en `.venv` → **el bug de la API key está resuelto**.
+  Causa: `daniela_os.py:28-33` define un `load_dotenv` NO-OP si falla el import.
+- Script reutilizable: `data/unificar_env.py` (en `data/`, ignorado por git).
+  Escribe master completo + bloque final de SOBREESCRITURAS (tus valores ganan
+  porque dotenv manda la última aparición) e iguala `BASE_GEMINI` a la key nueva
+  (el master hace `GEMINI_API_KEY=${BASE_GEMINI}`). Hace backup con sello.
+- Verificado con venv: `GEMINI_API_KEY` = nueva (53 ch), `DANIELA_PIN` = 12 ch.
+- Resultado: `.env` 651 variables únicas. `.env`, `.env.master` y los `.env.bak_*`
+  están ignorados por git ✅.
+
+### Los comentarios de .env.master NO están acoplados al proyecto
+- **0 variables comentadas**: los 103 comentarios son documentación pura.
+- La tabla "PLAN SOBEREIGN DE PUERTOS (2026-07-07)" es **aspiracional**: de 35
+  puertos solo 8 aparecen en el código. `docker-compose.yml` solo levanta
+  daniela-os:5000, nginx, redis:6379, prometheus:9090 (y el 9090 ni está documentado).
+  Postgres/Mongo/Influx/Kibana/Portainer/n8n/Odoo/ERPNext/MinIO/Supabase/WireGuard
+  NO existen. Se añadió un aviso al respecto en la cabecera de `.env.master`.
+
+## Inventario de APIs — `apis_gratis.md`
+~20 APIs con clave REAL configurada y sin usar: Anthropic, Claude, Cohere,
+ElevenLabs, HuggingFace, OpenRouter, Google Maps, YouTube, NASA, Pinecone,
+Supabase, Browserless, Make, Twilio, Discord, MinIO, Ollama, n8n, GitHub PAT.
+Solo se usan Groq y Telegram.
+Épicas nuevas propuestas E-27..E-34 (voz offline, memoria local, ntfy,
+**Tailscale=P0**, contexto real, enrutador con respaldo, agenda, traducción).

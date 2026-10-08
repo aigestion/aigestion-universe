@@ -1,0 +1,640 @@
+{
+  "facts": [
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T02:04:25.497196"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T02:04:25.538210"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T02:05:07.258806"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T02:05:07.301792"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T02:05:46.456453"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T02:05:46.518502"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T02:56:51.146138"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T02:56:51.176578"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T02:59:04.333875"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T02:59:04.372360"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T03:01:11.121936"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T03:01:11.146624"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T03:05:13.775791"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T03:05:13.930812"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-01T03:11:20.065750"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-01T03:11:20.160963"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-03T20:10:16.272852"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-03T20:10:16.297451"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-03T20:13:30.306300"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-03T20:13:30.318096"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-03T20:31:22.267547"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-03T20:31:22.278174"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-03T21:13:07.698400"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-03T21:13:07.714170"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-03T21:22:46.221762"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-03T21:22:46.231242"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-03T23:37:10.608661"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-03T23:37:10.618699"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:00:27.165872"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:00:27.185976"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:05:03.539093"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:05:03.556508"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:09:49.189393"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:09:49.201434"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:29:06.812014"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:29:06.822656"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:29:40.617641"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:29:40.630705"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:33:31.719296"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:33:31.731931"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:38:42.307837"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:38:42.325831"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T00:51:25.498885"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T00:51:25.512207"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T01:03:21.391583"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T01:03:21.401752"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T01:04:04.766342"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T01:04:04.792913"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T02:03:41.206287"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T02:03:41.218173"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T22:50:32.379900"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T22:50:32.379900"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T22:57:31.312939"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T22:57:31.323129"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T23:40:25.059946"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T23:40:25.075635"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-04T23:46:49.010444"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-04T23:46:49.072654"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T00:07:37.189610"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T00:07:37.206442"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T00:13:55.970461"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T00:13:55.981988"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T00:20:26.764273"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T00:20:26.782672"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T00:33:53.541404"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T00:33:53.551691"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T01:09:53.907062"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T01:09:53.916573"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T01:16:36.481240"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T01:16:36.493789"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T01:29:22.643774"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T01:29:22.650106"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T01:31:53.149892"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T01:31:53.160083"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T01:49:03.595798"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T01:49:03.610311"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T10:44:06.556151"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T10:44:06.564258"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T10:49:51.713080"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T10:49:51.721985"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T10:55:58.291050"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T10:55:58.305700"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T11:46:30.845279"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T11:46:30.858590"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T11:54:02.015767"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T11:54:02.036420"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T12:25:34.509962"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T12:25:34.519593"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T12:33:24.891986"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T12:33:24.925317"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T13:12:45.706395"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T13:12:45.724318"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T14:30:32.164094"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T14:30:32.176651"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T16:46:47.229098"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T16:46:47.242051"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T16:54:57.230224"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T16:54:57.263599"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T16:57:34.579993"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T16:57:34.594056"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T17:05:51.347779"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T17:05:51.381835"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T17:09:07.572578"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T17:09:07.584467"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T17:13:03.409611"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T17:13:03.426689"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T17:37:09.539041"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T17:37:09.548014"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T18:01:52.091777"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T18:01:52.113252"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T18:07:32.008122"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T18:07:32.030251"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T18:13:33.962600"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T18:13:33.980131"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T18:19:11.398851"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T18:19:11.409110"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T18:25:22.263437"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T18:25:22.278588"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T18:58:10.791332"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T18:58:10.805924"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T19:00:09.493770"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T19:00:09.507079"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T19:08:14.305834"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T19:08:14.327827"
+    },
+    {
+      "fact": "test fact",
+      "source": "test",
+      "timestamp": "2026-10-05T19:14:12.495837"
+    },
+    {
+      "fact": "python is great",
+      "source": "test",
+      "timestamp": "2026-10-05T19:14:12.522677"
+    },
+    {
+      "fact": "[sandbox-ruff] ERROR: ruff: 1",
+      "source": "report:sandbox-ruff",
+      "timestamp": "2026-10-08T16:57:54.228040"
+    }
+  ],
+  "patterns": []
+}

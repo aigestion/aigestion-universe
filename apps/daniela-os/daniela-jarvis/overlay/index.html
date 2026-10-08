@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniela Jarvis</title>
+  <link rel="stylesheet" href="css/jarvis.css">
+  <link rel="stylesheet" href="css/widgets.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mode-switcher.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ═══ BOOT SEQUENCE ═══ -->
+  <div id="bootScreen" class="boot-screen">
+    <div class="boot-content">
+      <div class="boot-logo">
+        <div class="arc-reactor-mini"></div>
+      </div>
+      <div class="boot-text">
+        <div class="boot-line" data-delay="0">DANIELA OS v2.0 — JARVIS OVERLAY</div>
+        <div class="boot-line" data-delay="200">Initializing holographic display...</div>
+        <div class="boot-line" data-delay="400">Loading 6 visualization modes...</div>
+        <div class="boot-line" data-delay="600">Connecting to Daniela server...</div>
+        <div class="boot-line" data-delay="800">System status: <span class="text-green">ONLINE</span></div>
+        <div class="boot-line" data-delay="1000">Overlay ready.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN OVERLAY ═══ -->
+  <div id="overlay" class="overlay" style="display:none;">
+    
+    <!-- Three.js Canvas (shared by all 6 modes) -->
+    <canvas id="arcCanvas" class="arc-canvas"></canvas>
+
+    <!-- Top Status Bar -->
+    <div class="status-bar">
+      <div class="status-left">
+        <span class="status-indicator online"></span>
+        <span class="status-text">DANIELA ONLINE</span>
+      </div>
+      <div class="status-center">
+        <span class="status-time" id="statusTime">00:00:00</span>
+      </div>
+      <div class="status-right">
+        <span class="status-text" id="statusCpu">CPU: --%</span>
+        <span class="status-text" id="statusMem">RAM: --%</span>
+      </div>
+    </div>
+
+    <!-- Left Widget Panel -->
+    <div class="widget-panel left-panel">
+      <div class="widget-header">
+        <span class="widget-icon">📊</span>
+        <span class="widget-title">SYSTEM</span>
+      </div>
+      
+      <div class="widget cpu-widget">
+        <div class="widget-label">CPU</div>
+        <div class="widget-gauge">
+          <svg viewBox="0 0 100 100" class="gauge-svg">
+            <circle cx="50" cy="50" r="40" class="gauge-bg"/>
+            <circle cx="50" cy="50" r="40" class="gauge-fill" id="cpuGauge"/>
+          </svg>
+          <div class="gauge-value" id="cpuValue">0%</div>
+        </div>
+        <div class="widget-detail" id="cpuDetail">-- cores</div>
+      </div>
+
+      <div class="widget ram-widget">
+        <div class="widget-label">RAM</div>
+        <div class="widget-gauge">
+          <svg viewBox="0 0 100 100" class="gauge-svg">
+            <circle cx="50" cy="50" r="40" class="gauge-bg"/>
+            <circle cx="50" cy="50" r="40" class="gauge-fill" id="ramGauge"/>
+          </svg>
+          <div class="gauge-value" id="ramValue">0%</div>
+        </div>
+        <div class="widget-detail" id="ramDetail">-- GB / -- GB</div>
+      </div>
+
+      <div class="widget network-widget">
+        <div class="widget-label">NETWORK</div>
+        <div class="widget-bars">
+          <div class="net-bar up">
+            <div class="net-bar-fill" id="netUp"></div>
+            <span class="net-label">▲</span>
+            <span class="net-value" id="netUpVal">0 KB/s</span>
+          </div>
+          <div class="net-bar down">
+            <div class="net-bar-fill" id="netDown"></div>
+            <span class="net-label">▼</span>
+            <span class="net-value" id="netDownVal">0 KB/s</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget disk-widget">
+        <div class="widget-label">DISK</div>
+        <div class="widget-bar-h">
+          <div class="disk-bar-fill" id="diskFill"></div>
+        </div>
+        <div class="widget-detail" id="diskDetail">-- GB / -- GB</div>
+      </div>
+    </div>
+
+    <!-- Right Widget Panel -->
+    <div class="widget-panel right-panel">
+      <div class="widget-header">
+        <span class="widget-icon">⚡</span>
+        <span class="widget-title">ACTIONS</span>
+      </div>
+
+      <div class="widget voice-widget">
+        <button class="voice-btn" id="voiceBtn">
+          <div class="voice-ring ring-1"></div>
+          <div class="voice-ring ring-2"></div>
+          <div class="voice-ring ring-3"></div>
+          <span class="voice-icon">🎤</span>
+        </button>
+        <div class="voice-status" id="voiceStatus">Click to speak</div>
+        <canvas id="voiceWave" class="voice-wave"></canvas>
+      </div>
+
+      <div class="widget actions-widget">
+        <button class="action-btn" data-action="briefing" title="Morning Briefing">
+          <span>📋</span>
+          <span class="action-label">Briefing</span>
+        </button>
+        <button class="action-btn" data-action="deploy" title="Deploy Container">
+          <span>🚀</span>
+          <span class="action-label">Deploy</span>
+        </button>
+        <button class="action-btn" data-action="chat" title="AI Chat">
+          <span>💬</span>
+          <span class="action-label">Chat</span>
+        </button>
+        <button class="action-btn" data-action="health" title="System Health">
+          <span>🩺</span>
+          <span class="action-label">Health</span>
+        </button>
+        <button class="action-btn" data-action="search" title="Search">
+          <span>🔍</span>
+          <span class="action-label">Search</span>
+        </button>
+        <button class="action-btn" data-action="settings" title="Settings">
+          <span>⚙️</span>
+          <span class="action-label">Settings</span>
+        </button>
+      </div>
+
+      <div class="widget chat-widget" id="chatWidget" style="display:none;">
+        <div class="chat-header">
+          <span>💬 DANIELA</span>
+          <button class="chat-close" id="chatClose">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" class="chat-input" placeholder="Ask Daniela...">
+          <button class="chat-send" id="chatSend">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Status -->
+    <div class="bottom-bar">
+      <div class="bottom-left">
+        <span class="bottom-text" id="bottomLeft">Daniela OS v2.0 | Jarvis Overlay | 6 Modes</span>
+      </div>
+      <div class="bottom-center">
+        <span class="bottom-text" id="bottomCenter">Tab: mode switcher | 1-6: direct select</span>
+      </div>
+      <div class="bottom-right">
+        <span class="bottom-text" id="bottomRight">Uptime: --</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SCRIPTS ═══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Core -->
+  <script src="js/renderer.js"></script>
+  <script src="js/mode-manager.js"></script>
+  <!-- Modes -->
+  <script src="js/modes/arc-reactor.js"></script>
+  <script src="js/modes/globe.js"></script>
+  <script src="js/modes/neural-core.js"></script>
+  <script src="js/modes/planetary.js"></script>
+  <script src="js/modes/knowledge-graph.js"></script>
+  <script src="js/modes/geolocation.js"></script>
+  <!-- Widgets -->
+  <script src="js/system-info.js"></script>
+  <script src="js/voice-visualizer.js"></script>
+  <script src="js/command-panel.js"></script>
+  <!-- UI -->
+  <script src="js/ui/mode-switcher.js"></script>
+  <!-- App -->
+  <script src="js/app.js"></script>
+</body>
+</html>

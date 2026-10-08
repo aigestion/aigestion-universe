@@ -1,0 +1,3 @@
+file 'C:/Users/Alejandro/aig/prototypes/native_video_production/scene_01_final.mp4'
+file 'C:/Users/Alejandro/aig/prototypes/native_video_production/scene_02_final.mp4'
+file 'C:/Users/Alejandro/aig/prototypes/native_video_production/scene_03_final.mp4'

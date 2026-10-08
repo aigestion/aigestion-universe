@@ -1,0 +1,92 @@
+[
+  {
+    "id": "lesson_SR-07_20260905",
+    "finding_id": "SR-07",
+    "finding_title": "Content factory not connected to Gemini",
+    "category": "integration",
+    "severity": "high",
+    "fix_description": "Import ModelRouter from gemini35_free_tier.py. Replace stub with router.call('content_generation', prompt).",
+    "files_changed": [
+      "content_factory_ai.py"
+    ],
+    "pattern": "When I see content factory not connected to gemini, it means components aren't connected. Fix: Import ModelRouter from gemini35_free_tier.py. Replace stub with router.call('content_generation', prompt).",
+    "prevention_rule": "INTEGRATION RULE: Import ModelRouter from gemini35_free_tier.py. Replace stub with router.call('content_generation', prompt).",
+    "date_learned": "2026-09-05T21:57:24.648330",
+    "verification_status": "verified"
+  },
+  {
+    "id": "lesson_SR-10_20260905",
+    "finding_id": "SR-10",
+    "finding_title": "Missing aig_adapters.py",
+    "category": "integration",
+    "severity": "medium",
+    "fix_description": "Create aig_adapters.py mapping intents to real module functions.",
+    "files_changed": [
+      "aig_core.py"
+    ],
+    "pattern": "When I see missing aig_adapters.py, it means components aren't connected. Fix: Create aig_adapters.py mapping intents to real module functions.",
+    "prevention_rule": "INTEGRATION RULE: Create aig_adapters.py mapping intents to real module functions.",
+    "date_learned": "2026-09-05T21:57:24.692132",
+    "verification_status": "verified"
+  },
+  {
+    "id": "lesson_SR-01_20260905",
+    "finding_id": "SR-01",
+    "finding_title": "Flask API completely unauthenticated",
+    "category": "security",
+    "severity": "critical",
+    "fix_description": "Import auth_system.py, create @require_auth decorator, apply to all /api/* routes. Issue JWT on PIN verification.",
+    "files_changed": [
+      "daniela_os.py"
+    ],
+    "pattern": "When I see flask api completely unauthenticated, it means there's a security vulnerability. Fix: Import auth_system.py, create @require_auth decorator, apply to all /api/* routes. Issue JWT on PIN verification.",
+    "prevention_rule": "SECURITY RULE: Import auth_system.py, create @require_auth decorator, apply to all /api/* routes. Issue JWT on PIN verification.",
+    "date_learned": "2026-09-05T22:14:03.417594",
+    "verification_status": "verified"
+  },
+  {
+    "id": "lesson_SR-02_20260905",
+    "finding_id": "SR-02",
+    "finding_title": "Command injection via string formatting",
+    "category": "security",
+    "severity": "critical",
+    "fix_description": "Use subprocess.run with list args (shell=False). Never pass untrusted data into -c strings.",
+    "files_changed": [
+      "viral_content_factory.py"
+    ],
+    "pattern": "When I see command injection via string formatting, it means there's a security vulnerability. Fix: Use subprocess.run with list args (shell=False). Never pass untrusted data into -c strings.",
+    "prevention_rule": "SECURITY RULE: Use subprocess.run with list args (shell=False). Never pass untrusted data into -c strings.",
+    "date_learned": "2026-09-05T22:14:03.492100",
+    "verification_status": "verified"
+  },
+  {
+    "id": "lesson_SR-03_20260905",
+    "finding_id": "SR-03",
+    "finding_title": "Unauthenticated database download",
+    "category": "security",
+    "severity": "critical",
+    "fix_description": "Protect with @require_auth and admin-only authorization.",
+    "files_changed": [
+      "daniela_os.py"
+    ],
+    "pattern": "When I see unauthenticated database download, it means there's a security vulnerability. Fix: Protect with @require_auth and admin-only authorization.",
+    "prevention_rule": "SECURITY RULE: Protect with @require_auth and admin-only authorization.",
+    "date_learned": "2026-09-05T22:14:03.499903",
+    "verification_status": "verified"
+  },
+  {
+    "id": "lesson_SR-04_20260905",
+    "finding_id": "SR-04",
+    "finding_title": "Arbitrary file read via indexing",
+    "category": "security",
+    "severity": "critical",
+    "fix_description": "Restrict file reading to sandboxed directory. Validate path starts with ALLOWED_DIR.",
+    "files_changed": [
+      "google_free_tier_automations.py"
+    ],
+    "pattern": "When I see arbitrary file read via indexing, it means there's a security vulnerability. Fix: Restrict file reading to sandboxed directory. Validate path starts with ALLOWED_DIR.",
+    "prevention_rule": "SECURITY RULE: Restrict file reading to sandboxed directory. Validate path starts with ALLOWED_DIR.",
+    "date_learned": "2026-09-05T22:14:03.506484",
+    "verification_status": "verified"
+  }
+]

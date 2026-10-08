@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hermes Epic - 50 Ideas</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#00f0ff;font-family:'Segoe UI',monospace;min-height:100vh}
+.header{background:linear-gradient(135deg,#0a0a1a,#111);padding:20px;text-align:center;border-bottom:1px solid #00f0ff33}
+.header h1{font-size:24px;letter-spacing:2px}
+.header p{color:#666;font-size:12px;margin-top:4px}
+.stats{display:flex;gap:15px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.stat{background:#111;border:1px solid #333;border-radius:10px;padding:15px;text-align:center;min-width:100px}
+.stat .num{font-size:28px;color:#00ff88}
+.nav{display:flex;gap:5px;padding:10px;overflow-x:auto}
+.nav-btn{padding:6px 12px;border-radius:16px;border:1px solid #333;background:transparent;color:#666;font-size:11px;cursor:pointer;white-space:nowrap}
+.nav-btn.active{border-color:#00f0ff;color:#00f0ff;background:#00f0ff11}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;padding:5px 10px}
+.card{background:#111;border:1px solid #333;border-radius:12px;padding:15px;cursor:pointer;transition:all .2s}
+.card:hover{border-color:#00f0ff;transform:translateY(-2px)}
+.card h3{font-size:12px;color:#00f0ff;margin-bottom:4px}
+.card p{font-size:10px;color:#666}
+.card .phase{font-size:8px;padding:2px 6px;border-radius:10px;margin-top:5px;display:inline-block}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000c;z-index:100}
+.modal.active{display:block}
+.modal-header{background:#111;padding:10px 15px;display:flex;justify-content:space-between;align-items:center}
+.modal-close{background:none;border:none;color:#666;font-size:20px;cursor:pointer}
+.modal-content{height:calc(100vh - 45px)}
+.modal-content iframe{width:100%;height:100%;border:none}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>HERES EPIC</h1>
+<p>50 Ideas for an Advanced AI Agent</p>
+</div>
+<div class="stats">
+<div class="stat"><div class="num">50</div><p>Ideas</p></div>
+<div class="stat"><div class="num">6</div><p>Phases</p></div>
+<div class="stat"><div class="num">165</div><p>Total Systems</p></div>
+<div class="stat"><div class="num">65</div><p>Modules</p></div>
+</div>
+<div class="nav" id="nav"></div>
+<div class="grid" id="grid"></div>
+<div class="modal" id="modal">
+<div class="modal-header"><h3 id="modal-title">System</h3><button class="modal-close" onclick="closeModal()">X</button></div>
+<div class="modal-content"><iframe id="frame" src="about:blank"></iframe></div>
+</div>
+<script>
+const BASE='http://localhost:9300';
+const PHASES=[
+{name:'Integration',color:'#ff0066',items:[{n:'Hermes-Daniela Bridge',u:'/api/hermes/daniela/web'},{n:'Shared Memory',u:'/api/hermes/memory/sync/web'},{n:'Voice Engine',u:'/api/hermes/voice/web'},{n:'Cross-Agent',u:'/api/hermes/delegation/web'},{n:'Unified Dashboard',u:'/api/hermes/unified/web'}]},
+{name:'Skills',color:'#00ff88',items:[{n:'Code Review',u:'/api/hermes/skills/code-review/web'},{n:'Email Intelligence',u:'/api/hermes/skills/email/web'},{n:'Meeting Prep',u:'/api/hermes/skills/meeting/web'},{n:'Research',u:'/api/hermes/skills/research/web'},{n:'Creative Writer',u:'/api/hermes/skills/creative/web'},{n:'Data Analyst',u:'/api/hermes/skills/data/web'},{n:'Smart Home',u:'/api/hermes/skills/smarthome/web'},{n:'Finance Tracker',u:'/api/hermes/skills/finance/web'},{n:'Health Monitor',u:'/api/hermes/skills/health/web'},{n:'Language Tutor',u:'/api/hermes/skills/language/web'}]},
+{name:'Memory',color:'#6644ff',items:[{n:'Episodic',u:'/api/hermes/memory/episodic/web'},{n:'Semantic',u:'/api/hermes/memory/semantic/web'},{n:'Procedural',u:'/api/hermes/memory/procedural/web'},{n:'Emotional',u:'/api/hermes/memory/emotional/web'},{n:'Spatial',u:'/api/hermes/memory/spatial/web'},{n:'Social',u:'/api/hermes/memory/social/web'},{n:'Temporal',u:'/api/hermes/memory/temporal/web'},{n:'Counterfactual',u:'/api/hermes/memory/counterfactual/web'},{n:'Consolidation',u:'/api/hermes/memory/consolidation/web'},{n:'Memory Search',u:'/api/hermes/memory/search/web'}]},
+{name:'Automation',color:'#ff8800',items:[{n:'Morning Briefing',u:'/api/hermes/automation/morning/web'},{n:'Evening Summary',u:'/api/hermes/automation/evening/web'},{n:'Weekly Review',u:'/api/hermes/automation/weekly/web'},{n:'Auto Reporter',u:'/api/hermes/automation/reporter/web'},{n:'Smart Reminders',u:'/api/hermes/automation/reminders/web'},{n:'Email Auto-Reply',u:'/api/hermes/automation/auto-responder/web'},{n:'Code Auto-Review',u:'/api/hermes/automation/code-review/web'},{n:'Meeting Notes',u:'/api/hermes/automation/notes/web'},{n:'File Organizer',u:'/api/hermes/automation/organizer/web'},{n:'Backup Scheduler',u:'/api/hermes/automation/backup/web'}]},
+{name:'Personality',color:'#00f0ff',items:[{n:'Mood Detection',u:'/api/hermes/personality/mood/web'},{n:'Humor System',u:'/api/hermes/personality/humor/web'},{n:'Empathy Engine',u:'/api/hermes/personality/empathy/web'},{n:'Celebration',u:'/api/hermes/personality/celebration/web'},{n:'Learning Style',u:'/api/hermes/personality/learning/web'},{n:'Comm Style',u:'/api/hermes/personality/comm/web'},{n:'Preference Memory',u:'/api/hermes/personality/prefs/web'},{n:'Proactive Sugg',u:'/api/hermes/personality/suggestions/web'},{n:'Contextual Jokes',u:'/api/hermes/personality/jokes/web'},{n:'Growth Tracking',u:'/api/hermes/personality/growth/web'}]},
+{name:'Advanced',color:'#ff0066',items:[{n:'Multi-Provider',u:'/api/hermes/advanced/providers/web'},{n:'Skill Creator',u:'/api/hermes/advanced/skill-creator/web'},{n:'Plugin Market',u:'/api/hermes/advanced/marketplace/web'},{n:'Eval System',u:'/api/hermes/advanced/eval/web'},{n:'Self Improvement',u:'/api/hermes/advanced/improvement/web'}]}
+];
+const nav=document.getElementById('nav');
+const allBtn=document.createElement('button');
+allBtn.className='nav-btn active';allBtn.textContent='All';
+allBtn.onclick=()=>{showPhase(null);document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));allBtn.classList.add('active')};
+nav.appendChild(allBtn);
+PHASES.forEach(p=>{const btn=document.createElement('button');btn.className='nav-btn';btn.textContent=p.name;btn.onclick=()=>{showPhase(p.name);document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')};nav.appendChild(btn)});
+function showPhase(filter){const c=document.getElementById('grid');c.innerHTML='';let idx=0;PHASES.forEach(p=>{if(filter&&filter!==p.name)return;const sec=document.createElement('div');sec.className='phase-header';sec.innerHTML='<h2 style="color:'+p.color+'">'+p.name.toUpperCase()+'</h2>';c.appendChild(sec);p.items.forEach(item=>{idx++;const card=document.createElement('div');card.className='card';card.innerHTML='<h3>'+item.n+'</h3><div class="phase" style="background:'+p.color+'22;color:'+p.color+'">'+p.name+'</div>';card.onclick=()=>openModal(BASE+item.url);c.appendChild(card)})})}
+function openModal(url){document.getElementById('frame').src=url;document.getElementById('modal').classList.add('active')}
+function closeModal(){document.getElementById('modal').classList.remove('active');document.getElementById('frame').src='about:blank'}
+showPhase(null)
+</script></body></html>

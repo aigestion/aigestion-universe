@@ -1,0 +1,97 @@
+{
+  "tools": [
+    {
+      "name": "code_tools",
+      "module": "tools.code_tools",
+      "functions": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Path",
+        "find_todos",
+        "get_file_stats",
+        "run_lint",
+        "run_type_check"
+      ],
+      "discovered": true
+    },
+    {
+      "name": "git_tools",
+      "module": "tools.git_tools",
+      "functions": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "create_branch",
+        "get_recent_commits",
+        "get_status"
+      ],
+      "discovered": true
+    },
+    {
+      "name": "system_tools",
+      "module": "tools.system_tools",
+      "functions": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "get_disk_usage",
+        "get_memory_usage",
+        "get_running_processes",
+        "get_system_info"
+      ],
+      "discovered": true
+    },
+    {
+      "name": "content_tools",
+      "module": "tools.content_tools",
+      "functions": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "Path",
+        "create_video_from_images",
+        "download_video",
+        "generate_tts",
+        "get_video_info",
+        "transcribe_audio"
+      ],
+      "discovered": true
+    },
+    {
+      "name": "social_tools",
+      "module": "tools.social_tools",
+      "functions": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "get_twitter_trends",
+        "post_to_instagram",
+        "post_to_tiktok",
+        "post_to_twitter"
+      ],
+      "discovered": true
+    },
+    {
+      "name": "ai_tools",
+      "module": "tools.ai_tools",
+      "functions": [
+        "Any",
+        "Dict",
+        "List",
+        "Optional",
+        "deepseek_chat",
+        "gemini_chat",
+        "gemini_embed",
+        "gemini_generate"
+      ],
+      "discovered": true
+    }
+  ],
+  "last_discovery": "2026-10-01T01:55:25.478688"
+}

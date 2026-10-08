@@ -1,0 +1,22 @@
+{"ev": "created", "task_id": "edge-1789133185860-6465", "tipo": "ocr_factura", "payload": {"imagen": "/x.jpg"}, "prioridad": 2, "ts": "2026-09-11T14:26:25.860550"}
+{"ev": "created", "task_id": "edge-1789133186720-4511", "tipo": "chequeo_geofence", "payload": {"lat": 40.4, "lon": -3.7, "radio_m": 100}, "prioridad": 2, "ts": "2026-09-11T14:26:26.721541"}
+{"ev": "created", "task_id": "edge-1789133187676-7369", "tipo": "estado_nodo", "payload": {}, "prioridad": 0, "ts": "2026-09-11T14:26:27.676429"}
+{"ev": "claimed", "task_id": "edge-1789133187676-7369", "nodo": "pixel-test", "lease_hasta": 1789133488.524355, "ts": "2026-09-11T14:26:28.524354"}
+{"ev": "claimed", "task_id": "edge-1789133185860-6465", "nodo": "pixel-test", "lease_hasta": 1789134089.4170477, "ts": "2026-09-11T14:26:29.417047"}
+{"ev": "claimed", "task_id": "edge-1789133186720-4511", "nodo": "nodo-loop", "lease_hasta": 1789133520.3076644, "ts": "2026-09-11T14:27:00.308703"}
+{"ev": "done", "task_id": "edge-1789133186720-4511", "nodo": "nodo-loop", "resultado": {"status": "no_soportado", "motivo": "sin termux-location (fuera de Termux o sin permiso GPS)"}, "ts": "2026-09-11T14:27:02.376309"}
+{"ev": "created", "task_id": "edge-1789137228680-6504", "tipo": "estado_nodo", "payload": {}, "prioridad": 2, "ts": "2026-09-11T15:33:48.680314"}
+{"ev": "claimed", "task_id": "edge-1789133187676-7369", "nodo": "nodo-hud", "lease_hasta": 1789137528.68131, "ts": "2026-09-11T15:33:48.681309"}
+{"ev": "failed", "task_id": "edge-1789137228680-6504", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:33:48.682308"}
+{"ev": "failed", "task_id": "edge-1789137228680-6504", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:33:48.683310"}
+{"ev": "failed", "task_id": "edge-1789137228680-6504", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:33:48.683310"}
+{"ev": "created", "task_id": "edge-1789137283811-4608", "tipo": "estado_nodo", "payload": {}, "prioridad": 2, "ts": "2026-09-11T15:34:43.812929"}
+{"ev": "claimed", "task_id": "edge-1789133185860-6465", "nodo": "nodo-hud", "lease_hasta": 1789138183.8149238, "ts": "2026-09-11T15:34:43.815924"}
+{"ev": "failed", "task_id": "edge-1789137283811-4608", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:34:43.816926"}
+{"ev": "created", "task_id": "edge-1789137295230-4530", "tipo": "estado_nodo", "payload": {}, "prioridad": 2, "ts": "2026-09-11T15:34:55.230716"}
+{"ev": "claimed", "task_id": "edge-1789137228680-6504", "nodo": "nodo-hud", "lease_hasta": 1789137595.2327676, "ts": "2026-09-11T15:34:55.232767"}
+{"ev": "failed", "task_id": "edge-1789137295230-4530", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:34:55.232767"}
+{"ev": "claimed", "task_id": "edge-1789137283811-4608", "nodo": "nodo-hud", "lease_hasta": 1789137595.2343104, "ts": "2026-09-11T15:34:55.234310"}
+{"ev": "failed", "task_id": "edge-1789137295230-4530", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:34:55.235360"}
+{"ev": "claimed", "task_id": "edge-1789137295230-4530", "nodo": "nodo-hud", "lease_hasta": 1789137595.2353606, "ts": "2026-09-11T15:34:55.235360"}
+{"ev": "failed", "task_id": "edge-1789137295230-4530", "nodo": "nodo-hud", "error": "sim", "ts": "2026-09-11T15:34:55.236360"}

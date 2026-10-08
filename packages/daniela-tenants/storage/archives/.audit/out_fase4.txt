@@ -1,0 +1,123 @@
+===== N. MD5 DE LOS DOS .bin DE 1.5 GB (NexusAI) =====
+814d0dc106a099f581ffad0fad0218c0  /storage/emulated/0/Documents/NexusAI/gemma_soberano.bin
+814d0dc106a099f581ffad0fad0218c0  /storage/emulated/0/Documents/NexusAI/gemma2-2b.bin
+
+===== N2. MD5 DE LOS DOS .litertlm DE 289 MB =====
+049db855e7d3dd24a430b3637e6fd9a1  /storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/TinyGarden_270M/20260225/tiny_garden.litertlm
+a94e6c327df9e50fa9793877a7ecbff9  /storage/emulated/0/Android/data/com.google.ai.edge.gallery/files/MobileActions_270M/20260218/mobile_actions.litertlm
+
+===== N3. DUPLICADOS POR TAMANO EN /sdcard (solo >1 MB) =====
+18
+-- grupos de tamano repetido (top 20) --
+      5 1899459
+      4 1523993
+      2 9177434
+      2 7142843
+      2 5808130
+      2 3009655
+      2 288964608
+      2 272687792
+      2 1721274
+      2 1629509152
+      2 1316646
+      2 1184327
+      2 1128276
+      2 1125242
+      2 1077382
+      2 1056560
+      2 1053705
+      2 1052489
+      1 9862739
+      1 9774494
+
+===== O. MD5 DE LOS PNG SOSPECHOSOS =====
+ebd70dfa92e0ebadcb7876ee6b5413fe  /storage/emulated/0/Pictures/1786787216622.png
+9068b0e833b3b09e4c3f970004aff97c  /storage/emulated/0/Pictures/1786787755050.png
+3bae783204965913b02716e07912438c  /storage/emulated/0/Pictures/1787398121249.png
+3bae783204965913b02716e07912438c  /storage/emulated/0/Pictures/1787399351571.png
+2aea65756e9938b45351a8b9ee391ed5  /storage/emulated/0/Pictures/file_000000009a00821195771bc85f28c1a3.png
+
+===== P. PAQUETES INSTALADOS (relacionados) =====
+package:com.termux
+package:com.termux.boot
+package:android.autoinstalls.config.google.nexus
+package:com.termux.api
+package:com.google.ai.edge.gallery
+package:com.termux.window
+package:com.termux.widget
+package:com.llmproxy
+package:com.google.android.apps.nexuslauncher
+-- total paquetes --
+468
+
+===== Q. ULTIMO USO DE LAS APPS DE IA =====
+--- com.google.ai.edge.gallery
+    versionName=1.0.19
+    lastUpdateTime=2026-09-03 02:05:37
+      firstInstallTime=2026-04-08 13:00:00
+--- com.llmproxy
+    versionName=1.39
+    lastUpdateTime=2026-09-03 02:04:15
+      firstInstallTime=2026-07-23 20:22:08
+--- com.termux
+    versionName=0.118.3
+    lastUpdateTime=2026-07-31 17:53:27
+      firstInstallTime=2026-07-31 17:53:27
+--- com.termux.api
+    versionName=0.53.0
+    lastUpdateTime=2026-07-31 17:35:32
+      firstInstallTime=2026-07-31 17:35:32
+--- com.termux.boot
+    versionName=0.8.1
+    lastUpdateTime=2026-08-01 17:59:05
+      firstInstallTime=2026-08-01 17:59:05
+--- com.termux.widget
+    versionName=0.15.0
+    lastUpdateTime=2026-08-29 13:54:15
+      firstInstallTime=2026-08-29 13:54:15
+
+===== R. ESTADO DE DANIELAOS =====
+3452	
+
+===== S. DIRECTORIOS VACIOS EN /sdcard =====
+/storage/emulated/0/Android/data/com.google.android.gms/cache
+/storage/emulated/0/Android/data/com.google.android.GoogleCamera/files
+/storage/emulated/0/Android/data/com.google.android.apps.maps/files
+/storage/emulated/0/Android/data/com.google.android.apps.nbu.files/files
+/storage/emulated/0/Android/data/com.google.android.apps.nbu.files/cache
+/storage/emulated/0/Android/data/com.google.android.videos/files/Movies
+/storage/emulated/0/Android/data/com.android.vending/files/dna_data
+/storage/emulated/0/Android/data/com.google.android.apps.wear.companion/files
+/storage/emulated/0/Android/data/com.google.android.apps.docs.editors.docs/files
+/storage/emulated/0/Android/data/com.android.chrome/files/Download
+/storage/emulated/0/Android/data/com.google.android.apps.photos/files
+/storage/emulated/0/Android/data/com.google.android.apps.photos/testdata
+/storage/emulated/0/Android/data/de.number26.android/files
+/storage/emulated/0/Android/data/de.number26.android/cache
+/storage/emulated/0/Android/data/com.android.wallpaperbackup/files
+/storage/emulated/0/Android/data/com.google.android.apps.nexuslauncher/files
+/storage/emulated/0/Android/data/com.google.android.adservices.api/files
+/storage/emulated/0/Android/data/com.shannon.imsservice.auto_generated_rro_product__/files
+/storage/emulated/0/Android/data/com.google.android.apps.pixel.customizationbundle/files
+/storage/emulated/0/Android/data/com.google.android.apps.translate/files
+/storage/emulated/0/Android/data/com.google.android.googlequicksearchbox/files
+/storage/emulated/0/Android/data/com.vzw.apnlib/files
+/storage/emulated/0/Android/data/android.auto_generated_rro_vendor__/files
+/storage/emulated/0/Android/data/com.google.android.apps.pixel.relationships/files
+/storage/emulated/0/Android/data/com.google.android.apps.ai.icons/files
+/storage/emulated/0/Android/data/com.google.android.health.connect.backuprestore/files
+/storage/emulated/0/Android/data/android.auto_generated_rro_product__/files
+/storage/emulated/0/Android/data/com.google.android.settings.intelligence/files
+/storage/emulated/0/Android/data/com.google.android.apps.messaging/files
+/storage/emulated/0/Android/data/com.google.android.apps.pixel.creativeassistant/files
+/storage/emulated/0/Android/data/android.auto_generated_characteristics_rro/files
+/storage/emulated/0/Android/data/com.google.android.apps.aiwallpapers/files
+/storage/emulated/0/Android/data/com.google.android.apps.privacy.wildlife/files
+/storage/emulated/0/Android/data/com.google.android.apps.pixel.familyspace/files
+/storage/emulated/0/Android/data/com.google.android.wallpaper.effects/files
+/storage/emulated/0/Android/data/com.android.systemui.accessibility.accessibilitymenu/files
+/storage/emulated/0/Android/data/com.google.android.apps.chromecast.app/files
+/storage/emulated/0/Android/data/com.termux.api/files
+/storage/emulated/0/Android/data/com.aig.soberano/files
+/storage/emulated/0/Android/data/com.google.android.youtube/cache
+FIN-FASE4

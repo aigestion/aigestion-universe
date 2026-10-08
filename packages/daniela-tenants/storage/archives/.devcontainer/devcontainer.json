@@ -1,0 +1,42 @@
+{
+  "name": "aig Development",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/redis:1": {
+      "version": "7.0"
+    }
+  },
+  "postCreateCommand": "pip install -e ./aig-shared && pip install flask flask-cors flask-socketio redis psutil",
+  "forwardPorts": [5020, 9200, 9300, 9400, 9500, 9600, 9700, 9800, 9999, 9998, 9997, 6379],
+  "portsAttributes": {
+    "5020": { "label": "Epic PC" },
+    "9200": { "label": "Daniela Omnipresente" },
+    "9300": { "label": "Hermes Epic" },
+    "9400": { "label": "AIG Optimization" },
+    "9500": { "label": "Frontend V1" },
+    "9600": { "label": "Frontend V2" },
+    "9700": { "label": "Infra Optimization" },
+    "9800": { "label": "Agent & Mobile" },
+    "9999": { "label": "Security & Monitoring" },
+    "9998": { "label": "Performance & Quality" },
+    "9997": { "label": "Unified Dashboard" },
+    "6379": { "label": "Redis" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}

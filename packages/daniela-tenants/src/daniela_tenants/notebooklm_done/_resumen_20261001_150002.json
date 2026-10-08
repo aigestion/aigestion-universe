@@ -1,0 +1,15 @@
+[
+  {
+    "file": "transformers.txt",
+    "status": "ok",
+    "note": "docs\\NotebookLM\\Cuaderno IA\\transformers.md",
+    "chars": 132,
+    "rag": {
+      "chunks_ok": 1,
+      "chunks_total": 1,
+      "errors": [],
+      "collection": "nb_cuaderno-ia"
+    },
+    "notebook": "Cuaderno IA"
+  }
+]

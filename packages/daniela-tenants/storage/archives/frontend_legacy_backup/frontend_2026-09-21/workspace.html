@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>DANIELA OS - Full Workspace 3D</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background: #010308; font-family: 'Segoe UI', system-ui, sans-serif; color: #fff; }
+        
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        #fx-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+
+        .voice-hud { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; 
+            display: flex; flex-direction: column; justify-content: space-between; padding: 16px; 
+            pointer-events: none; transition: opacity 0.5s ease; 
+        }
+
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .sys-badge { background: rgba(3, 8, 20, 0.88); border: 1px solid #00f0ff; backdrop-filter: blur(12px); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 2px; color: #00f0ff; display: flex; align-items: center; gap: 10px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+        .pulse-dot { width: 8px; height: 8px; background: #00f0ff; border-radius: 50%; box-shadow: 0 0 10px #00f0ff; animation: pulse 2.2s infinite ease-in-out; }
+        @keyframes pulse { 0%, 100% { opacity: 0.25; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.25); } }
+        
+        .floating-modal { 
+            position: absolute; top: 70px; left: 50%; transform: translateX(-50%); 
+            width: 90%; max-width: 420px; pointer-events: auto; 
+            background: rgba(3, 8, 20, 0.88); border: 1px solid rgba(224, 36, 195, 0.4); 
+            border-radius: 16px; padding: 12px; backdrop-filter: blur(16px); 
+            display: flex; flex-direction: column; gap: 8px; 
+            box-shadow: 0 0 25px rgba(224, 36, 195, 0.25); z-index: 20; 
+            cursor: move; touch-action: none;
+        }
+
+        .drag-handle { 
+            font-size: 0.68rem; color: #e024c3; letter-spacing: 1.5px; 
+            text-transform: uppercase; font-weight: bold; display: flex; justify-content: space-between; 
+            align-items: center; padding-bottom: 4px; border-bottom: 1px solid rgba(224, 36, 195, 0.2); cursor: grab;
+        }
+
+        .user-speech-input { width: 100%; background: rgba(0, 240, 255, 0.04); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 8px; padding: 8px; color: #fff; font-size: 0.9rem; outline: none; resize: none; min-height: 40px; }
+        .daniela-response { font-size: 0.9rem; color: #00f0ff; font-weight: 500; text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 6px; }
+        
+        /* PANEL FLOTANTE HOLOGRÁFICO PARA INFORMACIÓN DE MÓDULOS */
+        .module-panel {
+            position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);
+            width: 92%; max-width: 450px; background: rgba(3, 8, 20, 0.94);
+            border: 1px solid #00f0ff; border-radius: 16px; padding: 14px;
+            backdrop-filter: blur(18px); z-index: 30; pointer-events: auto;
+            display: none; flex-direction: column; gap: 10px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.35); max-height: 320px; overflow-y: auto;
+        }
+        .module-panel.active { display: flex; }
+        .mod-header { font-size: 0.75rem; color: #00f0ff; font-weight: bold; letter-spacing: 1.5px; display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0, 240, 255, 0.3); padding-bottom: 6px; }
+        .mod-close { cursor: pointer; color: #fff; }
+        .mod-item { display: flex; flex-direction: column; gap: 2px; background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); padding: 8px; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .mod-item:hover { background: rgba(0, 240, 255, 0.18); }
+        .mod-item-title { font-size: 0.78rem; color: #fff; font-weight: bold; }
+        .mod-item-sub { font-size: 0.68rem; color: #aaa; }
+
+        .node-label { position: absolute; font-size: 0.58rem; font-weight: bold; font-family: monospace; background: rgba(1, 3, 8, 0.85); padding: 2px 6px; border-radius: 4px; pointer-events: auto; cursor: pointer; white-space: nowrap; backdrop-filter: blur(4px); transform: translate(-50%, -100%); transition: all 0.3s; }
+        .core-word { position: absolute; color: #e024c3; font-size: 0.55rem; font-weight: bold; font-family: monospace; pointer-events: none; white-space: nowrap; text-shadow: 0 0 6px #e024c3; transform: translate(-50%, -50%); opacity: 0.85; }
+
+        .controls { display: flex; justify-content: center; align-items: center; gap: 15px; pointer-events: auto; margin-bottom: 8px; }
+        .mic-btn { width: 68px; height: 68px; border-radius: 50%; background: radial-gradient(circle, rgba(224, 36, 195, 0.2) 0%, rgba(1, 3, 8, 0.95) 100%); border: 2px solid #e024c3; color: #fff; font-size: 1.8rem; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.25s ease; touch-action: none; }
+        .mic-btn.recording { background: #ff0055; border-color: #ff0055; box-shadow: 0 0 30px #ff0055; transform: scale(1.08); }
+        .btn-send-action { background: linear-gradient(135deg, #00f0ff 0%, #e024c3 100%); color: #010308; border: none; padding: 12px 22px; border-radius: 25px; font-weight: bold; font-size: 0.85rem; cursor: pointer; letter-spacing: 1px; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <canvas id="fx-overlay"></canvas>
+    <div id="labels-container" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:5;"></div>
+
+    <div class="voice-hud" id="voice-hud">
+        <div class="header">
+            <div class="sys-badge"><div class="pulse-dot"></div>DANIELA OS // FULL WORKSPACE</div>
+            <div class="sys-badge" id="status-tag">ALL NODES ONLINE</div>
+        </div>
+
+        <div class="floating-modal" id="drag-modal">
+            <div class="drag-handle" id="drag-handle">
+                <span>TRANSCRIPCIÓN TÁCTICA ≡</span>
+                <span id="telemetry-status" style="color:#00f0ff;">13 MODULES ACTIVE</span>
+            </div>
+            <textarea class="user-speech-input" id="user-text" placeholder="Mantén presionado para dictar orden..."></textarea>
+            <div class="daniela-response" id="daniela-text">"Toca los nodos para desplegar sus paneles."</div>
+        </div>
+
+        <!-- MODAL DESPLEGABLE INFORMATIVO -->
+        <div class="module-panel" id="module-panel">
+            <div class="mod-header">
+                <span id="mod-panel-title">MÓDULO SELECCIONADO</span>
+                <span class="mod-close" onclick="closeModulePanel()">✕</span>
+            </div>
+            <div id="mod-list-container" style="display:flex; flex-direction:column; gap:8px;"></div>
+        </div>
+
+        <div class="controls">
+            <button class="mic-btn" id="mic-btn">🎙️</button>
+            <button class="btn-send-action" onclick="sendChat()">ENVIAR ➔</button>
+        </div>
+    </div>
+
+    <script>
+        let scene, camera, renderer, coreGroup, instancedPhotons, neuralCluster, ragRingMesh;
+        let threadSatellitesGroup;
+        let isRecording = false, recognition, synth;
+        let targetCamZ = 3.8;
+        let audioCtx = null;
+        let isSpeaking = false;
+
+        const PHOTON_COUNT = 32;
+        const dummy = new THREE.Object3D();
+        
+        const _tempV = new THREE.Vector3();
+        const _tempP0 = new THREE.Vector3();
+        const _tempP1 = new THREE.Vector3();
+        const _tempP2 = new THREE.Vector3();
+        const _outBezier = new THREE.Vector3();
+
+        // FIRMAS HÁPTICAS
+        const HAPTIC_PATTERNS = {
+            YOUTUBE: [10, 20, 10],
+            GMAIL: [50],
+            DRIVE: [15, 10, 15],
+            CALENDAR: [25, 25],
+            TERMINAL: [8, 15, 8],
+            SENSORS: [5, 10, 5, 10],
+            MEMORY: [30, 20, 10],
+            DEFAULT: [20]
+        };
+
+        // LISTA COMPLETA DE MÓDULOS DEL WORKSPACE
+        const SKILLS = [
+            { id: 'YOUTUBE', label: 'YOUTUBE', color: 0xff0033, border: '#ff0033' },
+            { id: 'GMAIL', label: 'GMAIL', color: 0xff4444, border: '#ff4444' },
+            { id: 'DRIVE', label: 'GOOGLE DRIVE', color: 0x00ffaa, border: '#00ffaa' },
+            { id: 'CALENDAR', label: 'CALENDAR', color: 0x0088ff, border: '#0088ff' },
+            { id: 'TERMINAL', label: 'TERMINAL', color: 0x00ff66, border: '#00ff66' },
+            { id: 'SENSORS', label: 'SENSORS', color: 0x00f0ff, border: '#00f0ff' },
+            { id: 'MEMORY', label: 'MEMORY', color: 0xe024c3, border: '#e024c3' },
+            { id: 'CREATIVE', label: 'CREATIVE', color: 0xe024c3, border: '#e024c3' },
+            { id: 'VIDEO', label: 'VIDEO', color: 0xe024c3, border: '#e024c3' },
+            { id: 'JOURNAL', label: 'JOURNAL', color: 0x00f0ff, border: '#00f0ff' },
+            { id: 'SOCIAL', label: 'SOCIAL', color: 0xffaa00, border: '#ffaa00' },
+            { id: 'AUDIO', label: 'AUDIO', color: 0x0088ff, border: '#0088ff' },
+            { id: 'WEB', label: 'WEB', color: 0x00f0ff, border: '#00f0ff' }
+        ];
+
+        // TELEMETRÍA EN EL NÚCLEO
+        const CORE_WORDS = ['CPU: 8 THREADS', 'RAM: 3.8GB', 'RAG: 150 TKN', 'LATENCY: 8ms', 'STATUS: OK'];
+        const coreWordNodes = [];
+
+        // DATOS DE DESPLIEGUE POR MÓDULO
+        const MODULE_DATA = {
+            YOUTUBE: [
+                { title: '▶ Daniela OS 3D Brain Demo', sub: 'Canal Principal // Hace 1 hora' },
+                { title: '▶ Haptic Motor Calibration', sub: 'Tutorial Termux // Hace 1 día' },
+                { title: '▶ Agent Workflows Demo', sub: 'Monorepo Video // Hace 3 días' }
+            ],
+            GMAIL: [
+                { title: '✉️ Servidor Táctico Notificación', sub: 'De: sysadmin@daniella.os' },
+                { title: '✉️ Token RAG Sincronizado', sub: 'De: memory@daniella.os' },
+                { title: '✉️ Credenciales Google Cloud', sub: 'De: no-reply@google.com' }
+            ],
+            DRIVE: [
+                { title: '📊 aig_Master_Sheet.xlsx', sub: 'Google Sheet // Editado recientemente' },
+                { title: '📄 Haptic_Signature_Spec.pdf', sub: 'Especificación de Vibración' },
+                { title: '📁 Backup_Termux_Core.tar.gz', sub: 'Google Drive Sync' }
+            ],
+            CALENDAR: [
+                { title: '📅 Sync de Telemetría y Agents', sub: 'Hoy // 22:00 PM' },
+                { title: '📅 Revisión Monorepo Workspace', sub: 'Mañana // 10:00 AM' }
+            ],
+            TERMINAL: [
+                { title: '⚡ python3 tactical_server.py', sub: 'PUERTO 8080 ACTIVE' },
+                { title: '⚡ termux-battery-status', sub: 'BATERÍA SALUDABLE' }
+            ],
+            SENSORS: [
+                { title: '🔋 BATERÍA: 98% (SALUDABLE)', sub: 'Termux Hardware Sensor' },
+                { title: '🧠 HEAP MEMORY: 42 MB', sub: 'JavaScript Engine Active' }
+            ],
+            MEMORY: [
+                { title: '🧠 Contexto RAG: "Servicios de Google"', sub: '1,420 Tokens activos' },
+                { title: '🧠 Configuración Guardada', sub: 'LocalStorage Sync' }
+            ]
+        };
+        
+        const skillNodes = [];
+        const photonPaths = [];
+
+        function triggerHaptic(patternKey) {
+            if (navigator.vibrate) {
+                const pattern = HAPTIC_PATTERNS[patternKey] || HAPTIC_PATTERNS.DEFAULT;
+                navigator.vibrate(pattern);
+            }
+        }
+
+        function initFullMasterVisor() {
+            const container = document.getElementById('canvas-container');
+            const labelsContainer = document.getElementById('labels-container');
+            
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.z = targetCamZ;
+
+            renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance", precision: "mediump" });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            container.appendChild(renderer.domElement);
+
+            coreGroup = new THREE.Group();
+
+            // ESFERA NEURONAL
+            const neuronCount = 480;
+            const neuronGeo = new THREE.BufferGeometry();
+            const neuronPos = new Float32Array(neuronCount * 3);
+            for (let i = 0; i < neuronCount; i++) {
+                const u = Math.random(), v = Math.random();
+                const theta = u * 2.0 * Math.PI, phi = Math.acos(2.0 * v - 1.0);
+                const r = 0.42 + (Math.random() * 0.1);
+                neuronPos[i*3] = r * Math.sin(phi) * Math.cos(theta);
+                neuronPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+                neuronPos[i*3+2] = r * Math.cos(phi);
+            }
+            neuronGeo.setAttribute('position', new THREE.BufferAttribute(neuronPos, 3));
+            neuralCluster = new THREE.Points(neuronGeo, new THREE.PointsMaterial({ color: 0x00f0ff, size: 0.024, transparent: true, opacity: 0.85 }));
+            coreGroup.add(neuralCluster);
+
+            // ANILLO RAG
+            const ringGeo = new THREE.RingGeometry(0.58, 0.60, 32);
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0xe024c3, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+            ragRingMesh = new THREE.Mesh(ringGeo, ringMat);
+            ragRingMesh.rotation.x = Math.PI / 2;
+            coreGroup.add(ragRingMesh);
+
+            // SATÉLITES CPU
+            threadSatellitesGroup = new THREE.Group();
+            const threadCount = 4;
+            for (let t = 0; t < threadCount; t++) {
+                const satMesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.025, 6, 6),
+                    new THREE.MeshBasicMaterial({ color: 0xffaa00 })
+                );
+                satMesh.userData = { angle: (t * Math.PI * 2) / threadCount, radius: 0.72 + (t * 0.05) };
+                threadSatellitesGroup.add(satMesh);
+            }
+            coreGroup.add(threadSatellitesGroup);
+
+            // TELEMETRÍA EN EL NÚCLEO
+            CORE_WORDS.forEach((txt, idx) => {
+                const phi = Math.acos(-1 + (2 * idx) / CORE_WORDS.length);
+                const theta = Math.sqrt(CORE_WORDS.length * Math.PI) * phi;
+                const r = 0.52;
+                const posV = new THREE.Vector3(r * Math.cos(theta) * Math.sin(phi), r * Math.sin(theta) * Math.sin(phi), r * Math.cos(phi));
+
+                const elem = document.createElement('div');
+                elem.className = 'core-word';
+                elem.innerText = txt;
+                labelsContainer.appendChild(elem);
+
+                coreWordNodes.push({ text: txt, position: posV, labelElem: elem });
+            });
+
+            // NODOS COMPLETOS DEL WORKSPACE Y GOOGLE
+            SKILLS.forEach((item, idx) => {
+                const phi = Math.acos(-1 + (2 * idx) / SKILLS.length);
+                const theta = Math.sqrt(SKILLS.length * Math.PI) * phi;
+                const r = 1.35;
+                const targetPos = new THREE.Vector3(r * Math.cos(theta) * Math.sin(phi), r * Math.sin(theta) * Math.sin(phi), r * Math.cos(phi));
+
+                const nodeMesh = new THREE.Mesh(new THREE.SphereGeometry(0.042, 6, 6), new THREE.MeshBasicMaterial({ color: item.color }));
+                nodeMesh.position.copy(targetPos);
+                coreGroup.add(nodeMesh);
+
+                const rayGeo = new THREE.CylinderGeometry(0.003, 0.003, targetPos.length(), 4);
+                const rayMat = new THREE.MeshBasicMaterial({ color: item.color, transparent: true, opacity: 0.3 });
+                const rayMesh = new THREE.Mesh(rayGeo, rayMat);
+                rayMesh.position.copy(targetPos.clone().multiplyScalar(0.5));
+                rayMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), targetPos.clone().normalize());
+                coreGroup.add(rayMesh);
+
+                const lbl = document.createElement('div');
+                lbl.className = 'node-label';
+                lbl.style.borderColor = item.border;
+                lbl.style.color = item.border;
+                lbl.style.boxShadow = `0 0 8px ${item.border}`;
+                lbl.innerText = `${item.label}`;
+                
+                lbl.onclick = () => onNodeClick(item);
+                labelsContainer.appendChild(lbl);
+
+                skillNodes.push({ id: item.id, name: item.label, position: targetPos, labelElem: lbl, border: item.border });
+            });
+
+            // FOTONES BÉZIER
+            const photonGeo = new THREE.SphereGeometry(0.02, 4, 4);
+            const photonMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+            instancedPhotons = new THREE.InstancedMesh(photonGeo, photonMat, PHOTON_COUNT);
+
+            for (let i = 0; i < PHOTON_COUNT; i++) {
+                dummy.position.set(0, 0, 0);
+                dummy.updateMatrix();
+                instancedPhotons.setMatrixAt(i, dummy.matrix);
+
+                const target = skillNodes[i % skillNodes.length].position;
+                const midControl = target.clone().multiplyScalar(0.5).add(new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.4,
+                    (Math.random() - 0.5) * 0.4,
+                    (Math.random() - 0.5) * 0.4
+                ));
+                photonPaths.push({ target, midControl, speedOffset: Math.random() * 0.1 });
+            }
+            coreGroup.add(instancedPhotons);
+
+            scene.add(coreGroup);
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            makeModalDraggable();
+            setInterval(fetchRealBackendTelemetry, 2500);
+            animate();
+        }
+
+        function onNodeClick(item) {
+            triggerHaptic(item.id);
+            const panel = document.getElementById('module-panel');
+            const titleElem = document.getElementById('mod-panel-title');
+            const containerElem = document.getElementById('mod-list-container');
+
+            panel.style.borderColor = item.border;
+            panel.style.boxShadow = `0 0 30px ${item.border}`;
+            titleElem.style.color = item.border;
+            titleElem.innerText = `MÓDULO // ${item.label}`;
+
+            const items = MODULE_DATA[item.id] || [
+                { title: `▶ Actividad reciente en ${item.label}`, sub: 'Estado: Operativo 100%' },
+                { title: `▶ Logs de rendimiento`, sub: 'Sincronizado correctamente' }
+            ];
+
+            containerElem.innerHTML = '';
+            items.forEach(it => {
+                const div = document.createElement('div');
+                div.className = 'mod-item';
+                div.innerHTML = `<div class="mod-item-title">${it.title}</div><div class="mod-item-sub">${it.sub}</div>`;
+                div.onclick = () => selectModuleItem(item.label, it.title);
+                containerElem.appendChild(div);
+            });
+
+            targetCamZ = 2.2;
+            panel.classList.add('active');
+            document.getElementById('status-tag').innerText = `INSPECTING: ${item.label}`;
+        }
+
+        function closeModulePanel() {
+            document.getElementById('module-panel').classList.remove('active');
+            targetCamZ = 3.8;
+            document.getElementById('status-tag').innerText = 'ALL NODES ONLINE';
+        }
+
+        function selectModuleItem(modName, itemTitle) {
+            document.getElementById('user-text').value = `[${modName}] Procesar: ${itemTitle}`;
+            speak(`Has seleccionado ${itemTitle}.`);
+            closeModulePanel();
+        }
+
+        async function fetchRealBackendTelemetry() {
+            try {
+                const res = await fetch('/api/telemetry/real');
+                const data = await res.json();
+                const battPct = data.battery.percentage || 98;
+                const threads = data.threads || 4;
+
+                if (coreWordNodes.length > 0) {
+                    coreWordNodes[0].labelElem.innerText = `CPU: ${threads} THREADS`;
+                    coreWordNodes[1].labelElem.innerText = `BATT: ${battPct}%`;
+                }
+            } catch (e) {}
+        }
+
+        function makeModalDraggable() {
+            const modal = document.getElementById('drag-modal');
+            const handle = document.getElementById('drag-handle');
+            let isDragging = false, currentX = 0, currentY = 0, initialX, initialY, xOffset = 0, yOffset = 0;
+
+            handle.addEventListener('mousedown', dragStart);
+            document.addEventListener('mouseup', dragEnd);
+            document.addEventListener('mousemove', drag);
+
+            handle.addEventListener('touchstart', dragStart, { passive: false });
+            document.addEventListener('touchend', dragEnd);
+            document.addEventListener('touchmove', drag, { passive: false });
+
+            function dragStart(e) {
+                if (e.type === "touchstart") {
+                    initialX = e.touches[0].clientX - xOffset; initialY = e.touches[0].clientY - yOffset;
+                } else {
+                    initialX = e.clientX - xOffset; initialY = e.clientY - yOffset;
+                }
+                if (e.target === handle || handle.contains(e.target)) { isDragging = true; }
+            }
+
+            function dragEnd() { initialX = currentX; initialY = currentY; isDragging = false; }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    let clientX = (e.type === "touchmove") ? e.touches[0].clientX : e.clientX;
+                    let clientY = (e.type === "touchmove") ? e.touches[0].clientY : e.clientY;
+
+                    currentX = clientX - initialX; currentY = clientY - initialY;
+                    xOffset = currentX; yOffset = currentY;
+                    modal.style.transform = `translate(calc(-50% + ${currentX}px), ${currentY}px)`;
+                }
+            }
+        }
+
+        function updateLabels() {
+            for (let i = 0; i < skillNodes.length; i++) {
+                const node = skillNodes[i];
+                _tempV.copy(node.position);
+                _tempV.applyMatrix4(coreGroup.matrixWorld);
+                _tempV.project(camera);
+
+                const x = (_tempV.x * .5 + .5) * window.innerWidth;
+                const y = (_tempV.y * -.5 + .5) * window.innerHeight;
+
+                node.labelElem.style.left = `${x}px`;
+                node.labelElem.style.top = `${y}px`;
+                node.labelElem.style.display = (_tempV.z < 1.0) ? 'block' : 'none';
+            }
+
+            for (let i = 0; i < coreWordNodes.length; i++) {
+                const node = coreWordNodes[i];
+                _tempV.copy(node.position);
+                _tempV.applyMatrix4(coreGroup.matrixWorld);
+                _tempV.project(camera);
+
+                const x = (_tempV.x * .5 + .5) * window.innerWidth;
+                const y = (_tempV.y * -.5 + .5) * window.innerHeight;
+
+                node.labelElem.style.left = `${x}px`;
+                node.labelElem.style.top = `${y}px`;
+                node.labelElem.style.display = (_tempV.z < 1.0) ? 'block' : 'none';
+            }
+        }
+
+        function computeQuadraticBezier(p0, p1, p2, t) {
+            const oneMinusT = 1 - t;
+            _outBezier.set(
+                oneMinusT * oneMinusT * p0.x + 2 * oneMinusT * t * p1.x + t * t * p2.x,
+                oneMinusT * oneMinusT * p0.y + 2 * oneMinusT * t * p1.y + t * t * p2.y,
+                oneMinusT * oneMinusT * p0.z + 2 * oneMinusT * t * p1.z + t * t * p2.z
+            );
+            return _outBezier;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = Date.now() * 0.0006; 
+
+            camera.position.z += (targetCamZ - camera.position.z) * 0.05;
+            camera.lookAt(scene.position);
+
+            coreGroup.rotation.y = time * 0.15;
+            coreGroup.rotation.x = Math.sin(time * 0.1) * 0.04;
+
+            if (threadSatellitesGroup) {
+                threadSatellitesGroup.children.forEach((sat) => {
+                    sat.userData.angle += 0.02;
+                    sat.position.x = Math.cos(sat.userData.angle) * sat.userData.radius;
+                    sat.position.z = Math.sin(sat.userData.angle) * sat.userData.radius;
+                });
+            }
+
+            if (neuralCluster) {
+                neuralCluster.rotation.y = -time * 0.2;
+                if (isSpeaking) {
+                    const voiceScale = 1.0 + Math.sin(Date.now() * 0.02) * 0.15;
+                    neuralCluster.scale.setScalar(voiceScale);
+                } else {
+                    neuralCluster.scale.setScalar(1.0);
+                }
+            }
+
+            _tempP0.set(0, 0, 0);
+            for (let i = 0; i < PHOTON_COUNT; i++) {
+                const pathInfo = photonPaths[i];
+                const rawProgress = ((time * 0.45 + pathInfo.speedOffset + (i * 0.04)) % 1);
+                const smoothProgress = 0.5 - 0.5 * Math.cos(rawProgress * Math.PI);
+
+                _tempP1.copy(pathInfo.midControl);
+                _tempP2.copy(pathInfo.target);
+
+                const pos = computeQuadraticBezier(_tempP0, _tempP1, _tempP2, smoothProgress);
+
+                dummy.position.copy(pos);
+                dummy.scale.setScalar(0.7 + Math.sin(smoothProgress * Math.PI) * 0.4);
+                dummy.updateMatrix();
+                instancedPhotons.setMatrixAt(i, dummy.matrix);
+            }
+            instancedPhotons.instanceMatrix.needsUpdate = true;
+
+            updateLabels();
+            renderer.render(scene, camera);
+        }
+
+        function initVoice() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = true;
+                recognition.lang = 'es-ES';
+                recognition.interimResults = true;
+
+                recognition.onresult = (event) => {
+                    let transcript = '';
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                    document.getElementById('user-text').value = transcript;
+                };
+
+                recognition.onerror = () => { stopRecording(); };
+            }
+            synth = window.speechSynthesis;
+
+            const micBtn = document.getElementById('mic-btn');
+            micBtn.addEventListener('mousedown', startRecording);
+            micBtn.addEventListener('mouseup', stopRecording);
+            micBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(); });
+            micBtn.addEventListener('touchend', (e) => { e.preventDefault(); stopRecording(); });
+        }
+
+        function startRecording() {
+            if (isRecording || !recognition) return;
+            isRecording = true;
+            triggerHaptic('SENSORS');
+            document.getElementById('mic-btn').classList.add('recording');
+            document.getElementById('status-tag').innerText = 'ESCUCHANDO...';
+            recognition.start();
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+            isRecording = false;
+            triggerHaptic('DEFAULT');
+            document.getElementById('mic-btn').classList.remove('recording');
+            document.getElementById('status-tag').innerText = 'REVISIÓN';
+            if (recognition) recognition.stop();
+        }
+
+        async function sendChat() {
+            const input = document.getElementById('user-text');
+            const text = input.value.trim();
+            if (!text) return;
+
+            document.getElementById('status-tag').innerText = 'PROCESANDO...';
+
+            try {
+                const res = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await res.json();
+                
+                if (data.telemetry && data.telemetry.rag_tokens) {
+                    const tokenPct = Math.min(1.0, data.telemetry.rag_tokens / 1000);
+                    ragRingMesh.scale.setScalar(1.0 + tokenPct * 0.2);
+                    if (coreWordNodes.length > 2) {
+                        coreWordNodes[2].labelElem.innerText = `RAG: ${data.telemetry.rag_tokens} TKN`;
+                    }
+                }
+
+                speak(data.message || 'Comando ejecutado.');
+            } catch (e) {
+                speak('Comando registrado en Daniela OS: ' + text);
+            }
+        }
+
+        function speak(text) {
+            if (!synth) return;
+            synth.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-ES';
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                triggerHaptic('MEMORY');
+                document.getElementById('daniela-text').innerText = '\"' + text + '\"';
+                document.getElementById('status-tag').innerText = 'RESPONDIENDO';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                document.getElementById('status-tag').innerText = 'ALL NODES ONLINE';
+            };
+
+            synth.speak(utterance);
+        }
+
+        window.onload = () => {
+            initFullMasterVisor();
+            initVoice();
+        };
+    </script>
+</body>
+</html>

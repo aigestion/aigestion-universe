@@ -1,0 +1,660 @@
+#!/usr/bin/env python3
+"""
+Termux Dialog UI + Widgets — Daniela Nativa (E-10 / Fase 7)
+============================================================
+Hoy Daniela en el movil solo existe a traves de Termux o del dashboard web.
+No hay forma rapida de confirmar algo. `termux-dialog` da UI NATIVA de
+Android sin escribir una sola linea de Java ni instalar una app:
+
+    confirm .... si / no
+    text ....... entrada de texto (opcionalmente numero o password)
+    radio ...... elegir una opcion
+    checkbox ... elegir varias
+    spinner .... desplegable
+    sheet ...... hoja inferior
+    counter .... numerico con min/max
+    date/time .. selector nativo
+    speech ..... entrada por voz
+
+Ademas del dialogo, el modulo anade lo que hace falta para que Daniela
+"viva" en Android:
+
+  - Notificaciones CON BOTONES accionables (--button1-action ejecuta un
+    comando al pulsar) — la forma de tener un panel de control permanente.
+  - Toasts para confirmaciones rapidas.
+  - Instalador de Termux:Widget: escribe scripts ejecutables en
+    ~/.shortcuts/ para tener accesos directos en el launcher.
+  - Compartir / descargar / abrir URLs.
+
+CONFIRMACIONES ASINCRONAS: el PC no puede bloquearse esperando a que el
+usuario toque la pantalla. Por eso existe un registro de "pendientes":
+el PC pide un dialogo, recibe un id al instante, y consulta la respuesta
+cuando quiera (o se queda esperando con un timeout).
+
+Seguridad: todo comando pasa por safe_exec. 0 os.system, 0 shell=True.
+
+Rutas:
+  GET  /api/pixel/ui/status                 — estado y capacidades
+  POST /api/pixel/ui/dialog                 — muestra un dialogo (bloquea)
+  POST /api/pixel/ui/ask                    — pide dialogo, devuelve id
+  GET  /api/pixel/ui/pending                — lista de pendientes
+  GET  /api/pixel/ui/pending/<id>           — consulta una respuesta
+  POST /api/pixel/ui/answer                 — registra respuesta a mano
+  POST /api/pixel/ui/notify                 — notificacion con botones
+  POST /api/pixel/ui/toast                  — toast
+  POST /api/pixel/ui/share                  — compartir fichero
+  GET  /api/pixel/ui/widgets                — atajos instalados
+  POST /api/pixel/ui/widgets                — instala los atajos
+
+Coste: $0/mes — Termux:API + Termux:Widget (gratis, F-Droid)
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import stat
+import threading
+import time
+import uuid
+from datetime import datetime
+from enum import Enum
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+from safe_exec import run_code, run_json, run_out
+
+PROJECT_ROOT = Path(__file__).resolve().parent
+STATE_DIR = PROJECT_ROOT / "data" / "native_ui"
+STATE_FILE = STATE_DIR / "ui_state.json"
+
+# Termux:Widget lee los scripts de aqui
+SHORTCUTS_DIR = Path.home() / ".shortcuts"
+TASKS_DIR = SHORTCUTS_DIR / "tasks"
+
+MAX_PENDING = 100
+PENDING_TTL_S = 600  # una pregunta caduca a los 10 min
+
+_instance: Optional["NativeUI"] = None
+_instance_lock = threading.Lock()
+
+
+def is_termux() -> bool:
+    return os.path.exists("/data/data/com.termux/files/usr/bin")
+
+
+def _now() -> str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+class DialogKind(str, Enum):
+    """Tipos de dialogo que soporta termux-dialog."""
+    CONFIRM = "confirm"
+    TEXT = "text"
+    RADIO = "radio"
+    CHECKBOX = "checkbox"
+    SPINNER = "spinner"
+    SHEET = "sheet"
+    COUNTER = "counter"
+    DATE = "date"
+    TIME = "time"
+    SPEECH = "speech"
+
+
+# Cada tipo admite un subconjunto de flags de termux-dialog
+DIALOG_FLAGS: Dict[str, List[str]] = {
+    DialogKind.CONFIRM: ["-i", "-t"],
+    DialogKind.TEXT: ["-i", "-t", "-m", "-n", "-p"],
+    DialogKind.RADIO: ["-v", "-t"],
+    DialogKind.CHECKBOX: ["-v", "-t"],
+    DialogKind.SPINNER: ["-v", "-t"],
+    DialogKind.SHEET: ["-v", "-t"],
+    DialogKind.COUNTER: ["-r", "-t"],
+    DialogKind.DATE: ["-d", "-t"],
+    DialogKind.TIME: ["-t"],
+    DialogKind.SPEECH: ["-i", "-t"],
+}
+
+# Accesos directos que se instalan en ~/.shortcuts/
+WIDGETS: Dict[str, Dict[str, str]] = {
+    "dime": {
+        "title": "Dime",
+        "desc": "Hablar con Daniela (voz)",
+        "body": 'termux-speech-to-text | xargs -I{} curl -s -X POST '
+                '-H "X-Pixel-Token: $TOKEN" -d \'{"text":"{}"}\' '
+                'http://127.0.0.1:8082/api/speak',
+    },
+    "estado": {
+        "title": "Estado",
+        "desc": "Estado del sistema Daniela",
+        "body": 'curl -s -H "X-Pixel-Token: $TOKEN" '
+                'http://127.0.0.1:8082/api/status | termux-dialog confirm -t "Daniela"',
+    },
+    "sos": {
+        "title": "SOS",
+        "desc": "Protocolo de emergencia",
+        "body": 'curl -s -X POST -H "X-Pixel-Token: $TOKEN" '
+                'http://127.0.0.1:8082/api/panic',
+    },
+    "caja-negra": {
+        "title": "Caja negra",
+        "desc": "Congelar los ultimos 5 minutos",
+        "body": 'curl -s -X POST -H "X-Pixel-Token: $TOKEN" '
+                '-d \'{"reason":"widget"}\' http://127.0.0.1:8082/api/blackbox/trigger',
+    },
+    "contexto": {
+        "title": "Contexto",
+        "desc": "Que esta haciendo Daniela ahora",
+        "body": 'curl -s -H "X-Pixel-Token: $TOKEN" '
+                'http://127.0.0.1:8082/api/context | termux-dialog confirm -t "Contexto"',
+    },
+    "sincroniza": {
+        "title": "Sincronizar",
+        "desc": "Git brain sync PC <-> Pixel",
+        "body": 'curl -s -X POST -H "X-Pixel-Token: $TOKEN" '
+                'http://127.0.0.1:8082/api/brain/sync && termux-toast "Cerebro sincronizado"',
+    },
+}
+
+
+class NativeUI:
+    """Capa de interaccion nativa con Android via Termux:API."""
+
+    def __init__(self) -> None:
+        self.pending: Dict[str, Dict[str, Any]] = {}
+        self._lock = threading.Lock()
+        self.history: List[Dict[str, Any]] = []
+        self.dialogs_shown = 0
+        self.notifications_sent = 0
+        self.last_error: Optional[str] = None
+        self._load()
+
+    # ── persistencia ─────────────────────────────────────────
+
+    def _load(self) -> None:
+        try:
+            if STATE_FILE.exists():
+                data = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+                self.history = data.get("history", [])[-100:]
+                self.dialogs_shown = data.get("dialogs_shown", 0)
+                self.notifications_sent = data.get("notifications_sent", 0)
+        except Exception as e:  # noqa: BLE001
+            self.last_error = f"load: {e}"
+
+    def _save(self) -> None:
+        try:
+            STATE_DIR.mkdir(parents=True, exist_ok=True)
+            STATE_FILE.write_text(json.dumps({
+                "history": self.history[-100:],
+                "dialogs_shown": self.dialogs_shown,
+                "notifications_sent": self.notifications_sent,
+                "updated": _now(),
+            }, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception as e:  # noqa: BLE001
+            self.last_error = f"save: {e}"
+
+    def _log(self, entry: Dict[str, Any]) -> None:
+        self.history.append(entry)
+        if len(self.history) > 200:
+            self.history = self.history[-200:]
+
+    # ── dialogos ─────────────────────────────────────────────
+
+    def dialog(self, kind: str, title: str = "Daniela", **opts: Any) -> Dict[str, Any]:
+        """Muestra un dialogo nativo. Bloquea hasta que el usuario responde.
+
+        opts segun el tipo:
+            hint     (-i) texto de ayuda / valor inicial
+            values   (-v) lista -> "a,b,c"
+            range    (-r) "min,max,start" para counter
+            default  (-d) fecha por defecto
+            multiple (-m), number (-n), password (-p) → flagsbooleanos
+        """
+        try:
+            dk = DialogKind(kind)
+        except ValueError:
+            return {"ok": False,
+                    "msg": f"tipo desconocido: {kind}",
+                    "valid": [k.value for k in DialogKind]}
+
+        if not is_termux():
+            # En PC simulamos para poder desarrollar y testear
+            return {"ok": True, "simulated": True, "kind": dk.value,
+                    "title": title, "opts": opts, "value": None,
+                    "msg": "no es Termux: dialogo simulado"}
+
+        args: List[str] = ["termux-dialog", dk.value]
+        allowed = DIALOG_FLAGS.get(dk, ["-t"])
+
+        if "-t" in allowed and title:
+            args += ["-t", str(title)]
+        if "-i" in allowed and opts.get("hint") is not None:
+            args += ["-i", str(opts["hint"])]
+        if "-v" in allowed and opts.get("values"):
+            vals = opts["values"]
+            args += ["-v", ",".join(str(v) for v in vals)]
+        if "-r" in allowed and opts.get("range"):
+            rng = opts["range"]
+            args += ["-r", ",".join(str(v) for v in rng)]
+        if "-d" in allowed and opts.get("default"):
+            args += ["-d", str(opts["default"])]
+        for flag in ("multiple", "number", "password"):
+            if opts.get(flag) and f"-{flag[0]}" in allowed:
+                args.append(f"-{flag[0]}")
+
+        timeout = int(opts.get("timeout", 120))
+        try:
+            raw = run_json(args, timeout=timeout)
+        except Exception as e:  # noqa: BLE001
+            self.last_error = f"dialog: {type(e).__name__}: {str(e)[:80]}"
+            return {"ok": False, "msg": self.last_error}
+
+        result = self._parse_dialog(dk, raw)
+        self.dialogs_shown += 1
+        self._log({"ts": _now(), "kind": dk.value, "title": title,
+                   "result": result})
+        return result
+
+    @staticmethod
+    def _parse_dialog(kind: DialogKind, raw: Any) -> Dict[str, Any]:
+        """Normaliza la salida de termux-dialog."""
+        if not isinstance(raw, dict):
+            return {"ok": False, "kind": kind.value, "raw": raw,
+                    "msg": "salida inesperada"}
+
+        code = raw.get("code")
+        # code -1 = confirmado / -2 = cancelado o dialogo descartado
+        ok = code == -1
+        text = raw.get("text")
+        values = raw.get("values")
+        if isinstance(values, str):
+            values = [v for v in values.split(",") if v]
+
+        out: Dict[str, Any] = {
+            "ok": ok,
+            "kind": kind.value,
+            "cancelled": code == -2,
+            "text": text,
+        }
+        if kind == DialogKind.CONFIRM:
+            out["value"] = (str(text).strip().lower() == "yes") if ok else False
+        elif kind in (DialogKind.CHECKBOX,):
+            out["value"] = values or []
+        elif kind in (DialogKind.COUNTER, DialogKind.DATE, DialogKind.TIME,
+                      DialogKind.TEXT, DialogKind.SPEECH):
+            out["value"] = text
+        else:
+            out["value"] = text
+        return out
+
+    # ── pendientes asincronos ────────────────────────────────
+
+    def ask(self, kind: str, title: str, timeout: int = 120,
+            **opts: Any) -> Dict[str, Any]:
+        """Lanza el dialogo en segundo plano y devuelve un id al instante."""
+        pid = f"q_{uuid.uuid4().hex[:10]}"
+        with self._lock:
+            self.pending[pid] = {
+                "id": pid,
+                "kind": kind,
+                "title": title,
+                "opts": opts,
+                "state": "waiting",
+                "created": time.time(),
+                "created_iso": _now(),
+                "expires": time.time() + PENDING_TTL_S,
+                "result": None,
+            }
+            while len(self.pending) > MAX_PENDING:
+                oldest = min(self.pending.values(), key=lambda p: p["created"])
+                self.pending.pop(oldest["id"], None)
+
+        t = threading.Thread(target=self._resolve, args=(pid, timeout),
+                             daemon=True, name=f"UI-{pid}")
+        t.start()
+        return {"ok": True, "id": pid, "state": "waiting"}
+
+    def _resolve(self, pid: str, timeout: int) -> None:
+        with self._lock:
+            item = self.pending.get(pid)
+        if not item:
+            return
+        res = self.dialog(item["kind"], item["title"],
+                          timeout=timeout, **item["opts"])
+        with self._lock:
+            cur = self.pending.get(pid)
+            # Si ya se respondio a mano (UI web, voz, test) gana esa
+            # respuesta: el hilo del dialogo no debe pisarla.
+            if cur and cur["state"] == "waiting":
+                cur["state"] = "answered"
+                cur["result"] = res
+                cur["answered_iso"] = _now()
+        self._save()
+
+    def get_pending(self, pid: str) -> Dict[str, Any]:
+        with self._lock:
+            item = self.pending.get(pid)
+            if not item:
+                return {"ok": False, "msg": "id no encontrado"}
+            # caducar si procede
+            if item["state"] == "waiting" and time.time() > item["expires"]:
+                item["state"] = "expired"
+            return {"ok": True, **{k: v for k, v in item.items()
+                                   if k != "opts"}}
+
+    def wait_answer(self, pid: str, timeout: float = 30.0) -> Dict[str, Any]:
+        """Espera (sin bloquear el servidor) la respuesta de un pendiente."""
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            res = self.get_pending(pid)
+            if not res.get("ok"):
+                return res
+            if res.get("state") in ("answered", "expired"):
+                return res
+            time.sleep(0.3)
+        return {"ok": True, "id": pid, "state": "timeout"}
+
+    def answer(self, pid: str, value: Any) -> Dict[str, Any]:
+        """Registra una respuesta manual (bot de test, UI web, voz...)."""
+        with self._lock:
+            item = self.pending.get(pid)
+            if not item:
+                return {"ok": False, "msg": "id no encontrado"}
+            item["state"] = "answered"
+            item["result"] = {"ok": True, "value": value, "manual": True}
+            item["answered_iso"] = _now()
+        self._save()
+        return {"ok": True, "id": pid, "value": value}
+
+    def list_pending(self) -> List[Dict[str, Any]]:
+        with self._lock:
+            for item in self.pending.values():
+                if item["state"] == "waiting" and time.time() > item["expires"]:
+                    item["state"] = "expired"
+            return [{k: v for k, v in p.items() if k != "opts"}
+                    for p in self.pending.values()]
+
+    # ── notificaciones, toasts, share ────────────────────────
+
+    def notify(self, title: str, content: str = "", nid: str = "daniela",
+               buttons: Optional[List[Dict[str, str]]] = None,
+               ongoing: bool = False) -> Dict[str, Any]:
+        """Notificacion con hasta 3 botones que ejecutan comandos."""
+        if not is_termux():
+            return {"ok": True, "simulated": True, "title": title,
+                    "content": content, "buttons": buttons or []}
+
+        args = ["termux-notification", "-t", title, "-c", content, "--id", nid]
+        if ongoing:
+            args.append("--ongoing")
+        for i, b in enumerate((buttons or [])[:3], start=1):
+            if b.get("label"):
+                args.append(f"--button{i}")
+                args.append(b["label"])
+            if b.get("action"):
+                args.append(f"--button{i}-action")
+                args.append(b["action"])
+        try:
+            run_code(args, timeout=15)
+            self.notifications_sent += 1
+            self._log({"ts": _now(), "type": "notification", "title": title})
+            return {"ok": True, "id": nid, "buttons": len((buttons or [])[:3])}
+        except Exception as e:  # noqa: BLE001
+            self.last_error = f"notify: {type(e).__name__}"
+            return {"ok": False, "msg": self.last_error}
+
+    def toast(self, text: str, short: bool = True) -> Dict[str, Any]:
+        if not is_termux():
+            return {"ok": True, "simulated": True, "text": text}
+        args = ["termux-toast"]
+        if not short:
+            args.append("-s")   # -s = duracion larga en termux-toast
+        args.append(text)
+        try:
+            run_code(args, timeout=10)
+            return {"ok": True, "text": text}
+        except Exception as e:  # noqa: BLE001
+            return {"ok": False, "msg": str(e)[:80]}
+
+    def share(self, path: str, action: str = "send") -> Dict[str, Any]:
+        """action: send | view | edit"""
+        if action not in ("send", "view", "edit"):
+            return {"ok": False, "msg": "accion debe ser send, view o edit"}
+        if not is_termux():
+            return {"ok": True, "simulated": True, "path": path}
+        try:
+            run_code(["termux-share", "-a", action, path], timeout=20)
+            return {"ok": True, "path": path, "action": action}
+        except Exception as e:  # noqa: BLE001
+            return {"ok": False, "msg": str(e)[:80]}
+
+    def open_url(self, url: str) -> Dict[str, Any]:
+        if not is_termux():
+            return {"ok": True, "simulated": True, "url": url}
+        try:
+            run_code(["termux-open-url", url], timeout=15)
+            return {"ok": True, "url": url}
+        except Exception as e:  # noqa: BLE001
+            return {"ok": False, "msg": str(e)[:80]}
+
+    # ── Termux:Widget ────────────────────────────────────────
+
+    def install_widgets(self, token: str = "daniela-pixel-2026",
+                        names: Optional[List[str]] = None) -> Dict[str, Any]:
+        """Escribe scripts ejecutables en ~/.shortcuts/ (Termux:Widget)."""
+        if not is_termux():
+            return {"ok": False,
+                    "msg": "solo se pueden instalar widgets en el Pixel",
+                    "simulated": True,
+                    "would_install": names or list(WIDGETS)}
+        try:
+            SHORTCUTS_DIR.mkdir(parents=True, exist_ok=True)
+        except Exception as e:  # noqa: BLE001
+            return {"ok": False, "msg": f"no se pudo crear ~/.shortcuts: {e}"}
+
+        installed: List[str] = []
+        for name, spec in WIDGETS.items():
+            if names and name not in names:
+                continue
+            script = SHORTCUTS_DIR / name
+            body = (
+                "#!/data/data/com.termux/files/usr/bin/bash\n"
+                f"# {spec['title']} — {spec['desc']}\n"
+                f"TOKEN={token}\n"
+                f"{spec['body']}\n"
+            )
+            try:
+                script.write_text(body, encoding="utf-8")
+                st = script.stat()
+                script.chmod(st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+                installed.append(name)
+            except Exception as e:  # noqa: BLE001
+                self.last_error = f"widget {name}: {e}"
+        self._save()
+        return {"ok": True, "installed": installed, "dir": str(SHORTCUTS_DIR)}
+
+    def list_widgets(self) -> Dict[str, Any]:
+        found: List[Dict[str, Any]] = []
+        if SHORTCUTS_DIR.exists():
+            try:
+                for p in sorted(SHORTCUTS_DIR.iterdir()):
+                    if p.is_file() and p.suffix in ("", ".sh"):
+                        found.append({
+                            "name": p.name,
+                            "executable": os.access(p, os.X_OK),
+                            "title": WIDGETS.get(p.name, {}).get("title", ""),
+                        })
+            except Exception as e:  # noqa: BLE001
+                self.last_error = f"list widgets: {e}"
+        return {"ok": True, "widgets": found,
+                "available": list(WIDGETS), "dir": str(SHORTCUTS_DIR)}
+
+    # ── estado ───────────────────────────────────────────────
+
+    def status(self) -> Dict[str, Any]:
+        return {
+            "platform": "termux" if is_termux() else "pc",
+            "dialog_kinds": [k.value for k in DialogKind],
+            "dialogs_shown": self.dialogs_shown,
+            "notifications_sent": self.notifications_sent,
+            "pending": len([p for p in self.pending.values()
+                            if p["state"] == "waiting"]),
+            "widgets_installed": len(self.list_widgets().get("widgets", [])),
+            "history_size": len(self.history),
+            "last_error": self.last_error,
+            "updated": _now(),
+        }
+
+
+def get_instance() -> NativeUI:
+    global _instance
+    with _instance_lock:
+        if _instance is None:
+            _instance = NativeUI()
+        return _instance
+
+
+# ─────────────────────────────────────────────────────────────
+#  Rutas Flask
+# ─────────────────────────────────────────────────────────────
+
+def register_ui_routes(app) -> int:
+    from flask import jsonify, request
+    ui = get_instance()
+
+    @app.route("/api/pixel/ui/status", methods=["GET"])
+    def ui_status():
+        return jsonify(ui.status())
+
+    @app.route("/api/pixel/ui/dialog", methods=["POST"])
+    def ui_dialog():
+        body = request.get_json(silent=True) or {}
+        return jsonify(ui.dialog(str(body.get("kind", "confirm")),
+                                 str(body.get("title", "Daniela")),
+                                 **{k: v for k, v in body.items()
+                                    if k not in ("kind", "title")}))
+
+    @app.route("/api/pixel/ui/ask", methods=["POST"])
+    def ui_ask():
+        body = request.get_json(silent=True) or {}
+        return jsonify(ui.ask(str(body.get("kind", "confirm")),
+                              str(body.get("title", "Daniela")),
+                              int(body.get("timeout", 120)),
+                              **{k: v for k, v in body.items()
+                                 if k not in ("kind", "title", "timeout")}))
+
+    @app.route("/api/pixel/ui/pending", methods=["GET"])
+    def ui_pending():
+        return jsonify({"pending": ui.list_pending()})
+
+    @app.route("/api/pixel/ui/pending/<pid>", methods=["GET"])
+    def ui_pending_one(pid: str):
+        wait = float(request.args.get("wait", 0))
+        if wait > 0:
+            return jsonify(ui.wait_answer(pid, wait))
+        return jsonify(ui.get_pending(pid))
+
+    @app.route("/api/pixel/ui/answer", methods=["POST"])
+    def ui_answer():
+        body = request.get_json(silent=True) or {}
+        return jsonify(ui.answer(str(body.get("id", "")), body.get("value")))
+
+    @app.route("/api/pixel/ui/notify", methods=["POST"])
+    def ui_notify():
+        body = request.get_json(silent=True) or {}
+        return jsonify(ui.notify(str(body.get("title", "Daniela")),
+                                 str(body.get("content", "")),
+                                 str(body.get("id", "daniela")),
+                                 body.get("buttons"),
+                                 bool(body.get("ongoing", False))))
+
+    @app.route("/api/pixel/ui/toast", methods=["POST"])
+    def ui_toast():
+        body = request.get_json(silent=True) or {}
+        return jsonify(ui.toast(str(body.get("text", "")),
+                                bool(body.get("short", True))))
+
+    @app.route("/api/pixel/ui/share", methods=["POST"])
+    def ui_share():
+        body = request.get_json(silent=True) or {}
+        if body.get("url"):
+            return jsonify(ui.open_url(str(body["url"])))
+        return jsonify(ui.share(str(body.get("path", "")),
+                                str(body.get("action", "send"))))
+
+    @app.route("/api/pixel/ui/widgets", methods=["GET", "POST"])
+    def ui_widgets():
+        if request.method == "GET":
+            return jsonify(ui.list_widgets())
+        body = request.get_json(silent=True) or {}
+        return jsonify(ui.install_widgets(str(body.get("token",
+                                                        "daniela-pixel-2026")),
+                                          body.get("names")))
+
+    print("[Native UI] Routes registered: /api/pixel/ui/* (status, dialog, ask, "
+          "pending, pending/<id>, answer, notify, toast, share, widgets)")
+    return 10
+
+
+if __name__ == "__main__":
+    import sys
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8",
+                                  errors="replace")
+    ui = get_instance()
+    print("plataforma:", "termux" if is_termux() else "pc")
+
+    print("\n— tipos de dialogo soportados —")
+    print("  ", ", ".join(k.value for k in DialogKind))
+
+    print("\n— parseo de salidas reales de termux-dialog —")
+    casos = [
+        (DialogKind.CONFIRM, {"code": -1, "text": "yes"}),
+        (DialogKind.CONFIRM, {"code": -2}),
+        (DialogKind.TEXT, {"code": -1, "text": "llama a Maria"}),
+        (DialogKind.CHECKBOX, {"code": -1, "text": "a,b",
+                               "values": ["a", "b"]}),
+        (DialogKind.RADIO, {"code": -1, "text": "Netflix"}),
+        (DialogKind.COUNTER, {"code": -1, "text": "22"}),
+    ]
+    for k, raw in casos:
+        r = ui._parse_dialog(k, raw)
+        print(f"  {k.value:9s} -> ok={r['ok']!s:5s} cancel={r['cancelled']!s:5s} "
+              f"value={r['value']!r}")
+
+    print("\n— dialogo en PC (simulado) —")
+    print("  ", ui.dialog("confirm", "Llamo a Maria?"))
+
+    print("\n— pendiente asincrono —")
+    a = ui.ask("confirm", "Activar modo noche?")
+    pid = a["id"]
+    print("   id:", pid, "| estado inicial:", ui.get_pending(pid)["state"])
+    time.sleep(0.3)          # deja que el hilo del dialogo termine
+    ui.answer(pid, True)
+    p = ui.get_pending(pid)
+    print("   respuesta manual gana:", p["state"], "->", p["result"]["value"])
+    print("   id inexistente:", ui.get_pending("nope"))
+
+    print("\n— caducidad de pendientes —")
+    b = ui.ask("text", "Dime algo", timeout=1)
+    ui.pending[b["id"]]["expires"] = time.time() - 1   # forzar caducado
+    print("  ", ui.get_pending(b["id"])["state"], "(esperado: expired)")
+
+    print("\n— notificacion con botones (simulada) —")
+    print("  ", ui.notify("Daniela", "Caida detectada", buttons=[
+        {"label": "Estoy bien", "action": "curl -s localhost:8082/api/fall/cancel"},
+        {"label": "Enviar SOS", "action": "curl -s localhost:8082/api/panic"},
+    ]))
+
+    print("\n— widgets —")
+    w = ui.list_widgets()
+    print("   disponibles:", w["available"])
+    print("   instalados:", [x["name"] for x in w["widgets"]] or "ninguno")
+    print("   install en PC:", ui.install_widgets())
+
+    print("\n— share/url (simulado) —")
+    print("  ", ui.open_url("https://example.com"))
+    print("  ", ui.share("/sdcard/foto.jpg"))
+    print("  ", ui.share("/sdcard/foto.jpg", "borrar"))
+
+    print("\nstatus keys:", list(ui.status().keys()))

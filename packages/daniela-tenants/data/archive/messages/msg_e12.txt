@@ -1,0 +1,43 @@
+feat(fase-11): E-12 nodos urbanos (+8 rutas, 286 -> 294)
+
+Daniela sabia la bateria del movil, los SMS y la camara, pero no tenia ni idea
+de DONDE estabas. Nadie le habia dado nunca contexto del mundo real. Y ese
+contexto es gratis y sin clave.
+
+aig/pixel/urban_nodes.py (751 lineas, 0 os.system, 0 shell=True):
+
+  1. **Memoria de sitios.** Si caes a menos de 60 m de un nodo conocido cuenta
+     una visita ("llevas 14 visitas aqui"); si no, crea uno. Daniela construye
+     un mapa de tu vida sin que nadie lo rellene a mano. Persiste en
+     data/urban_nodes/ (nodos.json + visitas.jsonl).
+  2. **Contexto real** con cuatro APIs publicas SIN CLAVE:
+     Open-Meteo (tiempo + prevision de manana), Nominatim (direccion),
+     Overpass (que hay alrededor, con distancias) y Wikipedia (geosearch).
+  3. **Briefing**: la frase que diria Daniela, juntando las tres cosas.
+
+Seguridad:
+  - Hosts en lista CERRADA escrita en el modulo. Nunca se construye una URL
+    desde la peticion: solo entran numeros (lat/lon/radio) y se validan con
+    rango. Sin eso, esto seria un SSRF con esteroides.
+  - Nominatim EXIGE User-Agent propio y su politica es 1 peticion/segundo:
+    hay un limitador por host, porque saltarselo acaba con la IP baneada.
+  - Todo cacheado (TTL 5 min el alrededor, 10 min el tiempo, 24 h geocodificar).
+
+Verificado en vivo (Puerta de Alcala, 40.4206 -3.6889), datos REALES:
+  - Nominatim  -> "Casa Faraona, Plaza de la Independencia 4, Salamanca,
+                   Madrid, 28001"
+  - Open-Meteo -> 26.3 C (sensacion 23.8), despejado, humedad 17%
+  - Overpass   -> 8 sitios con distancia (Maison Kayser 81 m, La Gamella 187 m)
+  - Wikipedia  -> 4 articulos a menos de 90 m
+  - Nodos      -> 2a visita reconocida a 20 m del sitio original
+
+Estructura fase-2: codigo real en aig/pixel/, shim en scripts/.
+
+HONESTIDAD: la E-12 original era localizacion por torres celulares + huella
+WiFi para ahorrar bateria (60-80%). ESO NO ESTA HECHO. Esto resuelve el
+"donde estoy", no el "como lo averiguo gastando poco". Queda anotado en el
+propio roadmap y en apis_gratis.md.
+
+Tambien: se restauro .gitignore, que el refactor habia borrado. Sin el,
+.venv/ y los .env quedaban visibles para git (riesgo real de commitear secretos
+con un `git add -A`).

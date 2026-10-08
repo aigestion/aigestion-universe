@@ -1,0 +1,45 @@
+{
+  "fecha": "2026-09-11T14:13:46.316714",
+  "modo": "local",
+  "pasos": [
+    {
+      "cmd": "review",
+      "returncode": 0,
+      "tail": "[SIL-01] Starting weekly codebase review (focus: all)...\n  Review ID: review_2026-09-11_141342\n  Files to analyze: 15\n  [Fallback] Using stored findings from last review.\n  Total findings: 15\n  Health score: 25/100\n  Delta: +15 new, -0 fixed, ~0 persisting\n  Report saved: C:\\Users\\Alejandro\\aig\\data\\sil\\weekly_reports\\review_2026-09-11_141342.json"
+    },
+    {
+      "cmd": "lessons-export",
+      "returncode": 0,
+      "tail": "[SIL-03] Learning log exported: C:\\Users\\Alejandro\\aig\\data\\sil\\learning_log.md"
+    },
+    {
+      "cmd": "dashboard",
+      "returncode": 0,
+      "tail": "[SIL-04] Dashboard generated: C:\\Users\\Alejandro\\aig\\static\\sil_dashboard.html\n  Metrics JSON: C:\\Users\\Alejandro\\aig\\static\\brand\\sil_dashboard_metrics.json\n\n  Dashboard: C:\\Users\\Alejandro\\aig\\static\\sil_dashboard.html"
+    }
+  ],
+  "scoreboard": {
+    "ok": true,
+    "timestamp": "2026-09-11T14:13:46.316714",
+    "slo": {
+      "code_gen": "ok",
+      "content_factory": "degraded",
+      "customer_support": "ok",
+      "daniela_proactive": "ok",
+      "email_zero_inbox": "ok",
+      "meeting_intel": "ok",
+      "sentiment_dashboard": "ok",
+      "smart_invoice": "ok",
+      "social_media": "ok",
+      "swarm_intel": "ok"
+    },
+    "resumen": {
+      "modulos_ok": 9,
+      "modulos_degraded": 1,
+      "modulos_down": 0,
+      "swarm_live_ratio": 0.077,
+      "swarm_tokens_est": 198
+    }
+  },
+  "ok": true
+}

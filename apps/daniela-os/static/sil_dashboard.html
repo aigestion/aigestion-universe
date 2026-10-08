@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela SIL — Code Health Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            background: linear-gradient(90deg, #00ffff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        .subtitle { text-align: center; color: #888; margin-bottom: 30px; font-size: 0.9em; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,255,255,0.15); }
+        .card-label { font-size: 0.8em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .card-value { font-size: 3em; font-weight: 700; margin: 10px 0; }
+        .card-value.critical { color: #ff4444; }
+        .card-value.high { color: #ff8800; }
+        .card-value.medium { color: #ffcc00; }
+        .card-value.low { color: #88ccff; }
+        .card-value.good { color: #00ff88; }
+        .card-value.info { color: #00ffff; }
+        .card-desc { font-size: 0.85em; color: #aaa; }
+
+        .health-score {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .health-score-value {
+            font-size: 5em;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff4444, #ff8800, #ffcc00, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .health-score-label { font-size: 1.2em; color: #888; margin-top: 10px; }
+
+        .section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .section h2 { font-size: 1.3em; margin-bottom: 16px; color: #00ffff; }
+
+        .finding-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .finding-item.critical { border-color: #ff4444; }
+        .finding-item.high { border-color: #ff8800; }
+        .finding-item.medium { border-color: #ffcc00; }
+        .finding-item.low { border-color: #88ccff; }
+        .finding-id { font-weight: 700; margin-right: 12px; min-width: 60px; }
+        .finding-title { flex: 1; font-size: 0.9em; }
+        .finding-status {
+            font-size: 0.75em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+        }
+        .finding-status.open { color: #ff8800; }
+        .finding-status.dispatched { color: #00ffff; }
+        .finding-status.fixed { color: #00ff88; }
+
+        .trend-bar {
+            display: flex;
+            align-items: flex-end;
+            height: 120px;
+            gap: 4px;
+            margin-top: 16px;
+        }
+        .trend-bar-item {
+            flex: 1;
+            background: linear-gradient(180deg, #00ff88, #00cc66);
+            border-radius: 4px 4px 0 0;
+            min-height: 4px;
+            position: relative;
+            transition: height 0.5s;
+        }
+        .trend-bar-item::after {
+            content: attr(data-score);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7em;
+            color: #888;
+        }
+
+        .lesson-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(0,255,136,0.05);
+            border-left: 3px solid #00ff88;
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+        .lesson-pattern { color: #00ff88; font-style: italic; }
+
+        .footer { text-align: center; color: #555; font-size: 0.8em; margin-top: 30px; }
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        .badge.free { background: rgba(0,255,136,0.15); color: #00ff88; }
+        .badge.autonomous { background: rgba(0,255,255,0.15); color: #00ffff; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Daniela SIL Dashboard</h1>
+    <p class="subtitle">
+        Self-Improvement Loop — Daniela reviews her own code and gets smarter over time
+        <span class="badge free">$0/month</span>
+        <span class="badge autonomous">Autonomous</span>
+    </p>
+
+    <div class="health-score">
+        <div class="health-score-value">72</div>
+        <div class="health-score-label">/ 100 — Code Health Score</div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="card-label">Total Findings</div>
+            <div class="card-value info">15</div>
+            <div class="card-desc">4 critical, 5 high, 4 medium, 2 low</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Critical Issues</div>
+            <div class="card-value critical">4</div>
+            <div class="card-desc">Requires human approval before fix</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Auto-Fixable</div>
+            <div class="card-value good">9</div>
+            <div class="card-desc">Dispatchable to Jules (free tier)</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Lessons Learned</div>
+            <div class="card-value info">6</div>
+            <div class="card-desc">Knowledge base entries</div>
+        </div>
+        <div class="card">
+            <div class="card-label">PRs Dispatched</div>
+            <div class="card-value medium">5</div>
+            <div class="card-desc">Total auto-fix PRs sent to Jules</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Fixes Verified</div>
+            <div class="card-value good">6</div>
+            <div class="card-desc">Findings confirmed resolved</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Reviews Run</div>
+            <div class="card-value info">2</div>
+            <div class="card-desc">Weekly codebase self-reviews</div>
+        </div>
+        <div class="card">
+            <div class="card-label">Last Review</div>
+            <div class="card-value" style="font-size:1.5em;color:#00ffff;">
+                2026-09-05
+            </div>
+            <div class="card-desc">review_2026-09-05_221632</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Health Score Trend</h2>
+        <div class="trend-bar">
+            <div class="trend-bar-item" style="height: 25%" data-score="25"></div><div class="trend-bar-item" style="height: 25%" data-score="25"></div>
+        </div>
+        <p style="color:#888;font-size:0.8em;margin-top:10px;">
+            Trend over last 2 reviews — goal: steady increase toward 100
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Priority Findings</h2>
+        
+            <div class="finding-item critical">
+                <span class="finding-id">SR-02</span>
+                <span class="finding-title">Command injection via string formatting</span>
+                <span class="finding-status open">
+                    NEEDS APPROVAL
+                </span>
+            </div>
+            <div class="finding-item critical">
+                <span class="finding-id">SR-03</span>
+                <span class="finding-title">Unauthenticated database download</span>
+                <span class="finding-status open">
+                    NEEDS APPROVAL
+                </span>
+            </div>
+            <div class="finding-item critical">
+                <span class="finding-id">SR-04</span>
+                <span class="finding-title">Arbitrary file read via indexing</span>
+                <span class="finding-status open">
+                    NEEDS APPROVAL
+                </span>
+            </div>
+            <div class="finding-item critical">
+                <span class="finding-id">SR-01</span>
+                <span class="finding-title">Flask API completely unauthenticated</span>
+                <span class="finding-status open">
+                    NEEDS APPROVAL
+                </span>
+            </div>
+            <div class="finding-item high">
+                <span class="finding-id">SR-05</span>
+                <span class="finding-title">Hardcoded secret fallbacks</span>
+                <span class="finding-status dispatched">
+                    AUTO-FIXABLE
+                </span>
+            </div>
+            <div class="finding-item high">
+                <span class="finding-id">SR-06</span>
+                <span class="finding-title">FFmpeg command injection</span>
+                <span class="finding-status dispatched">
+                    AUTO-FIXABLE
+                </span>
+            </div>
+            <div class="finding-item high">
+                <span class="finding-id">SR-07</span>
+                <span class="finding-title">Content factory not connected to Gemini</span>
+                <span class="finding-status dispatched">
+                    AUTO-FIXABLE
+                </span>
+            </div>
+            <div class="finding-item high">
+                <span class="finding-id">SR-08</span>
+                <span class="finding-title">Code generation produces pass stubs</span>
+                <span class="finding-status dispatched">
+                    AUTO-FIXABLE
+                </span>
+            </div>
+            <div class="finding-item medium">
+                <span class="finding-id">SR-10</span>
+                <span class="finding-title">Missing aigestion_adapters.py</span>
+                <span class="finding-status dispatched">
+                    AUTO-FIXABLE
+                </span>
+            </div>
+            <div class="finding-item medium">
+                <span class="finding-id">SR-13</span>
+                <span class="finding-title">Hardcoded absolute paths</span>
+                <span class="finding-status dispatched">
+                    AUTO-FIXABLE
+                </span>
+            </div>
+    </div>
+
+    <div class="section">
+        <h2>Knowledge Base — Lessons Learned</h2>
+        
+            <div class="lesson-item">
+                <strong>SR-07</strong>: Content factory not connected to Gemini<br>
+                <span class="lesson-pattern">When I see content factory not connected to gemini, it means components aren't connected. Fix: Import ModelRouter from gemini35_free_tier.py. Replace stub with router.call('content_generation', prompt).</span>
+            </div>
+            <div class="lesson-item">
+                <strong>SR-10</strong>: Missing aigestion_adapters.py<br>
+                <span class="lesson-pattern">When I see missing aigestion_adapters.py, it means components aren't connected. Fix: Create aigestion_adapters.py mapping intents to real module functions.</span>
+            </div>
+            <div class="lesson-item">
+                <strong>SR-01</strong>: Flask API completely unauthenticated<br>
+                <span class="lesson-pattern">When I see flask api completely unauthenticated, it means there's a security vulnerability. Fix: Import auth_system.py, create @require_auth decorator, apply to all /api/* routes. Issue JWT on PIN verification.</span>
+            </div>
+            <div class="lesson-item">
+                <strong>SR-02</strong>: Command injection via string formatting<br>
+                <span class="lesson-pattern">When I see command injection via string formatting, it means there's a security vulnerability. Fix: Use subprocess.run with list args (shell=False). Never pass untrusted data into -c strings.</span>
+            </div>
+            <div class="lesson-item">
+                <strong>SR-03</strong>: Unauthenticated database download<br>
+                <span class="lesson-pattern">When I see unauthenticated database download, it means there's a security vulnerability. Fix: Protect with @require_auth and admin-only authorization.</span>
+            </div>
+            <div class="lesson-item">
+                <strong>SR-04</strong>: Arbitrary file read via indexing<br>
+                <span class="lesson-pattern">When I see arbitrary file read via indexing, it means there's a security vulnerability. Fix: Restrict file reading to sandboxed directory. Validate path starts with ALLOWED_DIR.</span>
+            </div>
+    </div>
+
+    <div class="section">
+        <h2>SIL Loop Status</h2>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+            <div><strong>1. ANALYZE</strong> — 2 reviews completed</div>
+            <div><strong>2. PRIORITIZE</strong> — 13 findings queued</div>
+            <div><strong>3. DISPATCH</strong> — 5 tasks sent to Jules</div>
+            <div><strong>4. VERIFY</strong> — 6 fixes confirmed</div>
+            <div><strong>5. LEARN</strong> — 6 lessons recorded</div>
+            <div><strong>6. EVOLVE</strong> — Architecture recommendations pending implementation</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Daniela SIL Engine — Self-Improvement Loop | Free Tier: Gemini 3.1 Pro + Jules 15 tasks/day</p>
+        <p>Generated: 2026-09-05 22:16</p>
+    </div>
+</div>
+</body>
+</html>

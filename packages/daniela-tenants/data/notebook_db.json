@@ -1,0 +1,34 @@
+[
+  {
+    "topic": "computacion cuantica",
+    "sources_count": 1,
+    "sources": [
+      {
+        "url": "https://example.com",
+        "content": "Resumen extraído de https://example.com: Example Domain body{background:#eee;width:60vw;margin:15vh auto;font-family:system-ui,sans-serif}h1{font-size:1.5em}div{opacity:0.8}a:link,a:visited{color:#348} Example Domain This domain is for use in documentation examples without needing permission. Avoid use in operations. Learn more..."
+      }
+    ],
+    "summary": "Análisis profundo consolidado sobre: COMPUTACION CUANTICA.",
+    "key_insights": [
+      "Definición y estado del arte de computacion cuantica.",
+      "Tendencias clave e impacto en la arquitectura de sistemas.",
+      "Estrategias de implementación local y soberana."
+    ]
+  },
+  {
+    "topic": "fisica cuantica",
+    "sources_count": 1,
+    "sources": [
+      {
+        "url": "https://example.com",
+        "content": "Resumen extraído de https://example.com: Example Domain body{background:#eee;width:60vw;margin:15vh auto;font-family:system-ui,sans-serif}h1{font-size:1.5em}div{opacity:0.8}a:link,a:visited{color:#348} Example Domain This domain is for use in documentation examples without needing permission. Avoid use in operations. Learn more..."
+      }
+    ],
+    "summary": "Análisis profundo consolidado sobre: FISICA CUANTICA.",
+    "key_insights": [
+      "Definición y estado del arte de fisica cuantica.",
+      "Tendencias clave e impacto en la arquitectura de sistemas.",
+      "Estrategias de implementación local y soberana."
+    ]
+  }
+]

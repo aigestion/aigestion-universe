@@ -1,0 +1,262 @@
+{
+  "plugins": [
+    {
+      "id": "gmail-advanced",
+      "name": "Gmail Advanced",
+      "icon": "📧",
+      "version": "2.1.0",
+      "author": "Daniela Labs",
+      "category": "email",
+      "description": "Gestión avanzada de Gmail con labels automáticos, filtros inteligentes y analytics",
+      "features": ["auto-label", "smart-filter", "analytics", "templates", "scheduled-send"],
+      "config": {
+        "labels": ["urgent", "newsletter", "social", "promotions"],
+        "auto_archive_days": 30,
+        "analytics_enabled": true
+      },
+      "permissions": ["gmail.read", "gmail.modify", "gmail.send"],
+      "price": "free",
+      "rating": 4.8,
+      "installs": 15000,
+      "last_updated": "2026-09-01",
+      "compatibility": ["core", "ceo", "support"]
+    },
+    {
+      "id": "github-integration",
+      "name": "GitHub Integration",
+      "icon": "🐙",
+      "version": "3.0.2",
+      "author": "Daniela Labs",
+      "category": "development",
+      "description": "Integración completa con GitHub: PRs, issues, actions, code review",
+      "features": ["pr-management", "issue-tracking", "code-review", "actions", "releases"],
+      "config": {
+        "auto_review": true,
+        "notify_on_pr": true,
+        "auto_merge_minor": false
+      },
+      "permissions": ["github.read", "github.write", "github.admin"],
+      "price": "free",
+      "rating": 4.9,
+      "installs": 22000,
+      "last_updated": "2026-09-10",
+      "compatibility": ["developer"]
+    },
+    {
+      "id": "slack-connector",
+      "name": "Slack Connector",
+      "icon": "💬",
+      "version": "1.5.0",
+      "author": "Community",
+      "category": "communication",
+      "description": "Conecta Daniela con Slack: mensajes, canales, notificaciones, bots",
+      "features": ["send-message", "read-channel", "create-channel", " reactions", "threads"],
+      "config": {
+        "default_channel": "#general",
+        "notify_urgent": true,
+        "bot_name": "Daniela Bot"
+      },
+      "permissions": ["slack.read", "slack.write"],
+      "price": "free",
+      "rating": 4.6,
+      "installs": 18500,
+      "last_updated": "2026-08-20",
+      "compatibility": ["ceo", "support", "marketer"]
+    },
+    {
+      "id": "calendar-pro",
+      "name": "Calendar Pro",
+      "icon": "📅",
+      "version": "2.3.1",
+      "author": "Daniela Labs",
+      "category": "productivity",
+      "description": "Gestión avanzada de calendario con auto-scheduling, conflictos y optimización",
+      "features": ["auto-schedule", "conflict-detection", "time-blocking", "meeting-prep", "follow-up"],
+      "config": {
+        "buffer_between_meetings": 15,
+        "max_meetings_per_day": 8,
+        "auto_prep": true
+      },
+      "permissions": ["calendar.read", "calendar.write"],
+      "price": "free",
+      "rating": 4.7,
+      "installs": 20000,
+      "last_updated": "2026-09-05",
+      "compatibility": ["ceo", "developer"]
+    },
+    {
+      "id": "stripe-dashboard",
+      "name": "Stripe Dashboard",
+      "icon": "💳",
+      "version": "1.2.0",
+      "author": "Community",
+      "category": "finance",
+      "description": "Dashboard de Stripe con métricas de pagos, suscripciones y reportes",
+      "features": ["payment-analytics", "subscription-tracking", "revenue-forecast", "invoicing"],
+      "config": {
+        "currency": "USD",
+        "auto_invoice": true,
+        "daily_report": true
+      },
+      "permissions": ["stripe.read"],
+      "price": "free",
+      "rating": 4.5,
+      "installs": 12000,
+      "last_updated": "2026-08-15",
+      "compatibility": ["finance"]
+    },
+    {
+      "id": "notion-sync",
+      "name": "Notion Sync",
+      "icon": "📝",
+      "version": "1.8.0",
+      "author": "Community",
+      "category": "productivity",
+      "description": "Sincronización bidireccional con Notion: páginas, databases, tasks",
+      "features": ["sync-pages", "sync-databases", "create-page", "update-task", "search"],
+      "config": {
+        "sync_interval": 300,
+        "auto_create_pages": true
+      },
+      "permissions": ["notion.read", "notion.write"],
+      "price": "free",
+      "rating": 4.4,
+      "installs": 9500,
+      "last_updated": "2026-07-28",
+      "compatibility": ["ceo", "developer", "designer"]
+    },
+    {
+      "id": "philips-hue",
+      "name": "Philips Hue Control",
+      "icon": "💡",
+      "version": "1.0.0",
+      "author": "Community",
+      "category": "iot",
+      "description": "Control de luces Philips Hue: automations, scenes, schedules",
+      "features": ["turn-on-off", "set-color", "set-brightness", "scenes", "schedules"],
+      "config": {
+        "bridge_ip": "192.168.1.100",
+        "auto_off_after": 3600
+      },
+      "permissions": ["hue.control"],
+      "price": "free",
+      "rating": 4.3,
+      "installs": 5000,
+      "last_updated": "2026-06-10",
+      "compatibility": ["health"]
+    },
+    {
+      "id": "twitter-analytics",
+      "name": "Twitter Analytics",
+      "icon": "🐦",
+      "version": "2.0.0",
+      "author": "Daniela Labs",
+      "category": "marketing",
+      "description": "Analytics de Twitter: engagement, followers, trending, scheduling",
+      "features": ["engagement-tracking", "follower-analytics", "trending-topics", "auto-post"],
+      "config": {
+        "auto_post_times": ["09:00", "13:00", "19:00"],
+        "track_competitors": true
+      },
+      "permissions": ["twitter.read", "twitter.write"],
+      "price": "free",
+      "rating": 4.6,
+      "installs": 11000,
+      "last_updated": "2026-09-08",
+      "compatibility": ["marketer"]
+    },
+    {
+      "id": "quickbooks-sync",
+      "name": "QuickBooks Sync",
+      "icon": "📊",
+      "version": "1.3.0",
+      "author": "Community",
+      "category": "finance",
+      "description": "Sincronización con QuickBooks: invoices, expenses, reports",
+      "features": ["sync-invoices", "sync-expenses", "generate-reports", "tax-prep"],
+      "config": {
+        "auto_sync": true,
+        "sync_interval": 3600
+      },
+      "permissions": ["quickbooks.read", "quickbooks.write"],
+      "price": "free",
+      "rating": 4.4,
+      "installs": 7500,
+      "last_updated": "2026-08-22",
+      "compatibility": ["finance"]
+    },
+    {
+      "id": "discord-bot",
+      "name": "Discord Bot",
+      "icon": "🎮",
+      "version": "1.1.0",
+      "author": "Community",
+      "category": "communication",
+      "description": "Bot de Discord con comandos, moderación, y funciones de Daniela",
+      "features": ["send-message", "moderation", "music", "commands", "welcome"],
+      "config": {
+        "prefix": "!d",
+        "welcome_channel": "general",
+        "auto_moderate": true
+      },
+      "permissions": ["discord.read", "discord.write"],
+      "price": "free",
+      "rating": 4.5,
+      "installs": 8000,
+      "last_updated": "2026-07-15",
+      "compatibility": ["creative", "support"]
+    },
+    {
+      "id": "obsidian-bridge",
+      "name": "Obsidian Bridge",
+      "icon": "🔮",
+      "version": "1.2.0",
+      "author": "Community",
+      "category": "productivity",
+      "description": "Puente con Obsidian: notas, graphs, daily notes, templates",
+      "features": ["sync-notes", "daily-notes", "graph-view", "templates", "search"],
+      "config": {
+        "vault_path": "~/Documents/Obsidian",
+        "auto_daily": true
+      },
+      "permissions": ["filesystem.read", "filesystem.write"],
+      "price": "free",
+      "rating": 4.7,
+      "installs": 6500,
+      "last_updated": "2026-09-02",
+      "compatibility": ["creative", "developer"]
+    },
+    {
+      "id": "jira-link",
+      "name": "Jira Link",
+      "icon": "📋",
+      "version": "1.4.0",
+      "author": "Community",
+      "category": "development",
+      "description": "Integración con Jira: issues, sprints, boards, transitions",
+      "features": ["issue-management", "sprint-tracking", "board-view", "transitions"],
+      "config": {
+        "project_key": "DEV",
+        "auto_transition": false
+      },
+      "permissions": ["jira.read", "jira.write"],
+      "price": "free",
+      "rating": 4.3,
+      "installs": 10000,
+      "last_updated": "2026-08-18",
+      "compatibility": ["developer"]
+    }
+  ],
+  "categories": [
+    {"id": "email", "name": "Email", "icon": "📧"},
+    {"id": "development", "name": "Desarrollo", "icon": "💻"},
+    {"id": "communication", "name": "Comunicación", "icon": "💬"},
+    {"id": "productivity", "name": "Productividad", "icon": "⚡"},
+    {"id": "finance", "name": "Finanzas", "icon": "💰"},
+    {"id": "marketing", "name": "Marketing", "icon": "🎯"},
+    {"id": "iot", "name": "IoT / Smart Home", "icon": "🏠"},
+    {"id": "design", "name": "Diseño", "icon": "🎨"},
+    {"id": "security", "name": "Seguridad", "icon": "🔒"},
+    {"id": "analytics", "name": "Analytics", "icon": "📊"}
+  ]
+}

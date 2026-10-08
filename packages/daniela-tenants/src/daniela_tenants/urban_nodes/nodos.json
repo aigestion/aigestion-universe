@@ -1,0 +1,28 @@
+[
+  {
+    "id": "n04042060036889",
+    "nombre": "Puerta de Alcala",
+    "tipo": "monumento",
+    "lat": 40.4206,
+    "lon": -3.6889,
+    "visitas": 2,
+    "primera_vez": "2026-09-11 20:45:22",
+    "ultima_vez": "2026-09-11 20:45:22",
+    "notas": [
+      "2026-09-11 20:45:22: primera vez"
+    ],
+    "tags": []
+  },
+  {
+    "id": "n04041680037038",
+    "nombre": "Puerta del Sol",
+    "tipo": "sitio",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "visitas": 1,
+    "primera_vez": "2026-09-11 20:45:22",
+    "ultima_vez": "2026-09-11 20:45:22",
+    "notas": [],
+    "tags": []
+  }
+]

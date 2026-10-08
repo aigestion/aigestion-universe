@@ -1,0 +1,750 @@
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 23.6, "memory": 86.3}, "timestamp": "2026-10-01T18:36:47.282296"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:36:51.424462"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:36:51.557482"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:36:51.559768"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:36:51.560822", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.6}, "timestamp": "2026-10-01T18:36:51.696093"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:36:51.788731"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 57.2, "memory": 88.2}, "timestamp": "2026-10-01T18:39:13.735685"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 27.3, "memory": 88.2}, "timestamp": "2026-10-01T18:39:16.725072"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:39:17.864360"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:39:17.961332"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:39:17.962332"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:39:17.963331", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.7}, "timestamp": "2026-10-01T18:39:18.110916"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:39:18.172469"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:39:20.854837"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:39:20.973782"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:39:20.975786"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:39:20.977787", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.7}, "timestamp": "2026-10-01T18:39:21.142245"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:39:21.222349"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 51.5, "memory": 90.3}, "timestamp": "2026-10-01T18:40:45.201276"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 30.9, "memory": 90.1}, "timestamp": "2026-10-01T18:40:47.824409"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:40:49.229017"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:40:49.242220"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:40:49.242220"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:40:49.242220", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.7}, "timestamp": "2026-10-01T18:40:49.273666"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-01T18:40:49.281673"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:40:51.858822"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:40:51.873838"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:40:51.874834"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:40:51.875831", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.7}, "timestamp": "2026-10-01T18:40:51.899921"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-01T18:40:51.905829"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 41.3, "memory": 92.4}, "timestamp": "2026-10-01T18:42:52.414319"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:42:56.564693"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:42:56.685884"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:42:56.691531"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:42:56.692547", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.7}, "timestamp": "2026-10-01T18:42:56.880360"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-01T18:42:56.974685"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 45.7, "memory": 91.6}, "timestamp": "2026-10-01T18:44:19.441168"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:44:23.468179"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:44:23.486324"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:44:23.488316"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:44:23.488316", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.7}, "timestamp": "2026-10-01T18:44:23.543026"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-01T18:44:23.553565"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 43.6, "memory": 88.9}, "timestamp": "2026-10-01T18:47:38.427348"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:47:42.608601"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:47:42.779303"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:47:42.781306"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:47:42.782820", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.8}, "timestamp": "2026-10-01T18:47:42.997431"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:47:43.116597"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 33.0, "memory": 87.7}, "timestamp": "2026-10-01T18:49:16.770878"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:49:20.804596"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:49:20.817424"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:49:20.817424"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:49:20.818386", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.8}, "timestamp": "2026-10-01T18:49:20.850140"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:49:20.856941"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 33.2, "memory": 52.2}, "timestamp": "2026-10-01T18:51:39.905016"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:51:44.062742"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:51:44.193774"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:51:44.195833"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:51:44.197834", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.9}, "timestamp": "2026-10-01T18:51:44.371656"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:51:44.443011"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 35.1, "memory": 53.0}, "timestamp": "2026-10-01T18:53:18.603412"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:53:22.637251"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:53:22.651191"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:53:22.652697"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:53:22.652697", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.9}, "timestamp": "2026-10-01T18:53:22.686170"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:53:22.697736"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 51.7, "memory": 63.3}, "timestamp": "2026-10-01T18:56:15.788270"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:56:19.943709"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:56:20.066983"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:56:20.069509"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:56:20.070745", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 18.9}, "timestamp": "2026-10-01T18:56:20.198716"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:56:20.282319"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 27.8, "memory": 61.7}, "timestamp": "2026-10-01T18:57:39.453765"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T18:57:43.483970"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T18:57:43.498715"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T18:57:43.499719"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T18:57:43.499719", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 19.0}, "timestamp": "2026-10-01T18:57:43.532851"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T18:57:43.541902"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 30.5, "memory": 86.6}, "timestamp": "2026-10-01T23:41:08.169797"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T23:41:12.214808"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T23:41:12.230288"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T23:41:12.230288"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T23:41:12.230288", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 23.7}, "timestamp": "2026-10-01T23:41:12.277214"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T23:41:12.284365"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 45.1, "memory": 86.1}, "timestamp": "2026-10-01T23:43:30.208568"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-01T23:43:34.249210"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-01T23:43:34.257283"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-01T23:43:34.257283"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-01T23:43:34.257283", "status": "fresh", "last_commit": "2026-10-01 16:01:18 +0100", "hours_since_last": 23.7}, "timestamp": "2026-10-01T23:43:34.304260"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-01T23:43:34.305500"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 33.3, "memory": 92.6}, "timestamp": "2026-10-02T17:21:06.613179"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T17:21:10.645593"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T17:21:10.665567"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T17:21:10.666312"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T17:21:10.666990", "status": "fresh", "last_commit": "2026-10-02 12:50:12 +0100", "hours_since_last": 17.4}, "timestamp": "2026-10-02T17:21:10.748864"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-02T17:21:10.755659"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 38.3, "memory": 92.6}, "timestamp": "2026-10-02T17:22:45.254166"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T17:22:49.295382"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T17:22:49.308718"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T17:22:49.309199"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T17:22:49.309586", "status": "fresh", "last_commit": "2026-10-02 12:50:12 +0100", "hours_since_last": 17.4}, "timestamp": "2026-10-02T17:22:49.400530"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-02T17:22:49.410434"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 32.5, "memory": 93.8}, "timestamp": "2026-10-02T17:34:52.676336"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T17:34:56.703763"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T17:34:56.720835"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T17:34:56.721173"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T17:34:56.721510", "status": "fresh", "last_commit": "2026-10-02 12:50:12 +0100", "hours_since_last": 17.6}, "timestamp": "2026-10-02T17:34:56.802286"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-02T17:34:56.808947"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 33.0, "memory": 94.8}, "timestamp": "2026-10-02T17:46:32.367814"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T17:46:36.411363"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T17:46:36.424329"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T17:46:36.424594"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T17:46:36.424781", "status": "fresh", "last_commit": "2026-10-02 12:50:12 +0100", "hours_since_last": 17.8}, "timestamp": "2026-10-02T17:46:36.494204"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-02T17:46:36.501336"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 33.1, "memory": 93.2}, "timestamp": "2026-10-02T17:48:26.937704"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T17:48:30.962329"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T17:48:30.980418"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T17:48:30.981141"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T17:48:30.981589", "status": "fresh", "last_commit": "2026-10-02 12:50:12 +0100", "hours_since_last": 17.8}, "timestamp": "2026-10-02T17:48:31.064967"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-02T17:48:31.074397"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 43.6, "memory": 86.2}, "timestamp": "2026-10-02T21:15:42.223145"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T21:15:46.269926"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T21:15:46.283923"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T21:15:46.284610"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T21:15:46.284995", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 21.3}, "timestamp": "2026-10-02T21:15:46.348931"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T21:15:46.360841"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 43.4, "memory": 83.3}, "timestamp": "2026-10-02T21:17:35.676164"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T21:17:39.715357"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T21:17:39.729609"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T21:17:39.729859"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T21:17:39.730031", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 21.3}, "timestamp": "2026-10-02T21:17:39.810082"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T21:17:39.817114"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 41.0, "memory": 84.6}, "timestamp": "2026-10-02T21:53:38.243540"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T21:53:42.286276"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T21:53:42.297513"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T21:53:42.297756"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T21:53:42.298145", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 21.9}, "timestamp": "2026-10-02T21:53:42.371462"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T21:53:42.378684"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 42.7, "memory": 84.0}, "timestamp": "2026-10-02T21:55:56.792775"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T21:56:00.829717"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T21:56:00.846720"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T21:56:00.846990"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T21:56:00.847164", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 21.9}, "timestamp": "2026-10-02T21:56:00.929894"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T21:56:00.938265"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 46.4, "memory": 85.2}, "timestamp": "2026-10-02T22:03:08.191011"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T22:03:12.243786"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T22:03:12.257564"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T22:03:12.257864"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T22:03:12.258055", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 22.1}, "timestamp": "2026-10-02T22:03:12.314085"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T22:03:12.321336"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 50.4, "memory": 83.1}, "timestamp": "2026-10-02T22:08:06.974657"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T22:08:11.013136"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T22:08:11.027092"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T22:08:11.027351"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T22:08:11.027526", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 22.1}, "timestamp": "2026-10-02T22:08:11.073062"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T22:08:11.080054"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 41.6, "memory": 84.2}, "timestamp": "2026-10-02T22:14:21.563163"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T22:14:25.584448"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T22:14:25.600694"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T22:14:25.601985"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T22:14:25.602362", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 22.2}, "timestamp": "2026-10-02T22:14:25.650645"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T22:14:25.657544"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.3, "memory": 84.4}, "timestamp": "2026-10-02T22:18:05.314782"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T22:18:09.346887"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T22:18:09.364873"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T22:18:09.366530"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T22:18:09.368485", "status": "fresh", "last_commit": "2026-10-02 21:08:09 +0100", "hours_since_last": 22.3}, "timestamp": "2026-10-02T22:18:09.432770"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T22:18:09.443034"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.9, "memory": 87.4}, "timestamp": "2026-10-02T23:03:05.926849"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:03:09.971187"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:03:09.984225"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:03:09.986056"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:03:09.987278", "status": "fresh", "last_commit": "2026-10-02 22:22:45 +0100", "hours_since_last": 23.1}, "timestamp": "2026-10-02T23:03:10.047318"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:03:10.054246"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.6, "memory": 86.1}, "timestamp": "2026-10-02T23:07:23.720329"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:07:27.774440"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:07:27.787689"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:07:27.788498"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:07:27.789003", "status": "fresh", "last_commit": "2026-10-02 22:22:45 +0100", "hours_since_last": 23.1}, "timestamp": "2026-10-02T23:07:27.840673"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:07:27.848334"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.4, "memory": 86.6}, "timestamp": "2026-10-02T23:10:57.698553"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:11:01.743447"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:11:01.765419"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:11:01.766264"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:11:01.767673", "status": "fresh", "last_commit": "2026-10-02 22:22:45 +0100", "hours_since_last": 23.2}, "timestamp": "2026-10-02T23:11:01.904835"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:11:01.916929"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 33.5, "memory": 88.6}, "timestamp": "2026-10-02T23:26:58.350301"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:27:02.401160"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:27:02.421987"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:27:02.423215"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:27:02.423762", "status": "fresh", "last_commit": "2026-10-02 22:22:45 +0100", "hours_since_last": 23.5}, "timestamp": "2026-10-02T23:27:02.499882"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:27:02.511747"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 38.0, "memory": 88.8}, "timestamp": "2026-10-02T23:29:40.326582"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:29:44.367061"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:29:44.387192"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:29:44.388003"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:29:44.388656", "status": "fresh", "last_commit": "2026-10-02 22:22:45 +0100", "hours_since_last": 23.5}, "timestamp": "2026-10-02T23:29:44.432705"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:29:44.441464"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 34.3, "memory": 88.6}, "timestamp": "2026-10-02T23:34:19.090768"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:34:23.134462"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:34:23.148998"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:34:23.149712"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:34:23.151060", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.6}, "timestamp": "2026-10-02T23:34:23.295788"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:34:23.303708"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 36.3, "memory": 88.6}, "timestamp": "2026-10-02T23:40:14.724877"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:40:18.771288"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:40:18.785934"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:40:18.787495"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:40:18.788642", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.7}, "timestamp": "2026-10-02T23:40:18.836201"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:40:18.846507"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 33.3, "memory": 86.4}, "timestamp": "2026-10-02T23:42:11.399682"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:42:15.435556"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:42:15.449626"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:42:15.449888"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:42:15.450062", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.7}, "timestamp": "2026-10-02T23:42:15.503231"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:42:15.510416"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 43.0, "memory": 87.4}, "timestamp": "2026-10-02T23:44:15.565908"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:44:19.605006"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:44:19.620588"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:44:19.621792"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:44:19.622370", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.7}, "timestamp": "2026-10-02T23:44:19.675174"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:44:19.680956"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.2, "memory": 87.5}, "timestamp": "2026-10-02T23:48:10.295743"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:48:14.329705"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:48:14.343348"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:48:14.343618"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:48:14.343798", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.8}, "timestamp": "2026-10-02T23:48:14.395797"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:48:14.404049"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 38.2, "memory": 86.2}, "timestamp": "2026-10-02T23:50:04.540976"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:50:08.588847"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:50:08.605000"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:50:08.605563"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:50:08.605818", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.8}, "timestamp": "2026-10-02T23:50:08.649716"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:50:08.658806"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.7, "memory": 86.1}, "timestamp": "2026-10-02T23:51:57.395340"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-02T23:52:01.422284"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-02T23:52:01.437554"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-02T23:52:01.438294"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-02T23:52:01.438910", "status": "fresh", "last_commit": "2026-10-02 23:32:54 +0100", "hours_since_last": 23.9}, "timestamp": "2026-10-02T23:52:01.506755"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-02T23:52:01.514459"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 20.3, "memory": 89.5}, "timestamp": "2026-10-03T01:13:55.451415"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-03T01:13:59.488118"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-03T01:13:59.500745"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-03T01:13:59.501023"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-03T01:13:59.501235", "status": "fresh", "last_commit": "2026-10-03 01:12:47 +0100", "hours_since_last": 1.2}, "timestamp": "2026-10-03T01:13:59.547334"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-03T01:13:59.554360"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 36.9, "memory": 92.5}, "timestamp": "2026-10-04T19:51:35.601166"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T19:51:39.636304"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T19:51:39.636304"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T19:51:39.636304"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T19:51:39.636304", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 19.9}, "timestamp": "2026-10-04T19:51:39.683040"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T19:51:39.698765"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 48.6, "memory": 91.9}, "timestamp": "2026-10-04T19:59:03.582966"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T19:59:07.589686"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T19:59:07.609240"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T19:59:07.609240"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T19:59:07.609240", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.0}, "timestamp": "2026-10-04T19:59:07.685050"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T19:59:07.687269"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 25.0, "memory": 91.6}, "timestamp": "2026-10-04T20:04:13.262038"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:04:17.284062"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:04:17.300146"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:04:17.300146"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:04:17.300146", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.1}, "timestamp": "2026-10-04T20:04:17.350081"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:04:17.359848"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 35.8, "memory": 92.3}, "timestamp": "2026-10-04T20:06:41.359031"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:06:45.380651"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:06:45.394703"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:06:45.394703"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:06:45.394703", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.1}, "timestamp": "2026-10-04T20:06:45.441551"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:06:45.441551"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 25.6, "memory": 92.6}, "timestamp": "2026-10-04T20:08:44.655541"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:08:48.694936"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:08:48.708360"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:08:48.709426"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:08:48.709959", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.1}, "timestamp": "2026-10-04T20:08:48.752703"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:08:48.762869"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 32.3, "memory": 92.0}, "timestamp": "2026-10-04T20:16:45.376128"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:16:49.405660"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:16:49.410189"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:16:49.410189"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:16:49.420461", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.3}, "timestamp": "2026-10-04T20:16:49.467456"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:16:49.471560"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 37.1, "memory": 92.5}, "timestamp": "2026-10-04T20:45:10.047312"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:45:14.069209"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:45:14.094630"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:45:14.094630"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:45:14.094630", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.8}, "timestamp": "2026-10-04T20:45:14.147726"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:45:14.155259"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 34.4, "memory": 92.6}, "timestamp": "2026-10-04T20:52:00.289384"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:52:04.304279"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:52:04.320930"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:52:04.320930"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:52:04.320930", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 20.9}, "timestamp": "2026-10-04T20:52:04.371607"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:52:04.381093"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 27.2, "memory": 92.2}, "timestamp": "2026-10-04T20:58:03.838711"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T20:58:07.868738"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T20:58:07.872396"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T20:58:07.872396"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T20:58:07.872396", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.0}, "timestamp": "2026-10-04T20:58:07.930392"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T20:58:07.933216"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 36.4, "memory": 93.1}, "timestamp": "2026-10-04T21:07:40.957577"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:07:44.995809"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:07:44.995809"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:07:45.008512"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:07:45.008512", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.1}, "timestamp": "2026-10-04T21:07:45.057470"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T21:07:45.062423"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 36.2, "memory": 93.0}, "timestamp": "2026-10-04T21:15:58.652888"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:16:02.680454"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:16:02.689889"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:16:02.689889"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:16:02.689889", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.3}, "timestamp": "2026-10-04T21:16:02.751228"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T21:16:02.751228"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 32.3, "memory": 88.7}, "timestamp": "2026-10-04T21:26:11.664428"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:26:15.693703"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:26:15.708895"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:26:15.708895"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:26:15.708895", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.4}, "timestamp": "2026-10-04T21:26:15.763498"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T21:26:15.768855"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 30.6, "memory": 88.7}, "timestamp": "2026-10-04T21:32:15.144365"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:32:19.167861"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:32:19.189551"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:32:19.189551"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:32:19.189551", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.5}, "timestamp": "2026-10-04T21:32:19.245243"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T21:32:19.253829"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 27.3, "memory": 88.3}, "timestamp": "2026-10-04T21:39:26.150402"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:39:30.164931"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:39:30.180583"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:39:30.180583"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:39:30.180583", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.7}, "timestamp": "2026-10-04T21:39:30.235520"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T21:39:30.236714"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 32.4, "memory": 88.5}, "timestamp": "2026-10-04T21:40:39.035715"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:40:43.047315"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:40:43.064454"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:40:43.064454"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:40:43.064454", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.7}, "timestamp": "2026-10-04T21:40:43.115204"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T21:40:43.117767"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 45.6, "memory": 89.5}, "timestamp": "2026-10-04T21:47:02.712861"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:47:06.742228"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:47:06.746520"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:47:06.746520"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:47:06.746520", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.8}, "timestamp": "2026-10-04T21:47:06.800178"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T21:47:06.800178"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 26.7, "memory": 87.3}, "timestamp": "2026-10-04T21:53:51.199502"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T21:53:55.216397"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T21:53:55.234691"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T21:53:55.234691"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T21:53:55.234691", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 21.9}, "timestamp": "2026-10-04T21:53:55.276615"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T21:53:55.292439"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 29.5, "memory": 86.6}, "timestamp": "2026-10-04T22:12:21.411062"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T22:12:25.428238"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T22:12:25.444945"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T22:12:25.444945"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T22:12:25.444945", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 22.2}, "timestamp": "2026-10-04T22:12:25.500102"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T22:12:25.500102"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 24.5, "memory": 87.2}, "timestamp": "2026-10-04T22:35:56.177181"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T22:36:00.209842"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T22:36:00.214107"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T22:36:00.214107"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T22:36:00.214107", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 22.6}, "timestamp": "2026-10-04T22:36:00.260731"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T22:36:00.276425"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 38.0, "memory": 88.4}, "timestamp": "2026-10-04T22:51:20.143136"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T22:51:24.172337"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T22:51:24.188022"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T22:51:24.188022"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T22:51:24.188022", "status": "fresh", "last_commit": "2026-10-04 22:42:41 +0100", "hours_since_last": 22.9}, "timestamp": "2026-10-04T22:51:24.219718"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T22:51:24.235437"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 39.5, "memory": 90.2}, "timestamp": "2026-10-04T22:58:24.973246"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T22:58:29.016535"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T22:58:29.031466"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T22:58:29.031466"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T22:58:29.033031", "status": "fresh", "last_commit": "2026-10-04 22:55:50 +0100", "hours_since_last": 23.0}, "timestamp": "2026-10-04T22:58:29.098953"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T22:58:29.108562"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.8, "memory": 86.7}, "timestamp": "2026-10-04T23:41:25.580364"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T23:41:29.621969"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T23:41:29.642594"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T23:41:29.643603"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T23:41:29.644603", "status": "fresh", "last_commit": "2026-10-04 23:33:14 +0100", "hours_since_last": 23.7}, "timestamp": "2026-10-04T23:41:29.711952"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-04T23:41:29.723984"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 33.0, "memory": 92.4}, "timestamp": "2026-10-04T23:48:00.515378"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T23:48:04.549467"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T23:48:04.566325"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T23:48:04.567329"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T23:48:04.567329", "status": "fresh", "last_commit": "2026-10-04 23:33:14 +0100", "hours_since_last": 23.8}, "timestamp": "2026-10-04T23:48:04.638019"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T23:48:04.647550"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 30.6, "memory": 92.2}, "timestamp": "2026-10-05T00:08:30.326933"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T00:08:34.371580"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T00:08:34.386317"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T00:08:34.387321"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T00:08:34.388319", "status": "fresh", "last_commit": "2026-10-04 23:33:14 +0100", "hours_since_last": 24.1}, "timestamp": "2026-10-05T00:08:34.462943"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T00:08:34.469673"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 32.0, "memory": 92.4}, "timestamp": "2026-10-05T00:14:45.932871"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T00:14:49.957147"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T00:14:49.974455"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T00:14:49.974455"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T00:14:49.975585", "status": "fresh", "last_commit": "2026-10-04 23:33:14 +0100", "hours_since_last": 24.2}, "timestamp": "2026-10-05T00:14:50.048864"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T00:14:50.058808"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 32.6, "memory": 96.6}, "timestamp": "2026-10-05T00:21:40.179720"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T00:21:44.232802"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T00:21:44.250232"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T00:21:44.251232"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T00:21:44.251232", "status": "fresh", "last_commit": "2026-10-04 23:33:14 +0100", "hours_since_last": 24.4}, "timestamp": "2026-10-05T00:21:44.393278"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T00:21:44.403462"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 33.6, "memory": 95.6}, "timestamp": "2026-10-05T00:34:54.986399"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T00:34:59.016291"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T00:34:59.030488"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T00:34:59.031569"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T00:34:59.032102", "status": "fresh", "last_commit": "2026-10-05 00:27:19 +0100", "hours_since_last": 0.6}, "timestamp": "2026-10-05T00:34:59.092955"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T00:34:59.100497"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 55.8, "memory": 96.8}, "timestamp": "2026-10-05T01:30:42.260237"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T01:30:46.306821"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T01:30:46.320137"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T01:30:46.320137"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T01:30:46.320137", "status": "fresh", "last_commit": "2026-10-05 00:39:08 +0100", "hours_since_last": 1.5}, "timestamp": "2026-10-05T01:30:46.398291"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T01:30:46.403504"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 46.9, "memory": 95.1}, "timestamp": "2026-10-05T01:32:46.740267"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T01:32:50.770865"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T01:32:50.787237"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T01:32:50.788315"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T01:32:50.788315", "status": "fresh", "last_commit": "2026-10-05 00:39:08 +0100", "hours_since_last": 1.5}, "timestamp": "2026-10-05T01:32:50.862350"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T01:32:50.875565"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 47.7, "memory": 96.2}, "timestamp": "2026-10-05T01:49:58.659012"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T01:50:02.687786"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T01:50:02.708312"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T01:50:02.709321"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T01:50:02.709321", "status": "fresh", "last_commit": "2026-10-05 01:37:33 +0100", "hours_since_last": 1.8}, "timestamp": "2026-10-05T01:50:02.799352"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T01:50:02.804562"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 22.1, "memory": 96.9}, "timestamp": "2026-10-05T10:44:55.405416"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T10:44:59.434720"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T10:44:59.447195"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T10:44:59.447497"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T10:44:59.447730", "status": "fresh", "last_commit": "2026-10-05 01:55:24 +0100", "hours_since_last": 10.7}, "timestamp": "2026-10-05T10:44:59.505159"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T10:44:59.512866"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 28.5, "memory": 95.7}, "timestamp": "2026-10-05T10:50:41.730722"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T10:50:45.773776"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T10:50:45.786057"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T10:50:45.786335"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T10:50:45.786546", "status": "fresh", "last_commit": "2026-10-05 01:55:24 +0100", "hours_since_last": 10.8}, "timestamp": "2026-10-05T10:50:45.840897"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T10:50:45.848170"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 34.0, "memory": 96.1}, "timestamp": "2026-10-05T10:57:08.151948"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T10:57:12.190955"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T10:57:12.208502"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T10:57:12.209482"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T10:57:12.210451", "status": "fresh", "last_commit": "2026-10-05 01:55:24 +0100", "hours_since_last": 11.0}, "timestamp": "2026-10-05T10:57:12.273371"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T10:57:12.283467"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 23.2, "memory": 93.7}, "timestamp": "2026-10-05T11:47:21.935638"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T11:47:25.971099"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T11:47:25.988275"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T11:47:25.988994"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T11:47:25.989615", "status": "fresh", "last_commit": "2026-10-05 11:09:31 +0100", "hours_since_last": 11.8}, "timestamp": "2026-10-05T11:47:26.060681"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T11:47:26.067789"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 29.5, "memory": 93.2}, "timestamp": "2026-10-05T11:54:51.064875"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T11:54:55.103844"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T11:54:55.118678"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T11:54:55.119316"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T11:54:55.119857", "status": "fresh", "last_commit": "2026-10-05 11:09:31 +0100", "hours_since_last": 11.9}, "timestamp": "2026-10-05T11:54:55.183191"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T11:54:55.190915"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 23.4, "memory": 95.2}, "timestamp": "2026-10-05T12:26:22.888671"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T12:26:26.925963"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T12:26:26.939899"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T12:26:26.940244"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T12:26:26.940510", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 12.4}, "timestamp": "2026-10-05T12:26:26.993129"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T12:26:27.000608"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 33.5, "memory": 95.4}, "timestamp": "2026-10-05T12:38:38.556158"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T12:38:42.602298"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T12:38:42.620446"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T12:38:42.621095"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T12:38:42.621755", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 12.6}, "timestamp": "2026-10-05T12:38:42.690392"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T12:38:42.699987"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 35.0, "memory": 94.4}, "timestamp": "2026-10-05T13:13:52.030942"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T13:13:56.052948"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T13:13:56.067421"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T13:13:56.067754"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T13:13:56.067989", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 13.2}, "timestamp": "2026-10-05T13:13:56.144360"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T13:13:56.151480"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "critical", "anomalies": 1, "cpu": 36.9, "memory": 97.3}, "timestamp": "2026-10-05T14:31:53.798977"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T14:31:57.849496"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T14:31:57.874929"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T14:31:57.875749"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T14:31:57.876467", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 14.5}, "timestamp": "2026-10-05T14:31:57.966610"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T14:31:57.977598"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "critical", "anomalies": 1, "cpu": 67.1, "memory": 98.0}, "timestamp": "2026-10-05T16:48:04.257918"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T16:48:08.283079"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T16:48:08.296818"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T16:48:08.297138"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T16:48:08.297371", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 16.8}, "timestamp": "2026-10-05T16:48:08.364430"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T16:48:08.372670"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 82.4, "memory": 93.7}, "timestamp": "2026-10-05T16:53:09.447678"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T16:53:13.484197"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T16:53:13.503683"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T16:53:13.504587"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T16:53:13.505699", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 16.9}, "timestamp": "2026-10-05T16:53:13.600205"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T16:53:13.611808"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 66.7, "memory": 93.5}, "timestamp": "2026-10-05T16:55:59.468840"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T16:56:03.503050"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T16:56:03.522747"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T16:56:03.523879"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T16:56:03.524573", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 16.9}, "timestamp": "2026-10-05T16:56:04.163071"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T16:56:04.173574"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 48.8, "memory": 87.9}, "timestamp": "2026-10-05T16:59:46.333511"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T16:59:50.362979"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T16:59:50.376737"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T16:59:50.377480"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T16:59:50.378179", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 17.0}, "timestamp": "2026-10-05T16:59:50.461154"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T16:59:50.469212"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 49.2, "memory": 88.3}, "timestamp": "2026-10-05T17:02:08.944503"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T17:02:12.964430"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T17:02:12.977784"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T17:02:12.978379"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T17:02:12.978843", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 17.0}, "timestamp": "2026-10-05T17:02:13.046415"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T17:02:13.054795"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 51.5, "memory": 91.0}, "timestamp": "2026-10-05T17:04:50.845757"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T17:04:54.870765"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T17:04:54.888745"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T17:04:54.889159"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T17:04:54.889466", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 17.1}, "timestamp": "2026-10-05T17:04:54.986304"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T17:04:54.997823"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 51.6, "memory": 87.4}, "timestamp": "2026-10-05T17:06:54.679742"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T17:06:58.703215"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T17:06:58.719750"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T17:06:58.720625"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T17:06:58.721352", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 17.1}, "timestamp": "2026-10-05T17:06:58.828421"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T17:06:58.837138"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 48.9, "memory": 92.3}, "timestamp": "2026-10-05T17:12:34.685992"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T17:12:38.714864"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T17:12:38.731036"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T17:12:38.731388"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T17:12:38.731665", "status": "fresh", "last_commit": "2026-10-05 12:06:07 +0100", "hours_since_last": 17.2}, "timestamp": "2026-10-05T17:12:38.793396"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-05T17:12:38.801580"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.9, "memory": 78.0}, "timestamp": "2026-10-05T17:38:03.778216"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T17:38:07.821686"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T17:38:07.835563"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T17:38:07.836017"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T17:38:07.836267", "status": "fresh", "last_commit": "2026-10-05 17:30:57 +0100", "hours_since_last": 17.6}, "timestamp": "2026-10-05T17:38:07.889427"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T17:38:07.898476"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 43.3, "memory": 75.0}, "timestamp": "2026-10-05T18:02:46.511333"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T18:02:50.555914"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T18:02:50.570090"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T18:02:50.571108"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T18:02:50.571108", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 18.0}, "timestamp": "2026-10-05T18:02:50.630493"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T18:02:50.637665"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 53.1, "memory": 75.2}, "timestamp": "2026-10-05T18:08:26.705055"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T18:08:30.735949"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T18:08:30.749634"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T18:08:30.749634"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T18:08:30.750642", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 18.1}, "timestamp": "2026-10-05T18:08:30.814093"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T18:08:30.821362"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.6, "memory": 76.5}, "timestamp": "2026-10-05T18:14:29.382713"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T18:14:33.424373"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T18:14:33.435271"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T18:14:33.436280"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T18:14:33.436280", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 18.2}, "timestamp": "2026-10-05T18:14:33.490576"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T18:14:33.496494"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 38.1, "memory": 77.5}, "timestamp": "2026-10-05T18:20:06.365388"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T18:20:10.411703"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T18:20:10.429860"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T18:20:10.429860"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T18:20:10.430862", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 18.3}, "timestamp": "2026-10-05T18:20:10.523967"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T18:20:10.534256"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 42.0, "memory": 77.0}, "timestamp": "2026-10-05T18:26:18.787217"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T18:26:22.817617"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T18:26:22.831963"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T18:26:22.832967"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T18:26:22.832967", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 18.4}, "timestamp": "2026-10-05T18:26:22.890877"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T18:26:22.898401"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 54.7, "memory": 82.8}, "timestamp": "2026-10-05T18:59:14.308738"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T18:59:18.344536"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T18:59:18.364530"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T18:59:18.364530"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T18:59:18.366139", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 19.0}, "timestamp": "2026-10-05T18:59:18.463371"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T18:59:18.472021"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 38.1, "memory": 81.4}, "timestamp": "2026-10-05T19:01:25.809973"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T19:01:29.862012"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T19:01:29.883647"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T19:01:29.884642"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T19:01:29.885645", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 19.0}, "timestamp": "2026-10-05T19:01:29.950250"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T19:01:29.960791"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 32.1, "memory": 82.6}, "timestamp": "2026-10-05T19:09:09.719142"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T19:09:13.758661"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T19:09:13.772355"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T19:09:13.772355"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T19:09:13.773354", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 19.2}, "timestamp": "2026-10-05T19:09:13.842285"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T19:09:13.849030"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.2, "memory": 81.2}, "timestamp": "2026-10-05T19:15:32.274431"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T19:15:36.329195"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T19:15:36.349574"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T19:15:36.350119"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T19:15:36.351213", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 19.3}, "timestamp": "2026-10-05T19:15:36.427617"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T19:15:36.437897"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 33.7, "memory": 79.9}, "timestamp": "2026-10-05T19:36:00.063444"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T19:36:04.103884"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T19:36:04.114587"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T19:36:04.114587"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T19:36:04.115587", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 19.6}, "timestamp": "2026-10-05T19:36:04.184686"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T19:36:04.192660"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.7, "memory": 80.6}, "timestamp": "2026-10-05T19:38:46.531955"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T19:38:50.554762"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T19:38:50.569116"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T19:38:50.569116"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T19:38:50.569116", "status": "fresh", "last_commit": "2026-10-05 17:53:05 +0100", "hours_since_last": 19.6}, "timestamp": "2026-10-05T19:38:50.633940"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T19:38:50.642054"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 35.2, "memory": 86.4}, "timestamp": "2026-10-05T22:05:25.521526"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:05:29.553021"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:05:29.567231"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:05:29.568235"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:05:29.568235", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.1}, "timestamp": "2026-10-05T22:05:29.632224"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:05:29.639723"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.5, "memory": 86.9}, "timestamp": "2026-10-05T22:10:41.881178"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:10:45.901714"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:10:45.916245"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:10:45.916245"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:10:45.916245", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.2}, "timestamp": "2026-10-05T22:10:45.974638"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:10:45.981113"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 42.9, "memory": 87.0}, "timestamp": "2026-10-05T22:15:34.244086"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:15:38.269559"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:15:38.273384"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:15:38.273384"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:15:38.283173", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.3}, "timestamp": "2026-10-05T22:15:38.358903"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:15:38.363827"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 61.5, "memory": 86.6}, "timestamp": "2026-10-05T22:20:16.779619"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:20:20.818879"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:20:20.840257"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:20:20.841263"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:20:20.842261", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.3}, "timestamp": "2026-10-05T22:20:20.910825"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:20:20.922027"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 46.5, "memory": 86.4}, "timestamp": "2026-10-05T22:25:03.717248"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:25:07.749277"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:25:07.766808"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:25:07.766808"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:25:07.767802", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.4}, "timestamp": "2026-10-05T22:25:07.835765"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:25:07.843593"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 27.8, "memory": 86.9}, "timestamp": "2026-10-05T22:29:52.386341"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:29:56.396690"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:29:56.417872"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:29:56.417872"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:29:56.417872", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.5}, "timestamp": "2026-10-05T22:29:56.460802"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:29:56.475750"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 24.5, "memory": 85.5}, "timestamp": "2026-10-05T22:34:36.989246"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:34:41.018234"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:34:41.033251"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:34:41.033251"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:34:41.033251", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.6}, "timestamp": "2026-10-05T22:34:41.087449"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:34:41.087449"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 35.9, "memory": 85.8}, "timestamp": "2026-10-05T22:47:21.625114"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:47:25.656035"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:47:25.671935"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:47:25.676303"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:47:25.676303", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.8}, "timestamp": "2026-10-05T22:47:25.726166"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:47:25.739321"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 42.5, "memory": 85.6}, "timestamp": "2026-10-05T22:55:32.518664"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T22:55:36.538127"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T22:55:36.553065"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T22:55:36.553065"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T22:55:36.553065", "status": "fresh", "last_commit": "2026-10-05 22:00:08 +0100", "hours_since_last": 22.9}, "timestamp": "2026-10-05T22:55:36.608360"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T22:55:36.616407"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 39.5, "memory": 87.4}, "timestamp": "2026-10-06T00:21:14.619150"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T00:21:18.647753"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T00:21:18.657891"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T00:21:18.657891"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T00:21:18.657891", "status": "fresh", "last_commit": "2026-10-06 00:18:52 +0100", "hours_since_last": 0.4}, "timestamp": "2026-10-06T00:21:18.714158"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T00:21:18.725288"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 40.6, "memory": 89.0}, "timestamp": "2026-10-06T01:10:48.554893"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T01:10:52.577241"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T01:10:52.593752"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T01:10:52.594738"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T01:10:52.595739", "status": "fresh", "last_commit": "2026-10-06 00:18:52 +0100", "hours_since_last": 1.2}, "timestamp": "2026-10-06T01:10:52.660590"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T01:10:52.669620"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 41.6, "memory": 89.0}, "timestamp": "2026-10-06T01:22:41.559563"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T01:22:45.605014"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T01:22:45.609765"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T01:22:45.609765"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T01:22:45.609765", "status": "fresh", "last_commit": "2026-10-06 01:15:41 +0100", "hours_since_last": 1.4}, "timestamp": "2026-10-06T01:22:45.669650"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T01:22:45.678394"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 26.9, "memory": 89.9}, "timestamp": "2026-10-06T01:43:07.093436"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T01:43:11.114227"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T01:43:11.126926"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T01:43:11.126926"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T01:43:11.126926", "status": "fresh", "last_commit": "2026-10-06 01:27:41 +0100", "hours_since_last": 1.7}, "timestamp": "2026-10-06T01:43:11.177672"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T01:43:11.184353"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 38.6, "memory": 88.7}, "timestamp": "2026-10-06T01:53:58.877552"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T01:54:02.910355"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T01:54:02.929942"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T01:54:02.930958"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T01:54:02.931955", "status": "fresh", "last_commit": "2026-10-06 01:47:35 +0100", "hours_since_last": 1.9}, "timestamp": "2026-10-06T01:54:02.997291"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T01:54:03.006030"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 21.5, "memory": 87.9}, "timestamp": "2026-10-06T09:24:23.308205"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T09:24:27.355130"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T09:24:27.367332"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T09:24:27.368316"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T09:24:27.368316", "status": "fresh", "last_commit": "2026-10-06 02:00:12 +0100", "hours_since_last": 9.4}, "timestamp": "2026-10-06T09:24:27.399884"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T09:24:27.406900"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 30.6, "memory": 86.0}, "timestamp": "2026-10-06T10:50:59.455668"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T10:51:03.492947"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T10:51:03.506015"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T10:51:03.506602"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T10:51:03.507145", "status": "fresh", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 10.9}, "timestamp": "2026-10-06T10:51:03.539750"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T10:51:03.555387"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 23.3, "memory": 86.3}, "timestamp": "2026-10-06T10:55:21.825699"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T10:55:25.863108"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T10:55:25.866477"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T10:55:25.866477"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T10:55:25.866477", "status": "fresh", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 10.9}, "timestamp": "2026-10-06T10:55:25.923218"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T10:55:25.926021"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 37.8, "memory": 68.0}, "timestamp": "2026-10-06T14:13:55.982857"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-06T14:14:00.016192"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-06T14:14:00.033581"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-06T14:14:00.033581"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-06T14:14:00.035081", "status": "fresh", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 14.2}, "timestamp": "2026-10-06T14:14:00.109344"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-06T14:14:00.109344"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "critical", "anomalies": 2, "cpu": 100.0, "memory": 96.1}, "timestamp": "2026-10-07T17:26:38.346134"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-07T17:26:42.431938"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-07T17:26:42.474774"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-07T17:26:42.475984"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Git backup stale", "priority": 1}, "timestamp": "2026-10-07T17:26:43.141233"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-07T17:26:42.476909", "status": "stale", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 41.4}, "timestamp": "2026-10-07T17:26:43.142042"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 2, "alerts_sent": 3}, "timestamp": "2026-10-07T17:26:43.168826"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "critical", "anomalies": 2, "cpu": 99.4, "memory": 90.2}, "timestamp": "2026-10-07T17:37:26.788815"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-07T17:37:30.859115"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-07T17:37:30.923827"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-07T17:37:30.924657"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Git backup stale", "priority": 1}, "timestamp": "2026-10-07T17:37:31.170032"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-07T17:37:30.925406", "status": "stale", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 41.6}, "timestamp": "2026-10-07T17:37:31.170997"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 2, "alerts_sent": 3}, "timestamp": "2026-10-07T17:37:31.192943"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 52.9, "memory": 95.0}, "timestamp": "2026-10-08T15:29:03.954499"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-08T15:29:07.997739"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-08T15:29:08.018733"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-08T15:29:08.019281"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Git backup stale", "priority": 1}, "timestamp": "2026-10-08T15:29:08.079762"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-08T15:29:08.021568", "status": "stale", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 63.5}, "timestamp": "2026-10-08T15:29:08.080770"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 3}, "timestamp": "2026-10-08T15:29:08.085451"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 66.2, "memory": 95.7}, "timestamp": "2026-10-08T16:32:24.427560"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-08T16:32:28.461241"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-08T16:32:28.478704"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-08T16:32:28.479335"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Git backup stale", "priority": 1}, "timestamp": "2026-10-08T16:32:28.583047"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-08T16:32:28.479820", "status": "stale", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 64.5}, "timestamp": "2026-10-08T16:32:28.584305"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 3}, "timestamp": "2026-10-08T16:32:28.594832"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "critical", "anomalies": 1, "cpu": 53.6, "memory": 97.0}, "timestamp": "2026-10-08T16:45:18.281174"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-08T16:45:22.334262"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-08T16:45:22.352341"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-08T16:45:22.353598"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Git backup stale", "priority": 1}, "timestamp": "2026-10-08T16:45:22.427565"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-08T16:45:22.354940", "status": "stale", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 64.8}, "timestamp": "2026-10-08T16:45:22.428038"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 3}, "timestamp": "2026-10-08T16:45:22.435246"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "critical", "anomalies": 1, "cpu": 48.2, "memory": 97.1}, "timestamp": "2026-10-08T16:58:51.747160"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-08T16:58:55.827763"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-08T16:58:55.859474"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-08T16:58:55.860167"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Git backup stale", "priority": 1}, "timestamp": "2026-10-08T16:58:55.960447"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-08T16:58:55.860721", "status": "stale", "last_commit": "2026-10-06 10:48:59 +0100", "hours_since_last": 65.0}, "timestamp": "2026-10-08T16:58:55.960892"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 3}, "timestamp": "2026-10-08T16:58:55.979339"}

@@ -1,0 +1,1 @@
+Los transformers usan atencion multi-cabeza. El mecanismo de atencion permite ponderar la relevancia de cada token en la secuencia.

@@ -1,0 +1,9 @@
+{
+  "auto_acciones": true,
+  "anti_rebote_s": 0.0,
+  "rssi_al_lado": -60,
+  "rssi_en_sala": -75,
+  "rssi_lejos": -90,
+  "olvido_tras_s": 900.0,
+  "timeout_scan_s": 20
+}

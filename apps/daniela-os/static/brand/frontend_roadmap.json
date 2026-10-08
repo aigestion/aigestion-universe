@@ -1,0 +1,62 @@
+[
+  {
+    "phase": 1,
+    "name": "Foundation & Brand Unity",
+    "duration_weeks": 2,
+    "ideas": [
+      "FE-01",
+      "FE-08",
+      "FE-04",
+      "FE-10"
+    ],
+    "goal": "Extract shared CSS, unify colors to brand kit, centralize API client, make landing demo real"
+  },
+  {
+    "phase": 2,
+    "name": "Component Architecture",
+    "duration_weeks": 3,
+    "ideas": [
+      "FE-02",
+      "FE-03",
+      "FE-17"
+    ],
+    "goal": "Build shared JS components, implement SPA router, unify mobile/desktop UI"
+  },
+  {
+    "phase": 3,
+    "name": "Agent Integration Layer",
+    "duration_weeks": 3,
+    "ideas": [
+      "FE-05",
+      "FE-06",
+      "FE-13",
+      "FE-11"
+    ],
+    "goal": "Connect 9 agents to frontend: dashboard, action buttons, activity stream, notifications"
+  },
+  {
+    "phase": 4,
+    "name": "Real-Time & PWA",
+    "duration_weeks": 2,
+    "ideas": [
+      "FE-12",
+      "FE-16",
+      "FE-09"
+    ],
+    "goal": "Wire datacenter to real metrics, build PWA with offline, add theme toggle"
+  },
+  {
+    "phase": 5,
+    "name": "Metaverse & Marketing",
+    "duration_weeks": 3,
+    "ideas": [
+      "FE-14",
+      "FE-15",
+      "FE-18",
+      "FE-19",
+      "FE-20",
+      "FE-07"
+    ],
+    "goal": "Populate metaverse with AI NPCs, connect city to agent data, wire landing to auth, SEO, client dashboards, message flow graph"
+  }
+]

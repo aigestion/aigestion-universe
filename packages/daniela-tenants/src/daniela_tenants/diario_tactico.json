@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-08-15 12:26:22",
+    "hora": "12:26",
+    "tipo": "SHAKE_TIMEOUT",
+    "detalle": "Sin respuesta al agite"
+  },
+  {
+    "timestamp": "2026-08-15 12:27:20",
+    "hora": "12:27",
+    "tipo": "SHAKE_TIMEOUT",
+    "detalle": "Sin respuesta al agite"
+  },
+  {
+    "timestamp": "2026-08-15 12:29:28",
+    "hora": "12:29",
+    "tipo": "SHAKE_TIMEOUT",
+    "detalle": "Sin respuesta al agite"
+  },
+  {
+    "timestamp": "2026-08-15 12:30:58",
+    "hora": "12:30",
+    "tipo": "SHAKE_TIMEOUT",
+    "detalle": "Sin respuesta al agite"
+  },
+  {
+    "timestamp": "2026-08-15 12:37:12",
+    "hora": "12:37",
+    "tipo": "VOLUMEN_TIMEOUT",
+    "detalle": "Sin respuesta al bot\u00f3n"
+  }
+]

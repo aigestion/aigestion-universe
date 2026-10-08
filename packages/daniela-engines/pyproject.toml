@@ -1,0 +1,155 @@
+[project]
+name = "daniela-engines"
+version = "0.1.0"
+description = "Daniela OS - 19 Federated Engines (Core, Data, Security, Performance, Experience, Automation)"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "AIGESTION", email = "team@aigestion.com"}]
+requires-python = ">=3.11"
+dependencies = [
+    "daniela-core",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "httpx>=0.25",
+    "redis>=5.0",
+    "asyncpg>=0.29",
+    "sqlalchemy>=2.0",
+    "alembic>=1.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.1",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "black>=24.0",
+]
+all = [
+    "uvicorn>=0.30",
+    "fastapi>=0.110",
+    "nats-py>=2.6",
+    "prometheus-client>=0.19",
+    "opentelemetry-api>=1.20",
+    "opentelemetry-sdk>=1.20",
+    "opentelemetry-instrumentation-fastapi>=0.41",
+    "opentelemetry-instrumentation-httpx>=0.41",
+    "opentelemetry-instrumentation-redis>=0.41",
+    "opentelemetry-instrumentation-sqlalchemy>=0.41",
+    "opentelemetry-exporter-otlp>=1.20",
+]
+
+[tool.uv.sources]
+daniela-core = {path = "../daniela-core", editable = true}
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/daniela_engines"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E4", "E7", "E9", "F"]
+ignore = ["BLE001", "S110", "UP017", "E402", "E741"]
+  per-file-ignores = { "src/daniela_engines/legacy/**/*.py" = ["ALL"] }
+exclude = [
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    "dist",
+    "build",
+    "*.egg-info",
+    "src/daniela_engines/legacy",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = true
+
+[tool.mypy]
+ignore_missing_imports = true
+python_version = "3.11"
+warn_unused_configs = true
+exclude = ["src/daniela_engines/legacy/.*"]
+
+[[tool.mypy.overrides]]
+module = "prometheus_fastapi_instrumentator.*"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-q --tb=short -p no:cacheprovider"
+
+[tool.coverage.run]
+source = ["src/daniela_engines"]
+omit = ["*/tests/*", "*/legacy/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[project.urls]
+Homepage = "https://github.com/aigestion/aigestion-universe"
+Repository = "https://github.com/aigestion/aigestion-universe"
+Issues = "https://github.com/aigestion/aigestion-universe/issues"
+
+
+# BASELINE-MYPY-2026-10-08: errores preexistentes migrados desde aig; endurecer incrementalmente.
+[[tool.mypy.overrides]]
+module = [
+    "daniela_engines.auto.actions",
+    "daniela_engines.auto.integrations",
+    "daniela_engines.auto.scheduler",
+    "daniela_engines.auto.triggers",
+    "daniela_engines.chaos.faults",
+    "daniela_engines.cross.event_bus",
+    "daniela_engines.cross.orchestrator",
+    "daniela_engines.data_engine.analytics",
+    "daniela_engines.data_engine.pipeline",
+    "daniela_engines.data_engine.reports",
+    "daniela_engines.data_engine.storage",
+    "daniela_engines.data_engine.visualization",
+    "daniela_engines.devtools.code_analysis",
+    "daniela_engines.devtools.debugger",
+    "daniela_engines.devtools.documentation",
+    "daniela_engines.devtools.profiling",
+    "daniela_engines.devtools.sandbox",
+    "daniela_engines.ecosystem.connectors",
+    "daniela_engines.ecosystem.gateway",
+    "daniela_engines.ecosystem.marketplace",
+    "daniela_engines.ecosystem.protocol",
+    "daniela_engines.ecosystem.transformers",
+    "daniela_engines.intel.automation",
+    "daniela_engines.intel.nlp_engine",
+    "daniela_engines.intel.prediction",
+    "daniela_engines.intel.recommendation",
+    "daniela_engines.intel.vision_engine",
+    "daniela_engines.orchestrator.event_bus",
+    "daniela_engines.orchestrator.orchestrator",
+    "daniela_engines.scale.concurrency",
+    "daniela_engines.scale.data_compression",
+    "daniela_engines.scale.optimization",
+    "daniela_engines.scale.resilience",
+    "daniela_engines.secure.compliance",
+    "daniela_engines.secure.encryption",
+    "daniela_engines.secure.forensics",
+    "daniela_engines.secure.vulnerability",
+    "daniela_engines.ux.accessibility",
+]
+ignore_errors = true

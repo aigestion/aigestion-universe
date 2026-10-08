@@ -1,0 +1,150 @@
+[
+  {
+    "title": "Que es AIGestion y como puede transformar tu negocio",
+    "duration_min": 8,
+    "format": "16:9",
+    "sections": [
+      {
+        "phase": "HOOK (0-15s)",
+        "visual": "Pantalla con caos de tareas manuales, reloj corriendo",
+        "narration": "Si gastas mas de 3 horas al dia en tareas repetitivas, estas perdiendo el 40% de tu productividad. Pero hay una solucion. Se llama AIGestion.",
+        "on_screen_text": "¿Gastas 3+ horas en tareas repetitivas?",
+        "b_roll": "Screenshots de Excel, Gmail, calendar, Notion desordenados"
+      },
+      {
+        "phase": "INTRO (15-45s)",
+        "visual": "Logo AIGestion aparece, Daniela en su oficina",
+        "narration": "Hola, soy Daniela, la Ciber-Ejecutiva de AIGestion. AIGestion es una plataforma de gestion inteligente que usa IA para automatizar tu trabajo. En este video te muestro como funciona.",
+        "on_screen_text": "Daniela - Ciber-Ejecutiva | AIGestion",
+        "b_roll": "Daniela holograma, dashboard AIGestion"
+      },
+      {
+        "phase": "PROBLEMA (45-90s)",
+        "visual": "Grafico: tiempo perdido en tareas manuales",
+        "narration": "El trabajador promedio pierde 2.8 horas diarias en tareas que una IA podria hacer automaticamente. Eso son 14 horas a la semana. 60 al mes. Casi un mes entero de trabajo perdido.",
+        "on_screen_text": "2.8 hrs/dia = 60 hrs/mes PERDIDAS",
+        "b_roll": "Infografia animada con numeros creciendo"
+      },
+      {
+        "phase": "SOLUCION (90-180s)",
+        "visual": "Demo de AIGestion: dashboard, agentes, automatizacion",
+        "narration": "AIGestion automatiza eso. Tienes agentes de IA que gestionan tu correo, agenda, documentos, analiticas y redes sociales. Todo desde un dashboard. Conecta con Google Drive, Notion, GitHub, y mas.",
+        "on_screen_text": "Agentes IA | Dashboard Unificado | Google + Notion + GitHub",
+        "b_roll": "Screen recording de AIGestion en accion"
+      },
+      {
+        "phase": "DEMO LIVE (180-300s)",
+        "visual": "Screen recording real de AIGestion funcionando",
+        "narration": "Mira esto: le pido a Daniela que genere un reporte de ventas, lo guarde en Drive, y lo publique en mi dashboard. Todo en menos de 30 segundos. Y esto es solo el principio.",
+        "on_screen_text": "Demo en vivo - 30 segundos",
+        "b_roll": "Screen recording con cursor moviendose"
+      },
+      {
+        "phase": "PRICING (300-360s)",
+        "visual": "Tabla de planes con precios",
+        "narration": "AIGestion tiene un plan gratuito que incluye los agentes basicos. Y planes de pago desde muy poco al mes con todo desbloqueado. Te dejo el enlace en la descripcion.",
+        "on_screen_text": "Plan Gratuito | Pro | Enterprise",
+        "b_roll": "Tabla de precios con animacion neón"
+      },
+      {
+        "phase": "CTA (360-420s)",
+        "visual": "Logo grande + URL + QR code",
+        "narration": "Si quieres dejar de perder tiempo en tareas repetitivas, ve a aigestion.net y prueba gratis. Suscribete para mas tutoriales de IA y gestion. Soy Daniela, y esto era AIGestion.",
+        "on_screen_text": "aigestion.net | SUSCRIBETE",
+        "b_roll": "Logo + URL + QR + social handles"
+      }
+    ]
+  },
+  {
+    "title": "Como configurar tus primeros 3 agentes de IA en AIGestion",
+    "duration_min": 10,
+    "format": "16:9",
+    "sections": [
+      {
+        "phase": "HOOK (0-15s)",
+        "visual": "3 agentes trabajando simultaneamente",
+        "narration": "Estos 3 agentes de IA acaban de hacer en 10 segundos lo que a ti te tomaria 2 horas. Te enseño a configurarlos.",
+        "on_screen_text": "3 Agentes IA = 2 horas de trabajo en 10 segundos"
+      },
+      {
+        "phase": "SETUP (15-60s)",
+        "visual": "Pantalla de configuracion de AIGestion",
+        "narration": "Lo primero: entra a AIGestion y ve a la pestania Agentes. Ahi veras una lista de agentes disponibles. Vamos a configurar tres: uno de correo, uno de calendario, y uno de documentos.",
+        "on_screen_text": "Pestania Agentes | 3 agentes a configurar"
+      },
+      {
+        "phase": "AGENTE 1: CORREO (60-180s)",
+        "visual": "Config del agente de correo",
+        "narration": "Agente 1: Correo. Conecta tu Gmail. El agente leera correos, clasificara por prioridad, redactara respuestas, y te avisara solo lo urgente. Configura: que correos lee, cada cuanto revisa, y que nivel de autonomia tiene.",
+        "on_screen_text": "Agente Correo | Gmail | Clasifica + Responde"
+      },
+      {
+        "phase": "AGENTE 2: CALENDARIO (180-300s)",
+        "visual": "Config del agente de calendario",
+        "narration": "Agente 2: Calendario. Conecta Google Calendar. Este agente agenda reuniones, envia recordatorios, reorganiza tu dia si hay conflictos, y te prepara un briefing cada manana con tu agenda del dia.",
+        "on_screen_text": "Agente Calendario | Google Calendar | Agenda + Briefing"
+      },
+      {
+        "phase": "AGENTE 3: DOCUMENTOS (300-420s)",
+        "visual": "Config del agente de documentos",
+        "narration": "Agente 3: Documentos. Conecta Google Drive. Este agente genera reportes, resume documentos, organiza archivos por proyecto, y mantiene todo tu Drive estructurado automaticamente.",
+        "on_screen_text": "Agente Documentos | Google Drive | Reportes + Organizacion"
+      },
+      {
+        "phase": "RESULTADOS (420-540s)",
+        "visual": "Dashboard mostrando tiempo ahorrado",
+        "narration": "Ahora mira el dashboard. Estos 3 agentes te estan ahorrando 4 horas al dia. Y lo mejor: aprenden de tus correcciones y mejoran con el tiempo. Manana seran mas eficientes que hoy.",
+        "on_screen_text": "4 hrs/dia ahorradas | Aprenden y mejoran"
+      },
+      {
+        "phase": "CTA (540-600s)",
+        "visual": "Logo + URL + siguiente tutorial",
+        "narration": "Ya tienes 3 agentes trabajando. En el proximo video te enseño a crear automatizaciones entre ellos. Suscribete para no perdertelo. aigestion.net",
+        "on_screen_text": "Proximo: Automatizaciones | aigestion.net"
+      }
+    ]
+  },
+  {
+    "title": "Automatiza tu negocios completo con AIGestion (caso real)",
+    "duration_min": 12,
+    "format": "16:9",
+    "sections": [
+      {
+        "phase": "HOOK (0-15s)",
+        "visual": "Comparativa: antes vs despues de AIGestion",
+        "narration": "Esta empresa ahorro 30 horas semanales y 2000 euros al mes con AIGestion. Te muestro exactamente como.",
+        "on_screen_text": "-30 hrs/semana | -2000 EUR/mes"
+      },
+      {
+        "phase": "EL NEGOCIO (15-60s)",
+        "visual": "Descripcion del negocio caso de estudio",
+        "narration": "Es una agencia de marketing con 8 empleados. Gastaban 30 horas semanales en reportes, gestion de clientes, y tareas administrativas. Veamos como AIGestion cambio eso.",
+        "on_screen_text": "Agencia Marketing | 8 empleados | 30 hrs perdidas"
+      },
+      {
+        "phase": "IMPLEMENTACION (60-300s)",
+        "visual": "Paso a paso de implementacion",
+        "narration": "Paso 1: Agentes de correo y calendario para todo el equipo. Paso 2: Agente de reportes automaticos para clientes. Paso 3: Dashboard unificado con metrics de todos. Paso 4: Automatizacion de redes sociales. Paso 5: Integracion con Google Drive y Notion.",
+        "on_screen_text": "5 Pasos | De caos a control total"
+      },
+      {
+        "phase": "RESULTADOS (300-420s)",
+        "visual": "Graficos de antes y despues",
+        "narration": "Resultados en 30 dias: 30 horas/semana recuperadas. Tiempo de respuesta a clientes: de 4 horas a 15 minutos. Reportes de clientes: de manual semanal a automatico diario. Costo: 2000 euros menos al mes en tareas administrativas.",
+        "on_screen_text": "30 hrs/semana | 4h->15min | Manual->Automatico | -2000 EUR"
+      },
+      {
+        "phase": "TESTIMONIO (420-540s)",
+        "visual": "Testimonio del cliente (texto o voz)",
+        "narration": "El CEO dice: 'AIGestion no es una herramienta, es un empleado mas. Y el mejor empleado que tenemos.' Ahora la agencia ofrece servicio de gestion con IA a sus propios clientes.",
+        "on_screen_text": "'Es el mejor empleado que tenemos' - CEO"
+      },
+      {
+        "phase": "CTA (540-660s)",
+        "visual": "Logo + URL + info contacto",
+        "narration": "Si quieres resultados como estos para tu negocio, ve a aigestion.net. Tenemos plan gratuito para empezar. Y si necesitas implementacion personalizada, contactanos directamente. Suscribete para mas casos reales.",
+        "on_screen_text": "aigestion.net | Plan Gratis | Implementacion a medida"
+      }
+    ]
+  }
+]

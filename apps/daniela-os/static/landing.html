@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AIGestion - Plataforma de IA para gestoria fiscal y contable. Automatiza facturas, emails, calendario y mas.">
+<title>AIGestion - IA para Gestorias y PYMEs</title>
+<link rel="stylesheet" href="/static/css/aigestion.css">
+<style>
+:root{--primary:#00ffff;--primary-dark:#0099ff;--secondary:#ff0055;--accent:#00ff88;--bg:#0b0f19;--bg-light:#1a1f35;--text:#e8ecf4;--text-muted:#8892b0;--border:rgba(0,255,255,0.15);}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;}
+
+/* Header */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,23,41,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;}
+.logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.btn{padding:10px 24px;border-radius:8px;font-weight:600;cursor:pointer;transition:all 0.2s;border:none;font-size:0.95rem;}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#000;font-weight:700;box-shadow:0 0 15px rgba(0,255,255,0.3);}
+.btn-primary:hover{box-shadow:0 0 30px rgba(0,255,255,0.5),0 0 60px rgba(255,0,85,0.3);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);}
+
+/* 3D Hero Canvas */
+#hero-3d{position:relative;width:100%;height:100vh;overflow:hidden;}
+#canvas-container{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;}
+#canvas-container canvas{display:block;}
+.hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;background:radial-gradient(ellipse at center,transparent 30%,rgba(15,23,41,0.7) 70%);}
+.hero-overlay > *{pointer-events:auto;}
+.hero-overlay h1{font-size:4rem;font-weight:800;line-height:1.1;margin-bottom:24px;text-shadow:0 0 40px rgba(14,165,233,0.5);}
+.hero-overlay h1 span{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-overlay p{font-size:1.25rem;color:var(--text-muted);max-width:600px;margin:0 auto 40px;text-shadow:0 2px 10px rgba(0,0,0,0.5);}
+.hero-buttons{display:flex;gap:16px;justify-content:center;}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:60px;}
+.stat{text-align:center;}
+.stat-value{font-size:2rem;font-weight:700;color:var(--primary);}
+.stat-label{color:var(--text-muted);font-size:0.9rem;}
+
+/* VR Badge */
+.vr-badge{position:absolute;top:100px;right:30px;z-index:10;background:rgba(14,165,233,0.15);border:1px solid var(--primary);border-radius:12px;padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--primary);backdrop-filter:blur(10px);cursor:pointer;transition:all 0.3s;}
+.vr-badge:hover{background:rgba(14,165,233,0.3);transform:scale(1.05);}
+.vr-badge .pulse{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.5);}}
+
+/* Node Info Popup */
+#node-popup{position:absolute;z-index:20;background:rgba(30,41,59,0.95);border:1px solid var(--primary);border-radius:16px;padding:20px;max-width:280px;display:none;backdrop-filter:blur(20px);box-shadow:0 0 40px rgba(14,165,233,0.2);}
+#node-popup h4{color:var(--primary);margin-bottom:8px;font-size:1.1rem;}
+#node-popup p{color:var(--text-muted);font-size:0.9rem;margin-bottom:12px;}
+#node-popup .btn{width:100%;padding:8px;}
+
+/* Scroll indicator */
+.scroll-indicator{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:0.85rem;animation:bounce 2s infinite;}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0);}40%{transform:translateX(-50%) translateY(-10px);}60%{transform:translateX(-50%) translateY(-5px);}}
+
+/* Features */
+.features{padding:100px 0;}
+.section-title{text-align:center;margin-bottom:60px;}
+.section-title h2{font-size:2.5rem;margin-bottom:12px;}
+.section-title p{color:var(--text-muted);font-size:1.1rem;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
+.feature-card{background:var(--bg-light);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all 0.3s;}
+.feature-card:hover{border-color:var(--primary);transform:translateY(-4px);}
+.feature-icon{font-size:2.5rem;margin-bottom:16px;}
+.feature-card h3{font-size:1.25rem;margin-bottom:8px;}
+.feature-card p{color:var(--text-muted);font-size:0.95rem;}
+
+/* Modules */
+.modules{padding:100px 0;background:radial-gradient(ellipse at bottom,rgba(139,92,246,0.1),transparent 50%);}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:40px;}
+.module-tag{background:var(--bg-light);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:center;gap:12px;transition:all 0.2s;cursor:pointer;}
+.module-tag:hover{border-color:var(--secondary);transform:translateX(5px);}
+.module-tag .icon{font-size:1.5rem;}
+.module-tag span{font-weight:500;}
+
+/* Pricing */
+.pricing{padding:100px 0;}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px;}
+.pricing-card{background:var(--bg-light);border:1px solid var(--border);border-radius:20px;padding:40px;position:relative;}
+.pricing-card.popular{border-color:var(--primary);box-shadow:0 0 40px rgba(14,165,233,0.15);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;padding:4px 16px;border-radius:20px;font-size:0.85rem;font-weight:600;}
+.pricing-card h3{font-size:1.5rem;margin-bottom:8px;}
+.pricing-card .price{font-size:3rem;font-weight:800;margin:16px 0;}
+.pricing-card .price span{font-size:1rem;color:var(--text-muted);font-weight:400;}
+.pricing-card ul{list-style:none;margin:24px 0;}
+.pricing-card ul li{padding:8px 0;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
+.pricing-card ul li::before{content:"✓";color:var(--accent);font-weight:700;}
+.pricing-card .btn{width:100%;margin-top:16px;}
+
+/* Demo */
+.demo{padding:100px 0;background:var(--bg-light);}
+.demo-area{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:700px;margin:40px auto 0;}
+.demo-chat{min-height:200px;margin-bottom:20px;}
+.demo-message{padding:12px 16px;border-radius:12px;margin-bottom:12px;max-width:80%;}
+.demo-message.user{background:linear-gradient(135deg,rgba(0,255,255,0.2),rgba(255,0,85,0.15));color:var(--text);margin-left:auto;border:1px solid rgba(0,255,255,0.35);}
+.demo-message.bot{background:var(--bg-light);border:1px solid var(--border);}
+.demo-message.bot strong{color:var(--primary);}
+.demo-input{display:flex;gap:12px;}
+.demo-input input{flex:1;padding:12px 16px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:1rem;}
+.demo-input input:focus{outline:none;border-color:var(--primary);}
+
+/* Footer */
+footer{padding:60px 0 30px;border-top:1px solid var(--border);text-align:center;}
+footer p{color:var(--text-muted);font-size:0.9rem;}
+
+/* Responsive */
+@media(max-width:768px){
+.hero-overlay h1{font-size:2.5rem;}
+.nav-links{display:none;}
+.hero-buttons{flex-direction:column;align-items:center;}
+.hero-stats{flex-direction:column;gap:24px;}
+.vr-badge{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+<nav>
+<div class="logo">AIGestion</div>
+<div class="nav-links">
+<a href="#features">Features</a>
+<a href="#modules">Modulos</a>
+<a href="#pricing">Precios</a>
+<a href="#demo">Demo</a>
+<a href="/admin" class="btn btn-outline">Admin</a>
+<a href="/" class="btn btn-primary">Dashboard</a>
+</div>
+</nav>
+</div>
+</header>
+
+<!-- 3D VR Hero Section -->
+<section id="hero-3d">
+<div id="canvas-container"></div>
+<div class="vr-badge" onclick="enterVR()">
+<div class="pulse"></div>
+<span>VR Ready - Click para entrar</span>
+</div>
+<div id="node-popup">
+<h4 id="popup-title">Modulo</h4>
+<p id="popup-desc">Descripcion</p>
+<button class="btn btn-primary" onclick="closePopup()">Explorar</button>
+</div>
+<div class="hero-overlay">
+<h1>La <span>IA</span> que tu gestoria necesitaba</h1>
+<p>Automatiza facturas, emails, calendario, redes sociales y mas. AIGestion es la plataforma de IA diseñada para gestorias fiscales, contables y PYMEs.</p>
+<div class="hero-buttons">
+<a href="metaverse.html" class="btn btn-primary" style="font-size:1.1rem;padding:14px 32px;background:linear-gradient(135deg,#00ffff,#ff0055);">🌐 Entrar al Metaverse (Multiusuario)</a>
+<a href="neural_city.html" class="btn btn-primary" style="font-size:1.1rem;padding:14px 32px;background:linear-gradient(135deg,#0099ff,#aa00ff);">🏙️ Ciudad Neural 3D</a>
+<a href="daniela_hologram.html" class="btn btn-primary" style="font-size:1.1rem;padding:14px 32px;background:linear-gradient(135deg,#00ff88,#00ffff);">👩‍💼 Habla con Daniela</a>
+<a href="datacenter_live.html" class="btn btn-primary" style="font-size:1.1rem;padding:14px 32px;background:linear-gradient(135deg,#ff0055,#ffaa00);">🌍 Red Global en Vivo</a>
+<a href="#demo" class="btn btn-outline" style="font-size:1.1rem;padding:14px 32px;">Probar Demo</a>
+</div>
+<div class="hero-stats">
+<div class="stat"><div class="stat-value">10+</div><div class="stat-label">Modulos de IA</div></div>
+<div class="stat"><div class="stat-value">10x</div><div class="stat-label">Mas Productividad</div></div>
+<div class="stat"><div class="stat-value">24/7</div><div class="stat-label">Disponible</div></div>
+</div>
+</div>
+<div class="scroll-indicator">
+<span>Descubre mas</span>
+<span style="font-size:1.5rem;">↓</span>
+</div>
+</section>
+
+<section class="features" id="features">
+<div class="container">
+<div class="section-title">
+<h2>Todo lo que necesitas</h2>
+<p>10 modulos de IA especializados trabajando juntos para automatizar tu gestoria</p>
+</div>
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">📧</div>
+<h3>Email Zero Inbox</h3>
+<p>Clasificacion inteligente de emails, respuestas automaticas y recordatorios. Nunca mas pierdas un email importante.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📄</div>
+<h3>Auditoria de Facturas</h3>
+<p>OCR, deteccion de duplicados, anomalias y alertas de fraude. Automatiza la revision de facturas.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🤝</div>
+<h3>Inteligencia de Reuniones</h3>
+<p>Transcripcion automatica, extraccion de action items y decisiones. Nunca mas toma notas a mano.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📝</div>
+<h3>Content Factory</h3>
+<p>Genera contenido para blog, redes sociales, newsletters y emails. Marketing automatizado.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🐝</div>
+<h3>Swarm Intelligence</h3>
+<p>Coordinador multi-agente para tareas complejas. Lanza equipos de IA que trabajan en paralelo.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💻</div>
+<h3>Code Generation</h3>
+<p>Genera codigo desde descripciones en lenguaje natural. Automatiza scripts y herramientas internas.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="modules" id="modules">
+<div class="container">
+<div class="section-title">
+<h2>10 Modulos de IA</h2>
+<p>Cada modulo es especialista en una tarea especifica</p>
+</div>
+<div class="modules-grid">
+<div class="module-tag"><span class="icon">🔮</span><span>Daniela Proactive</span></div>
+<div class="module-tag"><span class="icon">📧</span><span>Email Zero Inbox</span></div>
+<div class="module-tag"><span class="icon">📄</span><span>Invoice Auditor</span></div>
+<div class="module-tag"><span class="icon">🤝</span><span>Meeting Intel</span></div>
+<div class="module-tag"><span class="icon">🎭</span><span>Sentiment Dashboard</span></div>
+<div class="module-tag"><span class="icon">📱</span><span>Social Media</span></div>
+<div class="module-tag"><span class="icon">🎧</span><span>Customer Support</span></div>
+<div class="module-tag"><span class="icon">💻</span><span>Code Generation</span></div>
+<div class="module-tag"><span class="icon">📝</span><span>Content Factory</span></div>
+<div class="module-tag"><span class="icon">🐝</span><span>Swarm Intel</span></div>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<div class="container">
+<div class="section-title">
+<h2>Precios simples y transparentes</h2>
+<p>Empieza gratis, escala cuando necesites</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card">
+<h3>Free</h3>
+<div class="price">€0<span>/mes</span></div>
+<ul>
+<li>100 requests/dia</li>
+<li>3 modulos basicos</li>
+<li>Dashboard web</li>
+<li>Soporte comunidad</li>
+</ul>
+<a href="/" class="btn btn-outline">Empezar Gratis</a>
+</div>
+<div class="pricing-card popular">
+<div class="popular-badge">Mas Popular</div>
+<h3>Pro</h3>
+<div class="price">€29<span>/mes</span></div>
+<ul>
+<li>1,000 requests/dia</li>
+<li>Todos los modulos</li>
+<li>API access</li>
+<li>Analytics avanzado</li>
+<li>Soporte email</li>
+</ul>
+<a href="/" class="btn btn-primary">Elegir Pro</a>
+</div>
+<div class="pricing-card">
+<h3>Enterprise</h3>
+<div class="price">€99<span>/mes</span></div>
+<ul>
+<li>Requests ilimitados</li>
+<li>Todos los modulos</li>
+<li>API + White-label</li>
+<li>SLA 99.9%</li>
+<li>Soporte prioritario</li>
+</ul>
+<a href="/" class="btn btn-outline">Contactar</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="demo" id="demo">
+<div class="container">
+<div class="section-title">
+<h2>Prueba la demo</h2>
+<p>Escribe un mensaje y Daniela respondera usando la IA</p>
+</div>
+<div class="demo-area">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+<span class="badge">Demo Mode - Respuestas limitadas</span>
+<span id="demo-counter" style="font-size:0.8rem;color:var(--text-muted);">5 mensajes restantes</span>
+</div>
+<div class="demo-chat" id="demo-chat">
+<div class="demo-message bot">Hola! Soy Daniela, tu asistente de IA para gestoria. Prueba escribiendo algo como "genera contenido para blog sobre IA" o "clasifica este email".</div>
+</div>
+<div class="demo-input">
+<input type="text" id="demo-input" placeholder="Escribe tu consulta..." onkeypress="if(event.key==='Enter')sendDemo()">
+<button class="btn btn-primary" id="demo-send-btn" onclick="sendDemo()">Enviar</button>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>AIGestion 2026. Plataforma de IA para gestorias y PYMEs.</p>
+</div>
+</footer>
+
+<!-- Three.js 3D Scene -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// AIGESTION 3D NEURAL NETWORK - EXPERIENCIA INMERSIVA
+// ═══════════════════════════════════════════════════════════════
+
+let scene, camera, renderer, nodes = [], connections = [], particles;
+let mouseX = 0, mouseY = 0;
+let targetX = 0, targetY = 0;
+const windowHalfX = window.innerWidth / 2;
+const windowHalfY = window.innerHeight / 2;
+
+// Module data for 3D nodes
+const moduleData = [
+    { name: "Daniela Proactive", desc: "Motor proactivo con analisis de calendario", color: 0x00ffff, icon: "🔮" },
+    { name: "Email Zero Inbox", desc: "Clasificacion inteligente de emails", color: 0x0099ff, icon: "📧" },
+    { name: "Invoice Auditor", desc: "OCR y deteccion de fraude en facturas", color: 0x00ff88, icon: "📄" },
+    { name: "Meeting Intel", desc: "Transcripcion y action items", color: 0xffaa00, icon: "🤝" },
+    { name: "Sentiment", desc: "Analisis emocional en espanol", color: 0xff00aa, icon: "🎭" },
+    { name: "Social Media", desc: "Centro de comando redes sociales", color: 0xff0055, icon: "📱" },
+    { name: "Support", desc: "Automatizacion de soporte", color: 0x00ffaa, icon: "🎧" },
+    { name: "Code Gen", desc: "Generacion de codigo NL", color: 0xaa00ff, icon: "💻" },
+    { name: "Content Factory", desc: "Fabrica de contenido multiplataforma", color: 0xff6600, icon: "📝" },
+    { name: "Swarm Intel", desc: "Coordinador multi-agente", color: 0xff4444, icon: "🐝" },
+];
+
+function init3D() {
+    const container = document.getElementById('canvas-container');
+
+    // Scene
+    scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x0b0f19, 0.0015);
+
+    // Camera
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
+    camera.position.z = 500;
+    camera.position.y = 100;
+
+    // Renderer
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x0b0f19, 1);
+    container.appendChild(renderer.domElement);
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0x404040, 2);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0x00ffff, 2, 1000);
+    pointLight.position.set(0, 200, 200);
+    scene.add(pointLight);
+
+    const pointLight2 = new THREE.PointLight(0xff0055, 2, 1000);
+    pointLight2.position.set(-200, -100, 200);
+    scene.add(pointLight2);
+
+    // Create Neural Network Nodes
+    createNeuralNetwork();
+
+    // Create particle field
+    createParticles();
+
+    // Create grid floor
+    createGrid();
+
+    // Events
+    document.addEventListener('mousemove', onDocumentMouseMove);
+    document.addEventListener('click', onDocumentClick);
+    window.addEventListener('resize', onWindowResize);
+
+    // Animate
+    animate();
+}
+
+function createNeuralNetwork() {
+    const geometry = new THREE.SphereGeometry(8, 32, 32);
+
+    moduleData.forEach((mod, i) => {
+        const angle = (i / moduleData.length) * Math.PI * 2;
+        const radius = 200 + Math.random() * 50;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius * 0.5 + (Math.random() - 0.5) * 100;
+        const z = (Math.random() - 0.5) * 200;
+
+        const material = new THREE.MeshPhongMaterial({
+            color: mod.color,
+            emissive: mod.color,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.9,
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(x, y, z);
+        mesh.userData = { module: mod, originalScale: 1 };
+        scene.add(mesh);
+        nodes.push(mesh);
+
+        // Glow effect
+        const glowGeometry = new THREE.SphereGeometry(12, 32, 32);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+            color: mod.color,
+            transparent: true,
+            opacity: 0.15,
+        });
+        const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+        glow.position.copy(mesh.position);
+        scene.add(glow);
+        mesh.userData.glow = glow;
+    });
+
+    // Create connections between nodes
+    const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x1a1f35,
+        transparent: true,
+        opacity: 0.3,
+    });
+
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            if (Math.random() > 0.6) {
+                const geometry = new THREE.BufferGeometry().setFromPoints([
+                    nodes[i].position,
+                    nodes[j].position,
+                ]);
+                const line = new THREE.Line(geometry, lineMaterial);
+                scene.add(line);
+                connections.push({ line, from: nodes[i], to: nodes[j], phase: Math.random() * Math.PI * 2 });
+            }
+        }
+    }
+}
+
+function createParticles() {
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+
+    for (let i = 0; i < 2000; i++) {
+        vertices.push(
+            (Math.random() - 0.5) * 2000,
+            (Math.random() - 0.5) * 2000,
+            (Math.random() - 0.5) * 2000
+        );
+    }
+
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+    const material = new THREE.PointsMaterial({
+        color: 0x00ffff,
+        size: 2,
+        transparent: true,
+        opacity: 0.6,
+    });
+
+    particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+}
+
+function createGrid() {
+    const gridHelper = new THREE.GridHelper(2000, 50, 0x1a1f35, 0x1a1f35);
+    gridHelper.position.y = -300;
+    scene.add(gridHelper);
+
+    // Second grid above
+    const gridHelper2 = new THREE.GridHelper(2000, 50, 0x1a1f35, 0x1a1f35);
+    gridHelper2.position.y = 300;
+    scene.add(gridHelper2);
+}
+
+function onDocumentMouseMove(event) {
+    mouseX = (event.clientX - windowHalfX) * 0.5;
+    mouseY = (event.clientY - windowHalfY) * 0.5;
+}
+
+function onDocumentClick(event) {
+    // Raycaster for node clicks
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(nodes);
+
+    if (intersects.length > 0) {
+        const node = intersects[0].object;
+        showPopup(node.userData.module, event.clientX, event.clientY);
+    }
+}
+
+function showPopup(module, x, y) {
+    const popup = document.getElementById('node-popup');
+    document.getElementById('popup-title').textContent = module.icon + ' ' + module.name;
+    document.getElementById('popup-desc').textContent = module.desc;
+    popup.style.left = Math.min(x + 20, window.innerWidth - 300) + 'px';
+    popup.style.top = Math.min(y, window.innerHeight - 200) + 'px';
+    popup.style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('node-popup').style.display = 'none';
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    const time = Date.now() * 0.001;
+
+    // Smooth camera follow
+    targetX = mouseX * 0.5;
+    targetY = mouseY * 0.5;
+    camera.position.x += (targetX - camera.position.x) * 0.02;
+    camera.position.y += (-targetY + 100 - camera.position.y) * 0.02;
+    camera.lookAt(scene.position);
+
+    // Animate nodes
+    nodes.forEach((node, i) => {
+        node.rotation.x += 0.01;
+        node.rotation.y += 0.01;
+
+        // Pulsing glow
+        if (node.userData.glow) {
+            const scale = 1 + Math.sin(time * 2 + i) * 0.2;
+            node.userData.glow.scale.setScalar(scale);
+        }
+
+        // Floating motion
+        node.position.y += Math.sin(time + i) * 0.2;
+    });
+
+    // Animate connections
+    connections.forEach((conn, i) => {
+        const opacity = 0.2 + Math.sin(time * 3 + conn.phase) * 0.15;
+        conn.line.material.opacity = opacity;
+    });
+
+    // Rotate particles
+    if (particles) {
+        particles.rotation.y += 0.0005;
+        particles.rotation.x += 0.0002;
+    }
+
+    renderer.render(scene, camera);
+}
+
+// VR Entry
+function enterVR() {
+    if (navigator.xr) {
+        navigator.xr.requestSession('immersive-vr').then(session => {
+            renderer.xr.enabled = true;
+            renderer.xr.setSession(session);
+            alert('Modo VR activado! Mueve la cabeza para explorar la red neuronal.');
+        }).catch(err => {
+            alert('VR no disponible en este dispositivo. Usa un visor VR compatible.');
+        });
+    } else {
+        alert('WebXR no soportado. Prueba con Oculus, HTC Vive o similar.');
+    }
+}
+
+// Initialize
+init3D();
+</script>
+
+<script src="/static/js/api-client.js"></script>
+<script src="/static/js/built-in-ai.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// AIGESTION DEMO CHAT — BUILT-IN AI + GEMINI FALLBACK (GT-15)
+// ═══════════════════════════════════════════════════════════════
+// Chrome 148+ Built-in Prompt API: zero-cost, on-device, no rate limits.
+// Falls back to Gemini API (free tier) for non-Chrome browsers.
+// Higher message limit (10) since built-in AI has no cost.
+// ═══════════════════════════════════════════════════════════════
+
+let demoChat = null;
+let demoMode = 'api';
+const DEMO_KEY = 'aigestion_demo_count_v2';
+
+function getDemoCount() {
+  return parseInt(localStorage.getItem(DEMO_KEY) || '0', 10);
+}
+
+function incrementDemoCount() {
+  const count = getDemoCount() + 1;
+  localStorage.setItem(DEMO_KEY, String(count));
+  return count;
+}
+
+function updateDemoCounter() {
+  if (!demoChat) return;
+  const remaining = demoChat.getRemaining();
+  const counter = document.getElementById('demo-counter');
+  const sendBtn = document.getElementById('demo-send-btn');
+  const input = document.getElementById('demo-input');
+  const badge = document.querySelector('.badge');
+
+  // Update badge to show mode
+  if (badge) {
+    if (demoMode === 'builtin') {
+      badge.textContent = 'On-Device AI - Sin coste, sin limites';
+      badge.style.color = 'var(--accent)';
+      badge.style.borderColor = 'var(--accent)';
+    } else {
+      badge.textContent = 'Demo Mode - Gemini API (free tier)';
+      badge.style.color = 'var(--primary)';
+      badge.style.borderColor = 'var(--primary)';
+    }
+  }
+
+  if (remaining <= 0) {
+    counter.textContent = '0 mensajes restantes';
+    counter.style.color = 'var(--color-danger, #ff3355)';
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Limite alcanzado';
+    input.disabled = true;
+    input.placeholder = 'Registrate para mas mensajes...';
+
+    const chat = document.getElementById('demo-chat');
+    const upgrade = document.createElement('div');
+    upgrade.className = 'demo-message bot';
+    upgrade.innerHTML = '<strong>Daniela:</strong> Has agotado tus mensajes de demo. <a href="/" style="color:var(--primary);text-decoration:underline;">Registrate gratis</a> para seguir conversando con la IA.';
+    chat.appendChild(upgrade);
+  } else {
+    counter.textContent = remaining + ' mensaje' + (remaining > 1 ? 's' : '') + ' restante' + (remaining > 1 ? 's' : '');
+  }
+}
+
+function sendDemo() {
+  const input = document.getElementById('demo-input');
+  const chat = document.getElementById('demo-chat');
+  const sendBtn = document.getElementById('demo-send-btn');
+  const msg = input.value.trim();
+
+  if (!msg) return;
+  if (!demoChat || getDemoCount() >= demoChat.maxMessages) return;
+
+  const userDiv = document.createElement('div');
+  userDiv.className = 'demo-message user';
+  userDiv.textContent = msg;
+  chat.appendChild(userDiv);
+
+  input.value = '';
+  input.disabled = true;
+  sendBtn.disabled = true;
+
+  const loadingDiv = document.createElement('div');
+  loadingDiv.className = 'demo-message bot';
+  loadingDiv.id = 'demo-loading';
+  loadingDiv.innerHTML = '<div style="display:flex;align-items:center;gap:8px;"><span class="spinner" style="display:inline-block;width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;"></span> <strong>Daniela</strong> esta pensando...</div>';
+  chat.appendChild(loadingDiv);
+  chat.scrollTop = chat.scrollHeight;
+
+  (async () => {
+    try {
+      const result = await demoChat.sendMessage(msg);
+
+      const loading = document.getElementById('demo-loading');
+      if (loading) loading.remove();
+
+      const botDiv = document.createElement('div');
+      botDiv.className = 'demo-message bot';
+      botDiv.innerHTML = '<strong>Daniela:</strong> ' + result.text;
+
+      // Show source indicator
+      if (result.source === 'builtin') {
+        botDiv.title = 'Generated on-device (Chrome built-in AI, $0 cost)';
+      } else if (result.source === 'api') {
+        botDiv.title = 'Generated via Gemini API (free tier)';
+      }
+
+      chat.appendChild(botDiv);
+      chat.scrollTop = chat.scrollHeight;
+
+      incrementDemoCount();
+      updateDemoCounter();
+
+      if (result.limit) {
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Limite alcanzado';
+        input.disabled = true;
+      }
+    } catch (error) {
+      const loading = document.getElementById('demo-loading');
+      if (loading) loading.remove();
+
+      const botDiv = document.createElement('div');
+      botDiv.className = 'demo-message bot';
+      botDiv.style.borderColor = 'var(--color-danger, #ff3355)';
+      botDiv.innerHTML = '<strong>Daniela:</strong> Disculpa, hubo un error. ' + (error.message || 'Intenta de nuevo.');
+      chat.appendChild(botDiv);
+      chat.scrollTop = chat.scrollHeight;
+    } finally {
+      if (demoChat.getRemaining() > 0) {
+        input.disabled = false;
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Enviar';
+        input.focus();
+      }
+    }
+  })();
+}
+
+// Initialize demo chat on page load
+(async () => {
+  demoChat = new AIGestionDemoChat();
+  const initResult = await demoChat.init();
+  demoMode = initResult.mode;
+  console.log('[Demo Chat] Mode:', initResult.mode, '-', initResult.reason);
+  updateDemoCounter();
+})();
+
+// Add spinner keyframe if not already in CSS
+if (!document.getElementById('spin-keyframe')) {
+  const style = document.createElement('style');
+  style.id = 'spin-keyframe';
+  style.textContent = '@keyframes spin{to{transform:rotate(360deg);}}';
+  document.head.appendChild(style);
+}
+</script>
+
+</body>
+</html>

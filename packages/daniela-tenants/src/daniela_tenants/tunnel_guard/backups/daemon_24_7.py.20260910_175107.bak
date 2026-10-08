@@ -1,0 +1,396 @@
+#!/usr/bin/env python3
+"""
+Daniela 24/7 — Wake-Lock + Boot Service + Watchdog (E-01 / Fase 5)
+===================================================================
+El obstaculo #1 de Daniela movil: Android mata los procesos de Termux en
+cuanto bloqueas la pantalla. Este modulo lo resuelve con tres capas:
+
+  1. WAKE-LOCK      — termux-wake-lock mantiene el CPU despierto
+  2. FOREGROUND     — notificacion sticky: Android respeta servicios visibles
+  3. WATCHDOG       — si el gateway cae, lo relanza automaticamente
+
+Ademas genera el script de auto-arranque en ~/.termux/boot/ para que Daniela
+vuelva sola despues de un reinicio.
+
+Seguridad: todos los comandos pasan por safe_exec (nunca os.system, nunca
+shell=True). Sin excepciones.
+
+Rutas:
+  GET  /api/pixel/daemon/status        — estado completo del guardian
+  POST /api/pixel/daemon/start         — arranca el guardian
+  POST /api/pixel/daemon/stop          — lo detiene y libera el wake-lock
+  GET  /api/pixel/daemon/heartbeat     — latido (para el watchdog remoto)
+  POST /api/pixel/daemon/install-boot  — instala el servicio de arranque
+  GET  /api/pixel/daemon/config        — configuracion actual
+  GET  /api/pixel/daemon/events        — ultimos eventos
+
+Coste: $0/mes — Termux:API + Termux:Boot (gratis)
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import threading
+import time
+from collections import deque
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Deque, Dict, List, Optional
+
+from safe_exec import run_cmd, run_code
+
+# ── Configuracion ────────────────────────────────────────────────────────────
+PROJECT_ROOT = Path(__file__).resolve().parent
+STATE_DIR = PROJECT_ROOT / "data" / "daemon_24_7"
+STATE_FILE = STATE_DIR / "daemon_state.json"
+
+LOOP_INTERVAL = 15          # segundos entre ciclos del guardian
+NOTIFY_EVERY = 300          # re-publicar notificacion sticky cada 5 min
+WATCHDOG_EVERY = 30         # comprobar salud del gateway
+MAX_EVENTS = 200
+
+GATEWAY_PORT = 8082
+GATEWAY_SCRIPT = "termux_api_gateway.py"
+
+_instance: Optional["DaemonGuard"] = None
+_instance_lock = threading.Lock()
+
+
+def is_termux() -> bool:
+    """True si corre dentro de Termux en Android."""
+    return bool(
+        os.environ.get("TERMUX_VERSION")
+        or os.environ.get("PREFIX", "").startswith("/data/data/com.termux")
+        or Path("/data/data/com.termux").exists()
+    )
+
+
+class DaemonGuard:
+    """Guardian del daemon: wake-lock + foreground + watchdog."""
+
+    def __init__(self) -> None:
+        self.platform = "termux" if is_termux() else "pc"
+        self.running = False
+        self._thread: Optional[threading.Thread] = None
+        self._stop = threading.Event()
+
+        self.started_at: Optional[float] = None
+        self.wake_lock: bool = False
+        self.last_notify: float = 0.0
+        self.last_watchdog: float = 0.0
+        self.heartbeats: int = 0
+        self.restarts: int = 0
+        self.gateway_alive: bool = False
+        self.events: Deque[Dict[str, Any]] = deque(maxlen=MAX_EVENTS)
+
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        self._load()
+
+    # ── Eventos ──────────────────────────────────────────────────────────────
+    def _event(self, kind: str, msg: str) -> None:
+        self.events.append({
+            "ts": datetime.now().isoformat(timespec="seconds"),
+            "kind": kind,
+            "msg": msg,
+        })
+
+    # ── Persistencia ─────────────────────────────────────────────────────────
+    def _load(self) -> None:
+        if STATE_FILE.exists():
+            try:
+                d = json.loads(STATE_FILE.read_text(encoding="utf-8"))
+                self.restarts = d.get("restarts", 0)
+                self.heartbeats = d.get("heartbeats", 0)
+            except Exception:
+                pass
+
+    def _save(self) -> None:
+        try:
+            STATE_FILE.write_text(json.dumps({
+                "platform": self.platform,
+                "running": self.running,
+                "started_at": self.started_at,
+                "wake_lock": self.wake_lock,
+                "heartbeats": self.heartbeats,
+                "restarts": self.restarts,
+                "gateway_alive": self.gateway_alive,
+                "saved_at": datetime.now().isoformat(timespec="seconds"),
+            }, indent=2), encoding="utf-8")
+        except Exception:
+            pass
+
+    # ── Capa 1: Wake-Lock ────────────────────────────────────────────────────
+    def acquire_wake_lock(self) -> bool:
+        """Mantiene el CPU despierto. Critico: sin esto Android mata el daemon."""
+        if self.platform != "termux":
+            self._event("wake_lock", "omitido (no es Termux)")
+            return False
+        if self.wake_lock:
+            return True
+        r = run_cmd("termux-wake-lock", timeout=8)
+        if r.returncode == 0:
+            self.wake_lock = True
+            self._event("wake_lock", "adquirido — CPU no dormira")
+            return True
+        self._event("wake_lock", f"fallo: {r.stderr.strip()[:80]}")
+        return False
+
+    def release_wake_lock(self) -> bool:
+        if not self.wake_lock:
+            return True
+        r = run_cmd("termux-wake-unlock", timeout=8)
+        self.wake_lock = False
+        self._event("wake_lock", "liberado")
+        return r.returncode == 0
+
+    # ── Capa 2: Notificacion sticky (foreground) ─────────────────────────────
+    def post_foreground(self, force: bool = False) -> bool:
+        """Notificacion permanente: Android no mata servicios visibles."""
+        if self.platform != "termux":
+            return False
+        now = time.time()
+        if not force and (now - self.last_notify) < NOTIFY_EVERY:
+            return True
+        self.last_notify = now
+        uptime = int(now - self.started_at) if self.started_at else 0
+        h, m = divmod(uptime // 60, 60)
+        r = run_cmd([
+            "termux-notification",
+            "--id", "daniela-247",
+            "--title", "Daniela activa",
+            "--content", f"Operativa {h}h {m}m · {self.heartbeats} latidos",
+            "--priority", "low",
+            "--ongoing",
+        ], timeout=8)
+        return r.returncode == 0
+
+    # ── Capa 3: Watchdog del gateway ─────────────────────────────────────────
+    def check_gateway(self) -> bool:
+        """Comprueba si el gateway Termux responde en localhost."""
+        try:
+            import urllib.request
+            req = urllib.request.Request(
+                f"http://127.0.0.1:{GATEWAY_PORT}/api/pixel/health",
+                headers={"X-Pixel-Token": os.getenv("PIXEL_TOKEN", "daniela-pixel-2026")},
+            )
+            with urllib.request.urlopen(req, timeout=3) as r:
+                alive = r.status == 200
+        except Exception:
+            alive = False
+
+        if alive != self.gateway_alive:
+            self._event("watchdog",
+                        "gateway OK" if alive else "gateway CAIDO")
+        self.gateway_alive = alive
+        return alive
+
+    def restart_gateway(self) -> bool:
+        """Relaunch del gateway si ha caido."""
+        if self.platform != "termux":
+            return False
+        script = PROJECT_ROOT / GATEWAY_SCRIPT
+        if not script.exists():
+            self._event("watchdog", f"no existe {GATEWAY_SCRIPT}")
+            return False
+        try:
+            import subprocess
+            subprocess.Popen(
+                ["python", str(script)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                start_new_session=True,
+            )
+            self.restarts += 1
+            self._event("watchdog", f"gateway relanzado (intento #{self.restarts})")
+            return True
+        except Exception as e:
+            self._event("watchdog", f"error al relanzar: {str(e)[:60]}")
+            return False
+
+    # ── Bucle principal ──────────────────────────────────────────────────────
+    def _loop(self) -> None:
+        self._event("daemon", "guardian arrancado")
+        while not self._stop.wait(LOOP_INTERVAL):
+            try:
+                self.heartbeats += 1
+                self.acquire_wake_lock()
+                self.post_foreground()
+                if (time.time() - self.last_watchdog) >= WATCHDOG_EVERY:
+                    self.last_watchdog = time.time()
+                    if not self.check_gateway():
+                        self.restart_gateway()
+                if self.heartbeats % 20 == 0:
+                    self._save()
+            except Exception as e:
+                self._event("error", f"{type(e).__name__}: {str(e)[:80]}")
+        self._event("daemon", "guardian detenido")
+
+    # ── API publica ──────────────────────────────────────────────────────────
+    def start(self) -> Dict[str, Any]:
+        if self.running:
+            return {"ok": True, "msg": "ya esta en marcha"}
+        self.running = True
+        self.started_at = time.time()
+        self._stop.clear()
+        self._thread = threading.Thread(target=self._loop, daemon=True)
+        self._thread.start()
+        return {"ok": True, "msg": "guardian 24/7 arrancado",
+                "platform": self.platform}
+
+    def stop(self) -> Dict[str, Any]:
+        if not self.running:
+            return {"ok": True, "msg": "no estaba en marcha"}
+        self.running = False
+        self._stop.set()
+        self.release_wake_lock()
+        self._save()
+        return {"ok": True, "msg": "guardian detenido"}
+
+    def status(self) -> Dict[str, Any]:
+        uptime = int(time.time() - self.started_at) if self.started_at else 0
+        return {
+            "platform": self.platform,
+            "running": self.running,
+            "uptime_seconds": uptime,
+            "uptime_human": f"{uptime // 3600}h {(uptime % 3600) // 60}m",
+            "wake_lock": self.wake_lock,
+            "gateway_alive": self.gateway_alive,
+            "gateway_port": GATEWAY_PORT,
+            "heartbeats": self.heartbeats,
+            "restarts": self.restarts,
+            "started_at": (
+                datetime.fromtimestamp(self.started_at).isoformat(timespec="seconds")
+                if self.started_at else None),
+            "events": list(self.events)[-15:],
+        }
+
+    # ── Servicio de arranque ─────────────────────────────────────────────────
+    def install_boot_service(self) -> Dict[str, Any]:
+        """Escribe ~/.termux/boot/daniela-boot.sh para auto-arranque."""
+        if self.platform != "termux":
+            return {"ok": False, "msg": "solo disponible en Termux"}
+        home = Path(os.path.expanduser("~"))
+        boot_dir = home / ".termux" / "boot"
+        try:
+            boot_dir.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            return {"ok": False, "msg": f"no se pudo crear {boot_dir}: {e}"}
+
+        script = boot_dir / "daniela-boot.sh"
+        content = (
+            "#!/data/data/com.termux/files/usr/bin/bash\n"
+            "# DanielaOS — auto-arranque generado por daemon_24_7.py\n"
+            "termux-wake-lock\n"
+            f"cd {PROJECT_ROOT}\n"
+            "nohup python termux_api_gateway.py > /tmp/daniela_gateway.log 2>&1 &\n"
+            "nohup python -c \"import daemon_24_7; "
+            "daemon_24_7.get_instance().start(); "
+            "import time; time.sleep(86400)\" > /tmp/daniela_daemon.log 2>&1 &\n"
+            'termux-toast "Daniela despierta"\n'
+        )
+        try:
+            script.write_text(content, encoding="utf-8")
+            os.chmod(script, 0o755)
+        except Exception as e:
+            return {"ok": False, "msg": f"no se pudo escribir: {e}"}
+
+        self._event("boot", f"servicio instalado en {script}")
+        return {
+            "ok": True,
+            "path": str(script),
+            "msg": "Instala Termux:Boot y abre la app una vez para activarlo.",
+        }
+
+
+def get_instance() -> DaemonGuard:
+    """Singleton del guardian."""
+    global _instance
+    with _instance_lock:
+        if _instance is None:
+            _instance = DaemonGuard()
+        return _instance
+
+
+# =============================================================================
+# RUTAS FLASK
+# =============================================================================
+
+def register_daemon_routes(app) -> None:
+    """Registra las rutas del guardian 24/7."""
+    from flask import jsonify, request
+
+    @app.route("/api/pixel/daemon/status", methods=["GET"])
+    def daemon_status():
+        return jsonify(get_instance().status())
+
+    @app.route("/api/pixel/daemon/start", methods=["POST"])
+    def daemon_start():
+        return jsonify(get_instance().start())
+
+    @app.route("/api/pixel/daemon/stop", methods=["POST"])
+    def daemon_stop():
+        return jsonify(get_instance().stop())
+
+    @app.route("/api/pixel/daemon/heartbeat", methods=["GET"])
+    def daemon_heartbeat():
+        g = get_instance()
+        return jsonify({
+            "alive": True,
+            "platform": g.platform,
+            "heartbeats": g.heartbeats,
+            "wake_lock": g.wake_lock,
+            "gateway_alive": g.gateway_alive,
+            "ts": datetime.now().isoformat(timespec="seconds"),
+        })
+
+    @app.route("/api/pixel/daemon/install-boot", methods=["POST"])
+    def daemon_install_boot():
+        return jsonify(get_instance().install_boot_service())
+
+    @app.route("/api/pixel/daemon/config", methods=["GET"])
+    def daemon_config():
+        return jsonify({
+            "loop_interval": LOOP_INTERVAL,
+            "notify_every": NOTIFY_EVERY,
+            "watchdog_every": WATCHDOG_EVERY,
+            "gateway_port": GATEWAY_PORT,
+            "gateway_script": GATEWAY_SCRIPT,
+            "project_root": str(PROJECT_ROOT),
+        })
+
+    @app.route("/api/pixel/daemon/events", methods=["GET"])
+    def daemon_events():
+        g = get_instance()
+        limit = request.args.get("limit", 50, type=int)
+        return jsonify({"events": list(g.events)[-limit:], "total": len(g.events)})
+
+    print("[Daniela 24/7] Routes registered: /api/pixel/daemon/* "
+          "(status, start, stop, heartbeat, install-boot, config, events)")
+
+
+def main() -> None:
+    import sys
+    g = get_instance()
+    if "--install-boot" in sys.argv:
+        print(json.dumps(g.install_boot_service(), indent=2))
+        return
+    if "--status" in sys.argv:
+        print(json.dumps(g.status(), indent=2))
+        return
+    print("Daniela 24/7 — Guardian del daemon")
+    print(f"  plataforma : {g.platform}")
+    print(f"  gateway    : puerto {GATEWAY_PORT}")
+    print(f"  bucle      : cada {LOOP_INTERVAL}s")
+    print("\nArrancando guardian (Ctrl+C para salir)...")
+    g.start()
+    try:
+        while True:
+            time.sleep(5)
+    except KeyboardInterrupt:
+        g.stop()
+        print("\nGuardian detenido, wake-lock liberado.")
+
+
+if __name__ == "__main__":
+    main()

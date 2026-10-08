@@ -1,0 +1,283 @@
+# aig Android App Configuration
+# =====================================
+# Unified configuration for Android app + Pixel integration
+
+app:
+  name: "aig Android"
+  version: "1.0.0"
+  package: "com.daniela.os"
+  
+# Pixel Bridge Configuration
+pixel_bridge:
+  # Known IPs for Pixel discovery (comma-separated)
+  known_ips: "192.168.1.133,192.168.1.170,192.168.1.100"
+  # Single Pixel IP (fallback)
+  pixel_ip: "192.168.1.133"
+  # Gateway port on Pixel
+  gateway_port: 8082
+  # Auth token (must match Pixel Termux gateway)
+  auth_token: "${PIXEL_TOKEN}"
+  # Cache TTL in seconds
+  cache_ttl: 10
+  # Discovery timeout per IP (seconds)
+  discovery_timeout: 1.5
+  # Request timeout (seconds)
+  request_timeout: 5
+  # Redis URL for caching
+  redis_url: "redis://redis:6379"
+
+# Termux API Gateway (runs on PC, connects to Pixel)
+termux_gateway:
+  port: 8082
+  auth_token: "${PIXEL_TOKEN}"
+  rate_limit: 30
+  rate_window: 60
+
+# Mobile PWA
+mobile_app:
+  port: 8095
+  base_url: "http://localhost:8095"
+  service_worker: true
+  offline_support: true
+
+# Android app configuration
+android:
+  package: "com.daniela.os"
+  min_sdk: 24
+  target_sdk: 34
+  version_code: 1
+  version_name: "1.0.0"
+  permissions:
+    - INTERNET
+    - RECORD_AUDIO
+    - VIBRATE
+    - WAKE_LOCK
+    - ACCESS_FINE_LOCATION
+    - ACCESS_COARSE_LOCATION
+    - CAMERA
+    - READ_EXTERNAL_STORAGE
+    - WRITE_EXTERNAL_STORAGE
+    - BLUETOOTH
+    - BLUETOOTH_ADMIN
+    - NFC
+    - NFC_TRANSACTION_EVENT
+
+# Services configuration
+services:
+  # Battery monitoring
+  battery:
+    enabled: true
+    update_interval: 30
+    low_threshold: 20
+    critical_threshold: 10
+  
+  # Sensors
+  sensors:
+    accelerometer: true
+    gyroscope: true
+    magnetometer: true
+    proximity: true
+    light: true
+    pressure: true
+    gps: true
+    network_location: true
+  
+  # Geofencing
+  geofence:
+    enabled: true
+    max_fences: 100
+    notification_radius: 50
+  
+  # Mesh networking
+  mesh:
+    enabled: true
+    max_hops: 3
+    ttl: 300
+  
+  # Security
+  security:
+    blackbox: true
+    camera: true
+    forensic: true
+  
+  # Mesh networking
+  mesh:
+    outbox_enabled: true
+    max_queue_size: 1000
+    retry_interval: 60
+
+# Bridge configuration
+bridges:
+  # ADB mirror
+  adb_mirror:
+    enabled: true
+    port: 5555
+  
+  # Bluetooth bridge
+  bluetooth:
+    enabled: true
+    uuid: "00001101-0000-1000-8000-00805F9B34FB"
+  
+  # NFC
+  nfc:
+    enabled: true
+    hce_enabled: true
+    automation: true
+  
+  # IR bridge
+  ir:
+    enabled: true
+    protocol: "NEC"
+  
+  # Serial bridge
+  serial:
+    enabled: false
+    baudrate: 115200
+  
+  # Termux API gateway
+  termux_gateway:
+    enabled: true
+    port: 8082
+    rate_limit: 30
+  
+  # Voice pipeline
+  voice:
+    enabled: true
+    tts: "edge"
+    stt: "whisper"
+    wake_word: "daniela"
+
+# Mobile app configuration
+mobile_app:
+  # PWA configuration
+  pwa:
+    name: "Daniela OS"
+    short_name: "Daniela"
+    theme_color: "#000000"
+    background_color: "#000000"
+    display: "standalone"
+    orientation: "portrait-primary"
+    scope: "/"
+    start_url: "/"
+    icons:
+      - src: "/icons/icon-192.png"
+        sizes: "192x192"
+        type: "image/png"
+      - src: "/icons/icon-512.png"
+        sizes: "512x512"
+        type: "image/png"
+  
+  # Offline support
+  offline:
+    enabled: true
+    cache_strategy: "network-first"
+    max_cache_size: 50
+  
+  # Push notifications
+  notifications:
+    enabled: true
+    fcm_sender_id: ""
+    vapid_key: ""
+  
+  # Sync
+  sync:
+    enabled: true
+    interval: 300
+    conflict_resolution: "server-wins"
+
+# API Gateway
+api_gateway:
+  port: 8095
+  base_url: "http://localhost:8095"
+  cors:
+    enabled: true
+    origins:
+      - "http://localhost:8095"
+      - "http://daniela.localhost"
+      - "http://hermes.localhost"
+      - "http://api.localhost"
+  rate_limit:
+    enabled: true
+    requests: 100
+    window: 60
+
+# Security
+security:
+  # Authentication
+  auth:
+    jwt_secret: "${JWT_SECRET}"
+    access_token_expire: 3600
+    refresh_token_expire: 86400
+  
+  # Encryption
+  encryption:
+    algorithm: "AES-256-GCM"
+    key_derivation: "PBKDF2"
+    iterations: 100000
+  
+  # SSL/TLS
+  tls:
+    enabled: false
+    cert_file: ""
+    key_file: ""
+  
+  # CORS
+  cors:
+    enabled: true
+    allowed_origins:
+      - "http://localhost:8095"
+      - "http://daniela.localhost"
+      - "http://hermes.localhost"
+      - "http://api.localhost"
+  
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_minute: 60
+    burst: 10
+
+# Monitoring
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    path: "/metrics"
+  
+  grafana:
+    enabled: true
+    port: 3000
+    admin_user: "admin"
+    admin_password: "${GRAFANA_PASSWORD}"
+  
+  logging:
+    level: "INFO"
+    format: "json"
+    output: "stdout"
+  
+  health_checks:
+    interval: 30
+    timeout: 10
+    retries: 3
+
+# Deployment
+deployment:
+  environment: "development"
+  replicas: 1
+  resources:
+    limits:
+      cpu: "2"
+      memory: "2G"
+    requests:
+      cpu: "500m"
+      memory: "512Mi"
+  
+  # Health checks
+  health_checks:
+    liveness:
+      path: "/health"
+      interval: 30
+      timeout: 10
+    readiness:
+      path: "/ready"
+      interval: 10
+      timeout: 5

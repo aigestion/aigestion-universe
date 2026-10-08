@@ -1,0 +1,68 @@
+{
+  "escaneos": 62,
+  "ultimo": "2026-09-19 23:13:31",
+  "riesgo": {
+    "nivel": "ALTO",
+    "criticos": [],
+    "altos": [
+      "4 literales del token por defecto en el codigo"
+    ],
+    "medios": []
+  },
+  "tuneles": [],
+  "gateway": {
+    "ok": true,
+    "motivo": "",
+    "ips": [
+      {
+        "ip": "100.65.50.219",
+        "vivo": false,
+        "tipo": "nada",
+        "responde_sin_token": false,
+        "detalle": {
+          "con_token /api/pixel/health": "sin respuesta",
+          "con_token /": "sin respuesta",
+          "con_token /api/skills/dispatch": "sin respuesta"
+        }
+      }
+    ]
+  },
+  "literales": 4,
+  "tailscale": {
+    "instalado": true,
+    "conectado": true,
+    "mi_ip": "100.98.235.124",
+    "pares": [
+      {
+        "id": "nodekey:0c77",
+        "nombre": "Pixel Ale",
+        "so": "android",
+        "ips": [
+          "100.123.204.34",
+          "fd7a:115c:a1e0::a701:cca5"
+        ],
+        "online": false
+      },
+      {
+        "id": "nodekey:7985",
+        "nombre": "Redmi Note 14 Pro 5G",
+        "so": "android",
+        "ips": [
+          "100.98.218.4",
+          "fd7a:115c:a1e0::3501:dad4"
+        ],
+        "online": false
+      },
+      {
+        "id": "nodekey:de9a",
+        "nombre": "usuario-pc",
+        "so": "linux",
+        "ips": [
+          "100.85.247.7",
+          "fd7a:115c:a1e0::ed35:f708"
+        ],
+        "online": false
+      }
+    ]
+  }
+}

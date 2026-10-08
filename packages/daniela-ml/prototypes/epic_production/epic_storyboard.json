@@ -1,0 +1,23 @@
+[
+  {
+    "escena": 1,
+    "prompt": "Cinematic macro shot of a sleek obsidian microchip opening to reveal a glowing cyan holographic neural core, volumetrical neon fog, 8k, Unreal Engine 5 render style, raytracing, ultra realistic",
+    "movimiento": "Slow zoom in towards the glowing core",
+    "locucion": "Bienvenidos al núcleo de la inteligencia artificial distribuida.",
+    "frame_path": "mock_frame.jpg"
+  },
+  {
+    "escena": 2,
+    "prompt": "A vast futuristic dark server hall with golden laser beams scanning translucent glass data crystals floating in mid-air, high contrast, cinematic depth of field, Dune aesthetic",
+    "movimiento": "Camera panning smoothly to the right across the crystals",
+    "locucion": "Agentes autónomos colaborando en tiempo real con precisión milimétrica.",
+    "frame_path": "mock_frame.jpg"
+  },
+  {
+    "escena": 3,
+    "prompt": "An infinite glowing blue neural network expanding over a dark horizon, gold particles floating, hyper-realistic reflections, 8k resolution, cinematic lighting",
+    "movimiento": "Camera flying forward through the neural network",
+    "locucion": "El futuro de la IA no es un solo cerebro, es un ecosistema colaborativo.",
+    "frame_path": "mock_frame.jpg"
+  }
+]

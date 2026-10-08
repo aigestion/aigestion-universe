@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniela</title>
+<link rel="manifest" href="/manifest.json">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--surface:#111;--border:#1a1a2e;--accent:#00f0ff;--accent2:#ff0066;--text:#e0e0e0;--dim:#555;--green:#00ff88;--red:#ff4444;--orange:#ff8800}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+
+/* Header */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.header h1{font-size:18px;font-weight:600;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header-right{display:flex;gap:12px;align-items:center}
+.status-pill{display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:11px;border:1px solid var(--border)}
+.status-pill .dot{width:8px;height:8px;border-radius:50%}
+.status-pill.ok .dot{background:var(--green);box-shadow:0 0 6px var(--green)}
+.status-pill.warn .dot{background:var(--orange);box-shadow:0 0 6px var(--orange)}
+.status-pill.err .dot{background:var(--red);box-shadow:0 0 6px var(--red)}
+
+/* Main layout */
+.main{display:flex;flex:1;overflow:hidden}
+
+/* Sidebar */
+.sidebar{width:260px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{padding:16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.nav-list{flex:1;overflow-y:auto;padding:8px}
+.nav-item{padding:10px 16px;border-radius:8px;cursor:pointer;font-size:13px;color:var(--dim);transition:all .2s;display:flex;align-items:center;gap:10px}
+.nav-item:hover{background:#ffffff08;color:var(--text)}
+.nav-item.active{background:var(--accent)11;color:var(--accent);border-left:2px solid var(--accent)}
+.nav-item .icon{font-size:16px;width:24px;text-align:center}
+
+/* Chat panel */
+.chat-panel{flex:1;display:flex;flex-direction:column;min-width:0}
+.messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:80%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5;animation:fadeIn .2s}
+.msg.user{align-self:flex-end;background:var(--accent)22;color:var(--accent);border:1px solid var(--accent)33}
+.msg.daniela{align-self:flex-start;background:var(--surface);border:1px solid var(--border)}
+.msg.system{align-self:center;background:none;color:var(--dim);font-size:12px;padding:4px 12px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.typing{display:flex;gap:4px;padding:8px 16px;align-self:flex-start}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--dim);animation:blink 1.4s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+
+/* Input */
+.input-area{padding:16px 20px;border-top:1px solid var(--border);display:flex;gap:10px;flex-shrink:0}
+.input-area input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;color:var(--text);font-size:14px;outline:none;transition:border .2s}
+.input-area input:focus{border-color:var(--accent)}
+.input-area button{background:var(--accent);color:#000;border:none;border-radius:12px;padding:12px 20px;font-weight:600;cursor:pointer;font-size:14px;transition:opacity .2s}
+.input-area button:hover{opacity:.8}
+.input-area button:disabled{opacity:.3;cursor:not-allowed}
+
+/* Status panel */
+.status-panel{flex:1;overflow-y:auto;padding:20px;display:none}
+.status-panel.active{display:block}
+.status-section{margin-bottom:24px}
+.status-section h3{font-size:14px;color:var(--accent);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.status-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.status-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+.status-card .label{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.status-card .value{font-size:20px;font-weight:600}
+.status-card .value.ok{color:var(--green)}
+.status-card .value.warn{color:var(--orange)}
+.status-card .value.err{color:var(--red)}
+
+/* Pixel panel */
+.pixel-panel{flex:1;overflow-y:auto;padding:20px;display:none}
+.pixel-panel.active{display:block}
+.pixel-status{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.pixel-status h2{font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.pixel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pixel-field{font-size:13px}
+.pixel-field .label{color:var(--dim);margin-bottom:4px}
+.pixel-field .val{color:var(--text)}
+.fix-box{background:#ff444411;border:1px solid #ff444433;border-radius:12px;padding:16px;margin-top:16px}
+.fix-box h4{color:var(--red);margin-bottom:8px;font-size:13px}
+.fix-box pre{font-size:12px;color:var(--dim);white-space:pre-wrap;line-height:1.6}
+
+/* Responsive */
+@media(max-width:768px){
+  .sidebar{display:none}
+  .main{flex-direction:column}
+  .msg{max-width:95%}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>DANIELA</h1>
+  <div class="header-right">
+    <div class="status-pill" id="ai-pill"><div class="dot"></div><span>AI</span></div>
+    <div class="status-pill" id="pixel-pill"><div class="dot"></div><span>Pixel</span></div>
+    <div class="status-pill" id="health-pill"><div class="dot"></div><span>Health</span></div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="sidebar-header">Paneles</div>
+    <div class="nav-list">
+      <div class="nav-item active" data-panel="chat"><span class="icon">💬</span>Chat</div>
+      <div class="nav-item" data-panel="status"><span class="icon">📊</span>Sistema</div>
+      <div class="nav-item" data-panel="pixel"><span class="icon">📱</span>Pixel</div>
+    </div>
+    <div style="padding:12px;border-top:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--dim)">Módulos: <span id="module-count">—</span></div>
+      <div style="font-size:11px;color:var(--dim)">Rutas: <span id="route-count">—</span></div>
+    </div>
+  </div>
+
+  <!-- Chat -->
+  <div class="chat-panel" id="panel-chat">
+    <div class="messages" id="messages">
+      <div class="msg system">Conectado con Daniela. Escribe algo.</div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+      <button id="send-btn" onclick="sendChat()">Enviar</button>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="status-panel" id="panel-status">
+    <div class="status-section">
+      <h3>Sistema</h3>
+      <div class="status-grid" id="system-status"></div>
+    </div>
+    <div class="status-section">
+      <h3>Salud</h3>
+      <div class="status-grid" id="health-status"></div>
+    </div>
+    <div class="status-section">
+      <h3>AI</h3>
+      <div class="status-grid" id="ai-status"></div>
+    </div>
+  </div>
+
+  <!-- Pixel -->
+  <div class="pixel-panel" id="panel-pixel">
+    <div class="pixel-status" id="pixel-main">
+      <h2>📱 Pixel Phone</h2>
+      <div class="pixel-grid" id="pixel-fields"></div>
+    </div>
+    <div id="pixel-fix" style="display:none"></div>
+    <div style="margin-top:16px">
+      <button onclick="reconnectPixel()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:13px">Reconnect Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '';
+let currentPanel = 'chat';
+let sending = false;
+
+// --- Navigation ---
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    const panel = item.dataset.panel;
+    document.querySelectorAll('.chat-panel,.status-panel,.pixel-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + panel).classList.add('active');
+    currentPanel = panel;
+    if (panel === 'status') loadStatus();
+    if (panel === 'pixel') loadPixel();
+  });
+});
+
+// --- Chat ---
+const messages = document.getElementById('messages');
+const input = document.getElementById('chat-input');
+const sendBtn = document.getElementById('send-btn');
+
+input.addEventListener('keydown', e => { if (e.key === 'Enter' && !sending) sendChat(); });
+
+function addMsg(text, type) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + type;
+  div.textContent = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
+
+async function sendChat() {
+  const text = input.value.trim();
+  if (!text || sending) return;
+  sending = true;
+  sendBtn.disabled = true;
+  input.value = '';
+  addMsg(text, 'user');
+  const typing = addMsg('', 'system');
+  typing.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  try {
+    const resp = await fetch(API + '/api/ai/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({messages: [{role: 'user', content: text}], max_tokens: 800})
+    });
+    const data = await resp.json();
+    typing.remove();
+    if (data.error) {
+      addMsg('Error: ' + data.error, 'system');
+    } else {
+      addMsg(data.content, 'daniela');
+    }
+  } catch (e) {
+    typing.remove();
+    addMsg('Error de conexion: ' + e.message, 'system');
+  }
+  sending = false;
+  sendBtn.disabled = false;
+  input.focus();
+}
+
+// --- Status ---
+async function loadStatus() {
+  try {
+    const [statusResp, healthResp] = await Promise.all([
+      fetch(API + '/api/status').then(r => r.json()),
+      fetch(API + '/api/health').then(r => r.json()).catch(() => null)
+    ]);
+
+    // System
+    document.getElementById('system-status').innerHTML = [
+      card('Estado', statusResp.status || '—', statusResp.status === 'alive' ? 'ok' : 'err'),
+      card('Módulos', statusResp.modules || '—', ''),
+      card('Rutas', statusResp.routes || '—', ''),
+      card('Version', statusResp.version || '—', ''),
+    ].join('');
+
+    document.getElementById('module-count').textContent = statusResp.modules || '—';
+    document.getElementById('route-count').textContent = statusResp.routes || '—';
+
+    // Health
+    if (healthResp) {
+      const subs = healthResp.subsystems || {};
+      document.getElementById('health-status').innerHTML = Object.entries(subs).map(([k, v]) =>
+        card(k, v.status, v.status === 'ok' ? 'ok' : v.status === 'critical' ? 'err' : 'warn')
+      ).join('');
+
+      const pill = document.getElementById('health-pill');
+      pill.className = 'status-pill ' + (healthResp.status === 'healthy' ? 'ok' : healthResp.status === 'degraded' ? 'warn' : 'err');
+    }
+
+    // AI
+    const aiResp = await fetch(API + '/api/ai/status').then(r => r.json()).catch(() => null);
+    if (aiResp) {
+      document.getElementById('ai-status').innerHTML = [
+        card('Chats', aiResp.chats || 0, ''),
+        card('Dreams', aiResp.dreams || 0, ''),
+        card('Muses', aiResp.muses || 0, ''),
+        card('Key', aiResp.key_configured ? 'Configured' : 'Missing', aiResp.key_configured ? 'ok' : 'err'),
+      ].join('');
+      const aiPill = document.getElementById('ai-pill');
+      aiPill.className = 'status-pill ' + (aiResp.key_configured ? 'ok' : 'err');
+    }
+  } catch (e) {
+    document.getElementById('system-status').innerHTML = card('Error', e.message, 'err');
+  }
+}
+
+function card(label, value, cls) {
+  return '<div class="status-card"><div class="label">' + label + '</div><div class="value ' + cls + '">' + value + '</div></div>';
+}
+
+// --- Pixel ---
+async function loadPixel() {
+  try {
+    const resp = await fetch(API + '/api/pixel/status').then(r => r.json());
+    const pill = document.getElementById('pixel-pill');
+    pill.className = 'status-pill ' + (resp.pixel_online ? 'ok' : 'err');
+
+    document.getElementById('pixel-fields').innerHTML = [
+      field('Estado', resp.pixel_online ? '🟢 Online' : '🔴 Offline'),
+      field('URL', resp.pixel_url),
+      field('Último check', resp.last_check ? new Date(resp.last_check * 1000).toLocaleTimeString() : '—'),
+      field('Última vez visto', resp.last_seen ? new Date(resp.last_seen * 1000).toLocaleTimeString() : 'Nunca'),
+      field('Errores consecutivos', resp.fail_streak),
+      field('Reconexiones', resp.reconnect_count || 0),
+      field('Tiempo offline total', resp.total_offline_time ? Math.round(resp.total_offline_time) + 's' : '0s'),
+    ].join('');
+
+    const fixBox = document.getElementById('pixel-fix');
+    if (!resp.pixel_online) {
+      fixBox.style.display = 'block';
+      fixBox.innerHTML = '<div class="fix-box"><h4>⚠ Pixel Offline</h4><pre>' +
+        '1) Asegúrate de que el Pixel está en la misma red WiFi\n' +
+        '2) Abre Termux en el Pixel y ejecuta: termux-api-start\n' +
+        '3) Verifica el gateway en: ' + resp.pixel_url + '/api/status\n' +
+        '4) O configura Tailscale para acceso remoto</pre></div>';
+    } else {
+      fixBox.style.display = 'none';
+    }
+  } catch (e) {
+    document.getElementById('pixel-fields').innerHTML = field('Error', e.message);
+  }
+}
+
+function field(label, value) {
+  return '<div class="pixel-field"><div class="label">' + label + '</div><div class="val">' + value + '</div></div>';
+}
+
+async function reconnectPixel() {
+  try {
+    const resp = await fetch(API + '/api/pixel/reconnect', {method: 'POST'}).then(r => r.json());
+    addMsg('Pixel reconnect: ' + resp.result, 'system');
+    loadPixel();
+  } catch (e) {
+    addMsg('Reconnect failed: ' + e.message, 'system');
+  }
+}
+
+// --- Init ---
+async function init() {
+  // Set first panel active
+  document.getElementById('panel-chat').classList.add('active');
+  // Load initial status
+  try {
+    const resp = await fetch(API + '/api/status').then(r => r.json());
+    document.getElementById('module-count').textContent = resp.modules || '—';
+    document.getElementById('route-count').textContent = resp.routes || '—';
+  } catch (e) {}
+  // Check pixel status for pill
+  try {
+    const resp = await fetch(API + '/api/pixel/status').then(r => r.json());
+    const pill = document.getElementById('pixel-pill');
+    pill.className = 'status-pill ' + (resp.pixel_online ? 'ok' : 'err');
+  } catch (e) {}
+  // Check health for pill
+  try {
+    const resp = await fetch(API + '/api/health').then(r => r.json());
+    const pill = document.getElementById('health-pill');
+    pill.className = 'status-pill ' + (resp.status === 'healthy' ? 'ok' : resp.status === 'degraded' ? 'warn' : 'err');
+  } catch (e) {}
+  input.focus();
+}
+
+init();
+</script>
+</body>
+</html>

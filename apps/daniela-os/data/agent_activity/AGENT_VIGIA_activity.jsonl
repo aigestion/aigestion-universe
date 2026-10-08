@@ -1,0 +1,12 @@
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "warning", "anomalies": 1, "cpu": 40.3, "memory": 92.1}, "timestamp": "2026-10-04T19:12:20.610009"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-04T19:12:24.642918"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-04T19:12:24.659254"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-04T19:12:24.659769"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-04T19:12:24.660856", "status": "fresh", "last_commit": "2026-10-04 18:56:50 +0100", "hours_since_last": 19.2}, "timestamp": "2026-10-04T19:12:24.744481"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 1, "alerts_sent": 2}, "timestamp": "2026-10-04T19:12:24.750900"}
+{"agent": "AGENT_VIGIA", "action": "check_system_health", "details": {"status": "healthy", "anomalies": 0, "cpu": 36.2, "memory": 84.7}, "timestamp": "2026-10-05T01:28:25.465425"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: aig Flask API", "priority": 0}, "timestamp": "2026-10-05T01:28:29.495559"}
+{"agent": "AGENT_VIGIA", "action": "send_alert", "details": {"title": "Service down: Daniela OS Backend", "priority": 0}, "timestamp": "2026-10-05T01:28:29.510361"}
+{"agent": "AGENT_VIGIA", "action": "check_services", "details": {"total": 2, "online": 0, "offline": 2}, "timestamp": "2026-10-05T01:28:29.510361"}
+{"agent": "AGENT_VIGIA", "action": "check_git_backup", "details": {"checked_at": "2026-10-05T01:28:29.510361", "status": "fresh", "last_commit": "2026-10-05 00:39:08 +0100", "hours_since_last": 1.5}, "timestamp": "2026-10-05T01:28:29.558752"}
+{"agent": "AGENT_VIGIA", "action": "monitoring_cycle", "details": {"status": "critical", "checks": 1, "anomalies_total": 0, "alerts_sent": 2}, "timestamp": "2026-10-05T01:28:29.565113"}

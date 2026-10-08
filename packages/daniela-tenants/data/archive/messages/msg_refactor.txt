@@ -1,0 +1,20 @@
+chore(fase-2): registrar en git el traslado de modulos a scripts/ y config/
+
+El refactor de fase-2 movio el codigo fuera de la raiz pero NUNCA se
+commiteo: habia 154 ficheros en " D" (borrados) y 159 sin trackear.
+Cualquier checkout o merge en ese estado era peligroso.
+
+Solo reubicacion, sin cambio de contenido:
+- Raiz: de ~300 .py a solo 4 (api_gateway, daniela_os, sitecustomize,
+  telegram_bot).
+- scripts/: los modulos movidos + shims de compatibilidad
+  ("from aig.pixel.X import *") para no romper imports viejos.
+- config/: .env.example, docker-compose, nginx, pyproject, requirements.
+- aig/pixel/: los modulos reales.
+- scripts/archive/: codigo muerto.
+
+Verificado antes de commitear: ningun secreto entre los ficheros nuevos
+(.env, .env.master y .venv siguen ignorados por .gitignore).
+
+Nota: se dejan FUERA api_gateway.py e index.html, que tienen cambios
+ajenos de un autofix anterior (incluye un video de prueba).

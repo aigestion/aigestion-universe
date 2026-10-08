@@ -1,0 +1,42 @@
+[
+  {
+    "id": "DR-1",
+    "topic": "AI tools industry trends",
+    "description": "Monthly scan of new AI tools, models, and platforms relevant to gestoria automation",
+    "schedule_day": 1,
+    "feeds_into": "daniela_proactive_engine_v2.py",
+    "prompt": "Research the latest AI tools and platforms for business automation, focusing on: 1) New AI models released this month 2) Automation tools for SMEs 3) Fiscal/accounting AI innovations 4) Google AI ecosystem updates 5) Open-source AI tools. Summarize key findings with actionable insights for AIGestion."
+  },
+  {
+    "id": "DR-2",
+    "topic": "Competitor analysis",
+    "description": "Monthly analysis of competing AI platforms for gestorias and SMEs",
+    "schedule_day": 8,
+    "feeds_into": "aigestion_content_calendar.py",
+    "prompt": "Analyze competitors in the AI-for-business-automation space: 1) What features do they offer? 2) Pricing comparison 3) What are users saying (reviews, complaints)? 4) Gaps we can exploit 5) Marketing strategies that work. Focus on Spanish/European market."
+  },
+  {
+    "id": "DR-3",
+    "topic": "Technology radar",
+    "description": "Monthly scan of emerging technologies AIGestion could adopt",
+    "schedule_day": 15,
+    "feeds_into": "google_tools_epic_ideas.py",
+    "prompt": "Research emerging technologies relevant to AIGestion: 1) New web standards (WebMCP, built-in AI, etc.) 2) Agent frameworks 3) No-code/low-code platforms 4) Blockchain/Web3 for business 5) Voice AI and multimodal interfaces. Rate each by: relevance, maturity, free-tier availability, and implementation effort."
+  },
+  {
+    "id": "DR-4",
+    "topic": "User feedback synthesis",
+    "description": "Monthly synthesis of user feedback, support tickets, and feature requests",
+    "schedule_day": 22,
+    "feeds_into": "agent_epic_ideas.py",
+    "prompt": "Synthesize user feedback patterns for AIGestion: 1) Common pain points 2) Most requested features 3) Usability issues 4) Performance complaints 5) Success stories. Generate a prioritized list of improvements."
+  },
+  {
+    "id": "DR-5",
+    "topic": "Codebase improvement opportunities",
+    "description": "Monthly analysis of the AIGestion codebase for technical debt and improvements",
+    "schedule_day": 28,
+    "feeds_into": "arquitecto.py",
+    "prompt": "Analyze the AIGestion codebase for improvement opportunities: 1) Technical debt areas 2) Performance bottlenecks 3) Security concerns 4) Missing tests 5) Documentation gaps 6) Architecture improvements. Prioritize by impact and effort."
+  }
+]

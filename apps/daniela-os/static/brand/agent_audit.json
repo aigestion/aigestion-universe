@@ -1,0 +1,240 @@
+[
+  {
+    "name": "GUARDIAN",
+    "file": "agents.py",
+    "layer": "Core agents",
+    "status": "partial",
+    "capabilities": [
+      "inspect_server_errors",
+      "audit_network",
+      "generate_pdf_report",
+      "IoT webhooks"
+    ],
+    "gaps": [
+      "No real-time threat detection",
+      "No automated response",
+      "PDF report is placeholder"
+    ],
+    "upgrade_priority": "high"
+  },
+  {
+    "name": "ANALYST",
+    "file": "agents.py",
+    "layer": "Core agents",
+    "status": "partial",
+    "capabilities": [
+      "search_local_docs",
+      "RAG queries"
+    ],
+    "gaps": [
+      "No web search integration",
+      "No multi-source verification",
+      "No knowledge graph updates"
+    ],
+    "upgrade_priority": "critical"
+  },
+  {
+    "name": "OPERATOR",
+    "file": "agents.py",
+    "layer": "Core agents",
+    "status": "partial",
+    "capabilities": [
+      "execute_shell",
+      "get_system_status",
+      "android_control"
+    ],
+    "gaps": [
+      "No task queuing",
+      "No rollback on failure",
+      "No parallel execution"
+    ],
+    "upgrade_priority": "high"
+  },
+  {
+    "name": "CODER",
+    "file": "agents.py",
+    "layer": "Core agents",
+    "status": "partial",
+    "capabilities": [
+      "read_source_code",
+      "apply_hotfix"
+    ],
+    "gaps": [
+      "No AI-powered code generation",
+      "No test generation",
+      "No code review"
+    ],
+    "upgrade_priority": "high"
+  },
+  {
+    "name": "Swarm Intelligence",
+    "file": "swarm_intelligence.py",
+    "layer": "Swarm",
+    "status": "simulated",
+    "capabilities": [
+      "7 roles",
+      "DAG missions",
+      "4 pipeline types",
+      "dependency tracking"
+    ],
+    "gaps": [
+      "Execution is SIMULATED (placeholder strings)",
+      "No real LLM calls",
+      "No actual task completion"
+    ],
+    "upgrade_priority": "critical"
+  },
+  {
+    "name": "Swarm Manager",
+    "file": "skills/swarm_manager.py",
+    "layer": "Swarm",
+    "status": "production",
+    "capabilities": [
+      "Gemini-powered reports",
+      "process monitoring",
+      "log analysis"
+    ],
+    "gaps": [
+      "Read-only (no actions taken)",
+      "No autonomous decisions",
+      "Single-model dependency"
+    ],
+    "upgrade_priority": "medium"
+  },
+  {
+    "name": "Swarm Dispatcher",
+    "file": "auto_swarm_dispatcher.py",
+    "layer": "Swarm",
+    "status": "partial",
+    "capabilities": [
+      "4 agents (orchestrator, rag_analyst, vault_keeper, canary_guard)",
+      "3s cycle"
+    ],
+    "gaps": [
+      "Random task selection (no intelligence)",
+      "Hardcoded IP",
+      "No error recovery"
+    ],
+    "upgrade_priority": "medium"
+  },
+  {
+    "name": "Code Generation Agent",
+    "file": "code_generation_agent.py",
+    "layer": "Specialized",
+    "status": "stub",
+    "capabilities": [
+      "NL parsing",
+      "multi-language templates",
+      "test scaffolding",
+      "documentation"
+    ],
+    "gaps": [
+      "Generated code is body='pass'",
+      "No AI integration",
+      "Templates produce empty stubs"
+    ],
+    "upgrade_priority": "critical"
+  },
+  {
+    "name": "Deep Research Agent",
+    "file": "skills/agent.py",
+    "layer": "Specialized",
+    "status": "stub",
+    "capabilities": [
+      "5-step pipeline concept (scrape, notebook, infographic, video, alert)"
+    ],
+    "gaps": [
+      "References non-existent modules",
+      "Source URL is 'example.com'",
+      "No real implementation"
+    ],
+    "upgrade_priority": "critical"
+  },
+  {
+    "name": "Self-Healing",
+    "file": "skills/self_healing.py",
+    "layer": "Specialized",
+    "status": "production",
+    "capabilities": [
+      "Exception capture",
+      "Gemini-powered fix",
+      "auto-write patched code",
+      "telemetry logging"
+    ],
+    "gaps": [
+      "No test validation before write",
+      "No rollback on bad fix",
+      "Single attempt (no retry)"
+    ],
+    "upgrade_priority": "high"
+  },
+  {
+    "name": "Software Architect",
+    "file": "skills/software_architect.py",
+    "layer": "Specialized",
+    "status": "production",
+    "capabilities": [
+      "Git diff analysis",
+      "technical debt detection",
+      "quality scoring",
+      "Markdown reports"
+    ],
+    "gaps": [
+      "No automated refactoring",
+      "No CI/CD integration",
+      "Manual invocation only"
+    ],
+    "upgrade_priority": "medium"
+  },
+  {
+    "name": "Proactive Engine v2",
+    "file": "daniela_proactive_engine_v2.py",
+    "layer": "Orchestration",
+    "status": "partial",
+    "capabilities": [
+      "Calendar analysis",
+      "task tracking",
+      "pattern recognition",
+      "alert system"
+    ],
+    "gaps": [
+      "No ML-based prediction",
+      "No learning from outcomes",
+      "Static 5-min interval"
+    ],
+    "upgrade_priority": "high"
+  },
+  {
+    "name": "Quantum Labs (Fase 12)",
+    "file": "daniela_fase12_quantum_swarm.py",
+    "layer": "Infrastructure",
+    "status": "stub",
+    "capabilities": [
+      "4 concepts: quantum annealing, PBFT consensus, document forensics, micro-blockchain"
+    ],
+    "gaps": [
+      "ALL functions are print() + return True",
+      "No real implementation",
+      "No actual crypto operations"
+    ],
+    "upgrade_priority": "low"
+  },
+  {
+    "name": "Daniela Brain",
+    "file": "daniela_brain_system.py",
+    "layer": "Brain",
+    "status": "production",
+    "capabilities": [
+      "Gemini conversation",
+      "ElviraNeural TTS",
+      "VAD voice recording",
+      "vibration feedback"
+    ],
+    "gaps": [
+      "No memory persistence",
+      "No multi-turn context",
+      "No emotion detection"
+    ],
+    "upgrade_priority": "medium"
+  }
+]
