@@ -2,6 +2,9 @@
 #   docker build -f apps/landing/Dockerfile .
 FROM node:24-alpine AS base
 
+# Build arg to invalidate cache when lockfile changes
+ARG LOCKFILE_HASH
+
 FROM base AS deps
 WORKDIR /app
 # Root manifests + workspace member manifests for a reproducible install.

@@ -49,6 +49,9 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compute lockfile hash
+        id: lockfile-hash
+        run: echo "hash=$(sha256sum pnpm-lock.yaml | cut -d' ' -f1)" >> $GITHUB_OUTPUT
       - uses: docker/build-push-action@v6
         with:
           context: .
@@ -59,6 +62,8 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAMESPACE }}/daniela-shell:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            LOCKFILE_HASH=${{ steps.lockfile-hash.outputs.hash }}
 
   build-landing:
     name: landing
@@ -74,6 +79,9 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compute lockfile hash
+        id: lockfile-hash
+        run: echo "hash=$(sha256sum pnpm-lock.yaml | cut -d' ' -f1)" >> $GITHUB_OUTPUT
       - uses: docker/build-push-action@v6
         with:
           context: .
@@ -84,3 +92,5 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAMESPACE }}/landing:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            LOCKFILE_HASH=${{ steps.lockfile-hash.outputs.hash }}
