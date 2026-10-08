@@ -13,7 +13,11 @@ COPY packages/three-daniela/package.json packages/three-daniela/
 COPY packages/ui/package.json packages/ui/
 RUN corepack enable pnpm && pnpm install --frozen-lockfile
 
-FROM base AS builder\nWORKDIR /app\nCOPY --from=deps /app/node_modules ./node_modules\nCOPY . .\nRUN corepack enable pnpm && pnpm --filter @aigestion/three-daniela build && pnpm --filter @aigestion/ui build && pnpm --filter @aigestion/landing build
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN corepack enable pnpm && pnpm --filter @aigestion/three-daniela build && pnpm --filter @aigestion/ui build && pnpm --filter @aigestion/landing build
 
 FROM base AS runner
 WORKDIR /app
@@ -23,5 +27,4 @@ COPY --from=builder /app/apps/landing/.next/standalone ./
 COPY --from=builder /app/apps/landing/.next/static ./.next/static
 EXPOSE 3000
 ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
 CMD ["node", "server.js"]
