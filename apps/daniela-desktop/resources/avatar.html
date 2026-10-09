@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniela</title>
+<link rel="icon" href="data:,">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    /* Fuera de la ventana el raton no debe MOLESTAR: la ventana es solo
+       visible al pasar por encima (CSS hover) o cuando tiene foco. */
+    -webkit-user-select: none; user-select: none;
+    cursor: pointer;
+  }
+  #contenedor { position: relative; width: 100%; height: 100%; }
+  #contenedor canvas { display: block; width: 100% !important; height: 100% !important; }
+
+  /* ── Indicador de estado ─────────────────────────────────── */
+  #indicador {
+    position: absolute; top: 10px; left: 10px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #22c55e; box-shadow: 0 0 9px #22c55e;
+    transition: background .35s, box-shadow .35s;
+    pointer-events: none; z-index: 40;
+  }
+  #indicador.sleeping { background: #334155; box-shadow: none; animation: respira 3.4s ease-in-out infinite; }
+  #indicador.idle     { background: #22c55e; box-shadow: 0 0 9px #22c55e; }
+  #indicador.listening{ background: #0ea5e9; box-shadow: 0 0 11px #0ea5e9; }
+  #indicador.thinking { background: #a78bfa; box-shadow: 0 0 11px #a78bfa; }
+  #indicador.talking  { background: #f97316; box-shadow: 0 0 13px #f97316; animation: latido 1s ease-in-out infinite; }
+  #indicador.resting  { background: #64748b; box-shadow: 0 0 5px #64748b; opacity: .7; }
+  @keyframes latido { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+  @keyframes respira { 0%,100% { transform: scale(1); opacity: .5; } 50% { transform: scale(.72); opacity: .3; } }
+
+  /* ── Burbuja ─────────────────────────────────────────────── */
+  #burbuja {
+    position: absolute; bottom: 84%; left: 50%;
+    transform: translateX(-50%) scale(.92);
+    background: rgba(15, 23, 42, .93);
+    border: 1px solid rgba(14, 165, 233, .32);
+    border-radius: 14px; padding: 10px 14px;
+    max-width: 260px; font-size: 12.5px; line-height: 1.45;
+    color: #e2e8f0; white-space: pre-wrap; word-break: break-word;
+    opacity: 0; pointer-events: none;
+    transition: opacity .28s ease, transform .28s cubic-bezier(.34,1.56,.64,1);
+    z-index: 100; backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  }
+  #burbuja.visible { opacity: 1; transform: translateX(-50%) scale(1); }
+  #burbuja::after {
+    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border: 7px solid transparent; border-top-color: rgba(14,165,233,.32);
+  }
+  #burbuja::before {
+    content: ''; position: absolute; top: calc(100% - 1px); left: 50%; transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: rgba(15,23,42,.93);
+  }
+
+  /* ── Indicador de captura ────────────────────────────────── */
+  #indicadorCaptura {
+    position: absolute; top: 10px; right: 10px;
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(239, 68, 68, .9); color: #fff;
+    padding: 5px 10px; border-radius: 20px;
+    font-size: 10px; font-weight: 700; letter-spacing: .04em;
+    opacity: 0; transform: translateY(-8px);
+    transition: all .3s ease; pointer-events: none; z-index: 40;
+  }
+  #indicadorCaptura.activo { opacity: 1; transform: translateY(0); }
+  #indicadorCaptura .punto { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: parpadeoPunto 1s infinite; }
+  @keyframes parpadeoPunto { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+  /* ── Menu contextual ─────────────────────────────────────── */
+  #menuCtx {
+    position: absolute; background: rgba(15, 23, 42, .97);
+    border: 1px solid rgba(14,165,233,.2); border-radius: 12px;
+    padding: 6px 0; min-width: 168px;
+    box-shadow: 0 18px 48px rgba(0,0,0,.5);
+    opacity: 0; visibility: hidden; transform: translateY(6px);
+    transition: all .18s ease; z-index: 200; backdrop-filter: blur(20px);
+  }
+  #menuCtx.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  .itemMenu {
+    display: flex; align-items: center; gap: 9px;
+    padding: 8px 14px; color: #e2e8f0; font-size: 12.5px; cursor: pointer;
+    transition: background .14s;
+  }
+  .itemMenu:hover { background: rgba(14,165,233,.16); }
+  .itemMenu kbd {
+    background: rgba(148,163,184,.16); padding: 2px 6px;
+    border-radius: 4px; font-size: 10px; color: #94a3b8;
+    font-family: inherit; min-width: 18px; text-align: center;
+  }
+  .separador { height: 1px; background: rgba(148,163,184,.12); margin: 5px 0; }
+
+  /* ── Carga / error ───────────────────────────────────────── */
+  #carga {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #64748b; font-size: 12px; text-align: center; padding: 20px;
+    z-index: 10;
+  }
+  #carga[hidden] { display: none; }
+
+  .pistaArrastre {
+    position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
+    color: rgba(148,163,184,.55); font-size: 9.5px; white-space: nowrap;
+    opacity: 0; transition: opacity .3s; pointer-events: none;
+  }
+  .arrastrando .pistaArrastre { opacity: 1; }
+</style>
+</head>
+<body>
+  <div id="contenedor">
+    <div id="indicador" class="estado sleeping" title="sleeping"></div>
+    <div id="burbuja"></div>
+    <div id="indicadorCaptura"><span class="punto"></span>CAPTURANDO</div>
+    <div id="carga">Cargando modelo…</div>
+    <div class="pistaArrastre">arrastra para mover</div>
+
+    <div id="menuCtx">
+      <div class="itemMenu" data-accion="menu"><kbd>M</kbd> Vision Menu</div>
+      <div class="itemMenu" data-accion="descanso"><kbd>R</kbd> Descansar</div>
+      <div class="separador"></div>
+      <div class="itemMenu" data-accion="captura"><kbd>C</kbd> Capturar pantalla</div>
+      <div class="itemMenu" data-accion="parar"><kbd>X</kbd> Parar captura</div>
+      <div class="separador"></div>
+      <div class="itemMenu" data-accion="ajustes"><kbd>S</kbd> Ajustes</div>
+      <div class="itemMenu" data-accion="ocultar"><kbd>H</kbd> Ocultar</div>
+    </div>
+  </div>
+
+  <input id="entrada" type="text" hidden>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./lib/three.module.js",
+      "three/addons/": "./lib/"
+    }
+  }
+  </script>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

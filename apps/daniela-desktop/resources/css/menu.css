@@ -1,0 +1,221 @@
+/* menu.css — Vision Menu de Daniela.
+   Paleta alineada con la marca aig (cyan #38bdf8 sobre fondo profundo). */
+
+:root {
+  --bg: #070b14;
+  --panel: #0d1424;
+  --panel-2: #111a2e;
+  --borde: rgba(56, 189, 248, .14);
+  --borde-fuerte: rgba(56, 189, 248, .32);
+  --texto: #e2e8f0;
+  --tenue: #94a3b8;
+  --apagado: #64748b;
+  --acento: #38bdf8;
+  --ok: #22c55e;
+  --aviso: #f59e0b;
+  --error: #ef4444;
+  --violeta: #a78bfa;
+  --radio: 12px;
+  --sombra: 0 18px 48px rgba(0, 0, 0, .5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--texto);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+body { display: flex; flex-direction: column; }
+
+/* ── Barra superior ────────────────────────────────────────────── */
+
+.barra {
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 14px; height: 52px; flex: 0 0 52px;
+  background: linear-gradient(180deg, var(--panel) 0%, rgba(13, 20, 36, .6) 100%);
+  border-bottom: 1px solid var(--borde);
+}
+
+.marca { display: flex; align-items: center; gap: 8px; font-size: 15px; }
+.marca .sub { color: var(--tenue); font-size: 11.5px; font-weight: 400; }
+
+.punto {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--apagado); box-shadow: 0 0 8px currentColor;
+  transition: background .3s;
+}
+.punto.ok { background: var(--ok); }
+.punto.error { background: var(--error); }
+
+.pestanas { display: flex; gap: 3px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+.pestanas::-webkit-scrollbar { display: none; }
+
+.pestana {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 13px; border-radius: 9px;
+  background: transparent; border: 1px solid transparent;
+  color: var(--tenue); font-size: 12.5px; font-family: inherit;
+  cursor: pointer; white-space: nowrap;
+  transition: all .16s ease;
+}
+.pestana:hover { background: rgba(56, 189, 248, .09); color: var(--texto); }
+.pestana.activa {
+  background: rgba(56, 189, 248, .14);
+  border-color: var(--borde-fuerte);
+  color: var(--texto);
+}
+.pestana .ico { font-size: 14px; line-height: 1; }
+
+.acciones { display: flex; gap: 6px; }
+.boton {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: var(--panel-2); border: 1px solid var(--borde);
+  color: var(--tenue); cursor: pointer; font-size: 13px;
+  display: grid; place-items: center;
+  transition: all .16s;
+}
+.boton:hover { color: var(--texto); border-color: var(--borde-fuerte); background: rgba(56,189,248,.12); }
+
+/* ── Cuerpo ────────────────────────────────────────────────────── */
+
+.cuerpo { flex: 1; overflow: auto; padding: 18px; }
+.cuerpo::-webkit-scrollbar { width: 10px; }
+.cuerpo::-webkit-scrollbar-thumb { background: rgba(56,189,248,.18); border-radius: 6px; }
+
+.vista { display: none; }
+.vista.activa { display: block; animation: entra .22s ease; }
+@keyframes entra { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+h2.seccion {
+  font-size: 12px; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--apagado);
+  margin: 0 0 10px;
+}
+
+/* ── Rejillas y tarjetas ────────────────────────────────────────── */
+
+.rejilla { display: grid; gap: 12px; }
+.rejilla.auto { grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); }
+.rejilla.dos { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+
+.tarjeta {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 14px;
+  transition: border-color .16s, transform .16s;
+}
+.tarjeta:hover { border-color: var(--borde-fuerte); transform: translateY(-1px); }
+.tarjeta h3 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+.tarjeta p { font-size: 12px; color: var(--tenue); line-height: 1.5; }
+
+/* ── Estados / chips ───────────────────────────────────────────── */
+
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 20px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .03em;
+  border: 1px solid transparent;
+}
+.chip.ok     { background: rgba(34,197,94,.14);  color: var(--ok);     border-color: rgba(34,197,94,.3); }
+.chip.aviso  { background: rgba(245,158,11,.14); color: var(--aviso);  border-color: rgba(245,158,11,.3); }
+.chip.error  { background: rgba(239,68,68,.14);  color: var(--error);  border-color: rgba(239,68,68,.3); }
+.chip.tenue  { background: rgba(100,116,139,.14);color: var(--apagado);border-color: rgba(100,116,139,.3); }
+.chip.info   { background: rgba(56,189,248,.14); color: var(--acento); border-color: rgba(56,189,248,.3); }
+
+.vacio {
+  padding: 34px 20px; text-align: center;
+  color: var(--apagado); font-size: 13px; line-height: 1.6;
+}
+.vacio code { color: var(--tenue); background: var(--panel-2); padding: 2px 6px; border-radius: 5px; }
+
+/* ── Tablas ────────────────────────────────────────────────────── */
+
+.tabla { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.tabla th {
+  text-align: left; padding: 8px 10px;
+  color: var(--apagado); font-weight: 600; font-size: 10.5px;
+  letter-spacing: .07em; text-transform: uppercase;
+  border-bottom: 1px solid var(--borde);
+}
+.tabla td { padding: 9px 10px; border-bottom: 1px solid rgba(148,163,184,.07); }
+.tabla tr:hover td { background: rgba(56,189,248,.04); }
+.tabla .num { font-variant-numeric: tabular-nums; color: var(--tenue); }
+
+/* ── Barra de carga ────────────────────────────────────────────── */
+
+.carga { height: 5px; background: var(--panel-2); border-radius: 3px; overflow: hidden; }
+.carga > i { display: block; height: 100%; background: linear-gradient(90deg, var(--acento), var(--violeta)); transition: width .3s; }
+
+/* ── Formularios ───────────────────────────────────────────────── */
+
+.campo {
+  width: 100%; padding: 9px 12px;
+  background: var(--panel-2); border: 1px solid var(--borde);
+  border-radius: 9px; color: var(--texto);
+  font-family: inherit; font-size: 13px;
+}
+.campo:focus { outline: none; border-color: var(--acento); box-shadow: 0 0 0 3px rgba(56,189,248,.13); }
+
+.btn {
+  padding: 8px 15px; border-radius: 9px;
+  background: rgba(56,189,248,.13); border: 1px solid var(--borde-fuerte);
+  color: var(--acento); font-family: inherit; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; transition: all .16s;
+}
+.btn:hover { background: rgba(56,189,248,.22); color: #fff; }
+.btn.peligro { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.32); color: var(--error); }
+.btn.peligro:hover { background: rgba(239,68,68,.22); }
+
+/* ── Capas (GEV) ───────────────────────────────────────────────── */
+
+.capas { display: flex; flex-wrap: wrap; gap: 8px; }
+.capa {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 13px; border-radius: 10px;
+  background: var(--panel); border: 1px solid var(--borde);
+  cursor: pointer; font-size: 12.5px;
+  transition: all .16s;
+}
+.capa:hover { border-color: var(--borde-fuerte); }
+.capa.activa { background: rgba(56,189,248,.12); border-color: var(--borde-fuerte); }
+.capa .puntoCapa { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 9px; }
+.capa .motivo { font-size: 10.5px; color: var(--apagado); }
+
+/* ── Grafos SVG ────────────────────────────────────────────────── */
+
+.grafo { width: 100%; height: 420px; display: block; background: var(--panel); border: 1px solid var(--borde); border-radius: var(--radio); }
+.grafo .arista { stroke: rgba(148,163,184,.24); stroke-width: 1; }
+.grafo .nodo { cursor: pointer; transition: r .16s; }
+.grafo .nodo:hover { r: 9; }
+.grafo .etiqueta { font-size: 10px; fill: var(--tenue); pointer-events: none; user-select: none; }
+.grafo .etiqueta.activa { fill: var(--texto); font-weight: 600; }
+
+/* ── iframe del visor ──────────────────────────────────────────── */
+
+.visor {
+  width: 100%; height: 520px;
+  border: 1px solid var(--borde); border-radius: var(--radio);
+  background: #000; display: block;
+}
+
+/* ── Pie ───────────────────────────────────────────────────────── */
+
+.pie {
+  display: flex; align-items: center; gap: 9px;
+  padding: 0 14px; height: 28px; flex: 0 0 28px;
+  background: var(--panel);
+  border-top: 1px solid var(--borde);
+  color: var(--apagado); font-size: 11px;
+}
+.pie .sep { opacity: .4; }
+.pie .crece { flex: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

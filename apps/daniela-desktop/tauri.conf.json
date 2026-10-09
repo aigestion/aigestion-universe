@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Daniela Desktop",
+  "version": "0.1.0",
+  "identifier": "net.aigestion.daniela.desktop",
+  "build": {
+    "frontendDist": "resources"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Daniela",
+        "url": "avatar.html",
+        "width": 60,
+        "height": 60,
+        "minWidth": 50,
+        "minHeight": 50,
+        "maxWidth": 60,
+        "maxHeight": 60,
+        "resizable": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "visible": false,
+        "focus": false,
+        "acceptFirstMouse": true
+      },
+      {
+        "label": "menu",
+        "title": "Daniela · Vision Menu",
+        "url": "menu.html",
+        "width": 1000,
+        "height": 720,
+        "minWidth": 760,
+        "minHeight": 520,
+        "resizable": true,
+        "decorations": true,
+        "transparent": false,
+        "alwaysOnTop": false,
+        "skipTaskbar": false,
+        "visible": false,
+        "focus": true
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self'",
+        "script-src": "'self' 'wasm-unsafe-eval'",
+        "style-src": "'self' 'unsafe-inline'",
+        "img-src": "'self' data: blob:",
+        "font-src": "'self' data:",
+        "connect-src": "'self' ipc: blob: data: http://ipc.localhost http://127.0.0.1:9200 http://localhost:9200",
+        "frame-src": "http://127.0.0.1:9200 http://localhost:9200",
+        "object-src": "'none'",
+        "base-uri": "'self'"
+      },
+      "assetProtocol": {
+        "enable": false
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis", "msi"],
+    "resources": ["assets/daniela3d_rigged.glb"],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "allowDowngrades": true,
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    }
+  }
+}

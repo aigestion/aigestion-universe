@@ -1,32 +1,38 @@
 # daniela-desktop
 
-Daniela OS desktop client — Tauri 2.0 (Rust + WebView).
+Daniela OS desktop client — Tauri 2 + WebView2 (Rust + Three.js).
 
-- Rust 1.70+ · Tauri 2.0
-- Transparent, frameless-capable window
-- Commands: `greet`, `pair_device`
-- Connects to Daniela Core at `localhost:9200`
+Avatar 3D flotante de Daniela (60×60, transparente, always-on-top real vía
+`HWND_TOPMOST`), Vision Menu con 7 pestañas y captura de pantalla Windows.
 
-## Build
+- Rust 1.77+ · Tauri 2 · MSVC (`x86_64-pc-windows-msvc`)
+- Frontend: `resources/` (`avatar.html`, `menu.html`, Three.js r165 vendorizado,
+  GLB `daniela3d_rigged.glb` 4.5 MB + fallback 75 MB)
+- Backend: Flask Daniela OS en `http://127.0.0.1:9200` (GEV, memoria, engines)
+- Comandos IPC: avatar state/morphs, menú, captura, `system_info`, `open_url`, config
 
-```bash
-cd src-tauri
-cargo build --release
-# or
-cargo tauri build
+## Build (MSVC obligatorio)
+
+```powershell
+.\build.ps1
+# o manual:
+$tc="$env:USERPROFILE\.rustup\toolchains\stable-x86_64-pc-windows-msvc"
+$env:PATH="$tc\bin;$env:PATH"; $env:RUSTUP_TOOLCHAIN="stable-x86_64-pc-windows-msvc"
+cargo build --release --target x86_64-pc-windows-msvc
 ```
 
-## Dev
+## Run (backend + app)
 
-```bash
-cargo tauri dev
+```powershell
+# desde la raíz del monorepo:
+.\start_aigestion_universe.ps1 -SoloDesktop
 ```
 
-The desktop shell loads `src/index.html` (or the Neural Shell
-at `http://localhost:3000` in dev mode via `devUrl`).
+## Interacción
+
+- 1 clic → despierta/escucha · 2 clics → Vision Menu · clic derecho → contextual
+- Atajo global `Win+Alt+D`, bandeja del sistema
 
 ## Pairing
 
-`pair_device` command computes a challenge fingerprint.
-Full HMAC-SHA256 challenge-response lives in
-`skills/connectors/android/pairing.py` (shared with mobile).
+Challenge-response PC↔Pixel en `packages/daniela-core` (ver `skills/connectors/android/pairing.py` en legado).
