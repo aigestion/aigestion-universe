@@ -65,6 +65,7 @@
   "bundle": {
     "active": true,
     "targets": ["nsis", "msi"],
+    "icon": ["icons/icon.ico"],
     "resources": ["assets/daniela3d_rigged.glb"],
     "windows": {
       "webviewInstallMode": {
