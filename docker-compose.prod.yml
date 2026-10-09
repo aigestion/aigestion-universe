@@ -26,8 +26,8 @@ services:
 
   gateway:
     build:
-      context: ../..
-      dockerfile: ./engine/cross_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/cross_engine/Dockerfile
     container_name: gateway
     ports:
       - "8080:8080"
@@ -55,8 +55,8 @@ services:
 
   orchestrator:
     build:
-      context: ../..
-      dockerfile: ./engine/cross_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/cross_engine/Dockerfile
     container_name: orchestrator
     ports:
       - "9900:9900"
@@ -95,11 +95,11 @@ services:
       # "cannot load certificate" -> nginx prod NO arrancaba.
       - "443:443"
     volumes:
-      - ../nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./packages/daniela-core/src/daniela_core/legacy/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       # Certificados self-signed. NO se versionan (gitignore); deben existir en el
       # host antes de `docker compose up`: security/ssl/{cert,key}.pem
-      - ../../security/ssl/cert.pem:/etc/nginx/ssl/cert.pem:ro
-      - ../../security/ssl/key.pem:/etc/nginx/ssl/key.pem:ro
+      - ./security/ssl/cert.pem:/etc/nginx/ssl/cert.pem:ro
+      - ./security/ssl/key.pem:/etc/nginx/ssl/key.pem:ro
     # 2026-10-04: `security` y `gods-eye` salen de depends_on porque viven en
     # `profiles` (sin codigo: sec-opt/ no existe, GEV es un repo hermano).
     # `docker compose config` rechaza un depends_on a un servicio no habilitado
@@ -135,7 +135,7 @@ services:
           memory: 256M
 
   # ==================== CORE ENGINES ====================
-daniela:
+  daniela:
     image: docker-daniela:latest
     container_name: daniela
     ports:
@@ -167,8 +167,8 @@ daniela:
 
   hermes:
     build:
-      context: ../..
-      dockerfile: ./ide/hermes/Dockerfile
+      context: .
+      dockerfile: ./apps/hermes-ide/hermes/Dockerfile
     container_name: hermes
     ports:
       - "9300:9300"    # Hermes API
@@ -198,8 +198,8 @@ daniela:
   # ==================== FRONTEND ====================
   infra_opt:
     build:
-      context: ../..
-      dockerfile: ./engine/infra-opt/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/infra-opt/Dockerfile
     container_name: infra-opt
     ports:
       - "9700:9700"
@@ -228,17 +228,17 @@ daniela:
   # ==================== AI + SECURITY ====================
   agent_mobile:
     build:
-      context: ../..
-      dockerfile: ./agents/api/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-api/Dockerfile
     container_name: agent-mobile
     ports:
       - "9800:9800"
     # server.py exige WEB_PORT + GEMINI_API_KEY en entorno (RuntimeError si
-# faltan). WEB_PORT va explicito; GEMINI sale del .env de la raiz
-# (../../.env relativo a config/docker/; el ../.env antiguo se resolvia a
-# config/.env, que no existe, desde que el compose se movio aqui el 2026-10-04).
+    # faltan). WEB_PORT va explicito; GEMINI sale del .env de la raiz
+    # (.env relativo a la raiz del repo; antes era ../../.env cuando el compose
+    # vivia en config/docker/).
     env_file:
-      - ../../.env
+      - .env
     environment:
       SERVICE_NAME: agent_mobile
       SERVICE_PORT: "9800"
@@ -272,7 +272,7 @@ daniela:
     # (scripts/core/ci_health_gate.py:28).
     profiles: ["sec-opt-pendiente"]
     build:
-      context: ../..
+      context: .
       dockerfile: ./sec-opt/Dockerfile
     container_name: security
     ports:
@@ -301,8 +301,8 @@ daniela:
 
   perf:
     build:
-      context: ../..
-      dockerfile: ./backend/perf-opt/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-backend/src/daniela_backend/perf-opt/Dockerfile
     container_name: perf
     ports:
       - "9998:9998"
@@ -331,7 +331,7 @@ daniela:
   # ==================== VISOR COMPLETO ====================
   gods-eye:
     build:
-      context: ../vendor/gev
+      context: ./vendor/gev
       dockerfile: ./Dockerfile
       args:
         GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
@@ -376,8 +376,8 @@ daniela:
   # ==================== MONITORING ====================
   prometheus:
     build:
-      context: ../..
-      dockerfile: ./skills/plugins/prometheus/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-agents/skills/plugins/prometheus/Dockerfile
     container_name: prometheus
     ports:
       - "9090:9090"
@@ -408,8 +408,8 @@ daniela:
       - GF_USERS_ALLOW_SIGN_UP=false
     volumes:
       - grafana_data:/var/lib/grafana
-      - ../grafana/provisioning:/etc/grafana/provisioning
-      - ../grafana/dashboards:/var/lib/grafana/dashboards
+      - ./configs/grafana/provisioning:/etc/grafana/provisioning
+      - ./configs/grafana/dashboards:/var/lib/grafana/dashboards
     depends_on:
       prometheus:
         condition: service_healthy
@@ -430,8 +430,8 @@ daniela:
   # ==================== INTELLIGENCE ENGINES ====================
   intel_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/intel_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/intel_engine/Dockerfile
     container_name: intel-engine
     ports:
       - "9850:9850"
@@ -459,8 +459,8 @@ daniela:
 
   auto_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/auto_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/auto_engine/Dockerfile
     container_name: auto-engine
     ports:
       - "9860:9860"
@@ -488,8 +488,8 @@ daniela:
 
   data_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/data_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/data_engine/Dockerfile
     container_name: data-engine
     ports:
       - "9870:9870"
@@ -517,8 +517,8 @@ daniela:
 
   secure_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/secure_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/secure_engine/Dockerfile
     container_name: secure-engine
     ports:
       - "9880:9880"
@@ -546,8 +546,8 @@ daniela:
 
   devtools_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/devtools_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/devtools_engine/Dockerfile
     container_name: devtools-engine
     ports:
       - "9890:9890"
@@ -575,8 +575,8 @@ daniela:
 
   ecosystem_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/ecosystem_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/ecosystem_engine/Dockerfile
     container_name: ecosystem-engine
     ports:
       - "9840:9840"
@@ -604,8 +604,8 @@ daniela:
 
   ux_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/ux_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/ux_engine/Dockerfile
     container_name: ux-engine
     ports:
       - "9830:9830"
@@ -633,8 +633,8 @@ daniela:
 
   scale_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/scale_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/scale_engine/Dockerfile
     container_name: scale-engine
     ports:
       - "9820:9820"
@@ -662,8 +662,8 @@ daniela:
 
   chaos_engine:
     build:
-      context: ../..
-      dockerfile: ./engine/chaos_engine/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/chaos_engine/Dockerfile
     container_name: chaos-engine
     ports:
       - "9910:9910"
@@ -691,8 +691,8 @@ daniela:
 
   brand_studio:
     build:
-      context: ../..
-      dockerfile: ./engine/brand_studio/Dockerfile
+      context: .
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/brand_studio/Dockerfile
     container_name: brand-studio
     ports:
       - "9920:9920"
