@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "human_profile.py Types Validation",
+  "type": "object",
+  "properties": {
+    "DG_PROFILE": {
+      "type": "object",
+      "properties": {
+        "nombre": {"type": "string"},
+        "rol": {"type": "string"},
+        "imagen": {"type": "string"},
+        "email": {"type": "string"},
+        "departamento": {"type": "string"},
+        "nivel": {"type": "integer"},
+        "facultad": {"type": "string"},
+        "ano_ingreso": {"type": "integer"},
+        "genero": {"type": "string"}
+      },
+      "required": ["nombre", "rol", "imagen", "email", "departamento", "nivel", "facultad", "ano_ingreso", "genero"],
+      "additionalProperties": false
+    },
+    "DIRECTORES_PROFILE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nombre": {"type": "string"},
+          "rol": {"type": "string"},
+          "imagen": {"type": "string"},
+          "email": {"type": "string"},
+          "departamento": {"type": "string"},
+          "nivel": {"type": "integer"},
+          "facultad": {"type": "string"},
+          "ano_ingreso": {"type": "integer"},
+          "genero": {"type": "string"}
+        },
+        "required": ["nombre", "rol", "imagen", "email", "departamento", "nivel", "facultad", "ano_ingreso", "genero"],
+        "minItems": 20,
+        "maxItems": 20
+      }
+    },
+    "CONFIGURACION": {
+      "type": "object",
+      "properties": {
+        "empresa": {"type": "string"},
+        "dashboard_puerto": {"type": "integer"},
+        "hermes_puerto": {"type": "integer"},
+        "hermes_openclaw_puerto": {"type": "integer"}
+      },
+      "required": ["empresa", "dashboard_puerto", "hermes_puerto", "hermes_openclaw_puerto"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["DG_PROFILE", "DIRECTORES_PROFILE", "CONFIGURACION"],
+  "additionalProperties": false
+}

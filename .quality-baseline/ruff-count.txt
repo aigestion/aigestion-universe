@@ -1,0 +1,3 @@
+943
+#       -> 0 (2026-10-04, medido sin flags via ratchet_ruff.py).
+0

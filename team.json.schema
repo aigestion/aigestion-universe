@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "team.json - Estructura empresa AIGestion",
+  "type": "object",
+  "required": [
+    "directora_general",
+    "directores",
+    "total_directores",
+    "total_subagentes",
+    "Composicion_genero"
+  ],
+  "type": "object",
+  "properties": {
+    "directora_general": {
+      "type": "string",
+      "description": "Nombre de la Directora General"
+    },
+    "directores": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lista de nombres de los 20 directores"
+    },
+    "total_directores": {
+      "type": "integer",
+      "const": 20,
+      "description": "Número total de directores (debe ser 20)"
+    },
+    "total_subagentes": {
+      "type": "integer",
+      "const": 88,
+      "description": "Número total de subagentes (debe ser 88)"
+    },
+    "Composicion_genero": {
+      "type": "object",
+      "properties": {
+        "mujeres": {
+          "type": "integer",
+          "const": 12,
+          "description": "Número de directoras mujeres"
+        },
+        "hombres": {
+          "type": "integer",
+          "const": 7,
+          "description": "Número de directores hombres"
+        },
+        "no_especificado": {
+          "type": "integer",
+          "const": 2,
+          "description": "Número de directores sin género especificado"
+        }
+      },
+      "required": ["mujeres", "hombres", "no_especificado"],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

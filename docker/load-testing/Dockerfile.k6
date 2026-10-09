@@ -1,0 +1,24 @@
+FROM grafana/k6:0.50.0
+
+WORKDIR /scripts
+
+COPY k6/ /scripts/k6/
+
+RUN mkdir -p /scripts/k6/reports
+
+RUN apk add --no-cache \
+    bash \
+    curl \
+    jq \
+    netcat-openbsd \
+    bc
+
+ENV K6_OUT=influxdb=http://influxdb:8086/k6
+ENV K6_WEB_DASHBOARD=true
+ENV K6_WEB_DASHBOARD_PORT=5665
+ENV K6_WEB_DASHBOARD_PERIOD=5s
+
+EXPOSE 5665
+
+ENTRYPOINT ["k6"]
+CMD ["run", "/scripts/k6/load.js"]

@@ -1,0 +1,299 @@
+{
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {"lineWidth": 2},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 500},
+                {"color": "red", "value": 1000}
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "id": 1,
+        "options": {
+          "legend": {"calcs": ["mean", "max"], "displayMode": "table", "placement": "bottom"},
+          "tooltip": {"mode": "single"}
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_req_duration\") |> filter(fn: (r) => r._field == \"value\") |> aggregateWindow(every: 10s, fn: mean, createEmpty: false) |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "HTTP Request Duration (P95)",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 0.01},
+                {"color": "red", "value": 0.05}
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0},
+        "id": 2,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""},
+          "showThresholdLabels": true,
+          "showThresholdMarkers": true
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_req_failed\") |> filter(fn: (r) => r._field == \"value\") |> aggregateWindow(every: 10s, fn: mean, createEmpty: false) |> yield(name: \"error_rate\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Error Rate",
+        "type": "gauge"
+      },
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 100},
+                {"color": "red", "value": 200}
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0},
+        "id": 3,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""},
+          "showThresholdLabels": true,
+          "showThresholdMarkers": true
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"vus\") |> filter(fn: (r) => r._field == \"value\") |> aggregateWindow(every: 10s, fn: last, createEmpty: false) |> yield(name: \"vus\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Active VUs",
+        "type": "gauge"
+      },
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {"lineWidth": 2},
+            "mappings": [],
+            "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}]},
+            "unit": "reqps"
+          },
+          "overrides": []
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+        "id": 4,
+        "options": {
+          "legend": {"calcs": ["mean", "max"], "displayMode": "table", "placement": "bottom"},
+          "tooltip": {"mode": "single"}
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_reqs\") |> filter(fn: (r) => r._field == \"value\") |> aggregateWindow(every: 10s, fn: sum, createEmpty: false) |> yield(name: \"rate\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Requests Per Second",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {"lineWidth": 1},
+            "mappings": [],
+            "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}]},
+            "unit": "ms"
+          },
+          "overrides": [
+            {
+              "matcher": {"id": "byName", "options": "p(95)"},
+              "properties": [{"id": "custom.lineWidth", "value": 3}]
+            }
+          ]
+        },
+        "gridPos": {"h": 10, "w": 24, "x": 0, "y": 16},
+        "id": 5,
+        "options": {
+          "legend": {"calcs": ["mean", "max", "lastNotNull"], "displayMode": "table", "placement": "bottom"},
+          "tooltip": {"mode": "single"}
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_req_duration\") |> filter(fn: (r) => r._field == \"value\") |> group(columns: [\"engine\"]) |> aggregateWindow(every: 30s, fn: mean, createEmpty: false) |> yield(name: \"by_engine\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Latency by Engine",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 0.02},
+                {"color": "red", "value": 0.05}
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 26},
+        "id": 6,
+        "options": {
+          "legend": {"calcs": ["mean"], "displayMode": "table", "placement": "bottom"},
+          "tooltip": {"mode": "single"}
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_req_failed\") |> filter(fn: (r) => r._field == \"value\") |> group(columns: [\"engine\"]) |> aggregateWindow(every: 30s, fn: mean, createEmpty: false) |> yield(name: \"by_engine\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Error Rate by Engine",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "InfluxDB",
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "mappings": [{"options": {"0": {"color": "green", "index": 0, "text": "OK"}, "1": {"color": "red", "index": 1, "text": "FAIL"}}, "type": "value"}],
+            "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}]}
+          },
+          "overrides": []
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 26},
+        "id": 7,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justify": "center",
+          "orientation": "auto",
+          "reduceOptions": {"values": false, "calcs": ["lastNotNull"], "fields": ""},
+          "text": {},
+          "textMode": "auto"
+        },
+        "targets": [
+          {
+            "query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"checks\") |> filter(fn: (r) => r._field == \"value\") |> group(columns: [\"engine\"]) |> aggregateWindow(every: 30s, fn: mean, createEmpty: false) |> yield(name: \"by_engine\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Check Pass Rate by Engine",
+        "type": "stat"
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": ["loadtest", "k6", "aig"],
+    "templating": {
+      "list": [
+        {
+          "current": {"selected": false, "text": "All", "value": "$__all"},
+          "datasource": "InfluxDB",
+          "definition": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_req_duration\") |> keep(columns: [\"engine\"]) |> distinct(column: \"engine\")",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Engine",
+          "multi": true,
+          "name": "engine",
+          "options": [],
+          "query": {"query": "from(bucket: \"k6\") |> range(start: -1h) |> filter(fn: (r) => r._measurement == \"http_req_duration\") |> keep(columns: [\"engine\"]) |> distinct(column: \"engine\")", "refId": "StandardVariableQuery"},
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {"selected": false, "text": "Last 1 hour", "value": "1h"},
+          "hide": 0,
+          "label": "Time Range",
+          "name": "timeRange",
+          "options": [
+            {"selected": true, "text": "Last 5 minutes", "value": "5m"},
+            {"selected": false, "text": "Last 15 minutes", "value": "15m"},
+            {"selected": false, "text": "Last 1 hour", "value": "1h"},
+            {"selected": false, "text": "Last 6 hours", "value": "6h"},
+            {"selected": false, "text": "Last 24 hours", "value": "24h"}
+          ],
+          "query": "",
+          "skipUrlSync": false,
+          "type": "interval"
+        }
+      ]
+    },
+    "time": {"from": "now-1h", "to": "now"},
+    "timepicker": {},
+    "timezone": "",
+    "title": "aig Load Test Dashboard",
+    "uid": "aig-loadtest",
+    "version": 1,
+    "weekStart": ""
+  },
+  "overwrite": true
+}

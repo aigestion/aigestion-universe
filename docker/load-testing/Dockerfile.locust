@@ -1,0 +1,28 @@
+FROM python:3.11-slim
+
+WORKDIR /locust
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY locust/requirements.txt /locust/
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY locust/locustfile.py /locust/
+COPY locust/ /locust/
+
+EXPOSE 8089 5557 5558
+
+ENV LOCUST_MODE=standalone
+ENV LOCUST_MASTER_HOST=locust-master
+ENV LOCUST_MASTER_PORT=5557
+ENV LOCUST_WORKER_COUNT=4
+ENV LOCUST_WEB_HOST=0.0.0.0
+ENV LOCUST_WEB_PORT=8089
+
+COPY locust/entrypoint.sh /locust/
+RUN chmod +x /locust/entrypoint.sh
+
+ENTRYPOINT ["/locust/entrypoint.sh"]
