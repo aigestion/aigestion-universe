@@ -28,7 +28,7 @@ from datetime import datetime
 from pathlib import Path
 
 STATE_FILE = Path(__file__).resolve().parent / ".paired.json"
-DEFAULT_PORT = 8082
+DEFAULT_PORT = 9800
 
 
 def _repo_env() -> dict:
