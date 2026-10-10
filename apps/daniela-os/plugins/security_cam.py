@@ -14,7 +14,7 @@ def capture_photo(camera_id="1"):
         except: pass
         
     cmd = ['termux-camera-photo', '-c', str(camera_id), SNAP_PATH]
-    res = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+    subprocess.run(cmd, capture_output=True, text=True, timeout=10)
     if os.path.exists(SNAP_PATH) and os.path.getsize(SNAP_PATH) > 0:
         return True
     return False

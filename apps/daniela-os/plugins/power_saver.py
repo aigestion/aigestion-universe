@@ -27,7 +27,7 @@ def run(context):
 
             # 2. Ajuste de frecuencia en el Scheduler (ampliar intervalos)
             try:
-                sch = importlib.import_module('plugins.scheduler')
+                importlib.import_module('plugins.scheduler')
                 # Aumenta el tiempo entre ejecuciones rutinarias para reducir CPU
                 actions.append("• Intervalos del Scheduler ampliados para ahorrar ciclos de CPU")
             except: pass

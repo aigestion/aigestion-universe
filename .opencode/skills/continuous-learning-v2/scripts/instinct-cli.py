@@ -2210,7 +2210,7 @@ def main() -> int:
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
 
     # Status
-    status_parser = subparsers.add_parser('status', help='Show instinct status (project + global)')
+    subparsers.add_parser('status', help='Show instinct status (project + global)')
 
     # Import
     import_parser = subparsers.add_parser('import', help='Import instincts')

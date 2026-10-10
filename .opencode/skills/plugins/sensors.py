@@ -2,7 +2,7 @@ import subprocess
 import json
 
 def run(context):
-    cmd = context.lower()
+    context.lower()
     
     try:
         # Lectura de sensores en tiempo real vía termux-sensor

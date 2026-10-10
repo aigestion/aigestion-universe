@@ -1,7 +1,7 @@
 import subprocess
 
 def run(context):
-    cmd = context.lower()
+    context.lower()
     
     try:
         # Inspección directa de la tabla ARP local mediante 'ip neighbor'

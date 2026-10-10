@@ -398,7 +398,6 @@ class IRBridge:
             try:
                 if protocol == "rc5":
                     pat = encode_rc5(int(address), int(command))
-                    freq = frequency or 36000
                 else:
                     pat = encode_nec(int(address), int(command),
                                      extended=(protocol == "nec-ext"))

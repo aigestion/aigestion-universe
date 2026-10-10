@@ -9,7 +9,7 @@ def clean_html(raw_html):
     return ' '.join(cleantext.split())
 
 def run(context):
-    cmd = context.lower()
+    context.lower()
     
     # Extraer la consulta eliminando el prefijo del comando
     query = context

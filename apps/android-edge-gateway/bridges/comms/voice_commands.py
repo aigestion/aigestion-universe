@@ -57,7 +57,7 @@ def execute_command():
     arg = parts[1] if len(parts) > 1 else ""
     if cmd in COMMANDS:
         try:
-            result = COMMANDS[cmd](arg)
+            COMMANDS[cmd](arg)
             event = {"time": time.time(), "command": cmd, "arg": arg, "status": "executed"}
         except Exception as e:
             event = {"time": time.time(), "command": cmd, "arg": arg, "status": "error", "error": str(e)}

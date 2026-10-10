@@ -45,7 +45,7 @@ def run_mobile():
     import http.server
     import socketserver
     os.chdir(ANDROID_APP_DIR)  # aqui ya vive la PWA (index.html, js/, css/)
-    port = int(os.getenv("MOBILE_APP_PORT", "8095"))
+    int(os.getenv("MOBILE_APP_PORT", "8095"))
     handler = http.server.SimpleHTTPRequestHandler
     with socketserver.TCPServer(("", 8095), handler) as httpd:
         print("[MobileApp] Serving PWA on http://localhost:8095")

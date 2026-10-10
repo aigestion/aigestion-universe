@@ -9,7 +9,7 @@ BASE_DIR = os.path.expanduser("~/daniela-os")
 AUDIO_FILE = os.path.join(BASE_DIR, "audio_snap.wav")
 
 def run(context):
-    cmd = context.lower()
+    context.lower()
     
     # Extraer duración en segundos si se especifica (ej: "escucha 10" o "graba 5")
     duration = 5

@@ -46,7 +46,7 @@ def check_and_execute_due_tasks():
         if now - task.get("last_run", 0) >= task.get("interval", 3600):
             try:
                 mod = importlib.import_module(f"plugins.{task['plugin']}")
-                res = mod.run(f"auto_{task['plugin']}")
+                mod.run(f"auto_{task['plugin']}")
                 task["last_run"] = now
                 executed.append(f"Task #{task['id']} ({task['plugin']}): Executed")
             except Exception as e:

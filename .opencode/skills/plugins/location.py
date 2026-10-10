@@ -41,7 +41,7 @@ def get_last_vault_location():
     return None
 
 def run(context):
-    cmd = context.lower()
+    context.lower()
     config = load_geofence_config()
     
     output_data = None
