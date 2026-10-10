@@ -1,0 +1,71 @@
+# AIGestion - Docker Compose Stack
+# =================================
+version: "3.8"
+
+services:
+  # ── Daniela OS (API Principal) ──────────────────────────────
+  daniela-os:
+    build: .
+    container_name: aigestion-daniela
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./daniela_vault.db:/app/daniela_vault.db
+      - ./content_output:/app/content_output
+      - ./config.json:/app/config.json
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - DANIELA_PIN=${DANIELA_PIN}
+    restart: unless-stopped
+    networks:
+      - aigestion-net
+
+  # ── API Gateway (Nginx reverse proxy) ───────────────────────
+  gateway:
+    image: nginx:alpine
+    container_name: aigestion-gateway
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - daniela-os
+    restart: unless-stopped
+    networks:
+      - aigestion-net
+
+  # ── Redis (Cache y Message Broker) ──────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: aigestion-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - aigestion-net
+
+  # ── Monitoring (opcional) ───────────────────────────────────
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: aigestion-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    restart: unless-stopped
+    networks:
+      - aigestion-net
+    profiles:
+      - monitoring
+
+networks:
+  aigestion-net:
+    driver: bridge
+
+volumes:
+  redis-data:

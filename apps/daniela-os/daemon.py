@@ -1,5 +1,5 @@
 """
-Daniela Omnipresente - Background Daemon
+Daniela OS - Background Daemon
 Keeps all 50 systems alive with auto-restart
 """
 
@@ -22,7 +22,7 @@ PID_FILE = DATA_DIR / "daemon_pids.json"
 HEARTBEAT_FILE = DATA_DIR / "daemon_heartbeat.json"
 
 SYSTEMS = [
-    {"name": "Omnipresente Server", "port": None, "script": "server.py"},
+    {"name": "Daniela Server", "port": None, "script": "server.py"},
     {
         "name": "Cross-Device Sync",
         "port": None,
@@ -48,7 +48,7 @@ class DanielaDaemon:
             f.write(line + "\n")
 
     def start_server(self):
-        self.log("Starting Omnipresente Server...")
+        self.log("Starting Daniela Server...")
         try:
             proc = subprocess.Popen(
                 [sys.executable, str(DAEMON_DIR / "server.py")],

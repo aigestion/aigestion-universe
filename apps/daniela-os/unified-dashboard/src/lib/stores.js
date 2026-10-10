@@ -5,8 +5,8 @@ import { writable, derived, get } from 'svelte/store'
 // Service configuration
 export const SERVICES = [
   { id: 'epic_pc', name: 'Epic PC', port: 5020, category: 'Core' },
-  { id: 'daniela', name: 'Daniela Omnipresente', port: 9200, category: 'AI' },
-  { id: 'hermes', name: 'Hermes Epic', port: 9300, category: 'AI' },
+  { id: 'daniela', name: 'Daniela', port: 9200, category: 'AI' },
+  { id: 'hermes', name: 'Hermes', port: 9300, category: 'AI' },
   { id: 'optimization', name: 'AIG Optimization', port: 9400, category: 'Infra' },
   { id: 'frontend_v1', name: 'Frontend V1', port: 9500, category: 'Frontend' },
   { id: 'frontend_v2', name: 'Frontend V2', port: 9600, category: 'Frontend' },

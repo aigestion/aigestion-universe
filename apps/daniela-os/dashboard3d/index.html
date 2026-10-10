@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daniela 3D Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #000; 
+            overflow: hidden;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        #ui-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .hud-panel {
+            position: absolute;
+            background: rgba(10, 10, 26, 0.8);
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 15px;
+            color: #eee;
+            pointer-events: auto;
+            backdrop-filter: blur(10px);
+        }
+        .hud-title {
+            color: #00ff88;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .hud-metric {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .hud-label {
+            font-size: 11px;
+            color: #888;
+        }
+        .hud-bar {
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin: 5px 0;
+            overflow: hidden;
+        }
+        .hud-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            border-radius: 2px;
+        }
+        #panel-agents { top: 20px; left: 20px; width: 250px; }
+        #panel-system { top: 20px; right: 20px; width: 250px; }
+        #panel-brain { bottom: 20px; left: 20px; width: 300px; }
+        #panel-missions { bottom: 20px; right: 20px; width: 300px; }
+        #panel-content { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; text-align: center; }
+        .agent-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            font-size: 12px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-active { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
+        .status-idle { background: #ffaa00; }
+        .status-error { background: #ff4444; }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="ui-overlay">
+        <div id="panel-agents" class="hud-panel">
+            <div class="hud-title">🤖 Agentes</div>
+            <div class="hud-metric" id="agents-count">34/34</div>
+            <div class="hud-label">Activos</div>
+            <div id="agents-list"></div>
+        </div>
+        
+        <div id="panel-system" class="hud-panel">
+            <div class="hud-title">💻 Sistema</div>
+            <div class="hud-label">CPU</div>
+            <div class="hud-bar"><div class="hud-bar-fill" id="cpu-bar" style="width: 0%"></div></div>
+            <div class="hud-label">RAM</div>
+            <div class="hud-bar"><div class="hud-bar-fill" id="ram-bar" style="width: 0%"></div></div>
+            <div class="hud-label">Disco</div>
+            <div class="hud-bar"><div class="hud-bar-fill" id="disk-bar" style="width: 0%"></div></div>
+        </div>
+        
+        <div id="panel-brain" class="hud-panel">
+            <div class="hud-title">🧠 Cerebro</div>
+            <div class="hud-metric" id="brain-facts">0</div>
+            <div class="hud-label">Hechos</div>
+            <div class="hud-metric" id="brain-insights">0</div>
+            <div class="hud-label">Insights</div>
+            <div class="hud-metric" id="brain-decisions">0</div>
+            <div class="hud-label">Decisiones</div>
+        </div>
+        
+        <div id="panel-missions" class="hud-panel">
+            <div class="hud-title">🎯 Misiones</div>
+            <div class="hud-metric" id="missions-active">0</div>
+            <div class="hud-label">Activas</div>
+            <div id="missions-list"></div>
+        </div>
+        
+        <div id="panel-content" class="hud-panel">
+            <div class="hud-title">🎬 Contenido</div>
+            <div class="hud-metric" id="videos-created">0</div>
+            <div class="hud-label">Videos creados</div>
+            <div class="hud-metric" id="posts-published">0</div>
+            <div class="hud-label">Posts publicados</div>
+            <div class="hud-metric" id="views-total">0</div>
+            <div class="hud-label">Views totales</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Escena 3D
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Luz
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0x00ff88, 1, 100);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        // Núcleo de Daniela (esfera central)
+        const coreGeometry = new THREE.IcosahedronGeometry(2, 2);
+        const coreMaterial = new THREE.MeshPhongMaterial({
+            color: 0x00ff88,
+            emissive: 0x00ff88,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+        });
+        const core = new THREE.Mesh(coreGeometry, coreMaterial);
+        scene.add(core);
+
+        // Anillos orbitales
+        const rings = [];
+        for (let i = 0; i < 3; i++) {
+            const ringGeometry = new THREE.TorusGeometry(3 + i * 1.5, 0.05, 16, 100);
+            const ringMaterial = new THREE.MeshBasicMaterial({
+                color: i === 0 ? 0x00ff88 : i === 1 ? 0x00ccff : 0xff00ff,
+                transparent: true,
+                opacity: 0.6,
+            });
+            const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+            ring.rotation.x = Math.PI / 2;
+            ring.rotation.y = i * 0.5;
+            scene.add(ring);
+            rings.push(ring);
+        }
+
+        // Partículas (agentes)
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particleCount = 100;
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            const radius = 5 + Math.random() * 10;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.random() * Math.PI;
+            positions[i] = radius * Math.sin(phi) * Math.cos(theta);
+            positions[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
+            positions[i + 2] = radius * Math.cos(phi);
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            color: 0x00ff88,
+            size: 0.1,
+            transparent: true,
+            opacity: 0.8,
+        });
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        // Conexiones entre partículas
+        const linesMaterial = new THREE.LineBasicMaterial({
+            color: 0x00ff88,
+            transparent: true,
+            opacity: 0.2,
+        });
+        const linesGeometry = new THREE.BufferGeometry();
+        const linePositions = [];
+        for (let i = 0; i < particleCount; i += 10) {
+            for (let j = i + 1; j < Math.min(i + 5, particleCount); j++) {
+                linePositions.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                linePositions.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+            }
+        }
+        linesGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+        const lines = new THREE.LineSegments(linesGeometry, linesMaterial);
+        scene.add(lines);
+
+        camera.position.z = 15;
+
+        // Animación
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.01;
+
+            // Rotar núcleo
+            core.rotation.x += 0.005;
+            core.rotation.y += 0.01;
+
+            // Pulsar núcleo
+            const scale = 1 + Math.sin(time * 2) * 0.1;
+            core.scale.set(scale, scale, scale);
+
+            // Rotar anillos
+            rings.forEach((ring, i) => {
+                ring.rotation.z += 0.005 * (i + 1);
+            });
+
+            // Rotar partículas
+            particles.rotation.y += 0.001;
+            particles.rotation.x += 0.0005;
+
+            // Mover cámara suavemente
+            camera.position.x = Math.sin(time * 0.5) * 2;
+            camera.position.y = Math.cos(time * 0.3) * 2;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Actualizar HUD
+        function updateHUD() {
+            fetch('/api/live')
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('agents-count').textContent = `${data.agents_active}/${data.agents_total}`;
+                    document.getElementById('cpu-bar').style.width = `${data.cpu}%`;
+                    document.getElementById('ram-bar').style.width = `${data.ram}%`;
+                    document.getElementById('disk-bar').style.width = `${data.disk}%`;
+                    document.getElementById('brain-facts').textContent = data.facts;
+                    document.getElementById('brain-insights').textContent = data.insights;
+                    document.getElementById('brain-decisions').textContent = data.decisions;
+                    document.getElementById('missions-active').textContent = data.missions_active;
+                    document.getElementById('videos-created').textContent = data.videos_created;
+                    document.getElementById('posts-published').textContent = data.posts_published;
+                    document.getElementById('views-total').textContent = data.views_total;
+                    
+                    // Lista de agentes
+                    const agentsList = document.getElementById('agents-list');
+                    agentsList.innerHTML = data.agents.map(a => `
+                        <div class="agent-row">
+                            <span>${a.name}</span>
+                            <span class="status-dot status-${a.status}"></span>
+                        </div>
+                    `).join('');
+                });
+        }
+        setInterval(updateHUD, 5000);
+        updateHUD();
+    </script>
+</body>
+</html>

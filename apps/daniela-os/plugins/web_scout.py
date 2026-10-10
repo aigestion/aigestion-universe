@@ -42,7 +42,7 @@ def run(context):
                     results.append(item["Text"])
             
             if results:
-                return f"🔍 [WEB SCOUT]: " + " | ".join(results)
+                return "🔍 [WEB SCOUT]: " + " | ".join(results)
                 
             return f"🌐 [WEB SCOUT]: No se encontraron respuestas directas instantáneas para '{query}'. Probando extracción directa..."
 

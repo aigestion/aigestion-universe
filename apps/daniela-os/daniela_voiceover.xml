@@ -1,0 +1,23 @@
+<speak>
+    <p>
+        <s>El tiempo... <break time="500ms"/> es el único activo que jamás se recupera.</s>
+        <break time="800ms"/>
+        <s>En un mundo donde la burocracia, los documentos perdidos y las tareas repetitivas aplastan la visión de un negocio... <break time="400ms"/> el caos siempre se cobra su precio.</s>
+    </p>
+    <p>
+        <s>Hasta que nace un centro de mando. <break time="600ms"/></s>
+        <s>Bienvenido a AIGestion.net. <break time="800ms"/></s>
+        <s>Una infraestructura de inteligencia ejecutiva diseñada para tomar el control absoluto de tus operaciones.</s>
+    </p>
+    <p>
+        <s>Sin fricción. <break time="300ms"/> Sin pérdidas de información. <break time="500ms"/></s>
+        <s>Tu bandeja de Gmail, tus archivos de Google Drive y la gestión de tu patrimonio, <break time="300ms"/> procesados e integrados en tiempo real.</s>
+    </p>
+    <p>
+        <s>Hola, Comandante. <break time="400ms"/> Soy Daniela. <break time="600ms"/></s>
+        <s>Tu asistente ejecutiva autónoma. <break time="500ms"/> Todos los sistemas están al cien por cien.</s>
+    </p>
+    <p>
+        <s>AIGestion.net. <break time="600ms"/> Tu negocio. <break time="300ms"/> Tu vida. <break time="400ms"/> En orden absoluto.</s>
+    </p>
+</speak>

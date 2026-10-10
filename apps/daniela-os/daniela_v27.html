@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>DANIELA OS // TOGGLE FOCUS ZOOM</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background: #000208; font-family: 'Courier New', monospace; color: #fff; }
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; touch-action: none; }
+        #labels-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+
+        .hud-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 30; pointer-events: none; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
+        .top-bar { pointer-events: auto; display: flex; flex-direction: column; gap: 6px; }
+        .row-header { display: flex; justify-content: space-between; align-items: center; }
+        
+        .pill-brand { background: rgba(0,15,30,0.85); border: 1.5px solid #00f0ff; color: #00f0ff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.65rem; letter-spacing: 0.5px; box-shadow: 0 0 12px rgba(0,240,255,0.4); display: flex; align-items: center; gap: 6px; }
+        .pill-user { background: rgba(224, 36, 195, 0.15); border: 1.5px solid #e024c3; color: #e024c3; padding: 4px 12px; border-radius: 20px; font-size: 0.6rem; font-weight: bold; }
+
+        .transcription-card { background: rgba(2, 6, 16, 0.92); border: 1px solid #e024c3; border-radius: 12px; padding: 8px 12px; box-shadow: 0 0 15px rgba(224,36,195,0.25); pointer-events: auto; margin-top: 4px; }
+        .trans-header { display: flex; justify-content: space-between; color: #e024c3; font-size: 0.55rem; font-weight: bold; margin-bottom: 4px; }
+        .trans-input-row { display: flex; gap: 8px; align-items: center; }
+        .trans-input { flex: 1; background: rgba(0,0,0,0.6); border: 1px solid rgba(0,240,255,0.3); border-radius: 6px; padding: 6px; color: #fff; font-family: monospace; font-size: 0.65rem; outline: none; }
+        .btn-send { background: #00f0ff; border: none; color: #000; font-weight: bold; padding: 6px 10px; border-radius: 6px; font-size: 0.6rem; cursor: pointer; box-shadow: 0 0 8px #00f0ff; }
+        .btn-recenter { background: #e024c3; border: none; color: #fff; font-weight: bold; padding: 3px 8px; border-radius: 10px; font-size: 0.52rem; cursor: pointer; display: none; box-shadow: 0 0 8px #e024c3; }
+
+        .node-label { position: absolute; pointer-events: auto; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: opacity 0.4s ease, transform 0.4s ease; }
+        
+        .node-label.planet-layer { z-index: 20; }
+        .planet-box { background: rgba(2, 8, 22, 0.96); border: 1.5px solid var(--node-color); border-radius: 8px; padding: 4px 10px; font-size: 0.58rem; font-weight: bold; color: var(--node-color); white-space: nowrap; box-shadow: 0 0 12px var(--node-color); display: flex; align-items: center; gap: 6px; backdrop-filter: blur(4px); }
+        .led-dot { width: 6px; height: 6px; background: #00ff66; border-radius: 50%; box-shadow: 0 0 8px #00ff66; display: inline-block; }
+
+        .node-label.sat-layer { z-index: 10; }
+        .sat-icon-only { background: rgba(2, 8, 22, 0.92); border: 1.2px solid var(--node-color); border-radius: 50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 0.7rem; box-shadow: 0 0 8px var(--node-color); transition: transform 0.2s ease; }
+        .sat-icon-only:active { transform: scale(0.85); }
+
+        .bottom-bar { display: flex; justify-content: center; width: 100%; pointer-events: auto; margin-bottom: 10px; }
+        .mic-btn-pink { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,0,0,0.85); border: 2px solid #e024c3; color: #e024c3; font-size: 1.3rem; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 16px rgba(224, 36, 195, 0.5); }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="labels-container"></div>
+
+    <div class="hud-overlay">
+        <div class="top-bar">
+            <div class="row-header">
+                <div class="pill-brand"><span style="color:#00ff66;">●</span> DANIELA OS // TOGGLE FOCUS CORE</div>
+                <div class="pill-user">[GOOGLE VERIFIED]</div>
+            </div>
+            <div class="transcription-card">
+                <div class="trans-header">
+                    <span>TRANSCRIPCIÓN TÁCTICA</span>
+                    <button class="btn-recenter" id="btn-recenter" onclick="recenterUniverse()">↺ RE-CENTER</button>
+                </div>
+                <div class="trans-input-row">
+                    <input type="text" class="trans-input" id="chat-input" value="[SYSTEM] Toca un planeta para enfocar/desenfocar." />
+                    <button class="btn-send" onclick="sendPrompt()">ENVIAR →</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <button class="mic-btn-pink" id="mic-btn" onclick="toggleVoice()">🎙️</button>
+        </div>
+    </div>
+
+    <script>
+        let scene, camera, renderer, brainGroup, controls;
+        let coreParticles, ring1, ring2;
+        const planetEntities = [];
+        const satelliteEntities = [];
+        let focusedPlanetId = null;
+
+        let targetCameraPos = new THREE.Vector3(0, 0, 16);
+        let targetLookAt = new THREE.Vector3(0, 0, 0);
+
+        const SYSTEM_NODES = [
+            {
+                id: "g1", name: "GOOGLE ECOSYSTEM", icon: "🌐", color: "#00f0ff", radiusX: 2.0, radiusY: 1.7, angle: -Math.PI * 0.25, speed: 0.00015,
+                satellites: [
+                    { name: "Drive", icon: "📁", orbRadius: 0.65, orbSpeed: 0.0028, orbAngle: 0 },
+                    { name: "Gmail", icon: "✉️", orbRadius: 0.65, orbSpeed: 0.0028, orbAngle: Math.PI * 0.66 },
+                    { name: "Calendar", icon: "📅", orbRadius: 0.65, orbSpeed: 0.0028, orbAngle: Math.PI * 1.33 }
+                ]
+            },
+            {
+                id: "g2", name: "SYSTEM CORE", icon: "💻", color: "#00ff66", radiusX: 2.0, radiusY: 1.7, angle: -Math.PI * 0.75, speed: 0.00015,
+                satellites: [
+                    { name: "Terminal", icon: "💻", orbRadius: 0.62, orbSpeed: 0.0032, orbAngle: 0.3 },
+                    { name: "SSH", icon: "🔑", orbRadius: 0.62, orbSpeed: 0.0032, orbAngle: Math.PI * 0.66 + 0.3 },
+                    { name: "POSIX", icon: "⚙️", orbRadius: 0.62, orbSpeed: 0.0032, orbAngle: Math.PI * 1.33 + 0.3 }
+                ]
+            },
+            {
+                id: "g3", name: "AI COGNITION", icon: "🧠", color: "#ffaa00", radiusX: 2.0, radiusY: 1.7, angle: Math.PI * 0.75, speed: 0.00015,
+                satellites: [
+                    { name: "Alpha-Core", icon: "🧠", orbRadius: 0.62, orbSpeed: 0.0035, orbAngle: 0.5 },
+                    { name: "Beta-RAG", icon: "📊", orbRadius: 0.62, orbSpeed: 0.0035, orbAngle: Math.PI + 0.5 }
+                ]
+            },
+            {
+                id: "g4", name: "SKILLS & MEDIA", icon: "⚡", color: "#e024c3", radiusX: 2.0, radiusY: 1.7, angle: Math.PI * 0.25, speed: 0.00015,
+                satellites: [
+                    { name: "Creative", icon: "🎨", orbRadius: 0.62, orbSpeed: 0.003, orbAngle: 0.2 },
+                    { name: "Nu-Voice", icon: "🎤", orbRadius: 0.62, orbSpeed: 0.003, orbAngle: Math.PI + 0.2 }
+                ]
+            },
+            {
+                id: "g5", name: "ACTIVE APIS", icon: "📡", color: "#ff2255", radiusX: 1.9, radiusY: 1.6, angle: 0, speed: 0.00012,
+                satellites: [
+                    { name: "LLM Router", icon: "🔀", orbRadius: 0.65, orbSpeed: 0.0025, orbAngle: 0.4 },
+                    { name: "Whisper", icon: "🗣️", orbRadius: 0.65, orbSpeed: 0.0025, orbAngle: Math.PI + 0.4 }
+                ]
+            }
+        ];
+
+        function initApp() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 16);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableRotate = false;
+            controls.enablePan = false;
+            controls.enableZoom = true;
+            controls.minDistance = 4;
+            controls.maxDistance = 24;
+
+            brainGroup = new THREE.Group();
+
+            const count = 2000;
+            const geo = new THREE.BufferGeometry();
+            const pos = new Float32Array(count * 3);
+            for (let i = 0; i < count * 3; i += 3) {
+                const u = Math.random() * Math.PI * 2;
+                const v = Math.random() * Math.PI;
+                const r = 1.0 + Math.random() * 0.25;
+                pos[i] = r * Math.sin(v) * Math.cos(u);
+                pos[i+1] = r * Math.sin(v) * Math.sin(u) * 0.85;
+                pos[i+2] = r * Math.cos(v);
+            }
+            geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            coreParticles = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0x00f0ff, size: 0.035, transparent: true, opacity: 0.9 }));
+            brainGroup.add(coreParticles);
+
+            const r1Geo = new THREE.RingGeometry(1.35, 1.37, 64);
+            const r1Mat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, side: THREE.DoubleSide, transparent: true, opacity: 0.4 });
+            ring1 = new THREE.Mesh(r1Geo, r1Mat);
+            ring1.rotation.x = Math.PI / 3;
+            brainGroup.add(ring1);
+
+            const r2Geo = new THREE.RingGeometry(1.50, 1.52, 64);
+            const r2Mat = new THREE.MeshBasicMaterial({ color: 0xe024c3, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
+            ring2 = new THREE.Mesh(r2Geo, r2Mat);
+            ring2.rotation.y = Math.PI / 4;
+            brainGroup.add(ring2);
+
+            buildPlanetarySystem();
+            scene.add(brainGroup);
+            animate();
+        }
+
+        function buildPlanetarySystem() {
+            const container = document.getElementById('labels-container');
+            container.innerHTML = "";
+
+            SYSTEM_NODES.forEach((node) => {
+                const x = Math.cos(node.angle) * node.radiusX;
+                const y = Math.sin(node.angle) * node.radiusY;
+
+                const planetMesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.12, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: node.color })
+                );
+                planetMesh.position.set(x, y, 0);
+                brainGroup.add(planetMesh);
+
+                const lineGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(x,y,0)]);
+                const lineMat = new THREE.LineBasicMaterial({ color: node.color, transparent: true, opacity: 0.35 });
+                const lineMesh = new THREE.Line(lineGeo, lineMat);
+                brainGroup.add(lineMesh);
+
+                const planetEl = document.createElement('div');
+                planetEl.className = 'node-label planet-layer';
+                planetEl.style.setProperty('--node-color', node.color);
+                planetEl.innerHTML = `
+                    <div class="planet-box">
+                        <span class="led-dot"></span>
+                        <span>${node.icon}</span>
+                        <span>${node.name}</span>
+                    </div>
+                `;
+
+                // INTERRUPTOR TOGGLE: SI YA ESTÁ ENFOCADO, HACE RE-CENTER
+                planetEl.onclick = () => { togglePlanetFocus(node.id); };
+
+                container.appendChild(planetEl);
+
+                const planetObj = { id: node.id, mesh: planetMesh, line: lineMesh, lineMat, element: planetEl, config: node, angle: node.angle };
+                planetEntities.push(planetObj);
+
+                node.satellites.forEach((sat) => {
+                    const satMesh = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.05, 12, 12),
+                        new THREE.MeshBasicMaterial({ color: node.color })
+                    );
+                    brainGroup.add(satMesh);
+
+                    const satEl = document.createElement('div');
+                    satEl.className = 'node-label sat-layer';
+                    satEl.style.setProperty('--node-color', node.color);
+                    satEl.onclick = () => {
+                        document.getElementById('chat-input').value = `[${sat.name}] Seleccionado.`;
+                    };
+                    satEl.innerHTML = `<div class="sat-icon-only">${sat.icon}</div>`;
+                    container.appendChild(satEl);
+
+                    satelliteEntities.push({
+                        parentId: node.id,
+                        mesh: satMesh,
+                        element: satEl,
+                        parentPlanet: planetObj,
+                        config: sat,
+                        orbAngle: sat.orbAngle
+                    });
+                });
+            });
+        }
+
+        function togglePlanetFocus(planetId) {
+            if (focusedPlanetId === planetId) {
+                // SI VOLVEMOS A CLICAR EN EL MISMO PLANETA ENFOCADO, RECENTRAMOS
+                recenterUniverse();
+            } else {
+                focusPlanet(planetId);
+            }
+        }
+
+        function focusPlanet(planetId) {
+            focusedPlanetId = planetId;
+            document.getElementById('btn-recenter').style.display = 'block';
+            document.getElementById('chat-input').value = `[ZOOM FOCUS] Módulo seleccionado. Toca para regresar.`;
+
+            const selectedPlanet = planetEntities.find(p => p.id === planetId);
+            if (selectedPlanet) {
+                targetLookAt.copy(selectedPlanet.mesh.position);
+                targetCameraPos.set(selectedPlanet.mesh.position.x, selectedPlanet.mesh.position.y, 6.5);
+            }
+
+            planetEntities.forEach(p => {
+                if (p.id === planetId) {
+                    p.element.style.opacity = '1';
+                    p.lineMat.opacity = 0.6;
+                } else {
+                    p.element.style.opacity = '0.05';
+                    p.lineMat.opacity = 0.05;
+                }
+            });
+
+            satelliteEntities.forEach(s => {
+                if (s.parentId === planetId) {
+                    s.element.style.opacity = '1';
+                    s.element.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                } else {
+                    s.element.style.opacity = '0';
+                }
+            });
+        }
+
+        function recenterUniverse() {
+            focusedPlanetId = null;
+            document.getElementById('btn-recenter').style.display = 'none';
+            document.getElementById('chat-input').value = `[SYSTEM] Vista general restablecida.`;
+
+            targetLookAt.set(0, 0, 0);
+            targetCameraPos.set(0, 0, 16);
+
+            planetEntities.forEach(p => {
+                p.element.style.opacity = '1';
+                p.lineMat.opacity = 0.35;
+            });
+
+            satelliteEntities.forEach(s => {
+                s.element.style.opacity = '1';
+                s.element.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        }
+
+        function updatePositions() {
+            camera.position.lerp(targetCameraPos, 0.05);
+            controls.target.lerp(targetLookAt, 0.05);
+
+            planetEntities.forEach(p => {
+                p.angle += p.config.speed;
+                const x = Math.cos(p.angle) * p.config.radiusX;
+                const y = Math.sin(p.angle) * p.config.radiusY;
+
+                p.mesh.position.set(x, y, 0);
+
+                const posArr = p.line.geometry.attributes.position.array;
+                posArr[3] = x; posArr[4] = y; posArr[5] = 0;
+                p.line.geometry.attributes.position.needsUpdate = true;
+
+                const tempV = new THREE.Vector3();
+                p.mesh.getWorldPosition(tempV);
+                tempV.project(camera);
+
+                const screenX = (tempV.x * .5 + .5) * window.innerWidth;
+                const screenY = (tempV.y * -.5 + .5) * window.innerHeight;
+
+                p.element.style.left = `${screenX}px`;
+                p.element.style.top = `${screenY}px`;
+            });
+
+            satelliteEntities.forEach(s => {
+                s.orbAngle += s.config.orbSpeed;
+
+                const parentPos = s.parentPlanet.mesh.position;
+                const currentOrbRadius = (focusedPlanetId === s.parentId) ? s.config.orbRadius * 1.3 : s.config.orbRadius;
+
+                const satX = parentPos.x + Math.cos(s.orbAngle) * currentOrbRadius;
+                const satY = parentPos.y + Math.sin(s.orbAngle) * currentOrbRadius;
+
+                s.mesh.position.set(satX, satY, -0.15);
+
+                const tempV = new THREE.Vector3();
+                s.mesh.getWorldPosition(tempV);
+                tempV.project(camera);
+
+                const screenX = (tempV.x * .5 + .5) * window.innerWidth;
+                const screenY = (tempV.y * -.5 + .5) * window.innerHeight;
+
+                s.element.style.left = `${screenX}px`;
+                s.element.style.top = `${screenY}px`;
+            });
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (coreParticles) coreParticles.rotation.y += 0.0004;
+            if (ring1) ring1.rotation.z += 0.0004;
+            if (ring2) ring2.rotation.z -= 0.0005;
+
+            controls.update();
+            updatePositions();
+            renderer.render(scene, camera);
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>

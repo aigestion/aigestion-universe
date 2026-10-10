@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>SINTÉTICO OS // MULTIVERSO MAAS</title>
+    <style>
+        :root {
+            --primary-color: #00f0ff;
+            --secondary-color: #e024c3;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background: #000208; font-family: 'Courier New', monospace; color: #fff; }
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; touch-action: none; }
+
+        .hud-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 30; pointer-events: none; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; }
+        .top-bar { pointer-events: auto; display: flex; flex-direction: column; gap: 6px; }
+        .row-header { display: flex; justify-content: space-between; align-items: center; }
+        
+        .pill-brand { background: rgba(0,15,30,0.85); border: 1.5px solid var(--primary-color); color: var(--primary-color); padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 0.65rem; letter-spacing: 0.5px; box-shadow: 0 0 12px var(--primary-color); display: flex; align-items: center; gap: 8px; }
+        .brand-logo-img { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary-color); }
+
+        .btn-custom { background: rgba(0,0,0,0.8); border: 1px solid var(--secondary-color); color: var(--secondary-color); padding: 4px 8px; border-radius: 6px; font-size: 0.55rem; cursor: pointer; pointer-events: auto; font-family: monospace; }
+
+        .transcription-card { background: rgba(2, 6, 16, 0.94); border: 1px solid var(--secondary-color); border-radius: 12px; padding: 8px 12px; box-shadow: 0 0 15px var(--secondary-color); pointer-events: auto; margin-top: 4px; }
+        .trans-header { display: flex; justify-content: space-between; color: var(--secondary-color); font-size: 0.55rem; font-weight: bold; margin-bottom: 4px; }
+        .form-row { display: flex; gap: 6px; align-items: center; }
+        .input-text { flex: 1; background: rgba(0,0,0,0.7); border: 1px solid var(--primary-color); border-radius: 6px; padding: 6px; color: #fff; font-family: monospace; font-size: 0.65rem; outline: none; }
+        .btn-add { background: var(--primary-color); border: none; color: #000; font-weight: bold; padding: 6px 12px; border-radius: 6px; font-size: 0.6rem; cursor: pointer; box-shadow: 0 0 8px var(--primary-color); white-space: nowrap; }
+
+        /* Modal Configuración Brand */
+        .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 200; display: none; justify-content: center; align-items: center; padding: 20px; pointer-events: auto; }
+        .modal-card { background: #020816; border: 1.5px solid var(--primary-color); border-radius: 14px; width: 100%; max-width: 420px; padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 0 30px var(--primary-color); }
+        .modal-title { font-size: 0.8rem; color: var(--primary-color); font-weight: bold; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px; }
+        .field-group { display: flex; flex-direction: column; gap: 4px; }
+        .field-label { font-size: 0.55rem; color: #aaa; }
+        .field-input { background: #000; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 6px; color: #fff; font-size: 0.65rem; font-family: monospace; }
+        .field-file { background: rgba(0,240,255,0.05); border: 1px dashed var(--primary-color); border-radius: 6px; padding: 8px; color: #fff; font-size: 0.6rem; cursor: pointer; text-align: center; }
+        .color-pickers { display: flex; gap: 10px; }
+        .color-picker-box { flex: 1; display: flex; align-items: center; gap: 6px; }
+
+        .upload-status { font-size: 0.55rem; color: var(--primary-color); text-align: center; min-height: 14px; }
+
+        .bottom-bar { display: flex; justify-content: center; width: 100%; pointer-events: auto; margin-bottom: 10px; }
+        .mic-btn-pink { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,0,0,0.85); border: 2px solid var(--secondary-color); color: var(--secondary-color); font-size: 1.3rem; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 16px var(--secondary-color); }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <div class="hud-overlay">
+        <div class="top-bar">
+            <div class="row-header">
+                <div class="pill-brand" id="brand-pill">
+                    <img id="brand-avatar" class="brand-logo-img" src="https://via.placeholder.com/30/00f0ff/000000?text=AI" style="display:none;" />
+                    <span id="universe-display-name">DANIELA OS</span>
+                </div>
+                <button class="btn-custom" onclick="openBrandModal()">🎨 MI MARCA B2B</button>
+            </div>
+
+            <div class="transcription-card">
+                <div class="trans-header">
+                    <span id="status-title">PRESENCIA SINTÉTICA EN TIEMPO REAL</span>
+                </div>
+                <div class="form-row">
+                    <input type="text" class="input-text" id="ai-prompt-input" placeholder="Escribe tu consulta..." />
+                    <button class="btn-add" onclick="askAI()">ENVIAR ⚡</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <button class="mic-btn-pink" id="mic-btn">🎙️</button>
+        </div>
+    </div>
+
+    <!-- Modal Personalización de Marca -->
+    <div class="modal-overlay" id="brand-modal">
+        <div class="modal-card">
+            <div class="modal-title">CONFIGURAR MI UNIVERSO B2B</div>
+            
+            <div class="field-group">
+                <label class="field-label">📄 Ingesta de Brandbook (Manual PDF)</label>
+                <input type="file" id="pdf-file-input" class="field-file" accept="application/pdf" onchange="uploadBrandPDF()" />
+                <div class="upload-status" id="pdf-status"></div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Nombre del Universo / IA Sintética</label>
+                <input type="text" id="cfg-name" class="field-input" value="DANIELA OS" />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">URL Logo / Avatar (.PNG / .JPG)</label>
+                <input type="text" id="cfg-avatar" class="field-input" placeholder="https://..." />
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Colores Corporativos</label>
+                <div class="color-pickers">
+                    <div class="color-picker-box">
+                        <input type="color" id="cfg-pcolor" value="#00f0ff" />
+                        <span class="field-label">Primario</span>
+                    </div>
+                    <div class="color-picker-box">
+                        <input type="color" id="cfg-scolor" value="#e024c3" />
+                        <span class="field-label">Secundario</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">System Prompt Override (Comportamiento de Marca)</label>
+                <textarea id="cfg-prompt" class="field-input" rows="3" placeholder="Eres la IA corporativa de..."></textarea>
+            </div>
+
+            <div style="display:flex; gap:8px; margin-top:6px;">
+                <button class="btn-add" style="flex:1;" onclick="saveBrandConfig()">GUARDAR Y APLICAR ⚡</button>
+                <button class="btn-custom" onclick="closeBrandModal()">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let scene, camera, renderer, brainGroup, controls;
+
+        function applyBranding(config) {
+            if (config.primary_color) {
+                document.documentElement.style.setProperty('--primary-color', config.primary_color);
+                document.getElementById('cfg-pcolor').value = config.primary_color;
+            }
+            if (config.secondary_color) {
+                document.documentElement.style.setProperty('--secondary-color', config.secondary_color);
+                document.getElementById('cfg-scolor').value = config.secondary_color;
+            }
+            if (config.universe_name) {
+                document.getElementById('universe-display-name').innerText = config.universe_name.toUpperCase();
+                document.getElementById('cfg-name').value = config.universe_name;
+            }
+            if (config.system_prompt_override) {
+                document.getElementById('cfg-prompt').value = config.system_prompt_override;
+            }
+            
+            if (config.avatar_image_url) {
+                const img = document.getElementById('brand-avatar');
+                img.src = config.avatar_image_url;
+                img.style.display = 'block';
+                document.getElementById('cfg-avatar').value = config.avatar_image_url;
+            }
+
+            if (brainGroup) {
+                brainGroup.children.forEach(mesh => {
+                    if (mesh.material) mesh.material.color.set(config.primary_color || '#00f0ff');
+                });
+            }
+        }
+
+        function openBrandModal() { document.getElementById('brand-modal').style.display = 'flex'; }
+        function closeBrandModal() { document.getElementById('brand-modal').style.display = 'none'; }
+
+        function uploadBrandPDF() {
+            const fileInput = document.getElementById('pdf-file-input');
+            const statusDiv = document.getElementById('pdf-status');
+            
+            if (!fileInput.files || fileInput.files.length === 0) return;
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('pdf_file', file);
+
+            statusDiv.innerText = "⚡ Procesando PDF y extrayendo paleta de marca...";
+
+            const urlParams = new URLSearchParams(window.location.search); const userId = urlParams.get('user') || '1'; fetch('/api/upload_brand_pdf?user_id=' + userId, {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    statusDiv.innerText = "✓ Marca extraída y aplicada con éxito";
+                    applyBranding(data.extracted_data);
+                } else {
+                    statusDiv.innerText = "❌ Error: " + data.message;
+                }
+            })
+            .catch(err => {
+                statusDiv.innerText = "❌ Error al subir el archivo";
+            });
+        }
+
+        function saveBrandConfig() {
+            const config = {
+                universe_name: document.getElementById('cfg-name').value,
+                avatar_image_url: document.getElementById('cfg-avatar').value,
+                primary_color: document.getElementById('cfg-pcolor').value,
+                secondary_color: document.getElementById('cfg-scolor').value,
+                system_prompt_override: document.getElementById('cfg-prompt').value
+            };
+
+            fetch('/api/branding?user_id=1', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(config)
+            }).then(() => {
+                applyBranding(config);
+                closeBrandModal();
+            });
+        }
+
+        
+        function askAI() {
+            const input = document.getElementById('ai-prompt-input');
+            const statusTitle = document.getElementById('status-title');
+            const query = input.value.trim();
+            if (!query) return;
+
+            statusTitle.innerText = "⚡ PROCESANDO CONSULTA COGNITIVA...";
+            input.value = "";
+
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                const urlParams = new URLSearchParams(window.location.search); const userId = urlParams.get('user') || '1'; body: JSON.stringify({ user_id: userId, message: query })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    statusTitle.innerText = data.response;
+                    speakTTS(data.response);
+                } else {
+                    statusTitle.innerText = "❌ Error al procesar respuesta.";
+                }
+            })
+            .catch(() => {
+                statusTitle.innerText = "❌ Error de conexión con la IA.";
+            });
+        }
+
+        function speakTTS(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utter = new SpeechSynthesisUtterance(text);
+                utter.lang = 'es-ES';
+                utter.rate = 1.0;
+                window.speechSynthesis.speak(utter);
+            }
+        }
+
+        function initApp() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 30);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            brainGroup = new THREE.Group();
+
+            // Partículas de la red
+            const geo = new THREE.SphereGeometry(0.3, 16, 16);
+            for (let i = 0; i < 60; i++) {
+                const mat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, wireframe: true });
+                const mesh = new THREE.Mesh(geo, mat);
+                mesh.position.set((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20);
+                brainGroup.add(mesh);
+            }
+            scene.add(brainGroup);
+
+            // Cargar marca inicial
+            const urlParams = new URLSearchParams(window.location.search); const userId = urlParams.get('user') || '1'; fetch('/api/branding?user_id=' + userId)
+                .then(r => r.json())
+                .then(data => applyBranding(data))
+                .catch(() => {});
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (brainGroup) brainGroup.rotation.y += 0.002;
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>

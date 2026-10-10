@@ -36,7 +36,7 @@ def run(context):
                 f"⚡ *[MODO AHORRO DE ENERGÍA ACTIVO]*\n"
                 f"🔋 *Batería actual:* `{percentage}%` ({status})\n\n"
                 f" Medidas aplicadas:\n" + "\n".join(actions) + "\n\n"
-                f"💡 *Sugerencia:* Conecta el dispositivo a una fuente de carga para restaurar el rendimiento máximo."
+                "💡 *Sugerencia:* Conecta el dispositivo a una fuente de carga para restaurar el rendimiento máximo."
             )
         else:
             return f"🔋 [POWER SAVER]: Batería en nivel seguro ({percentage}%). Modo ahorro en espera."

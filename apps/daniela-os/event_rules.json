@@ -1,0 +1,14 @@
+[
+  {
+    "event": "battery_low",
+    "condition": "level < 20",
+    "action": "resource_optimizer",
+    "msg": "Modo ahorro activado"
+  },
+  {
+    "event": "net_change",
+    "condition": "status == disconnected",
+    "action": "local_llm",
+    "msg": "Conmutando a inferencia offline"
+  }
+]

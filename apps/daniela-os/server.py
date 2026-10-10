@@ -259,7 +259,7 @@ def _cargar_integrador():
 def register_all():
     """Registra lo que es PROPIO de Daniela OS + llama al integrador de aig.
 
-    ADR-017#2: las 24 fases de omnipresente que aqui se registraban ANTES
+    ADR-017#2: las 24 fases de Daniela que aqui se registraban ANTES
     (ambient, consciousness, proactive, emotional, embodiment, dreams,
     temporal, social, muse, guardian, sync, voice, unified, ai, health_sub,
     memory, scheduler, dashboard, epic_pc, sse, health, obs, conn y el
@@ -269,7 +269,7 @@ def register_all():
     `pixel_guard` sigue siendo el ULTIMO (E-40, catch-all de /api/pixel/*).
 
     Se conservan como fases locales de ESTE servidor las 4 integraciones de
-    aig que NO son de omnipresente: mem0, rag, langgraph y langfuse.
+    aig que NO son de Daniela: mem0, rag, langgraph y langfuse.
     """
     import time
 
@@ -324,7 +324,7 @@ def register_all():
         #   ("frontend", lambda: __import__("frontend").register_frontend(app)),
         # Daniela es todo: una sola llamada integra el visor 3D, las capas
         # OSINT, el Command Center, el idioma, la facturacion de aig Y las
-        # fases de omnipresente (ADR-017#2). Se carga por RUTA a proposito:
+        # fases de Daniela (ADR-017#2). Se carga por RUTA a proposito:
         # `import daniela` resolveria al paquete `core/daniela/`, que no tiene
         # `registrar`. Ver `_cargar_integrador`.
         ("aig", lambda: _cargar_integrador().registrar(app, failed_phases, socketio=socketio)),
@@ -356,7 +356,7 @@ def mobile():
 def status():
     return jsonify(
         {
-            "name": "Daniela Omnipresente",
+            "name": "Daniela",
             "version": "1.0.0",
             "modules": 107,
             "total_systems": 114,
@@ -427,7 +427,7 @@ def phases():
 register_all()
 
 # Start dashboard service poller
-from core.unified_dashboard import start_poller
+from core.dashboard import start_poller
 
 start_poller()
 
@@ -445,7 +445,7 @@ def handle_disconnect():
 
 @socketio.on("request_status")
 def handle_request_status():
-    from core.unified_dashboard import get_all_status
+    from core.dashboard import get_all_status
 
     socketio.emit("status_update", get_all_status())
 
@@ -483,5 +483,5 @@ if __name__ == "__main__":
 
     start_scheduler()
 
-    print(f"[Daniela Omnipresente] Starting on port {WEB_PORT}...")
+    print(f"[Daniela] Starting on port {WEB_PORT}...")
     socketio.run(app, host="0.0.0.0", port=WEB_PORT, debug=False, allow_unsafe_werkzeug=True)

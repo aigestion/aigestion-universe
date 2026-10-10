@@ -57,7 +57,7 @@ SERVICES = [
     },
     {
         "id": "hermes",
-        "name": "Hermes Epic",
+        "name": "Hermes",
         "port": 9300,
         "category": "Core",
         "status_path": "/api/status",
@@ -88,7 +88,7 @@ SERVICES = [
     # AI
     {
         "id": "daniela",
-        "name": "Daniela Omnipresente",
+        "name": "Daniela",
         "port": 9200,
         "category": "AI",
         "status_path": "/api/status",

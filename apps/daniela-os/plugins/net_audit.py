@@ -1,5 +1,4 @@
 import subprocess
-import re
 
 def run(context):
     cmd = context.lower()

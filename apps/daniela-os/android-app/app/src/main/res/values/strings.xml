@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">aig</string>
+    <string name="assistant_name">Daniela</string>
+    <string name="composer_hint">Escribe un mensaje o /help</string>
+    <string name="send">Enviar</string>
+    <string name="quick_commands">Acciones rápidas</string>
+    <string name="connection_settings">Conexión</string>
+    <string name="backend_url">URL del backend</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="status_ok">Conectado</string>
+    <string name="status_offline">Sin conexión</string>
+    <string name="status_checking">Comprobando…</string>
+</resources>

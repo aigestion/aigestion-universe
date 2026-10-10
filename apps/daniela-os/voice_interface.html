@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>DANIELA OS - Custom Universe Engine (Block A)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body, html { width: 100%; height: 100%; overflow: hidden; background: #010308; font-family: 'Segoe UI', system-ui, sans-serif; color: #fff; }
+        body.amoled-mode { background: #000000 !important; }
+        
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; touch-action: none; }
+
+        .voice-hud { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: flex; flex-direction: column; justify-content: space-between; padding: 12px; pointer-events: none; }
+        .header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .header-actions { display: flex; align-items: center; gap: 6px; }
+        
+        .sys-badge-title { background: rgba(3, 8, 20, 0.88); border: 1px solid #00f0ff; backdrop-filter: blur(12px); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; color: #00f0ff; display: flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); pointer-events: auto; }
+        .sys-badge-user { background: rgba(3, 8, 20, 0.88); border: 1px solid #e024c3; backdrop-filter: blur(12px); padding: 6px 14px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; color: #e024c3; display: flex; align-items: center; gap: 8px; box-shadow: 0 0 15px rgba(224, 36, 195, 0.2); pointer-events: auto; }
+        
+        .btn-hud { background: rgba(0, 240, 255, 0.15); border: 1px solid #00f0ff; color: #00f0ff; padding: 5px 10px; border-radius: 16px; font-size: 0.68rem; font-weight: bold; cursor: pointer; backdrop-filter: blur(12px); pointer-events: auto; box-shadow: 0 0 12px rgba(0, 240, 255, 0.2); }
+        .btn-hud.green { border-color: #00ff66; color: #00ff66; box-shadow: 0 0 12px rgba(0, 255, 102, 0.2); }
+        .btn-hud.amber { border-color: #ffaa00; color: #ffaa00; box-shadow: 0 0 12px rgba(255, 170, 0, 0.2); }
+
+        .ring-filter-bar { position: absolute; top: 52px; right: 12px; z-index: 15; display: flex; gap: 4px; pointer-events: auto; flex-wrap: wrap; max-width: 65%; justify-content: flex-end; }
+        .ring-filter-btn { background: rgba(3, 8, 20, 0.9); border: 1px solid rgba(0, 240, 255, 0.4); padding: 3px 6px; border-radius: 8px; color: #00f0ff; font-family: monospace; font-size: 0.55rem; font-weight: bold; cursor: pointer; }
+        .ring-filter-btn.active { background: #00f0ff; color: #010308; box-shadow: 0 0 10px #00f0ff; }
+
+        .role-selector-bar { position: absolute; top: 52px; left: 12px; z-index: 15; display: flex; gap: 4px; pointer-events: auto; }
+        .role-btn { background: rgba(224, 36, 195, 0.15); border: 1px solid #e024c3; padding: 3px 6px; border-radius: 8px; color: #e024c3; font-family: monospace; font-size: 0.55rem; font-weight: bold; cursor: pointer; }
+        .role-btn.active { background: #e024c3; color: #010308; box-shadow: 0 0 10px #e024c3; }
+
+        .radar-box { position: absolute; bottom: 85px; left: 12px; width: 70px; height: 70px; border-radius: 50%; background: rgba(3, 8, 20, 0.85); border: 1px solid #00f0ff; backdrop-filter: blur(10px); z-index: 15; pointer-events: auto; box-shadow: 0 0 15px rgba(0, 240, 255, 0.25); }
+        .radar-canvas { width: 100%; height: 100%; border-radius: 50%; }
+
+        .pip-preview-box { position: absolute; top: 90px; right: 12px; width: 175px; background: rgba(3, 8, 20, 0.85); border: 1px solid rgba(0, 240, 255, 0.5); border-radius: 14px; padding: 10px; backdrop-filter: blur(12px); z-index: 40; pointer-events: auto; display: none; flex-direction: column; gap: 4px; box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); text-align: left; }
+        .pip-preview-box.active { display: flex; }
+        .pip-title { font-size: 0.68rem; color: #00f0ff; font-weight: bold; letter-spacing: 1px; display: flex; justify-content: space-between; }
+        .pip-body { font-size: 0.60rem; color: #aaa; font-family: monospace; line-height: 1.2; }
+
+        .intro-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; background: rgba(1, 3, 8, 0.95); backdrop-filter: blur(25px); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 24px; text-align: center; gap: 16px; pointer-events: auto; }
+        .intro-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .intro-title { font-size: 2.0rem; font-weight: 900; color: #00f0ff; letter-spacing: 5px; text-shadow: 0 0 25px #00f0ff; }
+        .intro-sub { font-size: 0.88rem; color: #aaa; max-width: 320px; line-height: 1.4; }
+        .btn-google-auth { background: #ffffff; color: #1f1f1f; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+
+        .node-label, .sat-label { position: absolute; font-weight: bold; font-family: monospace; background: rgba(1, 3, 8, 0.9); padding: 3px 6px; border-radius: 8px; pointer-events: auto; cursor: pointer; white-space: nowrap; backdrop-filter: blur(6px); transform: translate(-50%, -100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); border: 1.2px solid rgba(0, 240, 255, 0.6); z-index: 6; }
+        .node-label { font-size: 0.85rem; }
+        .sat-label { color: #ffaa00; font-size: 0.72rem; border-color: rgba(255, 170, 0, 0.7); }
+        .status-led { width: 5px; height: 5px; border-radius: 50%; background: #00ff66; box-shadow: 0 0 5px #00ff66; margin-right: 4px; }
+        .text-name { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.52rem; color: #00f0ff; background: rgba(3, 8, 20, 0.98); padding: 2px 6px; border-radius: 4px; border: 1px solid #00f0ff; opacity: 1; pointer-events: none; }
+
+        .controls { display: flex; justify-content: center; align-items: center; width: 100%; pointer-events: auto; margin-bottom: 8px; }
+        .mic-btn { width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle, rgba(224, 36, 195, 0.2) 0%, rgba(1, 3, 8, 0.95) 100%); border: 2px solid #e024c3; color: #fff; font-size: 1.8rem; display: flex; justify-content: center; align-items: center; cursor: pointer; touch-action: none; box-shadow: 0 0 20px rgba(224, 36, 195, 0.3); }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div id="labels-container" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:5;"></div>
+
+    <div class="role-selector-bar">
+        <button class="role-btn active" onclick="switchUserRole('admin', this)">ADMIN</button>
+        <button class="role-btn" onclick="switchUserRole('sales', this)">SALES</button>
+        <button class="role-btn" onclick="switchUserRole('finance', this)">FINANCE</button>
+    </div>
+
+    <div class="ring-filter-bar">
+        <button class="ring-filter-btn active" onclick="filterRing('all', this)">ALL</button>
+        <button class="ring-filter-btn" onclick="filterRing(1, this)">R1: POSIX</button>
+        <button class="ring-filter-btn" onclick="filterRing(2, this)">R2: AI</button>
+        <button class="ring-filter-btn" onclick="filterRing(3, this)">R3: WORKSPACE</button>
+        <button class="ring-filter-btn" onclick="filterRing(4, this)">R4: FINANCES</button>
+        <button class="ring-filter-btn" onclick="filterRing(5, this)">R5: SECURITY</button>
+        <button class="ring-filter-btn" onclick="filterRing(6, this)">R6: OPS</button>
+    </div>
+
+    <div class="radar-box"><canvas class="radar-canvas" id="radar-canvas" width="140" height="140"></canvas></div>
+
+    <div class="pip-preview-box" id="pip-box">
+        <div class="pip-title"><span id="pip-title">PIP HUD</span><span style="cursor:pointer;" onclick="hidePipPreview()">✕</span></div>
+        <div class="pip-body" id="pip-body">Selecciona un nodo...</div>
+    </div>
+
+    <div class="intro-overlay" id="intro-overlay">
+        <div class="intro-title">DANIELA OS</div>
+        <div class="intro-sub">Bloque A: Generación de Universos Adaptativos a Medida.</div>
+        <button class="btn-google-auth" onclick="startGoogleAuth()"><span style="font-size:1.2rem;">🌐</span> Iniciar Sesión con Google Auth</button>
+    </div>
+
+    <div class="voice-hud">
+        <div class="header">
+            <div class="sys-badge-title"><div class="pulse-dot"></div>DANIELA OS</div>
+            <div class="sys-badge-user" id="user-display">admin@aigestion.net [ADMIN]</div>
+        </div>
+        <div class="controls"><button class="mic-btn" id="mic-btn">🎙️</button></div>
+    </div>
+
+    <script>
+        let scene, camera, renderer, coreGroup, plasmaGroup, innerCoreSphere, radarCtx;
+        let activeSelectedNode = null, currentUserEmail = "admin@aigestion.net", currentRole = "admin";
+        let targetCamZ = 5.2, currentCamZ = 5.2, isDragging = false, previousMousePosition = { x: 0, y: 0 };
+        const plasmaRaysList = [], skillNodes = [], _tempV = new THREE.Vector3();
+
+        const ALL_SKILLS = [
+            { id: 'SAT_ALPHA', label: 'ALPHA-CORE', icon: '⚙️', group: 'posix', ring: 1, ringName: 'R1: POSIX', color: 0xffaa00, border: '#ffaa00', isSat: true, role: 'all' },
+            { id: 'SAT_BETA', label: 'BETA-RAG', icon: '🧬', group: 'posix', ring: 1, ringName: 'R1: POSIX', color: 0xffaa00, border: '#ffaa00', isSat: true, role: 'all' },
+            { id: 'SAT_DELTA', label: 'DELTA-HW', icon: '📡', group: 'posix', ring: 1, ringName: 'R1: POSIX', color: 0xffaa00, border: '#ffaa00', isSat: true, role: 'all' },
+
+            { id: 'GEMINI', label: 'GEMINI AI', icon: '✨', group: 'ai', ring: 2, ringName: 'R2: NEURAL AI', color: 0xe024c3, border: '#e024c3', role: 'all' },
+            { id: 'AI_STUDIO', label: 'AI STUDIO', icon: '🧠', group: 'ai', ring: 2, ringName: 'R2: NEURAL AI', color: 0xe024c3, border: '#e024c3', role: 'admin' },
+
+            { id: 'GMAIL', label: 'GMAIL', icon: '✉️', group: 'workspace', ring: 3, ringName: 'R3: WORKSPACE', color: 0xff4444, border: '#ff4444', role: 'all' },
+            { id: 'DRIVE', label: 'GOOGLE DRIVE', icon: '📁', group: 'workspace', ring: 3, ringName: 'R3: WORKSPACE', color: 0x00ffaa, border: '#00ffaa', role: 'all' },
+
+            { id: 'CRM_NODE', label: 'CLIENT CRM', icon: '👥', group: 'finance', ring: 4, ringName: 'R4: FINANCES', color: 0x00ff66, border: '#00ff66', role: 'sales' },
+            { id: 'INVOICE_NODE', label: 'INVOICING', icon: '🧾', group: 'finance', ring: 4, ringName: 'R4: FINANCES', color: 0x00ff66, border: '#00ff66', role: 'finance' },
+
+            { id: 'VAULT_AES', label: 'AES VAULT', icon: '🔐', group: 'security', ring: 5, ringName: 'R5: SECURITY', color: 0xff0055, border: '#ff0055', role: 'admin' },
+            { id: 'AUDIT_LOG', label: 'AUDIT LOG', icon: '📜', group: 'security', ring: 5, ringName: 'R5: SECURITY', color: 0xff0055, border: '#ff0055', role: 'admin' },
+
+            { id: 'PROJECTS', label: 'PROJECTS', icon: '📋', group: 'ops', ring: 6, ringName: 'R6: OPS', color: 0x0088ff, border: '#0088ff', role: 'sales' }
+        ];
+
+        function triggerHaptic(p) { if (navigator.vibrate) navigator.vibrate(p); }
+
+        function startGoogleAuth() {
+            triggerHaptic([20, 40]);
+            document.getElementById('intro-overlay').classList.add('hidden');
+            buildCustomUniverseForUser(currentRole);
+        }
+
+        function switchUserRole(role, btnElem) {
+            triggerHaptic([15]);
+            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+            btnElem.classList.add('active');
+            currentRole = role;
+            currentUserEmail = `${role}@aigestion.net`;
+            document.getElementById('user-display').innerText = `${currentUserEmail} [${role.toUpperCase()}]`;
+            buildCustomUniverseForUser(role);
+        }
+
+        function filterRing(ringTarget, btnElem) {
+            triggerHaptic([12]);
+            document.querySelectorAll('.ring-filter-btn').forEach(b => b.classList.remove('active'));
+            btnElem.classList.add('active');
+
+            skillNodes.forEach(node => {
+                const show = (ringTarget === 'all' || node.ring === ringTarget);
+                node.mesh.visible = show;
+                node.labelElem.style.display = show ? 'flex' : 'none';
+                if (node.plasmaRay) node.plasmaRay.line.visible = show;
+            });
+        }
+
+        function generateSeedAngle(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            return (Math.abs(hash) % 360) * (Math.PI / 180);
+        }
+
+        function buildCustomUniverseForUser(userRole) {
+            const userSkills = ALL_SKILLS.filter(s => s.role === 'all' || s.role === userRole || userRole === 'admin');
+            const seedOffset = generateSeedAngle(currentUserEmail);
+
+            skillNodes.forEach(n => { coreGroup.remove(n.mesh); if(n.plasmaRay) plasmaGroup.remove(n.plasmaRay.line); document.getElementById('labels-container').removeChild(n.labelElem); });
+            skillNodes.length = 0;
+
+            userSkills.forEach((item, idx) => {
+                const ringRadius = 0.38 * item.ring;
+                const ringAngle = (item.ring % 2 === 0) ? Math.PI / 6 : -Math.PI / 6;
+                const sameRingNodes = userSkills.filter(s => s.ring === item.ring);
+                const nodeIndex = sameRingNodes.indexOf(item);
+                const angle = seedOffset + (nodeIndex / sameRingNodes.length) * Math.PI * 2;
+
+                const basePos = new THREE.Vector3(Math.cos(angle) * ringRadius, 0, Math.sin(angle) * ringRadius);
+                basePos.applyAxisAngle(new THREE.Vector3(1, 0, 0), ringAngle);
+
+                const nodeMesh = new THREE.Mesh(new THREE.SphereGeometry(item.isSat ? 0.028 : 0.048, 8, 8), new THREE.MeshBasicMaterial({ color: item.color }));
+                nodeMesh.position.copy(basePos);
+                coreGroup.add(nodeMesh);
+
+                const plasmaRay = createSmoothPlasmaRay(basePos, item.color);
+                plasmaGroup.add(plasmaRay.line);
+
+                const lbl = document.createElement('div');
+                lbl.className = item.isSat ? 'sat-label' : 'node-label';
+                lbl.style.borderColor = item.border; lbl.style.color = item.border; lbl.style.display = 'flex';
+                lbl.innerHTML = `<div class="status-led"></div><span>${item.icon}</span><span class="text-name">${item.label}</span>`;
+                lbl.onclick = () => showPipPreview(item.label, `${item.ringName} // Asignado a ${currentUserEmail}`);
+                document.getElementById('labels-container').appendChild(lbl);
+
+                skillNodes.push({ id: item.id, name: item.label, ring: item.ring, ringName: item.ringName, mesh: nodeMesh, labelElem: lbl, border: item.border, plasmaRay });
+            });
+        }
+
+        function createSmoothPlasmaRay(targetPos, colorHex) {
+            const points = [];
+            for (let i = 0; i <= 15; i++) { points.push(new THREE.Vector3().lerpVectors(new THREE.Vector3(0,0,0), targetPos, i / 15)); }
+            const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color: colorHex, transparent: true, opacity: 0.35 }));
+            return { line, geometry: line.geometry, targetPos };
+        }
+
+        function showPipPreview(title, body) {
+            triggerHaptic([10]);
+            document.getElementById('pip-title').innerText = title;
+            document.getElementById('pip-body').innerText = body;
+            document.getElementById('pip-box').classList.add('active');
+        }
+
+        function hidePipPreview() { document.getElementById('pip-box').classList.remove('active'); }
+
+        function initMasterVisor() {
+            const container = document.getElementById('canvas-container');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.01, 100);
+            camera.position.set(0, 0, currentCamZ);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            container.appendChild(renderer.domElement);
+
+            coreGroup = new THREE.Group();
+            plasmaGroup = new THREE.Group();
+            coreGroup.add(plasmaGroup);
+
+            innerCoreSphere = new THREE.Mesh(new THREE.SphereGeometry(0.10, 16, 16), new THREE.MeshBasicMaterial({ color: 0xe024c3, transparent: true, opacity: 0.95 }));
+            coreGroup.add(innerCoreSphere);
+
+            scene.add(coreGroup);
+            buildCustomUniverseForUser('admin');
+
+            window.addEventListener('pointerdown', (e) => { isDragging = true; previousMousePosition = { x: e.clientX, y: e.clientY }; });
+            window.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                coreGroup.rotation.y += (e.clientX - previousMousePosition.x) * 0.006;
+                coreGroup.rotation.x += (e.clientY - previousMousePosition.y) * 0.006;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            });
+            window.addEventListener('pointerup', () => { isDragging = false; });
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = Date.now() * 0.001;
+            coreGroup.rotation.y = time * 0.05;
+
+            skillNodes.forEach(node => {
+                if (!node || !node.mesh) return;
+                _tempV.copy(node.mesh.position).applyMatrix4(coreGroup.matrixWorld).project(camera);
+                node.labelElem.style.left = `${(_tempV.x * .5 + .5) * window.innerWidth}px`;
+                node.labelElem.style.top = `${(_tempV.y * -.5 + .5) * window.innerHeight}px`;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        window.onload = () => { initMasterVisor(); };
+    </script>
+</body>
+</html>

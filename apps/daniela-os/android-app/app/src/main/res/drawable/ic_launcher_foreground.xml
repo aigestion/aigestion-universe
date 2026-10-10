@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Marcador "nodo AI": triángulo de nodos. Todo el contenido cae dentro de la
+     zona segura del icono adaptativo (radio 36 dp desde el centro). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path
+        android:pathData="M34,70 L54,38 L74,70 Z"
+        android:fillColor="#00000000"
+        android:strokeColor="#A29BFE"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="5" />
+
+    <path
+        android:pathData="M54,38 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+        android:fillColor="#6C5CE7" />
+    <path
+        android:pathData="M34,70 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+        android:fillColor="#00D2A0" />
+    <path
+        android:pathData="M74,70 m-7,0 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0"
+        android:fillColor="#74B9FF" />
+</vector>

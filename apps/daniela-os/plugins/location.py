@@ -1,7 +1,6 @@
 import subprocess
 import json
 import os
-import time
 import math
 
 BASE_DIR = os.path.expanduser("~/daniela-os")

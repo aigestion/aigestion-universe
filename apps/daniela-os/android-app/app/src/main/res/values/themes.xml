@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  El manifest referenciaba @style/Theme.aig y no existía ninguna carpeta
+  res/: el manifiesto fallaba en el paso de merge de recursos.
+
+  El parent es una del framework (`android:Theme.*`), así que NO hace falta
+  añadir AppCompat ni ningún otro tema. Oscura para que no haya destello
+  blanco mientras Compose pinta el primer frame.
+-->
+<resources>
+    <style name="Theme.aig" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#0A0A1A</item>
+        <item name="android:statusBarColor">#0A0A1A</item>
+        <item name="android:navigationBarColor">#0A0A1A</item>
+    </style>
+</resources>

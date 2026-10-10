@@ -1,7 +1,6 @@
 import importlib
 import subprocess
 import json
-import os
 import time
 
 def run(context):

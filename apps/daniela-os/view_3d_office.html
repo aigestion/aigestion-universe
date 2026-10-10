@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela-OS v6.4 - 3D Studio Tactical Enclave</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #030611; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        #canvas-container { width: 100vw; height: 100vh; }
+        
+        #hud-overlay {
+            position: absolute; top: 20px; left: 20px; color: #00f3ff;
+            text-shadow: 0 0 10px rgba(0,243,255,0.5); pointer-events: none; z-index: 10;
+        }
+        h1 { margin: 0; font-size: 20px; letter-spacing: 2px; }
+        .status-badge { background: rgba(0,243,255,0.15); border: 1px solid #00f3ff; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+
+        #camera-controls {
+            position: absolute; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 10;
+        }
+        .btn-cam {
+            background: rgba(3,6,17,0.85); border: 1px solid #00f3ff; color: #00f3ff;
+            padding: 10px 14px; border-radius: 6px; cursor: pointer; font-weight: bold;
+            transition: all 0.3s ease; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;
+        }
+        .btn-cam:hover { background: #00f3ff; color: #030611; box-shadow: 0 0 15px #00f3ff; }
+    </style>
+
+    <!-- Libs base Three.js, OrbitControls, GLTFLoader y Tween -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+</head>
+<body>
+    <div id="hud-overlay">
+        <h1>AIGESTION <span class="status-badge">3D STUDIO & DANIELA-OS v6.4</span></h1>
+        <p>Swarm Backend: <strong>192.168.1.133:5059</strong> | GLTF: <span id="gltf-status" style="color:#ffaa00">Cargando Mallas...</span></p>
+    </div>
+
+    <div id="camera-controls">
+        <button class="btn-cam" onclick="focusCamera(0, 12, 20, 0, 0, 0)">Visión Global</button>
+        <button class="btn-cam" onclick="focusCamera(-8, 3, 4, -8, 1, 0)">Library (RAG)</button>
+        <button class="btn-cam" onclick="focusCamera(8, 3, 4, 8, 1, 0)">Vault Keeper</button>
+        <button class="btn-cam" onclick="focusCamera(0, 3, -6, 0, 1, -8)">Canary Chamber</button>
+    </div>
+
+    <div id="canvas-container"></div>
+
+    <script>
+        // 1. Escena y Renderizador
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x030611, 0.035);
+
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 12, 20);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.shadowMap.enabled = true;
+        container.appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        // 2. Iluminación Cyberpunk PBR
+        const ambientLight = new THREE.AmbientLight(0x1a2b4c, 1.8);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0x00f3ff, 1.2);
+        dirLight.position.set(10, 20, 10);
+        scene.add(dirLight);
+
+        const gridHelper = new THREE.GridHelper(40, 40, 0x00f3ff, 0x0d1b2a);
+        gridHelper.position.y = -0.01;
+        scene.add(gridHelper);
+
+        // 3. NÚCLEO REACTIVO CENTRAL (Daniela's Core fallback)
+        const coreMesh = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(1.2, 2),
+            new THREE.MeshStandardMaterial({ color: 0x00f3ff, wireframe: true, emissive: 0x00f3ff, emissiveIntensity: 0.8 })
+        );
+        coreMesh.position.set(0, 1.8, 0);
+        scene.add(coreMesh);
+
+        // 4. CARGADOR GLTF (Modelos 3D de Oficina y Daniela)
+        const loader = new THREE.GLTFLoader();
+        let danielaModel = null;
+
+        // Cargar Modelo de la Oficina AIGESTION 3D
+        loader.load('C:/Users/Alejandro/Downloads/oficina3d.glb', (gltf) => {
+            const officeScene = gltf.scene;
+            officeScene.position.set(0, -0.1, 0);
+            officeScene.scale.set(1, 1, 1);
+            scene.add(officeScene);
+            document.getElementById('gltf-status').innerText = 'OFICINA 3D CARGADA';
+            document.getElementById('gltf-status').style.color = '#00ff88';
+        }, undefined, (err) => {
+            console.log('ℹ️ Usando entorno procedural (oficina3d.glb no encontrada localmente).');
+        });
+
+        // Cargar Avatar 3D de Daniela
+        loader.load('C:/Users/Alejandro/Downloads/daniela3d.glb', (gltf) => {
+            danielaModel = gltf.scene;
+            danielaModel.position.set(0, 0, 0);
+            danielaModel.scale.set(1.5, 1.5, 1.5);
+            danielaModel.userData = { agentId: 'orchestrator', zone: 'Executive Desk' };
+            scene.add(danielaModel);
+            coreMesh.visible = false; // Ocultar fallback si el modelo existe
+        }, undefined, (err) => {
+            console.log('ℹ️ Usando primitiva reactiva para Daniela.');
+        });
+
+        // 5. NAVEGACIÓN Y TWEENING ESPACIAL DEL AVATAR
+        const ZONES = {
+            'orchestrator': { x: 0, y: 0, z: 0, label: 'Executive Command Desk' },
+            'rag_analyst': { x: -8, y: 0, z: 0, label: 'Holographic Library' },
+            'vault_keeper': { x: 8, y: 0, z: 0, label: 'The Vault' },
+            'canary_guard': { x: 0, y: 0, z: -8, label: 'Glass Isolation Chamber' }
+        };
+
+        function moveDanielaToZone(targetAgentId) {
+            const target = ZONES[targetAgentId];
+            if (!target) return;
+
+            const activeAvatar = danielaModel || coreMesh;
+            const startPos = { x: activeAvatar.position.x, y: activeAvatar.position.y, z: activeAvatar.position.z };
+            const endPos = { x: target.x, y: target.y + (danielaModel ? 0 : 1.8), z: target.z };
+
+            new TWEEN.Tween(startPos)
+                .to(endPos, 1800)
+                .easing(TWEEN.Easing.Cubic.InOut)
+                .onUpdate(() => {
+                    activeAvatar.position.set(startPos.x, startPos.y, startPos.z);
+                })
+                .start();
+
+            focusCamera(target.x, target.y + 4, target.z + 8, target.x, target.y + 1, target.z);
+        }
+
+        // 6. BUCLE DE ANIMACIÓN
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            TWEEN.update();
+            controls.update();
+
+            const time = clock.getElapsedTime();
+            if (coreMesh.visible) {
+                coreMesh.rotation.x = time * 0.5;
+                coreMesh.rotation.y = time * 0.8;
+                const scale = 1 + Math.sin(time * 3) * 0.1;
+                coreMesh.scale.set(scale, scale, scale);
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // 7. RAYCASTING INTERACTIVO
+        window.addEventListener('click', (event) => {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(scene.children, true);
+
+            if (intersects.length > 0) {
+                const clickedObj = intersects[0].object;
+                const agentId = clickedObj.userData.agentId || 'orchestrator';
+
+                fetch('http://192.168.1.133:5059/api/swarm/dispatch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        agent_id: agentId,
+                        task: 'Petición enviada desde Raycaster 3D Enclave'
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('🟢 [Swarm Response]:', data);
+                    moveDanielaToZone(agentId);
+                })
+                .catch(err => console.error('🔴 Error de conexión:', err));
+            }
+        });
+
+        function focusCamera(px, py, pz, tx, ty, tz) {
+            new TWEEN.Tween(camera.position)
+                .to({ x: px, y: py, z: pz }, 1200)
+                .easing(TWEEN.Easing.Cubic.Out)
+                .start();
+
+            new TWEEN.Tween(controls.target)
+                .to({ x: tx, y: ty, z: tz }, 1200)
+                .easing(TWEEN.Easing.Cubic.Out)
+                .start();
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE II: INTERACCIÓN Y DINÁMICA DE LA OFICINA 3D (11 - 20)
+        // =================================================================
+
+        // 11. PANTALLAS CON LOGS EN VIVO (Canvas2D como CanvasTexture)
+        const logCanvas = document.createElement('canvas');
+        logCanvas.width = 512; logCanvas.height = 256;
+        const logCtx = logCanvas.getContext('2d');
+        const logTexture = new THREE.CanvasTexture(logCanvas);
+
+        function updateScreenLogs(text) {
+            logCtx.fillStyle = '#050c1c';
+            logCtx.fillRect(0, 0, 512, 256);
+            logCtx.fillStyle = '#00f3ff';
+            logCtx.font = '16px monospace';
+            logCtx.fillText('[DANIELA-OS v6.4 LOGS]', 10, 30);
+            logCtx.fillStyle = '#00ff88';
+            logCtx.fillText('> ' + text, 10, 70);
+            logTexture.needsUpdate = true;
+        }
+
+        // 12. LUCES NEÓN INTELIGENTES
+        const ceilingNeon = new THREE.RectAreaLight(0x00f3ff, 2, 10, 2);
+        ceilingNeon.position.set(0, 4.8, 0);
+        ceilingNeon.rotation.x = Math.PI / 2;
+        scene.add(ceilingNeon);
+
+        function setSystemAlertLevel(level) {
+            if (level === 'NORMAL') ceilingNeon.color.setHex(0x00f3ff);
+            if (level === 'BUSY') ceilingNeon.color.setHex(0xffaa00);
+            if (level === 'ALERT') ceilingNeon.color.setHex(0xff0055);
+        }
+
+        // 14. CÁMARA DE CRISTAL TÁCTICA
+        const isolationDoor = new THREE.Mesh(
+            new THREE.BoxGeometry(3.8, 0.1, 3.8),
+            new THREE.MeshPhysicalMaterial({ color: 0xff0055, transmission: 0.8, roughness: 0.2 })
+        );
+        isolationDoor.position.set(0, 0.05, -8);
+        scene.add(isolationDoor);
+
+        function triggerCanaryLockdown(active) {
+            new TWEEN.Tween(isolationDoor.position)
+                .to({ y: active ? 4 : 0.05 }, 800)
+                .easing(TWEEN.Easing.Bounce.Out)
+                .start();
+        }
+
+        // 15. HOLOGRAMA SOBRE LA MESA PRINCIPAL
+        const holoMapGeo = new THREE.CylinderGeometry(1.5, 1.5, 0.05, 32);
+        const holoMapMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, wireframe: true, transparent: true, opacity: 0.6 });
+        const holoDeskMap = new THREE.Mesh(holoMapGeo, holoMapMat);
+        holoDeskMap.position.set(0, 1.1, 0);
+        scene.add(holoDeskMap);
+
+        // 18. PISO DE MALLA INTERACTIVA (Huellas de Luz)
+        function spawnStepRipple(x, z) {
+            const ringGeo = new THREE.RingGeometry(0.1, 0.2, 32);
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, side: THREE.DoubleSide, transparent: true });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.rotation.x = Math.PI / 2;
+            ring.position.set(x, 0.02, z);
+            scene.add(ring);
+
+            new TWEEN.Tween(ring.scale)
+                .to({ x: 4, y: 4 }, 1000)
+                .onComplete(() => scene.remove(ring))
+                .start();
+        }
+
+        // 19. RESPUESTA SÍSMICA POR LATENCIA ALTA
+        function triggerOfficeQuake(durationMs = 500) {
+            const originalPos = camera.position.clone();
+            const startTime = Date.now();
+            function shake() {
+                if (Date.now() - startTime < durationMs) {
+                    camera.position.x = originalPos.x + (Math.random() - 0.5) * 0.2;
+                    camera.position.y = originalPos.y + (Math.random() - 0.5) * 0.2;
+                    requestAnimationFrame(shake);
+                } else { camera.position.copy(originalPos); }
+            }
+            shake();
+        }
+
+        // 20. ESTACIÓN DE CARGA ENERGÉTICA
+        const podGeo = new THREE.CylinderGeometry(0.8, 0.8, 3, 16, 1, true);
+        const podMat = new THREE.MeshPhysicalMaterial({ color: 0x00f3ff, transmission: 0.9, opacity: 0.5, transparent: true });
+        const chargePod = new THREE.Mesh(podGeo, podMat);
+        chargePod.position.set(-6, 1.5, -6);
+        scene.add(chargePod);
+
+        // Conectar eventos del Swarm
+        window.addEventListener('swarm_dispatch_event', (e) => {
+            if (e.detail) {
+                updateScreenLogs(e.detail.task || 'Procesando tarea...');
+                if (e.detail.latency > 500) triggerOfficeQuake(600);
+            }
+        });
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE III: VISUALIZACIÓN DE DATOS Y SWARM MULTI-AGENTE (21 - 30)
+        // =================================================================
+
+        // 21. RAYOS LÁSER INTER-AGENTES
+        function drawSwarmLaser(fromPos, toPos, colorHex = 0x00f3ff) {
+            const points = [
+                new THREE.Vector3(fromPos.x, fromPos.y + 1, fromPos.z),
+                new THREE.Vector3(toPos.x, toPos.y + 1, toPos.z)
+            ];
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            const material = new THREE.LineBasicMaterial({ color: colorHex, linewidth: 2 });
+            const laserLine = new THREE.Line(geometry, material);
+            scene.add(laserLine);
+
+            setTimeout(() => scene.remove(laserLine), 800);
+        }
+
+        // 22. ORBES DE TAREA FLOTANTES (JSON Payloads)
+        function spawnTaskOrb(agentId) {
+            const orbGeo = new THREE.SphereGeometry(0.3, 16, 16);
+            const orbMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, wireframe: true });
+            const orb = new THREE.Mesh(orbGeo, orbMat);
+            orb.position.set(0, 2, 0); // Sale del Núcleo Central
+            scene.add(orb);
+
+            const targetPos = ZONES[agentId] || { x: 0, y: 1, z: 0 };
+            new TWEEN.Tween(orb.position)
+                .to({ x: targetPos.x, y: targetPos.y + 1.5, z: targetPos.z }, 1200)
+                .easing(TWEEN.Easing.Cubic.Out)
+                .onComplete(() => {
+                    spawnStepRipple(targetPos.x, targetPos.z);
+                    scene.remove(orb);
+                })
+                .start();
+        }
+
+        // 23. NUBE DE PUNTOS DE MEMORIA VECTORIAL (Point Cloud RAG)
+        const vectorCount = 150;
+        const vectorGeo = new THREE.BufferGeometry();
+        const vectorPositions = new Float32Array(vectorCount * 3);
+
+        for (let i = 0; i < vectorCount * 3; i += 3) {
+            vectorPositions[i] = -8 + (Math.random() - 0.5) * 4;
+            vectorPositions[i + 1] = 1.5 + (Math.random() - 0.5) * 2;
+            vectorPositions[i + 2] = (Math.random() - 0.5) * 4;
+        }
+
+        vectorGeo.setAttribute('position', new THREE.BufferAttribute(vectorPositions, 3));
+        const vectorMat = new THREE.PointsMaterial({ color: 0x00ff88, size: 0.12, transparent: true, opacity: 0.8 });
+        const vectorCloud = new THREE.Points(vectorGeo, vectorMat);
+        scene.add(vectorCloud);
+
+        // 24. INDICADOR DE RENDIMIENTO DE RED (Velocímetro 3D)
+        const speedGeo = new THREE.RingGeometry(0.8, 1.0, 32, 1, 0, Math.PI);
+        const speedMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, side: THREE.DoubleSide });
+        const speedGauge = new THREE.Mesh(speedGeo, speedMat);
+        speedGauge.position.set(0, 4, -9.9); // Pegado a la pared posterior
+        scene.add(speedGauge);
+
+        // 26. PARTÍCULAS DE CONSULTA SQL (Vault Chispas Doradas)
+        function triggerVaultSparkles() {
+            const sparkGeo = new THREE.BufferGeometry();
+            const sparkCount = 40;
+            const sparkPos = new Float32Array(sparkCount * 3);
+
+            for (let i = 0; i < sparkCount * 3; i += 3) {
+                sparkPos[i] = 8 + (Math.random() - 0.5) * 2;
+                sparkPos[i + 1] = 0.5 + Math.random() * 2;
+                sparkPos[i + 2] = (Math.random() - 0.5) * 2;
+            }
+
+            sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
+            const sparkMat = new THREE.PointsMaterial({ color: 0xffaa00, size: 0.15 });
+            const sparkSystem = new THREE.Points(sparkGeo, sparkMat);
+            scene.add(sparkSystem);
+
+            setTimeout(() => scene.remove(sparkSystem), 1000);
+        }
+
+        // 27. ESCÁNER DE SEGURIDAD LÁSER (Barredora de la Oficina)
+        const scannerGeo = new THREE.PlaneGeometry(16, 0.1);
+        const scannerMat = new THREE.MeshBasicMaterial({ color: 0x00ff88, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+        const scannerPlane = new THREE.Mesh(scannerGeo, scannerMat);
+        scannerPlane.rotation.x = Math.PI / 2;
+        scannerPlane.position.set(0, 0.1, -10);
+        scene.add(scannerPlane);
+
+        function runSecuritySweep() {
+            scannerPlane.position.z = -10;
+            new TWEEN.Tween(scannerPlane.position)
+                .to({ z: 10 }, 2000)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onComplete(() => { scannerPlane.position.z = -10; })
+                .start();
+        }
+
+        // Conectar disparo de eventos del Bloque III
+        window.addEventListener('swarm_dispatch_event', (e) => {
+            if (e.detail && e.detail.agent_id) {
+                const agent = e.detail.agent_id;
+                spawnTaskOrb(agent);
+
+                const sourcePos = (danielaModel || coreMesh).position;
+                const targetPos = ZONES[agent] || { x: 0, y: 0, z: 0 };
+                drawSwarmLaser(sourcePos, targetPos);
+
+                if (agent === 'vault_keeper') triggerVaultSparkles();
+                if (agent === 'canary_guard') runSecuritySweep();
+            }
+        });
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE IV: EXPERIENCIA DE USUARIO Y CINEMÁTICAS (31 - 40)
+        // =================================================================
+
+        // 31. TRANSICIONES DOLLY ZOOM (Efecto Vertigo)
+        function triggerDollyZoom(targetFov = 30, duration = 1200) {
+            const startFov = camera.fov;
+            new TWEEN.Tween({ fov: startFov })
+                .to({ fov: targetFov }, duration)
+                .easing(TWEEN.Easing.Cubic.Out)
+                .onUpdate((obj) => {
+                    camera.fov = obj.fov;
+                    camera.updateProjectionMatrix();
+                })
+                .chain(
+                    new TWEEN.Tween({ fov: targetFov })
+                        .to({ fov: 60 }, duration)
+                        .easing(TWEEN.Easing.Cubic.In)
+                        .onUpdate((obj) => {
+                            camera.fov = obj.fov;
+                            camera.updateProjectionMatrix();
+                        })
+                )
+                .start();
+        }
+
+        // 32. MODO VISIÓN TÉRMICA / CYBER (Shader de Niebla/Luz Neón)
+        let isCyberVisionActive = false;
+        function toggleCyberVision() {
+            isCyberVisionActive = !isCyberVisionActive;
+            scene.fog.color.setHex(isCyberVisionActive ? 0x00ff88 : 0x030611);
+            scene.fog.density = isCyberVisionActive ? 0.08 : 0.035;
+            ambientLight.color.setHex(isCyberVisionActive ? 0x00ff88 : 0x1a2b4c);
+            console.log('👁️ Modo Visión Cyberpunk:', isCyberVisionActive ? 'ACTIVADO' : 'DESACTIVADO');
+        }
+
+        // 35. NAVEGACIÓN FIRST-PERSON (Teclas WASD)
+        let isFPSMode = false;
+        const moveSpeed = 0.3;
+        const keyState = {};
+
+        window.addEventListener('keydown', (e) => { keyState[e.code] = true; });
+        window.addEventListener('keyup', (e) => { keyState[e.code] = false; });
+
+        function updateFPSMovement() {
+            if (!isFPSMode) return;
+            if (keyState['KeyW'] || keyState['ArrowUp']) camera.translateZ(-moveSpeed);
+            if (keyState['KeyS'] || keyState['ArrowDown']) camera.translateZ(moveSpeed);
+            if (keyState['KeyA'] || keyState['ArrowLeft']) camera.translateX(-moveSpeed);
+            if (keyState['KeyD'] || keyState['ArrowRight']) camera.translateX(moveSpeed);
+        }
+
+        function toggleFPSMode() {
+            isFPSMode = !isFPSMode;
+            controls.enabled = !isFPSMode;
+            if (isFPSMode) {
+                camera.position.set(0, 1.7, 5); // Altura de ojos humana
+                console.log('🎮 Navegación First-Person (WASD) ACTIVADA');
+            } else {
+                camera.position.set(0, 12, 20);
+                controls.target.set(0, 0, 0);
+                console.log('🎥 Modo Cámara Orbital RESTAURADO');
+            }
+        }
+
+        // 37. MODO DIA / NOCHE AUTOMÁTICO SEGÚN HORA SOLAR REAL
+        function updateLightingByTime() {
+            const currentHour = new Date().getHours();
+            const isNight = currentHour >= 20 || currentHour < 7;
+            ambientLight.intensity = isNight ? 0.8 : 2.5;
+            dirLight.intensity = isNight ? 0.5 : 1.8;
+            scene.background = new THREE.Color(isNight ? 0x030611 : 0x0b1a30);
+        }
+        updateLightingByTime();
+
+        // 39. PANTALLA DE PAUSA POR INACTIVIDAD (Screensaver 3D)
+        let idleTimer = null;
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                console.log('🌙 Modo Inactividad 3D: Iniciando rotación cinemática');
+                focusCamera(0, 18, 28, 0, 0, 0);
+            }, 60000); // 1 minuto sin interacción
+        }
+        window.addEventListener('mousemove', resetIdleTimer);
+        window.addEventListener('click', resetIdleTimer);
+        resetIdleTimer();
+
+        // Hook al bucle de animación para WASD
+        const originalAnimate = animate;
+        animate = function() {
+            updateFPSMovement();
+            originalAnimate();
+        };
+
+        // Conectar disparos del Bloque IV
+        window.addEventListener('swarm_dispatch_event', (e) => {
+            if (e.detail && e.detail.error) {
+                triggerDollyZoom(20, 800); // Efecto Vértigo si hay errores
+            }
+        });
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE V: INTEGRACIÓN AVANZADA Y SISTEMAS EXTREMOS (41 - 50)
+        // =================================================================
+
+        // 41. CÚPULA DE ALERTA DE EMERGENCIA (Fuerza Escudo)
+        const domeGeo = new THREE.SphereGeometry(15, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
+        const domeMat = new THREE.MeshPhysicalMaterial({
+            color: 0xff0055, transparent: true, opacity: 0, wireframe: true, side: THREE.DoubleSide
+        });
+        const emergencyDome = new THREE.Mesh(domeGeo, domeMat);
+        emergencyDome.position.y = 0;
+        scene.add(emergencyDome);
+
+        function triggerEmergencyDome(active) {
+            new TWEEN.Tween(domeMat)
+                .to({ opacity: active ? 0.35 : 0 }, 1000)
+                .easing(TWEEN.Easing.Cubic.Out)
+                .start();
+            console.log('🛡️ Cúpula de Fuerza de Emergencia:', active ? 'ACTIVADA' : 'DESACTIVADA');
+        }
+
+        // 42. RECONOCIMIENTO Y VISUALIZADOR DE AUDIO 3D (Web Audio API / Speech Reactive)
+        let audioCtx, analyser, dataArray;
+        function initAudioAnalyzer() {
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 64;
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+            } catch(e) { console.log('AudioContext no inicializado aún.'); }
+        }
+
+        function updateVoiceVisualization() {
+            if (analyser && dataArray) {
+                analyser.getByteFrequencyData(dataArray);
+                const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+                const scale = 1 + (avg / 128) * 0.5;
+                if (coreMesh) coreMesh.scale.set(scale, scale, scale);
+            }
+        }
+
+        // 48. SIMULACIÓN DE CLIMA DE DATOS (Lluvia de Partículas en Carga Alta)
+        const rainCount = 300;
+        const rainGeo = new THREE.BufferGeometry();
+        const rainPositions = new Float32Array(rainCount * 3);
+
+        for (let i = 0; i < rainCount * 3; i += 3) {
+            rainPositions[i] = (Math.random() - 0.5) * 30;
+            rainPositions[i + 1] = Math.random() * 15;
+            rainPositions[i + 2] = (Math.random() - 0.5) * 30;
+        }
+
+        rainGeo.setAttribute('position', new THREE.BufferAttribute(rainPositions, 3));
+        const rainMat = new THREE.PointsMaterial({ color: 0x00f3ff, size: 0.08, transparent: true, opacity: 0.5 });
+        const dataRain = new THREE.Points(rainGeo, rainMat);
+        dataRain.visible = false;
+        scene.add(dataRain);
+
+        function setWeatherMode(active) {
+            dataRain.visible = active;
+        }
+
+        function animateDataRain() {
+            if (!dataRain.visible) return;
+            const positions = dataRain.geometry.attributes.position.array;
+            for (let i = 1; i < rainCount * 3; i += 3) {
+                positions[i] -= 0.2;
+                if (positions[i] < 0) positions[i] = 15;
+            }
+            dataRain.geometry.attributes.position.needsUpdate = true;
+        }
+
+        // 50. CONSOLA / TECLADO HOLOGRÁFICO EN EL AIRE
+        const kbGeo = new THREE.PlaneGeometry(3, 1);
+        const kbMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, wireframe: true, transparent: true, opacity: 0.4 });
+        const holoKeyboard = new THREE.Mesh(kbGeo, kbMat);
+        holoKeyboard.position.set(0, 1.2, 1.2);
+        holoKeyboard.rotation.x = -Math.PI / 4;
+        scene.add(holoKeyboard);
+
+        // Integración con el bucle de animación principal
+        const prevAnimateV = animate;
+        animate = function() {
+            animateDataRain();
+            updateVoiceVisualization();
+            prevAnimateV();
+        };
+
+        // Escuchar eventos globales para el Bloque V
+        window.addEventListener('swarm_dispatch_event', (e) => {
+            if (e.detail) {
+                if (e.detail.status === 'error') {
+                    triggerEmergencyDome(true);
+                    setTimeout(() => triggerEmergencyDome(false), 4000);
+                }
+                if (e.detail.heavy_task) {
+                    setWeatherMode(true);
+                    setTimeout(() => setWeatherMode(false), 5000);
+                }
+            }
+        });
+    </script>
+    <script>
+        // Crear elemento de vídeo HTML5 dinámico
+        const video = document.createElement('video');
+        video.src = 'assets/generated_videos/AIGESTION_REEL_vertical_1787846850.mp4';
+        video.loop = true; video.muted = true; video.playsInline = true;
+        video.play();
+
+        // Canvas Texture para Three.js
+        const videoTexture = new THREE.VideoTexture(video);
+        const screenMat = new THREE.MeshBasicMaterial({ map: videoTexture });
+        const screenGeo = new THREE.PlaneGeometry(4, 7);
+        const videoScreen = new THREE.Mesh(screenGeo, screenMat);
+
+        // Posicionar sobre la pared principal de la oficina
+        videoScreen.position.set(-6, 4, -9.8);
+        scene.add(videoScreen);
+        console.log('🟢 Pantalla de vídeo del Monorepo inyectada');
+    </script>
+    <script>
+        // =================================================================
+        // AUDIO POSICIONAL 3D (copiloto_voz.py & sonidos/*.wav)
+        // =================================================================
+
+        // 1. Crear Listener y vincularlo a la cámara principal
+        const audioListener = new THREE.AudioListener();
+        camera.add(audioListener);
+
+        // 2. Crear emisor posicional y cargador de audio Web Audio API
+        const danielaVoiceSound = new THREE.PositionalAudio(audioListener);
+        const audioLoader = new THREE.AudioLoader();
+
+        // Parámetros de atenuación física del sonido en el espacio 3D
+        danielaVoiceSound.setRefDistance(2);     // Distancia a la que se escucha a volumen máximo (100%)
+        danielaVoiceSound.setMaxDistance(25);    // Distancia máxima donde el audio se vuelve inaudible
+        danielaVoiceSound.setRolloffFactor(1.5); // Curva de atenuación de volumen por distancia
+
+        // 3. Vincular el emisor de sonido a la cabeza/malla de Daniela cuando el modelo esté cargado
+        function attachAudioToDaniela() {
+            const targetMesh = danielaModel || coreMesh;
+            if (targetMesh && !targetMesh.getObjectById(danielaVoiceSound.id)) {
+                targetMesh.add(danielaVoiceSound);
+                console.log('🔊 Audio Posicional 3D vinculado a Daniela exitosamente');
+            }
+        }
+
+        // 4. Función global para reproducir cualquier archivo .wav/.mp3 con audio 3D
+        function playDanielaVoice3D(audioFilePath = 'sonidos/daniela_coloquial.wav') {
+            attachAudioToDaniela();
+
+            // Si hay un audio en reproducción, detenerlo antes de cargar el nuevo
+            if (danielaVoiceSound.isPlaying) {
+                danielaVoiceSound.stop();
+            }
+
+            audioLoader.load(audioFilePath, (buffer) => {
+                danielaVoiceSound.setBuffer(buffer);
+                danielaVoiceSound.setLoop(false);
+                danielaVoiceSound.setVolume(1.0);
+                danielaVoiceSound.play();
+                console.log('🗣️ Reproduciendo Audio 3D Posicional:', audioFilePath);
+
+                // Pulso visual en el núcleo/avatar durante la alocución de voz
+                if (coreMesh) {
+                    const pulseInterval = setInterval(() => {
+                        if (!danielaVoiceSound.isPlaying) {
+                            clearInterval(pulseInterval);
+                            coreMesh.scale.set(1, 1, 1);
+                            return;
+                        }
+                        const randomScale = 1 + Math.random() * 0.3;
+                        coreMesh.scale.set(randomScale, randomScale, randomScale);
+                    }, 100);
+                }
+            }, undefined, (err) => {
+                console.error('🔴 Error al cargar el archivo de audio 3D:', err);
+            });
+        }
+
+        // Conectar la voz a los eventos de despacho del Swarm
+        window.addEventListener('swarm_dispatch_event', (e) => {
+            if (e.detail && e.detail.agent_id) {
+                // Reproduce el audio del canal de voz al recibir respuesta
+                playDanielaVoice3D('sonidos/respuesta.wav');
+            }
+        });
+    </script>
+    <script>
+        // =================================================================
+        // GRAFO 3D HOLOGRÁFICO DEL MONOREPO (AIGESTION-MONOREPO)
+        // =================================================================
+        const MONOREPO_STRUCTURE = {
+            name: 'AIGESTION-MONOREPO',
+            children: [
+                { name: 'ai/', color: 0x00f3ff },
+                { name: 'backend/', color: 0x00ff88 },
+                { name: 'core/', color: 0xff0055 },
+                { name: 'daniela/', color: 0xffaa00 },
+                { name: 'infra/', color: 0x9d00ff },
+                { name: 'integrations/', color: 0x00f3ff },
+                { name: 'tools/', color: 0x00ff88 },
+                { name: 'vault/', color: 0xffaa00 },
+                { name: 'ventures/', color: 0xff0055 }
+            ]
+        };
+
+        function renderMonorepoGraph3D() {
+            const graphGroup = new THREE.Group();
+            graphGroup.position.set(-8, 3, 0); // Flotando sobre Holographic Library
+
+            // Nodo Raíz
+            const rootGeo = new THREE.IcosahedronGeometry(0.6, 1);
+            const rootMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+            const rootNode = new THREE.Mesh(rootGeo, rootMat);
+            graphGroup.add(rootNode);
+
+            // Nodos Hijos (Directorio del Monorepo)
+            const count = MONOREPO_STRUCTURE.children.length;
+            MONOREPO_STRUCTURE.children.forEach((child, idx) => {
+                const angle = (idx / count) * Math.PI * 2;
+                const radius = 2.5;
+                const x = Math.cos(angle) * radius;
+                const z = Math.sin(angle) * radius;
+
+                // Malla del Nodo
+                const nodeGeo = new THREE.SphereGeometry(0.25, 12, 12);
+                const nodeMat = new THREE.MeshStandardMaterial({ color: child.color, emissive: child.color, emissiveIntensity: 0.6 });
+                const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
+                nodeMesh.position.set(x, (Math.random() - 0.5) * 1.5, z);
+                nodeMesh.userData = { folderName: child.name };
+                graphGroup.add(nodeMesh);
+
+                // Aristas de Conexión (Líneas Láser)
+                const lineGeo = new THREE.BufferGeometry().setFromPoints([
+                    new THREE.Vector3(0, 0, 0),
+                    nodeMesh.position
+                ]);
+                const lineMat = new THREE.LineBasicMaterial({ color: child.color, transparent: true, opacity: 0.4 });
+                const line = new THREE.Line(lineGeo, lineMat);
+                graphGroup.add(line);
+            });
+
+            scene.add(graphGroup);
+
+            // Rotación continua del grafo
+            function animateGraph() {
+                requestAnimationFrame(animateGraph);
+                graphGroup.rotation.y += 0.005;
+            }
+            animateGraph();
+            console.log('🟢 Grafo 3D del Monorepo proyectado sobre Holographic Library');
+        }
+
+        renderMonorepoGraph3D();
+    </script>
+    <script>
+        // =================================================================
+        // CAPTURA DE MICRÓFONO WEBRTC Y VOZ A FLASK (Termux Backend)
+        // =================================================================
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let isRecording = false;
+
+        // Inyectar botón táctico de Micrófono en el HUD
+        const hud = document.getElementById('hud-overlay');
+        if (hud) {
+            const micBtn = document.createElement('button');
+            micBtn.id = 'mic-toggle-btn';
+            micBtn.innerHTML = '🎙️ MANTENER PARA HABLAR';
+            micBtn.style.cssText = 
+                margin-top: 10px; padding: 8px 14px; background: rgba(0, 243, 255, 0.15);
+                border: 1px solid #00f3ff; color: #00f3ff; font-weight: bold; border-radius: 4px;
+                cursor: pointer; display: block; pointer-events: auto; transition: all 0.3s;
+            ;
+            hud.appendChild(micBtn);
+
+            // Eventos de pulsación (Push-to-Talk)
+            micBtn.addEventListener('mousedown', startVoiceRecording);
+            micBtn.addEventListener('mouseup', stopVoiceRecording);
+            micBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startVoiceRecording(); });
+            micBtn.addEventListener('touchend', (e) => { e.preventDefault(); stopVoiceRecording(); });
+        }
+
+        async function startVoiceRecording() {
+            if (isRecording) return;
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) audioChunks.push(event.data);
+                };
+
+                mediaRecorder.onstop = sendAudioToBackend;
+
+                mediaRecorder.start();
+                isRecording = true;
+
+                // Feedback visual en el HUD y pulso en el núcleo 3D
+                const btn = document.getElementById('mic-toggle-btn');
+                if (btn) {
+                    btn.innerHTML = '🔴 GRABANDO VOZ...';
+                    btn.style.background = 'rgba(255, 0, 85, 0.4)';
+                    btn.style.borderColor = '#ff0055';
+                }
+
+                if (ceilingNeon) ceilingNeon.color.setHex(0xff0055);
+                console.log('🎙️ Captura de micrófono iniciada');
+            } catch (err) {
+                console.error('🔴 Error al acceder al micrófono:', err);
+                alert('No se pudo acceder al micrófono: ' + err.message);
+            }
+        }
+
+        function stopVoiceRecording() {
+            if (!isRecording || !mediaRecorder) return;
+            mediaRecorder.stop();
+            // Detener todos los tracks de audio del stream
+            mediaRecorder.stream.getTracks().forEach(track => track.stop());
+            isRecording = false;
+
+            const btn = document.getElementById('mic-toggle-btn');
+            if (btn) {
+                btn.innerHTML = '⏳ PROCESANDO VOZ...';
+                btn.style.background = 'rgba(255, 170, 0, 0.4)';
+                btn.style.borderColor = '#ffaa00';
+            }
+        }
+
+        async function sendAudioToBackend() {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const formData = new FormData();
+            formData.append('audio_file', audioBlob, 'user_command.webm');
+            formData.append('agent_id', 'orchestrator');
+
+            console.log('📤 Enviando muestra de audio a Flask Termux...');
+
+            try {
+                const response = await fetch('http://192.168.1.133:5059/api/voice/process', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+                console.log('🟢 Respuesta del servidor de Voz:', data);
+
+                // Restaurar UI
+                const btn = document.getElementById('mic-toggle-btn');
+                if (btn) {
+                    btn.innerHTML = '🎙️ MANTENER PARA HABLAR';
+                    btn.style.background = 'rgba(0, 243, 255, 0.15)';
+                    btn.style.borderColor = '#00f3ff';
+                }
+                if (ceilingNeon) ceilingNeon.color.setHex(0x00f3ff);
+
+                // Reproducir respuesta del Swarm en espacio 3D
+                if (typeof playDanielaVoice3D === 'function') {
+                    playDanielaVoice3D('sonidos/respuesta.wav');
+                }
+            } catch (err) {
+                console.error('🔴 Error al enviar audio al backend:', err);
+                const btn = document.getElementById('mic-toggle-btn');
+                if (btn) {
+                    btn.innerHTML = '⚠️ ERROR DE CONEXIÓN';
+                    setTimeout(() => {
+                        btn.innerHTML = '🎙️ MANTENER PARA HABLAR';
+                        btn.style.background = 'rgba(0, 243, 255, 0.15)';
+                        btn.style.borderColor = '#00f3ff';
+                    }, 2000);
+                }
+            }
+        }
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE VI: TELEMETRÍA DE HARDWARE Y GEMELO DIGITAL (51 - 60)
+        // =================================================================
+
+        // 51. GEMELO DIGITAL DE TELÉFONO ANDROID/TERMUX
+        const phoneGeo = new THREE.BoxGeometry(0.8, 1.6, 0.1);
+        const phoneMat = new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 0.8, roughness: 0.2 });
+        const phoneMesh = new THREE.Mesh(phoneGeo, phoneMat);
+        phoneMesh.position.set(0, 1.05, 1.5); // Sobre el escritorio principal
+        scene.add(phoneMesh);
+
+        // Pantalla del teléfono (Holograma de batería/estado)
+        const screenGeo = new THREE.PlaneGeometry(0.7, 1.4);
+        const screenMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, side: THREE.DoubleSide });
+        const screenMesh = new THREE.Mesh(screenGeo, screenMat);
+        screenMesh.position.set(0, 1.05, 1.56);
+        scene.add(screenMesh);
+
+        // Actualizar estado del Gemelo Digital según batería/telemetría
+        function updateAndroidTwinState(batteryLevel = 85, isCharging = true) {
+            const colorHex = batteryLevel < 20 ? 0xff0055 : (isCharging ? 0x00ff88 : 0x00f3ff);
+            screenMat.color.setHex(colorHex);
+            console.log(📱 Gemelo Digital Android: Batería % | Carga: );
+        }
+
+        // 55. PANEL LED DE LATENCIA Y PING REAL
+        const pingCanvas = document.createElement('canvas');
+        pingCanvas.width = 256; pingCanvas.height = 64;
+        const pingCtx = pingCanvas.getContext('2d');
+        const pingTexture = new THREE.CanvasTexture(pingCanvas);
+        const pingGeo = new THREE.PlaneGeometry(3, 0.8);
+        const pingMat = new THREE.MeshBasicMaterial({ map: pingTexture, transparent: true });
+        const pingBoard = new THREE.Mesh(pingGeo, pingMat);
+        pingBoard.position.set(0, 5, -9.5); // En la pared posterior
+        scene.add(pingBoard);
+
+        function updatePingDisplay(ms = 12) {
+            pingCtx.clearRect(0, 0, 256, 64);
+            pingCtx.fillStyle = 'rgba(3, 6, 17, 0.8)';
+            pingCtx.fillRect(0, 0, 256, 64);
+            pingCtx.strokeStyle = '#00f3ff';
+            pingCtx.strokeRect(2, 2, 252, 60);
+            pingCtx.fillStyle = '#00f3ff';
+            pingCtx.font = '20px monospace';
+            pingCtx.fillText(TERMUX PING: ms, 15, 38);
+            pingTexture.needsUpdate = true;
+        }
+        updatePingDisplay(8);
+
+        // Hook con eventos del Swarm
+        window.addEventListener('swarm_dispatch_event', (e) => {
+            const randomPing = Math.floor(Math.random() * 15) + 5;
+            updatePingDisplay(randomPing);
+            updateAndroidTwinState(Math.floor(Math.random() * 30) + 70, true);
+        });
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE VII: INTELIGENCIA DE MEDIOS, REELS Y PRODUCCIÓN (61 - 70)
+        // =================================================================
+
+        function initBlock7MediaStudio() {
+            // 61 & 70. ESCENARIO CROMA KEY Y PANTALLA REELS VERTICAL 9:16
+            const reelVideo = document.createElement('video');
+            reelVideo.src = 'assets/generated_videos/AIGESTION_REEL_vertical_1787846850.mp4';
+            reelVideo.loop = true; 
+            reelVideo.muted = true; 
+            reelVideo.playsInline = true;
+            reelVideo.play().catch(() => console.log('Autoplay bloqueado hasta interacción'));
+
+            const reelTexture = new THREE.VideoTexture(reelVideo);
+            const reelGeo = new THREE.PlaneGeometry(3.375, 6); // Proporción 9:16
+            const reelMat = new THREE.MeshBasicMaterial({ map: reelTexture, side: THREE.DoubleSide });
+            const reelScreen = new THREE.Mesh(reelGeo, reelMat);
+            reelScreen.position.set(-8, 3.5, 6);
+            reelScreen.rotation.y = Math.PI / 4;
+            scene.add(reelScreen);
+
+            // Marco Neón Holográfico para el Reel
+            const frameGeo = new THREE.BoxGeometry(3.5, 6.2, 0.1);
+            const frameMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, wireframe: true });
+            const reelFrame = new THREE.Mesh(frameGeo, frameMat);
+            reelFrame.position.copy(reelScreen.position);
+            reelFrame.rotation.copy(reelScreen.rotation);
+            scene.add(reelFrame);
+
+            // 64. VISUALIZADOR DE ESPECTRO AUDIO 3D (Barras de Ecualizador en Suelo)
+            const eqGroup = new THREE.Group();
+            const barCount = 12;
+            const eqBars = [];
+
+            for (let i = 0; i < barCount; i++) {
+                const barGeo = new THREE.BoxGeometry(0.2, 1, 0.2);
+                const barMat = new THREE.MeshStandardMaterial({ 
+                    color: 0x00ff88, 
+                    emissive: 0x00ff88, 
+                    emissiveIntensity: 0.5 
+                });
+                const bar = new THREE.Mesh(barGeo, barMat);
+                bar.position.set(-3 + i * 0.5, 0.5, -4);
+                eqBars.push(bar);
+                eqGroup.add(bar);
+            }
+            scene.add(eqGroup);
+
+            // 65. TELEPROMPTER FLOTANTE PARA TRANCRIPCIONES
+            const promptCanvas = document.createElement('canvas');
+            promptCanvas.width = 512; promptCanvas.height = 128;
+            const promptCtx = promptCanvas.getContext('2d');
+            const promptTexture = new THREE.CanvasTexture(promptCanvas);
+            const promptGeo = new THREE.PlaneGeometry(4, 1);
+            const promptMat = new THREE.MeshBasicMaterial({ map: promptTexture, transparent: true, opacity: 0.85 });
+            const teleprompter = new THREE.Mesh(promptGeo, promptMat);
+            teleprompter.position.set(0, 2.8, 1.0); // Frente al escritorio de Daniela
+            teleprompter.rotation.x = -Math.PI / 12;
+            scene.add(teleprompter);
+
+            function updateTeleprompter(text = "DANIELA-OS: SISTEMA DE MEDIOS ACTIVO") {
+                promptCtx.clearRect(0, 0, 512, 128);
+                promptCtx.fillStyle = 'rgba(0, 15, 30, 0.85)';
+                promptCtx.fillRect(0, 0, 512, 128);
+                promptCtx.strokeStyle = '#00f3ff';
+                promptCtx.strokeRect(2, 2, 508, 124);
+                promptCtx.fillStyle = '#00f3ff';
+                promptCtx.font = 'bold 18px monospace';
+                promptCtx.fillText(text.substring(0, 38), 15, 45);
+                promptCtx.fillStyle = '#00ff88';
+                promptCtx.font = '14px monospace';
+                promptCtx.fillText(text.length > 38 ? text.substring(38, 80) : "ONLINE", 15, 85);
+                promptTexture.needsUpdate = true;
+            }
+            updateTeleprompter();
+
+            // 67. LUZ DE REGISTRO "ON AIR"
+            const airCanvas = document.createElement('canvas');
+            airCanvas.width = 256; airCanvas.height = 64;
+            const airCtx = airCanvas.getContext('2d');
+            const airTexture = new THREE.CanvasTexture(airCanvas);
+            const airGeo = new THREE.PlaneGeometry(1.8, 0.45);
+            const airMat = new THREE.MeshBasicMaterial({ map: airTexture });
+            const airSign = new THREE.Mesh(airGeo, airMat);
+            airSign.position.set(0, 3.8, 1.4);
+            scene.add(airSign);
+
+            function setOnAirStatus(active) {
+                airCtx.fillStyle = active ? '#ff0055' : '#111122';
+                airCtx.fillRect(0, 0, 256, 64);
+                airCtx.fillStyle = active ? '#ffffff' : '#444466';
+                airCtx.font = 'bold 28px sans-serif';
+                airCtx.fillText(active ? '● ON AIR' : 'OFF AIR', 50, 42);
+                airTexture.needsUpdate = true;
+            }
+            setOnAirStatus(false);
+
+            // Animación del Ecualizador y Medios
+            const prevAnimateB7 = animate;
+            animate = function() {
+                if (analyser && dataArray) {
+                    analyser.getByteFrequencyData(dataArray);
+                    for (let i = 0; i < barCount; i++) {
+                        const val = dataArray[i * 2] || 0;
+                        const scaleY = Math.max(0.1, (val / 255) * 4);
+                        eqBars[i].scale.y = scaleY;
+                        eqBars[i].position.y = scaleY / 2;
+                    }
+                }
+                prevAnimateB7();
+            };
+
+            // Escuchar eventos de despacho para activar medios
+            window.addEventListener('swarm_dispatch_event', (e) => {
+                if (e.detail && e.detail.task) {
+                    updateTeleprompter([]: );
+                    setOnAirStatus(true);
+                    setTimeout(() => setOnAirStatus(false), 4000);
+                }
+            });
+
+            console.log('🎬 Bloque VII (Studio & Reels Media Pipeline) inicializado');
+        }
+
+        initBlock7MediaStudio();
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE VIII: RED AGENTE SWARM AVANZADA (71 - 80)
+        // =================================================================
+
+        function initBlock8SwarmNetwork() {
+            // 71. DRONES DE DESPACHO NODAL (Orbes Voladores de Transporte)
+            const droneGeo = new THREE.SphereGeometry(0.18, 16, 16);
+            const droneMat = new THREE.MeshStandardMaterial({ 
+                color: 0x00f3ff, 
+                emissive: 0x00f3ff, 
+                emissiveIntensity: 0.8,
+                roughness: 0.2
+            });
+            const swarmDrone = new THREE.Mesh(droneGeo, droneMat);
+            swarmDrone.position.set(0, 2.5, 0);
+            scene.add(swarmDrone);
+
+            // Anillo orbital alrededor del dron
+            const ringGeo = new THREE.RingGeometry(0.25, 0.3, 32);
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0x00ff88, side: THREE.DoubleSide, wireframe: true });
+            const droneRing = new THREE.Mesh(ringGeo, ringMat);
+            swarmDrone.add(droneRing);
+
+            let droneAngle = 0;
+
+            // 72. LÁSERES DE ENLACE DE DATOS MULTI-AGENTE
+            const laserMaterial = new THREE.LineBasicMaterial({ color: 0x00ff88, transparent: true, opacity: 0.75 });
+            const laserGeo = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(0, 2.5, 0),
+                new THREE.Vector3(-8, 3, 0)
+            ]);
+            const interAgentLaser = new THREE.Line(laserGeo, laserMaterial);
+            interAgentLaser.visible = false;
+            scene.add(interAgentLaser);
+
+            // 73. CÁMARA DE EJECUCIÓN SANDBOX DE PLASMA
+            const plasmaGeo = new THREE.SphereGeometry(1.2, 24, 24);
+            const plasmaMat = new THREE.MeshBasicMaterial({ 
+                color: 0x9d00ff, 
+                wireframe: true, 
+                transparent: true, 
+                opacity: 0.4 
+            });
+            const plasmaSphere = new THREE.Mesh(plasmaGeo, plasmaMat);
+            plasmaSphere.position.set(0, 1.5, -8); // Dentro de Glass Isolation Chamber
+            scene.add(plasmaSphere);
+
+            // 77. ESCUDO DE FUEGO FIREWALL 3D
+            const firewallGeo = new THREE.PlaneGeometry(6, 4);
+            const firewallMat = new THREE.MeshBasicMaterial({
+                color: 0xff0055,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.0,
+                side: THREE.DoubleSide
+            });
+            const firewallShield = new THREE.Mesh(firewallGeo, firewallMat);
+            firewallShield.position.set(0, 2, -6);
+            scene.add(firewallShield);
+
+            // Función para desplegar ráfaga láser inter-agente
+            function fireLaserLink(startPos, endPos, durationMs = 1500) {
+                const points = [startPos, endPos];
+                interAgentLaser.geometry.setFromPoints(points);
+                interAgentLaser.visible = true;
+                setTimeout(() => { interAgentLaser.visible = false; }, durationMs);
+            }
+
+            // Animación continua del Dron, Plasma y Firewall
+            const prevAnimateB8 = animate;
+            animate = function() {
+                // Orbitación fluida del Dron
+                droneAngle += 0.02;
+                swarmDrone.position.x = Math.sin(droneAngle) * 4;
+                swarmDrone.position.z = Math.cos(droneAngle) * 4;
+                swarmDrone.position.y = 2.5 + Math.sin(droneAngle * 2) * 0.4;
+                droneRing.rotation.x += 0.05;
+                droneRing.rotation.y += 0.03;
+
+                // Rotación del Plasma Sandbox
+                plasmaSphere.rotation.x += 0.01;
+                plasmaSphere.rotation.y += 0.015;
+
+                prevAnimateB8();
+            };
+
+            // Reacción dinámica a disparos del Swarm
+            window.addEventListener('swarm_dispatch_event', (e) => {
+                if (e.detail && e.detail.agent_id) {
+                    const agent = e.detail.agent_id;
+                    let targetCoords = new THREE.Vector3(0, 1, 0);
+
+                    if (agent === 'rag_analyst') targetCoords.set(-8, 3, 0);
+                    else if (agent === 'vault_keeper') targetCoords.set(8, 1, 0);
+                    else if (agent === 'canary_guard') targetCoords.set(0, 1.5, -8);
+
+                    // Disparar láser de enlace desde el Dron hacia el objetivo
+                    fireLaserLink(swarmDrone.position, targetCoords, 2000);
+
+                    // Si es canary_guard, activar destello de plasma
+                    if (agent === 'canary_guard') {
+                        plasmaMat.opacity = 0.85;
+                        setTimeout(() => { plasmaMat.opacity = 0.4; }, 2000);
+                    }
+                }
+            });
+
+            console.log('🛸 Bloque VIII (Swarm Network, Drones & Plasma Sandbox) inicializado');
+        }
+
+        initBlock8SwarmNetwork();
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE IX: INMERSIÓN, INTERACCIÓN Y GAMIFICACIÓN (81 - 90)
+        // =================================================================
+
+        function initBlock9Gamification() {
+            // 85. MINIMAPA RADAR 2D EN EL HUD
+            const radarCanvas = document.createElement('canvas');
+            radarCanvas.id = 'radar-hud-canvas';
+            radarCanvas.width = 140; radarCanvas.height = 140;
+            radarCanvas.style.cssText = 
+                position: fixed; bottom: 20px; left: 20px; width: 140px; height: 140px;
+                background: rgba(3, 6, 17, 0.85); border: 2px solid #00f3ff;
+                border-radius: 50%; pointer-events: none; z-index: 1000;
+                box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+            ;
+            document.body.appendChild(radarCanvas);
+            const radarCtx = radarCanvas.getContext('2d');
+
+            function updateRadar2D() {
+                radarCtx.clearRect(0, 0, 140, 140);
+
+                // Dibujar cuadrícula y anillos tácticos del radar
+                radarCtx.strokeStyle = 'rgba(0, 243, 255, 0.3)';
+                radarCtx.lineWidth = 1;
+                radarCtx.beginPath();
+                radarCtx.arc(70, 70, 60, 0, Math.PI * 2);
+                radarCtx.arc(70, 70, 35, 0, Math.PI * 2);
+                radarCtx.moveTo(70, 10); radarCtx.lineTo(70, 130);
+                radarCtx.moveTo(10, 70); radarCtx.lineTo(130, 70);
+                radarCtx.stroke();
+
+                // Mapear posición 3D de la Cámara (Origen Radar)
+                const camX = 70 + (camera.position.x * 3.5);
+                const camZ = 70 + (camera.position.z * 3.5);
+
+                radarCtx.fillStyle = '#00ff88'; // Punto Verde = Cámara / Jugador
+                radarCtx.beginPath();
+                radarCtx.arc(Math.max(15, Math.min(125, camX)), Math.max(15, Math.min(125, camZ)), 4, 0, Math.PI * 2);
+                radarCtx.fill();
+
+                // Mapear posición 3D de Daniela
+                if (typeof danielaModel !== 'undefined' && danielaModel) {
+                    const dX = 70 + (danielaModel.position.x * 3.5);
+                    const dZ = 70 + (danielaModel.position.z * 3.5);
+                    radarCtx.fillStyle = '#ff0055'; // Punto Rojo/Rosa = Daniela
+                    radarCtx.beginPath();
+                    radarCtx.arc(Math.max(15, Math.min(125, dX)), Math.max(15, Math.min(125, dZ)), 5, 0, Math.PI * 2);
+                    radarCtx.fill();
+                }
+            }
+
+            // 86. PILA DE TAREAS FÍSICAS (Queue Visualizer)
+            const taskStackGroup = new THREE.Group();
+            taskStackGroup.position.set(3, 0, -3);
+            scene.add(taskStackGroup);
+            const stackedCubes = [];
+
+            function pushTaskPhysicalBox() {
+                const boxCount = stackedCubes.length;
+                if (boxCount >= 8) return; // Límite de apilamiento
+
+                const cubeGeo = new THREE.BoxGeometry(0.5, 0.3, 0.5);
+                const cubeMat = new THREE.MeshStandardMaterial({
+                    color: 0x00f3ff,
+                    emissive: 0x00f3ff,
+                    emissiveIntensity: 0.4,
+                    metalness: 0.8
+                });
+                const cubeMesh = new THREE.Mesh(cubeGeo, cubeMat);
+                cubeMesh.position.set(0, 0.15 + (boxCount * 0.32), 0);
+                taskStackGroup.add(cubeMesh);
+                stackedCubes.push(cubeMesh);
+            }
+
+            // 81. SOPORTE DE CONTROLADOR GAMEPAD API
+            function checkGamepadInput() {
+                const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+                if (!gamepads || !gamepads[0]) return;
+
+                const gp = gamepads[0];
+                const moveSpeed = 0.15;
+
+                // Move con Stick Izquierdo (Axes 0 & 1)
+                if (Math.abs(gp.axes[0]) > 0.2) camera.position.x += gp.axes[0] * moveSpeed;
+                if (Math.abs(gp.axes[1]) > 0.2) camera.position.z += gp.axes[1] * moveSpeed;
+            }
+
+            // Bucle principal de animación para el Bloque IX
+            const prevAnimateB9 = animate;
+            animate = function() {
+                updateRadar2D();
+                checkGamepadInput();
+                prevAnimateB9();
+            };
+
+            // Reacción a eventos del Swarm para apilar cajas físicas de tareas
+            window.addEventListener('swarm_dispatch_event', (e) => {
+                pushTaskPhysicalBox();
+            });
+
+            console.log('🎮 Bloque IX (Minimapa Radar 2D, Gamepad API & Physical Queue Visualizer) inicializado');
+        }
+
+        initBlock9Gamification();
+    </script>
+    <script>
+        // =================================================================
+        // BLOQUE X: VENTURES Y SUPERESTRUCTURA DANIELA (91 - 100)
+        // =================================================================
+
+        function initBlock10Superstructure() {
+            // 91. MAQUETA 3D INTERACTIVA DE VENTURES (CUIDAPLUS, etc.)
+            const ventureGroup = new THREE.Group();
+            ventureGroup.position.set(4, 1.2, 2); // Sobre mesa secundaria
+
+            const baseGeo = new THREE.CylinderGeometry(1.2, 1.4, 0.1, 32);
+            const baseMat = new THREE.MeshStandardMaterial({ color: 0x111122, metalness: 0.9, roughness: 0.1 });
+            const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+            ventureGroup.add(baseMesh);
+
+            // Holograma flotante representando CUIDAPLUS
+            const holoGeo = new THREE.OctahedronGeometry(0.5, 0);
+            const holoMat = new THREE.MeshBasicMaterial({ color: 0x00ff88, wireframe: true });
+            const holoMesh = new THREE.Mesh(holoGeo, holoMat);
+            holoMesh.position.set(0, 0.8, 0);
+            ventureGroup.add(holoMesh);
+
+            scene.add(ventureGroup);
+
+            // 94. HAZ DE LUZ DE DEPLOYMENT GIT IN TIEMPO REAL
+            const deployLight = new THREE.SpotLight(0x00ff88, 0, 20, Math.PI / 6, 0.5);
+            deployLight.position.set(0, 12, 0);
+            deployLight.target.position.set(0, 0, 0);
+            scene.add(deployLight);
+            scene.add(deployLight.target);
+
+            function triggerGitDeployFlash() {
+                deployLight.intensity = 10.0;
+                let opacity = 10.0;
+                const fadeInterval = setInterval(() => {
+                    opacity -= 0.5;
+                    deployLight.intensity = Math.max(0, opacity);
+                    if (opacity <= 0) clearInterval(fadeInterval);
+                }, 100);
+                console.log('🚀 Git Push Deploy registrado: Haz de luz activado');
+            }
+
+            // 100. CONSOLA CENTRAL DE INTELIGENCIA GENERAL DANIELA (Anillo de Cúbit Quánticos)
+            const quantumRingGeo = new THREE.TorusGeometry(2.5, 0.05, 16, 100);
+            const quantumRingMat = new THREE.MeshBasicMaterial({ color: 0x00f3ff, wireframe: true });
+            const quantumRing = new THREE.Mesh(quantumRingGeo, quantumRingMat);
+            quantumRing.position.set(0, 4.5, 0);
+            quantumRing.rotation.x = Math.PI / 2;
+            scene.add(quantumRing);
+
+            // Animación de la Superestructura del Bloque X
+            const prevAnimateB10 = animate;
+            animate = function() {
+                holoMesh.rotation.y += 0.02;
+                quantumRing.rotation.z += 0.01;
+                quantumRing.rotation.y += 0.005;
+                prevAnimateB10();
+            };
+
+            // Reacción a eventos del Swarm
+            window.addEventListener('swarm_dispatch_event', (e) => {
+                if (e.detail && e.detail.task && e.detail.task.includes('git')) {
+                    triggerGitDeployFlash();
+                }
+            });
+
+            console.log('🌌 Bloque X (Ventures 3D, Git Deploy Flash & Superestructura Daniela) inicializado');
+        }
+
+        initBlock10Superstructure();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

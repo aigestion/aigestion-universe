@@ -1,4 +1,5 @@
-import json, os
+import json
+import os
 
 VAULT_FILE = "/data/data/com.termux/files/home/daniela-os/memory_vault.json"
 

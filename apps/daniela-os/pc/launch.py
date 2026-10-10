@@ -13,13 +13,13 @@ from pathlib import Path
 EPIC_ROOT = Path(__file__).parent
 
 AIG_ROOT = Path(__file__).parent.parent
-OMNIPRESENTE_SCRIPT = AIG_ROOT / "gev" / "daniela-os" / "server.py"
+DANIELA_SCRIPT = AIG_ROOT / "gev" / "daniela-os" / "server.py"
 
 SYSTEMS = [
     {
-        "name": "Daniela Omnipresente",
+        "name": "Daniela",
         "port": 9200,
-        "script": str(OMNIPRESENTE_SCRIPT),
+        "script": str(DANIELA_SCRIPT),
         "external": True,
     },
     {"name": "Voice AI Desktop", "port": 5010, "script": "voice-daemon/voice_daemon.py"},
@@ -113,9 +113,9 @@ def print_banner():
 ============================================================
             EPIC PC EXPERIENCE LAUNCHER
 ============================================================
-  62 Epic PC systems + 50 Daniela Omnipresente
+  62 Epic PC systems + 50 Daniela
   Web UI: http://localhost:5020
-  Omnipresente: http://localhost:9200
+  Daniela: http://localhost:9200
 
   Usage: python launch.py [start|stop|status]
 ============================================================
