@@ -4,7 +4,7 @@ import re
 import sys
 
 import edge_tts
-from safe_exec import run_code
+from safe_exec import run_bg, run_cmd, run_code
 
 from google import genai
 
@@ -29,8 +29,6 @@ if not api_key:
     sys.exit(1)
 
 client = genai.Client(api_key=api_key)
-
-from safe_exec import run_bg, run_cmd
 
 
 def detener_audio():

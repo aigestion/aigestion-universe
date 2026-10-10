@@ -6,15 +6,16 @@ DASHROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE)
 sys.path.insert(0, DASHROOT)
 
-import json
-import threading
-import time
+# NOTE: sys.path bootstrap above must precede these imports (E402 intencional).
+import json  # noqa: E402
+import threading  # noqa: E402
+import time  # noqa: E402
 
-from flask import Flask, jsonify, request, send_from_directory
-from flask_cors import CORS
-from flask_socketio import SocketIO
+from flask import Flask, jsonify, request, send_from_directory  # noqa: E402
+from flask_cors import CORS  # noqa: E402
+from flask_socketio import SocketIO  # noqa: E402
 
-from core.auth.casbin_auth import create_auth_middleware
+from core.auth.casbin_auth import create_auth_middleware  # noqa: E402
 
 app = Flask(__name__, static_folder="../dist", static_url_path="/")
 CORS(

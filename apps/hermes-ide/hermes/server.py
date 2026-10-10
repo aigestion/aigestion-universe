@@ -18,12 +18,13 @@ sys.path.insert(0, os.path.join(BASE, "aig-optimization", "health"))
 sys.path.insert(0, os.path.join(BASE, "aig-optimization", "observe"))
 sys.path.insert(0, os.path.join(BASE, "aig-optimization", "conn"))
 
-from agent_shared.config import WEB_PORT
-from flask import Flask, jsonify, send_from_directory
+# NOTE: sys.path bootstrap above must precede these imports (E402 intencional).
+from agent_shared.config import WEB_PORT  # noqa: E402
+from flask import Flask, jsonify, send_from_directory  # noqa: E402
 
-from core.auth.casbin_auth import create_auth_middleware
-from core.message_broker import Event, get_in_memory_bus
-from core.service_registry import register_service, update_heartbeat
+from core.auth.casbin_auth import create_auth_middleware  # noqa: E402
+from core.message_broker import Event, get_in_memory_bus  # noqa: E402
+from core.service_registry import register_service, update_heartbeat  # noqa: E402
 
 app = Flask(__name__, static_folder="web")
 create_auth_middleware(app)

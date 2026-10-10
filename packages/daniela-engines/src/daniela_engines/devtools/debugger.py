@@ -241,13 +241,13 @@ class RequestResponseLogger:
     def get_slow_requests(self, threshold_ms: float = 1000) -> list[dict]:
         return [
             {
-                "method": l.method,
-                "url": l.url,
-                "duration_ms": l.duration_ms,
-                "status": l.response_status,
+                "method": ln.method,
+                "url": ln.url,
+                "duration_ms": ln.duration_ms,
+                "status": ln.response_status,
             }
-            for l in self._logs
-            if l.duration_ms > threshold_ms
+            for ln in self._logs
+            if ln.duration_ms > threshold_ms
         ]
 
     def get_error_summary(self) -> dict:
@@ -263,13 +263,13 @@ class RequestResponseLogger:
         return json.dumps(
             [
                 {
-                    "method": l.method,
-                    "url": l.url,
-                    "status": l.response_status,
-                    "duration_ms": l.duration_ms,
-                    "timestamp": l.timestamp,
+                    "method": ln.method,
+                    "url": ln.url,
+                    "status": ln.response_status,
+                    "duration_ms": ln.duration_ms,
+                    "timestamp": ln.timestamp,
                 }
-                for l in self._logs
+                for ln in self._logs
             ],
             indent=2,
         )
@@ -671,12 +671,12 @@ class ResourceLeakDetector:
     def get_results(self) -> list[dict]:
         return [
             {
-                "resource_type": l.resource_type,
-                "description": l.description,
-                "age_seconds": round(l.age_seconds, 1),
-                "severity": l.severity,
+                "resource_type": ln.resource_type,
+                "description": ln.description,
+                "age_seconds": round(ln.age_seconds, 1),
+                "severity": ln.severity,
             }
-            for l in self._leaks
+            for ln in self._leaks
         ]
 
 

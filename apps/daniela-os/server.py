@@ -65,14 +65,15 @@ sys.path.insert(0, os.path.join(BASE, "optimization", "observe"))
 sys.path.insert(0, os.path.join(BASE, "optimization", "conn"))
 
 
-from flask import Flask, jsonify, request, send_from_directory
-from flask_cors import CORS
-from flask_socketio import SocketIO
+# NOTE: sys.path bootstrap above must precede these imports (E402 intencional).
+from flask import Flask, jsonify, request, send_from_directory  # noqa: E402
+from flask_cors import CORS  # noqa: E402
+from flask_socketio import SocketIO  # noqa: E402
 
-from core.auth.casbin_auth import create_auth_middleware
-from core.config.paths import WEB_PORT, load_env, validate_env
-from core.message_broker import Event, get_in_memory_bus
-from core.service_registry import register_service, update_heartbeat
+from core.auth.casbin_auth import create_auth_middleware  # noqa: E402
+from core.config.paths import WEB_PORT, load_env, validate_env  # noqa: E402
+from core.message_broker import Event, get_in_memory_bus  # noqa: E402
+from core.service_registry import register_service, update_heartbeat  # noqa: E402
 
 # E-47: Load .env (single source of truth) + validate critical keys
 load_env()
@@ -426,8 +427,8 @@ def phases():
 
 register_all()
 
-# Start dashboard service poller
-from core.dashboard import start_poller
+# Start dashboard service poller (import tardio: evita circular con register_all).
+from core.dashboard import start_poller  # noqa: E402
 
 start_poller()
 

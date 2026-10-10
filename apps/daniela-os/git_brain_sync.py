@@ -331,7 +331,7 @@ class BrainSync:
             "has_repo": (BRAIN_DIR / ".git").exists(),
             "has_remote": self.has_remote() if (BRAIN_DIR / ".git").exists() else False,
             "autosync": self.autosync,
-            "pending_changes": len([l for l in pending.splitlines() if l.strip()]),
+            "pending_changes": len([row for row in pending.splitlines() if row.strip()]),
             "episodes": st.get("episodes", 0),
             "learnings": len(st.get("learnings", [])),
             "last_sync": self.last_sync,

@@ -10,9 +10,11 @@ def save_memory(data):
         json.dump(vault, f)
 
 def load_vault():
-    if not os.path.exists(VAULT_FILE): return []
+    if not os.path.exists(VAULT_FILE):
+        return []
     with open(VAULT_FILE, 'r') as f:
-        try: return json.load(f)
+        try:
+            return json.load(f)
         except Exception:
             return []
 
@@ -22,6 +24,7 @@ def run(context):
         return "💾 [MEMORY]: Dato archivado en la Bóveda."
     elif "memoria" in context.lower() or "recuerda" in context.lower():
         vault = load_vault()
-        if not vault: return "🗄️ [MEMORY]: Bóveda vacía."
+        if not vault:
+            return "🗄️ [MEMORY]: Bóveda vacía."
         return f"🗄️ [MEMORY]: He encontrado {len(vault)} registros. Últimos: " + "; ".join(vault[-3:])
     return "❌ [MEMORY]: Comando no reconocido. Usa 'guarda <dato>' o 'recuerda'."

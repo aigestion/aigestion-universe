@@ -18,12 +18,11 @@ import os
 import sqlite3
 import sys
 from datetime import datetime
+from flask import Flask, Response, jsonify, render_template, request, send_file
 from pathlib import Path
 from typing import Any
 
 _REPO_ROOT = Path(__file__).resolve().parent
-
-from flask import Flask, Response, jsonify, render_template, request, send_file
 
 try:
     from dotenv import load_dotenv

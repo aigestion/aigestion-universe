@@ -1,3 +1,4 @@
+import importlib
 import subprocess
 import json
 import os
@@ -10,7 +11,8 @@ SNAP_PATH = os.path.join(BASE_DIR, "security_snap.jpg")
 
 def capture_photo(camera_id="1"):
     if os.path.exists(SNAP_PATH):
-        try: os.remove(SNAP_PATH)
+        try:
+            os.remove(SNAP_PATH)
         except Exception:
             pass
         
@@ -37,7 +39,8 @@ def analyze_intruder():
             contents=[uploaded_file, prompt]
         )
 
-        try: client.files.delete(name=uploaded_file.name)
+        try:
+            client.files.delete(name=uploaded_file.name)
         except Exception:
             pass
 
@@ -52,7 +55,8 @@ def check_movement(threshold=2.5):
             capture_output=True, text=True, timeout=5
         )
         output = res.stdout.strip()
-        if not output: return False
+        if not output:
+            return False
         
         data = json.loads(output)
         for sensor_name, values in data.items():

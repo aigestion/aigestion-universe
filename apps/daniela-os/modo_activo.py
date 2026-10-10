@@ -6,6 +6,7 @@ import time
 from monitor_recursos import autopurga_temporales, obtener_telemetria
 from notas_proactivas import verificar_y_leer_notas
 from verificar_rostro import verificar_usuario
+from safe_exec import run_bg
 
 
 def esta_moviendose():
@@ -28,9 +29,6 @@ def esta_moviendose():
         return abs(val[0]) > 1.2 or abs(val[1]) > 1.2
     except Exception:
         return False
-
-
-from safe_exec import run_bg
 
 
 def check_presencia(telemetria):

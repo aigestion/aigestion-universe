@@ -25,7 +25,7 @@ def _ficheros() -> list[str]:
         out = subprocess.run(
             ["git", "ls-files"], capture_output=True, text=True, timeout=30, cwd=_RAIZ
         ).stdout
-        return [l.strip() for l in out.splitlines() if l.strip().endswith(EXTS)]
+        return [ln.strip() for ln in out.splitlines() if ln.strip().endswith(EXTS)]
     except Exception:
         return []
 

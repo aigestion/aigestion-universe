@@ -103,11 +103,11 @@ def graph_data():
                 links.append({"source": title, "target": v})
     unique_links = []
     seen = set()
-    for l in links:
-        key = f"{l['source']}->{l['target']}"
+    for ln in links:
+        key = f"{ln['source']}->{ln['target']}"
         if key not in seen:
             seen.add(key)
-            unique_links.append(l)
+            unique_links.append(ln)
     return jsonify({"nodes": list(nodes.values()), "links": unique_links})
 
 

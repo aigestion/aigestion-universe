@@ -58,7 +58,8 @@ def run(context):
     try:
         ig = importlib.import_module('plugins.integrity_guard')
         alert = ig.verify_integrity()
-        if alert: return alert
+        if alert:
+            return alert
     except Exception:
         pass
 

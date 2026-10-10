@@ -101,7 +101,7 @@ def _salud_proyecto() -> dict[str, Any]:
             timeout=10,
             cwd=str(raiz),
         )
-        lineas = [l for l in git_status.stdout.strip().split("\n") if l]
+        lineas = [ln for ln in git_status.stdout.strip().split("\n") if ln]
         resultado["git"] = {
             "archivos_cambiados": len(lineas),
             "alerta": len(lineas) > 50,

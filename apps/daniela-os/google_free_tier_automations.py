@@ -36,6 +36,8 @@ import os
 import subprocess
 import sys
 import time
+from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
 
 # ── Path sandboxing (SR-04 security fix) ──────────────────────
@@ -55,9 +57,6 @@ def _safe_resolve(file_path: str) -> Path:
         raise ValueError(f"Access denied: path '{file_path}' is outside the project sandbox") from e
     return resolved
 
-
-from dataclasses import dataclass, field
-from enum import Enum
 
 # Logging setup
 logging.basicConfig(

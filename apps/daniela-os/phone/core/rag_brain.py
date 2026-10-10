@@ -8,10 +8,10 @@ def load_env():
     env_p = os.path.expanduser("~/apps/AIGESTION-MONOREPO/.env")
     if os.path.exists(env_p):
         with open(env_p, encoding="utf-8", errors="ignore") as f:
-            for l in f:
-                l = l.strip()
-                if l and not l.startswith("#") and "=" in l:
-                    k, v = l.split("=", 1)
+            for ln in f:
+                ln = ln.strip()
+                if ln and not ln.startswith("#") and "=" in ln:
+                    k, v = ln.split("=", 1)
                     k, v = k.strip(), v.strip().strip("\"'")
                     if not os.getenv(k):
                         os.environ[k] = v

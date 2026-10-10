@@ -12,7 +12,7 @@ def load_tasks():
     try:
         with open(TASKS_FILE, 'r') as f: 
             return json.load(f)
-    except: 
+    except Exception:
         return []
 
 def save_tasks(tasks):

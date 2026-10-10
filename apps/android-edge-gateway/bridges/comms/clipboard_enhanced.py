@@ -34,15 +34,18 @@ def history():
     query = request.args.get("q", "").lower()
     category = request.args.get("category", "")
     result = clips.get("clips", [])
-    if query: result = [c for c in result if query in c.get("text", "").lower()]
-    if category: result = [c for c in result if c.get("category") == category]
+    if query:
+        result = [c for c in result if query in c.get("text", "").lower()]
+    if category:
+        result = [c for c in result if c.get("category") == category]
     return jsonify({"clips": result[-50:], "total": len(clips.get("clips", []))})
 
 @app.route("/api/pixel/clipboard/add", methods=["POST"])
 def add_clip():
     data = request.json or {}
     text = data.get("text", "")
-    if not text: return jsonify({"ok": False})
+    if not text:
+        return jsonify({"ok": False})
     clips = load_json(DATA_DIR / "clips.json", {"clips": []})
     clip_hash = hashlib.md5(text.encode()).hexdigest()
     for c in clips["clips"]:
@@ -54,7 +57,8 @@ def add_clip():
     clip = {"id": clip_hash[:8], "text": text, "hash": clip_hash, "category": data.get("category", "general"),
             "pinned": False, "created": time.time(), "last_used": time.time(), "count": 1}
     clips["clips"].append(clip)
-    if len(clips["clips"]) > 500: clips["clips"] = clips["clips"][-500:]
+    if len(clips["clips"]) > 500:
+        clips["clips"] = clips["clips"][-500:]
     save_json(DATA_DIR / "clips.json", clips)
     return jsonify({"ok": True, "id": clip["id"]})
 

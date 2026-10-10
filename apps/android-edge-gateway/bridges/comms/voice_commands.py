@@ -65,7 +65,8 @@ def execute_command():
         event = {"time": time.time(), "command": cmd, "arg": arg, "status": "unknown"}
     history = load_json(DATA_DIR / "history.json", {"events": []})
     history["events"].append(event)
-    if len(history["events"]) > 100: history["events"] = history["events"][-100:]
+    if len(history["events"]) > 100:
+        history["events"] = history["events"][-100:]
     save_json(DATA_DIR / "history.json", history)
     return jsonify({"ok": True, "event": event})
 

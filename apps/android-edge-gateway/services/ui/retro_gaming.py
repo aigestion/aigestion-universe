@@ -46,7 +46,8 @@ def status():
 def launch():
     data = request.json or {}
     pkg = data.get("pkg", "")
-    try: subprocess.run(["am", "start", "-n", f"{pkg}/.ui.mainActivity"], capture_output=True, timeout=5)
+    try:
+        subprocess.run(["am", "start", "-n", f"{pkg}/.ui.mainActivity"], capture_output=True, timeout=5)
     except Exception:
         pass
     stats = load_json(DATA_DIR / "stats.json", {"playtime": {}, "launches": 0})

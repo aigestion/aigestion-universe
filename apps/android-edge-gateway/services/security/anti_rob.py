@@ -64,7 +64,8 @@ def trigger():
     event["status"] = "recorded"
     events = load_json(DATA_DIR / "events.json", {"events": []})
     events["events"].append(event)
-    if len(events["events"]) > 200: events["events"] = events["events"][-200:]
+    if len(events["events"]) > 200:
+        events["events"] = events["events"][-200:]
     save_json(DATA_DIR / "events.json", events)
     return jsonify({"ok": True, "event": event})
 

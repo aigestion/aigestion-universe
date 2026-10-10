@@ -61,13 +61,15 @@ def trigger():
     data = request.json or {}
     event = {"time": time.time(), "type": data.get("type", "motion"), "status": "captured"}
     photo_path = str(DATA_DIR / f"sec_{int(time.time())}.jpg")
-    try: subprocess.run(["termux-camera-photo", photo_path], timeout=10)
+    try:
+        subprocess.run(["termux-camera-photo", photo_path], timeout=10)
     except Exception:
         pass
     event["photo"] = photo_path
     events = load_json(DATA_DIR / "events.json", {"events": []})
     events["events"].append(event)
-    if len(events["events"]) > 500: events["events"] = events["events"][-500:]
+    if len(events["events"]) > 500:
+        events["events"] = events["events"][-500:]
     save_json(DATA_DIR / "events.json", events)
     return jsonify({"ok": True, "event": event})
 

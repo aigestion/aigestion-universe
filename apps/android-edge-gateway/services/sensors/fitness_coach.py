@@ -50,7 +50,8 @@ def update_fitness():
     today = time.strftime("%Y-%m-%d")
     daily = load_json(DATA_DIR / f"day_{today}.json", {"steps": 0, "calories": 0, "distance": 0, "active_minutes": 0, "activities": []})
     for key in ["steps", "calories", "distance", "active_minutes"]:
-        if key in data: daily[key] = daily.get(key, 0) + data[key]
+        if key in data:
+            daily[key] = daily.get(key, 0) + data[key]
     if "activity" in data:
         daily["activities"].append({"type": data["activity"], "time": time.time(), "duration": data.get("duration", 0)})
     save_json(DATA_DIR / f"day_{today}.json", daily)

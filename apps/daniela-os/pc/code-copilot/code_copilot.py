@@ -82,7 +82,7 @@ def analyze_code():
     # Suggestions
     if len(lines) > 50:
         suggestions.append("Consider splitting into smaller functions (>50 lines)")
-    if not any("def " in l or "class " in l for l in lines):
+    if not any("def " in ln or "class " in ln for ln in lines):
         suggestions.append("No functions/classes defined - consider encapsulating logic")
     if code.count("import") > 10:
         suggestions.append("Many imports - consider using __all__ or grouping")

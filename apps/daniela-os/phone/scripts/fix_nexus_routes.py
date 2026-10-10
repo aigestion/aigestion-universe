@@ -1,4 +1,5 @@
 import os
+import re
 
 nexus_path = os.path.expanduser("~/aig-monorepo/apps/nexus-command-center/nexus_dashboard.py")
 
@@ -31,8 +32,6 @@ new_do_get = """    def do_GET(self):
             self.send_error(404, "Ruta no encontrada en Nexus Command Center")"""
 
 # Aplicar el parche reemplazando la función do_GET existente
-import re
-
 code = re.sub(r"def do_GET\(self\):.*?(?=def |\Z)", new_do_get + "\n\n", code, flags=re.DOTALL)
 
 with open(nexus_path, "w", encoding="utf-8") as f:

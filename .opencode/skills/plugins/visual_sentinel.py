@@ -35,7 +35,8 @@ def trigger_tactical_alarm(message):
 
 def capture_photo(target_path, camera_id="1"):
     if os.path.exists(target_path):
-        try: os.remove(target_path)
+        try:
+            os.remove(target_path)
         except Exception:
             pass
     

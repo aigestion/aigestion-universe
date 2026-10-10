@@ -58,7 +58,8 @@ def stop_recording():
             m["duration"] = m["end_time"] - m["start_time"]
             break
     save_json(DATA_DIR / "meetings.json", meetings)
-    try: subprocess.run(["pkill", "-f", "termux-microphone-record"], capture_output=True)
+    try:
+        subprocess.run(["pkill", "-f", "termux-microphone-record"], capture_output=True)
     except Exception:
         pass
     return jsonify({"ok": True})

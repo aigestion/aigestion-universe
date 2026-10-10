@@ -49,7 +49,8 @@ def verify_integrity():
 
 def run(context):
     cmd = context.lower()
-    if "init" in cmd: return init_integrity()
+    if "init" in cmd:
+        return init_integrity()
     if "check" in cmd:
         res = verify_integrity()
         return res if res else "✅ [INTEGRITY]: Sistema íntegro."

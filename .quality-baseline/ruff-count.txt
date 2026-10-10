@@ -9,3 +9,5 @@
 96
 #       -> 78 (2026-10-10, medido sin flags via ratchet_ruff.py).
 78
+#       -> 0 (2026-10-10, medido sin flags via ratchet_ruff.py).
+0

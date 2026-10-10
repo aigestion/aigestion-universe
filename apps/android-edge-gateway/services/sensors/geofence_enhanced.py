@@ -64,7 +64,8 @@ def update_location():
     if prev.get("zone") != current_zone:
         events = load_json(DATA_DIR / "events.json", {"events": []})
         events["events"].append({"time": time.time(), "from": prev.get("zone", "unknown"), "to": current_zone})
-        if len(events["events"]) > 100: events["events"] = events["events"][-100:]
+        if len(events["events"]) > 100:
+            events["events"] = events["events"][-100:]
         save_json(DATA_DIR / "events.json", events)
     save_json(DATA_DIR / "prev_location.json", {"zone": current_zone})
     return jsonify({"ok": True, "zone": current_zone})

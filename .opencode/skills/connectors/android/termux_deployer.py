@@ -201,7 +201,7 @@ def push(verbose: bool = True) -> int:
 
     _run([adb, "start-server"], timeout=60)
     r = _run([adb, "devices"], timeout=60)
-    devices = [l for l in (r.stdout or "").splitlines() if "\tdevice" in l]
+    devices = [ln for ln in (r.stdout or "").splitlines() if "\tdevice" in ln]
     if not devices:
         print("[push] no hay ningun dispositivo con depuracion USB autorizada")
         return 1
@@ -216,7 +216,7 @@ def push(verbose: bool = True) -> int:
     print((r.stdout or r.stderr or "").strip()[-800:])
 
     ls = _run([adb, "shell", "ls", "-1", f"{PHONE_DEST}/*.py"], timeout=60)
-    n = len([l for l in (ls.stdout or "").splitlines() if l.strip().endswith(".py")])
+    n = len([ln for ln in (ls.stdout or "").splitlines() if ln.strip().endswith(".py")])
     print(f"[push] modulos en el telefono: {n}")
     return 0 if r.returncode == 0 and n else 1
 

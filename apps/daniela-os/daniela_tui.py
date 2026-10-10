@@ -11,7 +11,7 @@ from rich.live import Live
 from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
-from safe_exec import run_code
+from safe_exec import run_bg, run_cmd, run_code
 
 from google import genai
 
@@ -41,8 +41,6 @@ client = genai.Client(api_key=api_key)
 ultimo_comando = ""
 ultima_respuesta = ""
 historial_chat = []
-
-from safe_exec import run_bg, run_cmd
 
 
 # --- FUNCIONES DE HARDWARE Y IA ---

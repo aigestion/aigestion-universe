@@ -8,6 +8,8 @@ from flask import Flask, jsonify, render_template_string, request
 
 from google import genai
 
+from safe_exec import run_bg, run_cmd
+
 app = Flask(__name__)
 
 VOICE_NEURAL = "es-ES-ElviraNeural"
@@ -27,8 +29,6 @@ if not api_key:
     sys.exit(1)
 
 client = genai.Client(api_key=api_key)
-
-from safe_exec import run_bg, run_cmd
 
 
 def detener_audio():
