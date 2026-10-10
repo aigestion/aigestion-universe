@@ -15,6 +15,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 # Copy project files
 COPY pyproject.toml uv.lock* ./
 COPY src/ ./src/
+COPY --from=daniela-core . /daniela-core
+COPY --from=daniela-shared . /daniela-shared
 
 # Install dependencies
 RUN uv pip install --system -e . --no-cache

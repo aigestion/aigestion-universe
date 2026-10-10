@@ -6,6 +6,7 @@ services:
     build:
       context: ./packages/daniela-core
       dockerfile: Dockerfile
+      network: host
     container_name: daniela-core
     ports:
       - "9200:9200"
@@ -86,6 +87,7 @@ services:
     build:
       context: .
       dockerfile: ./apps/daniela-shell/Dockerfile
+      network: host
     container_name: daniela-shell
     environment:
       - NEXT_PUBLIC_API_URL=http://api.aigestion.net
@@ -106,6 +108,7 @@ services:
     build:
       context: .
       dockerfile: ./apps/landing/Dockerfile
+      network: host
     container_name: aigestion-landing
     environment:
       - NODE_ENV=production
@@ -220,6 +223,7 @@ services:
     build:
       context: ./apps/daniela-tools-gateway
       dockerfile: Dockerfile
+      network: host
     container_name: daniela-tools-gateway
     ports:
       - "8083:8083"
@@ -249,6 +253,7 @@ services:
     build:
       context: ./apps/daniela-sandbox
       dockerfile: Dockerfile
+      network: host
     container_name: daniela-sandbox
     ports:
       - "8090:8090"
@@ -278,6 +283,7 @@ services:
     build:
       context: ./apps/mobile-pwa
       dockerfile: services/Dockerfile
+      network: host
     container_name: daniela-mobile-edge
     ports:
       - "9800:9800"
@@ -301,6 +307,9 @@ services:
     build:
       context: ./packages/daniela-engines
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
     container_name: daniela-engines
     ports:
       - "9400:9400"
@@ -332,6 +341,9 @@ services:
     build:
       context: ./packages/daniela-shared
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
     container_name: daniela-shared
     ports:
       - "9500:9500"
@@ -363,6 +375,10 @@ services:
     build:
       context: ./packages/daniela-api
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
+        daniela-shared: ./packages/daniela-shared
     container_name: daniela-api
     ports:
       - "9600:9600"
@@ -395,6 +411,11 @@ services:
     build:
       context: ./packages/daniela-backend
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
+        daniela-engines: ./packages/daniela-engines
+        daniela-shared: ./packages/daniela-shared
     container_name: daniela-backend
     ports:
       - "9700:9700"
@@ -427,6 +448,10 @@ services:
     build:
       context: ./packages/daniela-google
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
+        daniela-shared: ./packages/daniela-shared
     container_name: daniela-google
     ports:
       - "9801:9801"
@@ -459,6 +484,10 @@ services:
     build:
       context: ./packages/daniela-ml
       dockerfile: Dockerfile
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
+        daniela-shared: ./packages/daniela-shared
+      network: host
     container_name: daniela-ml
     ports:
       - "9802:9802"
@@ -491,6 +520,10 @@ services:
     build:
       context: ./packages/daniela-secure
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
+        daniela-shared: ./packages/daniela-shared
     container_name: daniela-secure
     ports:
       - "9999:9999"
@@ -522,6 +555,10 @@ services:
     build:
       context: ./packages/daniela-tenants
       dockerfile: Dockerfile
+      network: host
+      additional_contexts:
+        daniela-core: ./packages/daniela-core
+        daniela-shared: ./packages/daniela-shared
     container_name: daniela-tenants
     ports:
       - "9803:9803"
