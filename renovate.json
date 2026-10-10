@@ -1,0 +1,131 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":prConcurrentLimit10"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["uv", "ruff", "pytest", "mypy", "black"],
+      "groupName": "python-dev-tools",
+      "schedule": ["on monday"]
+    },
+    {
+      "matchPackageNames": ["kotlin", "gradle", "android-gradle-plugin", "compose-bom"],
+      "groupName": "android-toolchain",
+      "schedule": ["on tuesday"]
+    },
+    {
+      "matchPackageNames": ["compose-*", "material*"],
+      "groupName": "jetpack-compose",
+      "schedule": ["on tuesday"]
+    },
+    {
+      "matchPackageNames": ["docker", "docker-compose"],
+      "groupName": "docker",
+      "schedule": ["on wednesday"]
+    },
+    {
+      "matchPackageNames": ["prometheus", "grafana", "loki", "tempo", "promtail", "otel"],
+      "groupName": "observability-stack",
+      "schedule": ["on thursday"]
+    },
+    {
+      "matchPackageNames": ["prometheus-client", "opentelemetry-*"],
+      "groupName": "python-observability",
+      "schedule": ["on thursday"]
+    },
+    {
+      "matchPackageNames": ["requests", "httpx", "aiohttp", "fastapi", "flask", "pydantic"],
+      "groupName": "python-web",
+      "schedule": ["on friday"]
+    },
+    {
+      "matchPackageNames": ["redis", "psycopg2", "sqlalchemy", "aiosqlite"],
+      "groupName": "python-db",
+      "schedule": ["on friday"]
+    },
+    {
+      "matchPackageNames": ["numpy", "scipy", "pandas", "scikit-learn"],
+      "groupName": "python-ml",
+      "schedule": ["on saturday"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "labels": ["major-update"],
+      "automerge": false
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "labels": ["minor-update"],
+      "automerge": false
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "labels": ["patch-update"],
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ],
+  "schedule": ["before 5am on monday", "before 5am on wednesday", "before 5am on friday"],
+  "timezone": "Europe/Madrid",
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 10,
+  "branchPrefix": "renovate/",
+  "commitMessagePrefix": "chore(deps): ",
+  "commitMessageAction": "upgrade",
+  "rebaseWhen": "behind-base-branch",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard",
+  "dependencyDashboardHeader": "Automated dependency updates. Merge patch PRs automatically after CI passes.",
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "createIssue": true
+  },
+  "osvVulnerabilityAlerts": true,
+  "github-actions": true,
+  "dockerfile": true,
+  "helmv3": true,
+  "terraform": true,
+  "regexManagers": [
+    {
+      "fileMatch": ["^docker-compose.*\\.yml$"],
+      "matchStrings": ["image:\\s*([^\\s:]+):([^\\s\"']+)"],
+      "depNameTemplate": "{{{1}}}",
+      "versioningTemplate": "docker",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["^gradle/wrapper/gradle-wrapper.properties$"],
+      "matchStrings": ["distributionUrl=.*/gradle-([\\d.]+)-"],
+      "depNameTemplate": "gradle",
+      "versioningTemplate": "semver",
+      "datasourceTemplate": "gradle-wrapper"
+    }
+  ],
+  "ignoreDeps": [
+    "python"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "pip",
+    "dockerfile",
+    "gradle",
+    "helmv3",
+    "terraform",
+    "regex"
+  ],
+  "prCreation": "not-pending",
+  "automerge": false,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "minimumReleaseAge": "3 days",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["on sunday"],
+    "automerge": true
+  }
+}
