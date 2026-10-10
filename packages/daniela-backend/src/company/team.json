@@ -1,0 +1,36 @@
+{
+  "directora_general": "Daniela Ferrer Soler",
+  "directores": [
+    "Elena Vidal",
+    "Amara Diallo",
+    "Priya Sharma",
+    "Kenji Tanaka",
+    "Sofia Petrova",
+    "Liam O'Connor",
+    "Valentina Ríos",
+    "Alex Rivera",
+    "Yuki Nakamura",
+    "Marco Ruiz",
+    "Kwame Mensah",
+    "Ingrid Larsen",
+    "Diego Fernández",
+    "Camille Dubois",
+    "Mei Chen",
+    "Jordan Blake",
+    "Fatima Al-Hassan",
+    "Noah Kim",
+    "Lucía Gómez",
+    "David Steiner"
+  ],
+  "total_directores": 20,
+  "Composicion_genero": {
+    "mujeres": 12,
+    "hombres": 7,
+    "no_especificado": 2
+  },
+  "total_subagentes": 88,
+  "total_unicos": 109,
+  "emails_unicos": 21,
+  "source_file": "indicaciones.txt conversacion 1",
+  "created": "2026-10-08"
+}
