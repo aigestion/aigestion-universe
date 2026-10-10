@@ -20,7 +20,7 @@ def run(context):
         temp = b_data.get('temperature', 'N/A')
         stat = b_data.get('status', 'N/A')
         report_lines.append(f"🔋 *Energía:* Nivel {perc}% ({stat}) | Temp: {temp}°C")
-    except:
+    except Exception:
         report_lines.append("🔋 *Energía:* Sin lectura disponible")
 
     # 2. Sensores Físicos
@@ -31,7 +31,7 @@ def run(context):
         for line in s_data.split("\n"):
             if any(k in line for k in ["Luz", "Presión", "Acelerómetro"]):
                 report_lines.append(f"  {line.strip()}")
-    except:
+    except Exception:
         report_lines.append("📡 *Sensores:* No se pudo conectar con el hardware")
 
     # 3. Ubicación
@@ -42,7 +42,7 @@ def run(context):
         for line in loc_res.split("\n"):
             if any(k in line for k in ["Latitud", "Longitud", "Proveedor"]):
                 report_lines.append(f"  {line.strip()}")
-    except:
+    except Exception:
         report_lines.append("📍 *Posición:* Módulo de ubicación no disponible")
 
     # 4. Integridad del Sistema (SHA-256)
@@ -50,7 +50,7 @@ def run(context):
         ig = importlib.import_module('plugins.integrity_guard')
         ig_res = ig.run('check')
         report_lines.append(f"\n🛡️ *Integridad Criptográfica:* {ig_res}")
-    except:
+    except Exception:
         report_lines.append("\n🛡️ *Integridad:* Error al auditar firmas")
 
     # 5. Tareas Programadas
@@ -58,7 +58,7 @@ def run(context):
         sch = importlib.import_module('plugins.scheduler')
         sch_res = sch.run('tareas')
         report_lines.append(f"\n⏱️ *Planificador:* {sch_res.splitlines()[0] if sch_res else 'Sin tareas'}")
-    except:
+    except Exception:
         pass
 
     full_report = "\n".join(report_lines)

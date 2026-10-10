@@ -12,7 +12,8 @@ SNAP_PATH = os.path.join(BASE_DIR, "security_snap.jpg")
 def capture_photo(camera_id="1"):
     if os.path.exists(SNAP_PATH):
         try: os.remove(SNAP_PATH)
-        except: pass
+        except Exception:
+            pass
         
     cmd = ['termux-camera-photo', '-c', str(camera_id), SNAP_PATH]
     res = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
@@ -38,7 +39,8 @@ def analyze_intruder():
         )
 
         try: client.files.delete(name=uploaded_file.name)
-        except: pass
+        except Exception:
+            pass
 
         return response.text
     except Exception as e:
@@ -62,7 +64,7 @@ def check_movement(threshold=2.5):
                 delta = abs(mag - 9.8)
                 return delta > threshold
         return False
-    except:
+    except Exception:
         return False
 
 def run(context):
@@ -77,7 +79,8 @@ def run(context):
             try:
                 notifier = importlib.import_module('plugins.notifier')
                 notifier.run("🚨 ALERTA INTRUSO | Captura realizada con cámara frontal")
-            except: pass
+            except Exception:
+                pass
 
             return f"🥷 *[SENTINEL CAM - ALERTA DE CAPTURA]*\n\n{analysis}"
         else:

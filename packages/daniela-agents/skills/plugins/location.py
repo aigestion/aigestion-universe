@@ -19,7 +19,8 @@ def load_geofence_config():
         try:
             with open(CONFIG_FILE, 'r') as f:
                 return json.load(f)
-        except: pass
+        except Exception:
+            pass
     return DEFAULT_CONFIG
 
 def calculate_distance(lat1, lon1, lat2, lon2):
@@ -38,7 +39,8 @@ def get_last_vault_location():
                 for entry in reversed(vault):
                     if entry.get("type") in ["geofence_check", "location_fix"] and "data" in entry:
                         return entry["data"]
-        except: pass
+        except Exception:
+            pass
     return None
 
 def run(context):
@@ -62,7 +64,7 @@ def run(context):
                 output_data = json.loads(res.stdout.strip())
                 prov_used = c[2] + "_" + c[4]
                 break
-        except:
+        except Exception:
             continue
 
     if output_data and "latitude" in output_data:

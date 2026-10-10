@@ -21,7 +21,8 @@ def trigger_tactical_alarm(message):
             '--priority', 'high',
             '--sound'
         ], timeout=5)
-    except: pass
+    except Exception:
+        pass
 
     # 2. Advertencia por Voz (TTS)
     try:
@@ -29,12 +30,14 @@ def trigger_tactical_alarm(message):
             'termux-tts-speak',
             f"Atención. Alerta de seguridad. {message}"
         ], timeout=5)
-    except: pass
+    except Exception:
+        pass
 
 def capture_photo(target_path, camera_id="1"):
     if os.path.exists(target_path):
         try: os.remove(target_path)
-        except: pass
+        except Exception:
+            pass
     
     cmd = ['termux-camera-photo', '-c', str(camera_id), target_path]
     process = subprocess.run(cmd, capture_output=True, text=True, timeout=8)
@@ -46,7 +49,8 @@ def save_alert_to_vault(analysis_text):
         try:
             with open(VAULT_FILE, 'r') as f:
                 vault = json.load(f)
-        except: vault = []
+        except Exception:
+            vault = []
     
     entry = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),

@@ -12,7 +12,8 @@ def load_vault():
     if not os.path.exists(VAULT_FILE): return []
     with open(VAULT_FILE, 'r') as f:
         try: return json.load(f)
-        except: return []
+        except Exception:
+            return []
 
 def run(context):
     if "guarda" in context.lower():

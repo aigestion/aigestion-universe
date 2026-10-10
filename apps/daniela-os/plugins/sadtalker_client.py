@@ -15,7 +15,8 @@ def log_event(event_type, details):
         try:
             with open(VAULT_FILE, 'r') as f:
                 vault = json.load(f)
-        except: vault = []
+        except Exception:
+            vault = []
     
     entry = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),

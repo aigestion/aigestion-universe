@@ -15,7 +15,8 @@ def notify_urgent_email(sender, subject, summary):
             'termux-tts-speak',
             f"Atención. Correo urgente de {sender}."
         ], timeout=5)
-    except: pass
+    except Exception:
+        pass
 
     try:
         subprocess.run([
@@ -25,7 +26,8 @@ def notify_urgent_email(sender, subject, summary):
             '--priority', 'high',
             '--sound'
         ], timeout=5)
-    except: pass
+    except Exception:
+        pass
 
 def run(context):
     if not os.path.exists(TOKEN_PATH):

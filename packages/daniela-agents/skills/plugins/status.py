@@ -37,7 +37,7 @@ def run(context):
         res_net = subprocess.run(['ip', 'neighbor'], capture_output=True, text=True, timeout=5)
         active_devs = [l for l in res_net.stdout.strip().split('\n') if 'REACHABLE' in l or 'STALE' in l]
         report.append(f"📡 *Red Local:* {len(active_devs)} dispositivo(s) detectado(s)")
-    except:
+    except Exception:
         report.append("📡 *Red Local:* Sin datos de red")
 
     return "\n".join(report)

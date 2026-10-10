@@ -54,7 +54,7 @@ def run(context):
         # Limpieza del archivo subido en la nube
         try:
             client.files.delete(name=audio_file_uploaded.name)
-        except:
+        except Exception:
             pass
 
         return f"🎙️ *[AUDIO LISTENER - {duration}s]*\n\n{response.text}"

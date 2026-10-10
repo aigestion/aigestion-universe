@@ -66,7 +66,13 @@ from pathlib import Path
 #          vault/memory_semantic). MEDIDO con `--collect-only` (no sumado).
 #          Nota: hay 53 errores de colecta en tests/legacy (imports rotos
 #          preexistentes); al arreglarlos el numero SUBIRA: bump la base entonces.
-LINEA_BASE = 548
+#
+# 548 -> 99 el 2026-10-10: se excluye tests/legacy de la colecta (--ignore),
+#          coherente con ruff/mypy/testpaths que ya lo excluyen por ser
+#          codigo preservado sin integrar. Los 449 eran tests legacy con
+#          53 ficheros en error; los 99 restantes colectan con 0 errores.
+#          MEDIDO con `--collect-only` (no sumado).
+LINEA_BASE = 99
 
 # Directorios donde viven los tests en este monorepo:
 TEST_DIRS = [
@@ -95,6 +101,9 @@ def _recogidos() -> int:
         return 0
 
     # Construir la lista de argumentos: pytest + dirs + flags
+    # tests/legacy se ignora: es codigo preservado sin integrar, excluido
+    # tambien de ruff/mypy y del testpaths propio del paquete. Sus 53
+    # errores de import (layout plano del repo viejo) son preexistentes.
     args = [
         sys.executable,
         "-m",
@@ -102,6 +111,9 @@ def _recogidos() -> int:
     ]
     for d in test_dirs:
         args.append(d)
+        legacy = Path(d) / "legacy"
+        if legacy.is_dir():
+            args.append(f"--ignore={legacy}")
     args += ["--collect-only", "-q", "-p", "no:cacheprovider"]
 
     proc = subprocess.run(

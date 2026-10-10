@@ -40,7 +40,8 @@ def save_to_vault(invoice_info):
         try:
             with open(VAULT_FILE, 'r') as f:
                 vault = json.load(f)
-        except: vault = []
+        except Exception:
+            vault = []
     
     entry = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),

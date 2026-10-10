@@ -23,14 +23,16 @@ def run(context):
                 notifier = importlib.import_module('plugins.notifier')
                 notifier.run("⚡ MODO AHORRO ACTIVADO | Optimizando procesos por batería baja")
                 actions.append("• Notificaciones ajustadas a prioridad baja")
-            except: pass
+            except Exception:
+                pass
 
             # 2. Ajuste de frecuencia en el Scheduler (ampliar intervalos)
             try:
                 sch = importlib.import_module('plugins.scheduler')
                 # Aumenta el tiempo entre ejecuciones rutinarias para reducir CPU
                 actions.append("• Intervalos del Scheduler ampliados para ahorrar ciclos de CPU")
-            except: pass
+            except Exception:
+                pass
 
             return (
                 f"⚡ *[MODO AHORRO DE ENERGÍA ACTIVO]*\n"
