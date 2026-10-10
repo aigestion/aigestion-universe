@@ -6,4 +6,3 @@ __pycache__/
 .venv/
 tests/
 .git/
-README.md
