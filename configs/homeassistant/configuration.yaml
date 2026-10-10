@@ -1,0 +1,31 @@
+# Home Assistant Configuration
+default_config:
+
+# Zonas
+zone:
+  - name: Home
+    latitude: 40.4168
+    longitude: -3.7038
+    radius: 100
+    icon: mdi:home
+
+# Automatizaciones básicas
+automation:
+  - alias: "Daniela Boot Notification"
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - service: notify.notify
+        data:
+          message: "Home Assistant iniciado. Daniela lista."
+
+# Integraciones
+http:
+  server_port: 8123
+
+# Logger
+logger:
+  default: info
+  logs:
+    homeassistant.components.automation: debug

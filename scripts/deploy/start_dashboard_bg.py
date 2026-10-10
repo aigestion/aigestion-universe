@@ -1,0 +1,33 @@
+import json
+import socket
+import subprocess
+import time
+import urllib.request
+
+# Kill existing
+subprocess.run('taskkill /F /FI "PORT 9997" 2>nul', shell=True, capture_output=True)
+time.sleep(1)
+
+# Start dashboard
+proc = subprocess.Popen('start /B python daniela-os/unified-dashboard/server.py', shell=True, cwd=r'C:\Users\Alejandro\aig', creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+print('Dashboard started')
+time.sleep(5)
+
+try:
+    s = socket.socket()
+    s.settimeout(2)
+    s.connect(('127.0.0.1', 9997))
+    s.close()
+    print('[OK] Port 9997 online')
+except Exception:
+    print('[OFF] Port 9997')
+
+time.sleep(10)
+
+d = urllib.request.urlopen('http://localhost:9997/api/services', timeout=3).read().decode()
+data = json.loads(d)
+for svc in data['services']:
+    sid = svc['id']
+    st = data['status'].get(sid, {})
+    mod = st.get('modules', st.get('total_ideas', '-'))
+    print('{:30s} ({}): {:10s} modules={}'.format(svc['name'], svc['port'], st.get('status', 'unknown'), mod))

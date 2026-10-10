@@ -1,0 +1,38 @@
+# ESPHome Configuration
+esphome:
+  name: aig-node
+  platform: ESP32
+  board: nodemcu-32s
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+api:
+  password: !secret api_password
+
+ota:
+  password: !secret ota_password
+
+logger:
+
+# Sensores de ejemplo
+sensor:
+  - platform: dht
+    pin: GPIO4
+    temperature:
+      name: "Temperatura"
+    humidity:
+      name: "Humedad"
+    update_interval: 60s
+
+# LED de estado
+output:
+  - platform: gpio
+    pin: GPIO2
+    id: status_led
+
+light:
+  - platform: binary
+    name: "Status LED"
+    output: status_led
