@@ -1,3 +1,5 @@
 943
 #       -> 0 (2026-10-04, medido sin flags via ratchet_ruff.py).
 0
+#       -> 216 (2026-10-10, despues de fixes F401->0 y S310->0; restan E701/E722/E402/F841).
+216

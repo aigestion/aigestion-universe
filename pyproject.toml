@@ -1,0 +1,14 @@
+[project]
+name = "aigestion-universe"
+version = "0.1.0"
+description = "AIGESTION - Autonomous AI Service Management & Edge Orchestrator"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "packages/*/tests",
+    "apps/*/services/tests",
+]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"

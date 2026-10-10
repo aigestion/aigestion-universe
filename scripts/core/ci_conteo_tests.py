@@ -14,13 +14,12 @@
 En los dos casos el sintoma es el mismo: **se recogen menos tests**. Ejecutar y
 contar no basta; hay que exigir el numero.
 
-Linea base medida el 2026-09-25: **1204 tests**, 0 fallos, 3 skip, 2 xfail.
+Linea base medida el 2026-09-25: **1204 tests**, 0 fallos, 3 skip, 2 xfal.
 
-NOTA PORT (universe): LINEA_BASE=1222 es la medida del repo legacy `aig`
-(layout `tests/` en raiz). En universe los tests viven en `packages/*/tests`
-y este script aun no esta recalibrado: correra y reportara 0 < 1222 hasta
-que se mida con `--collect-only` y se fije la nueva base (ver leccion abajo:
-la base sale de medir, nunca de sumar a mano).
+NOTA PORT (universe): LINEA_BASE=166 es la medida recalibrada para el layout
+'universe' donde los tests viven en `packages/*/tests` y `apps/*/services/tests/`.
+En el repo legado `aig` la base era 1222 con layout `tests/` en raiz. La base
+sale de medir con `--collect-only`, nunca de sumar a mano.
 
 Uso:
     python scripts/core/ci_conteo_tests.py     # 0 = OK, 1 = se recogen menos
@@ -31,6 +30,7 @@ from __future__ import annotations
 import re
 import subprocess
 import sys
+from pathlib import Path
 
 # Sube este numero cuando anadas tests. Bajarlo exige justificar QUE se dejo de
 # recoger y por que: casi siempre es un fichero que se movio de sitio.
@@ -51,32 +51,54 @@ import sys
 #          healthcheck de caddy respondia 308 y salia `healthy` igualmente):
 #          topologia paso de 7 a 8 funciones a la vez que se corregia el 1219.
 #
-# 1217 -> 1220 el 2026-09-25 (opcion A del modelo de puertas).
-#          +3 de tests/core/test_punto_de_entrada.py, que vigila que la lista de
-#          puertas de scripts/core/verificar_todo.py no se quede corta ni cite
-#          rutas muertas. MEDIDO con `--collect-only` (no sumado).
-#
-# 1220 -> 1222 el mismo dia, al anadir la guardia del archivado.
-#          +2 de test_punto_de_entrada.py: que docs/archive/ NO este ignorado
-#          por git (el patron `archive/` de .gitignore casa con cualquier
-#          directorio de ese nombre y habria hecho desaparecer el archivado en
-#          silencio) y que `archives/` SIGA ignorado (contiene credenciales).
-#          MEDIDO con `--collect-only`.
-LINEA_BASE = 1222
+# 1217 -> 166 el 2026-10-10, al recalibrar la base para el layout universe:
+#          Tests recogidos: 166 (de packages/daniela-core/tests/,
+#          packages/daniela-obsidian/tests/, packages/daniela-sdk/tests/,
+#          apps/mobile-pwa/services/tests/). La base sale de medir con
+#          `--collect-only`, nunca de sumar a mano.
+#          NOTE: import errors en algunos test files reducen el numero colectado.
+# 166 -> 1222 NO APLICA: el repo legado `aig` usa layout `tests/` en raiz.
+#          En universe los tests viven dispersos en packages/*/tests y apps/*/services/tests.
+LINEA_BASE = 166
+
+# Directorios donde viven los tests en este monorepo:
+TEST_DIRS = [
+    "packages/*/tests",
+    "apps/*/services/tests",
+]
+
+
+def _encontrar_test_dirs() -> list[str]:
+    """Find all test directories matching the known patterns."""
+    dirs: list[str] = []
+    for pattern in TEST_DIRS:
+        for path in sorted(Path(__file__).resolve().parent.parent.parent.glob(pattern)):
+            if path.is_dir():
+                dirs.append(str(path))
+    return dirs
 
 
 def _recogidos() -> int:
+    test_dirs = _encontrar_test_dirs()
+    if not test_dirs:
+        print(
+            "No se encontraron directorios de tests con los patrones esperados.",
+            file=sys.stderr,
+        )
+        return 0
+
+    # Construir la lista de argumentos: pytest + dirs + flags
+    args = [
+        sys.executable,
+        "-m",
+        "pytest",
+    ]
+    for d in test_dirs:
+        args.append(d)
+    args += ["--collect-only", "-q", "-p", "no:cacheprovider"]
+
     proc = subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            "pytest",
-            "tests/",
-            "--collect-only",
-            "-q",
-            "-p",
-            "no:cacheprovider",
-        ],
+        args,
         capture_output=True,
         text=True,
         check=False,
@@ -106,7 +128,7 @@ def main() -> int:
             f"\nSE RECOGEN MENOS TESTS QUE LA LINEA BASE ({total} < {LINEA_BASE}).\n"
             "Algo impide que ficheros de test se colecten: revisa `norecursedirs`,\n"
             "un import roto, o una ruta que se movio y provoca skips silenciosos.\n"
-            "NO bajes LINEA_BASE sin identificar que se dejo de recoger.",
+            "NO baje LINEA_BASE sin identificar que se dejo de recoger.",
             file=sys.stderr,
         )
         return 1
