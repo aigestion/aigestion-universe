@@ -34,15 +34,15 @@ This block is written and re-added by `turbo` before repository-scoped commands 
 - **Nombres movil**: `android` = plataforma (connectors/scripts/marker), `android-app` = solo la app, `pixel` = hardware concreto, `termux` = runtime en el movil. No unificar (regla en `docs/ESTANDARES-ORGANIZACION.md`)
 
 ## Core Services (18 vigilados por `scripts/core/ci_health_gate.py`)
-daniela:9200, hermes:9300 (API) / 3200 (Dashboard), infra_opt:9700, agent_mobile:9800, security:9999 (sin codigo, en profile), perf:9998, gateway:8080, orchestrator:9900, intel/auto/data/secure/devtools/ecosystem/ux/scale_engine, chaos_engine, brand_studio
+daniela:9200, hermes:9300 (API) / 3200 (Dashboard), infra_opt:9700, agent_mobile:9800, security:9999 (sin codigo, en profile), perf:9998, gateway:8080, orchestrator:9900
 
 ## Daniela OS Components
 - **Propiedades de Daniela OS en el PC**: `docker/epic-pc/`, `daniela-os/daniela-jarvis/`
-- **Herramientas de Daniela OS**: `gev/` (gods-eye-view), `ide/hermes/` (hermes), `docker/hermes-epic/`
+- **Herramientas de Daniela OS**: `gev/` (gods-eye-view), `ide/hermes/` (hermes)
 
 ## Key Endpoints
-- **Caddy**: `daniela.localhost` → 9200, `hermes.localhost` → 9300 (las 14 rutas de engines solo existen con el stack prod)
-- **Daniela Core**: Port 9200 (Omnipresente 50 dimensions)
+- **Caddy**: `daniela.localhost` → 9200, `hermes.localhost` → 9300
+- **Daniela Core**: Port 9200 (Daniela 50 dimensions)
 - **Hermes**: Port 9300 (API) / 3200 (Dashboard completo Windows Desktop) (`ide/hermes/`)
 - **Cross-Engine Orchestrator**: Port 9900 (`engine/cross_engine/`)
 - **Swarm**: Port 8080 (Raft Consensus)

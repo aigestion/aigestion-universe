@@ -4,7 +4,6 @@ Idea 6: Meeting Recorder
 Audio recording, transcription, summary generation.
 """
 
-import os
 import json
 import time
 import subprocess

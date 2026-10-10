@@ -4,7 +4,6 @@ Idea 5: Voice Commands
 Natural voice commands for phone control.
 """
 
-import os
 import json
 import time
 import subprocess

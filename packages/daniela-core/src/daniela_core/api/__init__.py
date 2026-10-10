@@ -14,6 +14,7 @@ from daniela_core.agents import AgentRegistry
 from daniela_core.brain import Brain
 from daniela_core.life import DigitalLife
 from daniela_core.memory import MemoryVault
+from daniela_core.memory_vault import MemoryVault as PersistentVault
 from daniela_core.orchestrator import Orchestrator
 from daniela_core.persona import PersonaManager
 from daniela_core.routes import (
@@ -26,6 +27,7 @@ from daniela_core.routes import (
     orchestrator,
     persona,
     tools,
+    vault,
     voice,
 )
 from daniela_core.security import SecurityEngine
@@ -38,6 +40,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     # Startup
     app.state.brain = Brain()
     app.state.memory = MemoryVault()
+    app.state.persistent_vault = PersistentVault()
     app.state.orchestrator = Orchestrator()
     app.state.persona = PersonaManager()
     app.state.life = DigitalLife()
@@ -97,6 +100,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router, tags=["health"])
     app.include_router(brain.router, prefix="/api/v1/brain", tags=["brain"])
     app.include_router(memory.router, prefix="/api/v1/memory", tags=["memory"])
+    app.include_router(vault.router, prefix="/api/v1/vault", tags=["vault"])
     app.include_router(orchestrator.router, prefix="/api/v1/orchestrator", tags=["orchestrator"])
     app.include_router(persona.router, prefix="/api/v1/persona", tags=["persona"])
     app.include_router(life.router, prefix="/api/v1/life", tags=["life"])

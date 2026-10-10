@@ -1,5 +1,5 @@
 """
-E-45: /api/health — healthcheck honesto para Daniela Omnipresente.
+E-45: /api/health — healthcheck honesto para Daniela.
 
 Devuelve 200 si todo está bien, 503 si algo crítico falla.
 Un monitor puede detectar el estado sin leer el body (solo mirar HTTP status).

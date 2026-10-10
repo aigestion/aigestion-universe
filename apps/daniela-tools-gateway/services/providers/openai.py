@@ -1,7 +1,7 @@
 """OpenAI provider adapter (BYOK)."""
 from __future__ import annotations
 
-from typing import Any, Dict, Optional
+from typing import Dict, Optional
 import httpx
 
 from .base import Provider, ProviderKind, ProviderResponse

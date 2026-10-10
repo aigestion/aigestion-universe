@@ -42,6 +42,11 @@ const TABS = [
 /** Descarga de un asset de marca desde la web (fuera de la app). */
 const BRAND = 'http://127.0.0.1:9200/gods-eye/brand';
 
+/** Identidad con la que el desktop se presenta al backend (muro Casbin).
+ *  El servidor concede a `daniela-desktop` leer/escribir `/api/*` (ver
+ *  `_load_default_policies` en casbin_auth.py). Sin esto, todo es 403. */
+const IDENTIDAD = 'daniela-desktop';
+
 // ── Utilidades ─────────────────────────────────────────────────────
 
 const esc = (s) =>
@@ -66,7 +71,7 @@ async function pedir(ruta, opts = {}) {
   try {
     const r = await fetch(app.backend + ruta, {
       signal: ctl.signal,
-      headers: { Accept: 'application/json', ...(headers || {}) },
+      headers: { Accept: 'application/json', 'X-User-ID': IDENTIDAD, ...(headers || {}) },
       ...init,
     });
     const txt = await r.text();
@@ -955,6 +960,7 @@ async function comprobarBackend() {
   try {
     const r = await fetch(app.backend + '/api/globe/data', {
       signal: AbortSignal.timeout(3500),
+      headers: { 'X-User-ID': IDENTIDAD },
     });
     const ok = r.ok;
     p.className = 'punto ' + (ok ? 'ok' : 'error');

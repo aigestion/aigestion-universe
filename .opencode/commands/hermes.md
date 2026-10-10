@@ -4,8 +4,6 @@ Trabaja con **Hermes** - gateway cognitivo (10 skills, 3 tiers memoria: Episódi
 
 ## Ámbito
 - `ide/hermes/` - código principal (server.py puerto 9300, web/ dashboard puerto 3200)
-- `docker/hermes-epic/` - despliegue "epic" (config para aig/daniela-os)
-- `config/docker/` - servicios hermes en compose
 
 ## Puertos
 - **9300**: API Hermes (REST, skills, memoria, integración)

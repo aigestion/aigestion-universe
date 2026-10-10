@@ -4,7 +4,6 @@ Idea 7: Security Enhanced
 Advanced security camera with cloud sync and smart alerts.
 """
 
-import os
 import json
 import time
 import subprocess

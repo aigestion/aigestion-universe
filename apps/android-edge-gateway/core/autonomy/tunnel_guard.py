@@ -158,15 +158,12 @@ import secrets
 
 import shutil
 
-import hmac
 
 import subprocess
 
-import sys
 
 import threading
 
-import time
 
 from datetime import datetime
 
@@ -1848,7 +1845,7 @@ def _informe_md() -> str:
 
     lineas = [
 
-        f"# Informe de exposicion — tunnel_guard (E-30)",
+        "# Informe de exposicion — tunnel_guard (E-30)",
 
         "",
 
@@ -1910,7 +1907,7 @@ def _informe_md() -> str:
 
     for n, titulo, cmd in PLAN_TAILSCALE:
 
-        lineas += [f"**{n}. {titulo}**", "", f"```", cmd, "```", ""]
+        lineas += [f"**{n}. {titulo}**", "", "```", cmd, "```", ""]
 
 
 

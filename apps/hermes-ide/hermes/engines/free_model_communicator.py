@@ -58,7 +58,7 @@ Respond to the action with appropriate output for your engine."""
     async def _get_engine_context(self, engine: str) -> str:
         """Get context for target engine"""
         contexts = {
-            "daniela": "Daniela AI Core: 50 Omnipresente dimensions, 12,480 memory nodes, port 9200",
+            "daniela": "Daniela AI Core: 50 dimensions, 12,480 memory nodes, port 9200",
             "hermes": "Hermes Gateway: 10 cognitive skills, 3 memory tiers, port 9900",
             "swarm": "Swarm Intelligence: Raft consensus, cross-engine, port 8080",
             "security": "Security Engine: audit, scan, audit, zero-cost tools",

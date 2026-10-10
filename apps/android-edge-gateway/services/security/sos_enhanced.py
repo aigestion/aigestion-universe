@@ -5,11 +5,9 @@ Emergency panic button with photo, audio, GPS, and PC notification.
 Triggers: volume_down x3 or explicit POST /api/pixel/sos/trigger
 """
 
-import os
 import json
 import time
 import subprocess
-import hashlib
 from pathlib import Path
 from flask import Flask, jsonify, request
 

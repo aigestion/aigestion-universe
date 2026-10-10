@@ -1,7 +1,6 @@
 import subprocess
 import json
 import os
-import time
 from google import genai
 
 client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))

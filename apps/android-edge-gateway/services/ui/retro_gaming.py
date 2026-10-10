@@ -4,9 +4,7 @@ Idea 9: Retro Gaming Hub
 Emulator launcher with BT controller support.
 """
 
-import os
 import json
-import time
 import subprocess
 from pathlib import Path
 from flask import Flask, jsonify, request

@@ -44,10 +44,9 @@
       "properties": {
         "empresa": {"type": "string"},
         "dashboard_puerto": {"type": "integer"},
-        "hermes_puerto": {"type": "integer"},
-        "hermes_openclaw_puerto": {"type": "integer"}
+        "hermes_puerto": {"type": "integer"}
       },
-      "required": ["empresa", "dashboard_puerto", "hermes_puerto", "hermes_openclaw_puerto"],
+      "required": ["empresa", "dashboard_puerto", "hermes_puerto"],
       "additionalProperties": false
     }
   },

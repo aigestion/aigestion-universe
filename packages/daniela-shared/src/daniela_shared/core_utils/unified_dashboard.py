@@ -1,4 +1,4 @@
-"""Unified Dashboard — monitoring + WebSocket for Daniela Omnipresente.
+"""Unified Dashboard — monitoring + WebSocket for Daniela.
 
 Absorbs the unified-dashboard service into Daniela as a blueprint.
 Provides real-time service monitoring via WebSocket and REST endpoints.
@@ -15,11 +15,11 @@ from flask import Blueprint, jsonify
 # Service definitions — the 18 AIG services
 SERVICES = [
     {"id": "epic_pc", "name": "Epic PC", "port": 5020, "category": "Core", "status_path": "/api/status"},
-    {"id": "hermes", "name": "Hermes Epic", "port": 9300, "category": "Core", "status_path": "/api/status"},
+    {"id": "hermes", "name": "Hermes", "port": 9300, "category": "Core", "status_path": "/api/status"},
     {"id": "frontend", "name": "Frontend", "port": 9500, "category": "Frontend", "status_path": "/api/frontend/status"},
     {"id": "optimization", "name": "AIG Optimization", "port": 9400, "category": "Infra", "status_path": "/api/opt/status"},
     {"id": "infra_opt", "name": "Infra Optimization", "port": 9700, "category": "Infra", "status_path": "/api/infra/status"},
-    {"id": "daniela", "name": "Daniela Omnipresente", "port": 9200, "category": "AI", "status_path": "/api/status"},
+    {"id": "daniela", "name": "Daniela", "port": 9200, "category": "AI", "status_path": "/api/status"},
     {"id": "agent_mobile", "name": "Agent & Mobile", "port": 9800, "category": "AI", "status_path": "/api/agent/status"},
     {"id": "auto_engine", "name": "Auto Engine", "port": 9860, "category": "AI", "status_path": "/api/auto/status"},
     {"id": "security", "name": "Security & Monitoring", "port": 9999, "category": "Security", "status_path": "/api/secure/status"},

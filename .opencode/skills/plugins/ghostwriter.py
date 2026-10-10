@@ -116,8 +116,8 @@ def run(context):
             return "✍️ [GHOSTWRITER]: No se requirió la generación de borradores para los correos revisados."
 
         return (
-            f"✍️ *[GHOSTWRITER EXECUTIVE (GEMINI 3.7 FLASH) - BORRADORES GENERADOS]*\n\n"
-            f"Se han redactado y guardado los siguientes borradores en tu Gmail:\n\n" +
+            "✍️ *[GHOSTWRITER EXECUTIVE (GEMINI 3.7 FLASH) - BORRADORES GENERADOS]*\n\n"
+            "Se han redactado y guardado los siguientes borradores en tu Gmail:\n\n" +
             "\n".join(created_drafts)
         )
 

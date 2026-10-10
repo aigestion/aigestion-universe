@@ -1,4 +1,5 @@
-import subprocess, json
+import subprocess
+import json
 
 def run(context):
     cmd = context.lower()

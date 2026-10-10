@@ -456,7 +456,7 @@ def auth_google_start():
 @app.route("/auth/google/callback")
 def auth_google_callback():
     """Callback OAuth — intercambia code por token y guarda."""
-    from urllib.parse import urlencode, parse_qs
+    from urllib.parse import urlencode
     import urllib.request
     code = request.args.get("code")
     state = request.args.get("state", "google_oauth")
@@ -480,7 +480,7 @@ def auth_google_callback():
         token_path = _REPO_ROOT / "data" / "google_token.json"
         token_path.parent.mkdir(parents=True, exist_ok=True)
         token_path.write_text(json.dumps(token, indent=2), encoding="utf-8")
-        from connections_manager import _store_load, _store_save, STORE
+        from connections_manager import _store_load, _store_save
         store = _store_load()
         store[state] = {
             "estado": "configured",

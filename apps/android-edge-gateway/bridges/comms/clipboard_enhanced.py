@@ -4,7 +4,6 @@ Idea 4: Clipboard Enhanced
 Universal clipboard with history, search, categories, and pinning.
 """
 
-import os
 import json
 import time
 import hashlib

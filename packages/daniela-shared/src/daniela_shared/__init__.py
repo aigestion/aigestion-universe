@@ -49,7 +49,7 @@ _LAZY: dict[str, str] = {
     "StateManager": "daniela_shared.state_manager",
     # Unified
     "UnifiedBridge": "daniela_shared.unified_bridge",
-    "UnifiedDashboard": "daniela_shared.unified_dashboard",
+    "UnifiedDashboard": "daniela_shared.dashboard",
     # Voice
     "VoiceActivation": "daniela_shared.voice_activation",
     # GEV

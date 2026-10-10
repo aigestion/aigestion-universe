@@ -4,7 +4,6 @@ Idea 2: Anti-Rob Inteligente
 Motion detection + wrong PIN = automatic recording and alert.
 """
 
-import os
 import json
 import time
 import subprocess

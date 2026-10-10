@@ -122,7 +122,10 @@ async function comprobarBackend() {
     try {
       const ctrl = new AbortController();
       const t = setTimeout(() => ctrl.abort(), 3000);
-      const res = await fetch(u, { signal: ctrl.signal });
+      const res = await fetch(u, {
+        signal: ctrl.signal,
+        headers: { 'X-User-ID': 'daniela-desktop' },
+      });
       clearTimeout(t);
       if (res.ok) { _backendOk = true; break; }
     } catch { /* siguiente ruta */ }

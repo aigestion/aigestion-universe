@@ -14,7 +14,6 @@
 
 # Hermes Gateway
 /ide/hermes/ @aig-hermes-team
-/docker/hermes-epic/ @aig-hermes-team
 
 # Swarm & Cross-Engine
 /engine/cross_engine/ @aig-swarm-team

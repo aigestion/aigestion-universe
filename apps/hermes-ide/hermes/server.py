@@ -64,7 +64,7 @@ def index():
 @app.route("/api/status")
 def status():
     return jsonify({
-        "name": "Hermes Epic",
+        "name": "Hermes",
         "version": "1.0.0",
         "modules": 70,
         "phases": ["Integration", "Skills", "Memory", "Automation", "Personality", "Advanced", "Optimization"],
@@ -97,5 +97,5 @@ if __name__ == "__main__":
     event = Event(type="service.startup", payload={"service": "hermes", "port": WEB_PORT}, source="hermes")
     event_bus.publish_sync("startup", event)
 
-    print(f"[Hermes Epic] Starting on port {WEB_PORT}...")
+    print(f"[Hermes] Starting on port {WEB_PORT}...")
     app.run(host="0.0.0.0", port=WEB_PORT, debug=False)

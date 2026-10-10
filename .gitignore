@@ -111,3 +111,10 @@ packages/daniela-backend/src/daniela_backend/credentials/
 packages/daniela-tenants/storage/archives/aig_backups/
 packages/daniela-tenants/storage/archives/worktree-backup-*.tar.gz
 **/voice_pipeline/piper_voices/
+
+# Runtime local (bases sqlite y logs de actividad; se regeneran solos)
+*.db
+*.sqlite
+*.sqlite3
+*.jsonl
+scripts/core/data/

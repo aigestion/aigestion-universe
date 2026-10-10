@@ -82,13 +82,22 @@ class AIGEnforcer:
         return str(model_file)
 
     def _create_default_model(self, path: Path) -> None:
-        """Create default RBAC + ABAC model."""
+        """Create default RBAC + ABAC model.
+
+        `p` lleva 5 tokens (sub, dom, obj, act, eft): las politicas default
+        se anaden con 5 valores (["engine:daniela:admin", "*", "engine:
+        daniela", "*", "allow"], efecto implícito `allow` en la ultima
+        posicion). El token de efecto se llama `eft` porque el `policy_effect`
+        de casbin usa `p.eft == allow`; declararlo como `effect` genera
+        `NameNotDefined: p_eft` y produce HTTP 500 en CADA peticion (bug
+        2026-10-09).
+        """
         model_text = """
 [request_definition]
 r = sub, dom, obj, act
 
 [policy_definition]
-p = sub, dom, obj, act, effect
+p = sub, dom, obj, act, eft
 
 [role_definition]
 g = _, _
@@ -97,7 +106,7 @@ g = _, _
 e = some(where (p.eft == allow))
 
 [matchers]
-m = g(r.sub, p.sub) && keyMatch(r.dom, p.dom) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act) && p.eft == allow
+m = g(r.sub, p.sub) && keyMatch(r.dom, p.dom) && keyMatch(r.obj, p.obj) && regexMatch(r.act, p.act)
 """
         path.write_text(model_text)
 
@@ -150,6 +159,16 @@ m = g(r.sub, p.sub) && keyMatch(r.dom, p.dom) && keyMatch(r.obj, p.obj) && regex
 
             # Viewer role - read only
             ["role:viewer", "*", "*", "read", "allow"],
+
+            # App de escritorio Daniela (Tauri, siempre localhost): la
+            # ventana y el Vision Menu leen y escriben en la superficie
+            # que usan (globo, memoria, capas, estado). Identidad fija
+            # que el desktop manda en `X-User-ID` (ver `pedir()` en
+            # apps/daniela-desktop/resources/js/menu.js).
+            ["daniela-desktop", "*", "/api/*", "read", "allow"],
+            ["daniela-desktop", "*", "/api/*", "write", "allow"],
+            ["daniela-desktop", "*", "/api/*", "delete", "allow"],
+            ["daniela-desktop", "*", "/gods-eye/*", "read", "allow"],
 
             # Agent roles
             ["agent:orchestrator", "*", "agent:*", "execute", "allow"],

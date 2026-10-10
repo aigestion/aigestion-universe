@@ -4,10 +4,8 @@ Idea 10: Fitness Coach
 Activity tracking with accelerometer data and AI coaching.
 """
 
-import os
 import json
 import time
-import math
 from pathlib import Path
 from flask import Flask, jsonify, request
 

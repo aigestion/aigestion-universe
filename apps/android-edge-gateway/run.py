@@ -48,7 +48,7 @@ def run_mobile():
     port = int(os.getenv("MOBILE_APP_PORT", "8095"))
     handler = http.server.SimpleHTTPRequestHandler
     with socketserver.TCPServer(("", 8095), handler) as httpd:
-        print(f"[MobileApp] Serving PWA on http://localhost:8095")
+        print("[MobileApp] Serving PWA on http://localhost:8095")
         httpd.serve_forever()
 
 
@@ -68,7 +68,6 @@ def run_all():
     print("[aig Android] Starting all components...")
     
     # Start bridge in background thread
-    import threading
     bridge_thread = threading.Thread(target=run_bridge, daemon=True)
     bridge_thread.start()
     time.sleep(2)

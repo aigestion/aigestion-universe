@@ -25,33 +25,33 @@ services:
           memory: 512M
 
   gateway:
-    build:
-      context: .
-      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/cross_engine/Dockerfile
-    container_name: gateway
-    ports:
-      - "8080:8080"
-    environment:
-      SERVICE_NAME: cross-engine-gateway
-      SERVICE_PORT: "8080"
-      REDIS_URL: redis://redis:6379/0
-    depends_on:
-      redis:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/api/cross/status',timeout=4).status==200 else 1)"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
-    restart: unless-stopped
-    networks:
-      - aig-network
-    deploy:
-      resources:
-        limits:
-          cpus: "2.0"
-          memory: 1G
+      build:
+        context: .
+        dockerfile: ./packages/daniela-core/src/daniela_core/legacy/engine/cross_engine/Dockerfile
+      container_name: gateway
+      ports:
+        - "8080:8080"
+      environment:
+        SERVICE_NAME: cross-engine-gateway
+        SERVICE_PORT: "8080"
+        REDIS_URL: redis://redis:6379/0
+      depends_on:
+        redis:
+          condition: service_healthy
+      healthcheck:
+        test: ["CMD", "python", "-c", "import urllib.request,sys;sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/api/cross/status',timeout=4).status==200 else 1)"]
+        interval: 15s
+        timeout: 10s
+        retries: 5
+        start_period: 30s
+      restart: unless-stopped
+      networks:
+        - aig-network
+      deploy:
+        resources:
+          limits:
+            cpus: "2.0"
+            memory: 1G
 
   orchestrator:
     build:
@@ -229,7 +229,7 @@ services:
   agent_mobile:
     build:
       context: .
-      dockerfile: ./packages/daniela-api/Dockerfile
+      dockerfile: ./packages/daniela-core/src/daniela_core/legacy/agents_api/Dockerfile
     container_name: agent-mobile
     ports:
       - "9800:9800"

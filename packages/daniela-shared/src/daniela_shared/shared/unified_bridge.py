@@ -1,6 +1,6 @@
 """
 Daniela Unified Bridge
-Connects Omnipresente (52) + Epic PC (62) = 114 total systems
+Connects Daniela (52) + Epic PC (62) = 114 total systems
 Single API to access everything
 """
 

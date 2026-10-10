@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 procedural_bp = Blueprint("procedural_memory", __name__)
 _procedures = [
     {"name": "Deploy to GitHub", "steps": ["git add .", "git commit -m 'msg'", "git push origin branch"], "category": "git"},
-    {"name": "Start Daniela", "steps": ["cd daniela-omnipresente", "python server.py"], "category": "system"},
+    {"name": "Start Daniela", "steps": ["cd apps/daniela-os", "python server.py"], "category": "system"},
     {"name": "Run tests", "steps": ["python -m pytest", "Check coverage"], "category": "testing"}
 ]
 

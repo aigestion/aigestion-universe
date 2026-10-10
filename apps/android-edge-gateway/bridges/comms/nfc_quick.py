@@ -4,7 +4,6 @@ Idea 8: NFC Quick Actions
 NFC tag-based automation with pre-configured scenes.
 """
 
-import os
 import json
 import time
 from pathlib import Path

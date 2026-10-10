@@ -3,8 +3,7 @@ from __future__ import annotations
 
 from enum import Enum
 from pathlib import Path
-from typing import Dict, List, Optional
-import asyncio
+from typing import Dict, List
 import time
 
 from .converter import MemoryDoc, markdown_to_memory, memory_to_markdown

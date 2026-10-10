@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Optional
 import httpx
 
-from .models import BrainStats, EngineInfo, MemoryItem, MemoryTier, ProcessResult
+from .models import BrainStats, EngineInfo, MemoryItem, ProcessResult
 
 
 class DanielaClient:

@@ -1,4 +1,6 @@
-import hashlib, json, os
+import hashlib
+import json
+import os
 
 BASE_DIR = os.path.expanduser("~/daniela-os")
 HASH_FILE = os.path.join(BASE_DIR, "integrity_hashes.json")

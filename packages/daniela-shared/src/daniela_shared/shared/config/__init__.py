@@ -1,11 +1,11 @@
 """Configuration management for all aig services."""
 
+import os
+from dataclasses import dataclass
+
 # 2026-10-5: fusion de `daniela-os/shared/config.py` (plano) en este
 # paquete. WEB_PORT es el puerto del servicio daniela-os (server.py).
 WEB_PORT = 9200
-
-import os
-from dataclasses import dataclass
 
 
 @dataclass

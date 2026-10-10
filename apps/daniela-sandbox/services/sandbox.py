@@ -10,7 +10,7 @@ Run:  uvicorn services.sandbox:create_app --factory --port 8090
 from __future__ import annotations
 
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware

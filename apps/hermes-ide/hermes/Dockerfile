@@ -1,48 +1,36 @@
-FROM aig-base:latest
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# 2026-09-22: `hermes-epic/` -> `IA-SERVICES/hermes/` -> `ide/hermes/` (P3/P4). El destino se
-# queda en `.` (aplanado a /app) porque el CMD arranca `server:app` y
-# `server.py` esta en la raiz de la carpeta.
-COPY --chown=appuser:appuser ./ide/hermes/ .
+# Runtime deps for the Hermes service (Flask app + registry/event bus).
+# No `aig-base`: that image belongs to the legacy repo and is not in this one.
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy core module for new integrations
-COPY --chown=appuser:appuser ./core/ ./core/
+RUN pip install --no-cache-dir \
+    flask==3.0.* \
+    flask-cors==4.0.* \
+    flask-socketio==5.3.* \
+    gunicorn==22.* \
+    redis==5.0.* \
+    psutil==5.9.* \
+    requests==2.31.* \
+    httpx==0.28.* \
+    aiohttp==3.9.* \
+    casbin==1.43.*
 
-# `server.py:22-24` importa `shared.registry`, `shared.events` y
-# `shared.auth.middleware`. `aig-base:latest` trae `shared` ya instalado,
-# pero es una copia del 2026-09-18T20:44 —ANTERIOR a
-# `shared/shared/auth/middleware.py`, que es de las 22:15 del mismo dia—, y
-# su `auth/` solo contiene `__init__.py`. Comprobado con
-# `docker run --rm aig-base:latest python -c "import shared.auth, os; ..."`.
-# Resultado: el contenedor arrancaba y moria en bucle con
-#   ModuleNotFoundError: No module named 'shared.auth.middleware'
-#
-# Se reinstala desde `shared/` (el canonico: su `pyproject.toml` fija
-# `include = ["shared*"]`), copiandolo a `./shared/` igual que hace
-# `gev/daniela-os/Dockerfile` ("ya viene instalado en aig-base, se reinstala
-# para asegurar la ultima version"). Verificado en el contenedor sano: ahi
-# `shared.auth.middleware` SI resuelve.
-#
-# Ojo con la fusion: `/app/shared/` ya existe porque `./ide/hermes/`
-# trae su propio `agent_shared/` (renombrado desde `shared/` en P4), que es
-# el que resuelve `from agent_shared.config import WEB_PORT` de `server.py`.
-# Las dos copias se fusionan en el mismo directorio y no se pisan: `shared/`
-# solo aporta el subarbol de paquetes (`auth/`, `config/`, ...), asi que los
-# modulos sueltos de Hermes no entran en el wheel.
-COPY --chown=appuser:appuser ./shared/ ./shared/
+# Hermes service tree (server.py + advanced/integration/memory/personality/skills).
+COPY apps/hermes-ide/hermes/ ./
 
-# `aig-base` fija `USER appuser` y appuser NO puede escribir en
-# site-packages (comprobado en daniela con un `touch`), asi que `pip install`
-# necesita root. Se vuelve a appuser al final: el contenedor no corre como root.
-# El `rm -rf` es por si el contexto trae un `shared.egg-info` o un `build/`
-# de un build anterior en el host, que harian fallar el wheel.
-USER root
-RUN rm -rf /app/shared/build /app/shared/shared.egg-info /app/shared/.ruff_cache \
- && pip install --no-cache-dir ./shared
-USER appuser
+# server.py imports `core.auth.casbin_auth`, `core.message_broker` and
+# `core.service_registry`. In this repo those live in daniela-shared's
+# `core_utils/`; they are copied as a flat `core/` package and `/app/core` is
+# added to PYTHONPATH so the legacy flat imports inside them
+# (`from paths import ...` in message_broker) keep resolving.
+COPY packages/daniela-shared/src/daniela_shared/core_utils/ ./core/
 
+ENV PYTHONPATH=/app:/app/core
+ENV PYTHONUNBUFFERED=1
 ENV SERVICE_NAME=hermes
 ENV PORT=9300
 

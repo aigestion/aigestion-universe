@@ -4,7 +4,6 @@ Idea 3: Geofence Enhanced
 Smart geofencing with customizable zones and alerts.
 """
 
-import os
 import json
 import time
 import math

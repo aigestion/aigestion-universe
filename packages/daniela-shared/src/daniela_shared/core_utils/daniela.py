@@ -7,7 +7,7 @@ fases (ambient, consciousness, ...) y los modulos de `aig/` vivian
 aparte, sin que nadie los conectara. Resultado: el visor 3D, las capas OSINT,
 el Command Center y la facturacion no existian dentro del servidor real.
 
-Este modulo es la respuesta a "Daniela Omnipresente es Daniela": una sola
+Este modulo es la respuesta: todo es Daniela: una sola
 llamada registra TODO aig en la app que ya existe, sin duplicar
 servidores ni puertos.
 
@@ -51,7 +51,7 @@ for _p in (_RAIZ, _DIR, os.path.join(_RAIZ, "core")):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-# ADR-017#2: omnipresente es una propiedad de Daniela OS — sus fases se
+# ADR-017#2: Daniela es una propiedad de Daniela OS — sus fases se
 # absorben en `registrar()`, no se lanzan como proceso paralelo. Rutas con
 # `isdir` para que valgan en el host (raiz del repo) y en el contenedor
 # (`daniela.py` vive en /app). `_DIR`, no `_RAIZ`: en la imagen no hay `.git`
@@ -88,7 +88,7 @@ FASES = (
     "ubicacion",        # geolocalizacion de la Sede
     "negocio",          # clientes / empresas
     "acceso",           # control de acceso admin vs cliente
-    # ADR-017#2: omnipresente absorbido — antes vivian en
+    # ADR-017#2: Daniela absorbida — antes vivian en
     # `daniela-omnipresente/server.py::register_all()`, ahora se registran
     # aqui, en el servidor unico. `pixel_guard` va la ULTIMA: es el catch-all
     # de /api/pixel/* (E-40).
@@ -293,7 +293,7 @@ def registrar(app, failed_phases: list[dict] | None = None,
 
     _fase(informe, "acceso", _acceso)
 
-    # ── ADR-017#2: omnipresente absorbido ──
+    # ── ADR-017#2: Daniela absorbida ──
     # Las 20 fases + 4 _opt que antes registraba
     # `daniela-omnipresente/server.py::register_all()`. Imports perezosos en
     # closures (mismo patron que arriba): `daniela.py` no paga el coste ni
@@ -386,7 +386,7 @@ def registrar(app, failed_phases: list[dict] | None = None,
         return True
 
     def _dashboard() -> Any:
-        from core.unified_dashboard import create_dashboard_blueprint
+        from core.dashboard import create_dashboard_blueprint
         # ADR-017#2: si el servidor que nos llama pasa SU socketio, este ya
         # tiene montados `connect`/`disconnect`/`request_status` (son suyos,
         # estan en su `server.py`); volver a cablearlos aqui haria que
@@ -416,7 +416,7 @@ def registrar(app, failed_phases: list[dict] | None = None,
 
             @_sio.on("request_status")
             def _h_request_status() -> None:
-                from core.unified_dashboard import get_all_status
+                from core.dashboard import get_all_status
                 _sio.emit("status_update", get_all_status())
         return True
 
