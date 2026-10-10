@@ -100,10 +100,14 @@ packages/daniela-backend/src/daniela_backend/credentials/
 # Basura autogenerada migrada por error desde aig
 **/.basura-auto-generada*/
 
-# Secrets locales (nunca llegaron a un remoto; no subirlos jamas)
+# Secrets locales (no subirlos jamas; 2026-10-10: se detecto y elimino
+# packages/daniela-tenants/storage/archives/env-consolidacion-2026-10-03/ con
+# claves vivas commiteadas por error — ROTAR esas claves, el historial las conserva)
 **/credentials.json
 **/secret.key
 **/*service_account*.json
+**/env-consolidacion-*/
+**/_keys_before.json
 .env.*
 !.env.example
 
