@@ -9,6 +9,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 COPY pyproject.toml uv.lock* ./
 COPY services/ ./services/
 
+COPY README.md ./
+
 RUN uv pip install --system . --no-cache
 
 EXPOSE 8083

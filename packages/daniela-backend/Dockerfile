@@ -20,6 +20,8 @@ COPY --from=daniela-engines . /daniela-engines
 COPY --from=daniela-shared . /daniela-shared
 
 # Install dependencies
+COPY README.md ./
+
 RUN uv pip install --system -e . --no-cache
 
 # Expose port (will be overridden by docker-compose)

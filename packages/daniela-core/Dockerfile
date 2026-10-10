@@ -17,6 +17,8 @@ COPY pyproject.toml uv.lock* ./
 COPY src/ ./src/
 
 # Install dependencies (editable install from src layout)
+COPY README.md ./
+
 RUN uv pip install --system -e . --no-cache
 
 # Expose port
