@@ -59,7 +59,14 @@ from pathlib import Path
 #          NOTE: import errors en algunos test files reducen el numero colectado.
 # 166 -> 1222 NO APLICA: el repo legado `aig` usa layout `tests/` en raiz.
 #          En universe los tests viven dispersos en packages/*/tests y apps/*/services/tests.
-LINEA_BASE = 166
+#
+# 166 -> 548 el 2026-10-10: el parser contaba solo lineas "fichero: N"
+#          (4 ficheros con warnings = 166) en vez de la linea resumen
+#          "N tests collected" (548 reales, ya con los 28 tests nuevos de
+#          vault/memory_semantic). MEDIDO con `--collect-only` (no sumado).
+#          Nota: hay 53 errores de colecta en tests/legacy (imports rotos
+#          preexistentes); al arreglarlos el numero SUBIRA: bump la base entonces.
+LINEA_BASE = 548
 
 # Directorios donde viven los tests en este monorepo:
 TEST_DIRS = [
@@ -105,10 +112,12 @@ def _recogidos() -> int:
     )
     total = 0
     for linea in proc.stdout.splitlines():
-        # Formato de `--collect-only -q`: "tests/xxx.py: 12"
-        m = re.match(r"^.*:\s*(\d+)\s*$", linea)
+        # Formato de `--collect-only -q`: linea resumen "N tests collected"
+        # (medido 2026-10-10: el formato "fichero: N" solo aparece para
+        # ficheros con warnings y contaba 166 de 548 reales).
+        m = re.search(r"(\d+) tests collected", linea)
         if m:
-            total += int(m.group(1))
+            total = int(m.group(1))
     if total == 0:
         print(
             "No se recogio ningun test. La colecta fallo:\n"
