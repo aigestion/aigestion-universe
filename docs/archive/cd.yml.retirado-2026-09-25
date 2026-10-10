@@ -1,0 +1,44 @@
+name: CD
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: config
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject .env
+        if: env.ENV_FILE != ''
+        run: |
+          $env:ENV_FILE | Set-Content -Encoding ASCII .env
+
+      - name: Build images
+        run: |
+          docker compose -f docker-compose.yml build
+
+      - name: Start services
+        run: |
+          docker compose -f docker-compose.yml up -d
+
+      - name: Wait for services
+        run: Start-Sleep 30
+
+      - name: Health gate
+        run: |
+          python ../scripts/core/ci_health_gate.py --base-url http://localhost --fail-under 95
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Health gate failed"
+            exit 1
+          }
+
+      - name: Cleanup old images
+        run: |
+          docker image prune -f

@@ -1,0 +1,27 @@
+flask==3.0.3
+flask-cors==4.0.1
+flasgger==0.9.7.1
+sqlalchemy==2.0.35
+prometheus-client==0.20.0
+pyjwt==2.8.0
+pytest==8.2.2
+
+# Memoria semantica (E-28) — extension SQLite con busqueda vectorial.
+# Sin servicios externos: funciona igual en PC y movil. Ver agents/memory_semantic.py
+sqlite-vec==0.1.9
+
+# TTS offline (B-3) — Piper. Motor de voz neuronal que corre EN LOCAL.
+# A diferencia de edge-tts (que manda el texto a los servidores de Microsoft),
+# esto funciona sin internet y no saca el texto de tu maquina.
+# Verificado el 2026-09-15 con el socket bloqueado.
+# El modelo de voz NO va aqui: son ~109 MB y se bajan aparte con
+#   ./.venv/Scripts/python.exe agents/piper_engine.py prepare es_AR-daniela-high
+# Quedan en data/voice_pipeline/piper_voices/ (ignorado por git, correcto).
+piper-tts==1.8.0
+
+# YAML — lo necesita `ecosystem_engine/protocol.py`, que lo importa de forma DURA
+# (no protegida). Estaba declarado SOLO en ecosystem_engine/requirements.txt, y
+# como nadie lo instalo, el 2026-09-17 reventaba la suite ENTERA: un import que
+# falla durante la coleccion aborta la sesion completa de pytest, no solo ese
+# fichero. Ver tests/conftest.py y docs/REVISION-2026-09-17.md.
+pyyaml>=6.0

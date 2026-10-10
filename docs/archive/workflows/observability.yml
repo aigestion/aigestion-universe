@@ -1,0 +1,155 @@
+# Observability Stack - OpenTelemetry + Tempo + Loki + Grafana
+# Deploys: Tempo (traces) + Loki (logs) + Grafana (dashboards)
+# 
+# Usage:
+#   - Traces: http://localhost:3200 (Tempo)
+#   - Logs: http://localhost:3100 (Loki)
+#   - Grafana: http://localhost:3000 (admin/admin)
+#
+# Requires: docker compose -f docker-compose.observability.yml up -d
+
+name: Observability Stack
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'docker-compose.observability.yml'
+      - '.github/workflows/observability.yml'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy Observability Stack
+        run: |
+          docker compose -f docker-compose.observability.yml up -d --build
+          
+      - name: Wait for services
+        run: |
+          Start-Sleep 30
+          $services = @("tempo:3200", "loki:3100", "grafana:3000")
+          foreach ($svc in $services) {
+            $host, $port = $svc -split ':'
+            for ($i=0; $i -lt 30; $i++) {
+              try {
+                $conn = New-Object System.Net.Sockets.TcpClient
+                $conn.Connect($host, [int]$port)
+                $conn.Close()
+                Write-Host "$svc is ready"
+                break
+              } catch {
+                Start-Sleep 2
+              }
+            }
+          }
+          
+      - name: Import Grafana dashboards
+        run: |
+          # Dashboards are auto-provisioned via provisioning config
+          Write-Host "Grafana dashboards auto-provisioned"
+
+---
+# docker-compose.observability.yml
+# Place at repo root alongside docker-compose.yml
+
+version: "3.8"
+
+services:
+  # Tempo - Distributed tracing backend
+  tempo:
+    image: grafana/tempo:2.5.0
+    container_name: aig-tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml:ro
+      - tempo_data:/var/tempo
+    ports:
+      - "3200:3200"   # Tempo HTTP
+      - "9095:9095"   # Tempo gRPC
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "9411:9411"   # Zipkin
+    networks:
+      - aig-network
+    restart: unless-stopped
+
+  # Loki - Log aggregation
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: aig-loki
+    command: [ "-config.file=/etc/loki.yaml" ]
+    volumes:
+      - ./loki.yaml:/etc/loki.yaml:ro
+      - loki_data:/var/loki
+    ports:
+      - "3100:3100"
+    networks:
+      - aig-network
+    restart: unless-stopped
+
+  # Grafana - Visualization
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: aig-grafana-obs
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-aig2026}
+      - GF_INSTALL_PLUGINS=grafana-tempo-datasource,grafana-loki-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3001:3000"  # Different port from main grafana
+    networks:
+      - aig-network
+    restart: unless-stopped
+    depends_on:
+      - tempo
+      - loki
+
+  # Promtail - Log shipper
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: aig-promtail
+    volumes:
+      - ./promtail.yaml:/etc/promtail.yaml:ro
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    networks:
+      - aig-network
+    restart: unless-stopped
+
+  # OpenTelemetry Collector - Receives traces/logs/metrics
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.106.0
+    container_name: aig-otel-collector
+    command: ["--config=/etc/otel-collector.yaml"]
+    volumes:
+      - ./otel-collector.yaml:/etc/otel-collector.yaml:ro
+    ports:
+      - "4317:4317"   # OTLP gRPC
+      - "4318:4318"   # OTLP HTTP
+      - "8888:8888"   # Prometheus metrics
+    networks:
+      - aig-network
+    restart: unless-stopped
+    depends_on:
+      - tempo
+      - loki
+
+networks:
+  aig-network:
+    external: true
+    name: aig_aig-network
+
+volumes:
+  tempo_data:
+  loki_data:
+  grafana_data:

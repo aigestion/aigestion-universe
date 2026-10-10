@@ -1,0 +1,119 @@
+{
+  "name": "aig Development",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/redis:1": {
+      "version": "7.0"
+    },
+    "ghcr.io/devcontainers/features/postgresql:1": {
+      "version": "16"
+    },
+    "ghcr.io/devcontainers/features/kubectl-helm:1": {
+      "kubectlVersion": "latest",
+      "helmVersion": "latest"
+    },
+    "ghcr.io/devcontainers/features/terraform:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/devcontainers/features/gcloud:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "forwardPorts": [
+    5020, 9200, 9300, 3200, 9400, 9500, 9600, 9700, 9800, 9900,
+    9999, 9998, 9997, 6379, 5432, 9090, 3000, 3100, 3200, 4317, 4318
+  ],
+  "portsAttributes": {
+    "5020": { "label": "Epic PC" },
+    "9200": { "label": "Daniela Core" },
+    "9300": { "label": "Hermes API" },
+    "3200": { "label": "Hermes Dashboard" },
+    "9400": { "label": "Optimization" },
+    "9500": { "label": "Frontend V1" },
+    "9600": { "label": "Frontend V2" },
+    "9700": { "label": "Infra Opt" },
+    "9800": { "label": "Agent Mobile" },
+    "9900": { "label": "Orchestrator" },
+    "9999": { "label": "Security" },
+    "9998": { "label": "Performance" },
+    "9997": { "label": "Dashboard" },
+    "6379": { "label": "Redis" },
+    "5432": { "label": "PostgreSQL" },
+    "9090": { "label": "Prometheus" },
+    "3000": { "label": "Grafana" },
+    "3100": { "label": "Loki" },
+    "3200": { "label": "Tempo" },
+    "4317": { "label": "OTel gRPC" },
+    "4318": { "label": "OTel HTTP" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "ms-python.mypy-type-checker",
+        "ms-toolsai.jupyter",
+        "kotlin-lang.kotlin",
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "hashicorp.terraform",
+        "redhat.vscode-yaml",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "ms-azuretools.vscode-containers",
+        "ms-vscode-remote.remote-containers",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mechatroner.rainbow-csv",
+        "streetsidesoftware.code-spell-checker",
+        "gruntfuggly.todo-tree",
+        "usernamehw.errorlens",
+        "pkief.material-icon-theme"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.ruffEnabled": true,
+        "python.formatting.provider": "black",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit",
+          "source.fixAll.ruff": "explicit"
+        },
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "[kotlin]": {
+          "editor.defaultFormatter": "kotlin-lang.kotlin"
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "PYTHONPATH": "/workspaces/aig",
+    "UV_CACHE_DIR": "/workspaces/aig/.uv-cache",
+    "ANDROID_HOME": "/opt/android-sdk",
+    "ANDROID_SDK_ROOT": "/opt/android-sdk"
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/.uv-cache,target=/workspaces/aig/.uv-cache,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/data,target=/workspaces/aig/data,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp=unconfined"
+  ]
+}

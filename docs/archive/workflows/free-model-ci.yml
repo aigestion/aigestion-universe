@@ -1,0 +1,291 @@
+name: Free Model CI/CD
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Zero-cost: Use GitHub-hosted runners (free tier)
+# Use Ollama for local models, OpenRouter free tier for heavy reasoning
+
+jobs:
+  # Local-first validation (zero cost, runs on GitHub-hosted)
+  local-validate:
+    name: Local Validation (Ollama)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve &
+          sleep 10
+          ollama pull qwen2.5-coder:32b
+          ollama pull deepseek-coder:33b
+          ollama pull phi3.5:14b
+
+      - name: Local Lint & Type Check
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+          python -m ruff check . --ignore=BLE001,S110,UP017
+
+      - name: Local Tests
+        run: |
+          python -m pytest tests/ -m "not network and not android" -q --tb=no -p no:cacheprovider
+
+      - name: Local Code Review (Ollama)
+        run: |
+          # Use local model for code review
+          DIFF=$(git diff HEAD~1)
+          ollama run qwen2.5-coder:32b "Review this code for security, performance, style: $DIFF" > review.md
+          cat review.md
+
+      - name: Upload Review
+        uses: actions/upload-artifact@v4
+        with:
+          name: local-code-review
+          path: review.md
+          retention-days: 7
+
+  # Cloud free models for heavy reasoning
+  cloud-reasoning:
+    name: Cloud Free Models (OpenRouter)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Architecture Review (Gemma-2-9b free)
+        if: ${{ env.OPENROUTER_API_KEY != '' }}
+        run: |
+          python scripts/ai/architecture_review.py \
+            --model google/gemma-2-9b-it:free \
+            --task architecture_review \
+            --diff "$(git diff HEAD~1)"
+
+      - name: Security Audit (Gemma-2-9b free)
+        if: ${{ env.OPENROUTER_API_KEY != '' }}
+        run: |
+          python scripts/ai/security_audit.py \
+            --model google/gemma-2-9b-it:free \
+            --task security_audit \
+            --path .
+
+      - name: Performance Analysis (DeepSeek free)
+        if: ${{ env.OPENROUTER_API_KEY != '' }}
+        run: |
+          python scripts/ai/perf_analysis.py \
+            --model deepseek/deepseek-chat-v3-0324:free \
+            --task perf_analysis \
+            --load-test-results load-test-results.json
+
+  # Load testing (self-hosted or GitHub-hosted)
+  load-test:
+    name: Load Test (k6)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [local-validate]
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/k6-action@v0.2.0
+        with:
+          version: latest
+
+      - name: Start Services
+        run: |
+          docker compose -f config/docker-compose.yml up -d
+          sleep 30
+
+      - name: Run Load Test
+        run: |
+          k6 run --out json=load-test-results.json load-test.js
+        env:
+          BASE_URL: http://localhost
+
+      - name: Upload Load Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: load-test-results
+          path: load-test-results.json
+          retention-days: 7
+
+      - name: Comment PR with Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('load-test-results.json', 'utf8'));
+            const summary = `
+            ## 📊 Load Test Results
+            
+            | Metric | Value |
+            |--------|-------|
+            | Total Requests | ${results.metrics.http_reqs.values.count} |
+            | Request Rate | ${results.metrics.http_reqs.values.rate.toFixed(2)}/s |
+            | Avg Duration | ${results.metrics.http_req_duration.values.avg.toFixed(2)}ms |
+            | p95 Duration | ${results.metrics.http_req_duration.values['p(95)'].toFixed(2)}ms |
+            | p99 Duration | ${results.metrics.http_req_duration.values['p(99)'].toFixed(2)}ms |
+            | Error Rate | ${(results.metrics.http_req_failed.values.rate * 100).toFixed(2)}% |
+            | Custom Errors | ${results.metrics.errors.values.rate.toFixed(2)}% |
+            
+            ${results.metrics.http_req_duration.values['p(95)'] < 500 ? '✅ p95 < 500ms' : '❌ p95 >= 500ms'}
+            ${results.metrics.http_req_failed.values.rate < 0.01 ? '✅ Error rate < 1%' : '❌ Error rate >= 1%'}
+            `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+
+      - name: Fail on Thresholds
+        run: |
+          $results = Get-Content load-test-results.json | ConvertFrom-Json
+          $p95 = $results.metrics.http_req_duration.values.'p(95)'
+          $errorRate = $results.metrics.http_req_failed.values.rate
+          $customErrors = $results.metrics.errors.values.rate
+          
+          if ($p95 -ge 500) { Write-Error "p95 latency ${p95}ms exceeds 500ms"; exit 1 }
+          if ($errorRate -ge 0.01) { Write-Error "Error rate ${errorRate} exceeds 1%"; exit 1 }
+          if ($customErrors -ge 0.05) { Write-Error "Custom error rate ${customErrors} exceeds 5%"; exit 1 }
+          
+          Write-Host "All thresholds passed!"
+
+  # Deploy with health gates (self-hosted runner)
+  deploy:
+    name: Deploy (Self-Hosted)
+    runs-on: self-hosted
+    needs: [local-validate, cloud-reasoning, load-test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: source-code
+          path: .
+
+      - name: Pre-Deploy Health Check
+        run: |
+          python scripts/core/ci_health_gate.py
+          # Verifies 13/13 services healthy
+
+      - name: Backup Volumes
+        run: |
+          powershell scripts/deploy/backup_volumes.ps1
+
+      - name: Deploy with Health Gate
+        run: |
+          python scripts/deploy/orch_deploy.py \
+            --stack main \
+            --health-gate \
+            --p95-threshold 500 \
+            --error-rate 0.01
+
+      - name: Post-Deploy Verification
+        run: |
+          sleep 30
+          python scripts/core/ci_health_gate.py
+          
+          # Verify metrics
+          curl -f http://localhost:9090/api/v1/query?query=up{job="aig"}
+          
+          # Check Grafana dashboards
+          for dash in aig-overview aig-system aig-services; do
+            curl -f "http://localhost:3000/api/dashboards/uid/$dash"
+          done
+
+      - name: Rollback on Failure
+        if: failure()
+        run: |
+          docker compose -f config/docker-compose.yml down
+          docker compose -f config/docker-compose.yml up -d
+          echo "Rollback executed"
+
+  # Android build (self-hosted)
+  android-build:
+    name: Android Build
+    runs-on: self-hosted
+    needs: [local-validate]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: source-code
+          path: .
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 36
+          ndk-version: r27b
+
+      - name: Build Debug APK
+        run: |
+          cd android-app
+          ./gradlew assembleDebug --parallel --build-cache
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: android-app/app/build/outputs/apk/debug/*.apk
+          retention-days: 7
+
+      - name: Run Unit Tests
+        run: |
+          cd android-app
+          ./gradlew testDebugUnitTest
+
+      - name: Pixel Sync Test
+        run: |
+          python connectors/pairing.py --status
+          # Verify Pixel connectivity
+
+  # Observability validation
+  observability-check:
+    name: Observability Check
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    steps:
+      - name: Verify Observability Stack
+        run: |
+          docker compose -f config/docker-compose.observability.yml up -d
+          sleep 30
+          
+          # Health checks
+          curl -f http://localhost:9090/-/healthy
+          curl -f http://localhost:3000/api/health
+          
+          # Verify dashboards
+          for dash in aig-overview aig-system aig-services; do
+            curl -f "http://localhost:3000/api/dashboards/uid/$dash"
+          done
+          
+          # Verify Prometheus targets
+          curl -f "http://localhost:9090/api/v1/targets"
+          
+          # Verify Loki
+          curl -f "http://localhost:3100/ready"
+          
+          # Verify Tempo
+          curl -f "http://localhost:3200/ready"
+
+      - name: Verify SLOs
+        run: |
+          # Check SLO compliance
+          curl "http://localhost:9090/api/v1/query?query=avg_over_time(up{job='aig'}[30d])"
+          
+          # Check alerts
+          curl "http://localhost:9093/api/v2/alerts?filter=status=firing"

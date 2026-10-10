@@ -1,0 +1,15 @@
+# DANIELA OS - DESPLIEGUE
+
+Abre Termux en el Pixel y ejecuta UNA sola vez:
+
+    bash /sdcard/DanielaOS/deploy/install.sh
+
+Que hace:
+  1. Auditoria completa del interior de Termux -> AUDIT_TERMUX.txt
+  2. Copia 26 modulos a ~/daniela-os
+  3. Instala flask / requests / pyserial
+  4. Crea 6 widgets en ~/.shortcuts
+  5. Autoarranque con Termux:Boot (~/.termux/boot)
+  6. Arranca: core :5000  +  gateway :8083
+
+No borra nada del telefono.

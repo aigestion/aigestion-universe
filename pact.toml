@@ -1,0 +1,86 @@
+# Pact Configuration for aig
+
+[tool.pact]
+# Pact Broker Configuration
+broker_base_url = "http://localhost:9292"
+broker_username = "pact"
+broker_password = "pact"
+
+# Consumer Configuration
+[tool.pact.consumer]
+# Daniel → Hermes contracts
+daniela_hermes = { consumer = "daniela", provider = "hermes" }
+
+# Agent Mobile → Hermes contracts
+mobile_hermes = { consumer = "agent_mobile", provider = "hermes" }
+
+# Orchestrator → Hermes contracts
+orchestrator_hermes = { consumer = "orchestrator", provider = "hermes" }
+
+# Hermes → Intel contracts
+hermes_intel = { consumer = "hermes", provider = "intel" }
+
+# Hermes → Data contracts
+hermes_data = { consumer = "hermes", provider = "data" }
+
+# Hermes → Secure contracts
+hermes_secure = { consumer = "hermes", provider = "secure" }
+
+# ─── Provider Configuration ───
+
+[tool.pact.provider]
+# Hermes Provider
+hermes = {
+    provider = "hermes",
+    base_url = "http://localhost:9300",
+    state_handlers = "tests.contract.state_handlers:hermes_states"
+}
+
+# Intel Provider
+intel = {
+    provider = "intel",
+    base_url = "http://localhost:9850",
+    state_handlers = "tests.contract.state_handlers:intel_states"
+}
+
+# Data Provider
+data = {
+    provider = "data",
+    base_url = "http://localhost:9870",
+    state_handlers = "tests.contract.state_handlers:data_states"
+}
+
+# ─── Pact Broker ───
+
+[tool.pact.broker]
+url = "http://localhost:9292"
+username = "pact"
+password = "pact"
+publish_verification_results = true
+
+# ─── CI/CD ───
+
+[tool.pact.ci]
+# Consumer CI
+consumer_publish = "pact-broker publish pacts/ --consumer-app-version=${GITHUB_SHA} --branch=${GITHUB_REF_NAME}"
+
+# Provider CI
+provider_verify = "pact-broker can-i-deploy --pacticipant={engine} --version=${GITHUB_SHA} --to-environment=staging"
+
+# Can I Deploy
+can_i_deploy = "pact-broker can-i-deploy --pacticipant={engine} --version=${VERSION} --to-environment={environment}"
+
+# ─── State Handlers ───
+
+[tool.pact.state_handlers]
+hermes_states = "tests.contract.state_handlers:hermes_states"
+intel_states = "tests.contract.state_handlers:intel_states"
+data_states = "tests.contract.state_handlers:data_states"
+secure_states = "tests.contract.state_handlers:secure_states"
+
+# ─── Pact File Output ───
+
+[tool.pact.output]
+pact_dir = "tests/pacts"
+format = "json"
+version = "3.0.0"

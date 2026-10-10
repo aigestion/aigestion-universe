@@ -1,0 +1,111 @@
+# CI — compuertas que de verdad comprueban algo.
+#
+# ⚠️ HISTORIA QUE HAY QUE CONOCER ANTES DE TOCAR ESTE FICHERO
+# -----------------------------------------------------------
+# Este workflow declaraba `working-directory: config` en TODOS los pasos,
+# copiado de cd.yml. Pero `actions/checkout` deja el repo en la raiz del
+# workspace, asi que cada `run` se ejecutaba en <repo>/config/ y NADA de lo que
+# decia el workflow ocurria de verdad. Medido el 2026-09-25:
+#
+#   1. `pip install -e ".[dev]"` resolvia config/pyproject.toml, que declaraba
+#      build-backend = "setuptools.backends._legacy:_Backend" -> modulo
+#      INEXISTENTE. El paso de install fallaba.
+#   2. `pytest tests/` con testpaths=["tests"] resolvia a config/tests, que NO
+#      EXISTE. Los tests no corrian nunca.
+#   3. `ruff check .` linteaba el contenido de config/ (JSON, Caddyfiles,
+#      Dockerfiles). La puerta de lint era vacua.
+#
+# En `cd.yml` ese working-directory SI es correcto: el compose vive en config/ y
+# Compose resuelve .env respecto a su propio directorio. Por eso los dos
+# workflows ya NO comparten `defaults`: son necesidades distintas.
+#
+# REGLA: aqui se trabaja desde la RAIZ del repo. Si algun paso concreto necesita
+# config/, se le pone `working-directory: config` a ESE paso, no a todos.
+
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: self-hosted
+    defaults:
+      run:
+        shell: pwsh
+        # RAIZ del repo. checkout deja aqui el working tree.
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('pyproject.toml') }}
+
+      # ---------------------------------------------------------------------
+      # Puerta 1: precondiciones. Falla RUIDOSAMENTE y TEMPRANO.
+      #
+      # Sin esto, un working-directory equivocado vuelve a producir una CI
+      # verde que no comprueba nada (fue exactamente el fallo de arriba).
+      # La logica vive en scripts/core/ci_precondiciones.py para poder
+      # ejecutarla en local y para no meter rutas de fichero en este YAML
+      # (tests/core/test_referencias_integridad.py las lee y usa el
+      # working-directory como base).
+      # ---------------------------------------------------------------------
+      - name: Precondiciones (aborta ruidosamente)
+        run: |
+          python scripts/core/ci_precondiciones.py
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      # ---------------------------------------------------------------------
+      # Puerta 2: los tests, y ADEMAS que sean todos.
+      #
+      # Ejecutar y contar no basta: un `norecursedirs` mal puesto o una ruta
+      # movida dejan la suite en verde con la mitad del repo sin probar. La
+      # linea base medida el 2026-09-25 es 1204. Si baja, hay que enterarse
+      # AQUI, no en produccion.
+      # ---------------------------------------------------------------------
+      - name: Run tests
+        run: |
+          python -m pytest tests/ -m "not network and not android" -q --tb=no -p no:cacheprovider
+
+      - name: Verificar que se recogen todos los tests
+        run: |
+          python scripts/core/ci_conteo_tests.py
+
+      # ---------------------------------------------------------------------
+      # Puerta 3: lint SIN FLAGS.
+      #
+      # Los `--ignore=BLE001 --ignore=S110 --ignore=UP017` que habia aqui
+      # existian solo para tapar que shared/pyproject.toml sombreaba la config
+      # de la raiz. Arreglado en el 2026-09-25, el comando limpio ya da 0 y es
+      # el mismo que documenta docs/CODE-REVIEW.md §7: si divergen, la puerta
+      # no es reproducible.
+      # ---------------------------------------------------------------------
+      - name: Lint
+        run: |
+          python -m ruff check .
+
+      # ---------------------------------------------------------------------
+      # Puerta 4: el ratchet. El techo de deuda no puede subir.
+      # ---------------------------------------------------------------------
+      - name: Ratchet de calidad
+        run: |
+          python scripts/utils/ratchet_ruff.py
+
+      - name: Formato
+        run: |
+          python -m ruff format --check .

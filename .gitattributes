@@ -1,0 +1,27 @@
+# Finales de linea: los scripts de shell y el entrypoint del contenedor tienen
+# que viajar con LF.
+#
+# Este equipo tiene `core.autocrlf=true`, asi que Git convierte a CRLF al hacer
+# checkout. En un `.sh` eso rompe la ejecucion ("$'\r': command not found") y
+# dentro de un contenedor directamente no arranca. Se declara aqui, y ademas el
+# Dockerfile del visor hace `sed -i 's/\r$//'` como segunda red.
+#
+# Se listan solo estos ficheros a proposito: un `* text=auto` global provocaria
+# una renumeracion masiva de todo el repositorio.
+# Modelos 3D de decenas de MB viajan por Git LFS: sin ello cada copia se guarda
+# entera en el historial y el repositorio crece sin control (antes: 165 MB de
+# .glb duplicados). El limite por archivo de GitHub LFS es 2 GB; los actuales
+# pesan 79 MB y 93 MB. Requiere `git-lfs` instalado antes del primer checkout.
+*.glb filter=lfs diff=lfs merge=lfs -text
+
+*.sh text eol=lf
+# .gitignore viajaba con CRLF (commit 2026-10-02): el parser de ignore de Git
+# NO stripcea el `\r`, asi que todos los patrones (archives/, backups/...) eran
+# muertos en un equipo con autocrlf=true y `git add .` exponia credenciales.
+.gitignore text eol=lf
+deploy/gods-eye/entrypoint.sh text eol=lf
+deploy/gods-eye/Dockerfile text eol=lf
+deploy/gods-eye/dockerignore text eol=lf
+Dockerfile text eol=lf
+Dockerfile.base text eol=lf
+Dockerfile.daniela text eol=lf
