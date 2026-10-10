@@ -144,7 +144,7 @@ services:
 
   # === OBSERVABILITY ===
   prometheus:
-    image: prom/prometheus:v2.53
+    image: prom/prometheus:v2.53.0
     container_name: daniela-prometheus
     ports:
       - "9090:9090"
@@ -164,7 +164,7 @@ services:
           memory: 1G
 
   grafana:
-    image: grafana/grafana:11.0
+    image: grafana/grafana:11.0.0
     container_name: daniela-grafana
     ports:
       - "3000:3000"
@@ -187,7 +187,7 @@ services:
           memory: 512M
 
   loki:
-    image: grafana/loki:2.9
+    image: grafana/loki:2.9.0
     container_name: daniela-loki
     ports:
       - "3100:3100"
@@ -201,7 +201,7 @@ services:
           memory: 512M
 
   tempo:
-    image: grafana/tempo:2.4
+    image: grafana/tempo:2.4.0
     container_name: daniela-tempo
     ports:
       - "3200:3200"
@@ -551,17 +551,16 @@ services:
       retries: 5
       start_period: 30s
 
-  # === MINIO (Object Storage for Tenants) ===
+  # === SEAWEEDFS (S3-compatible Object Storage for Tenants) ===
+  # Replaces MinIO: Docker Hub repo restricted (pull access denied, 2026-10-10).
+  # Service keeps name `minio` so MINIO_ENDPOINT=minio:9000 still resolves. S3 on :9000.
   minio:
-    image: minio/minio:latest
+    image: chrislusf/seaweedfs:latest
     container_name: daniela-minio
-    command: server /data --console-address ":9001"
+    command: server -dir=/data -master.volumeSizeLimitMB=1024 -s3 -s3.port=9000
     ports:
       - "9000:9000"
-      - "9001:9001"
-    environment:
-      - MINIO_ROOT_USER=minioadmin
-      - MINIO_ROOT_PASSWORD=minioadmin
+      - "9333:9333"
     volumes:
       - minio-data:/data
     deploy:
@@ -570,7 +569,7 @@ services:
           cpus: '0.5'
           memory: 512M
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ["CMD", "curl", "-f", "http://localhost:9333/cluster/status"]
       interval: 10s
       timeout: 5s
       retries: 5
