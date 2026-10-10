@@ -276,8 +276,8 @@ services:
   # === MOBILE EDGE (Termux API gateway, PC<->Pixel pairing) ===
   mobile-pwa-edge:
     build:
-      context: ./apps/mobile-pwa/services
-      dockerfile: Dockerfile
+      context: ./apps/mobile-pwa
+      dockerfile: services/Dockerfile
     container_name: daniela-mobile-edge
     ports:
       - "9800:9800"
