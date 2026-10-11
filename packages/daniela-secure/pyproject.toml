@@ -9,6 +9,10 @@ requires-python = ">=3.11"
 dependencies = [
     "daniela-core",
     "daniela-shared",
+    "daniela-engines",
+    "flask>=3.0",
+    "flask-cors>=4.0",
+    "gunicorn>=21.0",
     "cryptography>=41.0",
     "pyjwt>=2.8",
     "bcrypt>=4.1",
@@ -22,6 +26,7 @@ dev = ["pytest>=7.4", "ruff>=0.5", "mypy>=1.10"]
 [tool.uv.sources]
 daniela-core = {path = "../daniela-core", editable = true}
 daniela-shared = {path = "../daniela-shared", editable = true}
+daniela-engines = {path = "../daniela-engines", editable = true}
 
 [build-system]
 requires = ["hatchling"]

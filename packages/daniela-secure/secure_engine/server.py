@@ -6,7 +6,7 @@ import time
 
 from flask import Flask, jsonify, request
 
-from .auth_engine import (
+from daniela_engines.secure.auth_engine import (
     AccountLockout,
     DeviceFingerprint,
     GeoVelocityChecker,
@@ -16,22 +16,27 @@ from .auth_engine import (
     SessionManager,
     TOTPAuth,
 )
-from .compliance import (
+from daniela_engines.secure.compliance import (
     ConsentManager,
     GDPRChecker,
     HIPAAValidator,
     PCIDSSChecklist,
     RightToErasureHandler,
 )
-from .encryption import AES256Cipher, HashVerifier, PIIMasker, TokenizationService
-from .forensics import (
+from daniela_engines.secure.encryption import (
+    AES256Cipher,
+    HashVerifier,
+    PIIMasker,
+    TokenizationService,
+)
+from daniela_engines.secure.forensics import (
     ChainOfCustody,
     FileAccessMonitor,
     ForensicReportGenerator,
     ImmutableAuditLog,
     UserActivityTracker,
 )
-from .vulnerability import (
+from daniela_engines.secure.vulnerability import (
     DependencyScanner,
     HardcodedSecretScanner,
     SQLInjectionDetector,
@@ -364,6 +369,11 @@ def audit_handler():
 
 def create_app() -> Flask:
     return app
+
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok", "service": "daniela-secure"})
 
 
 if __name__ == "__main__":
