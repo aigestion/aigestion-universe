@@ -1,0 +1,7 @@
+FROM caddy:2-alpine
+
+# Copy the Caddyfile
+COPY Caddyfile /etc/caddy/Caddyfile
+
+# Validate the configuration
+RUN caddy validate --config /etc/caddy/Caddyfile

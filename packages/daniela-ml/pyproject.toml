@@ -17,6 +17,8 @@ dependencies = [
     "chromadb>=0.4",
     "faiss-cpu>=1.7",
     "httpx>=0.25",
+    "flask>=3.0",
+    "gunicorn>=21.0",
 ]
 
 [project.optional-dependencies]

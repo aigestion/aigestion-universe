@@ -5,6 +5,8 @@ import { Sidebar } from "@/components/Sidebar"
 import { TelemetryHUD } from "@/components/TelemetryHUD"
 import { CommandBar } from "@/components/CommandBar"
 
+export const dynamic = 'force-dynamic'
+
 export default function ShellPage() {
   return (
     <div className="relative h-screen w-screen scanlines">

@@ -21,7 +21,9 @@ import urllib.request
 # gateway + orchestrator (cross_engine en :8080/:9900) y chaos_engine
 # (anadido a prod el mismo dia).
 ENGINES = [
-    {"name": "daniela", "port": 9200, "path": "/api/status"},
+    # 2026-10-11: daniela expone /health (200 {"status":"healthy"}), no
+    # /api/status (404). Medido contra el stack slim desplegado.
+    {"name": "daniela", "port": 9200, "path": "/health"},
     {"name": "hermes", "port": 9300, "path": "/api/status"},
     {"name": "infra_opt", "port": 9700, "path": "/api/infra/status"},
     {"name": "agent_mobile", "port": 9800, "path": "/api/agent/status"},

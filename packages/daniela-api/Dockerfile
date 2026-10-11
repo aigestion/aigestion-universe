@@ -31,4 +31,4 @@ HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
     CMD curl -f http://localhost:8000/health || exit 1
 
 # Run
-CMD ["uvicorn", "", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "daniela_api.api_gateway:app"]

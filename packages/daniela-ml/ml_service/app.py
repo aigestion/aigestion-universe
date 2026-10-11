@@ -7,6 +7,7 @@ import os
 import sys
 
 sys.path.insert(0, "/app")
+sys.path.insert(0, "/daniela-core")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)) + "/..")
 
 from flask import Flask, jsonify
@@ -25,10 +26,10 @@ def _safe_register(name, fn):
 
 
 def register_all():
-    from core.knowledge.rag_bp import rag_bp
-    from core.memory.mem0_bp import memory_bp as mem0_bp
-    from core.observability.langfuse_bp import langfuse_bp
-    from core.orchestration.langgraph_bp import langgraph_bp
+    from daniela_core.legacy.knowledge.rag_bp import rag_bp
+    from daniela_core.legacy.memory.mem0_bp import memory_bp as mem0_bp
+    from daniela_core.legacy.observability.langfuse_bp import langfuse_bp
+    from daniela_core.legacy.orchestration.langgraph_bp import langgraph_bp
 
     for name, bp in [
         ("rag", rag_bp),
