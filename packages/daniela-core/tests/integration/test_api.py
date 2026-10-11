@@ -116,6 +116,17 @@ def test_admin_audit_and_verify(client):
     assert log.json()["chain_valid"] is True
 
 
+def test_vision_rejects_bad_payloads(client):
+    r = client.post("/api/v1/vision/analyze", json={"image_b64": "!!!no-base64!!!"})
+    assert r.status_code == 400
+    # Sin backend configurado responde 503, nunca 500 ni traza.
+    import base64
+
+    tiny = base64.b64encode(b"\x89PNG\r\n\x1a\n" + b"\x00" * 64).decode()
+    r = client.post("/api/v1/vision/analyze", json={"image_b64": tiny})
+    assert r.status_code in (503, 502)
+
+
 def test_admin_keys_status_never_leaks_values(client, monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "AIza-test-value-must-not-leak")
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)

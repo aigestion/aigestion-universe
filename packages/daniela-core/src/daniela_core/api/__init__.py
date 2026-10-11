@@ -28,6 +28,7 @@ from daniela_core.routes import (
     persona,
     tools,
     vault,
+    vision,
     voice,
 )
 from daniela_core.security import SecurityEngine
@@ -108,5 +109,6 @@ def create_app() -> FastAPI:
     app.include_router(agents.router, prefix="/api/v1/agents", tags=["agents"])
     app.include_router(tools.router, prefix="/api/v1/tools", tags=["tools"])
     app.include_router(admin.router, prefix="/api/v1/admin", tags=["admin"])
+    app.include_router(vision.router, prefix="/api/v1/vision", tags=["vision"])
 
     return app

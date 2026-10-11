@@ -75,7 +75,10 @@ from pathlib import Path
 #
 # 99 -> 100 el 2026-10-11: +1 test_admin_keys_status_never_leaks_values
 #          (endpoint GET /api/v1/admin/keys/status). MEDIDO.
-LINEA_BASE = 100
+#
+# 100 -> 101 el 2026-10-11: +1 test_vision_rejects_bad_payloads
+#          (endpoint POST /api/v1/vision/analyze). MEDIDO.
+LINEA_BASE = 101
 
 # Directorios donde viven los tests en este monorepo:
 TEST_DIRS = [

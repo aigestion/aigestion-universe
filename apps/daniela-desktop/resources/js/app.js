@@ -257,7 +257,171 @@ async function accionCtx(accion) {
       break;
     }
     case 'ajustes': abrirMenuVision('ajustes'); break;
+    case 'aconsejar': aconsejar({ forzar: true }); break;
+    case 'consejo-auto': alternarConsejoAuto(); break;
     default: break;
+  }
+}
+
+// ── Consejero por screenshot (OpenRouter gratis vía el core) ───────
+// Flujo: captura local (WGC) -> hash de escena (debounce) -> memoria
+// (consejos pasados) -> POST /api/v1/vision/analyze del core -> burbuja
+// + voz -> feedback 👍/👎 que se guarda para aprender.
+// Privacidad: solo captura con confirmacion (una por sesion) o modo
+// proactivo activado por el usuario; nada se sube salvo el frame actual.
+const asesor = {
+  timer: 0,
+  ultimoHash: '',
+  enCurso: false,
+  proactivo: localStorage.getItem('daniela-consejo-auto') === '1',
+  intervaloMs: 90000,
+  confirmado: false,
+};
+
+function hashEscena(b64) {
+  // FNV-1a sobre muestra: basta para detectar "misma escena".
+  let h = 0x811c9dc5;
+  const n = Math.min(b64.length, 20000);
+  const paso = Math.max(1, Math.floor(n / 2000));
+  for (let i = 0; i < n; i += paso) {
+    h ^= b64.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(36) + ':' + b64.length;
+}
+
+function baseCore() {
+  return (app.cfg?.menu?.backend || 'http://127.0.0.1:9200').replace(/\/$/, '');
+}
+
+async function pedirConsejo(b64, contexto) {
+  const res = await fetch(`${baseCore()}/api/v1/vision/analyze`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image_b64: b64, prompt: undefined, context: contexto }),
+  });
+  if (!res.ok) throw new Error(`vision ${res.status}`);
+  return res.json();
+}
+
+async function recordarConsejosPrevios(ventana) {
+  try {
+    const res = await fetch(`${baseCore()}/api/v1/memory/recall`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: `consejo pantalla ${ventana || ''}`.trim(), limit: 3 }),
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.results || data.memories || [];
+  } catch {
+    return [];
+  }
+}
+
+async function guardarRastro(tipo, datos) {
+  try {
+    await fetch(`${baseCore()}/api/v1/memory/store`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tier: 'episodic',
+        content: JSON.stringify({ tipo, ...datos, ts: Date.now() }),
+        importance: 0.6,
+      }),
+    });
+  } catch { /* el consejo no depende del archivo */ }
+}
+
+function botonesFeedback(hash) {
+  // 👍/👎 dentro de la burbuja: 1 clic guarda el veredicto y limpia.
+  const cont = document.createElement('span');
+  cont.style.marginLeft = '8px';
+  cont.style.whiteSpace = 'nowrap';
+  [['👍', 'util'], ['👎', 'no-util']].forEach(([emoji, veredicto]) => {
+    const b = document.createElement('button');
+    b.textContent = emoji;
+    b.title = veredicto === 'util' ? 'Me sirvió' : 'No me sirvió';
+    b.style.cssText = 'background:none;border:none;cursor:pointer;font-size:14px;margin-left:4px;';
+    b.onclick = (ev) => {
+      ev.stopPropagation();
+      guardarRastro('feedback-consejo', { hash, veredicto });
+      ui.burbuja.classList.remove('visible');
+      burbuja(veredicto === 'util' ? 'Anotado, ¡a por ello!' : 'Anotado: lo tendré en cuenta la próxima.');
+    };
+    cont.appendChild(b);
+  });
+  ui.burbuja.appendChild(cont);
+}
+
+async function aconsejar({ forzar = false } = {}) {
+  if (asesor.enCurso) return;
+  asesor.enCurso = true;
+  ui.captura.classList.add('activo');
+  try {
+    const cfgCap = app.cfg?.capture || {};
+    if (!cfgCap.habilitada) {
+      burbuja('Activa la captura en Ajustes para que pueda mirar tu pantalla.');
+      return;
+    }
+    if (!asesor.confirmado && cfgCap.confirmarSiempre !== false) {
+      asesor.confirmado = window.confirm(
+        'Daniela va a capturar tu pantalla para aconsejarte. ¿Continuar? (una vez por sesión)'
+      );
+      if (!asesor.confirmado) return;
+    }
+    const st = await invocar('capture_status');
+    if (!st?.activa) {
+      await invocar('start_capture', { objetivo: cfgCap.objetivo || 'monitor' });
+    }
+    const frame = await invocar('get_capture_frame', { maxAncho: 960 });
+    if (!frame) {
+      burbuja('Aún no hay frame de captura, prueba en un momento.');
+      return;
+    }
+    const b64 = String(frame).replace(/^data:image\/\w+;base64,/, '');
+    const hash = hashEscena(b64);
+    if (!forzar && hash === asesor.ultimoHash) return; // misma escena: silencio
+    asesor.ultimoHash = hash;
+
+    const previos = await recordarConsejosPrevios('');
+    const contexto = {
+      origen: 'daniela-desktop',
+      modo: forzar ? 'manual' : 'proactivo',
+      consejos_previos: previos.slice(0, 3),
+    };
+    const { advice } = await pedirConsejo(b64, contexto);
+    if (!advice) {
+      burbuja('Veo tu pantalla pero no se me ocurre nada útil ahora mismo.');
+      return;
+    }
+    // decir() pone burbuja+voz+cara; despues se extiende el tiempo y se
+    // cuelgan los botones (burbuja() reescribe el contenido, orden importa).
+    decir(advice);
+    burbuja(advice, 15000);
+    botonesFeedback(hash);
+    await guardarRastro('consejo', { hash, advice: String(advice).slice(0, 500) });
+    app.conductas?.expresion?.('alegria');
+  } catch (e) {
+    burbuja(`No pude analizar la pantalla: ${e?.message || e}`);
+  } finally {
+    ui.captura.classList.remove('activo');
+    asesor.enCurso = false;
+  }
+}
+
+function alternarConsejoAuto() {
+  asesor.proactivo = !asesor.proactivo;
+  try {
+    localStorage.setItem('daniela-consejo-auto', asesor.proactivo ? '1' : '0');
+  } catch { /* sin almacenamiento: solo esta sesion */ }
+  if (asesor.proactivo) {
+    asesor.timer = setInterval(() => aconsejar(), asesor.intervaloMs);
+    burbuja('Consejo proactivo activado: miro tu pantalla cada rato (puedes pararlo aquí).');
+  } else {
+    clearInterval(asesor.timer);
+    asesor.timer = 0;
+    burbuja('Consejo proactivo desactivado.');
   }
 }
 
