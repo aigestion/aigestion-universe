@@ -78,12 +78,21 @@ pub fn run() {
                 *handle.state::<Arc<AppState>>().config.write() = cfg;
             }
 
-            // La ventana del avatar no debe robar el foco al arrancar: aparece
-            // en su esquina y espera a que la busquen.
+            // El avatar arranca visible en su esquina, siempre encima, sin
+            // robar el foco. Si falla el show, se avisa (antes era silencio).
             if let Some(w) = handle.get_webview_window("main") {
                 let (x, y) = *handle.state::<Arc<AppState>>().posicion.read();
-                let _ = w.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
-                let _ = w.show();
+                if let Err(e) = w.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y })) {
+                    tracing::warn!("no se pudo posicionar el avatar: {e}");
+                }
+                if let Err(e) = w.show() {
+                    tracing::warn!("no se pudo mostrar el avatar al arrancar: {e}");
+                }
+                if let Err(e) = w.set_always_on_top(true) {
+                    tracing::warn!("no se pudo fijar TOPMOST al arrancar: {e}");
+                }
+            } else {
+                tracing::warn!("ventana 'main' no encontrada al arrancar");
             }
             let _ = handle
                 .get_webview_window("menu")
@@ -201,31 +210,39 @@ fn registrar_hotkey(handle: &tauri::AppHandle) -> Result<(), Box<dyn std::error:
 static TOPMOST_ACTIVO: AtomicBool = AtomicBool::new(true);
 
 /// Mantiene la ventana del avatar como TOPMOST aunque el DWM u otras apps
-/// intenten poner algo encima. Hilo propio, cada 2 s. Sin SHOWWINDOW a
-/// proposito: si el usuario oculta el avatar (bandeja), debe seguir oculto.
+/// intenten poner algo encima: primera capa, siempre. Hilo propio, cada 2 s.
+/// Sin SHOWWINDOW ni foco a proposito: si el usuario oculta el avatar
+/// (bandeja), debe seguir oculto; aqui solo se defiende el orden Z.
 fn forzar_topmost() {
     TOPMOST_ACTIVO.store(true, Ordering::SeqCst);
     std::thread::spawn(|| {
         use windows::{
             core::w,
             Win32::UI::WindowsAndMessaging::{
-                FindWindowW, SetWindowPos, HWND_TOPMOST, SWP_NOACTIVATE, SWP_NOMOVE, SWP_NOSIZE,
+                FindWindowW, IsWindowVisible, SetWindowPos, HWND_TOPMOST, SWP_NOACTIVATE, SWP_NOMOVE,
+                SWP_NOSIZE,
             },
         };
         while TOPMOST_ACTIVO.load(Ordering::SeqCst) {
             std::thread::sleep(std::time::Duration::from_secs(2));
             unsafe {
                 if let Ok(hwnd) = FindWindowW(None, w!("Daniela")) {
-                    if let Err(e) = SetWindowPos(
-                        hwnd,
-                        HWND_TOPMOST,
-                        0,
-                        0,
-                        0,
-                        0,
-                        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
-                    ) {
-                        tracing::warn!("no se pudo fijar TOPMOST: {e:?}");
+                    // Solo pelear el Z-order si esta visible: ocultar a
+                    // bandeja es una decision del usuario y se respeta.
+                    if IsWindowVisible(hwnd).as_bool() {
+                        // TOPMOST sin NOACTIVATE seria mas agresivo pero roba
+                        // el foco; se mantiene NOACTIVATE por diseno.
+                        if let Err(e) = SetWindowPos(
+                            hwnd,
+                            HWND_TOPMOST,
+                            0,
+                            0,
+                            0,
+                            0,
+                            SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
+                        ) {
+                            tracing::warn!("no se pudo fijar TOPMOST: {e:?}");
+                        }
                     }
                 }
             }
