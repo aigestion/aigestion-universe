@@ -121,4 +121,6 @@ packages/daniela-tenants/storage/archives/worktree-backup-*.tar.gz
 *.sqlite
 *.sqlite3
 *.jsonl
+*.bak
+**/tunnel_guard/backups/
 scripts/core/data/
