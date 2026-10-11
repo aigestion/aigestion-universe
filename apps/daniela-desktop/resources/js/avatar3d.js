@@ -94,6 +94,10 @@ export class Avatar3D {
     this._t = 0;
     this._ultimo = 0;
     this._puntero = new THREE.Vector2(0, 0);
+    // Cursor global (fuera del WebView), lo alimenta app.js por polling.
+    // {x, y, t}: NDC aprox. centrada en el avatar + timestamp. Si caduca
+    // (>1.5 s), se vuelve al puntero local del canvas.
+    this._punteroGlobal = null;
     this._mirada = new THREE.Vector2(0, 0);
     this._sacada = { yaw: 0, pitch: 0, proximo: 0 };
     this._audioCtx = null;
@@ -463,11 +467,17 @@ export class Avatar3D {
     }
 
     const sigo = this.seguirCursor !== false ? 1 : 0;
+    // Puntero efectivo: el global (fuera de la ventana) si esta fresco,
+    // si no el local del canvas.
+    const pg = this._punteroGlobal;
+    const fresco = pg && (performance.now() - pg.t < 1500);
+    const px = fresco ? pg.x : this._puntero.x;
+    const py = fresco ? pg.y : this._puntero.y;
     const quieroYaw = THREE.MathUtils.clamp(
-      this._puntero.x * 0.55 * sigo + this._sacada.yaw, -0.7, 0.7
+      px * 0.55 * sigo + this._sacada.yaw, -0.7, 0.7
     );
     const quieroPitch = THREE.MathUtils.clamp(
-      -this._puntero.y * 0.3 * sigo + this._sacada.pitch, -0.35, 0.35
+      -py * 0.3 * sigo + this._sacada.pitch, -0.35, 0.35
     );
     const k = 1 - Math.exp(-dt * 4.5);
     this._mirada.x += (quieroYaw - this._mirada.x) * k;

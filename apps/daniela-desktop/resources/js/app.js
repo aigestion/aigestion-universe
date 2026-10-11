@@ -94,9 +94,31 @@ function burbuja(texto, ms = 4200) {
   }, ms);
 }
 
+/**
+ * Sentimiento aproximado del turno para la cara. Reglas locales, sin red:
+ * el orden importa (celebracion y enfado ganan a alegria generica).
+ * Devuelve nombre de PLANTILLAS_EXPRESION o null.
+ */
+function sentimientoDe(texto) {
+  const t = (texto || '').toLowerCase();
+  if (!t) return null;
+  if (/(felicidades|enhorabuena|bravo|ol[ée]|fiesta|lo lograste|aprobado|celebremos)/.test(t)) return 'celebracion';
+  if (/(basta|no hagas|deja de|te lo advierto|ordeno|es una orden)/.test(t)) return 'enfado';
+  if (/(lo siento|perdona|error|fallo|fue mal|triste|preocupa|cuidado|peligro|malas noticias)/.test(t)) return 'preocupacion';
+  if (/\?/.test(t) && /(seguro|crees|duda|quizas|quizás|no s[ée]|probamos)/.test(t)) return 'duda';
+  if (/(sorpresa|no me digas|madre m[íi]a|ostras|vaya,?\s*\w*!)/.test(t)) return 'sorpresa';
+  if (/(vale|claro|genial|perfecto|gracias|jaja|jeje|feliz|content[oa]|me alegro|que bien|bravo)/.test(t)) return 'alegria';
+  return null;
+}
+
 /** Hablar = burbuja + voz. La voz se respeta como config, la burbuja no. */
 function decir(texto, { voz = true } = {}) {
   burbuja(texto);
+  // La cara acompana al turno: plantilla de expresion sobre la curva en curso.
+  const s = sentimientoDe(texto);
+  if (s && app.conductas && typeof app.conductas.expresion === 'function') {
+    app.conductas.expresion(s);
+  }
   const c = app.cfg?.voice;
   if (!voz || !c?.habilitada || !app.avatar) return;
   // Se deja al backend la voz neuronal si esta configurado; si no, la del
@@ -148,6 +170,11 @@ async function cambiarEstado(nuevo, { propagar = true } = {}) {
 // ── Clicks: la maquina de estados del raton ────────────────────────
 
 function alClicIzquierdo(ev) {
+  // Si el puntero se movio (arrastre), el click que sigue a mouseup se ignora.
+  if (app.clicSoltado) {
+    app.clicSoltado = false;
+    return;
+  }
   // Click simple vs doble: el doble necesita DOS eventos `click` separados,
   // asi que se cuenta el tiempo desde el anterior.
   const ahora = performance.now();
@@ -236,17 +263,28 @@ async function accionCtx(accion) {
 
 // ── Arrastre ───────────────────────────────────────────────────────
 
+// Umbral en px para distinguir clic de arrastre.
+const UMBRAL_ARRASTRE_PX = 5;
+
 async function alBoton(ev) {
-  app.arrastrando = true;
+  app.arrastrando = false;
   app.clicSoltado = false;
+  app.arrastreX0 = ev.screenX;
+  app.arrastreY0 = ev.screenY;
+  app.arrastreIniciado = false;
   ui.cont.classList.add('arrastrando');
   app.izquierda = ev.screenX - ui.cont.getBoundingClientRect().left;
   app.arriba = ev.screenY - ui.cont.getBoundingClientRect().top;
 }
 
 async function alSoltar() {
+  const huboArrastre = app.arrastrando;
   app.arrastrando = false;
+  app.arrastreIniciado = false;
   ui.cont.classList.remove('arrastrando');
+  if (!huboArrastre) return;
+  // Solo si hubo arrastre de verdad se marca para suprimir el clic.
+  app.clicSoltado = true;
   // La posicion final se guarda para la proxima sesion.
   // Rust devuelve la tupla (x, y) serializada como array [x, y].
   try {
@@ -260,10 +298,18 @@ async function alSoltar() {
 }
 
 async function alMover(ev) {
-  if (!app.arrastrando) return;
-  app.clicSoltado = true;
-  // El arrastre nativo de la ventana lo hace Tauri; aqui solo Evangelizamos el
-  // desplazamiento para que la ventana "siga" al cursor sin saltos.
+  if (app.clicSoltado || app.arrastreX0 === undefined) return;
+  const dx = ev.screenX - app.arrastreX0;
+  const dy = ev.screenY - app.arrastreY0;
+  if (!app.arrastrando) {
+    // Aun no se supera el umbral: fue un clic, no un arrastre.
+    if (Math.hypot(dx, dy) < UMBRAL_ARRASTRE_PX) return;
+    app.arrastrando = true;
+  }
+  if (app.arrastreIniciado) return;
+  app.arrastreIniciado = true;
+  // El arrastre nativo de la ventana lo hace Tauri con una sola llamada;
+  // el SO continua el drag hasta mouseup.
   try {
     await window.__TAURI__.window.getCurrentWindow().startDragging();
   } catch {
@@ -292,6 +338,27 @@ function bucle() {
   }
   requestAnimationFrame(bucle);
 }
+
+// ── Mirada global: el avatar sigue al cursor por toda la pantalla ──
+// Polling ligero (150 ms): Rust da el cursor en px fisicos, aqui se pasa
+// a NDC centrada en el avatar. Si falla o se apaga seguirCursor, el avatar
+// usa su puntero local del canvas (fallback en avatar3d.js por caducidad).
+setInterval(async () => {
+  try {
+    if (!app.avatar?.listo || app.avatar.seguirCursor === false) return;
+    const win = window.__TAURI__?.window?.getCurrentWindow?.();
+    if (!win) return;
+    const pos = await win.outerPosition();
+    const size = await win.innerSize();
+    const cur = await invocar('cursor_global');
+    if (!pos || !size || !Array.isArray(cur)) return;
+    const cx = pos.x + size.width / 2;
+    const cy = pos.y + size.height / 2;
+    const nx = Math.max(-1, Math.min(1, (cur[0] - cx) / 800));
+    const ny = Math.max(-1, Math.min(1, (cur[1] - cy) / 800));
+    app.avatar._punteroGlobal = { x: nx, y: ny, t: performance.now() };
+  } catch { /* sin Tauri o sin comando: el fallback local manda */ }
+}, 150);
 
 // ── Arranque ───────────────────────────────────────────────────────
 

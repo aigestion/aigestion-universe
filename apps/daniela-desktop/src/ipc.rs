@@ -157,6 +157,19 @@ fn url_permitida(url: &str) -> bool {
     url.starts_with("http://") || url.starts_with("https://")
 }
 
+/// Posicion global del cursor en pixeles fisicos de pantalla, para que la
+/// mirada siga al cursor fuera del WebView. Solo lee el SO, sin efectos.
+#[tauri::command]
+pub fn cursor_global() -> R<(i32, i32)> {
+    use windows::Win32::Foundation::POINT;
+    use windows::Win32::UI::WindowsAndMessaging::GetCursorPos;
+    let mut pt = POINT { x: 0, y: 0 };
+    unsafe {
+        GetCursorPos(&mut pt).map_err(|e| e.to_string())?;
+    }
+    Ok((pt.x, pt.y))
+}
+
 fn open_url_inner(app: &AppHandle, url: String) -> R<()> {
     if !url_permitida(&url) {
         return Err(format!("solo se abren URLs http(s): {url}"));

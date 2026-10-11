@@ -62,6 +62,7 @@ pub fn run() {
             ipc::set_menu_tab,
             ipc::system_info,
             ipc::open_url,
+            ipc::cursor_global,
             ipc::get_config,
             ipc::set_config,
         ])

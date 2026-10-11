@@ -71,6 +71,19 @@ const MICRO = {
 
 const CLAVES = Object.keys(MICRO);
 
+// ── Plantillas de expresion conversacional ──────────────────────────
+// Valores sobre {smile, furrow, sigh} (0..1), los unicos canales que el
+// GLB aproxima. Se aplican con envolvente subida/bajada y decaen solas;
+// no tocan curvas ni objetivos en curso (se suman encima en el tick).
+export const PLANTILLAS_EXPRESION = {
+  alegria:      { smile: 0.85, furrow: 0.0,  sigh: 0.0 },
+  duda:         { smile: 0.10, furrow: 0.65, sigh: 0.0 },
+  sorpresa:     { smile: 0.25, furrow: 0.0,  sigh: 0.35 },
+  preocupacion: { smile: 0.0,  furrow: 0.55, sigh: 0.45 },
+  enfado:       { smile: 0.0,  furrow: 0.8,  sigh: 0.15 },
+  celebracion:  { smile: 1.0,  furrow: 0.0,  sigh: 0.0 },
+};
+
 export class Conductas {
   /**
    * @param {object} o
@@ -108,6 +121,9 @@ export class Conductas {
 
     this._cara = { smile: 0, furrow: 0, sigh: 0 };
     this._objetivoCara = { smile: 0, furrow: 0, sigh: 0 };
+    // Expresion conversacional puntual (ver `expresion()`): se suma encima
+    // y decae sola sin tocar curvas ni objetivos.
+    this._expresion = null;
     this._curva = 'estandar';
     this._curvaT = 0;
     this._curvaDur = 0;
@@ -155,6 +171,19 @@ export class Conductas {
   }
 
   /**
+   * Plantilla de expresion ligada a la conversacion
+   * (`alegria|duda|sorpresa|preocupacion|enfado|celebracion`).
+   * Dura `dur` ms con envolvente subida/bajada y decae sola.
+   * Devuelve false si el nombre no existe.
+   */
+  expresion(nombre, dur = 2600) {
+    const p = PLANTILLAS_EXPRESION[nombre];
+    if (!p) return false;
+    this._expresion = { ...p, t: 0, dur };
+    return true;
+  }
+
+  /**
    * Avanza la simulacion. Devuelve la cara a aplicar este frame.
    * @param {number} dt segundos
    */
@@ -169,8 +198,22 @@ export class Conductas {
     this._aburrimiento(dt, e, p);
     this._curiosidad();
     this._mezclarCara(dt);
+    this._avanzarExpresion(dt);
 
     return this._cara;
+  }
+
+  /** Suma la expresion conversacional con envolvente y la retira al terminar. */
+  _avanzarExpresion(dt) {
+    const ex = this._expresion;
+    if (!ex) return;
+    ex.t += dt * 1000;
+    const u = Math.min(1, ex.t / Math.max(1, ex.dur));
+    const env = Math.sin(u * Math.PI);
+    this._cara.smile = Math.min(1, this._cara.smile + ex.smile * env);
+    this._cara.furrow = Math.min(1, this._cara.furrow + ex.furrow * env);
+    this._cara.sigh = Math.min(1, this._cara.sigh + ex.sigh * env);
+    if (u >= 1) this._expresion = null;
   }
 
   // ── 1. Ambiente ──────────────────────────────────────────────
