@@ -9,6 +9,15 @@ async function req<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>
 }
 
+export interface KeySlot {
+  id: string
+  label: string
+  env: string[]
+  configured: boolean
+  dashboard_url: string
+  steps: string[]
+}
+
 export const api = {
   brain: {
     process: (input: string, context?: Record<string, unknown>) =>
@@ -36,6 +45,9 @@ export const api = {
   },
   agents: { list: () => req("/api/v1/agents/list") },
   tools: { list: () => req("/api/v1/tools/list"), providers: () => req("/api/v1/tools/providers") },
+  security: {
+    keysStatus: (): Promise<{ slots: KeySlot[] }> => req("/api/v1/admin/keys/status"),
+  },
   health: () => req("/health"),
 }
 

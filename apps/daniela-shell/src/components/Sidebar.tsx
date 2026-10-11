@@ -1,6 +1,6 @@
 "use client"
 
-import { Brain, Boxes, Users, Heart, Mic, Wrench, Shield, Settings } from "lucide-react"
+import { Brain, Boxes, Users, Heart, Mic, Wrench, Shield, Settings, KeyRound } from "lucide-react"
 import { useShellStore } from "@/lib/store"
 
 const nav = [
@@ -11,6 +11,7 @@ const nav = [
   { icon: Mic, label: "Voice", section: "voice" },
   { icon: Wrench, label: "Tools", section: "tools" },
   { icon: Shield, label: "Security", section: "admin" },
+  { icon: KeyRound, label: "API Keys", section: "keys" },
   { icon: Settings, label: "Settings", section: "settings" },
 ] as const
 

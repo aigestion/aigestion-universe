@@ -72,7 +72,10 @@ from pathlib import Path
 #          codigo preservado sin integrar. Los 449 eran tests legacy con
 #          53 ficheros en error; los 99 restantes colectan con 0 errores.
 #          MEDIDO con `--collect-only` (no sumado).
-LINEA_BASE = 99
+#
+# 99 -> 100 el 2026-10-11: +1 test_admin_keys_status_never_leaks_values
+#          (endpoint GET /api/v1/admin/keys/status). MEDIDO.
+LINEA_BASE = 100
 
 # Directorios donde viven los tests en este monorepo:
 TEST_DIRS = [

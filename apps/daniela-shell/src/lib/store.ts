@@ -4,7 +4,7 @@ import type { Quality } from "@aigestion/three-daniela"
 
 export type Section =
   | "brain" | "orchestrator" | "agents" | "life"
-  | "voice" | "tools" | "admin" | "settings"
+  | "voice" | "tools" | "admin" | "settings" | "keys"
 
 interface ShellState {
   personaName: string

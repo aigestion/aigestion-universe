@@ -114,3 +114,18 @@ def test_admin_audit_and_verify(client):
     log = client.get("/api/v1/admin/audit-log")
     assert log.status_code == 200
     assert log.json()["chain_valid"] is True
+
+
+def test_admin_keys_status_never_leaks_values(client, monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", "AIza-test-value-must-not-leak")
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    r = client.get("/api/v1/admin/keys/status")
+    assert r.status_code == 200
+    slots = {s["id"]: s for s in r.json()["slots"]}
+    assert slots["gemini"]["configured"] is True
+    assert slots["anthropic"]["configured"] is False
+    # No secret material may appear anywhere in the response body.
+    assert "AIza-test-value-must-not-leak" not in r.text
+    for s in slots.values():
+        assert "value" not in s
+        assert isinstance(s["configured"], bool)
