@@ -35,6 +35,12 @@ def index():
 def status():
     return jsonify({"name": "Performance & Quality", "ideas": 10, "modules": 5, "status": "alive"})
 
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok", "service": "daniela-backend"})
+
+
 if __name__ == "__main__":
     print(f"[Perf Opt] Starting on port {WEB_PORT}...")
     app.run(host="0.0.0.0", port=WEB_PORT, debug=False)

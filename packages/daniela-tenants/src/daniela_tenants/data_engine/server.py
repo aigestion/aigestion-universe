@@ -475,5 +475,10 @@ def create_app():
     return app
 
 
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok", "service": "daniela-tenants"})
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=9870, debug=False)

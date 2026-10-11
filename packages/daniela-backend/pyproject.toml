@@ -16,6 +16,7 @@ dependencies = [
     "asyncpg>=0.29",
     "redis>=5.0",
     "httpx>=0.25",
+    "flask>=3.0",
 ]
 
 [project.optional-dependencies]

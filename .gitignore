@@ -122,5 +122,13 @@ packages/daniela-tenants/storage/archives/worktree-backup-*.tar.gz
 *.sqlite3
 *.jsonl
 *.bak
+*.backup
 **/tunnel_guard/backups/
 scripts/core/data/
+
+# Research dumps sueltos en secops/ (trading bots, notebooks, decenterland):
+# se conservan en disco pero fuera de git y gates. El codigo organizado vive
+# en subdirectorios (audit/, auth/, hardening/, ...), que siguen trackeados.
+# Solo afecta a ficheros sueltos (tracked existentes no se des-trackean).
+packages/daniela-secure/secops/*.py
+packages/daniela-secure/secops/decenterland/

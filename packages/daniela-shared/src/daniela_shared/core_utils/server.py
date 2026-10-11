@@ -8,7 +8,7 @@ import time
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 
-from core.auth.casbin_auth import create_auth_middleware
+from daniela_shared.core_utils.auth.casbin_auth import create_auth_middleware
 
 app = Flask(__name__, template_folder=".", static_folder=".")
 CORS(app, origins=["http://localhost:9200", "http://localhost:9300", "http://localhost:9400", "http://localhost:9500"])
@@ -132,6 +132,11 @@ def dispatch_skill():
         latency = round((time.time() - start_time) * 1000, 2)
         print(f"[CONSOLE_ERROR] [{now}] Error dispatching skill: {str(e)}")
         return jsonify({"status": "error", "reply": f"❌ Error interno: {str(e)}", "latency_ms": latency}), 200
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok", "service": "daniela-shared"})
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8082, debug=False)

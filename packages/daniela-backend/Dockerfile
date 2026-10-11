@@ -24,12 +24,12 @@ COPY README.md ./
 
 RUN uv pip install --system -e . --no-cache
 
-# Expose port (will be overridden by docker-compose)
-EXPOSE 8000
+# Expose port (perf-opt listens on WEB_PORT=9998 from agent_shared.config)
+EXPOSE 9998
 
 # Health check
 HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:9998/health || exit 1
 
-# Run
-CMD ["uvicorn", "", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+# Run (standalone Flask entrypoint under hyphenated dir; not importable as module)
+CMD ["python", "src/daniela_backend/perf-opt/server.py"]
