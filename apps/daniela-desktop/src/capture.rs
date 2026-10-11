@@ -195,6 +195,18 @@ where
     Ok(descripcion)
 }
 
+/// Traduce "incluir cursor" al ajuste de WGC.
+///
+/// Extraido para poder fijarlo con tests: el original tenia las ramas
+/// invertidas (`true` pedia captura SIN cursor).
+fn cursor_settings(cursor: bool) -> CursorCaptureSettings {
+    if cursor {
+        CursorCaptureSettings::Default
+    } else {
+        CursorCaptureSettings::WithoutCursor
+    }
+}
+
 fn build_settings<T>(
     item: T,
     cursor: bool,
@@ -206,11 +218,7 @@ where
 {
     Settings::new(
         item,
-        if cursor {
-            CursorCaptureSettings::WithoutCursor
-        } else {
-            CursorCaptureSettings::Default
-        },
+        cursor_settings(cursor),
         DrawBorderSettings::Default,
         SecondaryWindowSettings::Default,
         MinimumUpdateIntervalSettings::Custom(std::time::Duration::from_millis(
@@ -362,4 +370,24 @@ pub fn listar_monitores() -> Result<Vec<MonitorInfo>, String> {
         });
     }
     Ok(out)
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn cursor_true_pide_captura_con_cursor() {
+        assert!(matches!(
+            cursor_settings(true),
+            CursorCaptureSettings::Default
+        ));
+    }
+
+    #[test]
+    fn cursor_false_pide_captura_sin_cursor() {
+        assert!(matches!(
+            cursor_settings(false),
+            CursorCaptureSettings::WithoutCursor
+        ));
+    }
 }

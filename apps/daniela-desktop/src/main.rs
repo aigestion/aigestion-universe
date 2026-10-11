@@ -13,6 +13,7 @@ mod capture;
 mod ipc;
 mod state;
 
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use tauri::menu::{Menu, MenuItem, PredefinedMenuItem};
 use tauri::tray::TrayIconBuilder;
@@ -153,7 +154,10 @@ fn crear_tray(handle: &tauri::AppHandle) -> Result<(), Box<dyn std::error::Error
                     };
                     let _ = app.emit("capture-state", !alterna);
                 }
-                "salir" => app.exit(0),
+                "salir" => {
+                    detener_topmost();
+                    app.exit(0);
+                }
                 _ => {}
             }
         })
@@ -192,10 +196,15 @@ fn registrar_hotkey(handle: &tauri::AppHandle) -> Result<(), Box<dyn std::error:
     Ok(())
 }
 
+/// Interruptor del hilo topmost. Estatico porque el hilo sobrevive al
+/// `setup` y solo muere al salir del proceso o con `detener_topmost()`.
+static TOPMOST_ACTIVO: AtomicBool = AtomicBool::new(true);
+
 /// Mantiene la ventana del avatar como TOPMOST aunque el DWM u otras apps
 /// intenten poner algo encima. Hilo propio, cada 2 s. Sin SHOWWINDOW a
 /// proposito: si el usuario oculta el avatar (bandeja), debe seguir oculto.
 fn forzar_topmost() {
+    TOPMOST_ACTIVO.store(true, Ordering::SeqCst);
     std::thread::spawn(|| {
         use windows::{
             core::w,
@@ -203,11 +212,11 @@ fn forzar_topmost() {
                 FindWindowW, SetWindowPos, HWND_TOPMOST, SWP_NOACTIVATE, SWP_NOMOVE, SWP_NOSIZE,
             },
         };
-        loop {
+        while TOPMOST_ACTIVO.load(Ordering::SeqCst) {
             std::thread::sleep(std::time::Duration::from_secs(2));
             unsafe {
                 if let Ok(hwnd) = FindWindowW(None, w!("Daniela")) {
-                    let _ = SetWindowPos(
+                    if let Err(e) = SetWindowPos(
                         hwnd,
                         HWND_TOPMOST,
                         0,
@@ -215,11 +224,18 @@ fn forzar_topmost() {
                         0,
                         0,
                         SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
-                    );
+                    ) {
+                        tracing::warn!("no se pudo fijar TOPMOST: {e:?}");
+                    }
                 }
             }
         }
     });
+}
+
+/// Pide al hilo topmost que termine (tarda como maximo un ciclo de 2 s).
+fn detener_topmost() {
+    TOPMOST_ACTIVO.store(false, Ordering::SeqCst);
 }
 
 fn app_icon() -> tauri::image::Image<'static> {

@@ -284,3 +284,35 @@ impl AppState {
         *self.avatar_state.write() = e;
     }
 }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn avatar_state_roundtrip() {
+        for e in [
+            AvatarState::Sleeping,
+            AvatarState::Idle,
+            AvatarState::Listening,
+            AvatarState::Thinking,
+            AvatarState::Talking,
+            AvatarState::Resting,
+        ] {
+            assert_eq!(AvatarState::from_str(e.as_str()), Some(e));
+        }
+        assert_eq!(AvatarState::from_str("volando"), None);
+        assert_eq!(AvatarState::from_str(""), None);
+    }
+
+    #[test]
+    fn config_serde_roundtrip() {
+        let cfg = Config::default();
+        let json = serde_json::to_value(&cfg).expect("serializa");
+        assert_eq!(json["menu"]["pestanaInicial"], "gev");
+        let de: Config = serde_json::from_value(json).expect("deserializa");
+        assert_eq!(de.menu.backend, "http://127.0.0.1:9200");
+        // JSON parcial no debe reventar (serde default en cada nivel).
+        let parcial: Config = serde_json::from_str("{}").expect("defecto total");
+        assert_eq!(parcial.capture.fps, 10);
+    }
+}

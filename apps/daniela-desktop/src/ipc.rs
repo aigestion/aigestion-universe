@@ -152,8 +152,13 @@ fn hostname() -> String {
         .unwrap_or_else(|_| "desconocido".into())
 }
 
+/// Politica de URLs: solo http(s). Pura para poder fijarla con tests.
+fn url_permitida(url: &str) -> bool {
+    url.starts_with("http://") || url.starts_with("https://")
+}
+
 fn open_url_inner(app: &AppHandle, url: String) -> R<()> {
-    if !(url.starts_with("http://") || url.starts_with("https://")) {
+    if !url_permitida(&url) {
         return Err(format!("solo se abren URLs http(s): {url}"));
     }
     app.opener().open_url(url, None::<&str>).map_err(|e| e.to_string())
@@ -280,4 +285,29 @@ pub fn get_config(state: State<'_, Arc<AppState>>) -> Config {
 #[tauri::command]
 pub fn set_config(app: AppHandle, state: State<'_, Arc<AppState>>, config: Config) -> R<()> {
     set_config_inner(&app, state.inner(), config)
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn permite_http_y_https() {
+        assert!(url_permitida("http://localhost:9200"));
+        assert!(url_permitida("https://aigestion.net"));
+    }
+
+    #[test]
+    fn rechaza_todo_lo_demas() {
+        for url in [
+            "",
+            "file:///etc/passwd",
+            "javascript:alert(1)",
+            "ftp://x/y",
+            "data:text/html,hola",
+            "HTTP://mayusculas.example",
+            "javascript&#58;alert(1)",
+        ] {
+            assert!(!url_permitida(url), "debió rechazar {url}");
+        }
+    }
 }
