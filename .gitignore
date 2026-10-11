@@ -108,6 +108,10 @@ packages/daniela-backend/src/daniela_backend/credentials/
 **/*service_account*.json
 **/env-consolidacion-*/
 **/_keys_before.json
+# 2026-10-11: vaults locales con claves vivas (solo disco, jamas git).
+# secrets/grafana_password.txt SIGUE trackeado a proposito (lo usa compose).
+secrets/archived-xxx/
+secrets/env-backups/
 .env.*
 !.env.example
 

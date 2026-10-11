@@ -16,6 +16,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 COPY pyproject.toml uv.lock* ./
 COPY src/ ./src/
 COPY --from=daniela-core . /daniela-core
+COPY --from=daniela-shared . /daniela-shared
 
 # Install dependencies
 COPY README.md ./
@@ -29,5 +30,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Run
-CMD ["uvicorn", "", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+# Run (cross-engine orchestrator gateway)
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "daniela_engines.orchestrator.server:app"]

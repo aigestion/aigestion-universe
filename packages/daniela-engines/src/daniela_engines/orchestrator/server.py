@@ -7,7 +7,7 @@ import time
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from core.auth.casbin_auth import create_auth_middleware
+from daniela_shared.core_utils.auth.casbin_auth import create_auth_middleware
 
 from .event_bus import get_event_bus
 from .orchestrator import CrossEngineOrchestrator
@@ -50,6 +50,11 @@ def cross_status():
     status["timestamp"] = time.time()
     status["version"] = "1.0.0"
     return jsonify(status)
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok", "service": "daniela-engines"})
 
 
 @app.route("/api/cross/health", methods=["GET"])
